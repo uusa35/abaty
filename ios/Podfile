@@ -1,0 +1,92 @@
+platform :ios, '9.0'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+target 'abaty' do
+  # Pods for abaty
+  rn_maps_path = '../node_modules/react-native-maps'
+
+
+  pod 'React', :path => '../node_modules/react-native/'
+  pod 'React-Core', :path => '../node_modules/react-native/React'
+  pod 'React-DevSupport', :path => '../node_modules/react-native/React'
+  pod 'React-fishhook', :path => '../node_modules/react-native/Libraries/fishhook'
+  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+  pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
+
+  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+# react-native-maps dependencies
+   pod 'react-native-maps', path: rn_maps_path
+  # pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support GoogleMaps on iOS
+  # pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
+  # pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
+
+  # pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  ## pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+  ## pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+  pod 'react-native-onesignal',
+      :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",
+      :inhibit_warnings => true
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+  pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+  pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  target 'abatyTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  use_native_modules!
+end
+
+target 'abaty-tvOS' do
+  # Pods for abaty-tvOS
+
+  target 'abaty-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'react-native-google-maps'
+      target.build_configurations.each do |config|
+        config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+      end
+    end
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end

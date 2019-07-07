@@ -1,0 +1,8 @@
+{
+  "name": "abaty",
+  "displayName": "abati",
+  "apiUrl" : "http://mallr.test/api/",
+  "ENV" : "local",
+  "PORT" : 4000,
+  "ONE_SIGNAL_APP_ID" : "365c1fc9-12c5-415b-84d2-cc6fbc7e378e"
+}

@@ -1,0 +1,195 @@
+import React, {useContext} from 'react';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import FastImage from 'react-native-fast-image';
+import {View} from 'react-native-animatable';
+import {text, width} from '../../../constants';
+import PropTypes from 'prop-types';
+import I18n from './../../../I18n';
+import validate from 'validate.js';
+import {removeItem} from '../../../redux/actions';
+import {DispatchContext} from '../../../redux/DispatchContext';
+
+const ProductItem = ({element, logo, editMode}) => {
+  const {dispatch} = useContext(DispatchContext);
+  return (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: 'lightgrey',
+        paddingTop: 10,
+        paddingBottom: 10
+      }}>
+      <FastImage
+        source={{uri: element.thumb ? element.thumb : logo}}
+        style={styles.logo}
+        resizeMode="contain"
+      />
+      <View
+        style={{
+          justifyContent: 'flex-start',
+          flex: 0.6,
+          paddingLeft: 5,
+          paddingRight: 5
+        }}>
+        <Text style={styles.mainTitle}>{element.name}</Text>
+        {!validate.isEmpty(element.user) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text
+              style={{
+                width: 60,
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left'
+              }}>
+              {I18n.t('company')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {element.user.slug}
+            </Text>
+          </View>
+        ) : null}
+        {!validate.isEmpty(element.size) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text
+              style={{
+                width: 60,
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left'
+              }}>
+              {I18n.t('size')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {element.size.name}
+            </Text>
+          </View>
+        ) : null}
+        {!validate.isEmpty(element.color) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text
+              style={{
+                width: 60,
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left'
+              }}>
+              {I18n.t('color')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {element.color.name}
+            </Text>
+          </View>
+        ) : null}
+      </View>
+      {editMode ? (
+        <TouchableOpacity
+          onPress={() => dispatch(removeItem(element.id))}
+          style={{
+            flex: 0.2,
+            height: '100%',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'flex-start'
+            }}>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 18,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {element.price}
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {I18n.t('kwd')}
+            </Text>
+          </View>
+          <View
+            style={{
+              backgroundColor: 'red',
+              height: '60%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%'
+            }}>
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: text.font,
+                fontSize: text.medium
+              }}>
+              {I18n.t('remove')}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ) : null}
+    </View>
+  );
+};
+
+export default React.memo(ProductItem);
+
+ProductItem.propTypes = {
+  element: PropTypes.object.isRequired,
+  logo: PropTypes.string
+};
+
+const styles = StyleSheet.create({
+  logo: {
+    width: 90,
+    height: 100,
+    flex: 0.2
+  },
+  mainTitle: {
+    fontFamily: text.font,
+    fontSize: 15,
+    textAlign: 'left'
+  },
+  elementRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingBottom: 10
+  }
+});
