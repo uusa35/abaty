@@ -6,7 +6,7 @@ import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
-import {prefix} from './../constants';
+import {userPrefix, productPrefix} from './../constants';
 import I18n from './../I18n';
 
 const HeaderCustom = ({navigation}) => {
@@ -29,7 +29,13 @@ const HeaderCustom = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <Icon
-        onPress={() => shareLink(`${prefix}${navigation.state.params.id}`)}
+        onPress={() =>
+            shareLink(
+                `${navigation.state.params.product ? productPrefix : userPrefix}${
+                    navigation.state.params.id
+                    }`
+            )
+        }
         name="share"
         size={25}
         underlayColor="transparent"

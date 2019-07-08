@@ -20,7 +20,6 @@ let Store;
 let PersistStore;
 if (__DEV__) {
   // create our new saga monitor
-  // const sagaMonitor = Reactotron.createSagaMonitor;
   // and in your call to createSagaMiddlware, pass it along inside
   // the 1st parameter's object.
   const persistedReducer = persistReducer(persistConfig, reducers);

@@ -79,6 +79,7 @@ export default React.memo(DesignerHorizontalWidget);
 
 DesignerHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
+    colors : PropTypes.object.isRequired,
   showName: PropTypes.bool,
   title: PropTypes.string
 };

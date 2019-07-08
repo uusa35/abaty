@@ -1,5 +1,6 @@
 import {I18nManager} from 'react-native';
 import RNRestart from 'react-native-restart';
+import CodePush from 'react-native-code-push';
 import * as actions from '../types';
 import {call, put, all, delay, takeLatest} from 'redux-saga/effects';
 import I18n, {isRTL} from './../../../I18n';
@@ -30,7 +31,7 @@ export function* startChangeLang(action) {
     I18n.locale = lang;
     axios.defaults.headers.common['lang'] = lang;
     yield delay(1000);
-    yield call(RNRestart.Restart);
+    yield  call(CodePush.restartApp());
   } catch (e) {
     yield call(enableErrorMessage, e.message);
   }

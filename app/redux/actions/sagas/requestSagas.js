@@ -20,6 +20,10 @@ import {submitLogin} from '../../../constants';
 import {SET_TOKEN} from '../types';
 import {SET_COUPON} from '../types';
 import {axiosInstance} from '../api';
+import {getHomeProducts} from "../api";
+import {getHomeBrands} from "../api";
+import {getHomeCelebrities} from "../api";
+import {getHomeDesigners} from "../api";
 
 export function* setHomeCategories() {
   const categories = yield call(api.getHomeCategories);
@@ -163,13 +167,25 @@ export function* setProducts() {
   }
 }
 
-export function* setHomeProducts(currency) {
+export function* setHomeProducts() {
   try {
-    console.log('axiosIntanc', axiosInstance.defaults.headers);
+    // console.log('axiosIntanc', axiosInstance.defaults.headers.common);
     const products = yield call(api.getHomeProducts);
-    console.log('the products from SetHomeProducts', products);
+    // console.log('the products from SetHomeProducts', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e.message)]);
+  }
+}
+
+export function* getProductIndex() {
+  try {
+    const products = yield call(api.getProducts);
+    // console.log('the products from SetHomeProducts', products);
+    if (!validate.isEmpty(products) && validate.isArray(products)) {
+      yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e.message)]);
@@ -264,7 +280,7 @@ export function* startGetUserScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'User',
-          params: {name: user.slug, id: user.id, product: false}
+          params: {name: user.slug, id: user.id, product: false }
         })
       );
     } else {
@@ -427,8 +443,15 @@ export function* setHomeCelebrities() {
 export function* startRefetchHomeElementsScenario() {
   try {
     // const settings = yield call(api.getSettings);
-    yield call(setSlides);
-    yield call(setSettings);
+    yield all([
+        call(setSlides),
+        call(setSettings),
+        call(getHomeProducts),
+        call(getHomeBrands),
+        call(getHomeCelebrities),
+        call(getHomeDesigners)
+    ])
+
   } catch (e) {
     yield all([
       disableLoading,

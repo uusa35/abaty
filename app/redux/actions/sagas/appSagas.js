@@ -32,7 +32,7 @@ import {
   startCreateMyFatorrahPaymentUrlScenario,
   startCreateTapPaymentUrlScenario,
   startRemoveFromCartScenario,
-  startRegisterScenario
+  startRegisterScenario, getProductIndex
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -58,6 +58,7 @@ import {internetChecker} from '../../../helpers';
 import * as api from '../api';
 import validate from 'validate.js';
 import {axiosInstance} from '../api';
+import {getProducts} from "../api";
 
 function* startAppBootStrap() {
   try {
@@ -67,10 +68,6 @@ function* startAppBootStrap() {
     if (!bootStrapped || __DEV__) {
       console.log('from inside');
       yield all([
-        put({
-          type: offlineActionTypes.CONNECTION_CHANGE,
-          payload: network.isConnected
-        }),
         call(defaultLang),
         call(setSettings),
         call(getCountry),
@@ -80,7 +77,8 @@ function* startAppBootStrap() {
         call(setSlides),
         call(setCommercials),
         call(setHomeBrands),
-        call(setHomeProducts, currency),
+        call(setHomeProducts),
+        call(getProductIndex),
         call(setHomeDesigners),
         call(setHomeCelebrities),
         call(setHomeSplashes),
@@ -88,7 +86,6 @@ function* startAppBootStrap() {
       ]);
       yield call(toggleBootStrapped, true);
       yield call(disableLoading);
-      yield;
     }
   } catch (e) {
     console.log('the eeee', e);
