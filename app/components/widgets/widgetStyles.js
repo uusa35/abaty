@@ -33,7 +33,8 @@ const widgetStyles = StyleSheet.create({
   },
   elementName: {
     textAlign: 'center',
-    padding: 10,
+    paddingTop: 5,
+    fontSize: text.small,
     fontFamily: text.font
   },
   btnStyle: {

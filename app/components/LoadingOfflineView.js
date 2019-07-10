@@ -3,15 +3,16 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../I18n';
 import {animations, colors, text} from './../constants';
-import LottieView from 'lottie-react-native';
+// import LottieView from 'lottie-react-native';
 import RNRestart from 'react-native-restart';
+import CodePush from '../redux/actions/sagas/langSagas';
 
-const LoadingOfflineView = () => {
-  const [connected, setConnected] = useState(false);
+const LoadingOfflineView = ({isConnected}) => {
+  const [connected, setConnected] = useState(isConnected);
 
   useMemo(() => {
     if (connected) {
-      RNRestart.Restart();
+      CodePush.restartApp();
     }
   }, [connected]);
 
@@ -26,12 +27,12 @@ const LoadingOfflineView = () => {
           type="outline"
           titleStyle={{fontFamily: text.font}}
         />
-        <LottieView
-          source={animations.offline}
-          autoPlay
-          loop
-          style={{height: 100}}
-        />
+        {/*<LottieView*/}
+        {/*  source={animations.offline}*/}
+        {/*  autoPlay*/}
+        {/*  loop*/}
+        {/*  style={{height: 100}}*/}
+        {/*/>*/}
         <Text style={styles.loadingMessage}>{I18n.t('no_internet')}</Text>
       </View>
     </View>

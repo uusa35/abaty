@@ -31,7 +31,7 @@ export function* startChangeLang(action) {
     I18n.locale = lang;
     axios.defaults.headers.common['lang'] = lang;
     yield delay(1000);
-    yield  call(CodePush.restartApp());
+    yield call(CodePush.restartApp());
   } catch (e) {
     yield call(enableErrorMessage, e.message);
   }
@@ -41,16 +41,20 @@ export function* changeLang() {
 }
 
 export function* defaultLang() {
-  const defaultLang = yield call(helpers.getLang);
-  const lang = !validate.isEmpty(defaultLang)
-    ? defaultLang
-    : I18n.defaultLocale;
-  I18n.locale = lang;
-  if (!validate.isEmpty(lang)) {
-    yield all([
-      put({type: actions.SET_LANG, payload: lang}),
-      call(setDirection, lang),
-      call(helpers.setLang, lang)
-    ]);
+  try {
+    const defaultLang = yield call(helpers.getLang);
+    const lang = !validate.isEmpty(defaultLang)
+      ? defaultLang
+      : I18n.defaultLocale;
+    I18n.locale = lang;
+    if (!validate.isEmpty(lang)) {
+      yield all([
+        put({type: actions.SET_LANG, payload: lang}),
+        call(setDirection, lang),
+        call(helpers.setLang, lang)
+      ]);
+    }
+  } catch (e) {
+    console.log('the e from default Lang', e);
   }
 }

@@ -6,9 +6,9 @@ import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, links} from '../../../constants';
 import UserInfoWidgetElement from './UserInfoWidgetElement';
 import PropTypes from 'prop-types';
+import ProductList from '../product/ProductList';
 
 const UserInfoWidget = ({user}) => {
-  [videoView, setVideoView] = useState(false);
   return (
     <View
       animation="bounceInRight"
@@ -305,6 +305,12 @@ const UserInfoWidget = ({user}) => {
         element={user.address}
         elementName="address"
         iconName="map"
+      />
+      <ProductList
+        elements={user.productGroup}
+        showSearch={false}
+        showTitle={true}
+        showFooter={false}
       />
     </View>
   );

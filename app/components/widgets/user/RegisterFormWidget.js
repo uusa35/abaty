@@ -8,14 +8,15 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const RegiterFormWidget = ({userCountryId}) => {
+const RegisterFormWidget = ({userCountryId, player_id}) => {
   const {colors, country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  console.log('colors', colors);
   const [name, setName] = useState('user name');
-  const [email, setEmail] = useState('test123444@test.com');
+  const [email, setEmail] = useState('test123243244@test.com');
   const [mobile, setMobile] = useState('234324234');
-  const [address, setAddress] = useState('234324234');
+  const [address, setAddress] = useState(
+    'klsd lsdkjf lsdj flkdsj flkdsj flkdsjf lkdsjf'
+  );
   const [password, setPassword] = useState('secret');
   const [notes, setNotes] = useState('');
   return (
@@ -142,7 +143,8 @@ const RegiterFormWidget = ({userCountryId}) => {
               password,
               mobile,
               country_id: country.id,
-              address
+              address,
+              player_id
             })
           )
         }
@@ -151,8 +153,8 @@ const RegiterFormWidget = ({userCountryId}) => {
   );
 };
 
-export default React.memo(RegiterFormWidget);
+export default React.memo(RegisterFormWidget);
 
-RegiterFormWidget.propTypes = {};
+RegisterFormWidget.propTypes = {};
 
 const styles = StyleSheet.create({});

@@ -21,7 +21,13 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
 
-const ProductList = ({elements, showName}) => {
+const ProductList = ({
+  elements,
+  showName = true,
+  showSearch = true,
+  showFooter = true,
+  showTitle = false
+}) => {
   const {dispatch} = useContext(DispatchContext);
   const {country} = useContext(CountryContext);
   const {navigation} = useContext(NavContext);
@@ -80,7 +86,12 @@ const ProductList = ({elements, showName}) => {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[0]}
-          contentContainerStyle={{width: width, justifyContent: 'center'}}
+          contentContainerStyle={{
+            width: '100%',
+            justifyContent: 'center',
+            alignSelf: 'center',
+            padding: 10
+          }}
           columnWrapperStyle={{
             margin: 5,
             justifyContent: 'center',
@@ -90,52 +101,70 @@ const ProductList = ({elements, showName}) => {
           data={items}
           refreshing={refresh}
           ListHeaderComponentStyle={{backgroundColor: 'white', padding: 10}}
-          ListHeaderComponent={
-            <Input
-              placeholder={I18n.t('search')}
-              inputStyle={{
-                fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
-              }}
-              inputContainerStyle={{
-                backgroundColor: '#E4E4E5',
-                borderRadius: 30,
-                paddingRight: 15,
-                paddingLeft: 15,
-                marginTop: 10,
-                borderColor: '#E4E4E5'
-              }}
-              rightIcon={
-                <Icon
-                  onPress={() => setSearch('')}
-                  hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-                  type="evilIcons"
-                  name={search.length > 0 ? 'close' : 'search'}
-                  color="#c4c4c4"
-                  size={18}
-                  color="black"
+          ListHeaderComponent={() => (
+            <View>
+              {showSearch ? (
+                <Input
+                  placeholder={I18n.t('search')}
+                  inputStyle={{
+                    fontFamily: text.font,
+                    textAlign: isRTL ? 'right' : 'left'
+                  }}
+                  inputContainerStyle={{
+                    backgroundColor: '#E4E4E5',
+                    borderRadius: 30,
+                    paddingRight: 15,
+                    paddingLeft: 15,
+                    marginTop: 10,
+                    borderColor: '#E4E4E5'
+                  }}
+                  rightIcon={
+                    <Icon
+                      onPress={() => setSearch('')}
+                      hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                      type="evilIcons"
+                      name={search.length > 0 ? 'close' : 'search'}
+                      color="#c4c4c4"
+                      size={18}
+                      color="black"
+                    />
+                  }
+                  onChangeText={e => setSearch(e)}
+                  value={search}
                 />
-              }
-              onChangeText={e => setSearch(e)}
-              value={search}
-            />
-          }
+              ) : null}
+              {showTitle ? (
+                <View>
+                  <Text
+                    style={{
+                      fontFamily: text.font,
+                      fontSize: text.large,
+                      textAlign: 'left'
+                    }}>
+                    {I18n.t('related_product_group')}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+          )}
           refreshControl={
             <RefreshControl
               refreshing={refresh}
               onRefresh={() => setRefresh(true)}
             />
           }
-          ListFooterComponent={
-            <View style={{minHeight: 100}}>
-              <Button
-                loading={isLoading}
-                raised
-                title={I18n.t('no_more_products')}
-                type="outline"
-                titleStyle={{fontFamily: text.font}}
-              />
-            </View>
+          ListFooterComponent={() =>
+            showFooter ? (
+              <View style={{minHeight: 100}}>
+                <Button
+                  loading={isLoading}
+                  raised
+                  title={I18n.t('no_more_products')}
+                  type="outline"
+                  titleStyle={{fontFamily: text.font}}
+                />
+              </View>
+            ) : null
           }
           renderItem={({item}) => (
             <ProductWidget product={item} showName={showName} />

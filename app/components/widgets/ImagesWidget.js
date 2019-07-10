@@ -16,7 +16,6 @@ import {images} from '../../constants';
 import TagWidget from './product/TagWidget';
 
 const ImagesWidget = ({
-  main,
   elements,
   name,
   exclusive,
@@ -27,7 +26,6 @@ const ImagesWidget = ({
   width = 200
 }) => {
   const {navigation} = useContext(NavContext);
-  console.log('main', main);
   return (
     <ScrollView
       horizontal={true}

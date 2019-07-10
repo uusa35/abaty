@@ -30,11 +30,11 @@ const HeaderCustom = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Icon
         onPress={() =>
-            shareLink(
-                `${navigation.state.params.product ? productPrefix : userPrefix}${
-                    navigation.state.params.id
-                    }`
-            )
+          shareLink(
+            `${navigation.state.params.product ? productPrefix : userPrefix}${
+              navigation.state.params.id
+            }`
+          )
         }
         name="share"
         size={25}

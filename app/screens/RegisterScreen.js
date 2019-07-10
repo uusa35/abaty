@@ -2,13 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavContext} from '../redux/NavContext';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Button, Input} from 'react-native-elements';
-import I18n, {isRTL} from '../I18n';
 import {images, text} from '../constants';
-import {showCountryModal} from '../redux/actions';
-import RegiterFormWidget from '../components/widgets/user/RegisterFormWidget';
+import RegisterFormWidget from '../components/widgets/user/RegisterFormWidget';
 
 class RegisterScreen extends Component {
   constructor(props) {
@@ -16,16 +13,8 @@ class RegisterScreen extends Component {
     this.state = {userCountryId: ''};
   }
 
-  // componentWillMount() {
-  //   this.setState({userCountryId: this.props.country.id});
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.country.id !== this.state.userCountryId;
-  // }
-
   render() {
-    const {navigation, colors, logo} = this.props;
+    const {navigation, logo, playerId} = this.props;
     const {userCountryId} = this.state;
     return (
       <NavContext.Provider value={{navigation}}>
@@ -38,7 +27,10 @@ class RegisterScreen extends Component {
               resizeMode="contain"
               loadingIndicatorSource={images.logo}
             />
-            <RegiterFormWidget userCountryId={userCountryId} />
+            <RegisterFormWidget
+              userCountryId={userCountryId}
+              player_id={playerId}
+            />
           </View>
         </View>
       </NavContext.Provider>
@@ -49,9 +41,9 @@ class RegisterScreen extends Component {
 function mapStateToProps(state) {
   return {
     token: state.token,
-    colors: state.settings.colors,
     logo: state.settings.logo,
-    country: state.country
+    country: state.country,
+    playerId: state.playerId
   };
 }
 

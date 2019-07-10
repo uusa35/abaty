@@ -12,8 +12,8 @@ import {networkTransform} from './../redux/actions/api';
 const persistConfig = {
   key: 'root',
   storage,
-  transforms: [networkTransform]
-  //blacklist: ['navigation'] // navigation will not be persisted
+  transforms: [networkTransform],
+  blacklist: ['message'] // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
 };
 let Store;

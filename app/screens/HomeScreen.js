@@ -32,6 +32,7 @@ import {SafeAreaView} from 'react-navigation';
 import celebrities from '../redux/reducers/celebrities';
 import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
+
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -110,10 +111,7 @@ class HomeScreen extends Component {
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url
     );
-    const {isConnected} = this.props.network;
-    return isConnected
-      ? this.props.dispatch(goDeepLinking(path, params))
-      : null;
+    this.props.dispatch(goDeepLinking(path, params));
   };
 
   onIds = device => {
@@ -165,7 +163,7 @@ class HomeScreen extends Component {
             {!validate.isEmpty(designers) ? (
               <DesignerHorizontalWidget
                 elements={designers}
-                showName={false}
+                showName={true}
                 title="designers"
               />
             ) : null}
@@ -179,7 +177,7 @@ class HomeScreen extends Component {
             {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
               <DesignerHorizontalWidget
                 elements={celebrities}
-                showName={false}
+                showName={true}
                 title="celebrities"
               />
             ) : null}

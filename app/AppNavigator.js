@@ -370,7 +370,7 @@ const TabsStack = createBottomTabNavigator(
       screen: CategoryStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="layers" type="feather" color={tintColor} />
+          <Icon name="layers" type="simplelineicons" color={tintColor} />
         ),
         title: I18n.t('categories')
       })
@@ -464,7 +464,8 @@ const RootNavigator = createDrawerNavigator(
 const AppWithNavigationState = createReduxContainer(RootNavigator);
 
 const mapStateToProps = state => ({
-  state: state.nav
+  state: state.nav,
+  network: state.network
 });
 
 const AppNavigator = connect(mapStateToProps)(

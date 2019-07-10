@@ -35,7 +35,7 @@ class CartConfirmationScreen extends Component {
   couponVal = coupon => (!validate.isEmpty(coupon) ? coupon.value : 0);
 
   shouldComponentUpdate(nextProps, nextState) {
-    const {total, coupon, country, guest, cart} = this.props;
+    const {total, coupon, country, guest, cart, auth} = this.props;
     if (nextProps.country.id !== this.state.shipmentCountry.id) {
       let discount = this.couponVal(coupon);
       let shipment = nextProps.country.fixed_shipment_charge;
@@ -56,7 +56,8 @@ class CartConfirmationScreen extends Component {
       nextProps.country.id !== this.state.shipmentCountry.id ||
       nextProps.guest !== guest ||
       nextProps.coupon.id !== coupon.id ||
-      nextProps.cart.length !== cart.length
+      nextProps.cart.length !== cart.length ||
+      nextProps.auth.id !== auth.id
     );
   }
 

@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLIconFile</key>
-			<string></string>
+			<string/>
 			<key>CFBundleURLName</key>
 			<string>abati</string>
 			<key>CFBundleURLSchemes</key>
@@ -37,6 +37,10 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CodePushDeploymentKey</key>
+	<string>vRgidQDMomBHssgVzsShdcmWcNtk0b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
+	<key>CodePushPublicKey</key>
+	<string>mEWQl1dIv6vZ4eaNz7h8jGlRximF0b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>whatsapp</string>
@@ -61,7 +65,19 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>$(PRODUCT_NAME) would like access to your current location.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location Always And When In Use Usage Description</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location Always Usage Description</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your microphone.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) wants to save photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Cairo_Black.ttf</string>
@@ -92,6 +108,7 @@
 		<string>Tajawal-Black.ttf</string>
 		<string>Tajawal-ExtraBold.ttf</string>
 		<string>Tajawal-ExtraLight.ttf</string>
+		<string>Fontisto.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -66,7 +66,7 @@ const DesignerHorizontalWidget = ({elements, showName, title}) => {
               resizeMode="cover"
             />
             {showName ? (
-              <Text style={widgetStyles.categoryName}>{c.name}</Text>
+              <Text style={widgetStyles.elementName}>{c.slug}</Text>
             ) : null}
           </TouchableOpacity>
         ))}
@@ -79,7 +79,7 @@ export default React.memo(DesignerHorizontalWidget);
 
 DesignerHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-    colors : PropTypes.object.isRequired,
+  colors: PropTypes.object,
   showName: PropTypes.bool,
   title: PropTypes.string
 };

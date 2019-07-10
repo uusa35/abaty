@@ -22,18 +22,9 @@ import {
   SceneRendererProps
 } from 'react-native-tab-view';
 import I18n from './../I18n';
-
-const FirstRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#ff4081'}]}>
-    <Text>First </Text>
-  </View>
-);
-
-const SecondRoute = () => (
-  <View style={[styles.scene, {backgroundColor: '#673ab7'}]}>
-    <Text>Second</Text>
-  </View>
-);
+import Video from 'react-native-video';
+import UserShowInformationTabBarWidget from '../components/widgets/user/UserShowInfomrationWidgetTabBarWidget';
+import ProductList from '../components/widgets/product/ProductList';
 
 class DesignerShowScreen extends Component {
   constructor(props) {
@@ -69,28 +60,24 @@ class DesignerShowScreen extends Component {
                 name={designer.slug}
                 showLabels={false}
               />
+              {/*<UserShowInformationTabBarWidget element={designer} />*/}
               <TabView
                 navigationState={this.state}
-                indicatorStyle={{backgroundColor: 'black', borderWidth: 10}}
+                indicatorStyle={{backgroundColor: 'green', borderWidth: 10}}
+                indicatorContainerStyle={{backgroundColor: 'pink'}}
                 tabStyle={{color: 'green', backgroundColor: 'green'}}
                 labelStyle={{
                   color: 'red',
+                  backgroundColor: 'blue',
                   fontFamily: text.font,
                   fontSize: text.medium
                 }}
                 contentContainerStyle={{backgroundColor: 'pink'}}
                 activeColor="green"
-                style={{marginTop: 10, backgroundColor: 'transparent'}}
+                style={{marginTop: 10, backgroundColor: 'white'}}
                 renderScene={SceneMap({
                   first: () => <UserInfoWidget user={designer} />,
-                  second: () => (
-                    <VideosWidget
-                      videos={[
-                        designer.video_url_one ? designer.video_url_one : null,
-                        designer.video_url_two ? designer.video_url_two : null
-                      ]}
-                    />
-                  )
+                  second: () => <VideosWidget videos={designer.videos} />
                 })}
                 onIndexChange={index => this.setState({index})}
                 initialLayout={{width: width}}

@@ -1,5 +1,5 @@
 import * as actions from '../types';
-import {call, put, all, delay, select} from 'redux-saga/effects';
+import {call, put, all, select} from 'redux-saga/effects';
 import validate from 'validate.js';
 import * as api from '../api';
 import I18n from '../../../I18n';
@@ -9,26 +9,27 @@ import {
   enableErrorMessage,
   enableLoading,
   enableSuccessMessage,
-  enableWarningMessage,
-  toggleBootStrapped
+  enableWarningMessage
 } from './settingSagas';
-import {isNull, upperFirst, uniqBy, remove, map, sumBy, first} from 'lodash';
-import {setCurrency, isUrl} from '../../../helpers';
+import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
+import {setCurrency} from '../../../helpers';
 import axios from 'axios';
 import {startAppBootStrap} from './appSagas';
-import {submitLogin} from '../../../constants';
-import {SET_TOKEN} from '../types';
-import {SET_COUPON} from '../types';
-import {axiosInstance} from '../api';
-import {getHomeProducts} from "../api";
-import {getHomeBrands} from "../api";
-import {getHomeCelebrities} from "../api";
-import {getHomeDesigners} from "../api";
+import {registerConstrains, submitLogin} from '../../../constants';
 
 export function* setHomeCategories() {
-  const categories = yield call(api.getHomeCategories);
-  if (!validate.isEmpty(categories)) {
-    yield put({type: actions.SET_CATEGORIES, payload: categories});
+  try {
+    const categories = yield call(api.getHomeCategories);
+    if (!validate.isEmpty(categories)) {
+      yield put({type: actions.SET_CATEGORIES, payload: categories});
+    } else {
+      throw I18n.t('on_home_categories');
+    }
+  } catch (e) {
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('error_home_categroies_from catch'))
+    ]);
   }
 }
 
@@ -38,10 +39,18 @@ export function* startRefetchHomeCategories() {
 
 export function* setSettings() {
   const settings = yield call(api.getSettings);
-  if (!validate.isEmpty(settings)) {
-    yield all([put({type: actions.SET_SETTINGS, payload: settings})]);
-  } else {
-    throw I18n.t('no_settings');
+  try {
+    if (!validate.isEmpty(settings)) {
+      yield put({type: actions.SET_SETTINGS, payload: settings});
+    } else {
+      throw I18n.t('no_settings');
+    }
+  } catch (e) {
+    // console.log('the e from settings', e);
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('no_settings_from_catch'))
+    ]);
   }
 }
 
@@ -67,6 +76,7 @@ export function* setUsers(action) {
       throw I18n.t(users);
     }
   } catch (e) {
+    // console.log('the e from setusers', e);
     yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
   }
 }
@@ -92,44 +102,8 @@ export function* startGetCategoryElementsScenario(action) {
         })
       )
     ]);
-    // yield put({type: actions.SET_CATEGORY, payload: category});
-    // if (category.has_children) {
-    //   console.log('inside if');
-    //   yield put(
-    //     NavigationActions.navigate({
-    //       routeName: 'CategoryIndex',
-    //       params: {
-    //         category,
-    //         name: category.name,
-    //         columns: 1,
-    //         showMainCategory: false
-    //       }
-    //     })
-    //   );
-    // } else {
-    //   yield put({
-    //     type: actions.GET_SEARCH_PRODUCTS,
-    //     payload: {product_category_id: category.id}
-    //   });
-    // console.log('the product category id', category.id);
-    // const products = yield call(api.getSearchProducts, {product_category_id: category.id});
-    // console.log('products', products);
-    // if (!validate.isEmpty(products) && validate.isArray(products)) {
-    //   yield all([
-    //     put({type: actions.SET_PRODUCTS, payload: products}),
-    //     put(
-    //       NavigationActions.navigate({
-    //         routeName: 'ProductIndex',
-    //         elements: {name: category.name},
-    //         searchElements: {product_category_id: category.id}
-    //       })
-    //     )
-    //   ]);
-    // } else {
-    //   throw I18n.t('no_products');
-    // }
-    // }
   } catch (e) {
+    // console.log('the e from startGetCatgoryElement scneario',e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -141,6 +115,7 @@ export function* setCommercials() {
       yield all([put({type: actions.SET_COMMERCIALS, payload: commercials})]);
     }
   } catch (e) {
+    // console.log('the e from set Commercials', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -152,6 +127,7 @@ export function* setSlides() {
       yield all([put({type: actions.SET_HOME_SLIDERS, payload: slides})]);
     }
   } catch (e) {
+    // console.log('the e from set setSlides', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -163,6 +139,7 @@ export function* setProducts() {
       yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
     }
   } catch (e) {
+    // console.log('the e from set setProducts', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -176,6 +153,7 @@ export function* setHomeProducts() {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
     }
   } catch (e) {
+    // console.log('the e from set setHomeproducts', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -188,6 +166,7 @@ export function* getProductIndex() {
       yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
     }
   } catch (e) {
+    // console.log('the e from set getproduct index', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -201,9 +180,11 @@ export function* setCountries() {
       throw I18n.t('no_countries');
     }
   } catch (e) {
+    // console.log('the e from set setcountries', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
+
 // get the country if it' snot set
 export function* getCountry(country_id = null) {
   try {
@@ -218,10 +199,9 @@ export function* getCountry(country_id = null) {
         console.log('there');
         yield call(startSetCountryScenario, {payload: country});
       }
-    } else {
-      throw 'stop here';
     }
   } catch (e) {
+    // console.log('the e from set getcountry', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -236,6 +216,7 @@ export function* startSetCountryScenario(action) {
       ]);
     }
   } catch (e) {
+    // console.log('the e from set setcountry scnario', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -246,6 +227,7 @@ export function* startSetCurrencyScenario(action) {
     yield call(setCurrency, currency.symbol);
     axios.defaults.headers.common['currency'] = currency.symbol;
   } catch (e) {
+    // console.log('the e from set currency scenario', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -268,6 +250,7 @@ export function* startGetBrandScenario(action) {
       throw I18n.t('no_brand');
     }
   } catch (e) {
+    // console.log('the e from set start get brand scnario', e)
     yield all([disableLoading, enableErrorMessage(I18n.t('no_brand'))]);
   }
 }
@@ -280,13 +263,14 @@ export function* startGetUserScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'User',
-          params: {name: user.slug, id: user.id, product: false }
+          params: {name: user.slug, id: user.id, product: false}
         })
       );
     } else {
       throw I18n.t('no_user');
     }
   } catch (e) {
+    // console.log('the e from set get user scnario', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -313,6 +297,7 @@ export function* startGetDesignerScenario(action) {
   try {
     const user = yield call(api.getUser, action.payload);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
+      console.log('the designer', user);
       yield put({type: actions.SET_DESIGNER, payload: user});
       yield put(
         NavigationActions.navigate({
@@ -324,6 +309,7 @@ export function* startGetDesignerScenario(action) {
       throw I18n.t('no_user');
     }
   } catch (e) {
+    // console.log('the e from set get designer scanrio', e)
     yield all([disableLoading, enableErrorMessage(e.message)]);
   }
 }
@@ -347,6 +333,7 @@ export function* startGetProductScenario(action) {
       throw I18n.t('error_while_loading_product');
     }
   } catch (e) {
+    // console.log('the e from set Commercials', e)
     yield all([
       disableLoading,
       enableWarningMessage(I18n.t('error_while_loading_product'))
@@ -377,6 +364,7 @@ export function* startGetSearchProductsScenario(action) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
   }
 }
+
 export function* startDeepLinkingScenario(action) {
   try {
     const {routeName, id} = action.payload;
@@ -442,16 +430,19 @@ export function* setHomeCelebrities() {
 
 export function* startRefetchHomeElementsScenario() {
   try {
-    // const settings = yield call(api.getSettings);
     yield all([
-        call(setSlides),
-        call(setSettings),
-        call(getHomeProducts),
-        call(getHomeBrands),
-        call(getHomeCelebrities),
-        call(getHomeDesigners)
-    ])
-
+      call(setHomeCategories),
+      call(setCountries),
+      call(setSlides),
+      call(setCommercials),
+      call(setHomeBrands),
+      call(setHomeProducts),
+      call(getProductIndex),
+      call(setHomeDesigners),
+      call(setHomeCelebrities),
+      call(setHomeSplashes),
+      call(startAuthenticatedScenario)
+    ]);
   } catch (e) {
     yield all([
       disableLoading,
@@ -563,6 +554,7 @@ export function* startAuthenticatedScenario() {
     const {token} = yield select();
     if (!validate.isEmpty(token)) {
       const user = yield call(api.authenticated, token); // get the auth user according to auth stored in storage
+      console.log('the user', user);
       if (!validate.isEmpty(user) && !validate.isEmpty(token)) {
         yield all([
           put({type: actions.SET_AUTH, payload: user}),
@@ -572,6 +564,7 @@ export function* startAuthenticatedScenario() {
       }
     }
   } catch (e) {
+    console.log('the eeeeeeee from startAuth');
     yield all([
       disableLoading,
       enableErrorMessage(I18n.t('authenticated_error'))
@@ -616,7 +609,11 @@ export function* startSubmitAuthScenario(action) {
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(enableSuccessMessage, I18n.t('login_success')),
-        yield put(NavigationActions.back())
+        put(
+          NavigationActions.navigate({
+            routeName: 'Home'
+          })
+        )
       ]);
     } else {
       throw user;
@@ -650,22 +647,28 @@ export function* startGetCouponScenario(action) {
 export function* startCreateMyFatorrahPaymentUrlScenario(action) {
   console.log('the action payload', action.payload);
   try {
-    yield call(enableLoading, I18n.t('create_payment_url'));
-    const url = yield call(api.makeMyFatoorahPayment, action.payload);
-    if (validate.isObject(url) && url.paymentUrl.includes('https')) {
-      yield all([
-        call(disableLoading),
-        put(
-          NavigationActions.navigate({
-            routeName: 'PaymentIndex',
-            params: {
-              paymentUrl: url.paymentUrl
-            }
-          })
-        )
-      ]);
+    const {name, mobile, email, address} = action.payload;
+    const result = validate({name, mobile, email, address}, registerConstrains);
+    if (validate.isEmpty(result)) {
+      yield call(enableLoading, I18n.t('create_payment_url'));
+      const url = yield call(api.makeMyFatoorahPayment, action.payload);
+      if (validate.isObject(url) && url.paymentUrl.includes('https')) {
+        yield all([
+          call(disableLoading),
+          put(
+            NavigationActions.navigate({
+              routeName: 'PaymentIndex',
+              params: {
+                paymentUrl: url.paymentUrl
+              }
+            })
+          )
+        ]);
+      } else {
+        throw url;
+      }
     } else {
-      throw url;
+      throw I18n.t('information_you_entered_not_correct');
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
@@ -699,20 +702,26 @@ export function* startCreateTapPaymentUrlScenario(action) {
 export function* startRegisterScenario(action) {
   console.log('the action payload', action.payload);
   try {
-    const user = yield call(api.register, action.payload);
-    if (validate.isObject(user) && !validate.isEmpty(user)) {
-      const {email, password} = action.payload;
-      yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});
-      yield all([
-        call(enableSuccessMessage, I18n.t('register_success')),
-        put(
-          NavigationActions.navigate({
-            routeName: 'Home'
-          })
-        )
-      ]);
+    const {name, mobile, email, address} = action.payload;
+    const result = validate({name, mobile, email, address}, registerConstrains);
+    if (validate.isEmpty(result)) {
+      const user = yield call(api.register, action.payload);
+      if (validate.isObject(user) && !validate.isEmpty(user)) {
+        const {email, password} = action.payload;
+        yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});
+        yield all([
+          call(enableSuccessMessage, I18n.t('register_success')),
+          put(
+            NavigationActions.navigate({
+              routeName: 'Home'
+            })
+          )
+        ]);
+      } else {
+        throw user;
+      }
     } else {
-      throw user;
+      throw I18n.t('information_you_entered_not_correct');
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);

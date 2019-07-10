@@ -26,7 +26,7 @@ const ProductWidget = ({product, showName = false}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: 180,
+          width: '48%',
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',
@@ -57,14 +57,26 @@ const ProductWidget = ({product, showName = false}) => {
           <Text
             style={[
               widgetStyles.elementName,
-              {textAlign: 'left', paddingBottom: 0}
+              {
+                textAlign: 'left',
+                paddingBottom: 0,
+                paddingRight: 10,
+                paddingLeft: 10,
+                fontSize: text.small
+              }
             ]}>
             {product.name} - {product.id}
           </Text>
           <Text
             style={[
               widgetStyles.elementName,
-              {textAlign: 'left', paddingTop: 0}
+              {
+                textAlign: 'left',
+                paddingTop: 0,
+                paddingRight: 10,
+                paddingLeft: 10,
+                fontSize: text.medium
+              }
             ]}>
             {getProductConvertedFinalPrice(product.finalPrice, exchange_rate)}
             {currency_symbol}

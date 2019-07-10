@@ -30,7 +30,8 @@ target 'abaty' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-# react-native-maps dependencies
+
+   # react-native-maps dependencies
    pod 'react-native-maps', path: rn_maps_path
   # pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support GoogleMaps on iOS
   # pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
@@ -41,16 +42,14 @@ target 'abaty' do
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  ## pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+  # pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
-  ## pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
   pod 'react-native-onesignal',
       :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",
       :inhibit_warnings => true
-  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
-  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+  # pod 'lottie-ios', :path => '../node_modules/lottie-ios'
   pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
-  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
   pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
@@ -59,6 +58,8 @@ target 'abaty' do
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  # pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
   target 'abatyTests' do
     inherit! :search_paths

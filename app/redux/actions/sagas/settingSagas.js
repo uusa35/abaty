@@ -21,9 +21,13 @@ export function* toggleGuest(guest) {
 }
 
 export function* setDeviceId() {
-  let deviceId = DeviceInfo.getUniqueID(); // get the deviceID
-  __DEV__ ? console.log('device_id', deviceId) : null;
-  yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
+  try {
+    let deviceId = DeviceInfo.getUniqueID(); // get the deviceID
+    __DEV__ ? console.log('device_id', deviceId) : null;
+    yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
+  } catch (e) {
+    yield call(enableErrorMessage, I18n.t('no_settings_from_catch'));
+  }
 }
 
 export function* enableSuccessMessage(

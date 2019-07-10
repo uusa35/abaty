@@ -34,7 +34,7 @@ class CartIndexScreen extends Component {
   couponVal = coupon => (!validate.isEmpty(coupon) ? coupon.value : 0);
 
   shouldComponentUpdate(nextProps, nextState) {
-    const {total, coupon, country, guest, cart, auth} = this.props;
+    const {total, coupon, country, guest, cart, auth, token} = this.props;
     if (nextProps.country.id !== this.state.shipmentCountry.id) {
       let discount = this.couponVal(coupon);
       let shipment = nextProps.country.fixed_shipment_charge;
@@ -56,7 +56,7 @@ class CartIndexScreen extends Component {
       nextProps.guest !== guest ||
       nextProps.coupon.id !== coupon.id ||
       nextProps.cart.length !== cart.length ||
-      nextProps.auth !== auth
+      nextProps.auth.id !== auth.id
     );
   }
 

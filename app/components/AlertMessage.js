@@ -1,8 +1,4 @@
-import React, {useState, useContext, useEffect, useMemo} from 'react';
-import {StyleSheet, StatusBar, Modal, View} from 'react-native';
-// import {View} from 'react-native-animatable';
-import * as Animatable from 'react-native-animatable';
-import {Icon, Divider} from 'react-native-elements';
+import React, {useState, useContext, useMemo} from 'react';
 import {text} from './../constants';
 import {DispatchContext} from '../redux/DispatchContext';
 import PropTypes from 'prop-types';

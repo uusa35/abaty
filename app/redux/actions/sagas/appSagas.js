@@ -32,7 +32,8 @@ import {
   startCreateMyFatorrahPaymentUrlScenario,
   startCreateTapPaymentUrlScenario,
   startRemoveFromCartScenario,
-  startRegisterScenario, getProductIndex
+  startRegisterScenario,
+  getProductIndex
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -58,32 +59,51 @@ import {internetChecker} from '../../../helpers';
 import * as api from '../api';
 import validate from 'validate.js';
 import {axiosInstance} from '../api';
-import {getProducts} from "../api";
+import {getProducts} from '../api';
 
 function* startAppBootStrap() {
   try {
     const {network, bootStrapped, currency, lang} = yield select();
     axiosInstance.defaults.headers.common['currency'] = currency.symbol;
     axiosInstance.defaults.headers.common['lang'] = lang;
-    if (!bootStrapped || __DEV__) {
+    if (!bootStrapped || (__DEV__ && network.isConnected)) {
       console.log('from inside');
-      yield all([
-        call(defaultLang),
-        call(setSettings),
-        call(getCountry),
-        call(setDeviceId),
-        call(setHomeCategories),
-        call(setCountries),
-        call(setSlides),
-        call(setCommercials),
-        call(setHomeBrands),
-        call(setHomeProducts),
-        call(getProductIndex),
-        call(setHomeDesigners),
-        call(setHomeCelebrities),
-        call(setHomeSplashes),
-        call(startAuthenticatedScenario)
-      ]);
+      // yield all([
+      //   call(defaultLang),
+      //   call(setSettings),
+      //   call(getCountry),
+      //   call(setDeviceId),
+      //   call(setHomeCategories),
+      //   call(setCountries),
+      //   call(setSlides),
+      //   call(setCommercials),
+      //   call(setHomeBrands),
+      //   call(setHomeProducts),
+      //   call(getProductIndex),
+      //   call(setHomeDesigners),
+      //   call(setHomeCelebrities),
+      //   call(setHomeSplashes),
+      //   call(startAuthenticatedScenario)
+      // ]);
+      yield put({
+        type: offlineActionTypes.CONNECTION_CHANGE,
+        payload: network.isConnected
+      });
+      yield call(defaultLang);
+      yield call(setSettings);
+      yield call(getProductIndex);
+      yield call(getCountry);
+      yield call(setDeviceId);
+      yield call(setHomeCategories);
+      yield call(setCountries);
+      yield call(setSlides);
+      yield call(setCommercials);
+      yield call(setHomeBrands);
+      yield call(setHomeProducts);
+      yield call(setHomeDesigners);
+      yield call(setHomeCelebrities);
+      yield call(setHomeSplashes);
+      yield call(startAuthenticatedScenario);
       yield call(toggleBootStrapped, true);
       yield call(disableLoading);
     }

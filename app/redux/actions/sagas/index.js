@@ -6,7 +6,6 @@ import {REHYDRATE, PURGE} from 'redux-persist/lib/constants';
 
 export default function* rootSaga() {
   yield all([
-    fork(networkSaga, {pingInterval: 20000}),
     fork(appSagas.appBootstrap),
     fork(appSagas.refetchHomeCategories),
     fork(appSagas.refetchUsers),
@@ -33,8 +32,8 @@ export default function* rootSaga() {
     fork(appSagas.createMyFatoorahPaymentUrl),
     fork(appSagas.createTapPaymentUrl),
     fork(appSagas.goDeepLinking),
-    fork(appSagas.register)
-    // fork(networkSaga, {pingInterval: 20000})
+    fork(appSagas.register),
+    fork(networkSaga, {pingInterval: 20000})
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store
   yield take(PURGE);

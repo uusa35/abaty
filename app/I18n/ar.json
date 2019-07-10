@@ -155,6 +155,7 @@
   "individuals" : "الأفراد",
   "individual" : "فرد",
   "continue_information" : "إكمال عملية التسجيل",
+  "information" : "معلومات",
   "ar" : "اللغة العربية",
   "en" : "اللغة الإنجليزية",
   "lang" : "English",
@@ -426,6 +427,8 @@
   "exclusive" : "حصري",
   "under_sale" : "يوجد خصم",
   "hot_deal" : "عروض خاصة",
-  "new_user" : "مستخدم جديد .. سجل الآن"
+  "new_user" : "مستخدم جديد .. سجل الآن",
+  "information_you_entered_not_correct" : "البيانات المدخلة ليست صحيحة !!",
+  "related_product_group" : "منتجات مختارة"
 
 }

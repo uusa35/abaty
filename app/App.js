@@ -18,13 +18,14 @@ import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 
-console.disableYellowBox = true;
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {symbol, lang, network} = this.props;
-    return this.props.dispatch(appBootstrap());
+    const {dispatch, network} = this.props;
+    if (network.isConnected) {
+      return dispatch(appBootstrap());
+    }
   }
 
   render() {
@@ -65,6 +66,7 @@ class App extends Component<Props> {
         />
       );
     }
+    console.log('NETWORK', network);
     return (
       <DispatchContext.Provider value={{dispatch}}>
         {network.isConnected ? (
@@ -92,6 +94,7 @@ class App extends Component<Props> {
             )}
             {!validate.isEmpty(message) &&
             message.visible &&
+            network.isConnected &&
             validate.isString(message.content) ? (
               <AlertMessage message={message} />
             ) : null}
@@ -103,7 +106,7 @@ class App extends Component<Props> {
             ) : null}
           </View>
         ) : (
-          <LoadingOfflineView isConnected={network.isConnected} />
+          <LoadingOfflineView />
         )}
       </DispatchContext.Provider>
     );

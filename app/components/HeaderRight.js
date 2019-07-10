@@ -37,11 +37,11 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
       {display ? (
         <TouchableOpacity
           onPress={() => dispatch(showCountryModal())}
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}>
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <FastImage
             source={{uri: country.thumb}}
             style={{width: 35, height: 20}}
-            resizeMode="stretch"
+            resizeMode="contain"
           />
         </TouchableOpacity>
       ) : null}
@@ -57,7 +57,7 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
           name="share"
           size={25}
           underlayColor="transparent"
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
       ) : null}
