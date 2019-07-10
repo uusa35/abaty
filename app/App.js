@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import codePush from 'react-native-code-push';
 import {connect} from 'react-redux';
 import {appBootstrap} from './redux/actions';
@@ -12,20 +12,23 @@ import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
 import {prefix} from './constants';
 import LoadingOfflineView from './components/LoadingOfflineView';
-import {NetworkConsumer} from 'react-native-offline';
-import axios from 'axios';
 import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
+import {axiosInstance} from './redux/actions/api';
 
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {dispatch, network} = this.props;
-    if (network.isConnected) {
+    const {dispatch, network, bootStrapped, symbol, lang} = this.props;
+    console.log('SYMBOLE', symbol);
+    console.log('lang', lang);
+    if (network.isConnected && !bootStrapped) {
       return dispatch(appBootstrap());
     }
+    axiosInstance.defaults.headers.common['currency'] = symbol;
+    axiosInstance.defaults.headers.common['lang'] = lang;
   }
 
   render() {

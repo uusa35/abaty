@@ -8,7 +8,8 @@ import {
   ScrollView,
   StatusBar,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Linking
 } from 'react-native';
 import I18n from './../I18n';
 import {connect} from 'react-redux';
@@ -18,6 +19,7 @@ import {Icon, Divider} from 'react-native-elements';
 import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
+import validate from 'validate.js';
 
 class Menu extends Component {
   constructor(props) {
@@ -32,7 +34,7 @@ class Menu extends Component {
   };
 
   render() {
-    const {logo, colors, company, guest, navigation, dispatch} = this.props;
+    const {settings, guest, navigation, dispatch} = this.props;
     return (
       <ScrollView
         style={styles.container}
@@ -43,13 +45,13 @@ class Menu extends Component {
             backgroundColor={colors.main_theme_color}
           />
           <FastImage
-            source={{uri: logo}}
+            source={{uri: settings.logo}}
             style={styles.logo}
             resizeMode="contain"
             loadingIndicatorSource={images.logo}
           />
           <Text style={styles.mainMenuText}>{I18n.t('menu')}</Text>
-          <Text style={styles.mainMenuText}>{company}</Text>
+          <Text style={styles.mainMenuText}>{settings.company}</Text>
           <View style={{width: '100%'}}>
             <Divider style={{marginTop: 10}} />
             <TouchableOpacity
@@ -79,6 +81,33 @@ class Menu extends Component {
               <Icon name="old-phone" type="entypo" size={20} />
               <Text style={styles.titleStyle}>{I18n.t('contactus')}</Text>
             </TouchableOpacity>
+            {!validate.isEmpty(settings.images) ? (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: settings.images,
+                    name: settings.company,
+                    index: 0
+                  })
+                }
+                style={styles.menuBtn}>
+                <Icon name="image" type="entypo" size={20} />
+                <Text style={styles.titleStyle}>
+                  {I18n.t('our_gallery', {name: settings.company})}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+
+            {settings.youtube ? (
+              <TouchableOpacity
+                onPress={() => Linking.openURL(settings.youtube)}
+                style={styles.menuBtn}>
+                <Icon name="youtube" type="entypo" size={20} />
+                <Text style={styles.titleStyle}>
+                  {I18n.t('our_youtube_channel')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
             <TouchableOpacity
               onPress={() => this.changeLang()}
               style={styles.menuBtn}>
@@ -94,9 +123,7 @@ class Menu extends Component {
 
 function mapStateToProps(state) {
   return {
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    company: state.settings.company,
+    settings: state.settings,
     guest: state.guest,
     lang: state.lang
   };
@@ -105,11 +132,9 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(Menu);
 
 Menu.propTypes = {
-  colors: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
   guest: PropTypes.bool,
-  lang: PropTypes.string,
-  company: PropTypes.string,
-  logo: PropTypes.string
+  lang: PropTypes.string
 };
 
 const styles = StyleSheet.create({

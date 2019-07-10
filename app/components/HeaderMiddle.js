@@ -17,7 +17,7 @@ export const HeaderMiddle = ({title, logo}) => {
           textAlign: 'center',
           color: 'black'
         }}>
-        {title.substring(0, 25)}
+        {title ? title.substring(0, 25) : null}
       </Text>
     </SafeAreaView>
   );

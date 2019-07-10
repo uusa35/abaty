@@ -7,7 +7,6 @@ import Swiper from 'react-native-swiper';
 
 const ImageZoomWidget = props => {
   const {images, index} = props.navigation.state.params;
-  console.log('the iamges', images);
   return (
     <Swiper
       showsButtons={false}
@@ -15,7 +14,6 @@ const ImageZoomWidget = props => {
       index={index}
       removeClippedSubviews={false}>
       {map(images, (c, i) => {
-        console.log('the c', c);
         return (
           <View style={styles.slide} key={c.id}>
             <FastImage

@@ -27,6 +27,7 @@ const ProductWidget = ({product, showName = false}) => {
         widgetStyles.btnStyle,
         {
           width: '48%',
+          maxWidth: 190,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',

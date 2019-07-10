@@ -5,7 +5,7 @@ import I18n from './../I18n';
 import {animations, colors, text} from './../constants';
 // import LottieView from 'lottie-react-native';
 import RNRestart from 'react-native-restart';
-import CodePush from '../redux/actions/sagas/langSagas';
+import CodePush from 'react-native-code-push';
 
 const LoadingOfflineView = ({isConnected}) => {
   const [connected, setConnected] = useState(isConnected);
@@ -22,7 +22,7 @@ const LoadingOfflineView = ({isConnected}) => {
         style={{height: '30%', alignItems: 'center', justifyContent: 'center'}}>
         <Button
           icon={{name: 'repeat'}}
-          onPress={() => setConnected(true)}
+          onPress={() => setConnected(!connected)}
           title={I18n.t('retry')}
           type="outline"
           titleStyle={{fontFamily: text.font}}

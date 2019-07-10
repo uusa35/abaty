@@ -429,6 +429,8 @@
   "hot_deal" : "عروض خاصة",
   "new_user" : "مستخدم جديد .. سجل الآن",
   "information_you_entered_not_correct" : "البيانات المدخلة ليست صحيحة !!",
-  "related_product_group" : "منتجات مختارة"
+  "related_product_group" : "منتجات مختارة",
+  "our_gallery" : "معرض %{name}",
+  "our_youtube_channel" : "قناة اليوتيوب"
 
 }

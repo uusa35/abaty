@@ -146,7 +146,6 @@ export function* setProducts() {
 
 export function* setHomeProducts() {
   try {
-    // console.log('axiosIntanc', axiosInstance.defaults.headers.common);
     const products = yield call(api.getHomeProducts);
     // console.log('the products from SetHomeProducts', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
@@ -194,9 +193,7 @@ export function* getCountry(country_id = null) {
       const country = isNull(country_id)
         ? yield call(api.getCountry)
         : yield call(api.getCountry, country_id);
-      console.log('here');
       if (!validate.isEmpty(country)) {
-        console.log('there');
         yield call(startSetCountryScenario, {payload: country});
       }
     }
@@ -294,6 +291,7 @@ export function* startGetUsersScenario(action) {
 }
 
 export function* startGetDesignerScenario(action) {
+  console.log('start');
   try {
     const user = yield call(api.getUser, action.payload);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
@@ -316,7 +314,6 @@ export function* startGetDesignerScenario(action) {
 
 export function* startGetProductScenario(action) {
   try {
-    console.log('here');
     const product = yield call(api.getProduct, action.payload);
     console.log('product', product);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
@@ -347,7 +344,6 @@ export function* startGetSearchProductsScenario(action) {
     const products = yield call(api.getSearchProducts, action.payload);
     console.log('products', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
-      console.log('here');
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
         put(
@@ -431,6 +427,7 @@ export function* setHomeCelebrities() {
 export function* startRefetchHomeElementsScenario() {
   try {
     yield all([
+      call(setSettings),
       call(setHomeCategories),
       call(setCountries),
       call(setSlides),

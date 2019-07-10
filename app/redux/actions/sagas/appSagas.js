@@ -64,48 +64,35 @@ import {getProducts} from '../api';
 function* startAppBootStrap() {
   try {
     const {network, bootStrapped, currency, lang} = yield select();
-    axiosInstance.defaults.headers.common['currency'] = currency.symbol;
-    axiosInstance.defaults.headers.common['lang'] = lang;
+    // axiosInstance.defaults.headers.common['currency'] = currency.symbol;
+    // axiosInstance.defaults.headers.common['lang'] = lang;
     if (!bootStrapped || (__DEV__ && network.isConnected)) {
       console.log('from inside');
-      // yield all([
-      //   call(defaultLang),
-      //   call(setSettings),
-      //   call(getCountry),
-      //   call(setDeviceId),
-      //   call(setHomeCategories),
-      //   call(setCountries),
-      //   call(setSlides),
-      //   call(setCommercials),
-      //   call(setHomeBrands),
-      //   call(setHomeProducts),
-      //   call(getProductIndex),
-      //   call(setHomeDesigners),
-      //   call(setHomeCelebrities),
-      //   call(setHomeSplashes),
-      //   call(startAuthenticatedScenario)
-      // ]);
-      yield put({
-        type: offlineActionTypes.CONNECTION_CHANGE,
-        payload: network.isConnected
-      });
-      yield call(defaultLang);
-      yield call(setSettings);
-      yield call(getProductIndex);
-      yield call(getCountry);
-      yield call(setDeviceId);
-      yield call(setHomeCategories);
-      yield call(setCountries);
-      yield call(setSlides);
-      yield call(setCommercials);
-      yield call(setHomeBrands);
-      yield call(setHomeProducts);
-      yield call(setHomeDesigners);
-      yield call(setHomeCelebrities);
-      yield call(setHomeSplashes);
-      yield call(startAuthenticatedScenario);
-      yield call(toggleBootStrapped, true);
-      yield call(disableLoading);
+      yield all([
+        put({
+          type: offlineActionTypes.CONNECTION_CHANGE,
+          payload: network.isConnected
+        }),
+        call(defaultLang),
+        call(setSettings),
+        call(getProductIndex),
+        call(getCountry),
+        call(setDeviceId),
+        call(setHomeCategories),
+        call(setCountries),
+        call(setSlides),
+        call(setCommercials),
+        call(setHomeBrands),
+        call(setHomeProducts),
+        call(setHomeDesigners),
+        call(setHomeCelebrities),
+        call(setHomeSplashes),
+        call(startAuthenticatedScenario)
+      ]);
+      yield all([
+        put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
+        call(disableLoading)
+      ]);
     }
   } catch (e) {
     console.log('the eeee', e);

@@ -381,5 +381,7 @@
   "new_user": "New User .. Register Now.",
   "information_you_entered_not_correct": "Information entered not correct",
   "information": "information",
-  "related_product_group" : "related products"
+  "related_product_group" : "related products",
+  "our_gallery" : "gallery %{name}",
+  "our_youtube_channel" : "youtube channel"
 }
