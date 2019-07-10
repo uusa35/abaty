@@ -78,7 +78,10 @@ const ProductList = ({
   }, [search]);
 
   return (
-    <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
+    <KeyboardAvoidingView
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      behavior="padding"
+      enabled>
       {!validate.isEmpty(elements) ? (
         <FlatList
           horizontal={false}
@@ -87,14 +90,11 @@ const ProductList = ({
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[0]}
           contentContainerStyle={{
-            width: '100%',
-            justifyContent: 'center',
-            alignSelf: 'center',
-            padding: 10
+            width: '100%'
           }}
           columnWrapperStyle={{
             margin: 5,
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center'
           }}
           numColumns={2}

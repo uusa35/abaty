@@ -18,6 +18,7 @@ import VideosWidget from '../components/widgets/VideosWidget';
 import {
   TabView,
   SceneMap,
+  TabBar,
   NavigationState,
   SceneRendererProps
 } from 'react-native-tab-view';
@@ -32,8 +33,8 @@ class DesignerShowScreen extends Component {
     this.state = {
       index: 0,
       routes: [
-        {key: 'first', title: I18n.t('information')},
-        {key: 'second', title: I18n.t('videos')}
+        {key: 'info', title: I18n.t('information')},
+        {key: 'more', title: I18n.t('videos')}
       ]
     };
   }
@@ -62,22 +63,29 @@ class DesignerShowScreen extends Component {
               />
               {/*<UserShowInformationTabBarWidget element={designer} />*/}
               <TabView
+                renderTabBar={props => (
+                  <TabBar
+                    {...props}
+                    // tabStyle={{ backgroundColor: 'white'}}
+                    // indicatorContainerStyle={{backgroundColor: 'white'}}
+                    // contentContainerStyle={{backgroundColor: 'white'}}
+                    indicatorStyle={{
+                      backgroundColor: `${settings.colors.btn_bg_theme_color}`
+                    }}
+                    activeColor={settings.colors.header_one_theme_color}
+                    inactiveColor={settings.colors.header_tow_theme_color}
+                    style={{backgroundColor: 'white'}}
+                    labelStyle={{
+                      fontFamily: text.font,
+                      fontSize: text.medium
+                    }}
+                  />
+                )}
                 navigationState={this.state}
-                indicatorStyle={{backgroundColor: 'green', borderWidth: 10}}
-                indicatorContainerStyle={{backgroundColor: 'pink'}}
-                tabStyle={{color: 'green', backgroundColor: 'green'}}
-                labelStyle={{
-                  color: 'red',
-                  backgroundColor: 'blue',
-                  fontFamily: text.font,
-                  fontSize: text.medium
-                }}
-                contentContainerStyle={{backgroundColor: 'pink'}}
-                activeColor="green"
                 style={{marginTop: 10, backgroundColor: 'white'}}
                 renderScene={SceneMap({
-                  first: () => <UserInfoWidget user={designer} />,
-                  second: () => <VideosWidget videos={designer.videos} />
+                  info: () => <UserInfoWidget user={designer} />,
+                  more: () => <VideosWidget videos={designer.videos} />
                 })}
                 onIndexChange={index => this.setState({index})}
                 initialLayout={{width: width}}
