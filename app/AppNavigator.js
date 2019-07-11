@@ -175,16 +175,6 @@ const HomeStack = createStackNavigator(
   }
 );
 
-HomeStack.navigationOptions = ({navigation}) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible
-  };
-};
-
 const BrandStack = createStackNavigator(
   {
     BrandIndex: {
@@ -378,6 +368,9 @@ const TabsStack = createBottomTabNavigator(
     CartIndexScreen: {
       screen: CartStack,
       navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
+        headerBackTitle: null,
         tabBarIcon: ({tintColor}) => (
           <Icon name="cart" type="evilicon" size={30} color={tintColor} />
         ),
@@ -437,6 +430,45 @@ const TabsStack = createBottomTabNavigator(
     ]
   }
 );
+
+HomeStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+
+CartStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+
+ProductStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+CategoryStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
 
 const RootNavigator = createDrawerNavigator(
   {

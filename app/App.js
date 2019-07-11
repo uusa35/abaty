@@ -70,8 +70,6 @@ class App extends Component<Props> {
         />
       );
     }
-    console.log('NETWORK', network);
-    console.log('CURRENCY', country.currency);
     return (
       <DispatchContext.Provider value={{dispatch}}>
         {network.isConnected ? (
