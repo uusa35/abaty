@@ -24,10 +24,12 @@ const IntroductionWidget = ({elements, visible}) => {
           justifyContent: 'center'
         }}
         showSkipButton={true}
+        showPrevButton={true}
         showDoneButton={true}
         skipLabel={I18n.t('skip')}
         doneLabel={I18n.t('done')}
         nextLabel={I18n.t('next')}
+        prevLabel={I18n.t('back')}
         buttonTextStyle={{
           fontFamily: text.font,
           color: colors.btn_text_theme_color

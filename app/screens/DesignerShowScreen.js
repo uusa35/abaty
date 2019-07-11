@@ -26,6 +26,7 @@ import I18n from './../I18n';
 import Video from 'react-native-video';
 import UserShowInformationTabBarWidget from '../components/widgets/user/UserShowInfomrationWidgetTabBarWidget';
 import ProductList from '../components/widgets/product/ProductList';
+import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 
 class DesignerShowScreen extends Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class DesignerShowScreen extends Component {
     this.state = {
       index: 0,
       routes: [
+        {key: 'products', title: I18n.t('products')},
+        {key: 'categories', title: I18n.t('categories')},
         {key: 'info', title: I18n.t('information')},
         {key: 'more', title: I18n.t('videos')}
       ]
@@ -41,6 +44,7 @@ class DesignerShowScreen extends Component {
 
   render() {
     const {designer, navigation, settings} = this.props;
+    console.log('the categories', designer.categories);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -82,11 +86,22 @@ class DesignerShowScreen extends Component {
                   />
                 )}
                 navigationState={this.state}
-                style={{marginTop: 10, backgroundColor: 'white'}}
                 renderScene={SceneMap({
+                  products: () => (
+                    <ProductList
+                      elements={designer.productGroup}
+                      showSearch={false}
+                      showTitle={true}
+                      showFooter={false}
+                    />
+                  ),
+                  categories: () => (
+                    <UserCategoriesInfoWidget elements={designer.categories} />
+                  ),
                   info: () => <UserInfoWidget user={designer} />,
                   more: () => <VideosWidget videos={designer.videos} />
                 })}
+                style={{marginTop: 10, backgroundColor: 'white'}}
                 onIndexChange={index => this.setState({index})}
                 initialLayout={{width: width}}
               />

@@ -139,6 +139,8 @@ const ProductList = ({
                     style={{
                       fontFamily: text.font,
                       fontSize: text.large,
+                      marginTop: 20,
+                      marginBottom: 10,
                       textAlign: 'left'
                     }}>
                     {I18n.t('related_product_group')}

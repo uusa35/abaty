@@ -431,6 +431,7 @@
   "information_you_entered_not_correct" : "البيانات المدخلة ليست صحيحة !!",
   "related_product_group" : "منتجات مختارة",
   "our_gallery" : "معرض %{name}",
-  "our_youtube_channel" : "قناة اليوتيوب"
+  "our_youtube_channel" : "قناة اليوتيوب",
+  "product_categories" : "أقسام المنتجات"
 
 }

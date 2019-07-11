@@ -383,5 +383,6 @@
   "information": "information",
   "related_product_group" : "related products",
   "our_gallery" : "gallery %{name}",
-  "our_youtube_channel" : "youtube channel"
+  "our_youtube_channel" : "youtube channel",
+  "product_categories" : "product categories"
 }

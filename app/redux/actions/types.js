@@ -16,6 +16,7 @@ export const SET_SETTINGS = 'SET_SETTINGS';
 export const GET_ROLES = 'GET_ROLES';
 export const SET_ROLE = 'SET_ROLE';
 export const TOGGLE_GUEST = 'TOGGLE_GUEST';
+export const TOGGLE_SPLASH = 'TOGGLE_SPLASH';
 export const ENABLE_MESSAGE = 'ENABLE_MESSAGE';
 export const DISABLE_MESSAGE = 'DISABLE_MESSAGE';
 export const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS';

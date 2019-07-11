@@ -306,12 +306,6 @@ const UserInfoWidget = ({user}) => {
         elementName="address"
         iconName="map"
       />
-      <ProductList
-        elements={user.productGroup}
-        showSearch={false}
-        showTitle={true}
-        showFooter={false}
-      />
     </View>
   );
 };

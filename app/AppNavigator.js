@@ -37,6 +37,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import CartConfirmationScreen from './screens/CartConfirmationScreen';
 import PaymentIndexScreen from './screens/PaymentIndexScreen';
+import IntroductionScreen from './screens/IntroductionScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
