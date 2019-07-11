@@ -8,7 +8,6 @@ import I18n from '../../I18n';
 import validate from 'validate.js';
 
 const VideosWidget = ({videos}) => {
-  console.log('the videos', videos);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 20}}>
       <Text

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
@@ -6,7 +6,8 @@ import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, links} from '../../../constants';
 import UserInfoWidgetElement from './UserInfoWidgetElement';
 import PropTypes from 'prop-types';
-import ProductList from '../product/ProductList';
+import MapViewWidget from '../MapViewWidget';
+import validate from 'validate.js';
 
 const UserInfoWidget = ({user}) => {
   return (
@@ -306,6 +307,15 @@ const UserInfoWidget = ({user}) => {
         elementName="address"
         iconName="map"
       />
+      {!validate.isEmpty(user.longitude || user.latitude) ? (
+        <MapViewWidget
+          latitude={user.latitude}
+          longitude={user.longitude}
+          logo={user.thumb}
+          title={user.slug}
+          height={250}
+        />
+      ) : null}
     </View>
   );
 };

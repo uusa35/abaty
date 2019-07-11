@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
@@ -45,6 +45,15 @@ const CartList = ({
     !validate.isEmpty(coupon) ? coupon.code : '84418291978'
   );
   const [editMode, setEditMode] = useState(editModeDefault);
+
+  useEffect(() => {
+    setEmail(auth.email);
+    setName(auth.name);
+    setMobile(auth.mobile);
+    setAddress(auth.address);
+    setNotes(auth.description);
+  }, [auth]);
+
   console.log('the coupon', coupon);
   console.log('the code', code);
   console.log('the AUTH', auth);

@@ -15,16 +15,8 @@ import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import UserImageProfile from '../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import VideosWidget from '../components/widgets/VideosWidget';
-import {
-  TabView,
-  SceneMap,
-  TabBar,
-  NavigationState,
-  SceneRendererProps
-} from 'react-native-tab-view';
+import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import I18n from './../I18n';
-import Video from 'react-native-video';
-import UserShowInformationTabBarWidget from '../components/widgets/user/UserShowInfomrationWidgetTabBarWidget';
 import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
@@ -45,7 +37,6 @@ class DesignerShowScreen extends Component {
 
   render() {
     const {designer, navigation, settings} = this.props;
-    console.log('the categories', designer.categories);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView

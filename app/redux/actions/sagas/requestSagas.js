@@ -147,7 +147,6 @@ export function* setProducts() {
 export function* setHomeProducts() {
   try {
     const products = yield call(api.getHomeProducts);
-    console.log('the products from SetHomeProducts', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
     }
@@ -259,7 +258,7 @@ export function* startGetUserScenario(action) {
       yield put({type: actions.SET_USER, payload: user});
       yield put(
         NavigationActions.navigate({
-          routeName: 'User',
+          routeName: 'DesignerShow',
           params: {name: user.slug, id: user.id, product: false}
         })
       );

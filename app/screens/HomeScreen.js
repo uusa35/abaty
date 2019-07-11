@@ -135,15 +135,17 @@ class HomeScreen extends Component {
       celebrities,
       homeProducts,
       splash_on,
-      show_commercials
+      show_commercials,
+      colors
     } = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
           {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
             <IntroductionWidget elements={splashes} visible={splash_on} />
           ) : null}
           <ScrollView
+            contentContainerStyle={{backgroundColor: 'transparent'}}
             contentInset={{bottom: 50}}
             refreshControl={
               <RefreshControl
@@ -223,7 +225,8 @@ function mapStateToProps(state) {
     logo: state.settings.logo,
     splash_on: state.settings.splash_on,
     show_commercials: state.settings.show_commercials,
-    network: state.network
+    network: state.network,
+    colors: state.settings.colors
   };
 }
 

@@ -21,21 +21,26 @@ class UserShowScreen extends Component {
   }
 
   render() {
-    const {user, navigation, settings} = this.props;
+    const {user, navigation, logo, colors} = this.props;
+    console.log('colors', colors);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
           maxHeight={150}
           minHeight={50}
-          headerImage={{uri: user.banner ? user.banner : settings.logo}}>
-          <View style={styles.wrapper}>
+          headerImage={{uri: user.banner ? user.banner : logo}}>
+          <View
+            style={[
+              styles.wrapper,
+              {backgroundColor: colors.main_theme_bg_color}
+            ]}>
             <TriggeringView onHide={() => console.log('text hidden')}>
               <View
                 animation="bounceInLeft"
                 easing="ease-out"
                 style={styles.elementRow}>
                 <FastImage
-                  source={{uri: user.large ? user.large : settings.logo}}
+                  source={{uri: user.large ? user.large : logo}}
                   style={styles.logo}
                 />
                 <Text style={styles.mainTitle}>{user.slug}</Text>
@@ -70,7 +75,9 @@ class UserShowScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    colors: state.settings.colors,
+    logo: state.settings.logo
   };
 }
 
