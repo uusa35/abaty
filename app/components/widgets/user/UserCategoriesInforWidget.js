@@ -35,6 +35,7 @@ const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
                   {map(element, (c, i) => {
                     return (
                       <TouchableOpacity
+                        key={c.id}
                         onPress={() => dispatch(getCategoryElements(c))}
                         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
                         style={styles.itemRow}>

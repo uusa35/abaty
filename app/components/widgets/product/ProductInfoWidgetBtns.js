@@ -35,7 +35,7 @@ const ProductInfoWidgetBtns = ({element}) => {
             padding: 10,
             fontSize: 17
           }}>
-          {I18n.t('sizes_and_colors_available')}
+          {I18n.t('sizes_and_colors_and_length_available')}
         </Text>
       </View>
       {element.has_attributes ? (

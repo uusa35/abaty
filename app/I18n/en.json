@@ -384,5 +384,7 @@
   "related_product_group" : "related products",
   "our_gallery" : "gallery %{name}",
   "our_youtube_channel" : "youtube channel",
-  "product_categories" : "product categories"
+  "product_categories" : "product categories",
+  "sizes_and_colors_and_length_available" : "Sizes / Colors / Height available for product",
+  "choose_height" : "Choose Height"
 }

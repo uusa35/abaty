@@ -109,7 +109,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
               borderColor: 'black',
               justifyContent: 'space-around'
             }}
-            title={I18n.t('choose_color')}
+            title={I18n.t('choose_height')}
             titleStyle={{fontFamily: text.font, color: 'black'}}
           />
         </View>

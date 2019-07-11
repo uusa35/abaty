@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView
@@ -27,6 +27,7 @@ import Video from 'react-native-video';
 import UserShowInformationTabBarWidget from '../components/widgets/user/UserShowInfomrationWidgetTabBarWidget';
 import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
+import MainSliderWidget from '../components/widgets/MainSliderWidget';
 
 class DesignerShowScreen extends Component {
   constructor(props) {
@@ -48,6 +49,10 @@ class DesignerShowScreen extends Component {
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
+          horizontal={false}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           maxHeight={150}
           minHeight={50}
           headerImage={{
@@ -60,51 +65,60 @@ class DesignerShowScreen extends Component {
                 logo={settings.logo}
                 slug={designer.slug}
               />
-              <ImagesWidget
-                elements={designer.images}
-                name={designer.slug}
-                showLabels={false}
-              />
-              {/*<UserShowInformationTabBarWidget element={designer} />*/}
-              <TabView
-                renderTabBar={props => (
-                  <TabBar
-                    {...props}
-                    // tabStyle={{ backgroundColor: 'white'}}
-                    // indicatorContainerStyle={{backgroundColor: 'white'}}
-                    // contentContainerStyle={{backgroundColor: 'white'}}
-                    indicatorStyle={{
-                      backgroundColor: `${settings.colors.btn_bg_theme_color}`
-                    }}
-                    activeColor={settings.colors.header_one_theme_color}
-                    inactiveColor={settings.colors.header_tow_theme_color}
-                    style={{backgroundColor: 'white'}}
-                    labelStyle={{
-                      fontFamily: text.font,
-                      fontSize: text.medium
-                    }}
-                  />
-                )}
-                navigationState={this.state}
-                renderScene={SceneMap({
-                  products: () => (
-                    <ProductList
-                      elements={designer.productGroup}
-                      showSearch={false}
-                      showTitle={true}
-                      showFooter={false}
+              {!validate.isEmpty(designer.slides) ? (
+                <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
+                  <MainSliderWidget slides={designer.slides} />
+                </View>
+              ) : null}
+              <View style={{paddingRight: 10, paddingLeft: 10}}>
+                <ImagesWidget
+                  elements={designer.images}
+                  name={designer.slug}
+                  showLabels={false}
+                />
+                {/*<UserShowInformationTabBarWidget element={designer} />*/}
+                <TabView
+                  renderTabBar={props => (
+                    <TabBar
+                      {...props}
+                      // tabStyle={{ backgroundColor: 'white'}}
+                      // indicatorContainerStyle={{backgroundColor: 'white'}}
+                      // contentContainerStyle={{backgroundColor: 'white'}}
+                      indicatorStyle={{
+                        backgroundColor: `${settings.colors.btn_bg_theme_color}`
+                      }}
+                      activeColor={settings.colors.header_one_theme_color}
+                      inactiveColor={settings.colors.header_tow_theme_color}
+                      style={{backgroundColor: 'white'}}
+                      labelStyle={{
+                        fontFamily: text.font,
+                        fontSize: text.medium
+                      }}
                     />
-                  ),
-                  categories: () => (
-                    <UserCategoriesInfoWidget elements={designer.categories} />
-                  ),
-                  info: () => <UserInfoWidget user={designer} />,
-                  more: () => <VideosWidget videos={designer.videos} />
-                })}
-                style={{marginTop: 10, backgroundColor: 'white'}}
-                onIndexChange={index => this.setState({index})}
-                initialLayout={{width: width}}
-              />
+                  )}
+                  navigationState={this.state}
+                  renderScene={SceneMap({
+                    products: () => (
+                      <ProductList
+                        elements={designer.productGroup}
+                        showSearch={false}
+                        showTitle={true}
+                        showFooter={false}
+                      />
+                    ),
+                    categories: () => (
+                      <UserCategoriesInfoWidget
+                        elements={designer.categories}
+                      />
+                    ),
+                    info: () => <UserInfoWidget user={designer} />,
+                    more: () => <VideosWidget videos={designer.videos} />
+                  })}
+                  style={{marginTop: 10, backgroundColor: 'white'}}
+                  onIndexChange={index => this.setState({index})}
+                  initialLayout={{width: width}}
+                />
+              </View>
             </TriggeringView>
           </View>
         </HeaderImageScrollView>
@@ -149,8 +163,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    paddingRight: 20,
-    paddingLeft: 20,
     borderTopWidth: 1,
     borderColor: 'lightgrey'
   },

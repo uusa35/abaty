@@ -15,6 +15,7 @@ import {getCategoryElements, getDesigner} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
+import MainSliderWidget from '../components/widgets/MainSliderWidget';
 
 class ProductShowScreen extends Component {
   constructor(props) {

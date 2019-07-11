@@ -47,6 +47,7 @@ const CartList = ({
   const [editMode, setEditMode] = useState(editModeDefault);
   console.log('the coupon', coupon);
   console.log('the code', code);
+  console.log('the AUTH', auth);
   return (
     <View style={{width: '100%'}}>
       <View
