@@ -65,7 +65,7 @@ const CountriesList = () => {
                 hitSlop={{left: 15, right: 15}}
                 onPress={() => {
                   setCurrentCountry(c);
-                  setCurrentCurrency(c.currency);
+                  setCurrentCurrency(c.currency.symbol);
                   setVisible(false);
                 }}
                 style={styles.wrapper}>

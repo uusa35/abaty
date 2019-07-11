@@ -41,7 +41,6 @@ import IntroductionScreen from './screens/IntroductionScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
-console.log('lange from AppNaiviagtor', isRTL);
 const HomeStack = createStackNavigator(
   {
     // Introduction: {
@@ -466,6 +465,8 @@ const AppWithNavigationState = createReduxContainer(RootNavigator);
 
 const mapStateToProps = state => ({
   state: state.nav,
+  lang: state.lang,
+  currency: state.currency,
   network: state.network
 });
 

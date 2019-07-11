@@ -21,14 +21,15 @@ type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {dispatch, network, bootStrapped, symbol, lang} = this.props;
-    console.log('SYMBOLE', symbol);
+    const {dispatch, network, bootStrapped, currency, lang} = this.props;
+    console.log('SYMBOLE', currency);
     console.log('lang', lang);
+    axiosInstance.defaults.headers.common['currency'] = currency;
+    axiosInstance.defaults.headers.common['lang'] = lang;
     if (network.isConnected && !bootStrapped) {
+      console.log('BOOTSTRAPING');
       return dispatch(appBootstrap());
     }
-    axiosInstance.defaults.headers.common['currency'] = symbol;
-    axiosInstance.defaults.headers.common['lang'] = lang;
   }
 
   render() {
@@ -70,6 +71,7 @@ class App extends Component<Props> {
       );
     }
     console.log('NETWORK', network);
+    console.log('CURRENCY', country.currency);
     return (
       <DispatchContext.Provider value={{dispatch}}>
         {network.isConnected ? (
@@ -78,8 +80,8 @@ class App extends Component<Props> {
               <GlobalValuesContext.Provider
                 value={{
                   cartLength,
-                  currency_symbol,
-                  exchange_rate,
+                  currency_symbol: country.currency.currency_symbol,
+                  exchange_rate: country.currency.exchange_rate,
                   total,
                   colors,
                   country,
@@ -124,9 +126,7 @@ function mapStateToProps(state) {
     country: state.country,
     countries: state.countries,
     countryModal: state.countryModal,
-    symbol: state.currency.symbol,
-    currency_symbol: state.currency.currency_symbol,
-    exchange_rate: state.currency.exchange_rate,
+    currency: state.currency,
     lang: state.lang,
     cart: state.cart,
     total: state.total,
@@ -145,7 +145,7 @@ App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   message: PropTypes.object,
   country: PropTypes.object.isRequired,
-  symbol: PropTypes.string,
+  currency: PropTypes.string,
   currency_symbol: PropTypes.string,
   exchange_rate: PropTypes.number,
   countries: PropTypes.array.isRequired,

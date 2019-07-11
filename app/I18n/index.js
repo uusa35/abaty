@@ -3,7 +3,7 @@ import I18n from 'react-native-i18n';
 const en = require('./en.json');
 const ar = require('./ar.json');
 I18n.fallbacks = false;
-I18n.defaultLocale = 'ar';
+I18n.defaultLocale = 'en';
 I18n.locale = I18nManager.isRTL ? 'ar' : 'en';
 I18n.translations = {
   en,

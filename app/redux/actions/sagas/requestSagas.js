@@ -66,7 +66,7 @@ export function* setUsers(action) {
         NavigationActions.navigate({
           routeName: 'UserIndex',
           params: {
-            name: I18n.t('users'),
+            name: action.payload.name,
             searchElements
           }
         })
@@ -209,7 +209,7 @@ export function* startSetCountryScenario(action) {
     if (!validate.isEmpty(country)) {
       yield all([
         put({type: actions.CHOOSE_COUNTRY, payload: country}),
-        put({type: actions.SET_CURRENCY, payload: country.currency})
+        put({type: actions.SET_CURRENCY, payload: country.currency.symbol})
       ]);
     }
   } catch (e) {
@@ -221,7 +221,7 @@ export function* startSetCountryScenario(action) {
 export function* startSetCurrencyScenario(action) {
   try {
     const currency = action.payload;
-    yield call(setCurrency, currency.symbol);
+    // yield call(setCurrency, currency.symbol);
     axios.defaults.headers.common['currency'] = currency.symbol;
   } catch (e) {
     // console.log('the e from set currency scenario', e)
@@ -315,7 +315,6 @@ export function* startGetDesignerScenario(action) {
 export function* startGetProductScenario(action) {
   try {
     const product = yield call(api.getProduct, action.payload);
-    console.log('product', product);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
       yield all([
         put({type: actions.SET_PRODUCT, payload: product}),
@@ -340,9 +339,7 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    console.log('payload', action.payload);
     const products = yield call(api.getSearchProducts, action.payload);
-    console.log('products', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),

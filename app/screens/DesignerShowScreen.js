@@ -55,6 +55,7 @@ class DesignerShowScreen extends Component {
           showsVerticalScrollIndicator={false}
           maxHeight={150}
           minHeight={50}
+          containerStyle={{flex: 1}}
           headerImage={{
             uri: designer.banner ? designer.banner : settings.logo
           }}>
@@ -92,7 +93,7 @@ class DesignerShowScreen extends Component {
                       style={{backgroundColor: 'white'}}
                       labelStyle={{
                         fontFamily: text.font,
-                        fontSize: text.medium
+                        fontSize: text.small
                       }}
                     />
                   )}

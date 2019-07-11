@@ -433,6 +433,7 @@
   "related_product_group" : "منتجات مختارة",
   "our_gallery" : "معرض %{name}",
   "our_youtube_channel" : "قناة اليوتيوب",
-  "product_categories" : "أقسام المنتجات"
+  "product_categories" : "أقسام المنتجات",
+  "error_while_loading_product" : "حدث خطأ اثناء تحميل هذا المنتج .. سيتم التحديث لاحقا"
 
 }

@@ -8,7 +8,8 @@ import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductInfoWidgetMainTitle = ({element, currency}) => {
-  const {colors} = useContext(GlobalValuesContext);
+  const {colors, country} = useContext(GlobalValuesContext);
+  const {symbol, exchange_rate} = country.currency;
   return (
     <View
       style={{
@@ -51,10 +52,7 @@ const ProductInfoWidgetMainTitle = ({element, currency}) => {
                 }
               ]}>
               {round(
-                getProductConvertedFinalPrice(
-                  element.price,
-                  currency.exchange_rate
-                ),
+                getProductConvertedFinalPrice(element.price, exchange_rate),
                 2
               )}
             </Text>
@@ -66,7 +64,7 @@ const ProductInfoWidgetMainTitle = ({element, currency}) => {
                   textDecorationLine: element.isOnSale ? 'line-through' : null
                 }
               ]}>
-              {currency.currency_symbol}
+              {symbol}
             </Text>
           </View>
           {element.isOnSale ? (
@@ -75,14 +73,12 @@ const ProductInfoWidgetMainTitle = ({element, currency}) => {
                 {round(
                   getProductConvertedFinalPrice(
                     element.sale_price,
-                    currency.exchange_rate
+                    exchange_rate
                   ),
                   2
                 )}
               </Text>
-              <Text style={styles.productTitle}>
-                {currency.currency_symbol}
-              </Text>
+              <Text style={styles.productTitle}>{symbol}</Text>
             </View>
           ) : null}
         </View>
@@ -95,7 +91,7 @@ export default React.memo(ProductInfoWidgetMainTitle);
 
 ProductInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired,
-  currency: PropTypes.object.isRequired
+  currency: PropTypes.string.isRequired
 };
 
 const styles = StyleSheet.create({

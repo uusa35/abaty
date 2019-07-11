@@ -17,7 +17,7 @@ import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 
-const DesignerHorizontalWidget = ({elements, showName, title}) => {
+const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -27,7 +27,8 @@ const DesignerHorizontalWidget = ({elements, showName, title}) => {
         onPress={() =>
           dispatch(
             getUsers({
-              type: title === 'designers' ? 'is_designer' : 'is_celebrity'
+              type: title === 'designers' ? 'is_designer' : 'is_celebrity',
+              name
             })
           )
         }>

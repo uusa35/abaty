@@ -386,5 +386,19 @@
   "our_youtube_channel" : "youtube channel",
   "product_categories" : "product categories",
   "sizes_and_colors_and_length_available" : "Sizes / Colors / Height available for product",
-  "choose_height" : "Choose Height"
+  "choose_height" : "Choose Height",
+  "videos" : "Videos",
+  "featured_products" : "Featured Products",
+  "error_while_loading_product" : "ُError occurred while loading product.",
+  "product_added_to_cart_successfully" : "product added to cart successfully",
+  "sku" : "SKU",
+  "product_weight" : "product weight",
+  "contactus_order_by_phone" : " Order by Phone",
+  "grossTotal" : "Gross Total",
+  "shipment_fees" : "Shipment Fees",
+  "color" : "color",
+  "confirm_information" : "Confirm Information",
+  "clear_cart" : "Clear Cart"
+
+
 }

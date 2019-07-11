@@ -60,7 +60,6 @@ class HomeScreen extends Component {
   };
 
   componentDidMount() {
-    console.log('did mount');
     OneSignal.init(ONE_SIGNAL_APP_ID);
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
@@ -164,6 +163,7 @@ class HomeScreen extends Component {
               <DesignerHorizontalWidget
                 elements={designers}
                 showName={true}
+                name="designers"
                 title="designers"
               />
             ) : null}
@@ -178,6 +178,7 @@ class HomeScreen extends Component {
               <DesignerHorizontalWidget
                 elements={celebrities}
                 showName={true}
+                name="celebrities"
                 title="celebrities"
               />
             ) : null}

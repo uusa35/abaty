@@ -8,6 +8,7 @@ export const axiosInstance = axios.create({
 });
 
 console.log('LINK', links.apiUrl);
+console.log('API HEADERS', axiosInstance.defaults.headers.common);
 
 export function getLangForHeader() {
   return I18n.locale;
