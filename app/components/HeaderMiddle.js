@@ -27,7 +27,7 @@ export const HeaderMiddle = ({title, logo}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center'
   }

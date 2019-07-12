@@ -322,8 +322,6 @@ const CategoryStack = createStackNavigator(
             }
           />
         ),
-        headerRight: <HeaderRight display={false} />,
-        // headerLeft: <HeaderBack navigation={navigation} />,
         headerBackTitle: null
       }),
       params: {

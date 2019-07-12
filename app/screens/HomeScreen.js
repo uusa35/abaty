@@ -141,7 +141,7 @@ class HomeScreen extends Component {
     return (
       <NavContext.Provider value={{navigation}}>
         <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-          {!validate.isEmpty(splashes) && splash_on && !__DEV__ ? (
+          {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
             <IntroductionWidget elements={splashes} visible={splash_on} />
           ) : null}
           <ScrollView
