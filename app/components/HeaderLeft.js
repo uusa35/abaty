@@ -44,7 +44,8 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 3,
+    paddingRight: 3,
+    paddingLeft: 3,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

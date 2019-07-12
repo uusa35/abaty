@@ -15,23 +15,27 @@ import LoadingOfflineView from './components/LoadingOfflineView';
 import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
-import {axiosInstance} from './redux/actions/api';
 import axios from 'axios';
+
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {dispatch, network, bootStrapped, currency, lang} = this.props;
-    console.log('SYMBOLE', currency);
-    console.log('lang', lang);
-    axios.defaults.headers.common['currency'] = validate.isEmpty(currency)
-      ? currency
-      : 'KWD';
-    axios.defaults.headers.common['lang'] = lang ? lang : 'en';
-    if (network.isConnected && !bootStrapped) {
-      console.log('BOOTSTRAPING');
-      return dispatch(appBootstrap());
-    }
+    codePush.checkForUpdate().then(update => {
+      if (!update) {
+        console.log('No Update');
+        const {dispatch, network, bootStrapped, currency, lang} = this.props;
+        console.log('SYMBOLE', currency);
+        console.log('lang', lang);
+        axios.defaults.headers.common['currency'] = validate.isEmpty(currency)
+          ? currency
+          : 'KWD';
+        axios.defaults.headers.common['lang'] = lang ? lang : 'en';
+        if (network.isConnected && !bootStrapped) {
+          return dispatch(appBootstrap());
+        }
+      }
+    });
   }
 
   render() {

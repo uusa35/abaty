@@ -142,7 +142,9 @@ class ProductShowScreen extends Component {
               ) : null}
             </View>
           </View>
-          <VideosWidget videos={product.videos} />
+          {validate.isObject(product.videos) ? (
+            <VideosWidget videos={product.videos} />
+          ) : null}
           {!validate.isEmpty(products) ? (
             <ProductHorizontalWidget
               elements={products}

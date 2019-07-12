@@ -25,7 +25,8 @@ const UserWidgetHorizontal = ({user, showName}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: 180,
+          width: '48%',
+          maxWidth: 190,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',

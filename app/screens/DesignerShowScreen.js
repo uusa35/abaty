@@ -37,6 +37,7 @@ class DesignerShowScreen extends Component {
 
   render() {
     const {designer, navigation, settings} = this.props;
+    console.log('the user', designer);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -98,13 +99,25 @@ class DesignerShowScreen extends Component {
                         showFooter={false}
                       />
                     ),
-                    categories: () => (
-                      <UserCategoriesInfoWidget
-                        elements={designer.categories}
-                      />
-                    ),
+                    categories: () =>
+                      !validate.isEmpty(designer.categories) ? (
+                        <UserCategoriesInfoWidget
+                          elements={designer.categories}
+                        />
+                      ) : (
+                        <View>
+                          <Text>No Categories</Text>
+                        </View>
+                      ),
                     info: () => <UserInfoWidget user={designer} />,
-                    more: () => <VideosWidget videos={designer.videos} />
+                    more: () =>
+                      !validate.isEmpty(designer.videos) ? (
+                        <VideosWidget videos={designer.videos} />
+                      ) : (
+                        <View>
+                          <Text>No Videos</Text>
+                        </View>
+                      )
                   })}
                   style={{marginTop: 10, backgroundColor: 'white'}}
                   onIndexChange={index => this.setState({index})}

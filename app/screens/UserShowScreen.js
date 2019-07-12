@@ -23,6 +23,7 @@ class UserShowScreen extends Component {
   render() {
     const {user, navigation, logo, colors} = this.props;
     console.log('colors', colors);
+    console.log('user', user);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -59,13 +60,10 @@ class UserShowScreen extends Component {
               </View>
             </TriggeringView>
           </View>
-
           <ImagesWidget elements={user.images} name={user.slug} />
-          <VideosWidget
-            videos={[
-              user.video_url_one ? user.video_url_one : null,
-              user.video_url_two ? user.video_url_two : null
-            ]}
+          {validate.isObject(user.videos) ? (
+            <VideosWidget videos={user.videos} />
+          ) : null}
           />
         </HeaderImageScrollView>
       </NavContext.Provider>

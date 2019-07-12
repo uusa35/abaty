@@ -15,7 +15,8 @@ export const HeaderMiddle = ({title, logo}) => {
           fontFamily: text.font,
           fontSize: text.large,
           textAlign: 'center',
-          color: 'black'
+          color: 'black',
+          paddingTop: 4
         }}>
         {title ? title.substring(0, 25) : null}
       </Text>
@@ -25,8 +26,8 @@ export const HeaderMiddle = ({title, logo}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    justifyContent: 'center',
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
     alignSelf: 'center'
   }
