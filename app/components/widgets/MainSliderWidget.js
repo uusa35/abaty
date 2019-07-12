@@ -18,7 +18,7 @@ const MainSliderWidget = ({slides}) => {
           showsButtons={false}
           showsPagination={true}
           autoplay={true}
-          key={random(9999)}
+          key={slides.length}
           removeClippedSubviews={false}>
           {map(slides, (s, i) => {
             return (

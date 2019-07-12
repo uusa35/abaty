@@ -17,6 +17,7 @@ class IntroductionScreen extends Component {
     return (
       <NavContext.Provider value={{navigation}}>
         <AppIntroSlider
+          keyExtractor={(splashes, index) => index.toString()}
           renderItem={() => <SplashWidget elements={splashes} />}
           slides={splashes}
           onDone={() => navigation.navigate('Home')}

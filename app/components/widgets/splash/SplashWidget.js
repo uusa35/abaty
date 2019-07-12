@@ -15,7 +15,7 @@ const SplashWidget = ({elements}) => {
     <View>
       {map(elements, (s, i) => (
         <ImageBackground
-          key={i}
+          key={s.id}
           source={{uri: s.large}}
           style={{
             width: width,

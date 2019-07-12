@@ -66,17 +66,17 @@ const UsersList = ({elements}) => {
 
   return (
     <KeyboardAvoidingView
-      style={{justifyContent: 'center', alignItems: 'center'}}
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width
+      }}
       behavior="padding"
       enabled>
       {!validate.isEmpty(elements) ? (
         <FlatList
-          contentContainerStyle={{width: width, justifyContent: 'center'}}
-          columnWrapperStyle={{
-            margin: 5,
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="none"
           horizontal={false}
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
@@ -84,6 +84,25 @@ const UsersList = ({elements}) => {
           stickyHeaderIndices={[0]}
           numColumns={2}
           data={items}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReached={() => setIsLoading(!isLoading)}
+          onEndReachedThreshold={1}
+          refreshing={refresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => setRefresh(true)}
+            />
+          }
+          contentContainerStyle={{
+            width: width - 20,
+            paddingLeft: 5,
+            paddingRight: 5
+          }}
+          columnWrapperStyle={{
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
           renderItem={({item}) => (
             <UserWidgetHorizontal user={item} showName={true} />
           )}
@@ -129,15 +148,6 @@ const UsersList = ({elements}) => {
               value={search}
             />
           }
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
-            />
-          }
-          keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => setIsLoading(!isLoading)}
-          onEndReachedThreshold={1}
         />
       ) : (
         <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>

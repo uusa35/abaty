@@ -16,7 +16,7 @@ import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
-
+import axios from 'axios';
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
@@ -24,8 +24,10 @@ class App extends Component<Props> {
     const {dispatch, network, bootStrapped, currency, lang} = this.props;
     console.log('SYMBOLE', currency);
     console.log('lang', lang);
-    axiosInstance.defaults.headers.common['currency'] = currency;
-    axiosInstance.defaults.headers.common['lang'] = lang;
+    axios.defaults.headers.common['currency'] = validate.isEmpty(currency)
+      ? currency
+      : 'KWD';
+    axios.defaults.headers.common['lang'] = lang ? lang : 'en';
     if (network.isConnected && !bootStrapped) {
       console.log('BOOTSTRAPING');
       return dispatch(appBootstrap());
@@ -47,8 +49,6 @@ class App extends Component<Props> {
       total,
       token,
       guest,
-      currency_symbol,
-      exchange_rate,
       network
     } = this.props;
     const cartLength = cart.length;

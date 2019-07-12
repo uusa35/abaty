@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ProductInfoWidgetMainTitle = ({element, currency}) => {
+const ProductInfoWidgetMainTitle = ({element}) => {
   const {colors, country} = useContext(GlobalValuesContext);
   const {symbol, exchange_rate} = country.currency;
   return (
@@ -90,8 +90,7 @@ const ProductInfoWidgetMainTitle = ({element, currency}) => {
 export default React.memo(ProductInfoWidgetMainTitle);
 
 ProductInfoWidgetMainTitle.propTypes = {
-  element: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired
+  element: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

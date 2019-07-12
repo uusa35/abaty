@@ -67,9 +67,9 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // padding: 10,
+    padding: 3,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     width: 80
   }

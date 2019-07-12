@@ -5,7 +5,6 @@ import {
   View,
   Text,
   KeyboardAvoidingView,
-  ActivityIndicator,
   FlatList
 } from 'react-native';
 import ProductWidget from './ProductWidget';
@@ -71,6 +70,8 @@ const ProductList = ({
   }, [refresh]);
 
   useMemo(() => {
+    setIsLoading(false);
+    setRefresh(false);
     let filtered = filter(elements, i => (i.name.includes(search) ? i : null));
     filtered.length > 0 || search.length > 0
       ? setItems(filtered)
@@ -79,30 +80,48 @@ const ProductList = ({
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: width
+      }}
       behavior="padding"
       enabled>
       {!validate.isEmpty(elements) ? (
         <FlatList
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="none"
           horizontal={false}
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           stickyHeaderIndices={[0]}
-          contentContainerStyle={{
-            width: '100%'
-          }}
-          columnWrapperStyle={{
-            margin: 5,
-            justifyContent: 'flex-start',
-            alignItems: 'center'
-          }}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReachedThreshold={1}
           numColumns={2}
           data={items}
           refreshing={refresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => setRefresh(true)}
+            />
+          }
+          onEndReached={() =>
+            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading)
+          }
+          contentContainerStyle={{
+            width: width - 20,
+            paddingLeft: 5,
+            paddingRight: 5
+          }}
+          columnWrapperStyle={{
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
           ListHeaderComponentStyle={{backgroundColor: 'white', padding: 10}}
-          ListHeaderComponent={() => (
-            <View>
+          ListHeaderComponent={
+            <View style={{width: '100%'}}>
               {showSearch ? (
                 <Input
                   placeholder={I18n.t('search')}
@@ -148,12 +167,6 @@ const ProductList = ({
                 </View>
               ) : null}
             </View>
-          )}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
-            />
           }
           ListFooterComponent={() =>
             showFooter ? (
@@ -171,9 +184,6 @@ const ProductList = ({
           renderItem={({item}) => (
             <ProductWidget product={item} showName={showName} />
           )}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => setIsLoading(!isLoading)}
-          onEndReachedThreshold={1}
         />
       ) : (
         <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>

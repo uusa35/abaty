@@ -13,8 +13,8 @@ if (ENV === 'local') {
   };
 } else if (ENV === 'production') {
   module.exports = {
-    appUrlIos: 'http://mallr.ideasowners.net/',
-    appUrlAndroid: 'http://mallr.ideasowners.net/',
+    appUrlIos: 'http://abati.ideasowners.net/',
+    appUrlAndroid: 'http://abati.ideasowners.net/',
     port: PORT
   };
 }

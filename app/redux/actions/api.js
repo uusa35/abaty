@@ -4,7 +4,12 @@ import {createTransform} from 'redux-persist';
 import I18n from 'react-native-i18n';
 
 export const axiosInstance = axios.create({
-  baseURL: links.apiUrl
+  baseURL: links.apiUrl,
+  headers: {
+    currency: axios.defaults.headers.common['currency']
+      ? axios.defaults.headers.common['currency']
+      : 'KWD'
+  }
 });
 
 console.log('LINK', links.apiUrl);

@@ -396,9 +396,12 @@
   "contactus_order_by_phone" : " Order by Phone",
   "grossTotal" : "Gross Total",
   "shipment_fees" : "Shipment Fees",
+  "shipment_prices" : "Shipment Fees",
   "color" : "color",
   "confirm_information" : "Confirm Information",
-  "clear_cart" : "Clear Cart"
+  "clear_cart" : "Clear Cart",
+  "no_more_products" : "No More Products..",
+  "no_more_users" : "No More Users .."
 
 
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {I18nManager, ScrollView, Text, View} from 'react-native';
+import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../constants';
 import {map, isNull} from 'lodash';
 import PropTypes from 'prop-types';
@@ -52,5 +52,7 @@ const VideosWidget = ({videos}) => {
 export default VideosWidget;
 
 VideosWidget.propTypes = {
-  videos: PropTypes.array.isRequired
+  videos: PropTypes.object.isRequired
 };
+
+const styles = StyleSheet.create({});

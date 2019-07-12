@@ -12,7 +12,7 @@ const IntroductionWidget = ({elements, visible}) => {
   [visible, setVisible] = useState(visible);
   return (
     <Modal
-      transparent={true}
+      transparent={false}
       visible={visible}
       animationType="slide"
       onRequestClose={() => setVisible(false)}>
@@ -23,6 +23,7 @@ const IntroductionWidget = ({elements, visible}) => {
           alignContent: 'center',
           justifyContent: 'center'
         }}
+        keyExtractor={(elements, index) => index.toString()}
         showSkipButton={true}
         showPrevButton={true}
         showDoneButton={true}

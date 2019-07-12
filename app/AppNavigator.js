@@ -180,6 +180,7 @@ const BrandStack = createStackNavigator(
     BrandIndex: {
       screen: BrandIndexScreen,
       navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
         headerBackTitle: null
       })
@@ -279,7 +280,13 @@ const ProductStack = createStackNavigator(
       screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
         headerBackTitle: null
       }),
       path: `product/:id`
@@ -296,6 +303,7 @@ const CategoryStack = createStackNavigator(
     CategoryIndex: {
       screen: CategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: (
           <HeaderMiddle
             title={
@@ -368,9 +376,6 @@ const TabsStack = createBottomTabNavigator(
     CartIndexScreen: {
       screen: CartStack,
       navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
-        headerBackTitle: null,
         tabBarIcon: ({tintColor}) => (
           <Icon name="cart" type="evilicon" size={30} color={tintColor} />
         ),
@@ -461,6 +466,15 @@ ProductStack.navigationOptions = ({navigation}) => {
   };
 };
 CategoryStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+BrandStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
