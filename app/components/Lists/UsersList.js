@@ -95,9 +95,7 @@ const UsersList = ({elements}) => {
             />
           }
           contentContainerStyle={{
-            width: width - 20,
-            paddingLeft: 5,
-            paddingRight: 5
+            width: width - 20
           }}
           columnWrapperStyle={{
             justifyContent: 'space-between',
@@ -117,36 +115,42 @@ const UsersList = ({elements}) => {
               />
             </View>
           }
-          ListHeaderComponentStyle={{backgroundColor: 'white', padding: 10}}
+          ListHeaderComponentStyle={{
+            width: '100%',
+            padding: 10,
+            backgroundColor: 'white'
+          }}
           ListHeaderComponent={
-            <Input
-              placeholder={I18n.t('search')}
-              inputStyle={{
-                fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
-              }}
-              inputContainerStyle={{
-                backgroundColor: '#E4E4E5',
-                borderRadius: 30,
-                paddingRight: 15,
-                paddingLeft: 15,
-                marginTop: 20,
-                borderColor: '#E4E4E5'
-              }}
-              rightIcon={
-                <Icon
-                  onPress={() => setSearch('')}
-                  hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-                  type="evilIcons"
-                  name={search.length > 0 ? 'close' : 'search'}
-                  color="#c4c4c4"
-                  size={18}
-                  color="black"
-                />
-              }
-              onChangeText={e => setSearch(e)}
-              value={search}
-            />
+            <View>
+              <Input
+                placeholder={I18n.t('search')}
+                inputStyle={{
+                  fontFamily: text.font,
+                  textAlign: isRTL ? 'right' : 'left'
+                }}
+                inputContainerStyle={{
+                  backgroundColor: '#E4E4E5',
+                  borderRadius: 30,
+                  paddingRight: 15,
+                  paddingLeft: 15,
+                  marginTop: 20,
+                  borderColor: '#E4E4E5'
+                }}
+                rightIcon={
+                  <Icon
+                    onPress={() => setSearch('')}
+                    hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                    type="evilIcons"
+                    name={search.length > 0 ? 'close' : 'search'}
+                    color="#c4c4c4"
+                    size={18}
+                    color="black"
+                  />
+                }
+                onChangeText={e => setSearch(e)}
+                value={search}
+              />
+            </View>
           }
         />
       ) : (

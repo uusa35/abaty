@@ -111,17 +111,19 @@ const ProductList = ({
             search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading)
           }
           contentContainerStyle={{
-            width: width - 20,
-            paddingLeft: 5,
-            paddingRight: 5
+            width: width - 20
           }}
           columnWrapperStyle={{
             justifyContent: 'space-between',
             alignItems: 'center'
           }}
-          ListHeaderComponentStyle={{backgroundColor: 'white', padding: 10}}
+          ListHeaderComponentStyle={{
+            width: '100%',
+            padding: 10,
+            backgroundColor: 'white'
+          }}
           ListHeaderComponent={
-            <View style={{width: '100%'}}>
+            <View>
               {showSearch ? (
                 <Input
                   placeholder={I18n.t('search')}

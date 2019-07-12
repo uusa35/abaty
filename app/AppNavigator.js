@@ -201,6 +201,15 @@ const BrandStack = createStackNavigator(
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
         headerBackTitle: null
       })
+    },
+    Product: {
+      screen: ProductShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerBackTitle: null
+      }),
+      path: `product/:id`
     }
   },
   {
