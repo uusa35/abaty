@@ -33,7 +33,9 @@ import {
   startCreateTapPaymentUrlScenario,
   startRemoveFromCartScenario,
   startRegisterScenario,
-  getProductIndex
+  getProductIndex,
+  toggleFavoriteScenario,
+  startGetAllProductsScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -163,6 +165,14 @@ export function* getSearchProducts() {
   yield takeLatest(actions.GET_SEARCH_PRODUCTS, startGetSearchProductsScenario);
 }
 
+export function* getAllProducts() {
+  yield takeLatest(actions.GET_ALL_PRODUCTS, startGetAllProductsScenario);
+}
+
+export function* toggleFavorite() {
+  yield takeLatest(actions.TOGGLE_LOADING, toggleFavoriteScenario);
+}
+
 export function* setCountry() {
   yield takeLatest(actions.SET_COUNTRY, startSetCountryScenario);
 }
@@ -230,4 +240,8 @@ export function* createTapPaymentUrl() {
 
 export function* register() {
   yield takeLatest(actions.REGISTER, startRegisterScenario);
+}
+
+export function* setSearchParams() {
+  yield takeLatest(actions.SET_SEARCH_PARAMS, startSetSearchParamsScenario);
 }

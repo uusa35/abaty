@@ -19,33 +19,35 @@ import {filter, has} from 'lodash';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductList = ({
   elements,
   showName = true,
   showSearch = true,
   showFooter = true,
-  showTitle = false
+  showTitle = false,
+  showMore = true,
+  title,
+  searchElements
 }) => {
   const {dispatch} = useContext(DispatchContext);
-  const {country} = useContext(CountryContext);
+  const {colors} = useContext(GlobalValuesContext);
   const {navigation} = useContext(NavContext);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
-  [searchElements, setSearchElements] = useState(
-    has(navigation, 'state') ? navigation.state.params : null
-  );
+  [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [endList, setEndList] = useState('test');
   [search, setSearch] = useState('');
-
+  console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
+  console.log('THE PARAMS FROM PRODUCT LIST', params);
   useMemo(() => {
-    if (isLoading === true) {
-      // console.log('searchElements', searchElements);
-      // console.log('thhe page', page);
+    if (isLoading === true && showMore) {
+      console.log('searchParams', params);
       return axiosInstance(`search/product?page=${page}`, {
-        params: searchElements
+        params
       })
         .then(r => {
           setIsLoading(false);
@@ -61,11 +63,14 @@ const ProductList = ({
   }, [isLoading]);
 
   useMemo(() => {
-    if (refresh) {
+    if (refresh && showMore) {
+      console.log('here', params);
       // for now i don't know what products to fetch
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchProducts(searchElements));
+      dispatch(getSearchProducts(params));
+    } else {
+      setRefresh(false);
     }
   }, [refresh]);
 
@@ -111,7 +116,8 @@ const ProductList = ({
             search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading)
           }
           contentContainerStyle={{
-            width: width - 20
+            width: width - 20,
+            minHeight: '100%'
           }}
           columnWrapperStyle={{
             justifyContent: 'space-between',
@@ -162,9 +168,10 @@ const ProductList = ({
                       fontSize: text.large,
                       marginTop: 20,
                       marginBottom: 10,
-                      textAlign: 'left'
+                      textAlign: 'center',
+                      color: colors.header_one_theme_color
                     }}>
-                    {I18n.t('related_product_group')}
+                    {title ? title : I18n.t('related_product_group')}
                   </Text>
                 </View>
               ) : null}
@@ -205,6 +212,7 @@ export default React.memo(ProductList);
 
 ProductList.propTypes = {
   elements: PropTypes.array.isRequired,
+  searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool
 };
 

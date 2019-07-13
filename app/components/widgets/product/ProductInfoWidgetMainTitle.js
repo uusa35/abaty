@@ -6,17 +6,22 @@ import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {Icon} from 'react-native-elements';
+import {toggleFavorite} from '../../../redux/actions';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
-  const {colors, country} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
+  const {colors, country, token} = useContext(GlobalValuesContext);
   const {symbol, exchange_rate} = country.currency;
   return (
     <View
       style={{
         padding: 5,
         marginBottom: 10,
-        flex: 1,
+        width: '100%',
         flexDirection: 'row',
+        justifyContent: 'space-between',
         alignItems: 'center'
       }}>
       <FastImage
@@ -82,6 +87,23 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             </View>
           ) : null}
         </View>
+      </View>
+      <View style={{justifyContent: 'flex-end'}}>
+        {
+          <Icon
+            onPress={() =>
+              dispatch(
+                toggleFavorite({api_token: token, product_id: element.id})
+              )
+            }
+            name={element.isFavorite ? 'star' : 'staro'}
+            type="antdesign"
+            size={25}
+            underlayColor="transparent"
+            hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+            color="#FCD12A"
+          />
+        }
       </View>
     </View>
   );

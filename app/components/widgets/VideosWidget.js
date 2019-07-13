@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../constants';
 import {map, isNull} from 'lodash';
@@ -6,16 +6,19 @@ import PropTypes from 'prop-types';
 import {WebView} from 'react-native-webview';
 import I18n from '../../I18n';
 import validate from 'validate.js';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const VideosWidget = ({videos}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
-    <View style={{width: '90%', alignSelf: 'center', marginTop: 20}}>
+    <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <Text
         style={{
-          textAlign: 'left',
-          fontSize: 20,
           fontFamily: text.font,
-          paddingBottom: 10
+          fontSize: text.large,
+          marginBottom: 10,
+          textAlign: 'left',
+          color: colors.header_one_theme_color
         }}>
         {I18n.t('videos')}
       </Text>

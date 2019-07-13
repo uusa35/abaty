@@ -9,7 +9,7 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getCategoryElements} from '../../redux/actions';
+import {getCategoryElements, getSearchProducts} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import I18n, {isRTL} from './../../I18n';
 import {Icon} from 'react-native-elements';
@@ -51,7 +51,14 @@ const CategoryHorizontalWidget = ({elements, showName, title}) => {
           <TouchableOpacity
             key={i}
             style={widgetStyles.btnStyle}
-            onPress={() => dispatch(getCategoryElements(c))}>
+            onPress={() =>
+              dispatch(
+                getSearchProducts({
+                  element: c,
+                  searchElements: {product_category_id: c.id}
+                })
+              )
+            }>
             <FastImage
               source={{
                 uri: c.thumb,
@@ -62,7 +69,13 @@ const CategoryHorizontalWidget = ({elements, showName, title}) => {
               resizeMode="cover"
             />
             {showName ? (
-              <Text style={widgetStyles.elementName}>{c.name}</Text>
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {color: colors.header_tow_theme_color}
+                ]}>
+                {c.name}
+              </Text>
             ) : null}
           </TouchableOpacity>
         ))}

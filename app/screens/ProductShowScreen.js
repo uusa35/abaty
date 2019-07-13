@@ -22,13 +22,6 @@ class ProductShowScreen extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    // console.log('the product Show', this.props.product);
-    // this.props.navigation.setParams({
-    //     name : this.props.product.name
-    // });
-  }
-
   render() {
     const {
       product,
@@ -62,7 +55,7 @@ class ProductShowScreen extends Component {
             isOnSale={product.isOnSale}
             isReallyHot={product.isReallyHot}
           />
-          <View style={{width: '90%'}}>
+          <View style={{width: '95%'}}>
             <View animation="bounceInLeft" easing="ease-out">
               <ProductInfoWidget element={product} currency={currency} />
             </View>

@@ -5,21 +5,23 @@ import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
+import {has} from 'lodash';
+import {getAllProducts, getSearchProducts} from '../redux/actions';
 
-class ProductIndexScreen extends Component {
+class ProductIndexAllScreen extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount(): void {
+    this.props.dispatch(getAllProducts());
+  }
+
   render() {
-    const {products, navigation, searchParams} = this.props;
+    const {products, navigation} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        <ProductList
-          elements={products}
-          showName={true}
-          searchElements={searchParams}
-        />
+        <ProductList elements={products} showName={true} />
       </NavContext.Provider>
     );
   }
@@ -27,16 +29,14 @@ class ProductIndexScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
-    searchParams: state.searchParams
+    products: state.products
   };
 }
 
-export default connect(mapStateToProps)(ProductIndexScreen);
+export default connect(mapStateToProps)(ProductIndexAllScreen);
 
-ProductIndexScreen.propTypes = {
-  products: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+ProductIndexAllScreen.propTypes = {
+  products: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

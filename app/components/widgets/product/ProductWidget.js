@@ -19,7 +19,9 @@ import TagWidget from './TagWidget';
 
 const ProductWidget = ({product, showName = false}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
+  const {currency_symbol, exchange_rate, colors, token} = useContext(
+    GlobalValuesContext
+  );
   return (
     <TouchableOpacity
       key={product.id}
@@ -36,7 +38,9 @@ const ProductWidget = ({product, showName = false}) => {
           height: 250
         }
       ]}
-      onPress={() => dispatch(getProduct(product.id))}>
+      onPress={() =>
+        dispatch(getProduct({id: product.id, api_token: token ? token : null}))
+      }>
       <ImageBackground
         source={{
           uri: product.thumb
@@ -63,7 +67,8 @@ const ProductWidget = ({product, showName = false}) => {
                 paddingBottom: 0,
                 paddingRight: 10,
                 paddingLeft: 10,
-                fontSize: text.small
+                fontSize: text.small,
+                color: colors.header_tow_theme_color
               }
             ]}>
             {product.name} - {product.id}

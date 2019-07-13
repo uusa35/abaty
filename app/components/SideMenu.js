@@ -35,51 +35,141 @@ class Menu extends Component {
 
   render() {
     const {settings, guest, navigation, dispatch} = this.props;
+    const {colors} = settings;
     return (
       <ScrollView
-        style={styles.container}
+        style={[styles.container]}
         contentContainerStyle={{alignItems: 'center'}}>
         <SafeAreaView style={{width: '100%', alignItems: 'center'}}>
-          <StatusBar
-            barStyle="dark-content"
-            backgroundColor={colors.main_theme_color}
-          />
+          <StatusBar barStyle="dark-content" backgroundColor="white" />
           <FastImage
             source={{uri: settings.logo}}
             style={styles.logo}
             resizeMode="contain"
             loadingIndicatorSource={images.logo}
           />
-          <Text style={styles.mainMenuText}>{I18n.t('menu')}</Text>
-          <Text style={styles.mainMenuText}>{settings.company}</Text>
+          <Text
+            style={[
+              styles.mainMenuText,
+              {color: colors.header_one_theme_color}
+            ]}>
+            {I18n.t('menu')}
+          </Text>
+          <Text
+            style={[
+              styles.mainMenuText,
+              {color: colors.header_one_theme_color}
+            ]}>
+            {settings.company}
+          </Text>
           <View style={{width: '100%'}}>
             <Divider style={{marginTop: 10}} />
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.menuBtn}>
-              <Icon name="home" type="antdesign" size={20} />
-              <Text style={styles.titleStyle}>{I18n.t('home')}</Text>
+              <Icon
+                name="home"
+                type="antdesign"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('home')}
+              </Text>
             </TouchableOpacity>
             {guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}
                 style={styles.menuBtn}>
-                <Icon name="login" type="antdesign" size={20} />
-                <Text style={styles.titleStyle}>{I18n.t('login')}</Text>
+                <Icon
+                  name="login"
+                  type="antdesign"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color}
+                  ]}>
+                  {I18n.t('login')}
+                </Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity
-                onPress={() => dispatch(logout())}
-                style={styles.menuBtn}>
-                <Icon name="login" type="antdesign" size={20} />
-                <Text style={styles.titleStyle}>{I18n.t('logout')}</Text>
-              </TouchableOpacity>
+              <View>
+                <TouchableOpacity
+                  onPress={() => dispatch(logout())}
+                  style={styles.menuBtn}>
+                  <Icon
+                    name="profile"
+                    type="antdesign"
+                    size={20}
+                    color={colors.icon_theme_color}
+                  />
+                  <Text
+                    style={[
+                      styles.titleStyle,
+                      {color: colors.header_one_theme_color}
+                    ]}>
+                    {I18n.t('profile')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('FavoriteIndex')}
+                  style={styles.menuBtn}>
+                  <Icon
+                    name="star"
+                    type="fontawesome"
+                    size={25}
+                    color={colors.icon_theme_color}
+                  />
+                  <Text
+                    style={[
+                      styles.titleStyle,
+                      {color: colors.header_one_theme_color}
+                    ]}>
+                    {I18n.t('wishlist')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => dispatch(logout())}
+                  style={styles.menuBtn}>
+                  <Icon
+                    name="login"
+                    type="antdesign"
+                    size={20}
+                    color={colors.icon_theme_color}
+                  />
+                  <Text
+                    style={[
+                      styles.titleStyle,
+                      {color: colors.header_one_theme_color}
+                    ]}>
+                    {I18n.t('logout')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             )}
             <TouchableOpacity
               onPress={() => navigation.navigate('Contactus')}
               style={styles.menuBtn}>
-              <Icon name="old-phone" type="entypo" size={20} />
-              <Text style={styles.titleStyle}>{I18n.t('contactus')}</Text>
+              <Icon
+                name="old-phone"
+                type="entypo"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('contactus')}
+              </Text>
             </TouchableOpacity>
             {!validate.isEmpty(settings.images) ? (
               <TouchableOpacity
@@ -91,8 +181,17 @@ class Menu extends Component {
                   })
                 }
                 style={styles.menuBtn}>
-                <Icon name="image" type="entypo" size={20} />
-                <Text style={styles.titleStyle}>
+                <Icon
+                  name="image"
+                  type="entypo"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color}
+                  ]}>
                   {I18n.t('our_gallery', {name: settings.company})}
                 </Text>
               </TouchableOpacity>
@@ -102,8 +201,17 @@ class Menu extends Component {
               <TouchableOpacity
                 onPress={() => Linking.openURL(settings.youtube)}
                 style={styles.menuBtn}>
-                <Icon name="youtube" type="entypo" size={20} />
-                <Text style={styles.titleStyle}>
+                <Icon
+                  name="youtube"
+                  type="entypo"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color}
+                  ]}>
                   {I18n.t('our_youtube_channel')}
                 </Text>
               </TouchableOpacity>
@@ -111,8 +219,19 @@ class Menu extends Component {
             <TouchableOpacity
               onPress={() => this.changeLang()}
               style={styles.menuBtn}>
-              <Icon name="language" type="fontawesome" size={20} />
-              <Text style={styles.titleStyle}>{I18n.t('lang')}</Text>
+              <Icon
+                name="language"
+                type="fontawesome"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('lang')}
+              </Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
@@ -169,6 +288,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: text.font,
     fontSize: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 8
   }
 });

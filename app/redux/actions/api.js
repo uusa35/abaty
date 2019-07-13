@@ -98,9 +98,12 @@ export async function getProductCart(params) {
     .catch(e => e.response.data.message);
 }
 
-export async function getProduct(id) {
+export async function getProduct(params) {
+  const {id, api_token} = params;
+  console.log('the id', id);
+  console.log('the api_token', api_token);
   return await axiosInstance
-    .get(`product/${id}`)
+    .get(`product/${id}`, {params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -134,9 +137,9 @@ export async function getCountries() {
     .catch(e => e.response.data.message);
 }
 
-export async function getUser(user_id) {
+export async function getUser(id) {
   return await axiosInstance
-    .get(`user/${user_id}`)
+    .get(`user/${id}`)
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -239,9 +242,15 @@ export async function makeTapPayment(params) {
 }
 
 export async function register(params) {
-  console.log('the register', params);
   return await axiosInstance
     .post(`register`, params)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getFavorites(params) {
+  return await axiosInstance
+    .get(`favorite`, params)
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

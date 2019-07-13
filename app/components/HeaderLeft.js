@@ -8,7 +8,7 @@ import {SafeAreaView} from 'react-navigation';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
 export const HeaderLeft = ({openDrawer, navigate}) => {
-  const {cartLength} = useContext(GlobalValuesContext);
+  const {cartLength, colors} = useContext(GlobalValuesContext);
   return (
     <SafeAreaView style={styles.container}>
       <Icon
@@ -17,7 +17,7 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
         size={32}
         onPress={() => openDrawer()}
         underlayColor="transparent"
-        hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+        hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
         color="black"
       />
       <View>
@@ -27,8 +27,8 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
           type="ionicon"
           size={32}
           underlayColor="transparent"
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          color="black"
+          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+          color={colors.icon_theme_color}
         />
         {cartLength > 0 ? (
           <Badge

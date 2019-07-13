@@ -401,7 +401,7 @@
   "confirm_information" : "Confirm Information",
   "clear_cart" : "Clear Cart",
   "no_more_products" : "No More Products..",
-  "no_more_users" : "No More Users .."
-
-
+  "no_more_users" : "No More Users ..",
+  "wishlist" : "Wish List",
+  "all_products" : "All Products"
 }

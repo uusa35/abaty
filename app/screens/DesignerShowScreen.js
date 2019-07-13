@@ -36,7 +36,7 @@ class DesignerShowScreen extends Component {
   }
 
   render() {
-    const {designer, navigation, settings} = this.props;
+    const {designer, navigation, settings, searchParams} = this.props;
     console.log('the user', designer);
     return (
       <NavContext.Provider value={{navigation}}>
@@ -63,7 +63,7 @@ class DesignerShowScreen extends Component {
                   <MainSliderWidget slides={designer.slides} />
                 </View>
               ) : null}
-              <View style={{paddingRight: 10, paddingLeft: 10}}>
+              <View>
                 <ImagesWidget
                   elements={designer.images}
                   name={designer.slug}
@@ -78,7 +78,7 @@ class DesignerShowScreen extends Component {
                       // indicatorContainerStyle={{backgroundColor: 'white'}}
                       // contentContainerStyle={{backgroundColor: 'white'}}
                       indicatorStyle={{
-                        backgroundColor: `${settings.colors.btn_bg_theme_color}`
+                        backgroundColor: settings.colors.btn_bg_theme_color
                       }}
                       activeColor={settings.colors.header_one_theme_color}
                       inactiveColor={settings.colors.header_tow_theme_color}
@@ -97,6 +97,7 @@ class DesignerShowScreen extends Component {
                         showSearch={false}
                         showTitle={true}
                         showFooter={false}
+                        searchElements={searchParams}
                       />
                     ),
                     categories: () =>
@@ -106,7 +107,9 @@ class DesignerShowScreen extends Component {
                         />
                       ) : (
                         <View>
-                          <Text>No Categories</Text>
+                          <Text style={styles.subTitle}>
+                            {I18n.t('no_categories')}
+                          </Text>
                         </View>
                       ),
                     info: () => <UserInfoWidget user={designer} />,
@@ -115,7 +118,9 @@ class DesignerShowScreen extends Component {
                         <VideosWidget videos={designer.videos} />
                       ) : (
                         <View>
-                          <Text>No Videos</Text>
+                          <Text style={styles.subTitle}>
+                            {I18n.t('no_videos')}
+                          </Text>
                         </View>
                       )
                   })}
@@ -135,6 +140,7 @@ class DesignerShowScreen extends Component {
 function mapStateToProps(state) {
   return {
     designer: state.designer,
+    searchParams: state.searchParams,
     settings: state.settings
   };
 }
@@ -143,7 +149,8 @@ export default connect(mapStateToProps)(DesignerShowScreen);
 
 DesignerShowScreen.propTypes = {
   settings: PropTypes.object.isRequired,
-  designer: PropTypes.object.isRequired
+  designer: PropTypes.object.isRequired,
+  searchParams: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

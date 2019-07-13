@@ -436,6 +436,8 @@
   "product_categories" : "أقسام المنتجات",
   "error_while_loading_product" : "حدث خطأ اثناء تحميل هذا المنتج .. سيتم التحديث لاحقا",
   "no_more_products" : "لا يوجد مزيد من المنتجات ..",
-  "no_more_users" : "لا يوجد مزيد من المستخدمين .."
+  "no_more_users" : "لا يوجد مزيد من المستخدمين ..",
+  "wishlist" : "قائمة المفضلة",
+  "all_products" : "جميع المنتجات"
 
 }

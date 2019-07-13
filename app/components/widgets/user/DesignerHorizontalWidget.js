@@ -56,7 +56,11 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
           <TouchableOpacity
             key={i}
             style={widgetStyles.btnStyle}
-            onPress={() => dispatch(getDesigner(c.id))}>
+            onPress={() =>
+              dispatch(
+                getDesigner({element: c, searchElements: {user_id: c.id}})
+              )
+            }>
             <FastImage
               source={{
                 uri: c.thumb,
@@ -67,7 +71,13 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
               resizeMode="cover"
             />
             {showName ? (
-              <Text style={widgetStyles.elementName}>{c.slug}</Text>
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {color: colors.header_tow_theme_color}
+                ]}>
+                {c.slug}
+              </Text>
             ) : null}
           </TouchableOpacity>
         ))}

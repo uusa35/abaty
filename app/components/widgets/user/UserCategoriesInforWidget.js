@@ -8,14 +8,16 @@ import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getCategoryElements} from '../../../redux/actions';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
   const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View
       animation="bounceInRight"
       easing="ease-out"
-      style={{paddingRight: 5, paddingLeft: 1}}>
+      style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <View key={elements.length} style={{flex: 1}}>
         {map(elements, (element, i) => {
           return (
@@ -26,9 +28,9 @@ const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
                     style={{
                       fontFamily: text.font,
                       fontSize: text.large,
-                      marginTop: 20,
                       marginBottom: 10,
-                      textAlign: 'left'
+                      textAlign: 'left',
+                      color: colors.header_one_theme_color
                     }}>
                     {I18n.t('product_categories')}
                   </Text>

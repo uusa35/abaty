@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button, Text} from 'react-native-elements';
 import {images, text, width} from '../../constants';
-import {getCategoryElements} from '../../redux/actions';
+import {getCategoryElements, getSearchProducts} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -20,7 +20,14 @@ const CategoryWidget = ({category, columns}) => {
           // {width: columns ? 120 : width - 40, height: columns ? 250 : 300}
           {width: width - 40, height: 250}
         ]}
-        onPress={() => dispatch(getCategoryElements(category))}>
+        onPress={() =>
+          dispatch(
+            getSearchProducts({
+              element: category,
+              searchElements: {product_category_id: category.id}
+            })
+          )
+        }>
         <FastImage
           style={styles.mainCategoryBg}
           resizeMode={columns ? 'stretch' : 'cover'}
@@ -28,7 +35,14 @@ const CategoryWidget = ({category, columns}) => {
           loadingIndicatorSource={images.logo}
         />
         <Button
-          onPress={() => dispatch(getCategoryElements(category))}
+          onPress={() =>
+            dispatch(
+              getSearchProducts({
+                element: category,
+                searchElements: {product_category_id: category.id}
+              })
+            )
+          }
           raised
           containerStyle={{width: '70%', marginBottom: 10, marginTop: 10}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}

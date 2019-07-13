@@ -38,6 +38,9 @@ import RegisterScreen from './screens/RegisterScreen';
 import CartConfirmationScreen from './screens/CartConfirmationScreen';
 import PaymentIndexScreen from './screens/PaymentIndexScreen';
 import IntroductionScreen from './screens/IntroductionScreen';
+import FavoriteIndexScreen from './screens/FavoriteIndexScreen';
+import {has} from 'lodash';
+import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -137,6 +140,17 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       }),
       path: `product/:id`
+    },
+    FavoriteIndex: {
+      screen: FavoriteIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
+        headerBackTitle: null
+      })
     },
     ImageZoom: {
       screen: ImageZoomWidget,
@@ -276,8 +290,8 @@ const CartStack = createStackNavigator(
 
 const ProductStack = createStackNavigator(
   {
-    ProductIndex: {
-      screen: ProductIndexScreen,
+    ProductIndexAll: {
+      screen: ProductIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -335,7 +349,7 @@ const CategoryStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null
       })
     },
@@ -389,13 +403,13 @@ const TabsStack = createBottomTabNavigator(
         title: I18n.t('cart')
       })
     },
-    ProductIndexScreen: {
+    ProductIndexAll: {
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="shop" type="entypo" color={tintColor} />
         ),
-        title: I18n.t('products')
+        title: I18n.t('all_products')
       })
     },
     BrandIndexScreen: {
@@ -438,7 +452,7 @@ const TabsStack = createBottomTabNavigator(
       'CategoryIndexScreen',
       'CartIndexScreen',
       'BrandIndexScreen',
-      'ProductIndexScreen'
+      'ProductIndexAll'
     ]
   }
 );

@@ -254,6 +254,19 @@ export function getSearchProducts(payload) {
   };
 }
 
+export function getAllProducts(payload) {
+  return {
+    type: actions.GET_ALL_PRODUCTS
+  };
+}
+
+export function toggleFavorite(payload) {
+  return {
+    type: actions.TOGGLE_FAVORITE,
+    payload
+  };
+}
+
 export function getBrand(payload) {
   return {
     type: actions.GET_BRAND,
@@ -406,6 +419,14 @@ export function register(payload) {
     payload
   };
 }
+
+export function setSearchParams(payload) {
+  return {
+    type: actions.SET_SEARCH_PARAMS,
+    payload
+  };
+}
+
 export const APP_ACTIONS = {
   changeLang,
   disableMessage,

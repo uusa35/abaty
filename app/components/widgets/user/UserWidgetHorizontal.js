@@ -59,7 +59,11 @@ const UserWidgetHorizontal = ({user, showName}) => {
           <Text
             style={[
               widgetStyles.elementName,
-              {textAlign: 'left', paddingTop: 15}
+              {
+                textAlign: 'left',
+                paddingTop: 15,
+                color: colors.header_tow_theme_color
+              }
             ]}>
             {user.slug}
           </Text>

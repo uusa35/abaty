@@ -27,6 +27,7 @@ import slides from './slides';
 import splashes from './splashes';
 import product from './product';
 import homeProducts from './homeProducts';
+import productFavorites from './productFavorites';
 import products from './products';
 import cart from './cart';
 import total from './total';
@@ -38,6 +39,7 @@ import playerId from './playerId';
 import auth from './auth';
 import coupon from './coupon';
 import {reducer as network} from 'react-native-offline';
+import searchParams from './searchParams';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -51,6 +53,7 @@ let reducers = combineReducers({
   product,
   products,
   homeProducts,
+  productFavorites,
   cart,
   total,
   users,
@@ -78,7 +81,8 @@ let reducers = combineReducers({
   countryModal,
   linking,
   coupon,
-  network
+  network,
+  searchParams
 });
 
 export default reducers;

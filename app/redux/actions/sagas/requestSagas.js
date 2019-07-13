@@ -87,18 +87,22 @@ export function* startRefetchUserScenario(action) {
 
 export function* startGetCategoryElementsScenario(action) {
   try {
-    const category = action.payload;
+    const {category, searchElements} = action.payload;
+    console.log('startGetCategoryElementsScnario');
+    debugger;
     yield all([
       put({type: actions.SET_CATEGORY, payload: category}),
+      put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
       yield put({
         type: actions.GET_SEARCH_PRODUCTS,
-        payload: {product_category_id: category.id}
+        payload: searchElements
       }),
       put(
         NavigationActions.navigate({
           routeName: 'ProductIndex',
-          elements: {name: category.name},
-          searchElements: {product_category_id: category.id}
+          params: {
+            name: category.name
+          }
         })
       )
     ]);
@@ -235,6 +239,7 @@ export function* startGetBrandScenario(action) {
       yield all([
         put({type: actions.SET_BRAND, payload: brand}),
         put({type: actions.SET_PRODUCTS, payload: brand.products}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
         put(
           NavigationActions.navigate({
             routeName: 'BrandShow',
@@ -292,10 +297,13 @@ export function* startGetUsersScenario(action) {
 export function* startGetDesignerScenario(action) {
   console.log('start');
   try {
-    const user = yield call(api.getUser, action.payload);
+    const {element, searchElements} = action.payload;
+    const user = yield call(api.getUser, element.id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       console.log('the designer', user);
       yield put({type: actions.SET_DESIGNER, payload: user});
+      yield put({type: actions.SET_PRODUCTS, payload: user.productGroup});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
@@ -338,14 +346,38 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
+    const {element, searchElements} = action.payload;
+    const products = yield call(api.getSearchProducts, searchElements);
+    if (!validate.isEmpty(products) && validate.isArray(products)) {
+      yield all([
+        put({type: actions.SET_PRODUCTS, payload: products}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
+        put(
+          NavigationActions.navigate({
+            routeName: 'ProductIndex',
+            params: {name: element ? element.name : I18n.t('products')}
+          })
+        )
+      ]);
+    } else {
+      throw I18n.t('no_products');
+    }
+  } catch (e) {
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
+  }
+}
+
+export function* startGetAllProductsScenario(action) {
+  try {
     const products = yield call(api.getSearchProducts, action.payload);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
         put(
           NavigationActions.navigate({
-            routeName: 'ProductIndex',
-            params: action.payload
+            routeName: 'ProductIndexAll',
+            params: {name: I18n.t('all_products')}
           })
         )
       ]);
@@ -597,10 +629,18 @@ export function* startSubmitAuthScenario(action) {
     const user = yield call(api.authenticate, {email, password, player_id});
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       console.log('the user', user);
+      const favorites = yield call(api.getFavorites, {
+        params: {api_token: user.api_token}
+      });
+      console.log('the favorites', favorites);
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
+        put({
+          type: actions.SET_PRODUCT_FAVORITES,
+          payload: validate.isArray(favorites) ? favorites : []
+        }),
         call(enableSuccessMessage, I18n.t('login_success')),
         put(
           NavigationActions.navigate({
@@ -719,4 +759,8 @@ export function* startRegisterScenario(action) {
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
   }
+}
+
+export function* toggleFavoriteScenario(action) {
+  console.log('the action payload', action.payload);
 }

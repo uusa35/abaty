@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
 import {text} from '../../../constants';
 import PropTypes from 'prop-types';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserImageProfile = ({large, logo, slug}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
       <FastImage source={{uri: large ? large : logo}} style={styles.logo} />
-      <Text style={styles.mainTitle}>{slug}</Text>
+      <Text style={[styles.mainTitle, {color: colors.header_tow_theme_color}]}>
+        {slug}
+      </Text>
     </View>
   );
 };

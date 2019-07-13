@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
@@ -8,13 +8,25 @@ import UserInfoWidgetElement from './UserInfoWidgetElement';
 import PropTypes from 'prop-types';
 import MapViewWidget from '../MapViewWidget';
 import validate from 'validate.js';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserInfoWidget = ({user}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View
       animation="bounceInRight"
       easing="ease-out"
-      style={{paddingRight: 5, paddingLeft: 1}}>
+      style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
+      <Text
+        style={{
+          fontFamily: text.font,
+          fontSize: text.large,
+          marginBottom: 10,
+          textAlign: 'left',
+          color: colors.header_one_theme_color
+        }}>
+        {I18n.t('information')}
+      </Text>
       {user.longitude && user.latitude ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}

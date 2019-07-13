@@ -1,24 +1,28 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {NavContext} from './../redux/NavContext';
-import {View} from 'react-native-animatable';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
+import I18n from './../I18n';
 
-class ProductIndexScreen extends Component {
+class FavoriteIndexScreen extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {products, navigation, searchParams} = this.props;
+    const {productFavorites, navigation} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
         <ProductList
-          elements={products}
+          elements={productFavorites}
           showName={true}
-          searchElements={searchParams}
+          showSearch={false}
+          title={I18n.t('wishlist')}
+          showTitle={false}
+          showMore={false}
+          showFooter={false}
         />
       </NavContext.Provider>
     );
@@ -27,16 +31,14 @@ class ProductIndexScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
-    searchParams: state.searchParams
+    productFavorites: state.productFavorites
   };
 }
 
-export default connect(mapStateToProps)(ProductIndexScreen);
+export default connect(mapStateToProps)(FavoriteIndexScreen);
 
-ProductIndexScreen.propTypes = {
-  products: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+FavoriteIndexScreen.propTypes = {
+  productFavorites: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

@@ -1,13 +1,14 @@
 /**
  * Created by usamaahmed on 9/28/17.
  */
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {text, width} from './../constants';
-import FastImage from 'react-native-fast-image';
+import {text} from './../constants';
+import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
-export const HeaderMiddle = ({title, logo}) => {
+export const HeaderMiddle = ({title}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <SafeAreaView style={styles.container}>
       <Text
@@ -15,8 +16,7 @@ export const HeaderMiddle = ({title, logo}) => {
           fontFamily: text.font,
           fontSize: text.large,
           textAlign: 'center',
-          color: 'black',
-          paddingTop: 4
+          color: colors.header_one_theme_color
         }}>
         {title ? title.substring(0, 25) : null}
       </Text>
