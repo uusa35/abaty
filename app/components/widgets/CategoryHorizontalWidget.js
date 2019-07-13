@@ -55,6 +55,7 @@ const CategoryHorizontalWidget = ({elements, showName, title}) => {
               dispatch(
                 getSearchProducts({
                   element: c,
+                  category: c,
                   searchElements: {product_category_id: c.id}
                 })
               )

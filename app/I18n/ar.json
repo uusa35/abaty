@@ -438,6 +438,7 @@
   "no_more_products" : "لا يوجد مزيد من المنتجات ..",
   "no_more_users" : "لا يوجد مزيد من المستخدمين ..",
   "wishlist" : "قائمة المفضلة",
-  "all_products" : "جميع المنتجات"
+  "all_products" : "جميع المنتجات",
+  "favorite_success" : "تم تحديث قائمة المفضلة"
 
 }

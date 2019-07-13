@@ -254,3 +254,10 @@ export async function getFavorites(params) {
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
+
+export async function toggleFavorite(params) {
+  return await axiosInstance
+    .post(`favorite`, params)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}

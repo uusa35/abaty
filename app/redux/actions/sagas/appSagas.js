@@ -138,13 +138,6 @@ export function* refetchUsers() {
   yield takeLatest(actions.REFETCH_USERS, startRefetchUserScenario);
 }
 
-export function* getCategoryElements() {
-  yield takeLatest(
-    actions.GET_CATEGORY_ELEMENTS,
-    startGetCategoryElementsScenario
-  );
-}
-
 export function* getUsers() {
   yield takeLatest(actions.GET_USERS, startGetUsersScenario);
 }
@@ -170,7 +163,7 @@ export function* getAllProducts() {
 }
 
 export function* toggleFavorite() {
-  yield takeLatest(actions.TOGGLE_LOADING, toggleFavoriteScenario);
+  yield takeLatest(actions.TOGGLE_FAVORITE, toggleFavoriteScenario);
 }
 
 export function* setCountry() {
@@ -179,10 +172,6 @@ export function* setCountry() {
 
 export function* setCurrency() {
   yield takeLatest(actions.SET_CURRENCY, startSetCurrencyScenario);
-}
-
-export function* getBrand() {
-  yield takeLatest(actions.GET_BRAND, startGetBrandScenario);
 }
 
 export function* goDeepLinking() {

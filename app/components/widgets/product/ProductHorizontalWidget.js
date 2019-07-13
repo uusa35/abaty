@@ -17,7 +17,9 @@ const ProductHorizontalWidget = ({elements, showName, title}) => {
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => dispatch(getSearchProducts({on_home: true}))}>
+        onPress={() =>
+          dispatch(getSearchProducts({searchElements: {on_home: true}}))
+        }>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

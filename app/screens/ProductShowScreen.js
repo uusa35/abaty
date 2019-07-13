@@ -22,6 +22,10 @@ class ProductShowScreen extends Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.product.isFavorite !== this.props.product.isFavorite;
+  }
+
   render() {
     const {
       product,

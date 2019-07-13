@@ -85,33 +85,6 @@ export function* startRefetchUserScenario(action) {
   yield call(setUsers, action);
 }
 
-export function* startGetCategoryElementsScenario(action) {
-  try {
-    const {category, searchElements} = action.payload;
-    console.log('startGetCategoryElementsScnario');
-    debugger;
-    yield all([
-      put({type: actions.SET_CATEGORY, payload: category}),
-      put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
-      yield put({
-        type: actions.GET_SEARCH_PRODUCTS,
-        payload: searchElements
-      }),
-      put(
-        NavigationActions.navigate({
-          routeName: 'ProductIndex',
-          params: {
-            name: category.name
-          }
-        })
-      )
-    ]);
-  } catch (e) {
-    // console.log('the e from startGetCatgoryElement scneario',e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
-  }
-}
-
 export function* setCommercials() {
   try {
     const commercials = yield call(api.getCommercials);
@@ -232,30 +205,6 @@ export function* startSetCurrencyScenario(action) {
   }
 }
 
-export function* startGetBrandScenario(action) {
-  try {
-    const brand = yield call(api.getBrand, action.payload);
-    if (!validate.isEmpty(brand) && validate.isObject(brand)) {
-      yield all([
-        put({type: actions.SET_BRAND, payload: brand}),
-        put({type: actions.SET_PRODUCTS, payload: brand.products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
-        put(
-          NavigationActions.navigate({
-            routeName: 'BrandShow',
-            params: {name: brand.slug, id: brand.id}
-          })
-        )
-      ]);
-    } else {
-      throw I18n.t('no_brand');
-    }
-  } catch (e) {
-    // console.log('the e from set start get brand scnario', e)
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_brand'))]);
-  }
-}
-
 export function* startGetUserScenario(action) {
   try {
     const user = yield call(api.getUser, action.payload);
@@ -346,11 +295,12 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {element, searchElements} = action.payload;
+    const {category, brand, element, searchElements} = action.payload;
     const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
         put(
           NavigationActions.navigate({
@@ -762,5 +712,17 @@ export function* startRegisterScenario(action) {
 }
 
 export function* toggleFavoriteScenario(action) {
-  console.log('the action payload', action.payload);
+  try {
+    const products = yield call(api.toggleFavorite, action.payload);
+    if (!validate.isEmpty(products) && validate.isArray(products)) {
+      yield all([
+        put({type: actions.SET_PRODUCT_FAVORITES, payload: products}),
+        call(enableSuccessMessage, I18n.t('favorite_success'))
+      ]);
+    } else {
+      throw I18n.t('product_not_stored_in_favorites');
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
 }

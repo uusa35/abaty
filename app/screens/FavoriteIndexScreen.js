@@ -12,7 +12,7 @@ class FavoriteIndexScreen extends Component {
   }
 
   render() {
-    const {productFavorites, navigation} = this.props;
+    const {productFavorites, navigation, searchParams} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
         <ProductList
@@ -23,6 +23,7 @@ class FavoriteIndexScreen extends Component {
           showTitle={false}
           showMore={false}
           showFooter={false}
+          searchElements={searchParams}
         />
       </NavContext.Provider>
     );
@@ -31,7 +32,8 @@ class FavoriteIndexScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    productFavorites: state.productFavorites
+    productFavorites: state.productFavorites,
+    searchParams: state.searchParams
   };
 }
 

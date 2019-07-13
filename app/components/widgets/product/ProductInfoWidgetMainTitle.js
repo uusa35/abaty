@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState, useMemo} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, View} from 'react-native';
 import {images, text} from '../../../constants';
@@ -14,6 +14,19 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, country, token} = useContext(GlobalValuesContext);
   const {symbol, exchange_rate} = country.currency;
+  const [favorite, setFavorite] = useState(element.isFavorite);
+
+  useMemo(() => {
+    if (favorite !== element.isFavorite) {
+      console.log('fired');
+      // dispatch(toggleFavorite({api_token: token, product_id: element.id}));
+    }
+  });
+
+  useEffect(() => {
+    // setFavorite(element.isFavorite);
+  }, [favorite]);
+
   return (
     <View
       style={{
@@ -91,12 +104,8 @@ const ProductInfoWidgetMainTitle = ({element}) => {
       <View style={{justifyContent: 'flex-end'}}>
         {
           <Icon
-            onPress={() =>
-              dispatch(
-                toggleFavorite({api_token: token, product_id: element.id})
-              )
-            }
-            name={element.isFavorite ? 'star' : 'staro'}
+            onPress={() => setFavorite(!favorite)}
+            name={favorite ? 'star' : 'staro'}
             type="antdesign"
             size={25}
             underlayColor="transparent"
