@@ -416,7 +416,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeDesigners),
       call(setHomeCelebrities),
       call(setHomeSplashes),
-      call(startAuthenticatedScenario)
+      call(startAuthenticatedScenario),
     ]);
   } catch (e) {
     yield all([
@@ -714,13 +714,15 @@ export function* startRegisterScenario(action) {
 export function* toggleFavoriteScenario(action) {
   try {
     const products = yield call(api.toggleFavorite, action.payload);
+    console.log('products', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCT_FAVORITES, payload: products}),
-        call(enableSuccessMessage, I18n.t('favorite_success'))
+        call(enableWarningMessage, I18n.t('favorite_success'))
       ]);
     } else {
-      throw I18n.t('product_not_stored_in_favorites');
+      yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
+      throw products;
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);

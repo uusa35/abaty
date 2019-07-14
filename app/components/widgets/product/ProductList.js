@@ -41,11 +41,10 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState('test');
   [search, setSearch] = useState('');
-  console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
-  console.log('THE PARAMS FROM PRODUCT LIST', params);
+  // console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
+  // console.log('THE PARAMS FROM PRODUCT LIST', params);
   useMemo(() => {
     if (isLoading === true && showMore) {
-      console.log('searchParams', params);
       return axiosInstance(`search/product?page=${page}`, {
         params
       })
@@ -64,7 +63,6 @@ const ProductList = ({
 
   useMemo(() => {
     if (refresh && showMore) {
-      console.log('here', params);
       // for now i don't know what products to fetch
       setRefresh(false);
       setIsLoading(false);

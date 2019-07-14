@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavContext} from '../redux/NavContext';
 import PropTypes from 'prop-types';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Linking} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../I18n';
 import {images, text} from '../constants';
@@ -109,7 +109,7 @@ class LoginScreen extends Component {
                 fontFamily: text.font,
                 color: colors.btn_text_theme_color
               }}
-              onPress={() => console.log('confirm information')}
+              onPress={() => Linking.openURL(`http://abati.ideasowners.net/password/reset`)}
             />
           </View>
         </View>

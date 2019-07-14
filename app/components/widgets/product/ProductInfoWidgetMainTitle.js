@@ -16,17 +16,6 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   const {symbol, exchange_rate} = country.currency;
   const [favorite, setFavorite] = useState(element.isFavorite);
 
-  useMemo(() => {
-    if (favorite !== element.isFavorite) {
-      console.log('fired');
-      // dispatch(toggleFavorite({api_token: token, product_id: element.id}));
-    }
-  });
-
-  useEffect(() => {
-    // setFavorite(element.isFavorite);
-  }, [favorite]);
-
   return (
     <View
       style={{
@@ -104,7 +93,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
       <View style={{justifyContent: 'flex-end'}}>
         {
           <Icon
-            onPress={() => setFavorite(!favorite)}
+            onPress={() => {
+                setFavorite(!favorite);
+                dispatch(toggleFavorite({api_token: token, product_id: element.id}))
+            }
+            }
             name={favorite ? 'star' : 'staro'}
             type="antdesign"
             size={25}
