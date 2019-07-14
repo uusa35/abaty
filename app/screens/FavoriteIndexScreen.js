@@ -5,8 +5,8 @@ import {NavContext} from './../redux/NavContext';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import I18n from './../I18n';
-import {text, width} from "../constants";
-import {Button} from "react-native-elements";
+import {text, width} from '../constants';
+import {Button} from 'react-native-elements';
 import validate from 'validate.js';
 
 class FavoriteIndexScreen extends Component {
@@ -15,59 +15,61 @@ class FavoriteIndexScreen extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('Next Props',nextProps.productFavorites);
-    console.log('Next Props',this.props.productFavorites);
-    if(nextProps.productFavorites < 1) {
+    console.log('Next Props', nextProps.productFavorites);
+    console.log('Next Props', this.props.productFavorites);
+    if (nextProps.productFavorites > 0) {
       return true;
     }
-    if(this.props.productFavorites.length !== nextProps.productFavorites.length) {
+    if (
+      this.props.productFavorites.length !== nextProps.productFavorites.length
+    ) {
       return true;
     }
     return false;
   }
 
   render() {
-    const {productFavorites, navigation, searchParams , colors } = this.props;
+    const {productFavorites, navigation, searchParams, colors} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        {
-          !validate.isEmpty(productFavorites) ?
-              <ProductList
-                  elements={productFavorites}
-                  showName={true}
-                  showSearch={false}
-                  title={I18n.t('wishlist')}
-                  showTitle={false}
-                  showMore={false}
-                  showFooter={false}
-                  searchElements={searchParams}
-              />
-              : <View
-                  style={{
-                    marginTop: 300,
-                    width: width - 50,
-                    alignSelf: 'center'
-                  }}>
-                <Button
-                    raised
-                    title={I18n.t('no_items')}
-                    type="outline"
-                    containerStyle={{marginBottom: 20}}
-                    titleStyle={{fontFamily: text.font}}
-                />
-                <Button
-                    onPress={() => navigation.navigate('Home')}
-                    raised
-                    title={I18n.t('shop_now')}
-                    type="outline"
-                    containerStyle={{marginBottom: 20}}
-                    titleStyle={{
-                      fontFamily: text.font,
-                      color: colors.main_text_theme_color
-                    }}
-                />
-              </View>
-        }
+        {!validate.isEmpty(productFavorites) ? (
+          <ProductList
+            elements={productFavorites}
+            showName={true}
+            showSearch={false}
+            title={I18n.t('wishlist')}
+            showTitle={false}
+            showMore={false}
+            showFooter={false}
+            searchElements={searchParams}
+          />
+        ) : (
+          <View
+            style={{
+              marginTop: 300,
+              width: width - 50,
+              alignSelf: 'center'
+            }}>
+            <Button
+              raised
+              title={I18n.t('no_items')}
+              type="outline"
+              containerStyle={{marginBottom: 20}}
+              titleStyle={{fontFamily: text.font}}
+            />
+            <Button
+              onPress={() => navigation.navigate('Home')}
+              raised
+              title={I18n.t('shop_now')}
+              type="outline"
+              containerStyle={{marginBottom: 20}}
+              titleStyle={{
+                fontFamily: text.font,
+                color: colors.main_text_theme_color
+              }}
+            />
+          </View>
+        )}
       </NavContext.Provider>
     );
   }
@@ -77,7 +79,7 @@ function mapStateToProps(state) {
   return {
     productFavorites: state.productFavorites,
     searchParams: state.searchParams,
-    colors : state.settings.colors
+    colors: state.settings.colors
   };
 }
 

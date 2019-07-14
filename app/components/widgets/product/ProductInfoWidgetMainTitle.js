@@ -94,10 +94,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         {
           <Icon
             onPress={() => {
-                setFavorite(!favorite);
-                dispatch(toggleFavorite({api_token: token, product_id: element.id}))
-            }
-            }
+              setFavorite(!favorite);
+              dispatch(
+                toggleFavorite({api_token: token, product_id: element.id})
+              );
+            }}
             name={favorite ? 'star' : 'staro'}
             type="antdesign"
             size={25}

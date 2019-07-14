@@ -21,7 +21,7 @@ class ProductIndexAllScreen extends Component {
     const {products, navigation} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        <ProductList elements={products} showName={true} />
+        <ProductList elements={products} showName={true} searchElements={{}} />
       </NavContext.Provider>
     );
   }

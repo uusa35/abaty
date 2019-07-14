@@ -18,7 +18,7 @@ export const HeaderMiddle = ({title}) => {
           textAlign: 'center',
           color: colors.header_one_theme_color
         }}>
-        {title ? title.substring(0, 25) : null}
+        {title ? title.substring(0, 20) : null}
       </Text>
     </SafeAreaView>
   );

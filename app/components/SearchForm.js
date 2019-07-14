@@ -18,7 +18,9 @@ const SearchForm = () => {
           size={18}
           color="#c4c4c4"
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          onPress={() => dispatch(getSearchProducts({search}))}
+          onPress={() =>
+            dispatch(getSearchProducts({searchElements: {search}}))
+          }
         />
       }
       containerStyle={{marginTop: 20, marginBottom: 20}}

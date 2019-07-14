@@ -34,7 +34,7 @@ class Menu extends Component {
   };
 
   render() {
-    const {settings, guest, navigation, dispatch , name } = this.props;
+    const {settings, guest, navigation, dispatch, name} = this.props;
     const {colors} = settings;
     return (
       <ScrollView
@@ -102,7 +102,7 @@ class Menu extends Component {
             ) : (
               <View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('ProfileIndex',   { name })}
+                  onPress={() => navigation.navigate('ProfileIndex', {name})}
                   style={styles.menuBtn}>
                   <Icon
                     name="profile"
@@ -245,7 +245,7 @@ function mapStateToProps(state) {
     settings: state.settings,
     guest: state.guest,
     lang: state.lang,
-    name : state.auth.name
+    name: state.auth.name
   };
 }
 

@@ -109,7 +109,9 @@ class LoginScreen extends Component {
                 fontFamily: text.font,
                 color: colors.btn_text_theme_color
               }}
-              onPress={() => Linking.openURL(`http://abati.ideasowners.net/password/reset`)}
+              onPress={() =>
+                Linking.openURL(`http://abati.ideasowners.net/password/reset`)
+              }
             />
           </View>
         </View>

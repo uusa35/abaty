@@ -41,7 +41,7 @@ import IntroductionScreen from './screens/IntroductionScreen';
 import FavoriteIndexScreen from './screens/FavoriteIndexScreen';
 import {has} from 'lodash';
 import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
-import ProfileIndexScreen from "./screens/ProfileIndexScreen";
+import ProfileIndexScreen from './screens/ProfileIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -190,7 +190,7 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       }),
       path: `product/:id`
-    },
+    }
   },
   {
     mode: 'card',

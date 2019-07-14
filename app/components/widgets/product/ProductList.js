@@ -166,7 +166,7 @@ const ProductList = ({
                       fontSize: text.large,
                       marginTop: 20,
                       marginBottom: 10,
-                      textAlign: 'center',
+                      textAlign: 'left',
                       color: colors.header_one_theme_color
                     }}>
                     {title ? title : I18n.t('related_product_group')}

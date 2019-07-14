@@ -15,15 +15,22 @@ class BrandShowScreen extends Component {
   }
 
   render() {
-    const {brand} = this.props;
+    const {brand, searchParams} = this.props;
     console.log('the brand', brand);
-    return <ProductList elements={brand.products} showName={true} />;
+    return (
+      <ProductList
+        elements={brand.products}
+        showName={true}
+        searchElements={searchParams}
+      />
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    brand: state.brand
+    brand: state.brand,
+    searchParams: state.searchParams
   };
 }
 

@@ -310,6 +310,7 @@ export function* startGetSearchProductsScenario(action) {
         )
       ]);
     } else {
+      console.log('error here');
       throw I18n.t('no_products');
     }
   } catch (e) {
@@ -416,7 +417,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeDesigners),
       call(setHomeCelebrities),
       call(setHomeSplashes),
-      call(startAuthenticatedScenario),
+      call(startAuthenticatedScenario)
     ]);
   } catch (e) {
     yield all([
