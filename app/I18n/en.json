@@ -404,5 +404,6 @@
   "no_more_users" : "No More Users ..",
   "wishlist" : "Wish List",
   "all_products" : "All Products",
-  "favorite_success" : "Wish List updated successfully."
+  "favorite_success" : "Wish List updated successfully.",
+  "edit_profile" : "Edit Profile"
 }
