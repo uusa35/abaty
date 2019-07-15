@@ -29,13 +29,14 @@ class App extends Component<Props> {
         }
       }
     });
-    const {dispatch, network, bootStrapped, currency, lang} = this.props;
-    console.log('SYMBOLE', currency);
-    console.log('lang', lang);
+    const {dispatch, network, bootStrapped, currency, lang, token} = this.props;
     axiosInstance.defaults.headers['currency'] = validate.isEmpty(currency)
       ? currency
       : 'KWD';
     axiosInstance.defaults.headers['lang'] = lang ? lang : 'en';
+    axiosInstance.defaults.headers['Authorization'] = validate.isEmpty(token)
+      ? `Bearer ${token}`
+      : null;
   }
 
   render() {

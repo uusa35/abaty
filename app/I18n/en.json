@@ -407,5 +407,6 @@
   "favorite_success" : "Wish List updated successfully.",
   "edit_profile" : "Edit Profile",
   "edit_information" : "Edit Information",
-  "update_information" : "Update Information"
+  "update_information" : "Update Information",
+  "update_information_success" : "Your data successfully updated."
 }

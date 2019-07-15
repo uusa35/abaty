@@ -235,12 +235,9 @@ export async function register(params) {
 
 export async function updateUser(params) {
   const {id} = params;
-  console.log('the id', id);
-  console.log('the params', params);
   return await axiosInstance
-    .post(`user/${id}`, params)
-    .then(r => console.log('the r', r.data))
-    // .then(r => r.data)
+    .put(`user/${id}`, params)
+    .then(r => r.data)
     .catch(e => e.response.data.message);
 }
 

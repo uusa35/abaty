@@ -442,6 +442,7 @@
   "favorite_success" : "تم تحديث قائمة المفضلة",
   "edit_profile" : "تعديل البيانات",
   "edit_information" : "تعديل البيانات",
-  "update_information" : "تحديث البيانات"
+  "update_information" : "تحديث البيانات",
+  "update_information_success" : "تم تحديث البيانات بنجاح."
 
 }
