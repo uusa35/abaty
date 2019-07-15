@@ -41,6 +41,13 @@ export function submitAuth(payload) {
   };
 }
 
+export function updateUser(payload) {
+  return {
+    type: actions.UPDATE_USER,
+    payload
+  };
+}
+
 export function enableMessage(
   content,
   status = 'info',

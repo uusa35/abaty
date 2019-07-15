@@ -27,6 +27,7 @@ export default function* rootSaga() {
     fork(appSagas.setCurrency),
     fork(appSagas.setPlayerId),
     fork(appSagas.submitAuth),
+    fork(appSagas.updateUser),
     fork(appSagas.submitLogout),
     fork(appSagas.getCoupon),
     fork(appSagas.createMyFatoorahPaymentUrl),

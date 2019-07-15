@@ -35,7 +35,8 @@ import {
   startRegisterScenario,
   getProductIndex,
   toggleFavoriteScenario,
-  startGetAllProductsScenario
+  startGetAllProductsScenario,
+  startUpdateUserScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -203,6 +204,10 @@ export function* clearCart() {
 
 export function* submitAuth() {
   yield takeLatest(actions.SUBMIT_AUTH, startSubmitAuthScenario);
+}
+
+export function* updateUser() {
+  yield takeLatest(actions.UPDATE_USER, startUpdateUserScenario);
 }
 
 export function* submitLogout() {

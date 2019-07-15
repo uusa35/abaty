@@ -176,9 +176,7 @@ class ProfileIndexScreen extends Component {
                       paddingLeft: 10
                     }}
                   />
-                  <Text style={styles.subTitle}>
-                    {I18n.t('description')} :{' '}
-                  </Text>
+                  <Text style={styles.subTitle}>{I18n.t('description')} :</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -202,6 +200,7 @@ class ProfileIndexScreen extends Component {
                   alignSelf: 'center'
                 }}>
                 <Button
+                  onPress={() => navigation.navigate('UserEdit')}
                   raised
                   title={I18n.t('edit_profile')}
                   type="outline"

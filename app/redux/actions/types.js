@@ -10,6 +10,7 @@ export const REMOVE_TOKEN = 'REMOVE_TOKEN';
 export const REGISTER = 'REGISTER';
 export const SUBMIT_AUTH = 'SUBMIT_AUTH';
 export const REMOVE_AUTH = 'REMOVE_AUTH';
+export const UPDATE_USER = 'UPDATE_USER';
 export const GET_AUTH = 'GET_AUTH';
 export const SET_AUTH = 'SET_AUTH';
 export const SET_SETTINGS = 'SET_SETTINGS';

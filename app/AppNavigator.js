@@ -42,6 +42,7 @@ import FavoriteIndexScreen from './screens/FavoriteIndexScreen';
 import {has} from 'lodash';
 import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 import ProfileIndexScreen from './screens/ProfileIndexScreen';
+import UserEditScreen from './screens/UserEditScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -86,6 +87,14 @@ const HomeStack = createStackNavigator(
       screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null
+      })
+    },
+    UserEdit: {
+      screen: UserEditScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
       })

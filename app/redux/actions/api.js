@@ -244,6 +244,15 @@ export async function register(params) {
     .catch(e => e.response.data.message);
 }
 
+export async function updateUser(params) {
+  console.log('params from inside updateUser');
+  const {id} = params;
+  return await axiosInstance
+    .post(`user/${id}`, params)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getFavorites(params) {
   return await axiosInstance
     .get(`favorite`, params)
