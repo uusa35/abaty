@@ -184,8 +184,9 @@ export function* startSetCountryScenario(action) {
     const country = action.payload;
     if (!validate.isEmpty(country)) {
       yield all([
-        put({type: actions.CHOOSE_COUNTRY, payload: country}),
-        put({type: actions.SET_CURRENCY, payload: country.currency.symbol})
+        // put({type: actions.CHOOSE_COUNTRY, payload: country}),
+        put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
+        call(setGrossTotalCartValue)
       ]);
     }
   } catch (e) {
@@ -444,14 +445,51 @@ export function* startAddToCartScenario(action) {
   try {
     const {cart} = yield select();
     const filteredCart = yield call(filterCartAnItems, [cart, action]);
-    const total = sumBy(filteredCart, i => i.element.finalPrice);
     yield all([
       call(enableSuccessMessage, I18n.t('product_added_to_cart_successfully')),
       put({type: actions.FILTER_CART, payload: filteredCart}),
-      put({type: actions.SET_TOTAL_CART, payload: total})
+      call(setTotalCartValue, filteredCart)
     ]);
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
+export function* setTotalCartValue(cart) {
+  try {
+    if (!validate.isEmpty(cart) && cart.length > 0) {
+      const total = sumBy(cart, i => i.element.finalPrice * i.qty);
+      yield all([
+        put({type: actions.SET_TOTAL_CART, payload: total}),
+        call(setGrossTotalCartValue)
+      ]);
+    } else {
+      throw 'Cart is Empty';
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('cart_is_empty'))]);
+  }
+}
+
+export function* setGrossTotalCartValue() {
+  try {
+    const {cart} = yield select();
+    if (!validate.isEmpty(cart) && cart.length > 0) {
+      const {total, coupon, country} = yield select();
+      const grossTotal = parseFloat(
+        total +
+          country.fixed_shipment_charge -
+          (!validate.isEmpty(coupon) ? coupon.value : 0)
+      );
+      yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
+    } else {
+      throw 'Cart is Empty';
+    }
+  } catch (e) {
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('cart_is_empty_gross_total'))
+    ]);
   }
 }
 
@@ -464,17 +502,16 @@ export function* startRemoveFromCartScenario(action) {
       cart,
       item => item.product_id !== action.payload
     );
-    const total = sumBy(filteredCart, i => i.element.finalPrice);
+
     console.log('filteredCart', filteredCart);
-    console.log('total', total);
     if (total > 0 && cart.length > 0) {
       yield all([
+        call(setTotalCartValue, filteredCart),
         call(
           enableSuccessMessage,
           I18n.t('product_removed_to_cart_successfully')
         ),
-        put({type: actions.FILTER_CART, payload: filteredCart}),
-        put({type: actions.SET_TOTAL_CART, payload: total})
+        put({type: actions.FILTER_CART, payload: filteredCart})
       ]);
     } else {
       yield all([
@@ -635,6 +672,7 @@ export function* startGetCouponScenario(action) {
     if (!validate.isEmpty(coupon) && validate.isObject(coupon)) {
       yield all([
         put({type: actions.SET_COUPON, payload: coupon}),
+        call(setGrossTotalCartValue),
         call(enableSuccessMessage, I18n.t('coupon_is_added_and_applied'))
       ]);
     } else {

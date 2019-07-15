@@ -194,10 +194,19 @@ const ProductItem = ({element, logo, editMode, qty}) => {
           <View
             style={{
               backgroundColor: 'red',
-              height: '60%',
+              height: '40%',
               justifyContent: 'center',
               alignItems: 'center',
-              width: '100%'
+              width: '100%',
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 1
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+
+              elevation: 2
             }}>
             <Text
               style={{
@@ -225,7 +234,16 @@ const styles = StyleSheet.create({
   logo: {
     width: 90,
     height: 100,
-    flex: 0.2
+    flex: 0.2,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5
   },
   mainTitle: {
     fontFamily: text.font,

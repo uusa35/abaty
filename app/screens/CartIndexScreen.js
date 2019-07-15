@@ -12,45 +12,25 @@ class CartIndexScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shipmentCountry: {},
-      grossTotal: 0,
-      coupon: {}
+      shipmentCountry: {}
     };
   }
 
   componentDidMount() {
-    const {country, total, coupon} = this.props;
+    const {country} = this.props;
     this.setState({
-      shipmentCountry: country,
-      coupon,
-      grossTotal: parseInt(
-        total +
-          country.fixed_shipment_charge -
-          (validate.isEmpty(coupon) ? 0 : coupon.value)
-      )
+      shipmentCountry: country
     });
   }
 
-  couponVal = coupon => (!validate.isEmpty(coupon) ? coupon.value : 0);
-
   shouldComponentUpdate(nextProps, nextState) {
-    const {total, coupon, country, guest, cart, auth, token} = this.props;
+    const {total, coupon, guest, cart, auth, grossTotal} = this.props;
     if (nextProps.country.id !== this.state.shipmentCountry.id) {
-      let discount = this.couponVal(coupon);
-      let shipment = nextProps.country.fixed_shipment_charge;
       this.setState({
-        shipmentCountry: nextProps.country,
-        grossTotal: parseFloat(total + shipment - discount)
+        shipmentCountry: nextProps.country
       });
     }
-    if (nextProps.coupon.id !== coupon.id) {
-      let discount = this.couponVal(nextProps.coupon);
-      let shipment = country.fixed_shipment_charge;
-      this.setState({
-        coupon: nextProps.coupon,
-        grossTotal: parseFloat(total + shipment - discount)
-      });
-    }
+
     return (
       nextProps.country.id !== this.state.shipmentCountry.id ||
       nextProps.guest !== guest ||
@@ -58,7 +38,9 @@ class CartIndexScreen extends Component {
       nextProps.cart.length !== cart.length ||
       nextProps.cart[0].product_id !== this.props.cart[0].product_id ||
       nextProps.cart > 0 ||
-      nextProps.auth.id !== auth.id
+      nextProps.auth.id !== auth.id ||
+      nextProps.total !== total ||
+      nextProps.grossTotal !== grossTotal
     );
   }
 
@@ -70,9 +52,10 @@ class CartIndexScreen extends Component {
       auth,
       guest,
       coupon,
-      colors
+      colors,
+      grossTotal
     } = this.props;
-    const {shipmentCountry, grossTotal} = this.state;
+    const {shipmentCountry} = this.state;
     return (
       <NavContext.Provider value={{navigation}}>
         <View
@@ -100,10 +83,10 @@ class CartIndexScreen extends Component {
                 auth={auth}
                 guest={guest}
                 grossTotal={grossTotal}
-                discount={this.couponVal(coupon)}
+                discount={coupon.value}
                 shipment_notes={shipment_notes}
                 editModeDefault={true}
-                coupon={!validate.isEmpty(coupon) ? coupon : null}
+                coupon={coupon}
               />
             ) : (
               <View
@@ -144,6 +127,7 @@ function mapStateToProps(state) {
     cart: state.cart,
     colors: state.settings.colors,
     total: state.total,
+    grossTotal: state.grossTotal,
     shipment_notes: state.settings.shipment_notes,
     auth: state.auth,
     country: state.country,

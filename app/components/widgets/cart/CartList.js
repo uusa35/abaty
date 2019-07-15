@@ -18,15 +18,13 @@ const CartList = ({
   cart,
   shipmentCountry,
   auth,
-  grossTotal,
   shipment_notes,
   guest,
-  discount,
   editModeDefault = true,
   coupon
 }) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, total} = useContext(GlobalValuesContext);
+  const {colors, total, grossTotal} = useContext(GlobalValuesContext);
   const {navigation} = useContext(NavContext);
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -143,7 +141,7 @@ const CartList = ({
             </Text>
           </View>
         </View>
-        {discount && discount > 0 ? (
+        {coupon && coupon.value > 0 ? (
           <View
             style={{
               flexDirection: 'row',
@@ -168,7 +166,7 @@ const CartList = ({
                   fontSize: text.medium,
                   color: 'red'
                 }}>
-                {round(discount, 2)}
+                {round(coupon.value, 2)}
               </Text>
               <Text
                 style={{
@@ -401,7 +399,7 @@ const CartList = ({
               numberOfLines={3}
               onChangeText={notes => setNotes(notes)}
             />
-            {!discount > 0 && editMode ? (
+            {coupon && editMode ? (
               <View
                 style={{
                   padding: 20,
@@ -576,9 +574,9 @@ export default React.memo(CartList);
 
 CartList.propTypes = {
   cart: PropTypes.array.isRequired,
+  coupon: PropTypes.object,
   auth: PropTypes.object,
   grossTotal: PropTypes.number.isRequired,
-  discount: PropTypes.number.isRequired,
   shipment_notes: PropTypes.string.isRequired,
   shipmentCountry: PropTypes.object.isRequired,
   editModeDefault: PropTypes.bool.isRequired

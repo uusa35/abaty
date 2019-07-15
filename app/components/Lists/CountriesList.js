@@ -27,7 +27,7 @@ const CountriesList = () => {
       setVisible(false);
       dispatch(hideCountryModal());
       dispatch(setCountry(currentCountry));
-      dispatch(setCurrency(currentCurrency));
+      // dispatch(setCurrency(currentCurrency));
     }
   }, [visible]);
 

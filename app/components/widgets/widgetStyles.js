@@ -29,7 +29,16 @@ const widgetStyles = StyleSheet.create({
   },
   title: {
     fontFamily: text.font,
-    fontSize: text.large
+    fontSize: text.large,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+
+    elevation: 1
   },
   elementName: {
     textAlign: 'center',
@@ -40,7 +49,8 @@ const widgetStyles = StyleSheet.create({
   btnStyle: {
     marginLeft: 3,
     marginRight: 3,
-    alignItems: 'center'
+    alignItems: 'center',
+    shadowColor: '#000'
   }
 });
 

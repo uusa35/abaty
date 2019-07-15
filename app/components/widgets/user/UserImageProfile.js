@@ -35,7 +35,16 @@ const styles = StyleSheet.create({
   },
   mainTitle: {
     fontFamily: text.font,
-    fontSize: text.large
+    fontSize: text.large,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+
+    elevation: 1
   },
   elementRow: {
     flexDirection: 'row',

@@ -31,6 +31,7 @@ import productFavorites from './productFavorites';
 import products from './products';
 import cart from './cart';
 import total from './total';
+import grossTotal from './grossTotal';
 import token from './token';
 import guest from './guest';
 import countryModal from './countryModal';
@@ -56,6 +57,7 @@ let reducers = combineReducers({
   productFavorites,
   cart,
   total,
+  grossTotal,
   users,
   user,
   categories,

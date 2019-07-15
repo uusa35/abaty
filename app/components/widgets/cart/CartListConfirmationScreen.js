@@ -45,7 +45,12 @@ const CartListConfirmationScreen = ({
         style={{flexDirection: 'column', width: '100%'}}>
         {map(cart, (item, i) => {
           return (
-            <ProductItem element={item.element} key={i} editMode={editMode} />
+            <ProductItem
+              element={item.element}
+              key={i}
+              editMode={editMode}
+              qty={item.qty}
+            />
           );
         })}
         <View

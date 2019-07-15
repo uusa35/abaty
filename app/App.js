@@ -52,6 +52,7 @@ class App extends Component<Props> {
       logo,
       cart,
       total,
+      grossTotal,
       token,
       guest,
       network
@@ -86,6 +87,7 @@ class App extends Component<Props> {
                   currency_symbol: country.currency.currency_symbol,
                   exchange_rate: country.currency.exchange_rate,
                   total,
+                  grossTotal,
                   colors,
                   country,
                   token,
@@ -133,6 +135,7 @@ function mapStateToProps(state) {
     lang: state.lang,
     cart: state.cart,
     total: state.total,
+    grossTotal: state.grossTotal,
     network: state.network,
     colors: state.settings.colors,
     logo: state.settings.logo,
