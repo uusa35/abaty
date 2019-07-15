@@ -1,15 +1,16 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, Linking, View} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
 import {links, text} from '../../constants';
 import I18n from '../../I18n';
 import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import MapViewWidget from './MapViewWidget';
+import {View} from 'react-native-animatable';
 
 const ContactInformationWidget = props => {
   const {settings} = props;
   return (
-    <View>
+    <View animation="bounceInLeft" easing="ease-out">
       <FastImage
         source={{uri: settings.logo}}
         resizeMode="contain"

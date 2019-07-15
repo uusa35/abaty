@@ -139,11 +139,11 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
           backgroundColor: colors.btn_bg_theme_color,
           borderRadius: 0
         }}
-        title={I18n.t('update_information')}
         titleStyle={{
           fontFamily: text.font,
           color: colors.btn_text_theme_color
         }}
+        title={I18n.t('update_information')}
         onPress={() =>
           dispatch(
             updateUser({
