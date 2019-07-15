@@ -3,17 +3,15 @@ import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {register, showCountryModal, updateUser} from '../../../redux/actions';
+import {showCountryModal, updateUser} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {NavContext} from '../../../redux/NavContext';
 import validate from 'validate.js';
 
 const UserEditFormWidget = ({auth, player_id, api_token}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, total, country} = useContext(GlobalValuesContext);
-  const {navigation} = useContext(NavContext);
+  const {colors, country} = useContext(GlobalValuesContext);
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
     !validate.isEmpty(auth) ? auth.email : null
@@ -165,6 +163,9 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
 
 export default React.memo(UserEditFormWidget);
 
-UserEditFormWidget.propTypes = {};
+UserEditFormWidget.propTypes = {
+  auth: PropTypes.object.isRequired,
+  api_token: PropTypes.string.isRequired
+};
 
 const styles = StyleSheet.create({});

@@ -611,12 +611,13 @@ export function* startSubmitAuthScenario(action) {
 export function* startUpdateUserScenario(action) {
   try {
     console.log('the payload', action.payload);
-    const user = yield call(api.updateUser, action.paylaod);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
-      console.log('the user', user);
-    } else {
-      throw user;
-    }
+    const user = yield call(api.updateUser, action.payload);
+    console.log('the userssss', user);
+    // if (!validate.isEmpty(user) && validate.isObject(user)) {
+    //   console.log('the user', user);
+    // } else {
+    //   throw user;
+    // }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
   }

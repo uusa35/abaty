@@ -23,21 +23,19 @@ class App extends Component<Props> {
     codePush.allowRestart();
     codePush.checkForUpdate().then(update => {
       if (!update) {
-        console.log('No Update');
-        const {dispatch, network, bootStrapped, currency, lang} = this.props;
-        console.log('SYMBOLE', currency);
-        console.log('lang', lang);
-        axiosInstance.defaults.headers.common['currency'] = validate.isEmpty(
-          currency
-        )
-          ? currency
-          : 'KWD';
-        axiosInstance.defaults.headers.common['lang'] = lang ? lang : 'en';
         if (network.isConnected && !bootStrapped) {
+          console.log('No Update');
           return dispatch(appBootstrap());
         }
       }
     });
+    const {dispatch, network, bootStrapped, currency, lang} = this.props;
+    console.log('SYMBOLE', currency);
+    console.log('lang', lang);
+    axiosInstance.defaults.headers['currency'] = validate.isEmpty(currency)
+      ? currency
+      : 'KWD';
+    axiosInstance.defaults.headers['lang'] = lang ? lang : 'en';
   }
 
   render() {

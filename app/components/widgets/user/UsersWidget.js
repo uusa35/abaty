@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {FlatList, View, Text} from 'react-native';
 import validate from 'validate.js';
 import {apiUrl} from './../../../../app.json';
-import axios from 'axios';
+import {axiosInstance} from '../../../redux/actions/api';
 
 const UsersWidget = props => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    axios
+    axiosInstance
       .get(`${apiUrl}user`)
       .then(res => setUsers(res.data))
       .catch(e => console.log(e));

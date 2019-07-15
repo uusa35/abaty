@@ -7,9 +7,6 @@ export const axiosInstance = axios.create({
   baseURL: links.apiUrl
 });
 
-console.log('LINK', links.apiUrl);
-console.log('API HEADERS', axiosInstance.defaults.headers);
-
 export function getLangForHeader() {
   return I18n.locale;
 }
@@ -57,7 +54,6 @@ export async function getHomeCelebrities() {
 }
 
 export async function getUsers(searchElements) {
-  console.log('the searchElements form getUser Api', searchElements);
   return await axiosInstance
     .get(`user`, {params: searchElements})
     .then(r => r.data)
@@ -88,15 +84,12 @@ export async function getProducts(page = 1) {
 export async function getProductCart(params) {
   return await axiosInstance
     .get(`cart/items`, {params})
-    // .then(r => console.log('r data', r.data))
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
 
 export async function getProduct(params) {
-  const {id, api_token} = params;
-  console.log('the id', id);
-  console.log('the api_token', api_token);
+  const {id} = params;
   return await axiosInstance
     .get(`product/${id}`, {params})
     .then(r => r.data)
@@ -104,7 +97,6 @@ export async function getProduct(params) {
 }
 
 export async function getSearchProducts(elements) {
-  console.log('the elements', elements);
   return await axiosInstance
     .get(`search/product`, {params: elements})
     .then(r => r.data)
@@ -221,7 +213,6 @@ export async function getCoupon(elements) {
 }
 
 export async function makeMyFatoorahPayment(params) {
-  console.log('the makepayment', params);
   return await axiosInstance
     .post(`myfatoorah/payment`, params)
     .then(r => r.data)
@@ -229,7 +220,6 @@ export async function makeMyFatoorahPayment(params) {
 }
 
 export async function makeTapPayment(params) {
-  console.log('the makepayment', params);
   return await axiosInstance
     .post(`tap/payment`, params)
     .then(r => r.data)
@@ -237,7 +227,6 @@ export async function makeTapPayment(params) {
 }
 
 export async function register(params) {
-  console.log('headers', axiosInstance.defaults.headers);
   return await axiosInstance
     .post(`register`, params)
     .then(r => r.data)
@@ -245,11 +234,13 @@ export async function register(params) {
 }
 
 export async function updateUser(params) {
-  console.log('params from inside updateUser');
   const {id} = params;
+  console.log('the id', id);
+  console.log('the params', params);
   return await axiosInstance
     .post(`user/${id}`, params)
-    .then(r => r.data)
+    .then(r => console.log('the r', r.data))
+    // .then(r => r.data)
     .catch(e => e.response.data.message);
 }
 
