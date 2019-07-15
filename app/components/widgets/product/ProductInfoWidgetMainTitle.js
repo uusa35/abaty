@@ -12,7 +12,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, country, token} = useContext(GlobalValuesContext);
+  const {colors, country, token, guest} = useContext(GlobalValuesContext);
   const {symbol, exchange_rate} = country.currency;
   const [favorite, setFavorite] = useState(element.isFavorite);
 
@@ -91,7 +91,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         </View>
       </View>
       <View style={{justifyContent: 'flex-end'}}>
-        {
+        {!guest ? (
           <Icon
             onPress={() => {
               setFavorite(!favorite);
@@ -106,7 +106,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
             color="#FCD12A"
           />
-        }
+        ) : null}
       </View>
     </View>
   );
