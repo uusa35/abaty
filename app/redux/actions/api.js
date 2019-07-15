@@ -4,16 +4,11 @@ import {createTransform} from 'redux-persist';
 import I18n from 'react-native-i18n';
 
 export const axiosInstance = axios.create({
-  baseURL: links.apiUrl,
-  headers: {
-    currency: axios.defaults.headers.common['currency']
-      ? axios.defaults.headers.common['currency']
-      : 'KWD'
-  }
+  baseURL: links.apiUrl
 });
 
 console.log('LINK', links.apiUrl);
-console.log('API HEADERS', axiosInstance.defaults.headers.common);
+console.log('API HEADERS', axiosInstance.defaults.headers);
 
 export function getLangForHeader() {
   return I18n.locale;
@@ -242,6 +237,7 @@ export async function makeTapPayment(params) {
 }
 
 export async function register(params) {
+  console.log('headers', axiosInstance.defaults.headers);
   return await axiosInstance
     .post(`register`, params)
     .then(r => r.data)

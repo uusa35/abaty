@@ -457,6 +457,7 @@ export function* startAddToCartScenario(action) {
 
 export function* startRemoveFromCartScenario(action) {
   try {
+    console.log('the action payload from remove Cart', action.payload);
     const {cart} = yield select();
     console.log('the action', action.payload);
     const filteredCart = remove(

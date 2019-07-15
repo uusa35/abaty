@@ -39,12 +39,14 @@ const LoadingOfflineView = ({isConnected}) => {
       />
       <Button
         raised
-        icon={{name: 'repeat'}}
+        icon={{name: 'repeat', type: 'font-awesome', color: 'red'}}
         onPress={() => setConnected(!connected)}
         title={I18n.t('retry')}
         type="outline"
         containerStyle={{marginBottom: 20, width: '100%'}}
         titleStyle={{
+          paddingRight: 10,
+          paddingLeft: 10,
           fontFamily: text.font,
           fontSize: text.medium,
           color: colors.main_text_theme_color

@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {removeItem} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductItem = ({element, logo, editMode}) => {
+const ProductItem = ({element, logo, editMode, qty}) => {
   const {dispatch} = useContext(DispatchContext);
   return (
     <View
@@ -57,6 +57,30 @@ const ProductItem = ({element, logo, editMode}) => {
                 paddingRight: 10
               }}>
               {element.user.slug}
+            </Text>
+          </View>
+        ) : null}
+        {!validate.isEmpty(element.sku) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text
+              style={{
+                width: 60,
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left'
+              }}>
+              {I18n.t('sku')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {element.sku} - {element.id}
             </Text>
           </View>
         ) : null}
@@ -108,6 +132,30 @@ const ProductItem = ({element, logo, editMode}) => {
             </Text>
           </View>
         ) : null}
+        {!validate.isEmpty(element.qty) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text
+              style={{
+                width: 60,
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left'
+              }}>
+              {I18n.t('qty')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {qty}
+            </Text>
+          </View>
+        ) : null}
       </View>
       {editMode ? (
         <TouchableOpacity
@@ -127,20 +175,18 @@ const ProductItem = ({element, logo, editMode}) => {
             <Text
               style={{
                 fontFamily: text.font,
-                fontSize: 18,
+                fontSize: text.medium,
                 textAlign: 'left',
-                paddingLeft: 10,
-                paddingRight: 10
+                paddingLeft: 2,
+                paddingRight: 2
               }}>
-              {element.price}
+              {element.finalPrice}
             </Text>
             <Text
               style={{
                 fontFamily: text.font,
-                fontSize: 13,
-                textAlign: 'left',
-                paddingLeft: 10,
-                paddingRight: 10
+                fontSize: text.small,
+                textAlign: 'left'
               }}>
               {I18n.t('kwd')}
             </Text>
