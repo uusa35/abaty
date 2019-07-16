@@ -183,10 +183,11 @@ export function* startSetCountryScenario(action) {
   try {
     const country = action.payload;
     if (!validate.isEmpty(country)) {
+      const {total, coupon} = yield select();
       yield all([
         // put({type: actions.CHOOSE_COUNTRY, payload: country}),
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
-        call(setGrossTotalCartValue)
+        call(setGrossTotalCartValue, {total, coupon, country})
       ]);
     }
   } catch (e) {
@@ -459,9 +460,10 @@ export function* setTotalCartValue(cart) {
   try {
     if (!validate.isEmpty(cart) && cart.length > 0) {
       const total = sumBy(cart, i => i.element.finalPrice * i.qty);
+      const {coupon, country} = yield select();
       yield all([
         put({type: actions.SET_TOTAL_CART, payload: total}),
-        call(setGrossTotalCartValue)
+        call(setGrossTotalCartValue, {total, coupon, country})
       ]);
     } else {
       throw 'Cart is Empty';
@@ -471,11 +473,11 @@ export function* setTotalCartValue(cart) {
   }
 }
 
-export function* setGrossTotalCartValue() {
+export function* setGrossTotalCartValue(values) {
   try {
-    const {cart} = yield select();
-    if (!validate.isEmpty(cart) && cart.length > 0) {
-      const {total, coupon, country} = yield select();
+    const {total, coupon, country} = values;
+    console.log('vals', values);
+    if (!validate.isEmpty(total) && total > 0) {
       const grossTotal = parseFloat(
         total +
           country.fixed_shipment_charge -
@@ -502,9 +504,7 @@ export function* startRemoveFromCartScenario(action) {
       cart,
       item => item.product_id !== action.payload
     );
-
-    console.log('filteredCart', filteredCart);
-    if (total > 0 && cart.length > 0) {
+    if (!validate.isEmpty(filteredCart) && cart.length > 0) {
       yield all([
         call(setTotalCartValue, filteredCart),
         call(
@@ -515,8 +515,7 @@ export function* startRemoveFromCartScenario(action) {
       ]);
     } else {
       yield all([
-        put({type: actions.CLEAR_CART}),
-        put({type: actions.REMOVE_COUPON}),
+        call(startClearCartScenario),
         call(enableWarningMessage, I18n.t('cart_cleared')),
         put(
           NavigationActions.navigate({
@@ -526,7 +525,10 @@ export function* startRemoveFromCartScenario(action) {
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('error_removing_product_from_cart'))
+    ]);
   }
 }
 
@@ -551,9 +553,10 @@ export function* filterCartAnItems([cart, action]) {
 export function* startClearCartScenario() {
   try {
     yield all([
-      put({type: actions.CLEAR_ITEMS, payload: []}),
-      put({type: actions.SET_COUPON, payload: {}}),
-      put({type: actions.SET_TOTAL_CART, payload: 0})
+      put({type: actions.CLEAR_CART, payload: []}),
+      put({type: actions.REMOVE_COUPON}),
+      put({type: actions.SET_TOTAL_CART, payload: 0}),
+      put({type: actions.SET_GROSS_TOTAL_CART, payload: 0})
     ]);
   } catch (e) {
     yield all([
@@ -670,9 +673,10 @@ export function* startGetCouponScenario(action) {
     }
     const coupon = yield call(api.getCoupon, {code: action.payload, total});
     if (!validate.isEmpty(coupon) && validate.isObject(coupon)) {
+      const {total, country} = yield select;
       yield all([
         put({type: actions.SET_COUPON, payload: coupon}),
-        call(setGrossTotalCartValue),
+        call(setGrossTotalCartValue, {total, coupon, country}),
         call(enableSuccessMessage, I18n.t('coupon_is_added_and_applied'))
       ]);
     } else {

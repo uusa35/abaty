@@ -389,7 +389,7 @@ export function filterCart(payload) {
 
 export function clearCart() {
   return {
-    type: actions.CLEAR_CART
+    type: actions.DO_CLEAR_CART_PROCESS
   };
 }
 
@@ -417,6 +417,12 @@ export function getCoupon(payload) {
   return {
     type: actions.GET_COUPON,
     payload
+  };
+}
+
+export function removeCoupon() {
+  return {
+    type: actions.REMOVE_COUPON
   };
 }
 

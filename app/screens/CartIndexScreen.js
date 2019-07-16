@@ -36,7 +36,6 @@ class CartIndexScreen extends Component {
       nextProps.guest !== guest ||
       nextProps.coupon.id !== coupon.id ||
       nextProps.cart.length !== cart.length ||
-      nextProps.cart[0].product_id !== this.props.cart[0].product_id ||
       nextProps.cart > 0 ||
       nextProps.auth.id !== auth.id ||
       nextProps.total !== total ||

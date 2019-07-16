@@ -22,9 +22,9 @@ class ProductShowScreen extends Component {
     super(props);
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.product.isFavorite !== this.props.product.isFavorite;
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.product.id !== this.props.product.id;
+  }
 
   render() {
     const {

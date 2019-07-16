@@ -199,7 +199,7 @@ export function* removeFromCart() {
 }
 
 export function* clearCart() {
-  yield takeLatest(actions.CLEAR_CART, startClearCartScenario);
+  yield takeLatest(actions.DO_CLEAR_CART_PROCESS, startClearCartScenario);
 }
 
 export function* submitAuth() {

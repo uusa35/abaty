@@ -33,6 +33,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     }
   }, [sizeVisible]);
 
+  useEffect(() => {});
+
   useMemo(() => {
     if (!isNull(sizeItem)) {
       return axiosInstance

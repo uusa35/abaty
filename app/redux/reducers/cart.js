@@ -6,9 +6,6 @@ export default function(cart = [], action) {
       return cart.concat(action.payload);
     case FILTER_CART:
       return action.payload;
-    // return [];
-    case CLEAR_CART:
-      return [];
     case CLEAR_CART:
       return [];
     default:

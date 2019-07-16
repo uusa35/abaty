@@ -21,6 +21,7 @@ import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
 const ProductInfoWidget = ({element, currency}) => {
   console.log('element', element);
+
   return (
     <ScrollView
       contentContainerStyle={{
