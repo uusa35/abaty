@@ -13,7 +13,6 @@ import {
   startSetCountryScenario,
   startStorePlayerIdScenario,
   setHomeDesigners,
-  startSetCurrencyScenario,
   startGetDesignerScenario,
   startGetProductScenario,
   startGetBrandScenario,
@@ -169,10 +168,6 @@ export function* toggleFavorite() {
 
 export function* setCountry() {
   yield takeLatest(actions.SET_COUNTRY, startSetCountryScenario);
-}
-
-export function* setCurrency() {
-  yield takeLatest(actions.SET_CURRENCY, startSetCurrencyScenario);
 }
 
 export function* goDeepLinking() {

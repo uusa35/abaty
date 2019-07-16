@@ -24,7 +24,6 @@ export default function* rootSaga() {
     fork(appSagas.removeFromCart),
     fork(appSagas.clearCart),
     fork(appSagas.setCountry),
-    fork(appSagas.setCurrency),
     fork(appSagas.setPlayerId),
     fork(appSagas.submitAuth),
     fork(appSagas.updateUser),

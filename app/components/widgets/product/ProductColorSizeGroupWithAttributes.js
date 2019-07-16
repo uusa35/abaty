@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useContext} from 'react';
+import React, {useState, useMemo, useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
@@ -23,9 +23,11 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   [colorItems, setColorItems] = useState(null);
   [colorItem, setColorItem] = useState(null);
   [sizeItem, setSizeItem] = useState(null);
+  [elementId, setElementId] = useState(null);
 
   useMemo(() => {
     if (sizeVisible) {
+      setElementId(element.id);
       setRequestQty(0);
       setSizeItem(null);
       setColorItem(null);
@@ -33,7 +35,15 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     }
   }, [sizeVisible]);
 
-  useEffect(() => {});
+  useEffect(() => {
+    console.log('the element now is element', element.id);
+    if (element.id !== elementId && !isNull(elementId)) {
+      setRequestQty(0);
+      setProductAttribute(null);
+      setColorItems(null);
+      setSizeItem(null);
+    }
+  }, [element]);
 
   useMemo(() => {
     if (!isNull(sizeItem)) {

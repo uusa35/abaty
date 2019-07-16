@@ -20,16 +20,14 @@ import {registerConstrains, submitLogin} from '../../../constants';
 export function* setHomeCategories() {
   try {
     const categories = yield call(api.getHomeCategories);
-    if (!validate.isEmpty(categories)) {
+    console.log('categories', categories);
+    if (!validate.isEmpty(categories) && validate.isArray(categories)) {
       yield put({type: actions.SET_CATEGORIES, payload: categories});
     } else {
-      throw I18n.t('on_home_categories');
+      yield put({type: actions.SET_CATEGORIES, payload: []});
     }
   } catch (e) {
-    yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('error_home_categroies_from catch'))
-    ]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
   }
 }
 
@@ -40,26 +38,19 @@ export function* startRefetchHomeCategories() {
 export function* setSettings() {
   const settings = yield call(api.getSettings);
   try {
-    if (!validate.isEmpty(settings)) {
+    if (!validate.isEmpty(settings) && validate.isObject(settings)) {
       yield put({type: actions.SET_SETTINGS, payload: settings});
-    } else {
-      throw I18n.t('no_settings');
     }
   } catch (e) {
     // console.log('the e from settings', e);
-    yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('no_settings_from_catch'))
-    ]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
   }
 }
 
 export function* setUsers(action) {
   try {
     const searchElements = action.payload;
-    console.log('searchElements from SetUsers', searchElements);
     const users = yield call(api.getUsers, searchElements);
-    console.log('loadedusers', users);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
       yield put({type: actions.SET_USERS, payload: users});
       yield put(
@@ -77,7 +68,7 @@ export function* setUsers(action) {
     }
   } catch (e) {
     // console.log('the e from setusers', e);
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
+    yield all([disableLoading, enableWarningMessage(e)]);
   }
 }
 
@@ -89,11 +80,13 @@ export function* setCommercials() {
   try {
     const commercials = yield call(api.getCommercials);
     if (!validate.isEmpty(commercials) && validate.isArray(commercials)) {
-      yield all([put({type: actions.SET_COMMERCIALS, payload: commercials})]);
+      yield put({type: actions.SET_COMMERCIALS, payload: commercials});
+    } else {
+      yield put({type: actions.SET_COMMERCIALS, payload: []});
     }
   } catch (e) {
     // console.log('the e from set Commercials', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
   }
 }
 
@@ -104,8 +97,7 @@ export function* setSlides() {
       yield all([put({type: actions.SET_HOME_SLIDERS, payload: slides})]);
     }
   } catch (e) {
-    // console.log('the e from set setSlides', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_slides'))]);
   }
 }
 
@@ -117,7 +109,7 @@ export function* setProducts() {
     }
   } catch (e) {
     // console.log('the e from set setProducts', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
   }
 }
 
@@ -128,35 +120,32 @@ export function* setHomeProducts() {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
     }
   } catch (e) {
-    // console.log('the e from set setHomeproducts', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_home_products'))]);
   }
 }
 
 export function* getProductIndex() {
   try {
     const products = yield call(api.getProducts);
-    // console.log('the products from SetHomeProducts', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
     }
   } catch (e) {
-    // console.log('the e from set getproduct index', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
   }
 }
 
 export function* setCountries() {
   try {
     const countries = yield call(api.getCountries);
-    if (!validate.isEmpty(countries)) {
+    if (!validate.isEmpty(countries) && validate.isArray(countries)) {
       yield put({type: actions.SET_COUNTRIES, payload: countries});
     } else {
       throw I18n.t('no_countries');
     }
   } catch (e) {
     // console.log('the e from set setcountries', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
   }
 }
 
@@ -174,8 +163,7 @@ export function* getCountry(country_id = null) {
       }
     }
   } catch (e) {
-    // console.log('the e from set getcountry', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   }
 }
 
@@ -185,25 +173,12 @@ export function* startSetCountryScenario(action) {
     if (!validate.isEmpty(country)) {
       const {total, coupon} = yield select();
       yield all([
-        // put({type: actions.CHOOSE_COUNTRY, payload: country}),
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
         call(setGrossTotalCartValue, {total, coupon, country})
       ]);
     }
   } catch (e) {
-    // console.log('the e from set setcountry scnario', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
-  }
-}
-
-export function* startSetCurrencyScenario(action) {
-  try {
-    const currency = action.payload;
-    // yield call(setCurrency, currency.symbol);
-    axios.defaults.headers.common['currency'] = currency.symbol;
-  } catch (e) {
-    // console.log('the e from set currency scenario', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   }
 }
 
@@ -223,26 +198,12 @@ export function* startGetUserScenario(action) {
     }
   } catch (e) {
     // console.log('the e from set get user scnario', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
   }
 }
 
 export function* startGetUsersScenario(action) {
   yield call(setUsers, action);
-  // try {
-  //   const searchElements = action.payload;
-  //   console.log('searchElements from SetUsers', searchElements);
-  //   const { users } = yield select();
-  //   const loadedUsers = yield call(api.getUsers, searchElements);
-  //   if (!validate.isEmpty(loadedUsers) && validate.isArray(loadedUsers)) {
-  //     yield put({type: actions.SET_USERS, payload: users.concat(loadedUsers)});
-  //   } else {
-  //     // yield put({type: actions.SET_USERS, payload: []});
-  //     throw I18n.t('no_more_users');
-  //   }
-  // } catch (e) {
-  //   yield all([disableLoading, enableErrorMessage(I18n.t('no_more_users'))]);
-  // }
 }
 
 export function* startGetDesignerScenario(action) {
@@ -262,11 +223,11 @@ export function* startGetDesignerScenario(action) {
         })
       );
     } else {
-      throw I18n.t('no_user');
+      yield put({type: actions.SET_DESIGNER, payload: {}});
+      throw I18n.t('no_designers');
     }
   } catch (e) {
-    // console.log('the e from set get designer scanrio', e)
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_designers'))]);
   }
 }
 
@@ -297,7 +258,7 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {category, brand, element, searchElements} = action.payload;
+    const {element, searchElements} = action.payload;
     const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
@@ -312,7 +273,6 @@ export function* startGetSearchProductsScenario(action) {
         )
       ]);
     } else {
-      console.log('error here');
       throw I18n.t('no_products');
     }
   } catch (e) {
@@ -360,7 +320,7 @@ export function* startDeepLinkingScenario(action) {
       }
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_deep_product'))]);
   }
 }
 
@@ -368,40 +328,49 @@ export function* startStorePlayerIdScenario(action) {
   try {
     yield call(api.storePlayerId, action.payload);
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_player_id'))]);
   }
 }
 
 export function* setHomeBrands() {
   try {
     const brands = yield call(api.getHomeBrands);
-    if (!validate.isEmpty(brands)) {
+    if (!validate.isEmpty(brands) && validate.isArray(brands)) {
       yield put({type: actions.SET_BRANDS, payload: brands});
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_brands'))]);
   }
 }
 
 export function* setHomeDesigners() {
   try {
     const designers = yield call(api.getHomeDesigners);
-    if (!validate.isEmpty(designers)) {
+    if (!validate.isEmpty(designers) && validate.isArray(designers)) {
       yield put({type: actions.SET_DESIGNERS, payload: designers});
+    } else {
+      yield put({type: actions.SET_DESIGNERS, payload: []});
+      throw designers;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([
+      disableLoading,
+      enableWarningMessage(I18n.t('no_home_designers'))
+    ]);
   }
 }
 
 export function* setHomeCelebrities() {
   try {
     const celebrities = yield call(api.getHomeCelebrities);
-    if (!validate.isEmpty(celebrities)) {
+    if (!validate.isEmpty(celebrities) && validate.isArray(celebrities)) {
       yield put({type: actions.SET_CELEBRITIES, payload: celebrities});
+    } else {
+      yield put({type: actions.SET_DESIGNERS, payload: []});
+      throw celebrities;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e.message)]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_celebrities'))]);
   }
 }
 

@@ -18,7 +18,9 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
     'klsd lsdkjf lsdj flkdsj flkdsj flkdsjf lkdsjf'
   );
   const [password, setPassword] = useState('secret');
-  const [notes, setNotes] = useState('');
+  const [description, setDescription] = useState(
+    'منيستب سيمتب يسمبت يمستب ميستنب '
+  );
   return (
     <View style={{flexDirection: 'column', width: '100%'}}>
       <Input
@@ -123,6 +125,27 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
         keyboardType="default"
         onChangeText={text => setAddress(text)}
       />
+      <Input
+        placeholder={I18n.t('notes') + '*'}
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: 'lightgrey',
+          borderRadius: 10,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginBottom: 20,
+          height: 80
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          fontSize: 14,
+          textAlign: isRTL ? 'right' : 'left'
+        }}
+        numberOfLines={3}
+        shake={true}
+        keyboardType="default"
+        onChangeText={text => setDescription(text)}
+      />
       <Button
         raised
         containerStyle={{marginBottom: 10, width: '100%'}}
@@ -144,7 +167,8 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
               mobile,
               country_id: country.id,
               address,
-              player_id
+              player_id,
+              description
             })
           )
         }

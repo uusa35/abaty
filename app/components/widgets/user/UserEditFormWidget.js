@@ -22,7 +22,7 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
-  const [notes, setNotes] = useState(
+  const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null
   );
   console.log('the auth', auth);
@@ -130,6 +130,27 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
         onChangeText={text => setAddress(text)}
         placeholder={address ? address : I18n.t('full_address')}
       />
+      <Input
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: 'lightgrey',
+          borderRadius: 10,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginBottom: 20,
+          height: 80
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          fontSize: 14,
+          textAlign: isRTL ? 'right' : 'left'
+        }}
+        numberOfLines={3}
+        shake={true}
+        keyboardType="default"
+        onChangeText={text => setDescription(text)}
+        placeholder={description ? description : I18n.t('description')}
+      />
       <Button
         raised
         containerStyle={{marginBottom: 10, width: '100%'}}
@@ -152,7 +173,8 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
               mobile,
               country_id: country.id,
               address,
-              player_id
+              player_id,
+              description
             })
           )
         }

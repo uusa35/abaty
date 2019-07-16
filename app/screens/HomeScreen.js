@@ -161,7 +161,7 @@ class HomeScreen extends Component {
             {!validate.isEmpty(slides) ? (
               <MainSliderWidget slides={slides} />
             ) : null}
-            {!validate.isEmpty(designers) ? (
+            {!validate.isEmpty(designers) && validate.isArray(designers) ? (
               <DesignerHorizontalWidget
                 elements={designers}
                 showName={true}

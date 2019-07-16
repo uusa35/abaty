@@ -8,7 +8,6 @@ import validate from 'validate.js';
 const AlertMessage = ({message}) => {
   const [visible, setVisible] = useState(message.visible);
   const {dispatch} = useContext(DispatchContext);
-  console.log('the message', message);
   const styles = {
     container: {
       opacity: 0.9,
@@ -31,7 +30,6 @@ const AlertMessage = ({message}) => {
   };
 
   useMemo(() => {
-    console.log('the visible now', visible);
     if (!visible) {
       dispatch({type: 'DISABLE_MESSAGE'});
     }
