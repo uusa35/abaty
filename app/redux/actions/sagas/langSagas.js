@@ -5,7 +5,7 @@ import * as actions from '../types';
 import {call, put, all, delay, takeLatest} from 'redux-saga/effects';
 import I18n, {isRTL} from './../../../I18n';
 import validate from 'validate.js/validate';
-import {enableErrorMessage, disableLoading} from './settingSagas';
+import {enableErrorMessage, disableLoading, toggleBootStrapped} from './settingSagas';
 import * as helpers from './../../../helpers';
 import axios from 'axios';
 
@@ -30,6 +30,7 @@ export function* startChangeLang(action) {
     yield call(setDirection, lang);
     I18n.locale = lang;
     axios.defaults.headers.common['lang'] = lang;
+    yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false});
     yield delay(1000);
     yield call(CodePush.restartApp());
   } catch (e) {

@@ -88,7 +88,7 @@ const UserInfoWidget = ({user}) => {
           <Text style={styles.subTitle}>{user.mobile}</Text>
         </TouchableOpacity>
       ) : null}
-      {user.mobile ? (
+      {user.phone ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`tel:${user.phone}`)}
@@ -313,21 +313,30 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      <UserInfoWidgetElement
-        elementName="description"
-        iconName="list"
-        element={user.description}
-      />
-      <UserInfoWidgetElement
-        elementName="services"
-        iconName="map"
-        element={user.service}
-      />
-      <UserInfoWidgetElement
-        element={user.address}
-        elementName="address"
-        iconName="map"
-      />
+        {
+            !validate.isEmpty(user.description) ?
+                <UserInfoWidgetElement
+                    elementName="description"
+                    iconName="list"
+                    element={user.description}
+                /> : null
+        }
+        {
+            !validate.isEmpty(user.service) ?
+                <UserInfoWidgetElement
+                    elementName="services"
+                    iconName="map"
+                    element={user.service}
+                /> : null
+        }
+        {
+            !validate.isEmpty(user.address)  ?
+                <UserInfoWidgetElement
+                    element={user.address}
+                    elementName="address"
+                    iconName="map"
+                /> : null
+        }
       {!validate.isEmpty(user.longitude || user.latitude) ? (
         <MapViewWidget
           latitude={user.latitude}

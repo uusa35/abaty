@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {NavContext} from '../redux/NavContext';
 import PropTypes from 'prop-types';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {images, text} from '../constants';
+import {images, isIOS, text} from '../constants';
 import RegisterFormWidget from '../components/widgets/user/RegisterFormWidget';
 import UserEditFormWidget from '../components/widgets/user/UserEditFormWidget';
 
@@ -19,8 +19,15 @@ class UserEditScreen extends Component {
     const {userCountryId} = this.state;
     return (
       <NavContext.Provider value={{navigation}}>
-        <View
-          style={{justifyContent: 'flex-start', alignItems: 'center', flex: 1}}>
+        <ScrollView
+            contentContainerStyle={{minHeight: !isIOS ? '120%' : null, justifyContent: 'flex-start', alignItems: 'center'}}
+            horizontal={false}
+            automaticallyAdjustContentInsets={false}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            contentInset={{bottom: 100}}
+            style={{ flex: 1}}
+        >
           <View style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
             <FastImage
               source={{uri: logo}}
@@ -35,7 +42,7 @@ class UserEditScreen extends Component {
               player_id={playerId}
             />
           </View>
-        </View>
+        </ScrollView>
       </NavContext.Provider>
     );
   }

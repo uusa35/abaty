@@ -363,13 +363,10 @@ export function hideCountryModal() {
   };
 }
 
-export function goDeepLinking(routeName, id = '') {
+export function goDeepLinking(payload) {
   return {
     type: actions.GO_DEEP_LINKING,
-    payload: {
-      routeName,
-      id
-    }
+    payload
   };
 }
 

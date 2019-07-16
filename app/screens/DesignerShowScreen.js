@@ -37,7 +37,6 @@ class DesignerShowScreen extends Component {
 
   render() {
     const {designer, navigation, settings, searchParams} = this.props;
-    console.log('the user', designer);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView

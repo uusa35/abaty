@@ -40,6 +40,7 @@ export async function getSplashes() {
 }
 
 export async function getHomeDesigners() {
+  console.log('FROM DESIGNERS',axiosInstance.defaults.headers);
   return await axiosInstance
     .get(`user`, {params: {on_home: 1, type: 'is_designer'}})
     .then(r => r.data)

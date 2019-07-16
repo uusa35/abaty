@@ -14,13 +14,13 @@ import {
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {setCurrency} from '../../../helpers';
 import axios from 'axios';
-import {startAppBootStrap} from './appSagas';
+import {getUsers, startAppBootStrap} from './appSagas';
 import {registerConstrains, submitLogin} from '../../../constants';
+import {axiosInstance} from "../api";
 
 export function* setHomeCategories() {
   try {
     const categories = yield call(api.getHomeCategories);
-    console.log('categories', categories);
     if (!validate.isEmpty(categories) && validate.isArray(categories)) {
       yield put({type: actions.SET_CATEGORIES, payload: categories});
     } else {
@@ -115,6 +115,7 @@ export function* setProducts() {
 
 export function* setHomeProducts() {
   try {
+    console.log('HEADERS', axiosInstance.defaults.headers);
     const products = yield call(api.getHomeProducts);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
@@ -159,6 +160,7 @@ export function* getCountry(country_id = null) {
         ? yield call(api.getCountry)
         : yield call(api.getCountry, country_id);
       if (!validate.isEmpty(country)) {
+        yield put({ type : actions.SET_COUNTRY , payload : country })
         yield call(startSetCountryScenario, {payload: country});
       }
     }
@@ -184,6 +186,7 @@ export function* startSetCountryScenario(action) {
 
 export function* startGetUserScenario(action) {
   try {
+    console.log('the action from userId', action);
     const user = yield call(api.getUser, action.payload);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_USER, payload: user});
@@ -233,6 +236,7 @@ export function* startGetDesignerScenario(action) {
 
 export function* startGetProductScenario(action) {
   try {
+    console.log('the action', action);
     const product = yield call(api.getProduct, action.payload);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
       yield all([
@@ -244,8 +248,6 @@ export function* startGetProductScenario(action) {
           })
         )
       ]);
-    } else {
-      throw I18n.t('error_while_loading_product');
     }
   } catch (e) {
     // console.log('the e from set Commercials', e)
@@ -272,8 +274,6 @@ export function* startGetSearchProductsScenario(action) {
           })
         )
       ]);
-    } else {
-      throw I18n.t('no_products');
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
@@ -294,8 +294,6 @@ export function* startGetAllProductsScenario(action) {
           })
         )
       ]);
-    } else {
-      throw I18n.t('no_products');
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
@@ -304,19 +302,14 @@ export function* startGetAllProductsScenario(action) {
 
 export function* startDeepLinkingScenario(action) {
   try {
-    const {routeName, id} = action.payload;
-    if (!isNull(routeName)) {
-      if (routeName === 'user') {
-        console.log('routeName is', routeName);
-        yield put({type: actions.GET_USER, payload: id});
-      } else {
-        yield put({type: actions.GET_PRODUCT, payload: id});
-        // yield put(
-        //   NavigationActions.navigate({
-        //     routeName: upperFirst(routeName),
-        //     params: {id}
-        //   })
-        // );
+    console.log('the action', action);
+    const {type, id} = action.payload;
+    if (!isNull(type)) {
+      if (type === 'user') {
+        console.log('routeName is', type);
+        yield call(startGetUserScenario, { payload : id })
+      } else if (type === 'product') {
+        yield call(startGetProductScenario, { payload : { id }})
       }
     }
   } catch (e) {
@@ -445,7 +438,6 @@ export function* setTotalCartValue(cart) {
 export function* setGrossTotalCartValue(values) {
   try {
     const {total, coupon, country} = values;
-    console.log('vals', values);
     if (!validate.isEmpty(total) && total > 0) {
       const grossTotal = parseFloat(
         total +
@@ -453,8 +445,6 @@ export function* setGrossTotalCartValue(values) {
           (!validate.isEmpty(coupon) ? coupon.value : 0)
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
-    } else {
-      throw 'Cart is Empty';
     }
   } catch (e) {
     yield all([

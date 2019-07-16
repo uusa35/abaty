@@ -7,10 +7,11 @@ import {text, isIOS} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getCategoryElements} from '../../../redux/actions';
+import {getCategoryElements, getSearchProducts} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {concat} from "react-native-reanimated";
 
-const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
+const UserCategoriesInfoWidget = ({elements, showTitle = true , showArrow = true}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -19,56 +20,59 @@ const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
       easing="ease-out"
       style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <View key={elements.length} style={{flex: 1}}>
-        {map(elements, (element, i) => {
-          return (
-            <View style={{flex: 1}} key={i}>
-              {!isNull(element) ? (
-                <View style={{flex: 1}}>
-                  <Text
-                    style={{
-                      fontFamily: text.font,
-                      fontSize: text.large,
-                      marginBottom: 10,
-                      textAlign: 'left',
-                      color: colors.header_one_theme_color,
-                      shadowColor: '#000',
-                      shadowOffset: {
-                        width: 0,
-                        height: 1
-                      },
-                      shadowOpacity: 0.18,
-                      shadowRadius: 1.0,
+        {
+          showTitle ?
+              <Text
+                  style={{
+                    fontFamily: text.font,
+                    fontSize: text.large,
+                    marginBottom: 10,
+                    textAlign: 'left',
+                    color: colors.header_one_theme_color,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 1
+                    },
+                    shadowOpacity: 0.18,
+                    shadowRadius: 1.0,
 
-                      elevation: 1
-                    }}>
-                    {I18n.t('product_categories')}
-                  </Text>
-                  {map(element, (c, i) => {
-                    return (
-                      <TouchableOpacity
-                        key={c.id}
-                        onPress={() => dispatch(getCategoryElements(c))}
-                        hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                        style={styles.itemRow}>
-                        <View
-                          style={{
-                            flexDirection: 'row',
-                            alignItems: 'baseline'
-                          }}>
-                          <Icon
-                            name="user"
-                            type="font-awesome"
-                            color="grey"
-                            size={20}
-                            iconStyle={{
-                              paddingRight: 10,
-                              paddingLeft: 10
-                            }}
-                          />
-                          <Text style={styles.subTitle}>{c.name}</Text>
-                        </View>
-                        {showArrow ? (
-                          <Icon
+                    elevation: 1
+                  }}>
+                {I18n.t('product_categories')}
+              </Text> : null
+        }
+        {map(elements[1], (c, i) => {
+          return (
+                  <TouchableOpacity
+                      key={c.id}
+                      onPress={() => dispatch(getSearchProducts({
+                            element: c,
+                            category: c,
+                            searchElements: {product_category_id: c.id}
+                          }
+                      ))}
+                      hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                      style={styles.itemRow}>
+                    <View
+                        style={{
+                          flexDirection: 'row',
+                          alignItems: 'baseline'
+                        }}>
+                      <Icon
+                          name="user"
+                          type="font-awesome"
+                          color="grey"
+                          size={20}
+                          iconStyle={{
+                            paddingRight: 10,
+                            paddingLeft: 10
+                          }}
+                      />
+                      <Text style={styles.subTitle}>{c.name}</Text>
+                    </View>
+                    {showArrow ? (
+                        <Icon
                             name={isRTL ? 'chevron-left' : 'chevron-right'}
                             type="font-awesome"
                             color="lightgrey"
@@ -77,14 +81,9 @@ const UserCategoriesInfoWidget = ({elements, showArrow = true}) => {
                               paddingRight: isIOS ? 10 : 0,
                               paddingLeft: isIOS ? 0 : 10
                             }}
-                          />
-                        ) : null}
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              ) : null}
-            </View>
+                        />
+                    ) : null}
+                  </TouchableOpacity>
           );
         })}
       </View>

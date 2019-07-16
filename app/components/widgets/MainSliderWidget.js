@@ -31,7 +31,7 @@ const MainSliderWidget = ({slides}) => {
                   loadingIndicatorSource={images.logo}
                   source={{uri: s.large}}
                   style={{width: width, height: '100%'}}
-                  resizeMode="stretch"
+                  resizeMode="cover"
                 />
               </TouchableOpacity>
             );

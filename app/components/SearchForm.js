@@ -23,7 +23,7 @@ const SearchForm = () => {
           }
         />
       }
-      containerStyle={{marginTop: 20, marginBottom: 20}}
+      containerStyle={{marginTop: 5, marginBottom: 5}}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
         borderRadius: 30,

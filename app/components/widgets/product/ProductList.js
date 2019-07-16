@@ -39,7 +39,7 @@ const ProductList = ({
   [items, setItems] = useState(elements);
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
-  [endList, setEndList] = useState('test');
+  [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
   // console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
   // console.log('THE PARAMS FROM PRODUCT LIST', params);
@@ -53,7 +53,7 @@ const ProductList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => setEndList(e.response.data));
+        .catch(e => console.log('error catch productList'));
     }
   }, [page]);
 
@@ -110,8 +110,10 @@ const ProductList = ({
               onRefresh={() => setRefresh(true)}
             />
           }
-          onEndReached={() =>
+          onEndReached={() => {
             search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading)
+            setEndList(false);
+          }
           }
           contentContainerStyle={{
             width: width - 20,
@@ -187,7 +189,7 @@ const ProductList = ({
             showFooter ? (
               <View style={{minHeight: 100}}>
                 <Button
-                  loading={isLoading}
+                  loading={endList}
                   raised
                   title={I18n.t('no_more_products')}
                   type="outline"

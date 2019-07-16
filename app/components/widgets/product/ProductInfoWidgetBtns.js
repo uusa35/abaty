@@ -26,7 +26,8 @@ const ProductInfoWidgetBtns = ({element}) => {
           alignItems: 'center',
           marginBottom: 10
         }}>
-        <Divider color="green" />
+        <Divider color="lightgrey" style={{ width : '100%' }}/>
+          {element.has_attributes ?
         <Text
           style={{
             fontFamily: text.font,
@@ -36,7 +37,7 @@ const ProductInfoWidgetBtns = ({element}) => {
             fontSize: 17
           }}>
           {I18n.t('sizes_and_colors_and_length_available')}
-        </Text>
+        </Text> : null }
       </View>
       {element.has_attributes ? (
         <ProductColorSizeGroupWithAttributes element={element} />

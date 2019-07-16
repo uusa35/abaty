@@ -28,7 +28,6 @@ const ProductInfoWidget = ({element, currency}) => {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         marginTop: 10,
-        marginBottom: 10
       }}>
       <ProductInfoWidgetMainTitle element={element} currency={currency} />
       <ProductInfoWidgetBtns element={element} />

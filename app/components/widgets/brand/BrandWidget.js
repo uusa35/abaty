@@ -10,7 +10,7 @@ import {images} from '../../../constants';
 const BrandWidget = ({
   element,
   showName = false,
-  currentWidth = 80,
+  currentWidth = 100,
   currentMarginBottom = 0
 }) => {
   const {dispatch} = useContext(DispatchContext);
@@ -41,7 +41,7 @@ const BrandWidget = ({
         }}
         loadingIndicatorSource={images.logo}
         style={styles.image}
-        resizeMode="contain"
+        resizeMode="cover"
       />
       {showName ? (
         <Text style={widgetStyles.elementName}>{element.name}</Text>
@@ -58,8 +58,8 @@ BrandWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: '80%',
-    height: 80,
+    width: 100,
+    height: 100,
     borderRadius: 15
   }
 });

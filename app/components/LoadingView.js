@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const LoadingView = ({logo, loadingText}) => {
   return (
     <View style={styles.activityContainer}>
-      {/*<ActivityIndicator style={{marginBottom: 15}} />*/}
+      <ActivityIndicator style={{marginBottom: 15}} />
       {/*<LottieView*/}
       {/*  source={animations.circleLoading_2}*/}
       {/*  autoPlay*/}

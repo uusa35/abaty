@@ -57,17 +57,10 @@ import {
   enableErrorMessage
 } from './settingSagas';
 import {offlineActionTypes} from 'react-native-offline';
-import {internetChecker} from '../../../helpers';
-import * as api from '../api';
-import validate from 'validate.js';
-import {axiosInstance} from '../api';
-import {getProducts} from '../api';
 
 function* startAppBootStrap() {
   try {
     const {network, bootStrapped, currency, lang} = yield select();
-    // axiosInstance.defaults.headers.common['currency'] = currency.symbol;
-    // axiosInstance.defaults.headers.common['lang'] = lang;
     if (!bootStrapped || (__DEV__ && network.isConnected)) {
       console.log('from inside');
       yield all([
@@ -75,22 +68,22 @@ function* startAppBootStrap() {
           type: offlineActionTypes.CONNECTION_CHANGE,
           payload: network.isConnected
         }),
-        call(defaultLang),
         call(setSettings),
-        call(getProductIndex),
-        call(getCountry),
-        call(setDeviceId),
-        call(setHomeCategories),
         call(setCountries),
         call(setSlides),
         call(setCommercials),
         call(setHomeBrands),
-        call(setHomeProducts),
-        call(setHomeDesigners),
-        call(setHomeCelebrities),
-        call(setHomeSplashes),
-        call(startAuthenticatedScenario)
+        call(startAuthenticatedScenario),
+        call(defaultLang),
+        call(getCountry),
+        call(setDeviceId),
       ]);
+      yield call(setHomeCategories);
+          yield call(setHomeProducts);
+          yield call(getProductIndex);
+          yield call(setHomeDesigners);
+          yield call(setHomeCelebrities);
+          yield call(setHomeSplashes);
       yield all([
         put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         call(disableLoading)

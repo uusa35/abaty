@@ -8,11 +8,13 @@ import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {addToCart} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import validate from 'validate.js';
 
 const ProductColorSizeGroup = ({element}) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  const {size, color, qty} = element;
+  const {size, color, qty, show_attribute } = element;
+  console.log('the size', size);
   [requestQty, setRequestQty] = useState(0);
   return (
     <View
@@ -27,7 +29,7 @@ const ProductColorSizeGroup = ({element}) => {
             width: '100%',
             justifyContent: 'space-around'
           }}>
-          {size ? (
+          {!validate.isEmpty(size) && show_attribute ? (
             <Button
               raised
               containerStyle={{flex: 0.4, marginBottom: 10, margin: 2}}
@@ -41,7 +43,7 @@ const ProductColorSizeGroup = ({element}) => {
               titleStyle={{fontFamily: text.font, color: 'black'}}
             />
           ) : null}
-          {color ? (
+          {!validate.isEmpty(color) && show_attribute ? (
             <Button
               raised
               iconRight
@@ -61,7 +63,7 @@ const ProductColorSizeGroup = ({element}) => {
                 borderColor: 'black',
                 justifyContent: 'space-around'
               }}
-              title={I18n.t('color')}
+              title={color ? color.name : I18n.t('height')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
             />
           ) : null}

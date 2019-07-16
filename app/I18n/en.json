@@ -134,7 +134,7 @@
   "enter_application": "ُEnter Application",
   "loading_data": "Loading Data .. Please wait ..",
   "daleeli": "Daleeli",
-  "loading": "Loading ...",
+  "loading": "Loading ... Please wait ..",
   "error_login": "Credentials ",
   "credentials_wrong": "Username or password is wrong. please try again.",
   "register_companies": "Companies Registration",
@@ -380,11 +380,11 @@
   "hot_deal": "Hot Deal",
   "new_user": "New User .. Register Now.",
   "information_you_entered_not_correct": "Information entered not correct",
-  "information": "information",
-  "related_product_group" : "related products",
+  "information": "Information",
+  "related_product_group" : "Related Products",
   "our_gallery" : "gallery %{name}",
   "our_youtube_channel" : "youtube channel",
-  "product_categories" : "product categories",
+  "product_categories" : "Product Categories",
   "sizes_and_colors_and_length_available" : "Sizes / Colors / Height available for product",
   "choose_height" : "Choose Height",
   "videos" : "Videos",
@@ -408,5 +408,6 @@
   "edit_profile" : "Edit Profile",
   "edit_information" : "Edit Information",
   "update_information" : "Update Information",
-  "update_information_success" : "Your data successfully updated."
+  "update_information_success" : "Your data successfully updated.",
+  "height" : "Height"
 }

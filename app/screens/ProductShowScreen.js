@@ -59,31 +59,35 @@ class ProductShowScreen extends Component {
             isOnSale={product.isOnSale}
             isReallyHot={product.isReallyHot}
           />
-          <View style={{width: '95%'}}>
+          <View style={{width: '90%'}}>
             <View animation="bounceInLeft" easing="ease-out">
               <ProductInfoWidget element={product} currency={currency} />
             </View>
-            <View animation="bounceInLeft" easing="ease-out">
-              <View>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 20,
-                    fontFamily: text.font,
-                    paddingBottom: 0
-                  }}>
-                  {I18n.t('description')}
-                </Text>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 17,
-                    fontFamily: text.font,
-                    padding: 10
-                  }}>
-                  {product.description}
-                </Text>
-              </View>
+            <View animation="bounceInLeft" easing="ease-out" style={{ marginTop : 15 }}>
+              {
+                product.description ?
+                    <View>
+                      <Text
+                          style={{
+                            textAlign: 'left',
+                            fontSize: 20,
+                            fontFamily: text.font,
+                            paddingBottom: 0
+                          }}>
+                        {I18n.t('description')}
+                      </Text>
+                      <Text
+                          style={{
+                            textAlign: 'left',
+                            fontSize: 17,
+                            fontFamily: text.font,
+                            padding: 10
+                          }}>
+                        {product.description}
+                      </Text>
+                    </View>
+                     : null
+              }
               <ProductInfoWidgetElement
                 elementName="designer"
                 name={product.user.slug}

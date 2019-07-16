@@ -6,7 +6,7 @@ import {appBootstrap} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/LoadingView';
 import {CountriesContext} from './redux/CountriesContext';
-import I18n from './I18n';
+import I18n, {isRTL} from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
@@ -21,22 +21,25 @@ type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
+    const {dispatch, bootStrapped, currency, lang, token } = this.props;
     codePush.checkForUpdate().then(update => {
       if (!update) {
-        if (network.isConnected && !bootStrapped) {
-          console.log('No Update');
-          return dispatch(appBootstrap());
-        }
+        // if(!bootStrapped) {
+        //   dispatch(appBootstrap());
+        // }
       }
     });
-    const {dispatch, network, bootStrapped, currency, lang, token} = this.props;
-    axiosInstance.defaults.headers['currency'] = validate.isEmpty(currency)
-      ? currency
-      : 'KWD';
-    axiosInstance.defaults.headers['lang'] = lang ? lang : 'en';
-    axiosInstance.defaults.headers['Authorization'] = validate.isEmpty(token)
-      ? `Bearer ${token}`
-      : null;
+      axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
+          ? currency
+          : 'KWD';
+      axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang) ? lang : (isRTL ? 'ar' : 'en');
+      axiosInstance.defaults.headers.common['lang'] = !validate.isEmpty(lang) ? lang : (isRTL ? 'ar' : 'en');
+      axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
+          ? `Bearer ${token}`
+          : null;
+    if(!bootStrapped) {
+      dispatch(appBootstrap());
+    }
   }
 
   render() {

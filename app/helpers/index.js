@@ -160,14 +160,9 @@ export function isAuthenticated(auth) {
 
 export function getPathForDeepLinking(url) {
   const delimiter = url.split('://');
-  let path = delimiter[1].split('/')[0];
-  let params = delimiter[1].split('/')[1];
-  console.log('the path', path);
-  console.log('the params', params);
-  if (!path) {
-    path = url;
-  }
-  return {path, params};
+  let type = delimiter[1].split('/')[0];
+  let id  = delimiter[1].split('/')[1];
+  return {type, id};
 }
 
 export function getProductConvertedFinalPrice(price, rate) {

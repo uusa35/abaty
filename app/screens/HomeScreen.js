@@ -4,7 +4,9 @@ import {
   Linking,
   RefreshControl,
   ScrollView,
-  View
+  View,
+  AppState,
+    Text
 } from 'react-native';
 import {NavContext} from '../redux/NavContext';
 import {connect} from 'react-redux';
@@ -29,14 +31,13 @@ import SearchForm from '../components/SearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {SafeAreaView} from 'react-navigation';
-import celebrities from '../redux/reducers/celebrities';
 import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {refresh: false};
+    this.state = {refresh: false, appState: AppState.currentState};
   }
 
   static navigationOptions = ({navigation, navigationOptions}) => {
@@ -59,13 +60,16 @@ class HomeScreen extends Component {
     }
   };
 
+
   componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
     OneSignal.addEventListener('ids', this.onIds);
-    Linking.addEventListener('url', this.handleOpenURL);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
+    Linking.addEventListener('url', this.handleOpenURL);
+
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
@@ -76,11 +80,22 @@ class HomeScreen extends Component {
   }
 
   componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
     Linking.removeEventListener('url', this.handleOpenURL);
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', this.onOpened);
     OneSignal.removeEventListener('ids', this.onIds);
   }
+
+  _handleAppStateChange = (nextAppState) => {
+    if (
+        this.state.appState.match(/inactive|background/) &&
+        nextAppState === 'active'
+    ) {
+      console.log('HERE NOW');
+    }
+    this.setState({appState: nextAppState});
+  };
 
   handleBackPress = () => {
     const {navigation, dispatch} = this.props;
@@ -89,9 +104,11 @@ class HomeScreen extends Component {
   };
 
   handleOpenURL = event => {
-    console.log('Initial Url Case');
-    const {path, params} = getPathForDeepLinking(event.url);
-    return this.props.dispatch(goDeepLinking(path, params));
+    console.log('Initial Url Case', event);
+    const {type , id} = getPathForDeepLinking(event.url);
+    console.log('the type', type);
+    console.log('the id', id);
+    return this.props.dispatch(goDeepLinking({type, id}));
   };
 
   onReceived = notification => {
@@ -114,6 +131,7 @@ class HomeScreen extends Component {
   };
 
   onIds = device => {
+    console.log('STORING PLAYER ID');
     const {isConnected} = this.props.network;
     return isConnected ? this.props.dispatch(setPlayerId(device.userId)) : null;
   };
@@ -226,7 +244,8 @@ function mapStateToProps(state) {
     splash_on: state.settings.splash_on,
     show_commercials: state.settings.show_commercials,
     network: state.network,
-    colors: state.settings.colors
+    colors: state.settings.colors,
+    lang : state.lang
   };
 }
 

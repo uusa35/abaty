@@ -24,11 +24,22 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
       <FastImage
         source={{uri: element.thumb}}
-        style={{width: 60, height: 60}}
+        style={{
+            width: 60, height: 60,
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 1,
+            },
+            shadowOpacity: 0.20,
+            shadowRadius: 1.41,
+
+            elevation: 2,
+        }}
         loadingIndicatorSource={images.logo}
       />
       <View>
@@ -39,15 +50,24 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             fontSize: 20,
             color: colors.header_one_theme_color,
             textAlign: 'left',
-            fontFamily: text.font
+            fontFamily: text.font,
+              shadowColor: "#000",
+              shadowOffset: {
+                  width: 0,
+                  height: 1,
+              },
+              shadowOpacity: 0.20,
+              shadowRadius: 1.41,
+
+              elevation: 2,
           }}>
           {element.name}
         </Text>
         <View
           style={{
-            paddingLeft: 10,
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+              minWidth : '60%'
           }}>
           <View style={{flexDirection: 'row'}}>
             <Text
