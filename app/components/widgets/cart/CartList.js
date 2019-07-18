@@ -254,6 +254,16 @@ const CartList = ({
           </View>
         ) : null}
         <View>
+          <Button
+            raised
+            title={shipment_notes}
+            type="outline"
+            containerStyle={{marginBottom: 20}}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.header_one_theme_color
+            }}
+          />
           <View style={{paddingTop: 20, paddingBottom: 20}}>
             <Input
               editable={editMode}
@@ -316,25 +326,6 @@ const CartList = ({
               keyboardType="number-pad"
               onChangeText={mobile => setMobile(mobile)}
             />
-            <View style={{flex: 1, marginRight: 15, marginLeft: 15}}>
-              <Text
-                style={{
-                  fontFamily: text.font,
-                  fontSize: text.medium,
-                  textAlign: 'center',
-                  paddingBottom: 10,
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 1
-                  },
-                  shadowOpacity: 0.18,
-                  shadowRadius: 1.0,
-                  elevation: 1
-                }}>
-                {shipment_notes}
-              </Text>
-            </View>
             <TouchableOpacity
               onPress={() => {
                 editMode ? dispatch(showCountryModal()) : null;

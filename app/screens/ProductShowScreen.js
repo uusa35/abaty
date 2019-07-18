@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, ScrollView, Text, Linking} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  Text,
+  Linking,
+  RefreshControl
+} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text, isIOS} from './../constants';
@@ -14,6 +20,7 @@ import {first} from 'lodash';
 import {
   getCategoryElements,
   getDesigner,
+  getProduct,
   getSearchProducts
 } from '../redux/actions';
 import validate from 'validate.js';
@@ -24,10 +31,11 @@ import MainSliderWidget from '../components/widgets/MainSliderWidget';
 class ProductShowScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {refresh: false};
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.product.id !== this.props.product.id;
+    return nextProps.product !== this.props.product;
   }
 
   render() {
@@ -37,7 +45,8 @@ class ProductShowScreen extends Component {
       navigation,
       settings,
       dispatch,
-      products
+      products,
+      token
     } = this.props;
     console.log('product', product);
     return (
@@ -48,6 +57,17 @@ class ProductShowScreen extends Component {
             justifyContent: 'flex-start',
             alignItems: 'center'
           }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => {
+                this.setState({refresh: false});
+                dispatch(
+                  getProduct({id: product.id, api_token: token ? token : null})
+                );
+              }}
+            />
+          }
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
@@ -57,7 +77,7 @@ class ProductShowScreen extends Component {
               .concat({id: product.id, large: product.large})
               .reverse()}
             width={width}
-            height={500}
+            height={650}
             name={product.name}
             exclusive={product.exclusive}
             isOnSale={product.isOnSale}
@@ -186,7 +206,8 @@ function mapStateToProps(state) {
     product: state.product,
     currency: state.currency,
     settings: state.settings,
-    products: state.products
+    products: state.products,
+    token: state.token
   };
 }
 

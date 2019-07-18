@@ -396,8 +396,6 @@ export function* setHomeSplashes() {
     const splashes = yield call(api.getSplashes);
     if (!validate.isEmpty(splashes) && validate.isObject(splashes)) {
       yield put({type: actions.SET_HOME_SPLASHES, payload: splashes});
-    } else {
-      throw I18n.t('no_splashes');
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);

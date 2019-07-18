@@ -20,8 +20,6 @@ import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
 const ProductInfoWidget = ({element, currency}) => {
-  console.log('element', element);
-
   return (
     <ScrollView
       contentContainerStyle={{
@@ -41,12 +39,4 @@ ProductInfoWidget.propTypes = {
   element: PropTypes.object.isRequired
 };
 
-const styles = StyleSheet.create({
-  productTitle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 20,
-    color: 'black',
-    fontFamily: text.font
-  }
-});
+const styles = StyleSheet.create({});

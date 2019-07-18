@@ -4,17 +4,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  ActivityIndicator
+  Text
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getProduct} from '../../../redux/actions';
-import {Icon, Tooltip, Button, Text} from 'react-native-elements';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
-import I18n, {isRTL} from '../../../I18n';
 import TagWidget from './TagWidget';
 
 const ProductWidget = ({product, showName = false}) => {
@@ -36,7 +34,7 @@ const ProductWidget = ({product, showName = false}) => {
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 250
+          height: 285
         }
       ]}
       onPress={() =>
@@ -49,7 +47,7 @@ const ProductWidget = ({product, showName = false}) => {
         loadingIndicatorSource={images.logo}
         imageStyle={styles.imageStyling}
         style={styles.image}
-        resizeMode="cover">
+        resizeMode="contain">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
           {product.exclusive ? <TagWidget tagName="exclusive" /> : null}
           {product.isOnSale ? (
@@ -64,31 +62,33 @@ const ProductWidget = ({product, showName = false}) => {
             style={[
               widgetStyles.elementName,
               {
-                textAlign: 'left',
-                paddingTop: 10,
-                paddingBottom: 10,
-                paddingRight: 10,
-                paddingLeft: 10,
+                textAlign: 'center',
                 fontSize: text.medium,
                 color: colors.header_tow_theme_color
               }
             ]}>
             {product.name.substring(0, 20)}
           </Text>
-          <Text
-            style={[
-              widgetStyles.elementName,
-              {
-                textAlign: 'left',
-                paddingTop: 0,
-                paddingRight: 10,
-                paddingLeft: 10,
-                fontSize: text.medium
-              }
-            ]}>
-            {getProductConvertedFinalPrice(product.finalPrice, exchange_rate)}
-            {currency_symbol}
-          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <Text
+              style={[
+                widgetStyles.elementName,
+                {
+                  textAlign: 'center',
+                  fontSize: text.medium,
+                  paddingRight: 5,
+                  paddingLeft: 5
+                }
+              ]}>
+              {getProductConvertedFinalPrice(product.finalPrice, exchange_rate)}
+            </Text>
+            <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
+          </View>
         </View>
       ) : null}
     </TouchableOpacity>
@@ -107,7 +107,7 @@ ProductWidget.propTypes = {
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 180
+    height: 230
   },
   imageStyling: {
     // borderTopRightRadius: 10,
