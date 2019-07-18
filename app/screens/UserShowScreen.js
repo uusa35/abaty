@@ -60,7 +60,12 @@ class UserShowScreen extends Component {
               </View>
             </TriggeringView>
           </View>
-          <ImagesWidget elements={user.images} name={user.slug} />
+          <ImagesWidget
+            elements={user.images}
+            name={user.slug}
+            height={500}
+            width={300}
+          />
           {validate.isObject(user.videos) ? (
             <VideosWidget videos={user.videos} />
           ) : null}

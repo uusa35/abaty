@@ -342,6 +342,8 @@ const UserInfoWidget = ({user}) => {
           name={user.slug}
           showLabels={false}
           showTitle={true}
+          width={175}
+          height={235}
         />
       ) : null}
       {!validate.isEmpty(user.longitude || user.latitude) ? (
@@ -350,6 +352,7 @@ const UserInfoWidget = ({user}) => {
           longitude={user.longitude}
           logo={user.thumb}
           title={user.slug}
+          showTitle={true}
           height={250}
         />
       ) : null}

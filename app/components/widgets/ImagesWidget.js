@@ -9,10 +9,8 @@ import {
   Text
 } from 'react-native';
 import {map} from 'lodash';
-import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {NavContext} from '../../redux/NavContext';
-import {Icon} from 'react-native-elements';
 import {images, text} from '../../constants';
 import TagWidget from './product/TagWidget';
 import I18n from '../../I18n';
@@ -58,6 +56,7 @@ const ImagesWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{height: height, width: width}}
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
         {map(elements, (c, i) => (
           <TouchableOpacity
@@ -77,7 +76,7 @@ const ImagesWidget = ({
               imageStyle={styles.imageStyling}
               loadingIndicatorSource={images.logo}
               style={{width, height}}
-              resizeMode="cover">
+              resizeMode="contain">
               {showLabels && i === 0 ? (
                 <View style={{flex: 1, padding: 20}}>
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
@@ -98,7 +97,9 @@ const ImagesWidget = ({
 export default React.memo(ImagesWidget);
 
 ImagesWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired
 };
 
 const styles = StyleSheet.create({

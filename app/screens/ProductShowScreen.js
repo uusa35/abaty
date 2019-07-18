@@ -77,7 +77,7 @@ class ProductShowScreen extends Component {
               .concat({id: product.id, large: product.large})
               .reverse()}
             width={width}
-            height={650}
+            height={550}
             name={product.name}
             exclusive={product.exclusive}
             isOnSale={product.isOnSale}
