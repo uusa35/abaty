@@ -244,7 +244,7 @@ export function* startGetProductScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'Product',
-            params: {name: product.name_ar, id: product.id, product: true}
+            params: {name: product.name, id: product.id, product: true}
           })
         )
       ]);
