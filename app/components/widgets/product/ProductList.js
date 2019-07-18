@@ -119,7 +119,7 @@ const ProductList = ({
             minHeight: '100%'
           }}
           columnWrapperStyle={{
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             alignItems: 'center'
           }}
           ListHeaderComponentStyle={{

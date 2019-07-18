@@ -26,9 +26,10 @@ const ProductWidget = ({product, showName = false}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '48%',
-          minWidth: 175,
-          maxWidth: 190,
+          // width: '48%',
+          // minWidth: 175,
+          // maxWidth: 190,
+          width: 173,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',
@@ -106,7 +107,7 @@ ProductWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
+    width: 173,
     height: 230
   },
   imageStyling: {

@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     height: 180
   },
   imageStyling: {
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10
+    // borderTopRightRadius: 10,
+    // borderTopLeftRadius: 10
   }
 });
