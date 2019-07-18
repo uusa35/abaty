@@ -22,13 +22,13 @@ class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
     const {dispatch, bootStrapped, currency, lang, token} = this.props;
-    // codePush.checkForUpdate().then(update => {
-    //   if (!update) {
+    codePush.checkForUpdate().then(update => {
+      if (!update) {
         // if(!bootStrapped) {
         //   dispatch(appBootstrap());
         // }
-      // }
-    // });
+      }
+    });
     axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
       ? currency
       : 'KWD';

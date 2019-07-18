@@ -316,15 +316,25 @@ const CartList = ({
               keyboardType="number-pad"
               onChangeText={mobile => setMobile(mobile)}
             />
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.small,
-                textAlign: 'center',
-                paddingBottom: 10
-              }}>
-              {shipment_notes}
-            </Text>
+            <View style={{flex: 1, marginRight: 15, marginLeft: 15}}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  textAlign: 'center',
+                  paddingBottom: 10,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 1
+                  },
+                  shadowOpacity: 0.18,
+                  shadowRadius: 1.0,
+                  elevation: 1
+                }}>
+                {shipment_notes}
+              </Text>
+            </View>
             <TouchableOpacity
               onPress={() => {
                 editMode ? dispatch(showCountryModal()) : null;
