@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import MapViewWidget from '../MapViewWidget';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import ImagesWidget from '../ImagesWidget';
 
 const UserInfoWidget = ({user}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -313,30 +314,36 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-        {
-            !validate.isEmpty(user.description) ?
-                <UserInfoWidgetElement
-                    elementName="description"
-                    iconName="list"
-                    element={user.description}
-                /> : null
-        }
-        {
-            !validate.isEmpty(user.service) ?
-                <UserInfoWidgetElement
-                    elementName="services"
-                    iconName="map"
-                    element={user.service}
-                /> : null
-        }
-        {
-            !validate.isEmpty(user.address)  ?
-                <UserInfoWidgetElement
-                    element={user.address}
-                    elementName="address"
-                    iconName="map"
-                /> : null
-        }
+      {!validate.isEmpty(user.description) ? (
+        <UserInfoWidgetElement
+          elementName="description"
+          iconName="list"
+          element={user.description}
+        />
+      ) : null}
+      {!validate.isEmpty(user.service) ? (
+        <UserInfoWidgetElement
+          elementName="services"
+          iconName="customerservice"
+          element={user.service}
+        />
+      ) : null}
+      {!validate.isEmpty(user.address) ? (
+        <UserInfoWidgetElement
+          elementName="address"
+          element={user.address}
+          type="entypo"
+          name="address"
+        />
+      ) : null}
+      {!validate.isEmpty(user.images) ? (
+        <ImagesWidget
+          elements={user.images}
+          name={user.slug}
+          showLabels={false}
+          showTitle={true}
+        />
+      ) : null}
       {!validate.isEmpty(user.longitude || user.latitude) ? (
         <MapViewWidget
           latitude={user.latitude}

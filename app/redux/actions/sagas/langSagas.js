@@ -5,7 +5,11 @@ import * as actions from '../types';
 import {call, put, all, delay, takeLatest} from 'redux-saga/effects';
 import I18n, {isRTL} from './../../../I18n';
 import validate from 'validate.js/validate';
-import {enableErrorMessage, disableLoading, toggleBootStrapped} from './settingSagas';
+import {
+  enableErrorMessage,
+  disableLoading,
+  toggleBootStrapped
+} from './settingSagas';
 import * as helpers from './../../../helpers';
 import axios from 'axios';
 

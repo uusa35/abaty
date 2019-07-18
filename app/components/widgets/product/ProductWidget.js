@@ -29,14 +29,14 @@ const ProductWidget = ({product, showName = false}) => {
         widgetStyles.btnStyle,
         {
           width: '48%',
-          minWidth : 175,
+          minWidth: 175,
           maxWidth: 190,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 250,
+          height: 250
         }
       ]}
       onPress={() =>
@@ -65,12 +65,12 @@ const ProductWidget = ({product, showName = false}) => {
               widgetStyles.elementName,
               {
                 textAlign: 'left',
-                paddingTop : 10,
+                paddingTop: 10,
                 paddingBottom: 10,
                 paddingRight: 10,
                 paddingLeft: 10,
                 fontSize: text.medium,
-                color: colors.header_tow_theme_color,
+                color: colors.header_tow_theme_color
               }
             ]}>
             {product.name.substring(0, 20)}

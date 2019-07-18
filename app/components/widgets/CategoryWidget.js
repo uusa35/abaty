@@ -8,7 +8,7 @@ import {DispatchContext} from '../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const CategoryWidget = ({category, columns , showBtn = false }) => {
+const CategoryWidget = ({category, columns, showBtn = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -29,33 +29,31 @@ const CategoryWidget = ({category, columns , showBtn = false }) => {
           )
         }>
         <FastImage
-          style={{ width : width , height : 400 }}
+          style={{width: width, height: 400}}
           resizeMode="cover"
           source={{uri: category.thumb}}
           loadingIndicatorSource={images.logo}
         />
-          {
-              showBtn ?
-                  <Button
-                      onPress={() =>
-                          dispatch(
-                              getSearchProducts({
-                                  element: category,
-                                  searchElements: {product_category_id: category.id}
-                              })
-                          )
-                      }
-                      raised
-                      containerStyle={{width: '70%', marginBottom: 10, marginTop: 10}}
-                      buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-                      title={category.name}
-                      titleStyle={{
-                          fontFamily: text.font,
-                          color: colors.btn_text_theme_color
-                      }}
-                  /> : null
-          }
-
+        {showBtn ? (
+          <Button
+            onPress={() =>
+              dispatch(
+                getSearchProducts({
+                  element: category,
+                  searchElements: {product_category_id: category.id}
+                })
+              )
+            }
+            raised
+            containerStyle={{width: '70%', marginBottom: 10, marginTop: 10}}
+            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+            title={category.name}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+          />
+        ) : null}
       </TouchableOpacity>
     </View>
   );
@@ -71,7 +69,7 @@ CategoryWidget.propTypes = {
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   mainCategoryBg: {
     width: '100%',
@@ -80,6 +78,6 @@ const styles = StyleSheet.create({
   categoryName: {
     fontFamily: text.font,
     fontSize: text.small,
-    textAlign: 'center',
+    textAlign: 'center'
   }
 });

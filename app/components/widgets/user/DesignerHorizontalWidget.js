@@ -68,7 +68,7 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
               }}
               loadingIndicatorSource={images.logo}
               style={styles.image}
-              resizeMode="cover"
+              resizeMode="contain"
             />
             {showName ? (
               <Text

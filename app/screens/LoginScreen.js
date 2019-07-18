@@ -12,7 +12,7 @@ import FastImage from 'react-native-fast-image';
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: 'test@test.com', password: 'secret'};
+    this.state = {email: '', password: ''};
   }
 
   shouldComponentUpdate(nextProps, nextState) {

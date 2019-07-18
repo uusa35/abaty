@@ -8,12 +8,12 @@ const widgetStyles = StyleSheet.create({
     width: width,
     padding: 5,
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   wrapper: {
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     margin: 5,
-    width: '100%',
+    width: '100%'
   },
   titleContainer: {
     flexDirection: 'row',

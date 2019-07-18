@@ -22,7 +22,7 @@ const UserInfoWidgetElement = ({
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
               name={iconName}
-              type="font-awesome"
+              type="antdesign"
               color="grey"
               size={20}
               iconStyle={{

@@ -161,7 +161,7 @@ export function isAuthenticated(auth) {
 export function getPathForDeepLinking(url) {
   const delimiter = url.split('://');
   let type = delimiter[1].split('/')[0];
-  let id  = delimiter[1].split('/')[1];
+  let id = delimiter[1].split('/')[1];
   return {type, id};
 }
 

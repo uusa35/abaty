@@ -76,14 +76,14 @@ function* startAppBootStrap() {
         call(startAuthenticatedScenario),
         call(defaultLang),
         call(getCountry),
-        call(setDeviceId),
+        call(setDeviceId)
       ]);
       yield call(setHomeCategories);
-          yield call(setHomeProducts);
-          yield call(getProductIndex);
-          yield call(setHomeDesigners);
-          yield call(setHomeCelebrities);
-          yield call(setHomeSplashes);
+      yield call(setHomeProducts);
+      yield call(getProductIndex);
+      yield call(setHomeDesigners);
+      yield call(setHomeCelebrities);
+      yield call(setHomeSplashes);
       yield all([
         put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         call(disableLoading)

@@ -11,16 +11,12 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 const RegisterFormWidget = ({userCountryId, player_id}) => {
   const {colors, country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  const [name, setName] = useState('user name');
-  const [email, setEmail] = useState('test123243244@test.com');
-  const [mobile, setMobile] = useState('234324234');
-  const [address, setAddress] = useState(
-    'klsd lsdkjf lsdj flkdsj flkdsj flkdsjf lkdsjf'
-  );
-  const [password, setPassword] = useState('secret');
-  const [description, setDescription] = useState(
-    'منيستب سيمتب يسمبت يمستب ميستنب '
-  );
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [description, setDescription] = useState('');
   return (
     <View style={{flexDirection: 'column', width: '100%'}}>
       <Input
@@ -40,6 +36,25 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
         shake={true}
         keyboardType="default"
         onChangeText={text => setName(text)}
+      />
+      <Input
+        placeholder={I18n.t('password')}
+        secureTextEntry={true}
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: 'lightgrey',
+          borderRadius: 10,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginBottom: 20
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          textAlign: isRTL ? 'right' : 'left'
+        }}
+        shake={true}
+        keyboardType="default"
+        onChangeText={text => setPassword(text)}
       />
       <Input
         placeholder={I18n.t('email') + '*'}
@@ -126,7 +141,7 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
         onChangeText={text => setAddress(text)}
       />
       <Input
-        placeholder={I18n.t('notes') + '*'}
+        placeholder={I18n.t('description') + '*'}
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',

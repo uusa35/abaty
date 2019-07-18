@@ -26,18 +26,19 @@ const ProductInfoWidgetBtns = ({element}) => {
           alignItems: 'center',
           marginBottom: 10
         }}>
-        <Divider color="lightgrey" style={{ width : '100%' }}/>
-          {element.has_attributes ?
-        <Text
-          style={{
-            fontFamily: text.font,
-            color: colors.normal_text_theme_color,
-            textAlign: 'center',
-            padding: 10,
-            fontSize: 17
-          }}>
-          {I18n.t('sizes_and_colors_and_length_available')}
-        </Text> : null }
+        <Divider color="lightgrey" style={{width: '100%'}} />
+        {element.has_attributes ? (
+          <Text
+            style={{
+              fontFamily: text.font,
+              color: colors.normal_text_theme_color,
+              textAlign: 'center',
+              padding: 10,
+              fontSize: 17
+            }}>
+            {I18n.t('sizes_and_colors_and_length_available')}
+          </Text>
+        ) : null}
       </View>
       {element.has_attributes ? (
         <ProductColorSizeGroupWithAttributes element={element} />

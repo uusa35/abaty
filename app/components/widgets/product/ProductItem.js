@@ -21,7 +21,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         borderTopWidth: 1,
         borderTopColor: 'lightgrey',
         paddingTop: 10,
-        paddingBottom: 10,
+        paddingBottom: 10
       }}>
       <FastImage
         source={{uri: element.thumb ? element.thumb : logo}}
@@ -34,14 +34,13 @@ const ProductItem = ({element, logo, editMode, qty}) => {
           flex: 0.6,
           paddingLeft: 5,
           paddingRight: 5,
-            borderRight : 10.5,
-            borderColor : 'grey'
+          borderRight: 10.5,
+          borderColor: 'grey'
         }}>
         <Text style={styles.mainTitle}>{element.name}</Text>
         {!validate.isEmpty(element.user) ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text
-              style={styles.productItemTitle}>
+            <Text style={styles.productItemTitle}>
               {I18n.t('company')}
               <Text>:</Text>
             </Text>
@@ -59,8 +58,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         ) : null}
         {!validate.isEmpty(element.sku) ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text
-              style={styles.productItemTitle}>
+            <Text style={styles.productItemTitle}>
               {I18n.t('sku')}
               <Text>:</Text>
             </Text>
@@ -78,8 +76,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         ) : null}
         {!validate.isEmpty(element.size) && element.show_attribute ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text
-              style={styles.productItemTitle}>
+            <Text style={styles.productItemTitle}>
               {I18n.t('size')}
               <Text>:</Text>
             </Text>
@@ -97,8 +94,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         ) : null}
         {!validate.isEmpty(element.color) && element.show_attribute ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text
-              style={styles.productItemTitle}>
+            <Text style={styles.productItemTitle}>
               {I18n.t('color')}
               <Text>:</Text>
             </Text>
@@ -116,8 +112,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         ) : null}
         {!validate.isEmpty(element.qty) ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text
-              style={styles.productItemTitle}>
+            <Text style={styles.productItemTitle}>
               {I18n.t('qty')}
               <Text>:</Text>
             </Text>
@@ -233,10 +228,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 10
   },
-    productItemTitle : {
-        width: 90,
-        fontFamily: text.font,
-        fontSize: 13,
-        textAlign: 'left',
-    }
+  productItemTitle: {
+    width: 90,
+    fontFamily: text.font,
+    fontSize: 13,
+    textAlign: 'left'
+  }
 });

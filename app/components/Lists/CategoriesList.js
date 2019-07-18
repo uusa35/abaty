@@ -67,12 +67,12 @@ CategoriesList.propTypes = {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   wrapper: {
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
+    width: '100%'
   }
 });

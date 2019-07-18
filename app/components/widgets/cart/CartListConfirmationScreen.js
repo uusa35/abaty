@@ -11,13 +11,12 @@ import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import validate from 'validate.js';
+import {displayName} from './../../../../app';
 import * as actions from '../../../redux/actions/types';
 
 const CartListConfirmationScreen = ({
   cart,
   shipmentCountry,
-  auth,
   grossTotal,
   shipment_notes,
   guest,
@@ -466,40 +465,42 @@ const CartListConfirmationScreen = ({
             />
           ) : (
             <View>
-              <Button
-                raised
-                containerStyle={{marginBottom: 10, width: '100%'}}
-                buttonStyle={{
-                  backgroundColor: colors.btn_bg_theme_color,
-                  borderRadius: 0
-                }}
-                title={I18n.t('go_to_payment_my_fatoorah')}
-                titleStyle={{
-                  fontFamily: text.font,
-                  color: colors.btn_text_theme_color
-                }}
-                onPress={() =>
-                  dispatch({
-                    type: actions.CREATE_MYFATOORAH_PAYMENT_URL,
-                    payload: {
-                      name,
-                      email,
-                      mobile,
-                      address,
-                      country_id: shipmentCountry.id,
-                      coupon_id: !isNull(coupon) ? coupon.id : null,
-                      cart,
-                      total,
-                      grossTotal,
-                      shipment_fees: shipmentCountry.fixed_shipment_charge,
-                      discount,
-                      payment_method: isIOS
-                        ? 'IOS - My Fatoorah'
-                        : 'Android - My Fatoorah'
-                    }
-                  })
-                }
-              />
+              {displayName !== 'abati' ? (
+                <Button
+                  raised
+                  containerStyle={{marginBottom: 10, width: '100%'}}
+                  buttonStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                    borderRadius: 0
+                  }}
+                  title={I18n.t('go_to_payment_my_fatoorah')}
+                  titleStyle={{
+                    fontFamily: text.font,
+                    color: colors.btn_text_theme_color
+                  }}
+                  onPress={() =>
+                    dispatch({
+                      type: actions.CREATE_MYFATOORAH_PAYMENT_URL,
+                      payload: {
+                        name,
+                        email,
+                        mobile,
+                        address,
+                        country_id: shipmentCountry.id,
+                        coupon_id: !isNull(coupon) ? coupon.id : null,
+                        cart,
+                        total,
+                        grossTotal,
+                        shipment_fees: shipmentCountry.fixed_shipment_charge,
+                        discount,
+                        payment_method: isIOS
+                          ? 'IOS - My Fatoorah'
+                          : 'Android - My Fatoorah'
+                      }
+                    })
+                  }
+                />
+              ) : null}
               <Button
                 raised
                 containerStyle={{marginBottom: 10, width: '100%'}}

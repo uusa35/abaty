@@ -21,7 +21,7 @@ type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {dispatch, bootStrapped, currency, lang, token } = this.props;
+    const {dispatch, bootStrapped, currency, lang, token} = this.props;
     codePush.checkForUpdate().then(update => {
       if (!update) {
         // if(!bootStrapped) {
@@ -29,15 +29,23 @@ class App extends Component<Props> {
         // }
       }
     });
-      axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
-          ? currency
-          : 'KWD';
-      axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang) ? lang : (isRTL ? 'ar' : 'en');
-      axiosInstance.defaults.headers.common['lang'] = !validate.isEmpty(lang) ? lang : (isRTL ? 'ar' : 'en');
-      axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
-          ? `Bearer ${token}`
-          : null;
-    if(!bootStrapped) {
+    axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
+      ? currency
+      : 'KWD';
+    axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang)
+      ? lang
+      : isRTL
+      ? 'ar'
+      : 'en';
+    axiosInstance.defaults.headers.common['lang'] = !validate.isEmpty(lang)
+      ? lang
+      : isRTL
+      ? 'ar'
+      : 'en';
+    axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
+      ? `Bearer ${token}`
+      : null;
+    if (!bootStrapped) {
       dispatch(appBootstrap());
     }
   }

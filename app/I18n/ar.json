@@ -86,6 +86,7 @@
   "yes_on_sale" : "يوجد خصم",
   "sale_price" : "السعر بعد الخصم",
   "gallery" : "المعارض",
+  "user_gallery" : "معرض الصور",
   "our_galleries" : "معارضنا",
   "qty" : "الكمية",
   "cart_details" : "تفاصيل عربة التسوق",
@@ -443,6 +444,8 @@
   "edit_information" : "تعديل البيانات",
   "update_information" : "تحديث البيانات",
   "update_information_success" : "تم تحديث البيانات بنجاح.",
-  "height" : "الطول"
+  "height" : "الطول",
+  "go_to_payment_tap" : "الذهاب لصفحة الدفع",
+  "go_to_payment_my_fatoorah" : "الذهاب لصفحة الدفع"
 
 }

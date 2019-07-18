@@ -10,6 +10,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
+  console.log('videos', videos);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <Text

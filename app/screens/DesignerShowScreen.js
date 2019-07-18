@@ -36,7 +36,8 @@ class DesignerShowScreen extends Component {
   }
 
   render() {
-    const {designer, navigation, settings, searchParams} = this.props;
+    const {user, navigation, settings, searchParams} = this.props;
+    console.log('user roole', user.role);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -48,27 +49,23 @@ class DesignerShowScreen extends Component {
           minHeight={50}
           containerStyle={{flex: 1}}
           headerImage={{
-            uri: designer.banner ? designer.banner : settings.logo
+            uri: user.banner ? user.banner : settings.logo
           }}>
           <View style={styles.wrapper}>
             <TriggeringView onHide={() => console.log('text hidden')}>
               <UserImageProfile
-                large={designer.large}
+                large={user.large}
                 logo={settings.logo}
-                slug={designer.slug}
+                slug={user.slug}
+                type={user.role.slug}
               />
-              {!validate.isEmpty(designer.slides) ? (
+              {!validate.isEmpty(user.slides) ? (
                 <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-                  <MainSliderWidget slides={designer.slides} />
+                  <MainSliderWidget slides={user.slides} />
                 </View>
               ) : null}
               <View>
-                <ImagesWidget
-                  elements={designer.images}
-                  name={designer.slug}
-                  showLabels={false}
-                />
-                {/*<UserShowInformationTabBarWidget element={designer} />*/}
+                {/*<UserShowInformationTabBarWidget element={user} />*/}
                 <TabView
                   renderTabBar={props => (
                     <TabBar
@@ -92,7 +89,7 @@ class DesignerShowScreen extends Component {
                   renderScene={SceneMap({
                     products: () => (
                       <ProductList
-                        elements={designer.productGroup}
+                        elements={user.productGroup}
                         showSearch={false}
                         showTitle={true}
                         showFooter={false}
@@ -100,10 +97,8 @@ class DesignerShowScreen extends Component {
                       />
                     ),
                     categories: () =>
-                      !validate.isEmpty(designer.categories) ? (
-                        <UserCategoriesInfoWidget
-                          elements={designer.categories}
-                        />
+                      !validate.isEmpty(user.categories) ? (
+                        <UserCategoriesInfoWidget elements={user.categories} />
                       ) : (
                         <View>
                           <Text style={styles.subTitle}>
@@ -111,10 +106,10 @@ class DesignerShowScreen extends Component {
                           </Text>
                         </View>
                       ),
-                    info: () => <UserInfoWidget user={designer} />,
+                    info: () => <UserInfoWidget user={user} />,
                     more: () =>
-                      !validate.isEmpty(designer.videos) ? (
-                        <VideosWidget videos={designer.videos} />
+                      !validate.isEmpty(user.videos) ? (
+                        <VideosWidget videos={user.videos} />
                       ) : (
                         <View>
                           <Text style={styles.subTitle}>
@@ -138,7 +133,7 @@ class DesignerShowScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    designer: state.designer,
+    user: state.designer,
     searchParams: state.searchParams,
     settings: state.settings
   };
@@ -148,7 +143,7 @@ export default connect(mapStateToProps)(DesignerShowScreen);
 
 DesignerShowScreen.propTypes = {
   settings: PropTypes.object.isRequired,
-  designer: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired
 };
 

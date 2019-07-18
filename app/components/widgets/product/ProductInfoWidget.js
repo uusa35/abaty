@@ -27,7 +27,7 @@ const ProductInfoWidget = ({element, currency}) => {
       contentContainerStyle={{
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        marginTop: 10,
+        marginTop: 10
       }}>
       <ProductInfoWidgetMainTitle element={element} currency={currency} />
       <ProductInfoWidgetBtns element={element} />

@@ -111,10 +111,9 @@ const ProductList = ({
             />
           }
           onEndReached={() => {
-            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading)
+            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
             setEndList(false);
-          }
-          }
+          }}
           contentContainerStyle={{
             width: width - 20,
             minHeight: '100%'

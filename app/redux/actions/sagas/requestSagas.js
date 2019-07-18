@@ -16,7 +16,7 @@ import {setCurrency} from '../../../helpers';
 import axios from 'axios';
 import {getUsers, startAppBootStrap} from './appSagas';
 import {registerConstrains, submitLogin} from '../../../constants';
-import {axiosInstance} from "../api";
+import {axiosInstance} from '../api';
 
 export function* setHomeCategories() {
   try {
@@ -160,7 +160,7 @@ export function* getCountry(country_id = null) {
         ? yield call(api.getCountry)
         : yield call(api.getCountry, country_id);
       if (!validate.isEmpty(country)) {
-        yield put({ type : actions.SET_COUNTRY , payload : country })
+        yield put({type: actions.SET_COUNTRY, payload: country});
         yield call(startSetCountryScenario, {payload: country});
       }
     }
@@ -307,9 +307,9 @@ export function* startDeepLinkingScenario(action) {
     if (!isNull(type)) {
       if (type === 'user') {
         console.log('routeName is', type);
-        yield call(startGetUserScenario, { payload : id })
+        yield call(startGetUserScenario, {payload: id});
       } else if (type === 'product') {
-        yield call(startGetProductScenario, { payload : { id }})
+        yield call(startGetProductScenario, {payload: {id}});
       }
     }
   } catch (e) {

@@ -40,7 +40,7 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <FastImage
             source={{uri: country.thumb}}
-            style={{width: 40, height: 25}}
+            style={{width: 35, height: 20}}
             resizeMode="stretch"
           />
         </TouchableOpacity>

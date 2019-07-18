@@ -409,5 +409,8 @@
   "edit_information" : "Edit Information",
   "update_information" : "Update Information",
   "update_information_success" : "Your data successfully updated.",
-  "height" : "Height"
+  "height" : "Height",
+  "user_gallery" : "Gallery",
+  "go_to_payment_tap" : "Go to Payment",
+  "go_to_payment_my_fatoorah" : "Go to Payment"
 }

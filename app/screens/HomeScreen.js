@@ -6,7 +6,7 @@ import {
   ScrollView,
   View,
   AppState,
-    Text
+  Text
 } from 'react-native';
 import {NavContext} from '../redux/NavContext';
 import {connect} from 'react-redux';
@@ -46,13 +46,13 @@ class HomeScreen extends Component {
         headerTitle: (
           <SafeAreaView>
             <FastImage
-              resizeMode="stretch"
+              resizeMode="contain"
               source={{
                 uri: navigation.state.params.logo
                   ? navigation.state.params.logo
                   : null
               }}
-              style={{width: 65, height: 35}}
+              style={{width: 65, height: 30}}
             />
           </SafeAreaView>
         )
@@ -60,12 +60,11 @@ class HomeScreen extends Component {
     }
   };
 
-
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
+    // OneSignal.addEventListener('received', this.onReceived);
+    // OneSignal.addEventListener('opened', this.onOpened);
     OneSignal.addEventListener('ids', this.onIds);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', this.handleOpenURL);
@@ -82,15 +81,15 @@ class HomeScreen extends Component {
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
     Linking.removeEventListener('url', this.handleOpenURL);
-    OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
+    // OneSignal.removeEventListener('received', this.onReceived);
+    // OneSignal.removeEventListener('opened', this.onOpened);
     OneSignal.removeEventListener('ids', this.onIds);
   }
 
-  _handleAppStateChange = (nextAppState) => {
+  _handleAppStateChange = nextAppState => {
     if (
-        this.state.appState.match(/inactive|background/) &&
-        nextAppState === 'active'
+      this.state.appState.match(/inactive|background/) &&
+      nextAppState === 'active'
     ) {
       console.log('HERE NOW');
     }
@@ -105,7 +104,7 @@ class HomeScreen extends Component {
 
   handleOpenURL = event => {
     console.log('Initial Url Case', event);
-    const {type , id} = getPathForDeepLinking(event.url);
+    const {type, id} = getPathForDeepLinking(event.url);
     console.log('the type', type);
     console.log('the id', id);
     return this.props.dispatch(goDeepLinking({type, id}));
@@ -245,7 +244,7 @@ function mapStateToProps(state) {
     show_commercials: state.settings.show_commercials,
     network: state.network,
     colors: state.settings.colors,
-    lang : state.lang
+    lang: state.lang
   };
 }
 

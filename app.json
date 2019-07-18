@@ -4,5 +4,5 @@
   "apiUrl" : "http://mallr.test/api/",
   "ENV" : "production",
   "PORT" : 4000,
-  "ONE_SIGNAL_APP_ID" : "365c1fc9-12c5-415b-84d2-cc6fbc7e378e"
+  "ONE_SIGNAL_APP_ID" : "4e81df51-996b-4f66-93ff-e921abb51b32"
 }

@@ -6,6 +6,7 @@ import {NavContext} from '../redux/NavContext';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
+import {isIOS} from '../constants';
 
 class CategoryIndexScreen extends Component {
   constructor(props) {
@@ -17,11 +18,12 @@ class CategoryIndexScreen extends Component {
     const {navigation, commercials, categories, show_commercials} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        <ScrollView style={{flex: 0.8}}>
-          <View animation="bounceIn" easing="ease-out">
-            <CategoriesList elements={categories} columns={columns} />
-          </View>
-        </ScrollView>
+        <View
+          animation="bounceIn"
+          easing="ease-out"
+          style={{flex: show_commercials ? 0.8 : 1}}>
+          <CategoriesList elements={categories} columns={columns} />
+        </View>
         {show_commercials ? (
           <View style={{flex: 0.2}}>
             <CommercialSliderWidget commercials={commercials} />

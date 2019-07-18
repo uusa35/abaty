@@ -19,14 +19,17 @@ class RegisterScreen extends Component {
     return (
       <NavContext.Provider value={{navigation}}>
         <ScrollView
-            contentContainerStyle={{minHeight: !isIOS ? '120%' : null, justifyContent: 'flex-start', alignItems: 'center'}}
-            horizontal={false}
-            automaticallyAdjustContentInsets={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            contentInset={{bottom: 100}}
-          style={{ flex: 1}}
-        >
+          contentContainerStyle={{
+            minHeight: !isIOS ? '120%' : null,
+            justifyContent: 'flex-start',
+            alignItems: 'center'
+          }}
+          horizontal={false}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          contentInset={{bottom: 100}}
+          style={{flex: 1}}>
           <View style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
             <FastImage
               source={{uri: logo}}

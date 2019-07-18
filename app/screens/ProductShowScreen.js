@@ -11,7 +11,11 @@ import {View} from 'react-native-animatable';
 import I18n, {isRTL} from './../I18n';
 import {Icon} from 'react-native-elements';
 import {first} from 'lodash';
-import {getCategoryElements, getDesigner} from '../redux/actions';
+import {
+  getCategoryElements,
+  getDesigner,
+  getSearchProducts
+} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
@@ -63,41 +67,57 @@ class ProductShowScreen extends Component {
             <View animation="bounceInLeft" easing="ease-out">
               <ProductInfoWidget element={product} currency={currency} />
             </View>
-            <View animation="bounceInLeft" easing="ease-out" style={{ marginTop : 15 }}>
-              {
-                product.description ?
-                    <View>
-                      <Text
-                          style={{
-                            textAlign: 'left',
-                            fontSize: 20,
-                            fontFamily: text.font,
-                            paddingBottom: 0
-                          }}>
-                        {I18n.t('description')}
-                      </Text>
-                      <Text
-                          style={{
-                            textAlign: 'left',
-                            fontSize: 17,
-                            fontFamily: text.font,
-                            padding: 10
-                          }}>
-                        {product.description}
-                      </Text>
-                    </View>
-                     : null
-              }
+            <View
+              animation="bounceInLeft"
+              easing="ease-out"
+              style={{marginTop: 15}}>
+              {product.description ? (
+                <View>
+                  <Text
+                    style={{
+                      textAlign: 'left',
+                      fontSize: 20,
+                      fontFamily: text.font,
+                      paddingBottom: 0
+                    }}>
+                    {I18n.t('description')}
+                  </Text>
+                  <Text
+                    style={{
+                      textAlign: 'left',
+                      fontSize: 17,
+                      fontFamily: text.font,
+                      padding: 10
+                    }}>
+                    {product.description}
+                  </Text>
+                </View>
+              ) : null}
               <ProductInfoWidgetElement
                 elementName="designer"
                 name={product.user.slug}
-                link={() => dispatch(getDesigner(product.user.id))}
+                link={() =>
+                  dispatch(
+                    getDesigner({
+                      element: product.user,
+                      searchElements: {user_id: product.user.id}
+                    })
+                  )
+                }
               />
               <ProductInfoWidgetElement
                 elementName="categories"
                 name={first(product.categories).name}
                 link={() =>
-                  dispatch(getCategoryElements(first(product.categories)))
+                  dispatch(
+                    getSearchProducts({
+                      element: first(product.categories),
+                      category: first(product.categories),
+                      searchElements: {
+                        product_category_id: first(product.categories).id
+                      }
+                    })
+                  )
                 }
               />
               <ProductInfoWidgetElement
@@ -143,7 +163,8 @@ class ProductShowScreen extends Component {
               ) : null}
             </View>
           </View>
-          {validate.isObject(product.videos) ? (
+          {validate.isObject(product.videos) &&
+          !validate.isEmpty(product.videos) ? (
             <VideosWidget videos={product.videos} />
           ) : null}
           {!validate.isEmpty(products) ? (
