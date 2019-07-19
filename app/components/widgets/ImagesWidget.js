@@ -56,7 +56,7 @@ const ImagesWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{height: height, width: width}}
+        contentContainerStyle={{height: height}}
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
         {map(elements, (c, i) => (
           <TouchableOpacity
@@ -73,10 +73,9 @@ const ImagesWidget = ({
               source={{
                 uri: c.large
               }}
-              imageStyle={styles.imageStyling}
               loadingIndicatorSource={images.logo}
               style={{width, height}}
-              resizeMode="contain">
+              resizeMode="cover">
               {showLabels && i === 0 ? (
                 <View style={{flex: 1, padding: 20}}>
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}

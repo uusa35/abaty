@@ -29,7 +29,7 @@ class DesignerShowScreen extends Component {
       routes: [
         {key: 'products', title: I18n.t('products')},
         {key: 'categories', title: I18n.t('categories')},
-        {key: 'info', title: I18n.t('information')},
+        {key: 'info', title: I18n.t('information').substring(0, 10)},
         {key: 'more', title: I18n.t('videos')}
       ]
     };

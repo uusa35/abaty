@@ -2,7 +2,7 @@
  * Created by usamaahmed on 9/28/17.
  */
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
@@ -27,21 +27,23 @@ const HeaderCustom = ({navigation}) => {
       });
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <Icon
-        onPress={() =>
-          shareLink(
-            `${navigation.state.params.product ? productPrefix : userPrefix}${
-              navigation.state.params.id
-            }`
-          )
-        }
-        name="share"
-        size={25}
-        underlayColor="transparent"
-        hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-        color="black"
-      />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Icon
+          onPress={() =>
+            shareLink(
+              `${navigation.state.params.product ? productPrefix : userPrefix}${
+                navigation.state.params.id
+              }`
+            )
+          }
+          name="share"
+          size={25}
+          underlayColor="transparent"
+          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          color="black"
+        />
+      </View>
     </SafeAreaView>
   );
 };

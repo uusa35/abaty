@@ -6,9 +6,8 @@ import {
   ScrollView,
   View,
   AppState,
-  Text
+  StyleSheet
 } from 'react-native';
-import {NavContext} from '../redux/NavContext';
 import {connect} from 'react-redux';
 import {
   goBackBtn,
@@ -16,7 +15,7 @@ import {
   refetchHomeElements,
   setPlayerId
 } from '../redux/actions';
-import {images, isIOS, text, width} from '../constants';
+import {isIOS} from '../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {ONE_SIGNAL_APP_ID} from './../../app.json';
@@ -32,6 +31,7 @@ import ProductHorizontalWidget from '../components/widgets/product/ProductHorizo
 import FastImage from 'react-native-fast-image';
 import {SafeAreaView} from 'react-navigation';
 import {has} from 'lodash';
+import {NavContext} from '../redux/NavContext';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 
 class HomeScreen extends Component {
@@ -45,15 +45,17 @@ class HomeScreen extends Component {
       return {
         headerTitle: (
           <SafeAreaView>
-            <FastImage
-              resizeMode="contain"
-              source={{
-                uri: navigation.state.params.logo
-                  ? navigation.state.params.logo
-                  : null
-              }}
-              style={{width: 65, height: 30}}
-            />
+            <View style={styles.safeContainer}>
+              <FastImage
+                resizeMode="contain"
+                source={{
+                  uri: navigation.state.params.logo
+                    ? navigation.state.params.logo
+                    : null
+                }}
+                style={{width: 65, height: 25}}
+              />
+            </View>
           </SafeAreaView>
         )
       };
@@ -152,76 +154,79 @@ class HomeScreen extends Component {
       homeProducts,
       splash_on,
       show_commercials,
-      colors
+      colors,
+      navigation
     } = this.props;
     return (
-      <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-        {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
-          <IntroductionWidget elements={splashes} visible={splash_on} />
-        ) : null}
-        <ScrollView
-          contentContainerStyle={{backgroundColor: 'transparent'}}
-          contentInset={{bottom: 50}}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refresh}
-              onRefresh={() => this._refetchElements()}
-            />
-          }
-          showsHorizontalScrollIndicator={false}
-          endFillColor="white"
-          showsVerticalScrollIndicator={false}
-          style={{flex: 0.8}}>
-          <SearchForm />
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
+      <NavContext.Provider value={{navigation}}>
+        <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+          {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
+            <IntroductionWidget elements={splashes} visible={splash_on} />
           ) : null}
-          {!validate.isEmpty(designers) && validate.isArray(designers) ? (
-            <DesignerHorizontalWidget
-              elements={designers}
-              showName={true}
-              name="designers"
-              title="designers"
-            />
-          ) : null}
-          {!validate.isEmpty(categories) && validate.isArray(categories) ? (
-            <CategoryHorizontalWidget
-              elements={categories}
-              showName={true}
-              title="categories"
-            />
-          ) : null}
-          {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
-            <DesignerHorizontalWidget
-              elements={celebrities}
-              showName={true}
-              name="celebrities"
-              title="celebrities"
-            />
-          ) : null}
-          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-            <BrandHorizontalWidget
-              elements={brands}
-              showName={false}
-              title="brands"
-            />
-          ) : null}
-          {!validate.isEmpty(homeProducts) ? (
-            <ProductHorizontalWidget
-              elements={homeProducts}
-              showName={true}
-              title="featured_products"
-            />
-          ) : null}
-        </ScrollView>
-        {show_commercials ? (
-          <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
-              <FixedCommercialSliderWidget sliders={commercials} />
+          <ScrollView
+            contentContainerStyle={{backgroundColor: 'transparent'}}
+            contentInset={{bottom: 50}}
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refresh}
+                onRefresh={() => this._refetchElements()}
+              />
+            }
+            showsHorizontalScrollIndicator={false}
+            endFillColor="white"
+            showsVerticalScrollIndicator={false}
+            style={{flex: 0.8}}>
+            <SearchForm />
+            {!validate.isEmpty(slides) ? (
+              <MainSliderWidget slides={slides} />
             ) : null}
-          </View>
-        ) : null}
-      </View>
+            {!validate.isEmpty(designers) && validate.isArray(designers) ? (
+              <DesignerHorizontalWidget
+                elements={designers}
+                showName={true}
+                name="designers"
+                title="designers"
+              />
+            ) : null}
+            {!validate.isEmpty(categories) && validate.isArray(categories) ? (
+              <CategoryHorizontalWidget
+                elements={categories}
+                showName={true}
+                title="categories"
+              />
+            ) : null}
+            {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
+              <DesignerHorizontalWidget
+                elements={celebrities}
+                showName={true}
+                name="celebrities"
+                title="celebrities"
+              />
+            ) : null}
+            {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+              <BrandHorizontalWidget
+                elements={brands}
+                showName={false}
+                title="brands"
+              />
+            ) : null}
+            {!validate.isEmpty(homeProducts) ? (
+              <ProductHorizontalWidget
+                elements={homeProducts}
+                showName={true}
+                title="featured_products"
+              />
+            ) : null}
+          </ScrollView>
+          {show_commercials ? (
+            <View style={{flex: 0.2}}>
+              {!validate.isEmpty(commercials) ? (
+                <FixedCommercialSliderWidget sliders={commercials} />
+              ) : null}
+            </View>
+          ) : null}
+        </View>
+      </NavContext.Provider>
     );
   }
 }
@@ -258,3 +263,14 @@ HomeScreen.propTypes = {
   show_commercials: PropTypes.bool,
   splash_on: PropTypes.bool
 };
+
+const styles = StyleSheet.create({
+  safeContainer: {
+    paddingRight: 5,
+    paddingLeft: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 80
+  }
+});

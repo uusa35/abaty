@@ -50,6 +50,15 @@ const widgetStyles = StyleSheet.create({
     marginRight: 3,
     alignItems: 'center',
     shadowColor: '#000'
+  },
+  safeContainer: {
+    paddingRight: 5,
+    paddingLeft: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flex: 1,
+    minWidth: 80
   }
 });
 
