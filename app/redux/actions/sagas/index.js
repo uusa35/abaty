@@ -23,6 +23,7 @@ export default function* rootSaga() {
     fork(appSagas.addToCart),
     fork(appSagas.removeFromCart),
     fork(appSagas.clearCart),
+    fork(appSagas.submitCart),
     fork(appSagas.setCountry),
     fork(appSagas.setPlayerId),
     fork(appSagas.submitAuth),

@@ -2,8 +2,13 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text} from '../../../constants';
-import {clearCart, getCoupon, showCountryModal} from '../../../redux/actions';
+import {isIOS, registerConstrains, text} from '../../../constants';
+import {
+  clearCart,
+  getCoupon,
+  showCountryModal,
+  submitCart
+} from '../../../redux/actions';
 import {Button, Input} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {NavContext} from '../../../redux/NavContext';
@@ -12,7 +17,6 @@ import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
-import * as actions from '../../../redux/actions/types';
 
 const CartList = ({
   cart,
@@ -469,14 +473,16 @@ const CartList = ({
                 color: colors.btn_text_theme_color
               }}
               onPress={() =>
-                navigation.navigate('CartConfirmation', {
-                  cName: name,
-                  cEmail: email,
-                  cMobile: mobile,
-                  cAddress: address,
-                  country_id: shipmentCountry.id,
-                  cNotes: notes
-                })
+                dispatch(
+                  submitCart({
+                    name,
+                    email,
+                    mobile,
+                    address,
+                    country_id: shipmentCountry.id,
+                    notes
+                  })
+                )
               }
             />
           ) : (

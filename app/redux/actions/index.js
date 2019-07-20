@@ -377,6 +377,12 @@ export function addToCart(payload) {
   };
 }
 
+export function submitCart(payload) {
+  return {
+    type: actions.SUBMIT_CART,
+    payload
+  };
+}
 export function filterCart(payload) {
   return {
     type: actions.FILTER_CART,

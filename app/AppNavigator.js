@@ -240,7 +240,11 @@ const BrandStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
-          <HeaderRight {...navigation} display={true} displayShare={true} />
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
         ),
         headerBackTitle: null
       }),
@@ -379,7 +383,11 @@ const CategoryStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
-          <HeaderRight {...navigation} display={true} displayShare={true} />
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
         ),
         headerBackTitle: null
       }),

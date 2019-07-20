@@ -523,6 +523,34 @@ export function* startClearCartScenario() {
   }
 }
 
+export function* startSubmitCartScenario(action) {
+  try {
+    const {name, mobile, email, address, country_id, notes} = action.payload;
+    const result = validate({name, mobile, email, address}, registerConstrains);
+    if (validate.isEmpty(result)) {
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'CartConfirmation',
+          params: {
+            cName: name,
+            cEmail: email,
+            cMobile: mobile,
+            cAddress: address,
+            country_id,
+            cNotes: notes
+          }
+        })
+      );
+    } else {
+      throw result['name'] ||
+        result['mobile'] ||
+        result['address'] ||
+        result['email'];
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(first(e))]);
+  }
+}
 export function* startAuthenticatedScenario() {
   try {
     const {token} = yield select();

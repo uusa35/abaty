@@ -239,6 +239,16 @@ const CartListConfirmationScreen = ({
           </View>
         ) : null}
         <View>
+          <Button
+            raised
+            title={shipment_notes}
+            type="outline"
+            containerStyle={{marginBottom: 20}}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.header_one_theme_color
+            }}
+          />
           <View style={{paddingTop: 20, paddingBottom: 20}}>
             <Input
               editable={editMode}
@@ -301,15 +311,6 @@ const CartListConfirmationScreen = ({
               keyboardType="number-pad"
               onChangeText={mobile => setMobile(mobile)}
             />
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.small,
-                textAlign: 'center',
-                paddingBottom: 10
-              }}>
-              {shipment_notes}
-            </Text>
             <TouchableOpacity
               onPress={() => {
                 editMode ? dispatch(showCountryModal()) : null;

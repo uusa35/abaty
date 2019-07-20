@@ -35,7 +35,8 @@ import {
   getProductIndex,
   toggleFavoriteScenario,
   startGetAllProductsScenario,
-  startUpdateUserScenario
+  startUpdateUserScenario,
+  startSubmitCartScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -188,6 +189,10 @@ export function* removeFromCart() {
 
 export function* clearCart() {
   yield takeLatest(actions.DO_CLEAR_CART_PROCESS, startClearCartScenario);
+}
+
+export function* submitCart() {
+  yield takeLatest(actions.SUBMIT_CART, startSubmitCartScenario);
 }
 
 export function* submitAuth() {
