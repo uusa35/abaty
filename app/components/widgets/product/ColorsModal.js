@@ -18,6 +18,7 @@ const ColorsModal = ({
   setColorVisible,
   colorItems,
   setColorItem,
+  setColorName,
   colorItem
 }) => {
   return (
@@ -38,7 +39,9 @@ const ColorsModal = ({
               alignItems: 'baseline',
               padding: 15
             }}>
-            <Text style={styles.phoneNo}>{I18n.t('choose_color')}</Text>
+            <Text style={styles.phoneNo}>
+              {I18n.t('choose_color_or_height')}
+            </Text>
             <Icon
               name="close"
               size={15}
@@ -54,6 +57,7 @@ const ColorsModal = ({
                 hitSlop={{left: 15, right: 15}}
                 onPress={() => {
                   setColorItem(a);
+                  setColorName(a.name);
                   setColorVisible(false);
                 }}
                 style={styles.wrapper}>

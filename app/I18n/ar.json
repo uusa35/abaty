@@ -446,6 +446,8 @@
   "update_information_success" : "تم تحديث البيانات بنجاح.",
   "height" : "الطول",
   "go_to_payment_tap" : "الذهاب لصفحة الدفع",
-  "go_to_payment_my_fatoorah" : "الذهاب لصفحة الدفع"
+  "go_to_payment_my_fatoorah" : "الذهاب لصفحة الدفع",
+  "choose_color_or_height" : "اختيار الطول",
+  "color_or_height" : "اللون / الطول"
 
 }

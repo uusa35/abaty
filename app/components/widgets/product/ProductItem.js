@@ -95,7 +95,7 @@ const ProductItem = ({element, logo, editMode, qty}) => {
         {!validate.isEmpty(element.color) && element.show_attribute ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
-              {I18n.t('color')}
+              {I18n.t('color_or_height')}
               <Text>:</Text>
             </Text>
             <Text

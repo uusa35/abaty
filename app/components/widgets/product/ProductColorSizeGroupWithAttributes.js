@@ -22,6 +22,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   [colorVisible, setColorVisible] = useState(false);
   [colorItems, setColorItems] = useState(null);
   [colorItem, setColorItem] = useState(null);
+  [colorName, setColorName] = useState(null);
   [sizeItem, setSizeItem] = useState(null);
   [elementId, setElementId] = useState(null);
 
@@ -110,7 +111,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 name="circle"
                 type="font-awesome"
                 size={25}
-                color={colorItem ? colorItem.code : 'transparent'}
+                // color={colorItem ? colorItem.code : 'transparent'}
+                color="black"
               />
             }
             containerStyle={{flex: 0.4, marginBottom: 10, margin: 2}}
@@ -121,7 +123,9 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
               borderColor: 'black',
               justifyContent: 'space-around'
             }}
-            title={I18n.t('choose_height')}
+            title={
+              isNull(colorName) ? I18n.t('choose_color_or_height') : colorName
+            }
             titleStyle={{fontFamily: text.font, color: 'black'}}
           />
         </View>
@@ -141,6 +145,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           colorItems={colorItems}
           colorItem={colorItem}
           setColorItem={setColorItem}
+          setColorName={setColorName}
           colorVisible={colorVisible}
           setColorVisible={setColorVisible}
         />

@@ -750,10 +750,13 @@ export function* startRegisterScenario(action) {
         throw user;
       }
     } else {
-      throw I18n.t('information_you_entered_not_correct');
+      throw result['name'] ||
+        result['email'] ||
+        result['mobile'] ||
+        result['address'];
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([disableLoading, enableErrorMessage(first(e))]);
   }
 }
 

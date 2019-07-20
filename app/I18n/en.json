@@ -412,5 +412,7 @@
   "height" : "Height",
   "user_gallery" : "Gallery",
   "go_to_payment_tap" : "Go to Payment",
-  "go_to_payment_my_fatoorah" : "Go to Payment"
+  "go_to_payment_my_fatoorah" : "Go to Payment",
+  "choose_color_or_height" : "Choose Height ",
+  "color_or_height" : "Color/Height"
 }
