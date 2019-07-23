@@ -1,7 +1,7 @@
 PODS:
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
-  - CodePush (5.6.0):
+  - CodePush (5.6.1):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -94,17 +94,17 @@ PODS:
   - React-jsinspector (0.60.0)
   - react-native-maps (0.24.2):
     - React
-  - react-native-netinfo (4.0.0):
+  - react-native-netinfo (4.1.2):
     - React
   - react-native-onesignal (3.2.14):
     - OneSignal (= 2.10.0)
     - React
   - react-native-pdf (5.1.3):
     - React
-  - react-native-video (4.4.2):
+  - react-native-video (4.4.4):
     - React
-    - react-native-video/Video (= 4.4.2)
-  - react-native-video/Video (4.4.2):
+    - react-native-video/Video (= 4.4.4)
+  - react-native-video/Video (4.4.4):
     - React
   - react-native-webview (5.12.1):
     - React
@@ -134,9 +134,9 @@ PODS:
     - React-fishhook (= 0.60.0)
   - ReactNativeNavigation (2.22.3):
     - React
-  - rn-fetch-blob (0.10.6):
+  - rn-fetch-blob (0.10.16):
     - React-Core
-  - RNCAsyncStorage (1.5.0):
+  - RNCAsyncStorage (1.5.1):
     - React
   - RNDeviceInfo (2.2.2):
     - React
@@ -152,7 +152,7 @@ PODS:
     - React
   - RNShare (1.2.1):
     - React
-  - RNSVG (9.5.1):
+  - RNSVG (9.5.3):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -195,11 +195,11 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
-  - ReactNativeNavigation (from `/Users/mac/Sites/abaty/node_modules/react-native-navigation`)
+  - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
-  - RNFastImage (from `/Users/mac/Sites/abaty/node_modules/react-native-fast-image`)
+  - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -279,7 +279,7 @@ EXTERNAL SOURCES:
   React-RCTWebSocket:
     :path: "../node_modules/react-native/Libraries/WebSocket"
   ReactNativeNavigation:
-    :path: "/Users/mac/Sites/abaty/node_modules/react-native-navigation"
+    :path: "../node_modules/react-native-navigation"
   rn-fetch-blob:
     :path: "../node_modules/rn-fetch-blob"
   RNCAsyncStorage:
@@ -287,7 +287,7 @@ EXTERNAL SOURCES:
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNFastImage:
-    :path: "/Users/mac/Sites/abaty/node_modules/react-native-fast-image"
+    :path: "../node_modules/react-native-fast-image"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNI18n:
@@ -306,7 +306,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CodePush: 300e90b3481fa82569090406165b83745de3613a
+  CodePush: 5fead4bea79a99aefcd3841607709846796177b3
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
@@ -323,10 +323,10 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 7a3554f703a58963ec80b860144ea0f0e9b910e1
   React-jsinspector: d4ed52225912efe0019bb7f1a225aec20f23049a
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
-  react-native-netinfo: e1030f999f49375be1634749995aea092a09d747
+  react-native-netinfo: 88a4003f68c6f979c1f439e7bd7c5c0b2e819160
   react-native-onesignal: 83c370c7381345d010f253c9f77b4e22f5cb388f
   react-native-pdf: 4ac64df95050555cce80d69c7e798322e1be4e6b
-  react-native-video: aed899073f5572418696ba6af3f31e4d371fd2f1
+  react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a
   react-native-webview: 5036ed4a973ad1deeeff118262d2df7b60b3419d
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570
   React-RCTAnimation: 9e4708e5bd65fca8285ce7c0aa076f3f4fa5c2f8
@@ -339,21 +339,21 @@ SPEC CHECKSUMS:
   React-RCTVibration: 4ee1cf208ab17a50fafb1c16ffe28fe594a64e4f
   React-RCTWebSocket: fca087d583724aa0e5fef7d911f0f2a28d0f2736
   ReactNativeNavigation: 05945cfd4610260b1e6d46a07222dda6223959dd
-  rn-fetch-blob: 2b5313836e2dcd6a8f37ca61a10a732cc851819b
-  RNCAsyncStorage: 9436928b444c5f5361960a7eea051a697c244b68
+  rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
+  RNCAsyncStorage: b63d6e83fc629b01df6b624688f17944cea5637f
   RNDeviceInfo: 1215084f45c1059b031c530281442dc7079ccf0a
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNReanimated: 7a52c90473b5e81c13408d40d797b98387eaddde
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
-  RNSVG: 0eb087cfb5d7937be93c45b163b26352a647e681
+  RNSVG: 90c76b7cf235654d45e54655b6c189ea4041057c
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SDWebImageWebPCoder: 7568737603c50f6237850afedd7e9e28e5917e6b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   yoga: 616fde658be980aa60a2158835170f3f9c2d04b4
 
-PODFILE CHECKSUM: 460e4f38e579487343b056e72877850f096ecdd4
+PODFILE CHECKSUM: fea599fd7e87e7b9b5389a229c0e5a108def04de
 
 COCOAPODS: 1.7.3

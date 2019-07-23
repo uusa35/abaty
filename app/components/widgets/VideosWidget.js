@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../constants';
-import {map, isNull} from 'lodash';
+import {map, isNull, first} from 'lodash';
 import PropTypes from 'prop-types';
 import {WebView} from 'react-native-webview';
 import I18n from '../../I18n';
@@ -10,28 +10,30 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
-  console.log('videos', videos);
+  console.log('videos', videos['video_url_one']);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
-      <Text
-        style={{
-          fontFamily: text.font,
-          fontSize: text.large,
-          marginBottom: 10,
-          textAlign: 'left',
-          color: colors.header_one_theme_color,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 1
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1.0,
+      {!isNull(videos['video_url_one']) ? (
+        <Text
+          style={{
+            fontFamily: text.font,
+            fontSize: text.large,
+            marginBottom: 10,
+            textAlign: 'left',
+            color: colors.header_one_theme_color,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 1
+            },
+            shadowOpacity: 0.18,
+            shadowRadius: 1.0,
 
-          elevation: 1
-        }}>
-        {I18n.t('videos')}
-      </Text>
+            elevation: 1
+          }}>
+          {I18n.t('videos')}
+        </Text>
+      ) : null}
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {
   createBottomTabNavigator,
@@ -43,6 +43,7 @@ import {has} from 'lodash';
 import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 import ProfileIndexScreen from './screens/ProfileIndexScreen';
 import UserEditScreen from './screens/UserEditScreen';
+import {navLabelStyle} from './globalStyles';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -452,7 +453,12 @@ const TabsStack = createBottomTabNavigator(
             style={[{width: 20, height: 20}, {tintColor}]}
           />
         ),
-        title: I18n.t('brands')
+        tabBarLabel: ({tintColor}) => (
+          <Text
+            style={[navLabelStyle, {color: tintColor, fontFamily: text.font}]}>
+            {I18n.t('brands')}
+          </Text>
+        )
       })
     }
   },
@@ -461,15 +467,11 @@ const TabsStack = createBottomTabNavigator(
       showIcon: true,
       scrollEnabled: true,
       allowFontScaling: true,
-      activeTintColor: '#077cb2',
-      inactiveTintColor: 'grey',
+      activeTintColor: '#ddca21',
+      inactiveTintColor: 'black',
       activeBackgroundColor: 'white',
-      labelStyle: {
-        fontSize: text.small,
-        fontFamily: 'Tajawal-Medium',
-        fontWeight: 'bold',
-        color: 'black'
-      },
+      animationEnabled: true,
+      labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white'
       }
@@ -563,8 +565,6 @@ const AppWithNavigationState = createReduxContainer(RootNavigator);
 
 const mapStateToProps = state => ({
   state: state.nav,
-  lang: state.lang,
-  currency: state.currency,
   network: state.network
 });
 

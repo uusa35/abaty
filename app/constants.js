@@ -1,6 +1,7 @@
 import React from 'react';
 import {Platform, Dimensions} from 'react-native';
 import {appUrlIos, appUrlAndroid} from './env';
+import {isRTL} from './I18n';
 export const {height, width} = Dimensions.get('window');
 export const isIOS = Platform.OS === 'ios' ? true : false;
 
@@ -116,7 +117,7 @@ export const text = {
   medium: 16,
   large: 20,
   xlarge: 25,
-  font: 'Tajawal-Medium'
+  font: isRTL ? 'Tajawal-Medium' : 'Tajawal-Medium'
 };
 
 export const prefix = `${appUrlIos}element/linking`;

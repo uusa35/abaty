@@ -83,9 +83,9 @@ class HomeScreen extends Component {
   componentWillUnmount() {
     AppState.removeEventListener('change', this._handleAppStateChange);
     Linking.removeEventListener('url', this.handleOpenURL);
+    OneSignal.removeEventListener('ids', this.onIds);
     // OneSignal.removeEventListener('received', this.onReceived);
     // OneSignal.removeEventListener('opened', this.onOpened);
-    OneSignal.removeEventListener('ids', this.onIds);
   }
 
   _handleAppStateChange = nextAppState => {

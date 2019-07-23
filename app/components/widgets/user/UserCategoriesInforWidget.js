@@ -9,7 +9,6 @@ import {map, isNull} from 'lodash';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getCategoryElements, getSearchProducts} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {concat} from 'react-native-reanimated';
 
 const UserCategoriesInfoWidget = ({
   elements,
