@@ -439,7 +439,7 @@ const TabsStack = createBottomTabNavigator(
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="shop" type="entypo" color={tintColor} />
+          <Icon name="ios-shirt" type="ionicon" color={tintColor} />
         ),
         title: I18n.t('all_products')
       })
@@ -448,9 +448,11 @@ const TabsStack = createBottomTabNavigator(
       screen: BrandStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Image
-            source={icons.brands}
-            style={[{width: 20, height: 20}, {tintColor}]}
+          <Icon
+            type="simple-line-icon"
+            name="tag"
+            size={18}
+            color={tintColor}
           />
         ),
         tabBarLabel: ({tintColor}) => (

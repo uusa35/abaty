@@ -32,7 +32,7 @@ class CartIndexScreen extends Component {
     }
 
     return (
-      nextProps.country.id !== this.state.shipmentCountry.id ||
+      nextProps.country !== this.state.shipmentCountry ||
       nextProps.guest !== guest ||
       nextProps.coupon.id !== coupon.id ||
       nextProps.cart.length !== cart.length ||

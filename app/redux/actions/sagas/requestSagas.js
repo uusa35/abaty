@@ -436,11 +436,14 @@ export function* setTotalCartValue(cart) {
 export function* setGrossTotalCartValue(values) {
   try {
     const {total, coupon, country} = values;
+    const {cart} = yield select();
+    const countPieces = sumBy(cart, i => i.qty);
     if (!validate.isEmpty(total) && total > 0) {
+      const finalShipment = country.is_local
+        ? country.fixed_shipment_charge
+        : country.fixed_shipment_charge * countPieces;
       const grossTotal = parseFloat(
-        total +
-          country.fixed_shipment_charge -
-          (!validate.isEmpty(coupon) ? coupon.value : 0)
+        total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0)
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
     }

@@ -55,6 +55,7 @@ const CartList = ({
     setAddress(auth.address);
     setNotes(auth.description);
   }, [auth]);
+
   return (
     <View style={{width: '100%'}}>
       <View

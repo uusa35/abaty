@@ -22,6 +22,7 @@ const CountriesList = () => {
   [visible, setVisible] = useState(countryModal);
   [currentCountry, setCurrentCountry] = useState(country);
   [currentCurrency, setCurrentCurrency] = useState(country.currency);
+
   useMemo(() => {
     if (!visible) {
       setVisible(false);
