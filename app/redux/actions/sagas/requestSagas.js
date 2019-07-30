@@ -136,6 +136,19 @@ export function* getProductIndex() {
   }
 }
 
+export function* getVideos() {
+  try {
+    const videos = yield call(api.getIndexVideo);
+    if (!validate.isEmpty(videos) && validate.isArray(videos)) {
+      yield put({type: actions.SET_VIDEOS, payload: videos});
+    } else {
+      yield put({type: actions.SET_VIDEOS, payload: []});
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
+  }
+}
+
 export function* setCountries() {
   try {
     const countries = yield call(api.getCountries);
@@ -343,7 +356,6 @@ export function* setHomeDesigners() {
       yield put({type: actions.SET_DESIGNERS, payload: designers});
     } else {
       yield put({type: actions.SET_DESIGNERS, payload: []});
-      throw designers;
     }
   } catch (e) {
     yield all([
@@ -381,6 +393,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeDesigners),
       call(setHomeCelebrities),
       call(setHomeSplashes),
+      call(getVideos),
       call(startAuthenticatedScenario)
     ]);
   } catch (e) {
@@ -396,6 +409,8 @@ export function* setHomeSplashes() {
     const splashes = yield call(api.getSplashes);
     if (!validate.isEmpty(splashes) && validate.isObject(splashes)) {
       yield put({type: actions.SET_HOME_SPLASHES, payload: splashes});
+    } else {
+      yield put({type: actions.SET_HOME_SPLASHES, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);

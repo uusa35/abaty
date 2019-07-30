@@ -82,6 +82,13 @@ export async function getProducts(page = 1) {
     .catch(e => e.response.data.message);
 }
 
+export async function getIndexVideo() {
+  return await axiosInstance
+    .get(`video`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getProductCart(params) {
   return await axiosInstance
     .get(`cart/items`, {params})

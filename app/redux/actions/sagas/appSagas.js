@@ -36,7 +36,8 @@ import {
   toggleFavoriteScenario,
   startGetAllProductsScenario,
   startUpdateUserScenario,
-  startSubmitCartScenario
+  startSubmitCartScenario,
+  getVideos
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -82,6 +83,7 @@ function* startAppBootStrap() {
       yield call(setHomeCategories);
       yield call(setHomeProducts);
       yield call(getProductIndex);
+      yield call(getVideos);
       yield call(setHomeDesigners);
       yield call(setHomeCelebrities);
       yield call(setHomeSplashes);

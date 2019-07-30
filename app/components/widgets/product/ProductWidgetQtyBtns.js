@@ -20,7 +20,6 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
             ? setRequestQty(requestQty + 1)
             : null
         }
-        raised
         icon={<Icon name="plus" type="font-awesome" size={15} color="black" />}
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{
@@ -45,7 +44,6 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
       </View>
       <Button
         onPress={() => (requestQty > 0 ? setRequestQty(requestQty - 1) : null)}
-        raised
         icon={<Icon name="minus" type="font-awesome" size={15} color="black" />}
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{

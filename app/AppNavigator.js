@@ -44,6 +44,7 @@ import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 import ProfileIndexScreen from './screens/ProfileIndexScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import {navLabelStyle} from './globalStyles';
+import VideoIndexScreen from './screens/VideoIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -347,6 +348,24 @@ const ProductStack = createStackNavigator(
   }
 );
 
+const VideoStack = createStackNavigator(
+  {
+    VideoIndex: {
+      screen: VideoIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
+        headerBackTitle: null
+      })
+    }
+  },
+  {
+    mode: 'card',
+    headerMode: 'float'
+  }
+);
+
 const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
@@ -426,13 +445,18 @@ const TabsStack = createBottomTabNavigator(
         title: I18n.t('categories')
       })
     },
-    CartIndexScreen: {
-      screen: CartStack,
+    VideoIndexScreen: {
+      screen: VideoStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="cart" type="evilicon" size={30} color={tintColor} />
+          <Icon
+            name="play-video"
+            type="foundation"
+            size={30}
+            color={tintColor}
+          />
         ),
-        title: I18n.t('cart')
+        title: I18n.t('videos')
       })
     },
     ProductIndexAll: {
@@ -485,7 +509,7 @@ const TabsStack = createBottomTabNavigator(
     order: [
       'Home',
       'CategoryIndexScreen',
-      'CartIndexScreen',
+      'VideoIndexScreen',
       'BrandIndexScreen',
       'ProductIndexAll'
     ]
@@ -503,6 +527,16 @@ HomeStack.navigationOptions = ({navigation}) => {
 };
 
 CartStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};
+
+VideoStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

@@ -8,6 +8,7 @@ import {WebView} from 'react-native-webview';
 import I18n from '../../I18n';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import VideoWidget from "./VideoWidget";
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -47,7 +48,7 @@ const VideosWidget = ({videos}) => {
                 key={i}
                 style={{
                   height: 200,
-                  width: width,
+                  width: width - 80,
                   marginRight: 5,
                   marginLeft: 5
                 }}

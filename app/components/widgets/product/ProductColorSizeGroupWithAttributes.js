@@ -91,7 +91,6 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           }}>
           <Button
             onPress={() => setSizeVisible(true)}
-            raised
             containerStyle={{flex: 0.4, marginBottom: 10, margin: 2}}
             buttonStyle={{
               backgroundColor: 'white',
@@ -104,7 +103,6 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           />
           <Button
             onPress={() => setColorVisible(true)}
-            raised
             iconRight
             icon={
               <Icon

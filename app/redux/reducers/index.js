@@ -29,6 +29,7 @@ import product from './product';
 import homeProducts from './homeProducts';
 import productFavorites from './productFavorites';
 import products from './products';
+import videos from './videos';
 import cart from './cart';
 import total from './total';
 import grossTotal from './grossTotal';
@@ -55,6 +56,7 @@ let reducers = combineReducers({
   products,
   homeProducts,
   productFavorites,
+  videos,
   cart,
   total,
   grossTotal,
