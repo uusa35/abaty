@@ -62,6 +62,20 @@ class HomeScreen extends Component {
     }
   };
 
+  shouldComponentUpdate(
+    nextProps: Readonly<P>,
+    nextState: Readonly<S>,
+    nextContext: any
+  ): boolean {
+    return (
+      nextProps.settings !== this.props.settings ||
+      nextProps.products !== this.props.products ||
+      nextProps.categories !== this.props.categories ||
+      nextProps.designers !== this.props.designers ||
+      nextProps.celebrities !== this.props.celebrities
+    );
+  }
+
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);

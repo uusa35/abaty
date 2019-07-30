@@ -8,7 +8,7 @@ import {WebView} from 'react-native-webview';
 import I18n from '../../I18n';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import VideoWidget from "./VideoWidget";
+import VideoWidget from './VideoWidget';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);

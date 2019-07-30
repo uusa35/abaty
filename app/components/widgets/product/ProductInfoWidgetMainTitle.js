@@ -64,6 +64,18 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           }}>
           {element.name}
         </Text>
+        <Text
+          style={{
+            paddingRight: 5,
+            paddingLeft: 5,
+            paddingBottom: 5,
+            fontSize: 10,
+            color: colors.header_one_theme_color,
+            textAlign: 'left',
+            fontFamily: text.font
+          }}>
+          {element.user.slug}
+        </Text>
         <View
           style={{
             flexDirection: 'row',
@@ -97,7 +109,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           </View>
           {element.isOnSale ? (
             <View style={{flexDirection: 'row'}}>
-              <Text style={styles.productTitle}>
+              <Text style={[styles.productTitle, {color: 'red'}]}>
                 {round(
                   getProductConvertedFinalPrice(
                     element.sale_price,

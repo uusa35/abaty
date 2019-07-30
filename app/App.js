@@ -23,6 +23,7 @@ class App extends Component<Props> {
     codePush.allowRestart();
     const {dispatch, bootStrapped, currency, lang, token} = this.props;
     codePush.checkForUpdate().then(update => {
+      console.log('the update', update);
       if (!update) {
         // if(!bootStrapped) {
         //   dispatch(appBootstrap());

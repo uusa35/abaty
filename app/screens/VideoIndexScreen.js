@@ -4,15 +4,19 @@ import {connect} from 'react-redux';
 import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
-import VideoList from "../components/Lists/VideoList";
-import validate from "validate.js";
+import VideoList from '../components/Lists/VideoList';
+import validate from 'validate.js';
 
 class VideoIndexScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  shouldComponentUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): boolean {
+  shouldComponentUpdate(
+    nextProps: Readonly<P>,
+    nextState: Readonly<S>,
+    nextContext: any
+  ): boolean {
     return nextProps.videos !== this.props.videos;
   }
 
@@ -21,7 +25,7 @@ class VideoIndexScreen extends Component {
     console.log('videos', videos);
     return (
       <NavContext.Provider value={{navigation}}>
-             <VideoList elements={videos}/>
+        <VideoList elements={videos} />
       </NavContext.Provider>
     );
   }
