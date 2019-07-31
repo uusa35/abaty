@@ -10,6 +10,7 @@ import widgetStyles from './widgets/widgetStyles';
 
 export const HeaderLeft = ({openDrawer, navigate}) => {
   const {cartLength, colors} = useContext(GlobalValuesContext);
+  console.log('navigation', navigate);
   return (
     <SafeAreaView>
       <View style={widgetStyles.safeContainer}>
@@ -19,7 +20,7 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
           size={32}
           onPress={() => openDrawer()}
           underlayColor="transparent"
-          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
         <View>

@@ -69,6 +69,29 @@ const HomeStack = createStackNavigator(
       }),
       path: 'home'
     },
+    CartIndex: {
+      screen: CartIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        // HeaderRight: <HeaderRight {...navigation} />,
+        headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
+        headerBackTitle: null
+      })
+    },
+    CartConfirmation: {
+      screen: CartConfirmationScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
+        headerBackTitle: null
+      })
+    },
+    PaymentIndex: {
+      screen: PaymentIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
+        headerBackTitle: null
+      })
+    },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -259,61 +282,61 @@ const BrandStack = createStackNavigator(
   }
 );
 
-const CartStack = createStackNavigator(
-  {
-    CartIndex: {
-      screen: CartIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
-        headerBackTitle: null
-      })
-    },
-    CartConfirmation: {
-      screen: CartConfirmationScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
-        headerBackTitle: null
-      })
-    },
-    PaymentIndex: {
-      screen: PaymentIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
-        headerBackTitle: null
-      })
-    },
-    ProductIndex: {
-      screen: ProductIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
-        headerBackTitle: null
-      })
-    },
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
-    },
-    Register: {
-      screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
-    }
-  },
-  {
-    mode: 'card',
-    headerMode: 'float'
-  }
-);
+// const CartStack = createStackNavigator(
+//   {
+//     CartIndex: {
+//       screen: CartIndexScreen,
+//       navigationOptions: ({navigation}) => ({
+//         headerLeft: <HeaderLeft {...navigation} />,
+//         headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
+//         headerBackTitle: null
+//       })
+//     },
+//     CartConfirmation: {
+//       screen: CartConfirmationScreen,
+//       navigationOptions: ({navigation}) => ({
+//         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
+//         headerBackTitle: null
+//       })
+//     },
+//     PaymentIndex: {
+//       screen: PaymentIndexScreen,
+//       navigationOptions: ({navigation}) => ({
+//         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
+//         headerBackTitle: null
+//       })
+//     },
+//     ProductIndex: {
+//       screen: ProductIndexScreen,
+//       navigationOptions: ({navigation}) => ({
+//         // headerLeft: <HeaderLeft {...navigation} />,
+//         headerRight: <HeaderRight {...navigation} display={true} />,
+//         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+//         headerBackTitle: null
+//       })
+//     },
+//     Login: {
+//       screen: LoginScreen,
+//       navigationOptions: ({navigation}) => ({
+//         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
+//         headerRight: <HeaderRight display={false} />,
+//         headerBackTitle: null
+//       })
+//     },
+//     Register: {
+//       screen: RegisterScreen,
+//       navigationOptions: ({navigation}) => ({
+//         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
+//         headerRight: <HeaderRight display={false} />,
+//         headerBackTitle: null
+//       })
+//     }
+//   },
+//   {
+//     mode: 'card',
+//     headerMode: 'float'
+//   }
+// );
 
 const ProductStack = createStackNavigator(
   {
@@ -526,15 +549,15 @@ HomeStack.navigationOptions = ({navigation}) => {
   };
 };
 
-CartStack.navigationOptions = ({navigation}) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible
-  };
-};
+// CartStack.navigationOptions = ({navigation}) => {
+//   let tabBarVisible = true;
+//   if (navigation.state.index > 0) {
+//     tabBarVisible = false;
+//   }
+//   return {
+//     tabBarVisible
+//   };
+// };
 
 VideoStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;

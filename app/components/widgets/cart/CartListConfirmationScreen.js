@@ -530,8 +530,8 @@ const CartListConfirmationScreen = ({
                       shipment_fees: shipmentCountry.fixed_shipment_charge,
                       discount,
                       payment_method: isIOS
-                        ? 'IOS - My Fatoorah'
-                        : 'Android - My Fatoorah'
+                        ? 'Iphone - Tap Payment'
+                        : 'Android - Tap Payment'
                     }
                   })
                 }

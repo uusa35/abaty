@@ -1,7 +1,7 @@
 import React, {useState, useMemo, useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Icon} from 'react-native-elements';
-import I18n from '../../../I18n';
+import {Button, Icon, Input} from 'react-native-elements';
+import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 import SizesModal from './SizesModal';
@@ -24,6 +24,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   [colorItem, setColorItem] = useState(null);
   [colorName, setColorName] = useState(null);
   [sizeItem, setSizeItem] = useState(null);
+  [notes, setNotes] = useState('');
   [elementId, setElementId] = useState(null);
 
   useMemo(() => {
@@ -147,6 +148,32 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           colorVisible={colorVisible}
           setColorVisible={setColorVisible}
         />
+        <Input
+          spellCheck={true}
+          placeholder={
+            notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
+          }
+          value={notes ? notes : null}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginTop: 5,
+            height: 80
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left'
+          }}
+          editable={!productAttribute || requestQty <= 0 ? false : true}
+          shake={true}
+          keyboardType="default"
+          multiline={true}
+          numberOfLines={3}
+          onChangeText={notes => setNotes(notes)}
+        />
       </View>
       {element.has_stock && element.is_available ? (
         <Button
@@ -157,7 +184,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 cart_id: productAttribute.cart_id,
                 product_id: productAttribute.product_id,
                 qty: requestQty,
-                element
+                element,
+                notes
               })
             )
           }

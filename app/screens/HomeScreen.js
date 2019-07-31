@@ -53,7 +53,7 @@ class HomeScreen extends Component {
                     ? navigation.state.params.logo
                     : null
                 }}
-                style={{width: 65, height: 25}}
+                style={{width: 65, height: 25, borderWidth: 1}}
               />
             </View>
           </SafeAreaView>
