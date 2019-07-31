@@ -34,6 +34,7 @@ export default function* rootSaga() {
     fork(appSagas.createTapPaymentUrl),
     fork(appSagas.goDeepLinking),
     fork(appSagas.register),
+    fork(appSagas.resetStore),
     fork(networkSaga, {pingInterval: 20000})
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store

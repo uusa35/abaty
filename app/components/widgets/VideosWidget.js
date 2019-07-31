@@ -8,12 +8,12 @@ import {WebView} from 'react-native-webview';
 import I18n from '../../I18n';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import VideoWidget from './VideoWidget';
+import {Button} from 'react-native-elements';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
-  // console.log('videos', videos['video_url_one']);
-  // console.log(`${appUrlIos}webview?url=${videos['video_url_one']}`);
+  console.log('videos', videos['video_url_one']);
+  console.log(`${appUrlIos}webview?url=${videos['video_url_one']}`);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       {!isNull(videos['video_url_one']) ? (
@@ -58,8 +58,20 @@ const VideosWidget = ({videos}) => {
             ) : null
           )
         ) : (
-          <View>
-            <Text>No Videos</Text>
+          <View
+            style={{
+              marginTop: 300,
+              flex: 1,
+              borderWidth: 1,
+              alignSelf: 'center'
+            }}>
+            <Button
+              raised
+              title={I18n.t('no_videos')}
+              type="outline"
+              containerStyle={{marginBottom: 20}}
+              titleStyle={{fontFamily: text.font}}
+            />
           </View>
         )}
       </ScrollView>

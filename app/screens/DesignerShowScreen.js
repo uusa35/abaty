@@ -20,6 +20,7 @@ import I18n from './../I18n';
 import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
+import {Button} from 'react-native-elements';
 
 class DesignerShowScreen extends Component {
   constructor(props) {
@@ -108,15 +109,9 @@ class DesignerShowScreen extends Component {
                       ),
                     info: () => <UserInfoWidget user={user} />,
                     more: () =>
-                      !validate.isEmpty(user.videos) ? (
-                        <VideosWidget videos={user.videos} />
-                      ) : (
-                        <View>
-                          <Text style={styles.subTitle}>
-                            {I18n.t('no_videos')}
-                          </Text>
-                        </View>
-                      )
+                      !validate.isEmpty(user.videoGroup) ? (
+                        <VideosWidget videos={user.videoGroup} />
+                      ) : null
                   })}
                   style={{marginTop: 10, backgroundColor: 'white'}}
                   onIndexChange={index => this.setState({index})}

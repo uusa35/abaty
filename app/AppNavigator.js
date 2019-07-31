@@ -88,6 +88,7 @@ const HomeStack = createStackNavigator(
     PaymentIndex: {
       screen: PaymentIndexScreen,
       navigationOptions: ({navigation}) => ({
+        HeaderRight: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null
       })

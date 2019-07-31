@@ -317,7 +317,8 @@ const UserInfoWidget = ({user}) => {
       {!validate.isEmpty(user.description) ? (
         <UserInfoWidgetElement
           elementName="description"
-          iconName="list"
+          iconName="ios-list-box"
+          type="ionicon"
           element={user.description}
         />
       ) : null}
@@ -326,14 +327,15 @@ const UserInfoWidget = ({user}) => {
           elementName="services"
           iconName="customerservice"
           element={user.service}
+          type="antdesign"
         />
       ) : null}
       {!validate.isEmpty(user.address) ? (
         <UserInfoWidgetElement
           elementName="address"
+          iconName="address"
           element={user.address}
           type="entypo"
-          name="address"
         />
       ) : null}
       {!validate.isEmpty(user.images) ? (

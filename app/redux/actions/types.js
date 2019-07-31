@@ -94,3 +94,4 @@ export const REMOVE_SEARCH_PARAMS = 'REMOVE_SEARCH_PARAMS';
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const GET_VIDEOS = 'GET_VIDEOS';
 export const SET_VIDEOS = 'SET_VIDEOS';
+export const RESET_STORE = 'RESET_STORE';

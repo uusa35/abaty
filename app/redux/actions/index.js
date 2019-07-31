@@ -443,6 +443,12 @@ export function setSearchParams(payload) {
   };
 }
 
+export function resetStore() {
+  return {
+    type: actions.RESET_STORE
+  };
+}
+
 export const APP_ACTIONS = {
   changeLang,
   disableMessage,

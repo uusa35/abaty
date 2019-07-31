@@ -10,7 +10,6 @@ import widgetStyles from './widgets/widgetStyles';
 
 export const HeaderLeft = ({openDrawer, navigate}) => {
   const {cartLength, colors} = useContext(GlobalValuesContext);
-  console.log('navigation', navigate);
   return (
     <SafeAreaView>
       <View style={widgetStyles.safeContainer}>

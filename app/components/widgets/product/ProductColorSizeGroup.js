@@ -1,7 +1,7 @@
 import React, {useState, useContext, useMemo} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {Button, Icon} from 'react-native-elements';
-import I18n from '../../../I18n';
+import {Button, Icon, Input} from 'react-native-elements';
+import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
@@ -16,6 +16,7 @@ const ProductColorSizeGroup = ({element}) => {
   const {size, color, qty, show_attribute} = element;
   console.log('the size', size);
   [requestQty, setRequestQty] = useState(0);
+  [notes, setNotes] = useState('');
   return (
     <View
       style={{
@@ -74,6 +75,34 @@ const ProductColorSizeGroup = ({element}) => {
         requestQty={requestQty}
         setRequestQty={setRequestQty}
       />
+      <View>
+        <Input
+          spellCheck={true}
+          placeholder={
+            notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
+          }
+          value={notes ? notes : null}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginTop: 5,
+            height: 80
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left'
+          }}
+          disabled={!qty || requestQty <= 0 ? false : true}
+          shake={true}
+          keyboardType="default"
+          multiline={true}
+          numberOfLines={3}
+          onChangeText={notes => setNotes(notes)}
+        />
+      </View>
       {element.has_stock && element.is_available ? (
         <Button
           onPress={() =>
@@ -83,7 +112,8 @@ const ProductColorSizeGroup = ({element}) => {
                 cart_id: null,
                 product_id: element.id,
                 qty: requestQty,
-                element
+                element,
+                notes
               })
             )
           }

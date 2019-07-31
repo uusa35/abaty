@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import codePush from 'react-native-code-push';
 import {connect} from 'react-redux';
-import {appBootstrap} from './redux/actions';
+import {appBootstrap, resetStore} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/LoadingView';
 import {CountriesContext} from './redux/CountriesContext';
@@ -23,11 +23,11 @@ class App extends Component<Props> {
     codePush.allowRestart();
     const {dispatch, bootStrapped, currency, lang, token} = this.props;
     codePush.checkForUpdate().then(update => {
-      console.log('the update', update);
       if (!update) {
-        // if(!bootStrapped) {
-        //   dispatch(appBootstrap());
-        // }
+        console.log('The app is up to date!');
+      } else {
+        console.log('An update is available! Should we download it?');
+        dispatch(resetStore());
       }
     });
     axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)

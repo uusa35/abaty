@@ -2,6 +2,7 @@ import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
 import axios from 'axios';
 import {call, put, all, delay, takeLatest, select} from 'redux-saga/effects';
+import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
 import {
   getCountry,
@@ -233,4 +234,16 @@ export function* register() {
 
 export function* setSearchParams() {
   yield takeLatest(actions.SET_SEARCH_PARAMS, startSetSearchParamsScenario);
+}
+
+export function* resetStore() {
+  yield takeLatest(actions.RESET_STORE, startResetStoreScenario);
+}
+
+export function* startResetStoreScenario(action) {
+  PersistStore.purge();
+  yield all([
+    put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
+    call(startAppBootStrap)
+  ]);
 }

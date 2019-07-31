@@ -66,8 +66,8 @@ class UserShowScreen extends Component {
             height={500}
             width={300}
           />
-          {validate.isObject(user.videos) ? (
-            <VideosWidget videos={user.videos} />
+          {validate.isObject(user.videoGroup) ? (
+            <VideosWidget videos={user.videoGroup} />
           ) : null}
           />
         </HeaderImageScrollView>

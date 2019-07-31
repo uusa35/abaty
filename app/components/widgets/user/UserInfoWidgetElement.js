@@ -11,8 +11,11 @@ const UserInfoWidgetElement = ({
   element,
   elementName,
   iconName,
+  type,
   showArrow = false
 }) => {
+  console.log('iconName', iconName);
+  console.log('elementName', elementName);
   return (
     <View key={element.length}>
       {element ? (
@@ -22,7 +25,7 @@ const UserInfoWidgetElement = ({
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
               name={iconName}
-              type="antdesign"
+              type={type}
               color="grey"
               size={20}
               iconStyle={{
