@@ -19,14 +19,15 @@ import {Icon} from 'react-native-elements';
 import {first} from 'lodash';
 import {
   getCategoryElements,
-  getDesigner, getSearchServices,
+  getDesigner,
+  getSearchServices,
   getService
 } from '../redux/actions';
 import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import ServiceHorizontalWidget from "../components/widgets/service/ServiceHorizontalWidget";
-import ServiceInfoWidget from "../components/widgets/service/ServiceInfoWidget";
+import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
+import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 
 class ServiceShowScreen extends Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class ServiceShowScreen extends Component {
           />
           <View style={{width: '90%'}}>
             <View animation="bounceInLeft" easing="ease-out">
-              <ServiceInfoWidget element={service} currency={currency} />
+              <ServiceInfoWidget element={service} />
             </View>
             <View
               animation="bounceInLeft"
@@ -113,21 +114,20 @@ class ServiceShowScreen extends Component {
                   </Text>
                 </View>
               ) : null}
-                {
-                    !validate.isEmpty(service.user) ?
-                        <ProductInfoWidgetElement
-                            elementName="designer"
-                            name={service.user.slug}
-                            link={() =>
-                                dispatch(
-                                    getDesigner({
-                                        element: service.user,
-                                        searchElements: {user_id: service.user.id}
-                                    })
-                                )
-                            }
-                        /> : null
-                }
+              {!validate.isEmpty(service.user) ? (
+                <ProductInfoWidgetElement
+                  elementName="designer"
+                  name={service.user.slug}
+                  link={() =>
+                    dispatch(
+                      getDesigner({
+                        element: service.user,
+                        searchElements: {user_id: service.user.id}
+                      })
+                    )
+                  }
+                />
+              ) : null}
               <ProductInfoWidgetElement
                 elementName="categories"
                 name={first(service.categories).name}

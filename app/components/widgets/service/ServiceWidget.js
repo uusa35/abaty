@@ -20,7 +20,6 @@ const ServiceWidget = ({service, showName = false}) => {
   const {currency_symbol, exchange_rate, colors, token} = useContext(
     GlobalValuesContext
   );
-  console.log('the service', service);
   return (
     <TouchableOpacity
       key={service.id}

@@ -19,7 +19,7 @@ import FastImage from 'react-native-fast-image';
 import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
-const ProductInfoWidget = ({element, currency}) => {
+const ProductInfoWidget = ({element}) => {
   return (
     <ScrollView
       contentContainerStyle={{
@@ -27,7 +27,7 @@ const ProductInfoWidget = ({element, currency}) => {
         alignItems: 'flex-start',
         marginTop: 10
       }}>
-      <ProductInfoWidgetMainTitle element={element} currency={currency} />
+      <ProductInfoWidgetMainTitle element={element} />
       <ProductInfoWidgetBtns element={element} />
     </ScrollView>
   );

@@ -14,7 +14,11 @@ import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 
-export const HeaderRight = ({display = false, displayShare = false , navigation}) => {
+export const HeaderRight = ({
+  display = false,
+  displayShare = false,
+  navigation
+}) => {
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const shareLink = link => {
@@ -49,7 +53,11 @@ export const HeaderRight = ({display = false, displayShare = false , navigation}
         ) : null}
         {displayShare ? (
           <Icon
-            onPress={() => shareLink(`${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`)}
+            onPress={() =>
+              shareLink(
+                `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`
+              )
+            }
             name="share"
             size={25}
             underlayColor="transparent"

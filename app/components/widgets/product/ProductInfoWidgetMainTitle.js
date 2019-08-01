@@ -31,7 +31,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         style={{
           width: 60,
           height: 60,
-            borderRadius : 60 / 2,
+          borderRadius: 60 / 2,
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
@@ -43,7 +43,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{ width : '80%'}}>
+      <View style={{width: '80%'}}>
         <Text
           style={{
             paddingRight: 5,

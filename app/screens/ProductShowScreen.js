@@ -85,7 +85,7 @@ class ProductShowScreen extends Component {
           />
           <View style={{width: '90%'}}>
             <View animation="bounceInLeft" easing="ease-out">
-              <ProductInfoWidget element={product} currency={currency} />
+              <ProductInfoWidget element={product} />
             </View>
             <View
               animation="bounceInLeft"

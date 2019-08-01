@@ -7,17 +7,11 @@ import {
   ScrollView,
   View
 } from 'react-native';
-import widgetStyles from '../widgetStyles';
-import {getProduct} from '../../../redux/actions';
-import {Icon, Button} from 'react-native-elements';
-import {getProductConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
-import {text, width} from './../../../constants';
-import I18n from './../../../I18n';
 import ServiceInfoWidgetMainTitle from './ServiceInfoWidgetMainTitle';
+import ServiceInfoWidgetBtns from './ServiceInfoWidgetBtns';
 
-const ServiceInfoWidget = ({element, currency}) => {
+const ServiceInfoWidget = ({element}) => {
   return (
     <ScrollView
       contentContainerStyle={{
@@ -25,8 +19,8 @@ const ServiceInfoWidget = ({element, currency}) => {
         alignItems: 'flex-start',
         marginTop: 10
       }}>
-      <ServiceInfoWidgetMainTitle element={element} currency={currency} />
-      {/*<ServiceInfoWidgetBtns element={element} />*/}
+      <ServiceInfoWidgetMainTitle element={element} />
+      <ServiceInfoWidgetBtns element={element} />
     </ScrollView>
   );
 };

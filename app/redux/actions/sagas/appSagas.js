@@ -38,7 +38,10 @@ import {
   startGetAllProductsScenario,
   startUpdateUserScenario,
   startSubmitCartScenario,
-  getVideos, startGetSearchServicesScenario, startGetServiceScenario, setServices
+  getVideos,
+  startGetSearchServicesScenario,
+  startGetServiceScenario,
+  setServices
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
