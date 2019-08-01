@@ -184,6 +184,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 cart_id: productAttribute.cart_id,
                 product_id: productAttribute.product_id,
                 qty: requestQty,
+                type: 'product',
                 element,
                 notes
               })

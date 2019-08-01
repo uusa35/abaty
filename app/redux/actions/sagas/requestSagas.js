@@ -330,8 +330,10 @@ export function* startGetSearchProductsScenario(action) {
 
 export function* startGetSearchServicesScenario(action) {
   try {
+    console.log('the action payload from search services', action.payload);
     const {element, searchElements} = action.payload;
     const services = yield call(api.getSearchServices, searchElements);
+    console.log('THE SERVICES', services);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
@@ -345,7 +347,7 @@ export function* startGetSearchServicesScenario(action) {
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_services'))]);
   }
 }
 
@@ -476,13 +478,22 @@ export function* setHomeSplashes() {
 
 export function* startAddToCartScenario(action) {
   try {
-    const {cart} = yield select();
-    const filteredCart = yield call(filterCartAnItems, [cart, action]);
-    yield all([
-      call(enableSuccessMessage, I18n.t('product_added_to_cart_successfully')),
-      put({type: actions.FILTER_CART, payload: filteredCart}),
-      call(setTotalCartValue, filteredCart)
-    ]);
+    const {cart, country} = yield select();
+    if (!country.is_local && action.payload.type === 'service') {
+      throw I18n.t(
+        'orders_that_include_services_are_not_accepted_out_side_kuwait'
+      );
+    } else {
+      const filteredCart = yield call(filterCartAnItems, [cart, action]);
+      yield all([
+        call(
+          enableSuccessMessage,
+          I18n.t(`${action.payload.type}_added_to_cart_successfully`)
+        ),
+        put({type: actions.FILTER_CART, payload: filteredCart}),
+        call(setTotalCartValue, filteredCart)
+      ]);
+    }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
   }
@@ -532,9 +543,10 @@ export function* startRemoveFromCartScenario(action) {
     console.log('the action payload from remove Cart', action.payload);
     const {cart} = yield select();
     console.log('the action', action.payload);
-    const filteredCart = remove(
-      cart,
-      item => item.product_id !== action.payload
+    const filteredCart = remove(cart, item =>
+      item.type === 'product'
+        ? item.product_id !== action.payload
+        : item.service_id !== action.payload
     );
     if (!validate.isEmpty(filteredCart) && cart.length > 0) {
       yield all([
@@ -567,10 +579,17 @@ export function* startRemoveFromCartScenario(action) {
 export function* filterCartAnItems([cart, action]) {
   let cleanCart = map(cart, e => {
     // check if cart_id is available (means this product has_attributes true)
-    if (e.product_id === action.payload.product_id) {
-      return action.payload;
+    if (e.type == 'product') {
+      if (e.product_id === action.payload.product_id) {
+        return action.payload;
+      }
+      return e;
+    } else if (e.type == 'service') {
+      if (e.service_id === action.payload.service_id) {
+        return action.payload;
+      }
+      return e;
     }
-    return e;
   });
   const filteredCart =
     cart.length > 0

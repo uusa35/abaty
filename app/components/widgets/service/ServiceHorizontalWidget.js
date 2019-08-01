@@ -3,12 +3,13 @@ import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts, getSearchServices} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import ServiceWidget from './ServiceWidget';
 
 const ServiceHorizontalWidget = ({elements, showName, title}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -18,7 +19,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
       <TouchableOpacity
         style={widgetStyles.titleContainer}
         onPress={() =>
-          dispatch(getSearchProducts({searchElements: {on_home: true}}))
+          dispatch(getSearchServices({searchElements: {on_home: true}}))
         }>
         <View style={widgetStyles.titleWrapper}>
           <Text
@@ -41,7 +42,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ProductWidget product={c} showName={showName} key={i} />
+          <ServiceWidget service={c} showName={showName} key={i} />
         ))}
       </ScrollView>
     </View>

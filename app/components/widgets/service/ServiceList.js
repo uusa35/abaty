@@ -40,8 +40,8 @@ const ServiceList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
-  console.log('THE PARAMS FROM PRODUCT LIST', params);
+  // console.log('THE SEARCH ELEMENTS FROM SErvice LIST', searchElements);
+  // console.log('THE PARAMS FROM SERVice LIST', params);
   useMemo(() => {
     if (isLoading === true && showMore) {
       return axiosInstance(`search/service?page=${page}`, {
@@ -63,9 +63,10 @@ const ServiceList = ({
   useMemo(() => {
     if (refresh && showMore) {
       // for now i don't know what products to fetch
+      console.log('the current Params', params);
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchServices(params));
+      // dispatch(getSearchServices(params));
     } else {
       setRefresh(false);
     }

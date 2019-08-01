@@ -15,10 +15,15 @@ class ServiceIndexScreen extends Component {
   }
 
   render() {
-    const {services, navigation} = this.props;
+    const {services, searchParams, navigation} = this.props;
+    console.log('search', searchParams);
     return (
       <NavContext.Provider value={{navigation}}>
-        <ServiceList elements={services} searchElements={{}} showName={true} />
+        <ServiceList
+          elements={services}
+          searchElements={searchParams}
+          showName={true}
+        />
       </NavContext.Provider>
     );
   }
@@ -26,14 +31,16 @@ class ServiceIndexScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    services: state.services
+    services: state.services,
+    searchParams: state.searchParams
   };
 }
 
 export default connect(mapStateToProps)(ServiceIndexScreen);
 
 ServiceIndexScreen.propTypes = {
-  services: PropTypes.array.isRequired
+  services: PropTypes.array.isRequired,
+  searchElements: PropTypes.object
 };
 
 const styles = StyleSheet.create({});

@@ -8,24 +8,15 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text, isIOS} from './../constants';
-import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
+import {width, text} from './../constants';
 import {NavContext} from './../redux/NavContext';
-import UserInfoWidgetElement from '../components/widgets/user/UserInfoWidgetElement';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from './../I18n';
-import {Icon} from 'react-native-elements';
 import {first} from 'lodash';
-import {
-  getCategoryElements,
-  getDesigner,
-  getSearchServices,
-  getService
-} from '../redux/actions';
+import {getDesigner, getSearchServices, getService} from '../redux/actions';
 import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
-import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 
@@ -49,7 +40,6 @@ class ServiceShowScreen extends Component {
       services,
       token
     } = this.props;
-    console.log('product', service);
     return (
       <NavContext.Provider value={{navigation}}>
         <ScrollView
@@ -116,7 +106,7 @@ class ServiceShowScreen extends Component {
               ) : null}
               {!validate.isEmpty(service.user) ? (
                 <ProductInfoWidgetElement
-                  elementName="designer"
+                  elementName="company"
                   name={service.user.slug}
                   link={() =>
                     dispatch(
@@ -137,53 +127,31 @@ class ServiceShowScreen extends Component {
                       element: first(service.categories),
                       category: first(service.categories),
                       searchElements: {
-                        product_category_id: first(service.categories).id
+                        service_category_id: first(service.categories).id
                       }
                     })
                   )
                 }
               />
-              <ProductInfoWidgetElement
-                elementName="sku"
-                name={service.sku}
-                showArrow={false}
-              />
-              <ProductInfoWidgetElement
-                elementName="product_weight"
-                name={service.weight}
-                showArrow={false}
-              />
+              {service.sku ? (
+                <ProductInfoWidgetElement
+                  elementName="sku"
+                  name={service.sku}
+                  showArrow={false}
+                />
+              ) : null}
+              {service.individuals ? (
+                <ProductInfoWidgetElement
+                  elementName="individuals_served"
+                  name={service.individuals}
+                  showArrow={false}
+                />
+              ) : null}
               <ProductInfoWidgetElement
                 elementName="contactus_order_by_phone"
                 name={settings.phone}
                 link={() => Linking.openURL(`tel:${settings.mobile}`)}
               />
-              {settings.shipment_prices ? (
-                <ProductInfoWidgetElement
-                  elementName="shipment_prices"
-                  link={() =>
-                    navigation.navigate('ImageZoom', {
-                      images: [
-                        {id: service.id, large: settings.shipment_prices}
-                      ],
-                      name: service.name,
-                      index: 0
-                    })
-                  }
-                />
-              ) : null}
-              {settings.size_chart ? (
-                <ProductInfoWidgetElement
-                  elementName="size_chart"
-                  link={() =>
-                    navigation.navigate('ImageZoom', {
-                      images: [{id: service.id, large: settings.size_chart}],
-                      name: service.name,
-                      index: 0
-                    })
-                  }
-                />
-              ) : null}
             </View>
           </View>
           {validate.isObject(service.videoGroup) &&
@@ -195,7 +163,7 @@ class ServiceShowScreen extends Component {
               elements={services}
               showName={true}
               currency={currency}
-              title="featured_products"
+              title="related_services"
             />
           ) : null}
         </ScrollView>

@@ -113,6 +113,7 @@ const ProductColorSizeGroup = ({element}) => {
                 product_id: element.id,
                 qty: requestQty,
                 element,
+                type: 'product',
                 notes
               })
             )

@@ -6,10 +6,12 @@ import {Button, Input} from 'react-native-elements';
 import {addToCart} from '../../../redux/actions';
 import I18n, {isRTL} from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ServiceInfoWidgetBtns = ({element}) => {
   const {timings} = element;
   const {colors} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
   console.log('timings', timings);
   const [days, setDays] = useState(_.keys(timings));
   const [day, setDay] = useState(_.first(_.keys(timings)));
@@ -45,6 +47,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           }}
           itemStyle={{fontFamily: text.font}}
           onValueChange={(itemValue, itemIndex) => setDay(itemValue)}>
+          <Picker.Item key={0} label={I18n.t('choose_day')} value={null} />
           {_.map(days, (d, i) => (
             <Picker.Item key={i} label={d} value={d} />
           ))}
@@ -62,6 +65,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           onValueChange={(itemValue, itemIndex) =>
             setSelectedTiming(itemValue)
           }>
+          <Picker.Item key={0} label={I18n.t('choose_time')} value={null} />
           {_.map(selectedDay, (time, i) => {
             return <Picker.Item key={i} label={time.start} value={time.id} />;
           })}
@@ -69,9 +73,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
       </View>
       <Input
         spellCheck={true}
-        placeholder={
-          notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
-        }
+        placeholder={notes ? notes : I18n.t('add_notes_to_your_service')}
         value={notes ? notes : null}
         inputContainerStyle={{
           borderWidth: 1,
@@ -86,7 +88,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left'
         }}
-        editable={true}
+        editable={selectedTiming ? true : false}
         shake={true}
         keyboardType="default"
         multiline={true}
@@ -98,9 +100,10 @@ const ServiceInfoWidgetBtns = ({element}) => {
           onPress={() =>
             dispatch(
               addToCart({
-                timing_id: selectedTiming.id,
-                cart_id: selectedTiming.cart_id,
+                timing_id: selectedTiming,
+                cart_id: `${selectedTiming}${element.id}`,
                 service_id: element.id,
+                type: 'service',
                 qty: 1,
                 element,
                 notes
