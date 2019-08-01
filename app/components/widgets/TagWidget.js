@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-native-elements';
-import I18n from '../../../I18n';
-import {text} from '../../../constants';
+import I18n from '../../I18n';
+import {text} from '../../constants';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 

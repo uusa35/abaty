@@ -1,11 +1,6 @@
 import React, {useContext} from 'react';
-import {
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
@@ -53,33 +48,35 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <TouchableOpacity
-            key={i}
-            style={widgetStyles.btnStyle}
-            onPress={() =>
-              dispatch(
-                getDesigner({element: c, searchElements: {user_id: c.id}})
-              )
-            }>
-            <FastImage
-              source={{
-                uri: c.thumb,
-                priority: FastImage.priority.normal
-              }}
-              loadingIndicatorSource={images.logo}
-              style={styles.image}
-              resizeMode="contain"
-            />
-            {showName ? (
-              <Text
-                style={[
-                  widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
-                ]}>
-                {c.slug}
-              </Text>
-            ) : null}
-          </TouchableOpacity>
+          <View animation="pulse" easing="ease-out" key={c.id}>
+            <TouchableOpacity
+              key={i}
+              style={widgetStyles.btnStyle}
+              onPress={() =>
+                dispatch(
+                  getDesigner({element: c, searchElements: {user_id: c.id}})
+                )
+              }>
+              <FastImage
+                source={{
+                  uri: c.thumb,
+                  priority: FastImage.priority.normal
+                }}
+                loadingIndicatorSource={images.logo}
+                style={styles.image}
+                resizeMode="contain"
+              />
+              {showName ? (
+                <Text
+                  style={[
+                    widgetStyles.elementName,
+                    {color: colors.header_tow_theme_color}
+                  ]}>
+                  {c.slug}
+                </Text>
+              ) : null}
+            </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
     </View>

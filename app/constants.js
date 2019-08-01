@@ -121,8 +121,7 @@ export const text = {
 };
 
 export const prefix = `${appUrlIos}element/linking`;
-export const userPrefix = `${appUrlIos}element/linking?is_user=1&id=`;
-export const productPrefix = `${appUrlIos}element/linking/?is_product=1&id=`;
+export const linkingPrefix = `${appUrlIos}element/linking?`;
 
 export const submitLogin = {
   email: {

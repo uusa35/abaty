@@ -45,6 +45,8 @@ import ProfileIndexScreen from './screens/ProfileIndexScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import {navLabelStyle} from './globalStyles';
 import VideoIndexScreen from './screens/VideoIndexScreen';
+import ServiceIndexScreen from "./screens/ServiceIndexScreen";
+import ServiceShowScreen from "./screens/ServiceShowScreen";
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -162,8 +164,34 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
+    ServiceIndex: {
+      screen: ServiceIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('services')} />,
+        headerBackTitle: null
+      })
+    },
     Product: {
       screen: ProductShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
+    Service: {
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

@@ -82,6 +82,13 @@ export async function getProducts(page = 1) {
     .catch(e => e.response.data.message);
 }
 
+export async function getServices(page = 1) {
+  return await axiosInstance
+    .get(`service`, {params: {page}})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getIndexVideo() {
   return await axiosInstance
     .get(`video`)
@@ -104,9 +111,24 @@ export async function getProduct(params) {
     .catch(e => e.response.data.message);
 }
 
+export async function getService(params) {
+  const {id} = params;
+  return await axiosInstance
+    .get(`service/${id}`, {params})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getSearchProducts(elements) {
   return await axiosInstance
     .get(`search/product`, {params: elements})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getSearchServices(elements) {
+  return await axiosInstance
+    .get(`search/service`, {params: elements})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

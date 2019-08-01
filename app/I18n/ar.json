@@ -449,6 +449,8 @@
   "go_to_payment_my_fatoorah" : "الذهاب لصفحة الدفع",
   "choose_color_or_height" : "اختيار الطول",
   "color_or_height" : "اللون / الطول",
-  "add_notes_shoulders_height_and_other_notes" : "محلاحظات (الطول ـ طول الكتف ـ الصدر)"
+  "add_notes_shoulders_height_and_other_notes" : "محلاحظات (الطول ـ طول الكتف ـ الصدر)",
+  "no_services" : "لا توجد خدمات",
+  "no_more_services" : "لا توجد مزيد من الخدمات"
 
 }

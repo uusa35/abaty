@@ -101,6 +101,18 @@ export function* setSlides() {
   }
 }
 
+export function* setServices() {
+  try {
+    const services = yield call(api.getServices);
+    if (!validate.isEmpty(services) && validate.isArray(services)) {
+      yield all([put({type: actions.SET_SERVICES, payload: services})]);
+    }
+  } catch (e) {
+    // console.log('the e from set setProducts', e)
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
+  }
+}
+
 export function* setProducts() {
   try {
     const products = yield call(api.getProducts);
@@ -206,7 +218,7 @@ export function* startGetUserScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
-          params: {name: user.slug, id: user.id, product: false}
+          params: {name: user.slug, id: user.id, model: 'user'}
         })
       );
     } else {
@@ -257,7 +269,31 @@ export function* startGetProductScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'Product',
-            params: {name: product.name, id: product.id, product: true}
+            params: {name: product.name, id: product.id, model: 'product'}
+          })
+        )
+      ]);
+    }
+  } catch (e) {
+    // console.log('the e from set Commercials', e)
+    yield all([
+      disableLoading,
+      enableWarningMessage(I18n.t('error_while_loading_product'))
+    ]);
+  }
+}
+
+export function* startGetServiceScenario(action) {
+  try {
+    console.log('the action', action);
+    const service = yield call(api.getService, action.payload);
+    if (!validate.isEmpty(service) && validate.isObject(service)) {
+      yield all([
+        put({type: actions.SET_SERVICE, payload: service}),
+        put(
+          NavigationActions.navigate({
+            routeName: 'Service',
+            params: {name: service.name, id: service.id, model: 'service'}
           })
         )
       ]);
@@ -279,11 +315,31 @@ export function* startGetSearchProductsScenario(action) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
+        put(
+          NavigationActions.navigate({
+            routeName: 'ProductIndexAll',
+            params: {name: element ? element.name : I18n.t('products')}
+          })
+        )
+      ]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
+  }
+}
+
+export function* startGetSearchServicesScenario(action) {
+  try {
+    const {element, searchElements} = action.payload;
+    const services = yield call(api.getSearchServices, searchElements);
+    if (!validate.isEmpty(services) && validate.isArray(services)) {
+      yield all([
+        put({type: actions.SET_SERVICES, payload: services}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
         put(
           NavigationActions.navigate({
-            routeName: 'ProductIndex',
-            params: {name: element ? element.name : I18n.t('products')}
+            routeName: 'ServiceIndex',
+            params: {name: element ? element.name : I18n.t('services')}
           })
         )
       ]);
@@ -386,6 +442,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeCategories),
       call(setCountries),
       call(setSlides),
+      call(setServices),
       call(setCommercials),
       call(setHomeBrands),
       call(setHomeProducts),

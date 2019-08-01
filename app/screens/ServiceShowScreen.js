@@ -19,36 +19,36 @@ import {Icon} from 'react-native-elements';
 import {first} from 'lodash';
 import {
   getCategoryElements,
-  getDesigner,
-  getProduct,
-  getSearchProducts
+  getDesigner, getSearchServices,
+  getService
 } from '../redux/actions';
 import validate from 'validate.js';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
+import ServiceHorizontalWidget from "../components/widgets/service/ServiceHorizontalWidget";
+import ServiceInfoWidget from "../components/widgets/service/ServiceInfoWidget";
 
-class ProductShowScreen extends Component {
+class ServiceShowScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {refresh: false};
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.product !== this.props.product;
+    return nextProps.service !== this.props.service;
   }
 
   render() {
     const {
-      product,
+      service,
       currency,
       navigation,
       settings,
       dispatch,
-      products,
+      services,
       token
     } = this.props;
-    console.log('product', product);
+    console.log('product', service);
     return (
       <NavContext.Provider value={{navigation}}>
         <ScrollView
@@ -63,7 +63,7 @@ class ProductShowScreen extends Component {
               onRefresh={() => {
                 this.setState({refresh: false});
                 dispatch(
-                  getProduct({id: product.id, api_token: token ? token : null})
+                  getService({id: service.id, api_token: token ? token : null})
                 );
               }}
             />
@@ -73,25 +73,25 @@ class ProductShowScreen extends Component {
           showsVerticalScrollIndicator={false}
           contentInset={{bottom: 50}}>
           <ImagesWidget
-            elements={product.images
-              .concat({id: product.id, large: product.large})
+            elements={service.images
+              .concat({id: service.id, large: service.large})
               .reverse()}
             width={width}
             height={550}
-            name={product.name}
-            exclusive={product.exclusive}
-            isOnSale={product.isOnSale}
-            isReallyHot={product.isReallyHot}
+            name={service.name}
+            exclusive={service.exclusive}
+            isOnSale={service.isOnSale}
+            isReallyHot={service.isReallyHot}
           />
           <View style={{width: '90%'}}>
             <View animation="bounceInLeft" easing="ease-out">
-              <ProductInfoWidget element={product} currency={currency} />
+              <ServiceInfoWidget element={service} currency={currency} />
             </View>
             <View
               animation="bounceInLeft"
               easing="ease-out"
               style={{marginTop: 15}}>
-              {product.description ? (
+              {service.description ? (
                 <View>
                   <Text
                     style={{
@@ -109,32 +109,35 @@ class ProductShowScreen extends Component {
                       fontFamily: text.font,
                       padding: 10
                     }}>
-                    {product.description}
+                    {service.description}
                   </Text>
                 </View>
               ) : null}
-              <ProductInfoWidgetElement
-                elementName="designer"
-                name={product.user.slug}
-                link={() =>
-                  dispatch(
-                    getDesigner({
-                      element: product.user,
-                      searchElements: {user_id: product.user.id}
-                    })
-                  )
+                {
+                    !validate.isEmpty(service.user) ?
+                        <ProductInfoWidgetElement
+                            elementName="designer"
+                            name={service.user.slug}
+                            link={() =>
+                                dispatch(
+                                    getDesigner({
+                                        element: service.user,
+                                        searchElements: {user_id: service.user.id}
+                                    })
+                                )
+                            }
+                        /> : null
                 }
-              />
               <ProductInfoWidgetElement
                 elementName="categories"
-                name={first(product.categories).name}
+                name={first(service.categories).name}
                 link={() =>
                   dispatch(
-                    getSearchProducts({
-                      element: first(product.categories),
-                      category: first(product.categories),
+                    getSearchServices({
+                      element: first(service.categories),
+                      category: first(service.categories),
                       searchElements: {
-                        product_category_id: first(product.categories).id
+                        product_category_id: first(service.categories).id
                       }
                     })
                   )
@@ -142,12 +145,12 @@ class ProductShowScreen extends Component {
               />
               <ProductInfoWidgetElement
                 elementName="sku"
-                name={product.sku}
+                name={service.sku}
                 showArrow={false}
               />
               <ProductInfoWidgetElement
                 elementName="product_weight"
-                name={product.weight}
+                name={service.weight}
                 showArrow={false}
               />
               <ProductInfoWidgetElement
@@ -161,9 +164,9 @@ class ProductShowScreen extends Component {
                   link={() =>
                     navigation.navigate('ImageZoom', {
                       images: [
-                        {id: product.id, large: settings.shipment_prices}
+                        {id: service.id, large: settings.shipment_prices}
                       ],
-                      name: product.name,
+                      name: service.name,
                       index: 0
                     })
                   }
@@ -174,8 +177,8 @@ class ProductShowScreen extends Component {
                   elementName="size_chart"
                   link={() =>
                     navigation.navigate('ImageZoom', {
-                      images: [{id: product.id, large: settings.size_chart}],
-                      name: product.name,
+                      images: [{id: service.id, large: settings.size_chart}],
+                      name: service.name,
                       index: 0
                     })
                   }
@@ -183,13 +186,13 @@ class ProductShowScreen extends Component {
               ) : null}
             </View>
           </View>
-          {validate.isObject(product.videoGroup) &&
-          !validate.isEmpty(product.videoGroup) ? (
-            <VideosWidget videos={product.videoGroup} />
+          {validate.isObject(service.videoGroup) &&
+          !validate.isEmpty(service.videoGroup) ? (
+            <VideosWidget videos={service.videoGroup} />
           ) : null}
-          {!validate.isEmpty(products) ? (
-            <ProductHorizontalWidget
-              elements={products}
+          {!validate.isEmpty(services) ? (
+            <ServiceHorizontalWidget
+              elements={services}
               showName={true}
               currency={currency}
               title="featured_products"
@@ -203,14 +206,14 @@ class ProductShowScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    product: state.product,
+    service: state.service,
     currency: state.currency,
     settings: state.settings,
-    products: state.products,
+    services: state.services,
     token: state.token
   };
 }
 
-export default connect(mapStateToProps)(ProductShowScreen);
+export default connect(mapStateToProps)(ServiceShowScreen);
 
 const styles = StyleSheet.create({});

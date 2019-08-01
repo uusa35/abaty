@@ -10,7 +10,7 @@ import {Icon} from 'react-native-elements';
 import {toggleFavorite} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductInfoWidgetMainTitle = ({element}) => {
+const ServiceInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, country, token, guest} = useContext(GlobalValuesContext);
   const {symbol, exchange_rate} = country.currency;
@@ -39,11 +39,12 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           },
           shadowOpacity: 0.2,
           shadowRadius: 1.41,
+
           elevation: 2
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{ width : '80%'}}>
+        <View style={{ width : '80%'}}>
         <Text
           style={{
             paddingRight: 5,
@@ -59,6 +60,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             },
             shadowOpacity: 0.2,
             shadowRadius: 1.41,
+
             elevation: 2
           }}>
           {element.name}
@@ -144,9 +146,9 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   );
 };
 
-export default React.memo(ProductInfoWidgetMainTitle);
+export default React.memo(ServiceInfoWidgetMainTitle);
 
-ProductInfoWidgetMainTitle.propTypes = {
+ServiceInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired
 };
 

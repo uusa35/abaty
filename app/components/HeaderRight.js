@@ -8,13 +8,13 @@ import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
 import {showCountryModal} from '../redux/actions';
 import {Icon} from 'react-native-elements';
-import {productPrefix, userPrefix} from '../constants';
+import {linkingPrefix, productPrefix, userPrefix} from '../constants';
 import Share from 'react-native-share';
 import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 
-export const HeaderRight = ({display, displayShare, navigation}) => {
+export const HeaderRight = ({display = false, displayShare = false , navigation}) => {
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const shareLink = link => {
@@ -35,7 +35,7 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
   };
   return (
     <SafeAreaView>
-      <View style={styles.container}>
+      <View style={widgetStyles.safeContainer}>
         {display ? (
           <TouchableOpacity
             onPress={() => dispatch(showCountryModal())}
@@ -49,13 +49,7 @@ export const HeaderRight = ({display, displayShare, navigation}) => {
         ) : null}
         {displayShare ? (
           <Icon
-            onPress={() =>
-              shareLink(
-                `${
-                  navigation.state.params.product ? productPrefix : userPrefix
-                }${navigation.state.params.id}`
-              )
-            }
+            onPress={() => shareLink(`${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`)}
             name="share"
             size={25}
             underlayColor="transparent"

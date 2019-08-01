@@ -1,26 +1,24 @@
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {NavContext} from './../redux/NavContext';
+import {View} from 'react-native-animatable';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
+import ServiceList from "../components/widgets/service/ServiceList";
 
-class ProductIndexAllScreen extends Component {
+class ServiceIndexScreen extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentWillMount(): void {
-    this.props.dispatch(getAllProducts());
-  }
-
   render() {
-    const {products, navigation} = this.props;
+    const {services, navigation} = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
-        <ProductList elements={products} showName={true} searchElements={{}} />
+        <ServiceList elements={services} searchElements={{}} showName={true}/>
       </NavContext.Provider>
     );
   }
@@ -28,14 +26,14 @@ class ProductIndexAllScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    services : state.services
   };
 }
 
-export default connect(mapStateToProps)(ProductIndexAllScreen);
+export default connect(mapStateToProps)(ServiceIndexScreen);
 
-ProductIndexAllScreen.propTypes = {
-  products: PropTypes.array.isRequired
+ServiceIndexScreen.propTypes = {
+  services: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

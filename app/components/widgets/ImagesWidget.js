@@ -12,7 +12,7 @@ import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {NavContext} from '../../redux/NavContext';
 import {images, text} from '../../constants';
-import TagWidget from './product/TagWidget';
+import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 

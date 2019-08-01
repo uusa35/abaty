@@ -57,8 +57,8 @@ const widgetStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flex: 1,
-    minWidth: 80
+    width: 80,
+    height: '100%'
   }
 });
 

@@ -38,7 +38,7 @@ import {
   startGetAllProductsScenario,
   startUpdateUserScenario,
   startSubmitCartScenario,
-  getVideos
+  getVideos, startGetSearchServicesScenario, startGetServiceScenario, setServices
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -74,6 +74,7 @@ function* startAppBootStrap() {
         call(setSettings),
         call(setCountries),
         call(setSlides),
+        call(setServices),
         call(setCommercials),
         call(setHomeBrands),
         call(startAuthenticatedScenario),
@@ -151,8 +152,16 @@ export function* getProduct() {
   yield takeLatest(actions.GET_PRODUCT, startGetProductScenario);
 }
 
+export function* getService() {
+  yield takeLatest(actions.GET_SERVICE, startGetServiceScenario);
+}
+
 export function* getSearchProducts() {
   yield takeLatest(actions.GET_SEARCH_PRODUCTS, startGetSearchProductsScenario);
+}
+
+export function* getSearchServices() {
+  yield takeLatest(actions.GET_SEARCH_SERVICES, startGetSearchServicesScenario);
 }
 
 export function* getAllProducts() {

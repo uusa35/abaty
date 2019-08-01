@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import CategoriesList from '../components/Lists/CategoriesList';
 import {NavContext} from '../redux/NavContext';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
-import {isIOS} from '../constants';
 
 class CategoryIndexScreen extends Component {
   constructor(props) {

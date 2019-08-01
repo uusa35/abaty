@@ -254,9 +254,23 @@ export function getProduct(payload) {
   };
 }
 
+export function getService(payload) {
+  return {
+    type: actions.GET_SERVICE,
+    payload
+  };
+}
+
 export function getSearchProducts(payload) {
   return {
     type: actions.GET_SEARCH_PRODUCTS,
+    payload
+  };
+}
+
+export function getSearchServices(payload) {
+  return {
+    type: actions.GET_SEARCH_SERVICES,
     payload
   };
 }
