@@ -310,6 +310,8 @@ export function* startGetServiceScenario(action) {
 export function* startGetSearchProductsScenario(action) {
   try {
     const {element, searchElements} = action.payload;
+    console.log('the element of the ProductIndex', element);
+    console.log('the searchElements of the ProductIndex', searchElements);
     const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
@@ -317,7 +319,7 @@ export function* startGetSearchProductsScenario(action) {
         put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
         put(
           NavigationActions.navigate({
-            routeName: 'ProductIndexAll',
+            routeName: 'ProductIndex',
             params: {name: element ? element.name : I18n.t('products')}
           })
         )

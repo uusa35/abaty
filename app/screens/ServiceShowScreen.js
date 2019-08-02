@@ -125,7 +125,6 @@ class ServiceShowScreen extends Component {
                   dispatch(
                     getSearchServices({
                       element: first(service.categories),
-                      category: first(service.categories),
                       searchElements: {
                         service_category_id: first(service.categories).id
                       }

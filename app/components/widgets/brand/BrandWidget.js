@@ -29,11 +29,12 @@ const BrandWidget = ({
           borderColor: 'lightgrey'
         }
       ]}
-      onPress={() =>
+      onPress={() => {
+        dispatch({type: 'SET_BRAND', payload: element});
         dispatch(
           getSearchProducts({element, searchElements: {brand_id: element.id}})
-        )
-      }>
+        );
+      }}>
       <FastImage
         source={{
           uri: element.thumb,

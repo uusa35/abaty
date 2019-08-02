@@ -33,8 +33,8 @@ const ProductInfoWidgetBtns = ({element}) => {
               fontFamily: text.font,
               color: colors.normal_text_theme_color,
               textAlign: 'center',
-              padding: 10,
-              fontSize: 17
+              paddingTop: 10,
+              fontSize: 15
             }}>
             {I18n.t('sizes_and_colors_and_length_available')}
           </Text>

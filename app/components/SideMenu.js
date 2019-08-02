@@ -39,7 +39,8 @@ class Menu extends Component {
     return (
       <ScrollView
         style={[styles.container]}
-        contentContainerStyle={{alignItems: 'center'}}>
+        contentContainerStyle={{alignItems: 'center'}}
+        contentInset={{bottom: 200}}>
         <SafeAreaView style={{width: '100%', alignItems: 'center'}}>
           <StatusBar barStyle="dark-content" backgroundColor="white" />
           <FastImage
@@ -307,7 +308,7 @@ const styles = StyleSheet.create({
   mainMenuText: {
     color: 'black',
     fontFamily: text.font,
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     marginTop: 8
   }

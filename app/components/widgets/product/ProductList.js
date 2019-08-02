@@ -64,9 +64,10 @@ const ProductList = ({
   useMemo(() => {
     if (refresh && showMore) {
       // for now i don't know what products to fetch
+      console.log('the params from ProductIndex', params);
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchProducts(params));
+      dispatch(getSearchProducts({searchElements: params, title}));
     } else {
       setRefresh(false);
     }

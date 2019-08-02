@@ -19,11 +19,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   return (
     <View
       style={{
-        padding: 5,
+        padding: 0,
         marginBottom: 10,
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center'
       }}>
       <FastImage
@@ -43,12 +43,12 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{width: '80%'}}>
+      <View style={{width: '75%'}}>
         <Text
           style={{
             paddingRight: 5,
             paddingLeft: 5,
-            fontSize: 20,
+            fontSize: 18,
             color: colors.header_one_theme_color,
             textAlign: 'left',
             fontFamily: text.font,
