@@ -372,7 +372,9 @@
   "cart_confirmation": "Confirm Information",
   "go_to_payment": "go to payment",
   "payment_index_page": "Payment Process",
+  "service_added_to_cart_successfully" : "Service added to cart successfully",
   "product_removed_to_cart_successfully": "product removed from cart.",
+  "service_removed_to_cart_successfully": "service removed from cart.",
   "cart_cleared": "cart cleared.",
   "appName": "Abati",
   "exclusive": "Exclusive",
@@ -425,5 +427,6 @@
   "related_services" : "Related Services",
   "choose_day" : "Choose Day",
   "choose_time" : "Choose Time",
-  "orders_that_include_services_are_not_accepted_out_side_kuwait" : "Orders that may include services are not accepted outside of kuwait."
+  "orders_that_include_services_are_not_accepted_out_side_kuwait" : "Orders that may include services are not accepted outside of kuwait.",
+  "service_date_and_time" : "Date and time"
 }

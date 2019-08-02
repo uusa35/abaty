@@ -16,15 +16,15 @@ const ServiceInfoWidgetBtns = ({element}) => {
   const [days, setDays] = useState(_.keys(timings));
   const [day, setDay] = useState(_.first(_.keys(timings)));
   const [selectedDay, setSelectedDay] = useState([]);
-  const [selectedTiming, setSelectedTiming] = useState('');
+  const [selectedTiming, setSelectedTiming] = useState(null);
+  const [timeData, setTimeData] = useState({});
   const [notes, setNotes] = useState('');
 
   useMemo(() => {
-    console.log('here');
     setSelectedDay(timings[day]);
+    setSelectedTiming(null);
+    setTimeData(null);
   }, [day]);
-
-  console.log('selectedTiming', selectedTiming);
 
   useMemo(() => {
     if (selectedTiming) {
@@ -62,9 +62,11 @@ const ServiceInfoWidgetBtns = ({element}) => {
             padding: 0
           }}
           itemStyle={{fontFamily: text.font}}
-          onValueChange={(itemValue, itemIndex) =>
-            setSelectedTiming(itemValue)
-          }>
+          onValueChange={(itemValue, itemIndex) => {
+            const time = _.filter(selectedDay, d => d.id === itemValue);
+            setSelectedTiming(itemValue);
+            setTimeData(time[0]);
+          }}>
           <Picker.Item key={0} label={I18n.t('choose_time')} value={null} />
           {_.map(selectedDay, (time, i) => {
             return <Picker.Item key={i} label={time.start} value={time.id} />;
@@ -106,6 +108,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
                 type: 'service',
                 qty: 1,
                 element,
+                timeData,
                 notes
               })
             )

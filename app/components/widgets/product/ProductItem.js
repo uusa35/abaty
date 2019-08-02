@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {removeItem} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductItem = ({element, logo, editMode, qty}) => {
+const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
   const {dispatch} = useContext(DispatchContext);
   return (
     <View
@@ -71,6 +71,24 @@ const ProductItem = ({element, logo, editMode, qty}) => {
                 paddingRight: 10
               }}>
               {element.sku} - {element.id}
+            </Text>
+          </View>
+        ) : null}
+        {!validate.isEmpty(timeData) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text style={styles.productItemTitle}>
+              {I18n.t('service_date_and_time')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {timeData.date} - {timeData.start}
             </Text>
           </View>
         ) : null}

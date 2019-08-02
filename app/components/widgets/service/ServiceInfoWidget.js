@@ -1,12 +1,5 @@
-import React, {useContext, useState} from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  View
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import ServiceInfoWidgetMainTitle from './ServiceInfoWidgetMainTitle';
 import ServiceInfoWidgetBtns from './ServiceInfoWidgetBtns';

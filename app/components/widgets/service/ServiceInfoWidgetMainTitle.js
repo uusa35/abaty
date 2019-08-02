@@ -23,7 +23,7 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
         marginBottom: 10,
         width: '100%',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center'
       }}>
       <FastImage
@@ -39,12 +39,11 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
           },
           shadowOpacity: 0.2,
           shadowRadius: 1.41,
-
           elevation: 2
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{width: '80%'}}>
+      <View style={{width: '75%'}}>
         <Text
           style={{
             paddingRight: 5,
@@ -123,24 +122,6 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
             </View>
           ) : null}
         </View>
-      </View>
-      <View style={{justifyContent: 'flex-end'}}>
-        {!guest ? (
-          <Icon
-            onPress={() => {
-              setFavorite(!favorite);
-              dispatch(
-                toggleFavorite({api_token: token, product_id: element.id})
-              );
-            }}
-            name={favorite ? 'star' : 'staro'}
-            type="antdesign"
-            size={25}
-            underlayColor="transparent"
-            hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-            color="#FCD12A"
-          />
-        ) : null}
       </View>
     </View>
   );

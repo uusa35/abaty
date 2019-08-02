@@ -66,6 +66,7 @@ const CartList = ({
           return (
             <ProductItem
               element={item.element}
+              timeData={item.type === 'service' ? item.timeData : null}
               key={item.element.id}
               editMode={editMode}
               qty={item.qty}
