@@ -81,7 +81,7 @@ class Menu extends Component {
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
-            {__DEV__ ? (
+            {!guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('ServiceIndex')}
                 style={styles.menuBtn}>
