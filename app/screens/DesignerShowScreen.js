@@ -43,7 +43,6 @@ class DesignerShowScreen extends Component {
       guest,
       dispatch
     } = this.props;
-    console.log('the user', user.isFanned);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -145,7 +144,7 @@ class DesignerShowScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    user: state.designer,
     searchParams: state.searchParams,
     settings: state.settings,
     guest: state.guest

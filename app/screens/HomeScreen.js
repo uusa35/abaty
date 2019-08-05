@@ -223,18 +223,18 @@ class HomeScreen extends Component {
                 title="celebrities"
               />
             ) : null}
-            {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-              <BrandHorizontalWidget
-                elements={brands}
-                showName={false}
-                title="brands"
-              />
-            ) : null}
             {!validate.isEmpty(homeProducts) ? (
               <ProductHorizontalWidget
                 elements={homeProducts}
                 showName={true}
                 title="featured_products"
+              />
+            ) : null}
+            {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+              <BrandHorizontalWidget
+                elements={brands}
+                showName={false}
+                title="brands"
               />
             ) : null}
             {!validate.isEmpty(services) ? (

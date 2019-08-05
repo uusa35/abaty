@@ -52,7 +52,14 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
             <TouchableOpacity
               key={i}
               style={widgetStyles.btnStyle}
-              onPress={() => dispatch(getUser(c.id))}>
+              onPress={() =>
+                dispatch(
+                  getDesigner({
+                    element: c,
+                    searchElements: {user_id: c.id}
+                  })
+                )
+              }>
               <FastImage
                 source={{
                   uri: c.thumb,

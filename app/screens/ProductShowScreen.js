@@ -48,7 +48,6 @@ class ProductShowScreen extends Component {
       products,
       token
     } = this.props;
-    console.log('product', product);
     return (
       <NavContext.Provider value={{navigation}}>
         <ScrollView
