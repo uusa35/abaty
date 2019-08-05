@@ -1,14 +1,12 @@
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import axios from 'axios';
-import {call, put, all, delay, takeLatest, select} from 'redux-saga/effects';
+import {call, put, all, takeLatest, select} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
 import {
   getCountry,
   setHomeBrands,
   setHomeProducts,
-  setProducts,
   setSlides,
   startDeepLinkingScenario,
   startSetCountryScenario,
@@ -16,7 +14,6 @@ import {
   setHomeDesigners,
   startGetDesignerScenario,
   startGetProductScenario,
-  startGetBrandScenario,
   setHomeCelebrities,
   startGetSearchProductsScenario,
   startRefetchHomeElementsScenario,
@@ -28,7 +25,6 @@ import {
   startSubmitAuthScenario,
   startLogoutScenario,
   startGetCouponScenario,
-  startCreatePaymentUrlScenario,
   startCreateMyFatorrahPaymentUrlScenario,
   startCreateTapPaymentUrlScenario,
   startRemoveFromCartScenario,
@@ -51,24 +47,17 @@ import {
   setHomeCategories,
   setSettings,
   startRefetchHomeCategories,
-  startGetCategoryElementsScenario,
   startRefetchUserScenario,
   setCommercials,
   setCountries,
   startGetUserScenario
 } from './requestSagas';
-import {
-  enableLoading,
-  disableLoading,
-  toggleBootStrapped,
-  setDeviceId,
-  enableErrorMessage
-} from './settingSagas';
+import {disableLoading, setDeviceId, enableErrorMessage} from './settingSagas';
 import {offlineActionTypes} from 'react-native-offline';
 
 function* startAppBootStrap() {
   try {
-    const {network, bootStrapped, currency, lang} = yield select();
+    const {network, bootStrapped} = yield select();
     if (!bootStrapped || (__DEV__ && network.isConnected)) {
       console.log('from inside');
       yield all([
@@ -260,8 +249,6 @@ export function* resetStore() {
 
 export function* startResetStoreScenario(action) {
   PersistStore.purge();
-  yield all([
-    put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
-    call(startAppBootStrap)
-  ]);
+  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
+    yield call(startAppBootStrap);
 }

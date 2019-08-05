@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text} from 'react-native';
+import {Text} from 'react-native';
 import {connect} from 'react-redux';
 import {
   createBottomTabNavigator,
@@ -13,7 +13,7 @@ import {
 } from 'react-navigation-redux-helpers';
 import I18n, {isRTL} from './I18n';
 import SideMenu from './components/SideMenu';
-import {text, icons} from './constants';
+import {text} from './constants';
 import HomeScreen from './screens/HomeScreen';
 import {HeaderLeft} from './components/HeaderLeft';
 import {Icon} from 'react-native-elements';

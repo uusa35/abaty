@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {Store, PersistStore} from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import App from './App';
-import {ReduxNetworkProvider, NetworkProvider} from 'react-native-offline';
+import {ReduxNetworkProvider} from 'react-native-offline';
 console.disableYellowBox = true;
 
 export const Abaty = () => (
