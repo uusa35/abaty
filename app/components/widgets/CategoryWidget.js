@@ -31,7 +31,7 @@ const CategoryWidget = ({category, columns, showBtn = false}) => {
         <FastImage
           style={{width: width, height: 400}}
           resizeMode="cover"
-          source={{uri: category.thumb}}
+          source={{uri: category.large}}
           loadingIndicatorSource={images.logo}
         />
         {showBtn ? (

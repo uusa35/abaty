@@ -66,6 +66,7 @@ class DesignerShowScreen extends Component {
                 logo={settings.logo}
                 slug={user.slug}
                 type={user.role.slug}
+                views={user.views}
               />
               {!validate.isEmpty(user.slides) ? (
                 <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>

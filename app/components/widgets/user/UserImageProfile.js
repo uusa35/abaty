@@ -27,14 +27,14 @@ const UserImageProfile = ({
   isFanned = false,
   showFans,
   showRating,
-  guest
+  guest,
+  views
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
-  console.log('the guest', guest);
 
   useMemo(() => {
     if (rating !== currentRating) {
@@ -59,16 +59,21 @@ const UserImageProfile = ({
           justifyContent: 'flex-start',
           alignItems: 'flex-start',
           paddingRight: 10,
-          paddingLeft: 10
+          paddingLeft: 10,
+          marginTop: 10,
+          width: '72%'
         }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            width: 280
+            width: '100%'
           }}>
           <Text
-            style={[styles.mainTitle, {color: colors.header_tow_theme_color}]}>
+            style={[
+              styles.mainTitle,
+              {color: colors.header_tow_theme_color, fontSize: 20, marginTop: 8}
+            ]}>
             {slug.substring(0, 25)}
           </Text>
           <Icon
@@ -96,6 +101,15 @@ const UserImageProfile = ({
             {fans} {I18n.t('fans')}
           </Text>
         ) : null}
+        {views ? (
+          <Text
+            style={[
+              styles.mainTitle,
+              {fontSize: text.small, color: colors.header_tow_theme_color}
+            ]}>
+            {views} {I18n.t('views')}
+          </Text>
+        ) : null}
         {showRating ? (
           <Rating
             readonly={guest}
@@ -105,7 +119,7 @@ const UserImageProfile = ({
             ratingCount={5}
             style={{paddingVertical: 0}}
             onFinishRating={rating => setRating(rating)}
-            imageSize={25}
+            imageSize={20}
           />
         ) : null}
       </View>

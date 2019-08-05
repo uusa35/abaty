@@ -15,17 +15,7 @@ class FavoriteIndexScreen extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('Next Props', nextProps.productFavorites);
-    console.log('Next Props', this.props.productFavorites);
-    if (nextProps.productFavorites > 0) {
-      return true;
-    }
-    if (
-      this.props.productFavorites.length !== nextProps.productFavorites.length
-    ) {
-      return true;
-    }
-    return false;
+    return this.props.productFavorites !== nextProps.productFavorites;
   }
 
   render() {

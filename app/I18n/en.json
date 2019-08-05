@@ -431,5 +431,6 @@
   "service_date_and_time" : "Date and time",
   "fans" : "Fans",
   "fan_success" :  "You are a fan now.",
-  "our_services" : "Our Services"
+  "our_services" : "Our Services",
+  "views" : "views"
 }

@@ -22,7 +22,6 @@ class VideoIndexScreen extends Component {
 
   render() {
     const {videos, navigation} = this.props;
-    console.log('videos', videos);
     return (
       <NavContext.Provider value={{navigation}}>
         <VideoList elements={videos} />

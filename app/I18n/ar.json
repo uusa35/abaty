@@ -464,6 +464,7 @@
   "fan_success" : "تمت العملية بنجاح",
   "orders_that_include_services_are_not_accepted_out_side_kuwait" : "يرجى أختيار دولة الكويت أولاً في حالة طلب أي من خدماتنا .. حيث انه لا يتم تقديم أيه من الخدمات بالتطبيق خارج دولة الكويت",
   "fans" : "المعجبين",
-  "our_services" : "خدماتنا"
+  "our_services" : "خدماتنا",
+  "views" : "مشاهدات"
 
 }
