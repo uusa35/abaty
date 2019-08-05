@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, useEffect} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
@@ -24,7 +24,7 @@ const UserImageProfile = ({
   type = null,
   totalFans,
   currentRating = 2,
-  isFanned = false,
+  isFanned,
   showFans,
   showRating,
   guest,
@@ -36,21 +36,20 @@ const UserImageProfile = ({
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
 
+  console.log('isFanned', isFanned);
+
   useMemo(() => {
     if (rating !== currentRating) {
-      console.log('the current rating', rating);
       dispatch(rateUser({value: rating, member_id}));
     }
   }, [rating]);
 
   useMemo(() => {
-    if (fanMe) {
-      setFans(fans + 1);
-      dispatch(becomeFan({id: member_id}));
-    } else {
-      setFans(fans - 1);
+    if (fanMe !== isFanned) {
+      return dispatch(becomeFan({id: member_id}));
     }
   }, [fanMe]);
+
   return (
     <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
       <FastImage source={{uri: large ? large : logo}} style={styles.logo} />
@@ -76,12 +75,14 @@ const UserImageProfile = ({
             ]}>
             {slug.substring(0, 25)}
           </Text>
-          <Icon
-            name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-            type="material-community"
-            color={colors.header_tow_theme_color}
-            onPress={() => setFanMe(!fanMe)}
-          />
+          {!guest ? (
+            <Icon
+              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+              type="material-community"
+              color={colors.header_tow_theme_color}
+              onPress={() => setFanMe(!fanMe)}
+            />
+          ) : null}
         </View>
         {!validate.isEmpty(type) ? (
           <Text

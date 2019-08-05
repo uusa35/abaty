@@ -33,6 +33,11 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
       ? currency
       : 'KWD';
+    axiosInstance.defaults.headers.common['currency'] = !validate.isEmpty(
+      currency
+    )
+      ? currency
+      : 'KWD';
     console.log('the lang', lang);
     axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang)
       ? lang
@@ -47,11 +52,8 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
       ? `Bearer ${token}`
       : null;
-    axiosInstance.defaults.headers.common['api_token'] = !validate.isEmpty(
-      token
-    )
-      ? `${token}`
-      : null;
+
+    console.log('the axiosInstance', axiosInstance.defaults.headers);
     if (!bootStrapped) {
       dispatch(appBootstrap());
     }

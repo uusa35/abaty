@@ -155,6 +155,7 @@ export async function getCountries() {
 }
 
 export async function getUser(id) {
+  console.log('the headers', axiosInstance.defaults.headers);
   return await axiosInstance
     .get(`user/${id}`)
     .then(r => r.data)

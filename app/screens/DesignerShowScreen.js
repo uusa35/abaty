@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, ScrollView} from 'react-native';
+import {Text, StyleSheet, ScrollView, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView
@@ -20,7 +20,7 @@ import I18n from './../I18n';
 import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import {Button} from 'react-native-elements';
+import {getDesigner} from '../redux/actions';
 
 class DesignerShowScreen extends Component {
   constructor(props) {
@@ -32,13 +32,21 @@ class DesignerShowScreen extends Component {
         {key: 'categories', title: I18n.t('categories')},
         {key: 'info', title: I18n.t('information').substring(0, 10)},
         {key: 'more', title: I18n.t('videos')}
-      ]
+      ],
+      refresh: false
     };
   }
 
   render() {
-    const {user, navigation, settings, searchParams, guest} = this.props;
-    console.log('the guest', guest);
+    const {
+      user,
+      navigation,
+      settings,
+      searchParams,
+      guest,
+      dispatch
+    } = this.props;
+    console.log('the user', user.isFanned);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -51,7 +59,21 @@ class DesignerShowScreen extends Component {
           containerStyle={{flex: 1}}
           headerImage={{
             uri: user.banner ? user.banner : settings.logo
-          }}>
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => {
+                this.setState({refresh: false});
+                dispatch(
+                  getDesigner({
+                    element: user,
+                    searchElements: {user_id: user.id}
+                  })
+                );
+              }}
+            />
+          }>
           <View style={styles.wrapper}>
             <TriggeringView onHide={() => console.log('text hidden')}>
               <UserImageProfile
@@ -105,21 +127,11 @@ class DesignerShowScreen extends Component {
                         searchElements={searchParams}
                       />
                     ),
-                    categories: () =>
-                      !validate.isEmpty(user.categories) ? (
-                        <UserCategoriesInfoWidget elements={user.categories} />
-                      ) : (
-                        <View>
-                          <Text style={styles.subTitle}>
-                            {I18n.t('no_categories')}
-                          </Text>
-                        </View>
-                      ),
+                    categories: () => (
+                      <UserCategoriesInfoWidget elements={user.categories} />
+                    ),
                     info: () => <UserInfoWidget user={user} />,
-                    more: () =>
-                      !validate.isEmpty(user.videoGroup) ? (
-                        <VideosWidget videos={user.videoGroup} />
-                      ) : null
+                    more: () => <VideosWidget videos={user.videoGroup} />
                   })}
                   style={{marginTop: 10, backgroundColor: 'white'}}
                   onIndexChange={index => this.setState({index})}
@@ -136,7 +148,7 @@ class DesignerShowScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.designer,
+    user: state.user,
     searchParams: state.searchParams,
     settings: state.settings,
     guest: state.guest

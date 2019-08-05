@@ -35,8 +35,8 @@ const UserInfoWidgetElement = ({
           </View>
           {showArrow ? (
             <Icon
-              name={isRTL ? 'chevron-left' : 'chevron-right'}
-              type="font-awesome"
+              name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+              type="entypo"
               color="lightgrey"
               size={15}
               iconStyle={{

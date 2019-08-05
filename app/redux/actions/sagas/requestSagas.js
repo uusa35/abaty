@@ -211,7 +211,6 @@ export function* startSetCountryScenario(action) {
 
 export function* startGetUserScenario(action) {
   try {
-    console.log('the action from userId', action);
     const user = yield call(api.getUser, action.payload);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_USER, payload: user});
@@ -221,8 +220,6 @@ export function* startGetUserScenario(action) {
           params: {name: user.slug, id: user.id, model: 'user'}
         })
       );
-    } else {
-      throw I18n.t('no_user');
     }
   } catch (e) {
     // console.log('the e from set get user scnario', e)
@@ -886,12 +883,11 @@ export function* startRateUserScenario(action) {
 
 export function* startBecomeFanScenario(action) {
   try {
-    console.log('the action from saga', action.payload);
     const user = yield call(api.becomeFan, action.payload);
-    console.log('the user', user);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
-      yield call(enableSuccessMessage, I18n.t('fan_success'));
-    }
+    // console.log('the user', user);
+    // if (!validate.isEmpty(user) && validate.isObject(user)) {
+    //   yield call(enableSuccessMessage, I18n.t('fan_success'));
+    // }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
   }

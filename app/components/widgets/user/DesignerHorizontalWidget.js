@@ -4,7 +4,7 @@ import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getDesigner, getUsers} from '../../../redux/actions';
+import {getDesigner, getUser, getUsers} from '../../../redux/actions';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -52,11 +52,7 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
             <TouchableOpacity
               key={i}
               style={widgetStyles.btnStyle}
-              onPress={() =>
-                dispatch(
-                  getDesigner({element: c, searchElements: {user_id: c.id}})
-                )
-              }>
+              onPress={() => dispatch(getUser(c.id))}>
               <FastImage
                 source={{
                   uri: c.thumb,

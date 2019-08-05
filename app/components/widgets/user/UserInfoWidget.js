@@ -58,8 +58,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('location')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -153,8 +153,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('twitter')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -183,8 +183,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('facebook')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -213,8 +213,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('instagram')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -243,8 +243,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('android')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -273,8 +273,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('youtube')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{
@@ -303,8 +303,8 @@ const UserInfoWidget = ({user}) => {
             <Text style={styles.subTitle}>{I18n.t('website')}</Text>
           </View>
           <Icon
-            name={isRTL ? 'chevron-left' : 'chevron-right'}
-            type="font-awesome"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            type="entypo"
             color="lightgrey"
             size={15}
             iconStyle={{

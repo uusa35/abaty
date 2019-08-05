@@ -21,7 +21,6 @@ import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import Image from 'react-native-image-progress';
 
 class Menu extends Component {
   constructor(props) {
@@ -38,7 +37,6 @@ class Menu extends Component {
   render() {
     const {settings, guest, navigation, dispatch, name} = this.props;
     const {colors} = settings;
-    console.log('settings', settings);
     return (
       <ScrollView
         style={[styles.container]}
