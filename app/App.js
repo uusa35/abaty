@@ -33,6 +33,7 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
       ? currency
       : 'KWD';
+    console.log('the lang', lang);
     axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang)
       ? lang
       : isRTL

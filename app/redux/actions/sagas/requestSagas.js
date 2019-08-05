@@ -651,7 +651,6 @@ export function* startAuthenticatedScenario() {
     const {token} = yield select();
     if (!validate.isEmpty(token)) {
       const user = yield call(api.authenticated, token); // get the auth user according to auth stored in storage
-      console.log('the user', user);
       if (!validate.isEmpty(user) && !validate.isEmpty(token)) {
         yield all([
           put({type: actions.SET_AUTH, payload: user}),
