@@ -52,8 +52,6 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
       ? `Bearer ${token}`
       : null;
-
-    console.log('the axiosInstance', axiosInstance.defaults.headers);
     if (!bootStrapped) {
       dispatch(appBootstrap());
     }

@@ -1,7 +1,5 @@
 import React, {useContext} from 'react';
-import {Icon, ListItem} from 'react-native-elements';
-import {images, text} from './../../../constants';
-import {isRTL} from '../../../I18n';
+import {images} from './../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getUser} from './../../../redux/actions';
 import widgetStyles from '../widgetStyles';
@@ -12,14 +10,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import {getProductConvertedFinalPrice} from '../../../helpers';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 
 const UserWidgetHorizontal = ({user, showName}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
-  console.log('the user', user);
   return (
     <TouchableOpacity
       key={user.id}

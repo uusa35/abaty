@@ -6,6 +6,7 @@ import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import MapViewWidget from './MapViewWidget';
 import {View} from 'react-native-animatable';
+import validate from 'validate.js';
 
 const ContactInformationWidget = props => {
   const {settings} = props;
@@ -16,73 +17,90 @@ const ContactInformationWidget = props => {
         resizeMode="contain"
         style={styles.logo}
       />
-      <MapViewWidget
-        logo={settings.logo}
-        longitude={settings.longitude}
-        latitude={settings.latitude}
-        title={settings.company}
-        height={250}
-      />
-      <TouchableOpacity
-        hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
-        onPress={() => Linking.openURL(`tel:${settings.mobile}`)}
-        style={styles.container}>
-        <View style={styles.wrapper}>
-          <Icon name="phone" color="grey" iconStyle={{paddingLeft: 10}} />
-          <Text style={styles.phoneNo}>{I18n.t('mobile')}</Text>
+      {!validate.isEmpty(settings.longitude) || !validate.isEmpty(latitude) ? (
+        <MapViewWidget
+          logo={settings.logo}
+          longitude={settings.longitude}
+          latitude={settings.latitude}
+          title={settings.company}
+          height={250}
+        />
+      ) : null}
+
+      {settings.mobile ? (
+        <TouchableOpacity
+          hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+          onPress={() => Linking.openURL(`tel:${settings.mobile}`)}
+          style={styles.container}>
+          <View style={styles.wrapper}>
+            <Icon name="phone" color="grey" iconStyle={{paddingLeft: 10}} />
+            <Text style={styles.phoneNo}>{I18n.t('mobile')}</Text>
+          </View>
+          <Text style={styles.phoneNo}>{settings.mobile}</Text>
+        </TouchableOpacity>
+      ) : null}
+      {settings.whatsapp ? (
+        <TouchableOpacity
+          hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+          onPress={() =>
+            Linking.openURL(
+              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Escrap Support`
+            )
+          }
+          style={styles.container}>
+          <View style={styles.wrapper}>
+            <Icon
+              name="whatsapp"
+              type="font-awesome"
+              color="grey"
+              iconStyle={{paddingLeft: 10}}
+            />
+            <Text style={styles.phoneNo}>{I18n.t('whatsapp')}</Text>
+          </View>
+          <Text style={styles.phoneNo}>{settings.whatsapp}</Text>
+        </TouchableOpacity>
+      ) : null}
+      {settings.address ? (
+        <View style={styles.container}>
+          <View style={styles.wrapper}>
+            <Icon name="map" color="grey" iconStyle={{paddingLeft: 10}} />
+            <Text style={styles.phoneNo}>{I18n.t('address')}</Text>
+          </View>
+          <Text style={styles.phoneNo}>{settings.address}</Text>
         </View>
-        <Text style={styles.phoneNo}>{settings.mobile}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
-        onPress={() =>
-          Linking.openURL(
-            `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Escrap Support`
-          )
-        }
-        style={styles.container}>
-        <View style={styles.wrapper}>
-          <Icon
-            name="whatsapp"
-            type="font-awesome"
-            color="grey"
-            iconStyle={{paddingLeft: 10}}
-          />
-          <Text style={styles.phoneNo}>{I18n.t('whatsapp')}</Text>
-        </View>
-        <Text style={styles.phoneNo}>{settings.whatsapp}</Text>
-      </TouchableOpacity>
-      <View style={styles.container}>
-        <View style={styles.wrapper}>
-          <Icon name="map" color="grey" iconStyle={{paddingLeft: 10}} />
-          <Text style={styles.phoneNo}>{I18n.t('address')}</Text>
-        </View>
-        <Text style={styles.phoneNo}>{settings.address}</Text>
-      </View>
-      <TouchableOpacity
-        hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-        onPress={() =>
-          Linking.openURL(
-            `${links.googleMapUrl}${settings.latitude},${settings.longitude}`
-          )
-        }
-        style={styles.container}>
-        <View style={styles.wrapper}>
-          <Icon name="location-on" color="grey" iconStyle={{paddingLeft: 10}} />
-          <Text style={styles.phoneNo}>{I18n.t('location')}</Text>
-        </View>
-        <Text style={styles.phoneNo}>{settings.company}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-        onPress={() => Linking.openURL(`mailto:${settings.email}`)}
-        style={styles.container}>
-        <View style={styles.wrapper}>
-          <Icon name="email" color="grey" iconStyle={{paddingLeft: 10}} />
-          <Text style={styles.phoneNo}>{I18n.t('email')}</Text>
-        </View>
-        <Text style={styles.phoneNo}>{settings.email}</Text>
-      </TouchableOpacity>
+      ) : null}
+      {!validate.isEmpty(settings.longitude) || !validate.isEmpty(latitude) ? (
+        <TouchableOpacity
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          onPress={() =>
+            Linking.openURL(
+              `${links.googleMapUrl}${settings.latitude},${settings.longitude}`
+            )
+          }
+          style={styles.container}>
+          <View style={styles.wrapper}>
+            <Icon
+              name="location-on"
+              color="grey"
+              iconStyle={{paddingLeft: 10}}
+            />
+            <Text style={styles.phoneNo}>{I18n.t('location')}</Text>
+          </View>
+          <Text style={styles.phoneNo}>{settings.company}</Text>
+        </TouchableOpacity>
+      ) : null}
+      {settings.email ? (
+        <TouchableOpacity
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          onPress={() => Linking.openURL(`mailto:${settings.email}`)}
+          style={styles.container}>
+          <View style={styles.wrapper}>
+            <Icon name="email" color="grey" iconStyle={{paddingLeft: 10}} />
+            <Text style={styles.phoneNo}>{I18n.t('email')}</Text>
+          </View>
+          <Text style={styles.phoneNo}>{settings.email}</Text>
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };

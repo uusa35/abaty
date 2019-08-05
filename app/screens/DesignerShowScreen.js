@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, ScrollView, RefreshControl} from 'react-native';
+import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView
 } from 'react-native-image-header-scroll-view';
-import MapViewWidget from '../components/widgets/MapViewWidget';
-import {text, links, width} from '../constants';
-import FastImage from 'react-native-fast-image';
-import ImagesWidget from '../components/widgets/ImagesWidget';
+import {text, width} from '../constants';
 import validate from 'validate.js';
 import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';

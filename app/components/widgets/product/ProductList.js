@@ -63,8 +63,6 @@ const ProductList = ({
 
   useMemo(() => {
     if (refresh && showMore) {
-      // for now i don't know what products to fetch
-      console.log('the params from ProductIndex', params);
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchProducts({searchElements: params, title}));
@@ -203,7 +201,8 @@ const ProductList = ({
           )}
         />
       ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
+        <View
+          style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
           <Button
             raised
             title={I18n.t('no_products')}

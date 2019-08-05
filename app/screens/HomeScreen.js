@@ -152,7 +152,6 @@ class HomeScreen extends Component {
   };
 
   onIds = device => {
-    console.log('STORING PLAYER ID');
     const {isConnected} = this.props.network;
     return isConnected ? this.props.dispatch(setPlayerId(device.userId)) : null;
   };
