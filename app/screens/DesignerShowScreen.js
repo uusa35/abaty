@@ -37,8 +37,8 @@ class DesignerShowScreen extends Component {
   }
 
   render() {
-    console.log('Rerender');
-    const {user, navigation, settings, searchParams} = this.props;
+    const {user, navigation, settings, searchParams, guest} = this.props;
+    console.log('the guest', guest);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -55,6 +55,13 @@ class DesignerShowScreen extends Component {
           <View style={styles.wrapper}>
             <TriggeringView onHide={() => console.log('text hidden')}>
               <UserImageProfile
+                member_id={user.id}
+                showFans={true}
+                showRating={true}
+                guest={guest}
+                isFanned={user.isFanned}
+                totalFans={user.totalFans}
+                currentRating={user.rating}
                 large={user.large}
                 logo={settings.logo}
                 slug={user.slug}
@@ -130,7 +137,8 @@ function mapStateToProps(state) {
   return {
     user: state.designer,
     searchParams: state.searchParams,
-    settings: state.settings
+    settings: state.settings,
+    guest: state.guest
   };
 }
 
@@ -139,7 +147,8 @@ export default connect(mapStateToProps)(DesignerShowScreen);
 DesignerShowScreen.propTypes = {
   settings: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
+  guest: PropTypes.bool.isRequired
 };
 
 const styles = StyleSheet.create({

@@ -33,6 +33,7 @@ import {SafeAreaView} from 'react-navigation';
 import {has} from 'lodash';
 import {NavContext} from '../redux/NavContext';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
+import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -174,7 +175,8 @@ class HomeScreen extends Component {
       splash_on,
       show_commercials,
       colors,
-      navigation
+      navigation,
+      services
     } = this.props;
     return (
       <NavContext.Provider value={{navigation}}>
@@ -236,6 +238,13 @@ class HomeScreen extends Component {
                 title="featured_products"
               />
             ) : null}
+            {!validate.isEmpty(services) ? (
+              <ServiceHorizontalWidget
+                elements={services}
+                showName={true}
+                title="our_services"
+              />
+            ) : null}
           </ScrollView>
           {show_commercials ? (
             <View style={{flex: 0.2}}>
@@ -265,7 +274,8 @@ function mapStateToProps(state) {
     show_commercials: state.settings.show_commercials,
     network: state.network,
     colors: state.settings.colors,
-    lang: state.lang
+    lang: state.lang,
+    services: state.services
   };
 }
 

@@ -12,8 +12,6 @@ import {Button} from 'react-native-elements';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
-  console.log('videos', videos['video_url_one']);
-  console.log(`${appUrlIos}webview?url=${videos['video_url_one']}`);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       {!isNull(videos['video_url_one']) ? (

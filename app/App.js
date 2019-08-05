@@ -46,6 +46,11 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
       ? `Bearer ${token}`
       : null;
+    axiosInstance.defaults.headers.common['api_token'] = !validate.isEmpty(
+      token
+    )
+      ? `${token}`
+      : null;
     if (!bootStrapped) {
       dispatch(appBootstrap());
     }

@@ -5,6 +5,8 @@ import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
+import {getSearchProducts} from '../redux/actions';
+import {setProducts} from '../redux/actions/sagas/requestSagas';
 
 class ProductIndexScreen extends Component {
   constructor(props) {

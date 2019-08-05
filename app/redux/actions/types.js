@@ -99,3 +99,5 @@ export const GET_VIDEOS = 'GET_VIDEOS';
 export const SET_VIDEOS = 'SET_VIDEOS';
 export const RESET_STORE = 'RESET_STORE';
 export const SET_SERVICES = 'SET_SERVICES';
+export const RATE_USER = 'RATE_USER';
+export const BECOME_FAN = 'BECOME_FAN';

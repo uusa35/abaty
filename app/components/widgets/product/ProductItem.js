@@ -38,6 +38,24 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
           borderColor: 'grey'
         }}>
         <Text style={styles.mainTitle}>{element.name}</Text>
+        {!validate.isEmpty(timeData) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3}}>
+            <Text style={styles.productItemTitle}>
+              {I18n.t('service_date_and_time')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10
+              }}>
+              {timeData.date} - {timeData.start}
+            </Text>
+          </View>
+        ) : null}
         {!validate.isEmpty(element.user) ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
@@ -71,24 +89,6 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 paddingRight: 10
               }}>
               {element.sku} - {element.id}
-            </Text>
-          </View>
-        ) : null}
-        {!validate.isEmpty(timeData) ? (
-          <View style={{flexDirection: 'row', paddingTop: 3}}>
-            <Text style={styles.productItemTitle}>
-              {I18n.t('service_date_and_time')}
-              <Text>:</Text>
-            </Text>
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: 13,
-                textAlign: 'left',
-                paddingLeft: 10,
-                paddingRight: 10
-              }}>
-              {timeData.date} - {timeData.start}
             </Text>
           </View>
         ) : null}

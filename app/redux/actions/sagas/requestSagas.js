@@ -431,8 +431,7 @@ export function* setHomeCelebrities() {
     if (!validate.isEmpty(celebrities) && validate.isArray(celebrities)) {
       yield put({type: actions.SET_CELEBRITIES, payload: celebrities});
     } else {
-      yield put({type: actions.SET_DESIGNERS, payload: []});
-      throw celebrities;
+      yield put({type: actions.SET_CELEBRITIES, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_celebrities'))]);
@@ -868,6 +867,31 @@ export function* toggleFavoriteScenario(action) {
     } else {
       yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
       throw products;
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
+export function* startRateUserScenario(action) {
+  try {
+    console.log('the action from saga', action.payload);
+    const user = yield call(api.rateUser, action.payload);
+    if (!validate.isEmpty(user) && validate.isObject(user)) {
+      yield call(enableSuccessMessage, I18n.t('rate_success'));
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
+export function* startBecomeFanScenario(action) {
+  try {
+    console.log('the action from saga', action.payload);
+    const user = yield call(api.becomeFan, action.payload);
+    console.log('the user', user);
+    if (!validate.isEmpty(user) && validate.isObject(user)) {
+      yield call(enableSuccessMessage, I18n.t('fan_success'));
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);

@@ -39,7 +39,6 @@ import CartConfirmationScreen from './screens/CartConfirmationScreen';
 import PaymentIndexScreen from './screens/PaymentIndexScreen';
 import IntroductionScreen from './screens/IntroductionScreen';
 import FavoriteIndexScreen from './screens/FavoriteIndexScreen';
-import {has} from 'lodash';
 import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 import ProfileIndexScreen from './screens/ProfileIndexScreen';
 import UserEditScreen from './screens/UserEditScreen';

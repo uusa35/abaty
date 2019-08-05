@@ -14,8 +14,6 @@ const UserInfoWidgetElement = ({
   type,
   showArrow = false
 }) => {
-  console.log('iconName', iconName);
-  console.log('elementName', elementName);
   return (
     <View key={element.length}>
       {element ? (

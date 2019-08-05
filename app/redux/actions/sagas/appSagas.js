@@ -41,7 +41,9 @@ import {
   getVideos,
   startGetSearchServicesScenario,
   startGetServiceScenario,
-  setServices
+  setServices,
+  startRateUserScenario,
+  startBecomeFanScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -244,8 +246,12 @@ export function* register() {
   yield takeLatest(actions.REGISTER, startRegisterScenario);
 }
 
-export function* setSearchParams() {
-  yield takeLatest(actions.SET_SEARCH_PARAMS, startSetSearchParamsScenario);
+export function* rateUser() {
+  yield takeLatest(actions.RATE_USER, startRateUserScenario);
+}
+
+export function* becomeFan() {
+  yield takeLatest(actions.BECOME_FAN, startBecomeFanScenario);
 }
 
 export function* resetStore() {

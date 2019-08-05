@@ -6,6 +6,7 @@ import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
+import {setProducts} from '../redux/actions/sagas/requestSagas';
 
 class ProductIndexAllScreen extends Component {
   constructor(props) {

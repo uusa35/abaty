@@ -8,6 +8,7 @@ import I18n, {isRTL} from '../I18n';
 import {images, text} from '../constants';
 import {submitAuth} from '../redux/actions';
 import FastImage from 'react-native-fast-image';
+import {appUrlIos} from './../env';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -109,9 +110,7 @@ class LoginScreen extends Component {
                 fontFamily: text.font,
                 color: colors.btn_text_theme_color
               }}
-              onPress={() =>
-                Linking.openURL(`http://abati.ideasowners.net/password/reset`)
-              }
+              onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
             />
           </View>
         </View>
@@ -130,6 +129,8 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps)(LoginScreen);
 
-LoginScreen.propTypes = {};
+LoginScreen.propTypes = {
+  token: PropTypes.string
+};
 
 const styles = StyleSheet.create({});

@@ -12,7 +12,6 @@ const ServiceInfoWidgetBtns = ({element}) => {
   const {timings} = element;
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  console.log('timings', timings);
   const [days, setDays] = useState(_.keys(timings));
   const [day, setDay] = useState(_.first(_.keys(timings)));
   const [selectedDay, setSelectedDay] = useState([]);

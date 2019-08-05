@@ -463,6 +463,20 @@ export function resetStore() {
   };
 }
 
+export function rateUser(payload) {
+  return {
+    type: actions.RATE_USER,
+    payload
+  };
+}
+
+export function becomeFan(payload) {
+  return {
+    type: actions.BECOME_FAN,
+    payload
+  };
+}
+
 export const APP_ACTIONS = {
   changeLang,
   disableMessage,

@@ -44,7 +44,7 @@ const UserProfileBtns = () => {
           fontFamily: text.font,
           color: colors.btn_text_theme_color
         }}
-        title={I18n.t('shop_now')}
+        title={I18n.t('home')}
       />
     </View>
   );

@@ -25,7 +25,6 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null
   );
-  console.log('the auth', auth);
   return (
     <View style={{flexDirection: 'column', width: '100%'}}>
       <Input
