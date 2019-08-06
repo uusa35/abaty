@@ -696,19 +696,14 @@ export function* startSubmitAuthScenario(action) {
     }
     const user = yield call(api.authenticate, {email, password, player_id});
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      console.log('the user', user);
       const favorites = yield call(api.getFavorites, {
         params: {api_token: user.api_token}
       });
-      console.log('the favorites', favorites);
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
-        put({
-          type: actions.SET_PRODUCT_FAVORITES,
-          payload: validate.isArray(favorites) ? favorites : []
-        }),
+        put({type: actions.SET_PRODUCT_FAVORITES, payload: favorites}),
         call(enableSuccessMessage, I18n.t('login_success')),
         put(
           NavigationActions.navigate({

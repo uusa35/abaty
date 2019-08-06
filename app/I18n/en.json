@@ -125,7 +125,7 @@
   "v-good": "v.good",
   "excellent": "Excellent",
   "rating": "Rating",
-  "rating_success": "Shop Rating Process successful ...",
+  "rate_success": "Shop Rating Process successful ...",
   "serial": "Shop No.",
   "details": "About the shop",
   "no_internet": "No Internet Connection .. please try again later.",
