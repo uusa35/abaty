@@ -249,9 +249,8 @@ export function* resetStore() {
 }
 
 export function* startResetStoreScenario(action) {
-  // yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
-  //     yield call(startAppBootStrap);
-  PersistStore.purge();
+  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
+    PersistStore.purge();
   yield delay(1000);
-  yield call(CodePush.restartApp());
+  yield call(startAppBootStrap);
 }

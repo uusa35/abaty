@@ -224,7 +224,7 @@ ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
   currency: PropTypes.string.isRequired,
   homeProducts: PropTypes.array.isRequired,
-  token: PropTypes.string.isRequired
+  token: PropTypes.string
 };
 
 const styles = StyleSheet.create({});

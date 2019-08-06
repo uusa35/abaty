@@ -22,7 +22,6 @@ const VideoList = ({
   const [refresh, setRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [endList, setEndList] = useState(false);
-  const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
 
   useMemo(() => {

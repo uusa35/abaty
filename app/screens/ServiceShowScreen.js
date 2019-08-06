@@ -189,7 +189,8 @@ export default connect(mapStateToProps)(ServiceShowScreen);
 ServiceShowScreen.propTypes = {
   services: PropTypes.array.isRequired,
   service: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired
+  currency: PropTypes.string.isRequired,
+  token: PropTypes.string
 };
 
 const styles = StyleSheet.create({});

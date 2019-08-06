@@ -48,17 +48,15 @@ class HomeScreen extends Component {
           <SafeAreaView>
             <View style={styles.safeContainer}>
               <FastImage
-                resizeMode="contain"
+                resizeMode="stretch"
                 source={{
                   uri: navigation.state.params.logo
                     ? navigation.state.params.logo
                     : null
                 }}
                 style={{
-                  width: 65,
-                  height: 25,
-                  borderWidth: 1,
-                  borderColor: 'white'
+                  width: 50,
+                  height: 35
                 }}
               />
             </View>
@@ -298,7 +296,6 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    width: 80
+    alignItems: 'center'
   }
 });

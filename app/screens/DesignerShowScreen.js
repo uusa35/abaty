@@ -28,7 +28,7 @@ class DesignerShowScreen extends Component {
         {key: 'products', title: I18n.t('products')},
         {key: 'categories', title: I18n.t('categories')},
         {key: 'info', title: I18n.t('information').substring(0, 10)},
-        {key: 'more', title: I18n.t('videos')}
+        {key: 'videos', title: I18n.t('videos')}
       ],
       refresh: false
     };
@@ -44,7 +44,6 @@ class DesignerShowScreen extends Component {
       guest,
       dispatch
     } = this.props;
-    console.log('the user products', user.products);
     const categories = !validate.isEmpty(user.products)
       ? user.productCategories.concat(user.productGroupCategories)
       : user.productGroupCategories.concat(user.productCategories);
@@ -132,7 +131,7 @@ class DesignerShowScreen extends Component {
                       <UserCategoriesInfoWidget elements={categories} />
                     ),
                     info: () => <UserInfoWidget user={user} />,
-                    more: () => <VideosWidget videos={user.videoGroup} />
+                    videos: () => <VideosWidget videos={user.videoGroup} />
                   })}
                   style={{marginTop: 10, backgroundColor: 'white'}}
                   onIndexChange={index => this.setState({index})}
