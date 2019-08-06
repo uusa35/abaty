@@ -19,6 +19,7 @@ import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
+import PropTypes from 'prop-types';
 
 class ServiceShowScreen extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class ServiceShowScreen extends Component {
       service,
       currency,
       navigation,
-      settings,
+      phone,
+      mobile,
       dispatch,
       services,
       token
@@ -148,8 +150,8 @@ class ServiceShowScreen extends Component {
               ) : null}
               <ProductInfoWidgetElement
                 elementName="contactus_order_by_phone"
-                name={settings.phone}
-                link={() => Linking.openURL(`tel:${settings.mobile}`)}
+                name={phone}
+                link={() => Linking.openURL(`tel:${mobile}`)}
               />
             </View>
           </View>
@@ -175,12 +177,19 @@ function mapStateToProps(state) {
   return {
     service: state.service,
     currency: state.currency,
-    settings: state.settings,
+    phone: state.settings.phone,
+    mobile: state.settings.mobile,
     services: state.services,
     token: state.token
   };
 }
 
 export default connect(mapStateToProps)(ServiceShowScreen);
+
+ServiceShowScreen.propTypes = {
+  services: PropTypes.array.isRequired,
+  service: PropTypes.object.isRequired,
+  currency: PropTypes.string.isRequired
+};
 
 const styles = StyleSheet.create({});

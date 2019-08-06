@@ -18,9 +18,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() =>
-          dispatch(getSearchServices({searchElements: {on_home: true}}))
-        }>
+        onPress={() => dispatch(getSearchServices({searchElements: {}}))}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

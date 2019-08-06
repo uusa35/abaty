@@ -16,7 +16,6 @@ class ServiceIndexScreen extends Component {
 
   render() {
     const {services, searchParams, navigation} = this.props;
-    console.log('search', searchParams);
     return (
       <NavContext.Provider value={{navigation}}>
         <ServiceList
@@ -40,7 +39,7 @@ export default connect(mapStateToProps)(ServiceIndexScreen);
 
 ServiceIndexScreen.propTypes = {
   services: PropTypes.array.isRequired,
-  searchElements: PropTypes.object
+  searchParams: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({});

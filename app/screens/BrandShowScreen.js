@@ -37,6 +37,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(BrandShowScreen);
 
 BrandShowScreen.propTypes = {
-  brand: PropTypes.object.isRequired
+  brand: PropTypes.object.isRequired,
+  searchParams: PropTypes.object.isRequired
 };
 const styles = StyleSheet.create({});

@@ -222,7 +222,7 @@ export default connect(mapStateToProps)(ProductShowScreen);
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
-  currency: PropTypes.object.isRequired,
+  currency: PropTypes.string.isRequired,
   homeProducts: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired
 };

@@ -169,7 +169,7 @@ App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   message: PropTypes.object,
   country: PropTypes.object.isRequired,
-  currency: PropTypes.string,
+  currency: PropTypes.string.isRequired,
   currency_symbol: PropTypes.string,
   exchange_rate: PropTypes.number,
   countries: PropTypes.array.isRequired,
