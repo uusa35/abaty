@@ -17,7 +17,7 @@ import I18n from './../../../I18n';
 import {Icon} from 'react-native-elements';
 
 const UserImageProfile = ({
-  large,
+  medium,
   logo,
   member_id,
   slug,
@@ -52,7 +52,7 @@ const UserImageProfile = ({
 
   return (
     <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
-      <FastImage source={{uri: large ? large : logo}} style={styles.logo} />
+      <FastImage source={{uri: medium ? medium : logo}} style={styles.logo} />
       <View
         style={{
           justifyContent: 'flex-start',
@@ -131,7 +131,7 @@ const UserImageProfile = ({
 export default React.memo(UserImageProfile);
 
 UserImageProfile.propTypes = {
-  large: PropTypes.string.isRequired,
+  medium: PropTypes.string.isRequired,
   logo: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   showFans: PropTypes.bool.isRequired,

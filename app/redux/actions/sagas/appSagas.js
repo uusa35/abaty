@@ -1,8 +1,9 @@
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import {call, put, all, takeLatest, select} from 'redux-saga/effects';
+import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
+import CodePush from 'react-native-code-push';
 import {
   getCountry,
   setHomeBrands,
@@ -248,7 +249,9 @@ export function* resetStore() {
 }
 
 export function* startResetStoreScenario(action) {
+  // yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
+  //     yield call(startAppBootStrap);
   PersistStore.purge();
-  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
-    yield call(startAppBootStrap);
+  yield delay(1000);
+  yield call(CodePush.restartApp());
 }

@@ -52,104 +52,62 @@ const UserCategoriesInfoWidget = ({
                 {I18n.t('product_categories')}
               </Text>
             ) : null}
-            {map(elements[0], (c, i) => {
-              return (
-                <TouchableOpacity
-                  key={c.id}
-                  onPress={() =>
-                    dispatch(
-                      getSearchProducts({
-                        element: c,
-                        category: c,
-                        searchElements: {product_category_id: c.id}
-                      })
-                    )
-                  }
-                  hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                  style={styles.itemRow}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'baseline'
-                    }}>
-                    <Icon
-                      type="entypo"
-                      name={isRTL ? 'triangle-left' : 'triangle-right'}
-                      color="grey"
-                      size={20}
-                      iconStyle={{
-                        paddingRight: 10,
-                        paddingLeft: 10
-                      }}
-                    />
-                    <Text style={styles.subTitle}>{c.name}</Text>
-                  </View>
-                  {showArrow ? (
-                    <Icon
-                      type="entypo"
-                      name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                      color="lightgrey"
-                      size={15}
-                      iconStyle={{
-                        paddingRight: isIOS ? 10 : 0,
-                        paddingLeft: isIOS ? 0 : 10
-                      }}
-                    />
-                  ) : null}
-                </TouchableOpacity>
-              );
-            })}
-            {map(elements[1], (c, i) => {
-              return (
-                <TouchableOpacity
-                  key={c.id}
-                  onPress={() =>
-                    dispatch(
-                      getSearchProducts({
-                        element: c,
-                        category: c,
-                        searchElements: {product_category_id: c.id}
-                      })
-                    )
-                  }
-                  hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                  style={styles.itemRow}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'baseline'
-                    }}>
-                    <Icon
-                      type="entypo"
-                      name={isRTL ? 'triangle-left' : 'triangle-right'}
-                      color="grey"
-                      size={20}
-                      iconStyle={{
-                        paddingRight: 10,
-                        paddingLeft: 10
-                      }}
-                    />
-                    <Text style={styles.subTitle}>{c.name}</Text>
-                  </View>
-                  {showArrow ? (
-                    <Icon
-                      type="entypo"
-                      name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                      color="lightgrey"
-                      size={15}
-                      iconStyle={{
-                        paddingRight: isIOS ? 10 : 0,
-                        paddingLeft: isIOS ? 0 : 10
-                      }}
-                    />
-                  ) : null}
-                </TouchableOpacity>
-              );
+            {map(elements, (c, i) => {
+              if (!isNull(c)) {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() =>
+                      dispatch(
+                        getSearchProducts({
+                          element: c,
+                          category: c,
+                          searchElements: {product_category_id: c.id}
+                        })
+                      )
+                    }
+                    hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                    style={styles.itemRow}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'baseline'
+                      }}>
+                      <Icon
+                        type="entypo"
+                        name={isRTL ? 'triangle-left' : 'triangle-right'}
+                        color="grey"
+                        size={20}
+                        iconStyle={{
+                          paddingRight: 10,
+                          paddingLeft: 10
+                        }}
+                      />
+                      <Text style={styles.subTitle}>{c.name}</Text>
+                    </View>
+                    {showArrow ? (
+                      <Icon
+                        type="entypo"
+                        name={
+                          isRTL ? 'chevron-thin-left' : 'chevron-thin-right'
+                        }
+                        color="lightgrey"
+                        size={15}
+                        iconStyle={{
+                          paddingRight: isIOS ? 10 : 0,
+                          paddingLeft: isIOS ? 0 : 10
+                        }}
+                      />
+                    ) : null}
+                  </TouchableOpacity>
+                );
+              }
             })}
           </View>
         </View>
       ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
+        <View
+          style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
           <Button
             raised
             title={I18n.t('no_categories')}

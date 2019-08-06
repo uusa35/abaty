@@ -27,6 +27,7 @@ import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
+import PropTypes from 'prop-types';
 
 class ProductShowScreen extends Component {
   constructor(props) {
@@ -45,7 +46,12 @@ class ProductShowScreen extends Component {
       navigation,
       settings,
       dispatch,
-      products,
+      phone,
+      mobile,
+      shipment_prices,
+      size_chart,
+      weight,
+      homeProducts,
       token
     } = this.props;
     return (
@@ -146,34 +152,32 @@ class ProductShowScreen extends Component {
               />
               <ProductInfoWidgetElement
                 elementName="product_weight"
-                name={product.weight}
+                name={weight}
                 showArrow={false}
               />
               <ProductInfoWidgetElement
                 elementName="contactus_order_by_phone"
-                name={settings.phone}
-                link={() => Linking.openURL(`tel:${settings.mobile}`)}
+                name={phone}
+                link={() => Linking.openURL(`tel:${mobile}`)}
               />
-              {settings.shipment_prices ? (
+              {shipment_prices ? (
                 <ProductInfoWidgetElement
                   elementName="shipment_prices"
                   link={() =>
                     navigation.navigate('ImageZoom', {
-                      images: [
-                        {id: product.id, large: settings.shipment_prices}
-                      ],
+                      images: [{id: product.id, large: shipment_prices}],
                       name: product.name,
                       index: 0
                     })
                   }
                 />
               ) : null}
-              {settings.size_chart ? (
+              {size_chart ? (
                 <ProductInfoWidgetElement
                   elementName="size_chart"
                   link={() =>
                     navigation.navigate('ImageZoom', {
-                      images: [{id: product.id, large: settings.size_chart}],
+                      images: [{id: product.id, large: size_chart}],
                       name: product.name,
                       index: 0
                     })
@@ -186,9 +190,9 @@ class ProductShowScreen extends Component {
           !validate.isEmpty(product.videoGroup) ? (
             <VideosWidget videos={product.videoGroup} />
           ) : null}
-          {!validate.isEmpty(products) ? (
+          {!validate.isEmpty(homeProducts) ? (
             <ProductHorizontalWidget
-              elements={products}
+              elements={homeProducts}
               showName={true}
               currency={currency}
               title="featured_products"
@@ -204,12 +208,23 @@ function mapStateToProps(state) {
   return {
     product: state.product,
     currency: state.currency,
-    settings: state.settings,
-    products: state.products,
+    phone: state.settings.phone,
+    shipment_prices: state.settings.shipment_prices,
+    size_chart: state.settings.size_chart,
+    mobile: state.settings.mobile,
+    weight: state.settings.weight,
+    homeProducts: state.homeProducts,
     token: state.token
   };
 }
 
 export default connect(mapStateToProps)(ProductShowScreen);
+
+ProductShowScreen.propTypes = {
+  product: PropTypes.object.isRequired,
+  currency: PropTypes.object.isRequired,
+  homeProducts: PropTypes.array.isRequired,
+  token: PropTypes.string.isRequired
+};
 
 const styles = StyleSheet.create({});

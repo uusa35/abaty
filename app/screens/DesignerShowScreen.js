@@ -38,11 +38,16 @@ class DesignerShowScreen extends Component {
     const {
       user,
       navigation,
-      settings,
+      logo,
+      colors,
       searchParams,
       guest,
       dispatch
     } = this.props;
+    console.log('the user products', user.products);
+    const categories = !validate.isEmpty(user.products)
+      ? user.productCategories.concat(user.productGroupCategories)
+      : user.productGroupCategories.concat(user.productCategories);
     return (
       <NavContext.Provider value={{navigation}}>
         <HeaderImageScrollView
@@ -54,7 +59,7 @@ class DesignerShowScreen extends Component {
           minHeight={50}
           containerStyle={{flex: 1}}
           headerImage={{
-            uri: user.banner ? user.banner : settings.logo
+            uri: user.banner ? user.banner : logo
           }}
           refreshControl={
             <RefreshControl
@@ -80,8 +85,8 @@ class DesignerShowScreen extends Component {
                 isFanned={user.isFanned}
                 totalFans={user.totalFans}
                 currentRating={user.rating}
-                large={user.large}
-                logo={settings.logo}
+                medium={user.medium}
+                logo={logo}
                 slug={user.slug}
                 type={user.role.slug}
                 views={user.views}
@@ -101,10 +106,10 @@ class DesignerShowScreen extends Component {
                       // indicatorContainerStyle={{backgroundColor: 'white'}}
                       // contentContainerStyle={{backgroundColor: 'white'}}
                       indicatorStyle={{
-                        backgroundColor: settings.colors.btn_bg_theme_color
+                        backgroundColor: colors.btn_bg_theme_color
                       }}
-                      activeColor={settings.colors.header_one_theme_color}
-                      inactiveColor={settings.colors.header_tow_theme_color}
+                      activeColor={colors.header_one_theme_color}
+                      inactiveColor={colors.header_tow_theme_color}
                       style={{backgroundColor: 'white'}}
                       labelStyle={{
                         fontFamily: text.font,
@@ -116,7 +121,7 @@ class DesignerShowScreen extends Component {
                   renderScene={SceneMap({
                     products: () => (
                       <ProductList
-                        elements={user.productGroup}
+                        elements={user.productGroup.concat(user.products)}
                         showSearch={false}
                         showTitle={true}
                         showFooter={false}
@@ -124,7 +129,7 @@ class DesignerShowScreen extends Component {
                       />
                     ),
                     categories: () => (
-                      <UserCategoriesInfoWidget elements={user.categories} />
+                      <UserCategoriesInfoWidget elements={categories} />
                     ),
                     info: () => <UserInfoWidget user={user} />,
                     more: () => <VideosWidget videos={user.videoGroup} />
@@ -146,7 +151,8 @@ function mapStateToProps(state) {
   return {
     user: state.designer,
     searchParams: state.searchParams,
-    settings: state.settings,
+    logo: state.settings.logo,
+    colors: state.settings.colors,
     guest: state.guest
   };
 }
@@ -154,7 +160,8 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(DesignerShowScreen);
 
 DesignerShowScreen.propTypes = {
-  settings: PropTypes.object.isRequired,
+  logo: PropTypes.string.isRequired,
+  colors: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
   guest: PropTypes.bool.isRequired
