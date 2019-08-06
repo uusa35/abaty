@@ -6,41 +6,31 @@ import ContactInformationWidget from '../components/widgets/ContactInformationWi
 import {isIOS} from '../constants';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
+import {settingsSelector} from '../redux/selectors/collection';
 
-class ContactusScreen extends Component {
-  static propTypes = {
-    settings: PropTypes.object.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {settings} = this.props;
-    return (
-      <ScrollView
-        contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 100}}>
-        {!validate.isEmpty(settings) ? (
-          <View>
-            <SocialRowWidget settings={settings} />
-            <ContactInformationWidget settings={settings} />
-          </View>
-        ) : null}
-      </ScrollView>
-    );
-  }
-}
+const ContactusScreen = ({settings}) => {
+  return (
+    <ScrollView
+      contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 100}}>
+      {!validate.isEmpty(settings) ? (
+        <View>
+          <SocialRowWidget settings={settings} />
+          <ContactInformationWidget settings={settings} />
+        </View>
+      ) : null}
+    </ScrollView>
+  );
+};
 
 function mapStateToProps(state) {
   return {
-    settings: state.settings
+    settings: settingsSelector(state)
   };
 }
 
-export default connect(mapStateToProps)(ContactusScreen);
+export default connect(mapStateToProps)(React.memo(ContactusScreen));

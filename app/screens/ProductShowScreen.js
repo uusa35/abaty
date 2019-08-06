@@ -44,7 +44,6 @@ class ProductShowScreen extends Component {
       product,
       currency,
       navigation,
-      settings,
       dispatch,
       phone,
       mobile,

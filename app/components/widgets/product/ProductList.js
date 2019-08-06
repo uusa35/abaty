@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useState, useContext, useMemo, useEffect} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -22,18 +22,20 @@ import {getSearchProducts} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductList = ({
-  elements,
+  products,
   showName = true,
   showSearch = true,
   showFooter = true,
   showTitle = false,
   showMore = true,
+  showRefresh = true,
   title,
   searchElements
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const {navigation} = useContext(NavContext);
+  [elements, setElements] = useState(products);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
@@ -41,8 +43,7 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  // console.log('THE SEARCH ELEMENTS FROM PRODUCT LIST', searchElements);
-  // console.log('THE PARAMS FROM PRODUCT LIST', params);
+
   useMemo(() => {
     if (isLoading === true && showMore) {
       return axiosInstance(`search/product?page=${page}`, {
@@ -80,6 +81,10 @@ const ProductList = ({
       : setItems([]);
   }, [search]);
 
+  useMemo(() => {
+    return elements !== products;
+  }, [elements]);
+
   return (
     <KeyboardAvoidingView
       style={{
@@ -106,7 +111,7 @@ const ProductList = ({
           refreshControl={
             <RefreshControl
               refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
+              onRefresh={() => (showRefresh ? setRefresh(true) : null)}
             />
           }
           onEndReached={() => {
@@ -218,7 +223,7 @@ const ProductList = ({
 export default React.memo(ProductList);
 
 ProductList.propTypes = {
-  elements: PropTypes.array.isRequired,
+  products: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool
 };

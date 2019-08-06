@@ -1,41 +1,37 @@
-import React, {Component} from 'react';
+import React, {useContext} from 'react';
 import {connect} from 'react-redux';
 import CategoriesList from '../components/Lists/CategoriesList';
 import {NavContext} from '../redux/NavContext';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
+import {
+  categoriesSelector,
+  commercialsSelector
+} from '../redux/selectors/collections';
 
-class CategoryIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {columns} = this.props.navigation.state.params;
-    const {navigation, commercials, categories, show_commercials} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <View
-          animation="bounceIn"
-          easing="ease-out"
-          style={{flex: show_commercials ? 0.8 : 1}}>
-          <CategoriesList elements={categories} columns={columns} />
+const CategoryIndexScreen = ({categories, commercials, show_commercials}) => {
+  return (
+    <View style={{flex: 1}}>
+      <View
+        animation="bounceIn"
+        easing="ease-out"
+        style={{flex: show_commercials ? 0.8 : 1}}>
+        <CategoriesList elements={categories} columns={1} />
+      </View>
+      {show_commercials ? (
+        <View style={{flex: 0.2}}>
+          <CommercialSliderWidget commercials={commercials} />
         </View>
-        {show_commercials ? (
-          <View style={{flex: 0.2}}>
-            <CommercialSliderWidget commercials={commercials} />
-          </View>
-        ) : null}
-      </NavContext.Provider>
-    );
-  }
-}
+      ) : null}
+    </View>
+  );
+};
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
-    commercials: state.commercials,
+    categories: categoriesSelector(state),
+    commercials: commercialsSelector(state),
     show_commercials: state.settings.show_commercials
   };
 }

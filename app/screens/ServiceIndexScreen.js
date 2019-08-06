@@ -8,30 +8,25 @@ import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
 import ServiceList from '../components/widgets/service/ServiceList';
+import {
+  searchParamsSelector,
+  servicesSelector
+} from '../redux/selectors/collections';
 
-class ServiceIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {services, searchParams, navigation} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <ServiceList
-          elements={services}
-          searchElements={searchParams}
-          showName={true}
-        />
-      </NavContext.Provider>
-    );
-  }
-}
+const ServiceIndexScreen = ({services, searchParams}) => {
+  return (
+    <ServiceList
+      elements={services}
+      searchElements={searchParams}
+      showName={true}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {
-    services: state.services,
-    searchParams: state.searchParams
+    services: servicesSelector(state),
+    searchParams: searchParamsSelector(state)
   };
 }
 

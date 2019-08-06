@@ -35,113 +35,103 @@ class DesignerShowScreen extends Component {
   }
 
   render() {
-    const {
-      user,
-      navigation,
-      logo,
-      colors,
-      searchParams,
-      guest,
-      dispatch
-    } = this.props;
+    const {user, logo, colors, searchParams, guest, dispatch} = this.props;
     const categories = !validate.isEmpty(user.products)
       ? user.productCategories.concat(user.productGroupCategories)
       : user.productGroupCategories.concat(user.productCategories);
     return (
-      <NavContext.Provider value={{navigation}}>
-        <HeaderImageScrollView
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          maxHeight={150}
-          minHeight={50}
-          containerStyle={{flex: 1}}
-          headerImage={{
-            uri: user.banner ? user.banner : logo
-          }}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refresh}
-              onRefresh={() => {
-                this.setState({refresh: false});
-                dispatch(
-                  getDesigner({
-                    element: user,
-                    searchElements: {user_id: user.id}
-                  })
-                );
-              }}
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={150}
+        minHeight={50}
+        containerStyle={{flex: 1}}
+        headerImage={{
+          uri: user.banner ? user.banner : logo
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refresh}
+            onRefresh={() => {
+              this.setState({refresh: false});
+              dispatch(
+                getDesigner({
+                  element: user,
+                  searchElements: {user_id: user.id}
+                })
+              );
+            }}
+          />
+        }>
+        <View style={styles.wrapper}>
+          <TriggeringView onHide={() => console.log('text hidden')}>
+            <UserImageProfile
+              member_id={user.id}
+              showFans={true}
+              showRating={true}
+              guest={guest}
+              isFanned={user.isFanned}
+              totalFans={user.totalFans}
+              currentRating={user.rating}
+              medium={user.medium}
+              logo={logo}
+              slug={user.slug}
+              type={user.role.slug}
+              views={user.views}
             />
-          }>
-          <View style={styles.wrapper}>
-            <TriggeringView onHide={() => console.log('text hidden')}>
-              <UserImageProfile
-                member_id={user.id}
-                showFans={true}
-                showRating={true}
-                guest={guest}
-                isFanned={user.isFanned}
-                totalFans={user.totalFans}
-                currentRating={user.rating}
-                medium={user.medium}
-                logo={logo}
-                slug={user.slug}
-                type={user.role.slug}
-                views={user.views}
-              />
-              {!validate.isEmpty(user.slides) ? (
-                <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-                  <MainSliderWidget slides={user.slides} />
-                </View>
-              ) : null}
-              <View>
-                {/*<UserShowInformationTabBarWidget element={user} />*/}
-                <TabView
-                  renderTabBar={props => (
-                    <TabBar
-                      {...props}
-                      // tabStyle={{ backgroundColor: 'white'}}
-                      // indicatorContainerStyle={{backgroundColor: 'white'}}
-                      // contentContainerStyle={{backgroundColor: 'white'}}
-                      indicatorStyle={{
-                        backgroundColor: colors.btn_bg_theme_color
-                      }}
-                      activeColor={colors.header_one_theme_color}
-                      inactiveColor={colors.header_tow_theme_color}
-                      style={{backgroundColor: 'white'}}
-                      labelStyle={{
-                        fontFamily: text.font,
-                        fontSize: text.small
-                      }}
-                    />
-                  )}
-                  navigationState={this.state}
-                  renderScene={SceneMap({
-                    products: () => (
-                      <ProductList
-                        elements={user.productGroup.concat(user.products)}
-                        showSearch={false}
-                        showTitle={true}
-                        showFooter={false}
-                        searchElements={searchParams}
-                      />
-                    ),
-                    categories: () => (
-                      <UserCategoriesInfoWidget elements={categories} />
-                    ),
-                    info: () => <UserInfoWidget user={user} />,
-                    videos: () => <VideosWidget videos={user.videoGroup} />
-                  })}
-                  style={{marginTop: 10, backgroundColor: 'white'}}
-                  onIndexChange={index => this.setState({index})}
-                  initialLayout={{width: width}}
-                />
+            {!validate.isEmpty(user.slides) ? (
+              <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
+                <MainSliderWidget slides={user.slides} />
               </View>
-            </TriggeringView>
-          </View>
-        </HeaderImageScrollView>
-      </NavContext.Provider>
+            ) : null}
+            <View>
+              {/*<UserShowInformationTabBarWidget element={user} />*/}
+              <TabView
+                renderTabBar={props => (
+                  <TabBar
+                    {...props}
+                    // tabStyle={{ backgroundColor: 'white'}}
+                    // indicatorContainerStyle={{backgroundColor: 'white'}}
+                    // contentContainerStyle={{backgroundColor: 'white'}}
+                    indicatorStyle={{
+                      backgroundColor: colors.btn_bg_theme_color
+                    }}
+                    activeColor={colors.header_one_theme_color}
+                    inactiveColor={colors.header_tow_theme_color}
+                    style={{backgroundColor: 'white'}}
+                    labelStyle={{
+                      fontFamily: text.font,
+                      fontSize: text.small
+                    }}
+                  />
+                )}
+                navigationState={this.state}
+                renderScene={SceneMap({
+                  products: () => (
+                    <ProductList
+                      products={user.productGroup.concat(user.products)}
+                      showSearch={false}
+                      showTitle={true}
+                      showFooter={false}
+                      searchElements={searchParams}
+                    />
+                  ),
+                  categories: () => (
+                    <UserCategoriesInfoWidget elements={categories} />
+                  ),
+                  info: () => <UserInfoWidget user={user} />,
+                  videos: () => <VideosWidget videos={user.videoGroup} />
+                })}
+                style={{marginTop: 10, backgroundColor: 'white'}}
+                onIndexChange={index => this.setState({index})}
+                initialLayout={{width: width}}
+              />
+            </View>
+          </TriggeringView>
+        </View>
+      </HeaderImageScrollView>
     );
   }
 }

@@ -1,38 +1,17 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {NavContext} from './../redux/NavContext';
-import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import VideoList from '../components/Lists/VideoList';
-import validate from 'validate.js';
+import {videosSelector} from '../redux/selectors/collections';
 
-class VideoIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  shouldComponentUpdate(
-    nextProps: Readonly<P>,
-    nextState: Readonly<S>,
-    nextContext: any
-  ): boolean {
-    return nextProps.videos !== this.props.videos;
-  }
-
-  render() {
-    const {videos, navigation} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <VideoList elements={videos} />
-      </NavContext.Provider>
-    );
-  }
-}
+const VideoIndexScreen = ({videos}) => {
+  return <VideoList elements={videos} />;
+};
 
 function mapStateToProps(state) {
   return {
-    videos: state.videos
+    videos: videosSelector(state)
   };
 }
 

@@ -172,86 +172,83 @@ class HomeScreen extends Component {
       splash_on,
       show_commercials,
       colors,
-      navigation,
       services
     } = this.props;
     return (
-      <NavContext.Provider value={{navigation}}>
-        <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-          {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
-            <IntroductionWidget elements={splashes} visible={splash_on} />
+      <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+        {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
+          <IntroductionWidget elements={splashes} visible={splash_on} />
+        ) : null}
+        <ScrollView
+          contentContainerStyle={{backgroundColor: 'transparent'}}
+          contentInset={{bottom: 50}}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => this._refetchElements()}
+            />
+          }
+          showsHorizontalScrollIndicator={false}
+          endFillColor="white"
+          showsVerticalScrollIndicator={false}
+          style={{flex: 0.8}}>
+          <SearchForm />
+          {!validate.isEmpty(slides) ? (
+            <MainSliderWidget slides={slides} />
           ) : null}
-          <ScrollView
-            contentContainerStyle={{backgroundColor: 'transparent'}}
-            contentInset={{bottom: 50}}
-            refreshControl={
-              <RefreshControl
-                refreshing={this.state.refresh}
-                onRefresh={() => this._refetchElements()}
-              />
-            }
-            showsHorizontalScrollIndicator={false}
-            endFillColor="white"
-            showsVerticalScrollIndicator={false}
-            style={{flex: 0.8}}>
-            <SearchForm />
-            {!validate.isEmpty(slides) ? (
-              <MainSliderWidget slides={slides} />
-            ) : null}
-            {!validate.isEmpty(designers) && validate.isArray(designers) ? (
-              <DesignerHorizontalWidget
-                elements={designers}
-                showName={true}
-                name="designers"
-                title="designers"
-              />
-            ) : null}
-            {!validate.isEmpty(categories) && validate.isArray(categories) ? (
-              <CategoryHorizontalWidget
-                elements={categories}
-                showName={true}
-                title="categories"
-              />
-            ) : null}
-            {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
-              <DesignerHorizontalWidget
-                elements={celebrities}
-                showName={true}
-                name="celebrities"
-                title="celebrities"
-              />
-            ) : null}
-            {!validate.isEmpty(homeProducts) ? (
-              <ProductHorizontalWidget
-                elements={homeProducts}
-                showName={true}
-                title="featured_products"
-              />
-            ) : null}
-            {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-              <BrandHorizontalWidget
-                elements={brands}
-                showName={false}
-                title="brands"
-              />
-            ) : null}
-            {!validate.isEmpty(services) ? (
-              <ServiceHorizontalWidget
-                elements={services}
-                showName={true}
-                title="our_services"
-              />
-            ) : null}
-          </ScrollView>
-          {show_commercials ? (
-            <View style={{flex: 0.2}}>
-              {!validate.isEmpty(commercials) ? (
-                <FixedCommercialSliderWidget sliders={commercials} />
-              ) : null}
-            </View>
+          {!validate.isEmpty(designers) && validate.isArray(designers) ? (
+            <DesignerHorizontalWidget
+              elements={designers}
+              showName={true}
+              name="designers"
+              title="designers"
+            />
           ) : null}
-        </View>
-      </NavContext.Provider>
+          {!validate.isEmpty(categories) && validate.isArray(categories) ? (
+            <CategoryHorizontalWidget
+              elements={categories}
+              showName={true}
+              title="categories"
+            />
+          ) : null}
+          {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
+            <DesignerHorizontalWidget
+              elements={celebrities}
+              showName={true}
+              name="celebrities"
+              title="celebrities"
+            />
+          ) : null}
+          {!validate.isEmpty(homeProducts) ? (
+            <ProductHorizontalWidget
+              elements={homeProducts}
+              showName={true}
+              title="featured_products"
+            />
+          ) : null}
+          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+            <BrandHorizontalWidget
+              elements={brands}
+              showName={false}
+              title="brands"
+            />
+          ) : null}
+          {!validate.isEmpty(services) ? (
+            <ServiceHorizontalWidget
+              elements={services}
+              showName={true}
+              title="our_services"
+            />
+          ) : null}
+        </ScrollView>
+        {show_commercials ? (
+          <View style={{flex: 0.2}}>
+            {!validate.isEmpty(commercials) ? (
+              <FixedCommercialSliderWidget sliders={commercials} />
+            ) : null}
+          </View>
+        ) : null}
+      </View>
     );
   }
 }

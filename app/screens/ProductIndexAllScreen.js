@@ -18,11 +18,16 @@ class ProductIndexAllScreen extends Component {
   }
 
   render() {
-    const {products, navigation} = this.props;
+    const {products} = this.props;
     return (
-      <NavContext.Provider value={{navigation}}>
-        <ProductList elements={products} showName={true} searchElements={{}} />
-      </NavContext.Provider>
+      <ProductList
+        products={products}
+        showName={true}
+        searchElements={{}}
+        showSearch={true}
+        showFooter={false}
+        showRefresh={false}
+      />
     );
   }
 }

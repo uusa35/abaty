@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 9/27/17.
  */
-import React, {Component} from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   StyleSheet,
@@ -21,73 +21,108 @@ import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
+import {
+  authNameSelector,
+  colorsSelector,
+  companyNameSelector,
+  guestSelector,
+  langSelector,
+  logoSelector,
+  menuBgSelector,
+  settingImagesSelector,
+  youtubeSelector
+} from '../redux/selectors/collection';
+import {DispatchContext} from '../redux/DispatchContext';
 
-class Menu extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  changeLang = () => {
-    const {lang, dispatch} = this.props;
-    console.log('the current Lang', lang);
-    let newLang = lang === 'ar' ? 'en' : 'ar';
-    return dispatch(changeLang(newLang));
-  };
-
-  render() {
-    const {
-      menu_bg,
-      logo,
-      company,
-      images,
-      colors,
-      youtube,
-      guest,
-      navigation,
-      dispatch,
-      name
-    } = this.props;
-    return (
-      <ScrollView
-        style={[styles.container]}
-        contentContainerStyle={{alignItems: 'center'}}
-        contentInset={{bottom: 200}}>
-        <ImageBackground
-          source={{
-            uri: menu_bg
-          }}
-          loadingIndicatorSource={images.logo}
-          style={{width: '100%', height, opacity: 1}}
-          resizeMode="cover">
-          <SafeAreaView style={{width: '100%', alignItems: 'center'}}>
-            <StatusBar barStyle="dark-content" />
-            <FastImage
-              source={{uri: logo}}
-              style={styles.logo}
-              resizeMode="contain"
-              loadingIndicatorSource={images.logo}
-            />
-            <Text
-              style={[
-                styles.mainMenuText,
-                {color: colors.header_one_theme_color}
-              ]}>
-              {I18n.t('menu')}
-            </Text>
-            <Text
-              style={[
-                styles.mainMenuText,
-                {color: colors.header_one_theme_color}
-              ]}>
-              {company}
-            </Text>
-            <View style={{width: '100%'}}>
-              <Divider style={{marginTop: 10}} />
+const Menu = ({
+  menuBg,
+  logo,
+  company,
+  images,
+  colors,
+  youtube,
+  guest,
+  lang,
+  navigation,
+  name
+}) => {
+  const {dispatch} = useContext(DispatchContext);
+  return (
+    <ScrollView
+      style={[styles.container]}
+      contentContainerStyle={{alignItems: 'center'}}
+      contentInset={{bottom: 200}}>
+      <ImageBackground
+        source={{
+          uri: menuBg
+        }}
+        loadingIndicatorSource={{uri: logo}}
+        style={{width: '100%', height, opacity: 1}}
+        resizeMode="cover">
+        <SafeAreaView style={{width: '100%', alignItems: 'center'}}>
+          {/*<StatusBar barStyle="dark-content" />*/}
+          <FastImage
+            source={{uri: logo}}
+            style={styles.logo}
+            resizeMode="contain"
+            loadingIndicatorSource={{uri: logo}}
+          />
+          <Text
+            style={[
+              styles.mainMenuText,
+              {color: colors.header_one_theme_color}
+            ]}>
+            {I18n.t('menu')}
+          </Text>
+          <Text
+            style={[
+              styles.mainMenuText,
+              {color: colors.header_one_theme_color}
+            ]}>
+            {company}
+          </Text>
+          <View style={{width: '100%'}}>
+            <Divider style={{marginTop: 10}} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Home')}
+              style={styles.menuBtn}>
+              <Icon
+                name="home"
+                type="antdesign"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('home')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ServiceIndex')}
+              style={styles.menuBtn}>
+              <Icon
+                name="customerservice"
+                type="antdesign"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('services')}
+              </Text>
+            </TouchableOpacity>
+            {guest ? (
               <TouchableOpacity
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => navigation.navigate('Login')}
                 style={styles.menuBtn}>
                 <Icon
-                  name="home"
+                  name="login"
                   type="antdesign"
                   size={20}
                   color={colors.icon_theme_color}
@@ -97,29 +132,47 @@ class Menu extends Component {
                     styles.titleStyle,
                     {color: colors.header_one_theme_color}
                   ]}>
-                  {I18n.t('home')}
+                  {I18n.t('login')}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('ServiceIndex')}
-                style={styles.menuBtn}>
-                <Icon
-                  name="customerservice"
-                  type="antdesign"
-                  size={20}
-                  color={colors.icon_theme_color}
-                />
-                <Text
-                  style={[
-                    styles.titleStyle,
-                    {color: colors.header_one_theme_color}
-                  ]}>
-                  {I18n.t('services')}
-                </Text>
-              </TouchableOpacity>
-              {guest ? (
+            ) : (
+              <View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Login')}
+                  onPress={() => navigation.navigate('ProfileIndex', {name})}
+                  style={styles.menuBtn}>
+                  <Icon
+                    name="profile"
+                    type="antdesign"
+                    size={20}
+                    color={colors.icon_theme_color}
+                  />
+                  <Text
+                    style={[
+                      styles.titleStyle,
+                      {color: colors.header_one_theme_color}
+                    ]}>
+                    {I18n.t('profile')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('FavoriteIndex')}
+                  style={styles.menuBtn}>
+                  <Icon
+                    name="star"
+                    type="fontawesome"
+                    size={25}
+                    color={colors.icon_theme_color}
+                  />
+                  <Text
+                    style={[
+                      styles.titleStyle,
+                      {color: colors.header_one_theme_color}
+                    ]}>
+                    {I18n.t('wishlist')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => dispatch(logout())}
                   style={styles.menuBtn}>
                   <Icon
                     name="login"
@@ -132,69 +185,40 @@ class Menu extends Component {
                       styles.titleStyle,
                       {color: colors.header_one_theme_color}
                     ]}>
-                    {I18n.t('login')}
+                    {I18n.t('logout')}
                   </Text>
                 </TouchableOpacity>
-              ) : (
-                <View>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('ProfileIndex', {name})}
-                    style={styles.menuBtn}>
-                    <Icon
-                      name="profile"
-                      type="antdesign"
-                      size={20}
-                      color={colors.icon_theme_color}
-                    />
-                    <Text
-                      style={[
-                        styles.titleStyle,
-                        {color: colors.header_one_theme_color}
-                      ]}>
-                      {I18n.t('profile')}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('FavoriteIndex')}
-                    style={styles.menuBtn}>
-                    <Icon
-                      name="star"
-                      type="fontawesome"
-                      size={25}
-                      color={colors.icon_theme_color}
-                    />
-                    <Text
-                      style={[
-                        styles.titleStyle,
-                        {color: colors.header_one_theme_color}
-                      ]}>
-                      {I18n.t('wishlist')}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => dispatch(logout())}
-                    style={styles.menuBtn}>
-                    <Icon
-                      name="login"
-                      type="antdesign"
-                      size={20}
-                      color={colors.icon_theme_color}
-                    />
-                    <Text
-                      style={[
-                        styles.titleStyle,
-                        {color: colors.header_one_theme_color}
-                      ]}>
-                      {I18n.t('logout')}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
+              </View>
+            )}
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Contactus')}
+              style={styles.menuBtn}>
+              <Icon
+                name="old-phone"
+                type="entypo"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('contactus')}
+              </Text>
+            </TouchableOpacity>
+            {!validate.isEmpty(images) ? (
               <TouchableOpacity
-                onPress={() => navigation.navigate('Contactus')}
+                onPress={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: images,
+                    name: company,
+                    index: 0
+                  })
+                }
                 style={styles.menuBtn}>
                 <Icon
-                  name="old-phone"
+                  name="image"
                   type="entypo"
                   size={20}
                   color={colors.icon_theme_color}
@@ -204,60 +228,18 @@ class Menu extends Component {
                     styles.titleStyle,
                     {color: colors.header_one_theme_color}
                   ]}>
-                  {I18n.t('contactus')}
+                  {I18n.t('our_gallery', {name: company})}
                 </Text>
               </TouchableOpacity>
-              {!validate.isEmpty(images) ? (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('ImageZoom', {
-                      images: images,
-                      name: company,
-                      index: 0
-                    })
-                  }
-                  style={styles.menuBtn}>
-                  <Icon
-                    name="image"
-                    type="entypo"
-                    size={20}
-                    color={colors.icon_theme_color}
-                  />
-                  <Text
-                    style={[
-                      styles.titleStyle,
-                      {color: colors.header_one_theme_color}
-                    ]}>
-                    {I18n.t('our_gallery', {name: company})}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
+            ) : null}
 
-              {youtube ? (
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(youtube)}
-                  style={styles.menuBtn}>
-                  <Icon
-                    name="youtube"
-                    type="entypo"
-                    size={20}
-                    color={colors.icon_theme_color}
-                  />
-                  <Text
-                    style={[
-                      styles.titleStyle,
-                      {color: colors.header_one_theme_color}
-                    ]}>
-                    {I18n.t('our_youtube_channel')}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
+            {youtube ? (
               <TouchableOpacity
-                onPress={() => this.changeLang()}
+                onPress={() => Linking.openURL(youtube)}
                 style={styles.menuBtn}>
                 <Icon
-                  name="language"
-                  type="fontawesome"
+                  name="youtube"
+                  type="entypo"
                   size={20}
                   color={colors.icon_theme_color}
                 />
@@ -266,35 +248,52 @@ class Menu extends Component {
                     styles.titleStyle,
                     {color: colors.header_one_theme_color}
                   ]}>
-                  {I18n.t('lang')}
+                  {I18n.t('our_youtube_channel')}
                 </Text>
               </TouchableOpacity>
-            </View>
-          </SafeAreaView>
-        </ImageBackground>
-      </ScrollView>
-    );
-  }
-}
+            ) : null}
+            <TouchableOpacity
+              onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
+              style={styles.menuBtn}>
+              <Icon
+                name="language"
+                type="fontawesome"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('lang')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
+    </ScrollView>
+  );
+};
 
 function mapStateToProps(state) {
   return {
-    menu_bg: state.settings.menu_bg,
-    logo: state.settings.logo,
-    company: state.settings.company,
-    images: state.settings.images,
-    youtube: state.settings.youtube,
-    colors: state.settings.colors,
-    guest: state.guest,
-    lang: state.lang,
-    name: state.auth.name
+    menuBg: menuBgSelector(state),
+    logo: logoSelector(state),
+    company: companyNameSelector(state),
+    images: settingImagesSelector(state),
+    youtube: youtubeSelector(state),
+    colors: colorsSelector(state),
+    guest: guestSelector(state),
+    lang: langSelector(state),
+    name: authNameSelector(state)
   };
 }
 
-export default connect(mapStateToProps)(Menu);
+export default connect(mapStateToProps)(React.memo(Menu));
 
 Menu.propTypes = {
-  menu_bg: PropTypes.string,
+  menuBg: PropTypes.string,
   logo: PropTypes.string,
   company: PropTypes.string,
   images: PropTypes.array,

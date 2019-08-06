@@ -696,14 +696,24 @@ export function* startSubmitAuthScenario(action) {
     }
     const user = yield call(api.authenticate, {email, password, player_id});
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      const favorites = yield call(api.getFavorites, {
-        params: {api_token: user.api_token}
-      });
+      // const favorites = yield call(api.getFavorites, {
+      //   params: {api_token: user.api_token}
+      // });
+      if (
+        !validate.isEmpty(user.product_favorites) &&
+        validate.isArray(user.product_favorites)
+      ) {
+        yield put({
+          type: actions.SET_PRODUCT_FAVORITES,
+          payload: user.product_favorites
+        });
+      } else {
+        yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
+      }
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
-        put({type: actions.SET_PRODUCT_FAVORITES, payload: favorites}),
         call(enableSuccessMessage, I18n.t('login_success')),
         put(
           NavigationActions.navigate({
