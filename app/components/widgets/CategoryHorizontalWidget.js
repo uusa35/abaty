@@ -17,16 +17,17 @@ import widgetStyles from './widgetStyles';
 import {NavContext} from '../../redux/NavContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {images} from '../../constants';
+import { useNavigation } from 'react-navigation-hooks'
 
 const CategoryHorizontalWidget = ({elements, showName, title}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {navigation} = useContext(NavContext);
+    const { navigate } = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigation.navigate('CategoryIndex')}>
+        onPress={() => navigate('CategoryIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

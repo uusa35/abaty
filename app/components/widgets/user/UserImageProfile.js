@@ -6,7 +6,7 @@ import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
-import {Rating, AirbnbRating} from 'react-native-ratings';
+import {Rating} from 'react-native-ratings';
 import {
   becomeFan,
   enableSuccessMessage,

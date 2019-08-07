@@ -6,7 +6,6 @@ import HeaderImageScrollView, {
 } from 'react-native-image-header-scroll-view';
 import {text, width} from '../constants';
 import validate from 'validate.js';
-import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import UserImageProfile from '../components/widgets/user/UserImageProfile';
