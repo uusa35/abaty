@@ -9,12 +9,16 @@ const playerId = state => state.playerId;
 const auth = state => state.auth;
 const settings = state => state.settings;
 const menuBg = state => state.settings.menu_bg;
+const phone = state => state.settings.phone;
+const mobile = state => state.settings.mobile;
 const companyName = state => state.settings.company;
 const settingImages = state => state.settings.iamges;
 const youtube = state => state.settings.youtube;
 const guest = state => state.guest;
 const lang = state => state.lang;
 const authName = state => state.auth.name;
+const product = state => state.product;
+const service = state => state.service;
 
 export const tokenSelector = createSelector(
   token,
@@ -81,7 +85,23 @@ export const langSelector = createSelector(
   lang,
   lang => lang
 );
+export const phoneSelector = createSelector(
+  phone,
+  phone => phone
+);
+export const mobileSelector = createSelector(
+  mobile,
+  mobile => mobile
+);
 export const authNameSelector = createSelector(
   authName,
   authName => authName
+);
+export const serviceSelector = createSelector(
+  service,
+  service => service
+);
+export const productSelector = createSelector(
+  product,
+  product => product
 );

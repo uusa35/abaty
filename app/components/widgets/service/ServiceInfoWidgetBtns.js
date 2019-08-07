@@ -44,12 +44,23 @@ const ServiceInfoWidgetBtns = ({element}) => {
             marginBottom: -10,
             padding: 0
           }}
-          itemStyle={{fontFamily: text.font}}
+          itemStyle={{fontFamily: text.font, fontSize: text.medium}}
           onValueChange={(itemValue, itemIndex) => setDay(itemValue)}>
           <Picker.Item key={0} label={I18n.t('choose_day')} value={null} />
-          {_.map(days, (d, i) => (
-            <Picker.Item key={i} label={d} value={d} />
-          ))}
+          {_.map(days, (d, i) => {
+            const dayAndTime = _.filter(timings, (v, k) => {
+              if (v[0].date === d) {
+                return v[0];
+              }
+            });
+            return (
+              <Picker.Item
+                key={i}
+                label={dayAndTime[0][0].title + ' ' + dayAndTime[0][0].date}
+                value={d}
+              />
+            );
+          })}
         </Picker>
         <Picker
           selectedValue={selectedTiming}

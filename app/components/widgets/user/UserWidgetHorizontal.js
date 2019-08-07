@@ -12,8 +12,8 @@ import {
 } from 'react-native';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
-import I18n from "../../../I18n";
-import {Rating} from "react-native-ratings";
+import I18n from '../../../I18n';
+import {Rating} from 'react-native-ratings';
 
 const UserWidgetHorizontal = ({user, showName}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -43,8 +43,7 @@ const UserWidgetHorizontal = ({user, showName}) => {
         imageStyle={styles.imageStyling}
         loadingIndicatorSource={images.logo}
         style={styles.image}
-        resizeMode="cover">
-      </ImageBackground>
+        resizeMode="cover"></ImageBackground>
       {showName ? (
         <View>
           <Text
@@ -57,24 +56,24 @@ const UserWidgetHorizontal = ({user, showName}) => {
             ]}>
             {user.slug}
           </Text>
-            {user.views ? (
-                <Text
-                    style={[
-                        styles.mainTitle,
-                        {fontSize: text.small, color: colors.header_tow_theme_color}
-                    ]}>
-                    {user.views} {I18n.t('views')}
-                </Text>
-            ) : null}
-                <Rating
-                    readonly={true}
-                    showRating={false}
-                    startingValue={user.rating}
-                    count={10}
-                    ratingCount={5}
-                    style={{paddingVertical: 0}}
-                    imageSize={15}
-                />
+          {user.views ? (
+            <Text
+              style={[
+                styles.mainTitle,
+                {fontSize: text.small, color: colors.header_tow_theme_color}
+              ]}>
+              {user.views} {I18n.t('views')}
+            </Text>
+          ) : null}
+          <Rating
+            readonly={true}
+            showRating={false}
+            startingValue={user.rating}
+            count={10}
+            ratingCount={5}
+            style={{paddingVertical: 0}}
+            imageSize={15}
+          />
         </View>
       ) : null}
     </TouchableOpacity>
@@ -93,18 +92,18 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 180
   },
-    mainTitle: {
-        fontFamily: text.font,
-        textAlign: 'center',
-        fontSize: 25,
-        paddingBottom: 3,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.0,
-        elevation: 1
+  mainTitle: {
+    fontFamily: text.font,
+    textAlign: 'center',
+    fontSize: 25,
+    paddingBottom: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1
     },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1
+  }
 });
