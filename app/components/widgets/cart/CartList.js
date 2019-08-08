@@ -2,21 +2,21 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, registerConstrains, text} from '../../../constants';
+import {isIOS, text} from '../../../constants';
 import {
-  clearCart,
-  getCoupon,
-  showCountryModal,
-  submitCart
+    clearCart,
+    getCoupon,
+    showCountryModal, showLoginModal,
+    submitCart
 } from '../../../redux/actions';
 import {Button, Input} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {NavContext} from '../../../redux/NavContext';
 import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
+import {useNavigation} from "react-navigation-hooks";
 
 const CartList = ({
   cart,
@@ -29,7 +29,7 @@ const CartList = ({
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total, grossTotal} = useContext(GlobalValuesContext);
-  const {navigation} = useContext(NavContext);
+  const { navigate } = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
     !validate.isEmpty(auth) ? auth.email : null
@@ -232,7 +232,7 @@ const CartList = ({
               width: '100%'
             }}>
             <Button
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => dispatch(showLoginModal())}
               raised
               containerStyle={{flex: 0.5, marginBottom: 10, margin: 5}}
               buttonStyle={{
@@ -245,7 +245,7 @@ const CartList = ({
               titleStyle={{fontFamily: text.font, color: 'black'}}
             />
             <Button
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => navigate('Register')}
               raised
               containerStyle={{flex: 0.5, marginBottom: 10, margin: 5}}
               buttonStyle={{

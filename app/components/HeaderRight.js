@@ -6,7 +6,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
-import {showCountryModal} from '../redux/actions';
+import {showCountryModal, showLoginModal} from '../redux/actions';
 import {Icon} from 'react-native-elements';
 import {linkingPrefix, productPrefix, userPrefix} from '../constants';
 import Share from 'react-native-share';
@@ -43,6 +43,7 @@ export const HeaderRight = ({
         {display ? (
           <TouchableOpacity
             onPress={() => dispatch(showCountryModal())}
+            // onPress={() => dispatch(showLoginModal())}
             hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
             <FastImage
               source={{uri: country.thumb}}

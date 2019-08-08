@@ -71,7 +71,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
             marginBottom: -10,
             padding: 0
           }}
-          itemStyle={{fontFamily: text.font}}
+          itemStyle={{fontFamily: text.font, fontSize: text.medium}}
           onValueChange={(itemValue, itemIndex) => {
             const time = _.filter(selectedDay, d => d.id === itemValue);
             setSelectedTiming(itemValue);

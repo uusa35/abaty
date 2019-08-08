@@ -19,6 +19,7 @@ const lang = state => state.lang;
 const authName = state => state.auth.name;
 const product = state => state.product;
 const service = state => state.service;
+const loginModal = state => state.loginModal;
 
 export const tokenSelector = createSelector(
   token,
@@ -104,4 +105,9 @@ export const serviceSelector = createSelector(
 export const productSelector = createSelector(
   product,
   product => product
+);
+
+export const loginModalSelector = createSelector(
+  loginModal,
+  loginModal => loginModal
 );

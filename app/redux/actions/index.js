@@ -366,14 +366,12 @@ export function refetchUsers(payload) {
 export function showCountryModal() {
   return {
     type: actions.SHOW_COUNTRY_MODAL,
-    payload: true
   };
 }
 
 export function hideCountryModal() {
   return {
     type: actions.HIDE_COUNTRY_MODAL,
-    payload: false
   };
 }
 
@@ -477,9 +475,15 @@ export function becomeFan(payload) {
   };
 }
 
-export const APP_ACTIONS = {
-  changeLang,
-  disableMessage,
-  logout,
-  setCurrency
-};
+export function showLoginModal() {
+  return {
+    type : actions.SHOW_LOGIN_MODAL
+  }
+}
+
+export function hideLoginModal() {
+  return {
+    type : actions.HIDE_LOGIN_MODAL
+  }
+}
+

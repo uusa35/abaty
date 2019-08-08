@@ -38,6 +38,8 @@ import grossTotal from './grossTotal';
 import token from './token';
 import guest from './guest';
 import countryModal from './countryModal';
+import loginModal from './loginModal';
+import showIntroduction from './showIntroduction';
 import linking from './linking';
 import playerId from './playerId';
 import auth from './auth';
@@ -90,7 +92,9 @@ let reducers = combineReducers({
   linking,
   coupon,
   network,
-  searchParams
+  searchParams,
+  loginModal,
+  showIntroduction
 });
 
 export default reducers;

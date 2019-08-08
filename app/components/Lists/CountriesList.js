@@ -15,9 +15,9 @@ import {images, text} from '../../constants';
 import FastImage from 'react-native-fast-image';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
+import PropTypes from "prop-types";
 
-const CountriesList = () => {
-  const {country, countries, countryModal} = useContext(CountriesContext);
+const CountriesList = ({ country, countries, countryModal }) => {
   const {dispatch} = useContext(DispatchContext);
   [visible, setVisible] = useState(countryModal);
   [currentCountry, setCurrentCountry] = useState(country);
@@ -87,6 +87,11 @@ const CountriesList = () => {
 
 export default React.memo(CountriesList);
 
+CountriesList.propTypes = {
+  country: PropTypes.object.isRequired,
+  countries : PropTypes.array.isRequired,
+  countryModal : PropTypes.bool.isRequired
+}
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
