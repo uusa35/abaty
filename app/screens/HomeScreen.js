@@ -45,7 +45,6 @@ class HomeScreen extends Component {
     if (has(navigation.state, 'params')) {
       return {
         headerTitle: (
-          <SafeAreaView>
             <View style={styles.safeContainer}>
               <FastImage
                 resizeMode="stretch"
@@ -60,7 +59,6 @@ class HomeScreen extends Component {
                 }}
               />
             </View>
-          </SafeAreaView>
         )
       };
     }
