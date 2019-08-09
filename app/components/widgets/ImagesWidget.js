@@ -14,7 +14,7 @@ import {images, text} from '../../constants';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from "react-navigation-hooks";
+import {useNavigation} from 'react-navigation-hooks';
 
 const ImagesWidget = ({
   elements,
@@ -27,7 +27,7 @@ const ImagesWidget = ({
   height = 200,
   width = 200
 }) => {
-  const { navigate } = useNavigation();
+  const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={{flex: 1}}>

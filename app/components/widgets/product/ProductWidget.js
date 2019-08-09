@@ -26,10 +26,8 @@ const ProductWidget = ({product, showName = false}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          // width: '48%',
-          // minWidth: 175,
-          // maxWidth: 190,
-          width: 173,
+          width: '48%',
+          maxWidth: 175,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',
@@ -48,7 +46,7 @@ const ProductWidget = ({product, showName = false}) => {
         loadingIndicatorSource={images.logo}
         imageStyle={styles.imageStyling}
         style={styles.image}
-        resizeMode="contain">
+        resizeMode="stretch">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
           {product.exclusive ? <TagWidget tagName="exclusive" /> : null}
           {product.isOnSale ? (
@@ -107,7 +105,7 @@ ProductWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 173,
+    width: 175,
     height: 230
   },
   imageStyling: {
