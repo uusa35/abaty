@@ -13,7 +13,7 @@ const persistConfig = {
   key: 'root',
   storage,
   transforms: [networkTransform],
-  blacklist: ['message', 'cart','countryModal','loginModal'] // navigation will not be persisted
+  blacklist: ['message', 'cart', 'countryModal', 'loginModal'] // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
 };
 let Store;

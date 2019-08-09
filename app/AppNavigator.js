@@ -405,7 +405,6 @@ const VideoStack = createStackNavigator(
       screen: VideoIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
         headerBackTitle: null
       })

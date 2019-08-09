@@ -365,13 +365,13 @@ export function refetchUsers(payload) {
 
 export function showCountryModal() {
   return {
-    type: actions.SHOW_COUNTRY_MODAL,
+    type: actions.SHOW_COUNTRY_MODAL
   };
 }
 
 export function hideCountryModal() {
   return {
-    type: actions.HIDE_COUNTRY_MODAL,
+    type: actions.HIDE_COUNTRY_MODAL
   };
 }
 
@@ -477,13 +477,12 @@ export function becomeFan(payload) {
 
 export function showLoginModal() {
   return {
-    type : actions.SHOW_LOGIN_MODAL
-  }
+    type: actions.SHOW_LOGIN_MODAL
+  };
 }
 
 export function hideLoginModal() {
   return {
-    type : actions.HIDE_LOGIN_MODAL
-  }
+    type: actions.HIDE_LOGIN_MODAL
+  };
 }
-

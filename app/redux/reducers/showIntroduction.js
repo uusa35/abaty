@@ -1,4 +1,4 @@
-import {SHOW_INTRODUCTION, HIDE_INTRODUCTION } from '../actions/types';
+import {SHOW_INTRODUCTION, HIDE_INTRODUCTION} from '../actions/types';
 
 export default function(showIntroduction = true, action) {
   switch (action.type) {

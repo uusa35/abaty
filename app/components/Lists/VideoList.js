@@ -1,11 +1,10 @@
 import React, {useState, useMemo, useContext} from 'react';
 import validate from 'validate.js';
-import {FlatList, RefreshControl, StyleSheet, Text, View} from 'react-native';
+import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
 import {text, width} from '../../constants';
-import {Button, Icon, Input} from 'react-native-elements';
-import I18n, {isRTL} from '../../I18n';
+import {Button} from 'react-native-elements';
+import I18n from '../../I18n';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideoWidget from '../widgets/VideoWidget';
 import {first} from 'lodash';
 import {DispatchContext} from '../../redux/DispatchContext';

@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
-import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {View} from 'react-native-animatable';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, links} from '../../../constants';
@@ -14,10 +13,7 @@ import ImagesWidget from '../ImagesWidget';
 const UserInfoWidget = ({user}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
-    <View
-      animation="bounceInRight"
-      easing="ease-out"
-      style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
+    <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <Text
         style={{
           fontFamily: text.font,

@@ -4,10 +4,11 @@ import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS, text} from '../../../constants';
 import {
-    clearCart,
-    getCoupon,
-    showCountryModal, showLoginModal,
-    submitCart
+  clearCart,
+  getCoupon,
+  showCountryModal,
+  showLoginModal,
+  submitCart
 } from '../../../redux/actions';
 import {Button, Input} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -16,7 +17,7 @@ import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
-import {useNavigation} from "react-navigation-hooks";
+import {useNavigation} from 'react-navigation-hooks';
 
 const CartList = ({
   cart,
@@ -29,7 +30,7 @@ const CartList = ({
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total, grossTotal} = useContext(GlobalValuesContext);
-  const { navigate } = useNavigation();
+  const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
     !validate.isEmpty(auth) ? auth.email : null

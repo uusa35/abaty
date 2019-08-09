@@ -15,7 +15,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(VideoIndexScreen);
+export default connect(mapStateToProps)(React.memo(VideoIndexScreen));
 
 VideoIndexScreen.propTypes = {
   videos: PropTypes.array.isRequired

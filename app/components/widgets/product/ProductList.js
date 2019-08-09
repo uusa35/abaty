@@ -54,7 +54,7 @@ const ProductList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => console.log('error catch productList'));
+        .catch(e => console.log('the e from ProductList', e));
     }
   }, [page]);
 

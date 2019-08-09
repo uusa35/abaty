@@ -1,13 +1,18 @@
 import React, {useContext} from 'react';
-import {StyleSheet, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {View} from 'react-native-animatable';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  View
+} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, width} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getCategoryElements, getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 
@@ -27,83 +32,77 @@ const UserCategoriesInfoWidget = ({
       contentInset={{bottom: 100}}>
       {!validate.isEmpty(elements) ? (
         <View
-          animation="bounceInRight"
-          easing="ease-out"
+          key={elements.length}
           style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
-          <View key={elements.length} style={{flex: 1}}>
-            {showTitle ? (
-              <Text
-                style={{
-                  fontFamily: text.font,
-                  fontSize: text.large,
-                  marginBottom: 10,
-                  textAlign: 'left',
-                  color: colors.header_one_theme_color,
-                  shadowColor: '#000',
-                  shadowOffset: {
-                    width: 0,
-                    height: 1
-                  },
-                  shadowOpacity: 0.18,
-                  shadowRadius: 1.0,
-
-                  elevation: 1
-                }}>
-                {I18n.t('product_categories')}
-              </Text>
-            ) : null}
-            {map(elements, (c, i) => {
-              if (!isNull(c)) {
-                return (
-                  <TouchableOpacity
-                    key={i}
-                    onPress={() =>
-                      dispatch(
-                        getSearchProducts({
-                          element: c,
-                          category: c,
-                          searchElements: {product_category_id: c.id}
-                        })
-                      )
-                    }
-                    hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                    style={styles.itemRow}>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'baseline'
-                      }}>
-                      <Icon
-                        type="entypo"
-                        name={isRTL ? 'triangle-left' : 'triangle-right'}
-                        color="grey"
-                        size={20}
-                        iconStyle={{
-                          paddingRight: 10,
-                          paddingLeft: 10
-                        }}
-                      />
-                      <Text style={styles.subTitle}>{c.name}</Text>
-                    </View>
-                    {showArrow ? (
-                      <Icon
-                        type="entypo"
-                        name={
-                          isRTL ? 'chevron-thin-left' : 'chevron-thin-right'
-                        }
-                        color="lightgrey"
-                        size={15}
-                        iconStyle={{
-                          paddingRight: isIOS ? 10 : 0,
-                          paddingLeft: isIOS ? 0 : 10
-                        }}
-                      />
-                    ) : null}
-                  </TouchableOpacity>
-                );
-              }
-            })}
-          </View>
+          {showTitle ? (
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: text.large,
+                marginBottom: 10,
+                textAlign: 'left',
+                color: colors.header_one_theme_color,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 1
+                },
+                shadowOpacity: 0.18,
+                shadowRadius: 1.0,
+                elevation: 1
+              }}>
+              {I18n.t('product_categories')}
+            </Text>
+          ) : null}
+          {map(elements, (c, i) => {
+            if (!isNull(c)) {
+              return (
+                <TouchableOpacity
+                  key={i}
+                  onPress={() =>
+                    dispatch(
+                      getSearchProducts({
+                        element: c,
+                        category: c,
+                        searchElements: {product_category_id: c.id}
+                      })
+                    )
+                  }
+                  hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                  style={styles.itemRow}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'baseline'
+                    }}>
+                    <Icon
+                      type="entypo"
+                      name={isRTL ? 'triangle-left' : 'triangle-right'}
+                      color="grey"
+                      size={20}
+                      iconStyle={{
+                        paddingRight: 10,
+                        paddingLeft: 10
+                      }}
+                    />
+                    <Text style={styles.subTitle}>{c.name}</Text>
+                  </View>
+                  {showArrow ? (
+                    <Icon
+                      type="entypo"
+                      name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                      color="lightgrey"
+                      size={15}
+                      iconStyle={{
+                        paddingRight: isIOS ? 10 : 0,
+                        paddingLeft: isIOS ? 0 : 10
+                      }}
+                    />
+                  ) : null}
+                </TouchableOpacity>
+              );
+            }
+          })}
         </View>
       ) : (
         <View

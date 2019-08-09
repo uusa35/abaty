@@ -9,20 +9,20 @@ import {
 import {Icon} from 'react-native-elements';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
-import {NavContext} from '../../../redux/NavContext';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import BrandWidget from './BrandWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
 const BrandHorizontalWidget = ({elements, title}) => {
-  const {navigation} = useContext(NavContext);
+  const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigation.navigate('BrandIndex')}>
+        onPress={() => navigate('BrandIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

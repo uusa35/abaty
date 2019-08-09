@@ -12,11 +12,11 @@ const ImageZoomWidget = props => {
       showsButtons={false}
       dotColor="white"
       index={index}
-      removeClippedSubviews={false}>
+      removeClippedSubviews={true}>
       {map(images, (c, i) => {
         return (
           <View style={styles.slide} key={c.id}>
-            <FastImage
+            <Image
               key={i}
               source={{
                 uri: c.large,

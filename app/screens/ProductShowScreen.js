@@ -4,39 +4,41 @@ import {
   ScrollView,
   Text,
   Linking,
-  RefreshControl
+  RefreshControl,
+  View
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text, isIOS} from './../constants';
+import {width, text} from './../constants';
 import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
-import {NavContext} from './../redux/NavContext';
-import UserInfoWidgetElement from '../components/widgets/user/UserInfoWidgetElement';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
-import {View} from 'react-native-animatable';
-import I18n, {isRTL} from './../I18n';
-import {Icon} from 'react-native-elements';
+import I18n from './../I18n';
 import {first} from 'lodash';
-import {
-  getCategoryElements,
-  getDesigner,
-  getProduct,
-  getSearchProducts
-} from '../redux/actions';
+import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
-import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import PropTypes from 'prop-types';
+import {Button} from 'react-native-elements';
+import {find} from 'lodash';
 
 class ProductShowScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = {refresh: false};
+    this.state = {refresh: false, showCartBtn: false};
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.product !== this.props.product;
+    // find(this.props.cart, (c) => {
+    //     if(c.product_id === this.props.product.id) {
+    //         console.log('fired');
+    //         this.setState({ showCartBtn : true});
+    //     }
+    // });
+    return (
+      nextProps.product !== this.props.product ||
+      nextProps.cart !== this.props.cart
+    );
   }
 
   render() {
@@ -51,10 +53,12 @@ class ProductShowScreen extends Component {
       size_chart,
       weight,
       homeProducts,
-      token
+      token,
+      colors
     } = this.props;
+    const {showCartBtn} = this.state;
     return (
-      <NavContext.Provider value={{navigation}}>
+      <View style={{flex: 1}}>
         <ScrollView
           style={{flex: 1}}
           contentContainerStyle={{
@@ -72,7 +76,7 @@ class ProductShowScreen extends Component {
               }}
             />
           }
-          automaticallyAdjustContentInsets={false}
+          automaticallyAdjustContentInsets={true}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           contentInset={{bottom: 50}}>
@@ -88,9 +92,7 @@ class ProductShowScreen extends Component {
             isReallyHot={product.isReallyHot}
           />
           <View style={{width: '90%'}}>
-            <View animation="bounceInLeft" easing="ease-out">
-              <ProductInfoWidget element={product} />
-            </View>
+            <ProductInfoWidget element={product} />
             <View
               animation="bounceInLeft"
               easing="ease-out"
@@ -198,7 +200,30 @@ class ProductShowScreen extends Component {
             />
           ) : null}
         </ScrollView>
-      </NavContext.Provider>
+        <View
+          style={{
+            height: showCartBtn ? 80 : 0,
+            backgroundColor: 'transparent'
+          }}>
+          {this.state.showCartBtn ? (
+            <Button
+              // onPress={() => navigation.navigate('CartIndex')}
+              onPress={() => this.findInCart()}
+              raised
+              containerStyle={{width: '100%'}}
+              buttonStyle={{
+                backgroundColor: colors.btn_bg_theme_color,
+                height: 80
+              }}
+              title={I18n.t('go_to_cart')}
+              titleStyle={{
+                fontFamily: text.font,
+                color: colors.btn_text_theme_color
+              }}
+            />
+          ) : null}
+        </View>
+      </View>
     );
   }
 }
@@ -213,7 +238,9 @@ function mapStateToProps(state) {
     mobile: state.settings.mobile,
     weight: state.settings.weight,
     homeProducts: state.homeProducts,
-    token: state.token
+    token: state.token,
+    colors: state.settings.colors,
+    cart: state.cart
   };
 }
 

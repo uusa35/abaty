@@ -20,22 +20,20 @@ const MainSliderWidget = ({slides}) => {
           autoplay={true}
           key={slides.length}
           removeClippedSubviews={false}>
-          {map(slides, (s, i) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  Linking.openURL(s.path ? s.path : s.url);
-                }}
-                key={i}>
-                <FastImage
-                  loadingIndicatorSource={images.logo}
-                  source={{uri: s.large}}
-                  style={{width: width, height: '100%'}}
-                  resizeMode="cover"
-                />
-              </TouchableOpacity>
-            );
-          })}
+          {map(slides, (s, i) => (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(s.path ? s.path : s.url);
+              }}
+              key={i}>
+              <FastImage
+                loadingIndicatorSource={images.logo}
+                source={{uri: s.large}}
+                style={{width: width, height: '100%'}}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
+          ))}
         </Swiper>
       ) : null}
     </View>

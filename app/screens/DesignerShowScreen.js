@@ -85,49 +85,47 @@ class DesignerShowScreen extends Component {
                 <MainSliderWidget slides={user.slides} />
               </View>
             ) : null}
-            <View>
-              {/*<UserShowInformationTabBarWidget element={user} />*/}
-              <TabView
-                renderTabBar={props => (
-                  <TabBar
-                    {...props}
-                    // tabStyle={{ backgroundColor: 'white'}}
-                    // indicatorContainerStyle={{backgroundColor: 'white'}}
-                    // contentContainerStyle={{backgroundColor: 'white'}}
-                    indicatorStyle={{
-                      backgroundColor: colors.btn_bg_theme_color
-                    }}
-                    activeColor={colors.header_one_theme_color}
-                    inactiveColor={colors.header_tow_theme_color}
-                    style={{backgroundColor: 'white'}}
-                    labelStyle={{
-                      fontFamily: text.font,
-                      fontSize: text.small
-                    }}
+            <TabView
+              renderTabBar={props => (
+                <TabBar
+                  {...props}
+                  // tabStyle={{ backgroundColor: 'white'}}
+                  // indicatorContainerStyle={{backgroundColor: 'white'}}
+                  // contentContainerStyle={{backgroundColor: 'white'}}
+                  indicatorStyle={{
+                    backgroundColor: colors.btn_bg_theme_color
+                  }}
+                  activeColor={colors.header_one_theme_color}
+                  inactiveColor={colors.header_tow_theme_color}
+                  style={{backgroundColor: 'white'}}
+                  labelStyle={{
+                    fontFamily: text.font,
+                    fontSize: text.small
+                  }}
+                />
+              )}
+              navigationState={this.state}
+              renderScene={SceneMap({
+                products: () => (
+                  <ProductList
+                    products={user.productGroup.concat(user.products)}
+                    showSearch={false}
+                    showTitle={true}
+                    showFooter={false}
+                    showMore={false}
+                    searchElements={searchParams}
                   />
-                )}
-                navigationState={this.state}
-                renderScene={SceneMap({
-                  products: () => (
-                    <ProductList
-                      products={user.productGroup.concat(user.products)}
-                      showSearch={false}
-                      showTitle={true}
-                      showFooter={false}
-                      searchElements={searchParams}
-                    />
-                  ),
-                  categories: () => (
-                    <UserCategoriesInfoWidget elements={categories} />
-                  ),
-                  info: () => <UserInfoWidget user={user} />,
-                  videos: () => <VideosWidget videos={user.videoGroup} />
-                })}
-                style={{marginTop: 10, backgroundColor: 'white'}}
-                onIndexChange={index => this.setState({index})}
-                initialLayout={{width: width}}
-              />
-            </View>
+                ),
+                categories: () => (
+                  <UserCategoriesInfoWidget elements={categories} />
+                ),
+                info: () => <UserInfoWidget user={user} />,
+                videos: () => <VideosWidget videos={user.videoGroup} />
+              })}
+              style={{marginTop: 10, backgroundColor: 'white'}}
+              onIndexChange={index => this.setState({index})}
+              initialLayout={{width: width}}
+            />
           </TriggeringView>
         </View>
       </HeaderImageScrollView>

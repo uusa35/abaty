@@ -16,7 +16,7 @@ import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
-import LoginScreenModal from "./screens/LoginScreenModal";
+import LoginScreenModal from './screens/LoginScreenModal';
 
 type Props = {};
 class App extends Component<Props> {
@@ -75,7 +75,7 @@ class App extends Component<Props> {
       token,
       guest,
       network,
-        loginModal
+      loginModal
     } = this.props;
     console.log('loginModal', loginModal);
     const cartLength = cart.length;
@@ -130,10 +130,18 @@ class App extends Component<Props> {
               <AlertMessage message={message} />
             ) : null}
             {validate.isBoolean(countryModal) && countryModal ? (
-                <CountriesList country={country} countries={countries} countryModal={countryModal}/>
+              <CountriesList
+                country={country}
+                countries={countries}
+                countryModal={countryModal}
+              />
             ) : null}
             {validate.isBoolean(loginModal) ? (
-                <LoginScreenModal  colors={colors} logo={logo} loginModal={loginModal}/>
+              <LoginScreenModal
+                colors={colors}
+                logo={logo}
+                loginModal={loginModal}
+              />
             ) : null}
           </View>
         ) : (
@@ -162,7 +170,7 @@ function mapStateToProps(state) {
     logo: state.settings.logo,
     token: state.token,
     guest: state.guest,
-    loginModal : state.loginModal
+    loginModal: state.loginModal
   };
 }
 

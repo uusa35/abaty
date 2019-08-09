@@ -12,9 +12,7 @@ import {
   enableWarningMessage
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
-import {setCurrency} from '../../../helpers';
-import axios from 'axios';
-import {getUsers, startAppBootStrap} from './appSagas';
+import {startAppBootStrap} from './appSagas';
 import {registerConstrains, submitLogin} from '../../../constants';
 import {axiosInstance} from '../api';
 
@@ -232,14 +230,11 @@ export function* startGetUsersScenario(action) {
 }
 
 export function* startGetDesignerScenario(action) {
-  console.log('start');
   try {
     const {element, searchElements} = action.payload;
     const user = yield call(api.getUser, element.id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      console.log('the designer', user);
       yield put({type: actions.SET_DESIGNER, payload: user});
-      yield put({type: actions.SET_PRODUCTS, payload: user.productGroup});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
       yield put(
         NavigationActions.navigate({
@@ -249,6 +244,7 @@ export function* startGetDesignerScenario(action) {
       );
     } else {
       yield put({type: actions.SET_DESIGNER, payload: {}});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
       throw I18n.t('no_designers');
     }
   } catch (e) {
@@ -356,13 +352,7 @@ export function* startGetAllProductsScenario(action) {
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
-        put(
-          NavigationActions.navigate({
-            routeName: 'ProductIndexAll',
-            params: {name: I18n.t('all_products')}
-          })
-        )
+        put({type: actions.SET_SEARCH_PARAMS, payload: {}})
       ]);
     }
   } catch (e) {

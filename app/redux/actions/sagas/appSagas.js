@@ -3,7 +3,6 @@ import * as actions from '../types';
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
-import CodePush from 'react-native-code-push';
 import {
   getCountry,
   setHomeBrands,
@@ -248,7 +247,7 @@ export function* resetStore() {
   yield takeLatest(actions.RESET_STORE, startResetStoreScenario);
 }
 
-export function* startResetStoreScenario(action) {
+export function* startResetStoreScenario() {
   yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
     PersistStore.purge();
   yield delay(1000);
