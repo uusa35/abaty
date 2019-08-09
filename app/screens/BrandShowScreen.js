@@ -16,7 +16,6 @@ class BrandShowScreen extends Component {
 
   render() {
     const {brand, searchParams} = this.props;
-    console.log('the brand', brand);
     return (
       <ProductList
         elements={brand.products}

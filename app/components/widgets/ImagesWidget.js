@@ -10,11 +10,11 @@ import {
 } from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
-import {NavContext} from '../../redux/NavContext';
 import {images, text} from '../../constants';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from "react-navigation-hooks";
 
 const ImagesWidget = ({
   elements,
@@ -27,7 +27,7 @@ const ImagesWidget = ({
   height = 200,
   width = 200
 }) => {
-  const {navigation} = useContext(NavContext);
+  const { navigate } = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={{flex: 1}}>
@@ -63,7 +63,7 @@ const ImagesWidget = ({
             key={i}
             style={{margin: 1}}
             onPress={() =>
-              navigation.navigate('ImageZoom', {
+              navigate('ImageZoom', {
                 images: elements,
                 name,
                 index: i
