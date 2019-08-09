@@ -27,24 +27,22 @@ const HeaderCustom = ({navigation}) => {
       });
   };
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Icon
-          onPress={() =>
-            shareLink(
-              `${navigation.state.params.product ? productPrefix : userPrefix}${
-                navigation.state.params.id
-              }`
-            )
-          }
-          name="share"
-          size={25}
-          underlayColor="transparent"
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          color="black"
-        />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Icon
+        onPress={() =>
+          shareLink(
+            `${navigation.state.params.product ? productPrefix : userPrefix}${
+              navigation.state.params.id
+            }`
+          )
+        }
+        name="share"
+        size={25}
+        underlayColor="transparent"
+        hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+        color="black"
+      />
+    </View>
   );
 };
 

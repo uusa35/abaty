@@ -10,19 +10,17 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 export const HeaderMiddle = ({title}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text
-          style={{
-            fontFamily: text.font,
-            fontSize: text.medium,
-            textAlign: 'center',
-            color: colors.header_one_theme_color
-          }}>
-          {title ? title.substring(0, 20) : null}
-        </Text>
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text
+        style={{
+          fontFamily: text.font,
+          fontSize: text.medium,
+          textAlign: 'center',
+          color: colors.header_one_theme_color
+        }}>
+        {title ? title.substring(0, 20) : null}
+      </Text>
+    </View>
   );
 };
 

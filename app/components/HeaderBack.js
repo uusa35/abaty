@@ -7,19 +7,16 @@ import {Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-navigation';
 
 export const HeaderBack = ({navigation}) => {
-  console.log('navigation', navigation);
   return (
-    <SafeAreaView style={styles.container}>
-      <Icon
-        type="fontawesome"
-        name="chevron-right"
-        size={32}
-        onPress={() => navigation.navigate('Home')}
-        underlayColor="transparent"
-        hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-        color="black"
-      />
-    </SafeAreaView>
+    <Icon
+      type="fontawesome"
+      name="chevron-right"
+      size={32}
+      onPress={() => navigation.navigate('Home')}
+      underlayColor="transparent"
+      hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+      color="black"
+    />
   );
 };
 

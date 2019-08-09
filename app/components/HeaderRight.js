@@ -6,9 +6,9 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
-import {showCountryModal, showLoginModal} from '../redux/actions';
+import {showCountryModal} from '../redux/actions';
 import {Icon} from 'react-native-elements';
-import {linkingPrefix, productPrefix, userPrefix} from '../constants';
+import {linkingPrefix} from '../constants';
 import Share from 'react-native-share';
 import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
@@ -38,36 +38,34 @@ export const HeaderRight = ({
       });
   };
   return (
-    <SafeAreaView>
-      <View style={widgetStyles.safeContainer}>
-        {display ? (
-          <TouchableOpacity
-            onPress={() => dispatch(showCountryModal())}
-            // onPress={() => dispatch(showLoginModal())}
-            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
-            <FastImage
-              source={{uri: country.thumb}}
-              style={{width: 35, height: 20}}
-              resizeMode="stretch"
-            />
-          </TouchableOpacity>
-        ) : null}
-        {displayShare ? (
-          <Icon
-            onPress={() =>
-              shareLink(
-                `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`
-              )
-            }
-            name="share"
-            size={25}
-            underlayColor="transparent"
-            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-            color="black"
+    <View style={widgetStyles.safeContainer}>
+      {display ? (
+        <TouchableOpacity
+          onPress={() => dispatch(showCountryModal())}
+          // onPress={() => dispatch(showLoginModal())}
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
+          <FastImage
+            source={{uri: country.thumb}}
+            style={{width: 35, height: 20}}
+            resizeMode="stretch"
           />
-        ) : null}
-      </View>
-    </SafeAreaView>
+        </TouchableOpacity>
+      ) : null}
+      {displayShare ? (
+        <Icon
+          onPress={() =>
+            shareLink(
+              `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`
+            )
+          }
+          name="share"
+          size={25}
+          underlayColor="transparent"
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          color="black"
+        />
+      ) : null}
+    </View>
   );
 };
 
