@@ -1,35 +1,30 @@
-import React, {useContext, useState, useMemo, useEffect} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {
   View,
   FlatList,
   RefreshControl,
-  KeyboardAvoidingView,
-  ScrollView
+  KeyboardAvoidingView
 } from 'react-native';
 import {getUsers} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
 import {text, width} from './../../constants';
-import {NavContext} from '../../redux/NavContext';
 import {has, filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
+import {DispatchContext} from '../../redux/DispatchContext';
 
-const UsersList = ({elements}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {navigation} = useContext(NavContext);
+const UsersList = ({elements, searchParams}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
-  [searchElements, setSearchElements] = useState(
-    has(navigation, 'state') ? navigation.state.params.searchElements : null
-  );
+  [searchElements, setSearchElements] = useState(searchParams);
   [page, setPage] = useState(1);
   [endList, setEndList] = useState('test');
   [search, setSearch] = useState('');
+  const {dispatch} = useContext(DispatchContext);
 
   useMemo(() => {
     if (isLoading === true) {
@@ -45,13 +40,16 @@ const UsersList = ({elements}) => {
   }, [page]);
 
   useMemo(() => {
-    isLoading ? setPage(page + 1) : null;
+    if (isLoading) {
+      setPage(page + 1);
+    }
   }, [isLoading]);
 
   useMemo(() => {
     if (refresh) {
       // for now i don't know what products to fetch
       setRefresh(false);
+      console.log('searchElements', searchElements);
       dispatch(getUsers(searchElements));
       setIsLoading(false);
     }
@@ -59,9 +57,11 @@ const UsersList = ({elements}) => {
 
   useMemo(() => {
     let filtered = filter(elements, i => (i.slug.includes(search) ? i : null));
-    filtered.length > 0 || search.length > 0
-      ? setItems(filtered)
-      : setItems([]);
+    if (filtered.length > 0 || search.length > 0) {
+      setItems(filtered);
+    } else {
+      setItems([]);
+    }
   }, [search]);
 
   return (
@@ -172,5 +172,5 @@ export default React.memo(UsersList);
 UsersList.propTypes = {
   elements: PropTypes.array,
   category: PropTypes.object,
-  searchElements: PropTypes.object
+  searchParams: PropTypes.object
 };

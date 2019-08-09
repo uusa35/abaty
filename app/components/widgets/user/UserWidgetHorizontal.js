@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {images, text} from './../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getUser} from './../../../redux/actions';
+import {getDesigner} from './../../../redux/actions';
 import widgetStyles from '../widgetStyles';
 import {
   ImageBackground,
@@ -18,7 +18,6 @@ import {Rating} from 'react-native-ratings';
 const UserWidgetHorizontal = ({user, showName}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
-  console.log('the user', user);
   return (
     <TouchableOpacity
       key={user.id}
@@ -35,7 +34,14 @@ const UserWidgetHorizontal = ({user, showName}) => {
           height: 260
         }
       ]}
-      onPress={() => dispatch(getUser(user.id))}>
+      onPress={() =>
+        dispatch(
+          getDesigner({
+            element: user,
+            searchElements: {user_id: user.id}
+          })
+        )
+      }>
       <ImageBackground
         source={{
           uri: user.thumb

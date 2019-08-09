@@ -48,9 +48,13 @@ export function* setSettings() {
 export function* setUsers(action) {
   try {
     const searchElements = action.payload;
+    console.log('searchElements', searchElements);
     const users = yield call(api.getUsers, searchElements);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
-      yield put({type: actions.SET_USERS, payload: users});
+      yield all([
+        put({type: actions.SET_USERS, payload: users}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+      ]);
       yield put(
         NavigationActions.navigate({
           routeName: 'UserIndex',
@@ -62,6 +66,7 @@ export function* setUsers(action) {
       );
     } else {
       yield put({type: actions.SET_USERS, payload: []});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
       throw I18n.t(users);
     }
   } catch (e) {

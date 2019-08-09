@@ -7,9 +7,10 @@ import {axiosInstance} from '../../../redux/actions/api';
 const UsersWidget = props => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
+    let isSubscribed = true;
     axiosInstance
       .get(`${apiUrl}user`)
-      .then(res => setUsers(res.data))
+      .then(r => setUsers(r.data))
       .catch(e => console.log(e));
   }, []);
 

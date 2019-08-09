@@ -11,18 +11,15 @@ class UserIndexScreen extends Component {
   }
 
   render() {
-    const {users, navigation} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <UsersList elements={users} />
-      </NavContext.Provider>
-    );
+    const {users, searchParams} = this.props;
+    return <UsersList elements={users} searchParams={searchParams} />;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    users: state.users
+    users: state.users,
+    searchParams: state.searchParams
   };
 }
 
