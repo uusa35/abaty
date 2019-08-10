@@ -34,7 +34,7 @@ import {
 } from '../redux/selectors/collection';
 import {DispatchContext} from '../redux/DispatchContext';
 
-const Menu = ({
+const SideMeu = ({
   menuBg,
   logo,
   company,
@@ -48,19 +48,23 @@ const Menu = ({
 }) => {
   const {dispatch} = useContext(DispatchContext);
   return (
-    <ScrollView
-      style={[styles.container]}
-      contentContainerStyle={{alignItems: 'center'}}
-      contentInset={{bottom: 200}}>
-      <ImageBackground
-        source={{
-          uri: menuBg
-        }}
-        loadingIndicatorSource={{uri: logo}}
-        style={{width: '100%', height, opacity: 1}}
-        resizeMode="cover">
-        <SafeAreaView style={{width: '100%', alignItems: 'center'}}>
-          {/*<StatusBar barStyle="dark-content" />*/}
+    <ImageBackground
+      source={{
+        uri: menuBg
+      }}
+      loadingIndicatorSource={{uri: logo}}
+      style={{width: '100%', flex: 1, opacity: 1}}
+      resizeMode="cover">
+      <SafeAreaView style={{flex: 1}}>
+        <ScrollView
+          style={[styles.container]}
+          contentContainerStyle={{alignItems: 'center', paddingTop: 10}}
+          contentInset={{bottom: 200}}
+          horizontal={false}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}>
+          <StatusBar barStyle="dark-content" />
           <FastImage
             source={{uri: logo}}
             style={styles.logo}
@@ -270,9 +274,9 @@ const Menu = ({
               </Text>
             </TouchableOpacity>
           </View>
-        </SafeAreaView>
-      </ImageBackground>
-    </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
@@ -290,9 +294,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(Menu));
+export default connect(mapStateToProps)(React.memo(SideMeu));
 
-Menu.propTypes = {
+SideMeu.propTypes = {
   menuBg: PropTypes.string,
   logo: PropTypes.string,
   company: PropTypes.string,
