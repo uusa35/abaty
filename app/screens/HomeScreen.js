@@ -45,20 +45,20 @@ class HomeScreen extends Component {
     if (has(navigation.state, 'params')) {
       return {
         headerTitle: (
-            <View style={styles.safeContainer}>
-              <FastImage
-                resizeMode="stretch"
-                source={{
-                  uri: navigation.state.params.logo
-                    ? navigation.state.params.logo
-                    : null
-                }}
-                style={{
-                  width: 50,
-                  height: 35
-                }}
-              />
-            </View>
+          <View style={styles.safeContainer}>
+            <FastImage
+              resizeMode="stretch"
+              source={{
+                uri: navigation.state.params.logo
+                  ? navigation.state.params.logo
+                  : null
+              }}
+              style={{
+                width: 50,
+                height: 35
+              }}
+            />
+          </View>
         )
       };
     }

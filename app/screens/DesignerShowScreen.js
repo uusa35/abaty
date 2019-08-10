@@ -86,6 +86,7 @@ class DesignerShowScreen extends Component {
               </View>
             ) : null}
             <TabView
+              lazy
               renderTabBar={props => (
                 <TabBar
                   {...props}
@@ -104,7 +105,10 @@ class DesignerShowScreen extends Component {
                   }}
                 />
               )}
-              navigationState={this.state}
+              navigationState={{
+                index: this.state.index,
+                routes: this.state.routes
+              }}
               renderScene={SceneMap({
                 products: () => (
                   <ProductList
