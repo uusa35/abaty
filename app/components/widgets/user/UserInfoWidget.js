@@ -10,7 +10,25 @@ import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImagesWidget from '../ImagesWidget';
 
-const UserInfoWidget = ({user}) => {
+const UserInfoWidget = ({
+  mobile,
+  phone,
+  slug,
+  whatsapp,
+  twitter,
+  facebook,
+  instagram,
+  android,
+  youtube,
+  website,
+  description,
+  service,
+  address,
+  images,
+  latitude,
+  longitude,
+  thumb
+}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
@@ -33,13 +51,11 @@ const UserInfoWidget = ({user}) => {
         }}>
         {I18n.t('information')}
       </Text>
-      {user.longitude && user.latitude ? (
+      {longitude && latitude ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
-            Linking.openURL(
-              `${links.googleMapUrl}${user.latitude},${user.longitude}`
-            )
+            Linking.openURL(`${links.googleMapUrl}${latitude},${longitude}`)
           }
           style={styles.itemRow}>
           <View style={styles.infoRow}>
@@ -65,10 +81,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.mobile ? (
+      {mobile ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`tel:${user.mobile}`)}
+          onPress={() => Linking.openURL(`tel:${mobile}`)}
           style={styles.itemRow}>
           <View style={styles.infoRow}>
             <Icon
@@ -82,13 +98,13 @@ const UserInfoWidget = ({user}) => {
             />
             <Text style={styles.subTitle}>{I18n.t('mobile')}</Text>
           </View>
-          <Text style={styles.subTitle}>{user.mobile}</Text>
+          <Text style={styles.subTitle}>{mobile}</Text>
         </TouchableOpacity>
       ) : null}
-      {user.phone ? (
+      {phone ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`tel:${user.phone}`)}
+          onPress={() => Linking.openURL(`tel:${phone}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -102,15 +118,15 @@ const UserInfoWidget = ({user}) => {
             />
             <Text style={styles.subTitle}>{I18n.t('phone')}</Text>
           </View>
-          <Text style={styles.subTitle}>{user.phone}</Text>
+          <Text style={styles.subTitle}>{phone}</Text>
         </TouchableOpacity>
       ) : null}
-      {user.whatsapp ? (
+      {whatsapp ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
             Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${user.whatsapp}&text=Shared by Escrap App - ${user.slug}`
+              `https://api.whatsapp.com/send?phone=${whatsapp}&text=Shared by Escrap App - ${slug}`
             )
           }
           style={styles.itemRow}>
@@ -127,13 +143,13 @@ const UserInfoWidget = ({user}) => {
             />
             <Text style={styles.subTitle}>{I18n.t('whatsapp')}</Text>
           </View>
-          <Text style={styles.subTitle}>{user.whatsapp}</Text>
+          <Text style={styles.subTitle}>{whatsapp}</Text>
         </TouchableOpacity>
       ) : null}
-      {user.twitter ? (
+      {twitter ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.twitter}`)}
+          onPress={() => Linking.openURL(`${twitter}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -160,10 +176,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.facebook ? (
+      {facebook ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.facebook}`)}
+          onPress={() => Linking.openURL(`${facebook}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -190,10 +206,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.instagram ? (
+      {instagram ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.instagram}`)}
+          onPress={() => Linking.openURL(`${instagram}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -220,10 +236,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.android ? (
+      {android ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.android}`)}
+          onPress={() => Linking.openURL(`${android}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -250,10 +266,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.youtube ? (
+      {youtube ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.youtube}`)}
+          onPress={() => Linking.openURL(`${youtube}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -280,10 +296,10 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {user.website ? (
+      {website ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() => Linking.openURL(`${user.website}`)}
+          onPress={() => Linking.openURL(`${website}`)}
           style={styles.itemRow}>
           <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
             <Icon
@@ -310,46 +326,46 @@ const UserInfoWidget = ({user}) => {
           />
         </TouchableOpacity>
       ) : null}
-      {!validate.isEmpty(user.description) ? (
+      {!validate.isEmpty(description) ? (
         <UserInfoWidgetElement
           elementName="description"
           iconName="ios-list-box"
           type="ionicon"
-          element={user.description}
+          element={description}
         />
       ) : null}
-      {!validate.isEmpty(user.service) ? (
+      {!validate.isEmpty(service) ? (
         <UserInfoWidgetElement
           elementName="services"
           iconName="customerservice"
-          element={user.service}
+          element={service}
           type="antdesign"
         />
       ) : null}
-      {!validate.isEmpty(user.address) ? (
+      {!validate.isEmpty(address) ? (
         <UserInfoWidgetElement
           elementName="address"
           iconName="address"
-          element={user.address}
+          element={address}
           type="entypo"
         />
       ) : null}
-      {!validate.isEmpty(user.images) ? (
+      {!validate.isEmpty(images) ? (
         <ImagesWidget
-          elements={user.images}
-          name={user.slug}
+          elements={images}
+          name={slug}
           showLabels={false}
           showTitle={true}
           width={175}
           height={235}
         />
       ) : null}
-      {!validate.isEmpty(user.longitude || user.latitude) ? (
+      {!validate.isEmpty(longitude || latitude) ? (
         <MapViewWidget
-          latitude={user.latitude}
-          longitude={user.longitude}
-          logo={user.thumb}
-          title={user.slug}
+          latitude={latitude}
+          longitude={longitude}
+          logo={thumb}
+          title={slug}
           showTitle={true}
           height={250}
         />
@@ -360,9 +376,7 @@ const UserInfoWidget = ({user}) => {
 
 export default React.memo(UserInfoWidget);
 
-UserInfoWidget.propTypes = {
-  user: PropTypes.object.isRequired
-};
+UserInfoWidget.propTypes = {};
 
 const styles = StyleSheet.create({
   mainTitle: {

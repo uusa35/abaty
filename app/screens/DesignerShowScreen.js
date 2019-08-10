@@ -34,7 +34,7 @@ class DesignerShowScreen extends Component {
   }
 
   render() {
-    const {user, logo, colors, searchParams, guest, dispatch} = this.props;
+    const {user, logo, colors, guest, dispatch} = this.props;
     const categories = !validate.isEmpty(user.products)
       ? user.productCategories.concat(user.productGroupCategories)
       : user.productGroupCategories.concat(user.productCategories);
@@ -117,13 +117,33 @@ class DesignerShowScreen extends Component {
                     showTitle={true}
                     showFooter={false}
                     showMore={false}
-                    searchElements={searchParams}
+                    searchElements={{}}
                   />
                 ),
                 categories: () => (
                   <UserCategoriesInfoWidget elements={categories} />
                 ),
-                info: () => <UserInfoWidget user={user} />,
+                info: () => (
+                  <UserInfoWidget
+                    mobile={user.mobile}
+                    phone={user.phone}
+                    slug={user.slug}
+                    whatsapp={user.whatsapp}
+                    twitter={user.twitter}
+                    facebook={user.facebook}
+                    instagram={user.instagram}
+                    android={user.android}
+                    youtube={user.youtube}
+                    website={user.website}
+                    description={user.description}
+                    service={user.service}
+                    address={user.address}
+                    images={user.images}
+                    latitude={user.latitude}
+                    longitude={user.longitude}
+                    thumb={user.thumb}
+                  />
+                ),
                 videos: () => <VideosWidget videos={user.videoGroup} />
               })}
               style={{marginTop: 10, backgroundColor: 'white'}}
