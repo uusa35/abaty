@@ -18,6 +18,7 @@ const guest = state => state.guest;
 const lang = state => state.lang;
 const authName = state => state.auth.name;
 const product = state => state.product;
+const designer = state => state.designer;
 const service = state => state.service;
 const loginModal = state => state.loginModal;
 
@@ -110,4 +111,9 @@ export const productSelector = createSelector(
 export const loginModalSelector = createSelector(
   loginModal,
   loginModal => loginModal
+);
+
+export const designerSelector = createSelector(
+  designer,
+  designer => designer
 );

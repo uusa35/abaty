@@ -112,6 +112,7 @@ class App extends Component<Props> {
                   colors,
                   country,
                   token,
+                  logo,
                   guest
                 }}>
                 <AppNavigator uriPrefix={prefix} />
