@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Button, Text} from 'react-native-elements';
+import {Button, Text, Divider} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
 import {getCategoryElements, getSearchProducts} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -11,43 +11,33 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 const CommentWidget = ({element, columns, showBtn = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
+  console.log('the element form CommentWidget', element);
   return (
-    <View>
-      <TouchableOpacity
-        key={element.id}
-        style={[
-          styles.categoriesContainer,
-          // {width: columns ? 120 : width - 40, height: columns ? 250 : 300}
-          {width: '100%'}
-        ]}
-        onPress={() => console.log('pressed')}>
-        <FastImage
-          style={{width: width, height: 400}}
-          resizeMode="cover"
-          source={{uri: element.large}}
-          loadingIndicatorSource={images.logo}
-        />
-        {showBtn ? (
-          <Button
-            onPress={() =>
-              dispatch(
-                getSearchProducts({
-                  element,
-                  searchElements: {product_category_id: element.id}
-                })
-              )
-            }
-            raised
-            containerStyle={{width: '70%', marginBottom: 10, marginTop: 10}}
-            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={element.name}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color
-            }}
-          />
-        ) : null}
-      </TouchableOpacity>
+    <View
+      style={{
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: 'lightgrey',
+        margin: 5,
+        width: '95%',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        padding: 10
+      }}>
+      <FastImage
+        style={{width: 80, height: 80, marginLeft: 10, marginRight: 10}}
+        resizeMode="cover"
+        source={{uri: element.owner.thumb}}
+        loadingIndicatorSource={images.logo}
+      />
+      <View style={{flex: 1, padding: 5}}>
+        <View>
+          <Text style={styles.elementName}>{element.owner.slug}</Text>
+          <Divider />
+        </View>
+        <Text style={styles.elementName}>{element.title}</Text>
+        <Text style={styles.elementName}>{element.content}</Text>
+      </View>
     </View>
   );
 };
@@ -68,9 +58,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  categoryName: {
+  elementName: {
     fontFamily: text.font,
-    fontSize: text.small,
-    textAlign: 'center'
+    fontSize: text.medium,
+    textAlign: 'left',
+    paddingTop: 10
   }
 });

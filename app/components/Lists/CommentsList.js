@@ -36,11 +36,7 @@ const CommentsList = ({elements, columns}) => {
           onRefresh={() => setRefresh(true)}
         />
       }>
-      <View
-        style={[
-          styles.wrapper,
-          {flexDirection: columns ? 'column' : 'column'}
-        ]}>
+      <View style={styles.wrapper}>
         {!validate.isEmpty(elements) ? (
           map(elements, (c, i) => (
             <CommentWidget element={c} key={i} columns={columns} />
@@ -50,7 +46,7 @@ const CommentsList = ({elements, columns}) => {
             titleStyle={{fontFamily: text.font}}
             containerStyle={{paddingTop: '10%'}}
             buttonStyle={{alignItems: 'baseline', backgroundColor: 'red'}}
-            title={I18n.t('no_categories')}
+            title={I18n.t('no_comments')}
           />
         )}
       </View>
