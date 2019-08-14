@@ -51,11 +51,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(ProfileIndexScreen);
 
 ProfileIndexScreen.propTypes = {
-  products: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
-};
-
-ProfileIndexScreen.propTypes = {
   auth: PropTypes.object.isRequired
 };
 

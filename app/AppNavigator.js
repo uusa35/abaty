@@ -46,6 +46,7 @@ import {navLabelStyle} from './globalStyles';
 import VideoIndexScreen from './screens/VideoIndexScreen';
 import ServiceIndexScreen from './screens/ServiceIndexScreen';
 import ServiceShowScreen from './screens/ServiceShowScreen';
+import OrderIndexScreen from './screens/OrderIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -248,6 +249,15 @@ const HomeStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: null,
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
+    OrderIndex: {
+      screen: OrderIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
         headerBackTitle: null
       }),

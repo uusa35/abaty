@@ -436,5 +436,6 @@
   "title" : "Title",
   "content" : "Content",
   "submit_comment" : "Add Comment",
-  "no_comments" : "No Comments"
+  "no_comments" : "No Comments",
+  "order_history" : "My Orders History"
 }

@@ -17,6 +17,7 @@ const splashes = state => state.splashes;
 const galleries = state => state.galleries;
 const searchParams = state => state.searchParams;
 const comments = state => state.comments;
+const orders = state => state.auth.orders;
 
 export const brandsSelector = createSelector(
   brands,
@@ -68,6 +69,7 @@ export const splashesSelector = createSelector(
 );
 export const galleriesSelector = createSelector(
   galleries,
+
   galleries => galleries
 );
 export const cartSelector = createSelector(
@@ -81,6 +83,11 @@ export const designersSelector = createSelector(
 export const commentsSelector = createSelector(
   comments,
   comments => comments
+);
+
+export const ordersSelector = createSelector(
+  orders,
+  orders => orders
 );
 
 export const searchParamsSelector = createSelector(

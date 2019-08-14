@@ -37,7 +37,7 @@ const UserWidgetHorizontal = ({user, showName}) => {
       onPress={() =>
         dispatch(
           getDesigner({
-            element: user,
+            id: user.id,
             searchElements: {user_id: user.id}
           })
         )

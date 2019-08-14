@@ -668,7 +668,8 @@ export function* startLogoutScenario() {
   try {
     yield all([
       put({type: actions.REMOVE_TOKEN, payload: ''}),
-      put({type: actions.TOGGLE_GUEST, payload: true})
+      put({type: actions.TOGGLE_GUEST, payload: true}),
+      put({type: actions.SET_ORDERS, payload: []})
     ]);
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('logout_error'))]);
@@ -695,6 +696,8 @@ export function* startSubmitAuthScenario(action) {
       throw I18n.t('invalid_email_or_password');
     }
     const user = yield call(api.authenticate, {email, password, player_id});
+    console.log('the user', user);
+    console.log('the orders', user.orders);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       // const favorites = yield call(api.getFavorites, {
       //   params: {api_token: user.api_token}
@@ -713,18 +716,18 @@ export function* startSubmitAuthScenario(action) {
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
+        put({type: actions.SET_ORDERS, payload: user.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(enableSuccessMessage, I18n.t('login_success'))
       ]);
-      if (!loginModal) {
+      if (loginModal) {
         yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
+      } else {
         yield put(
           NavigationActions.navigate({
             routeName: 'Home'
           })
         );
-      } else {
-        yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
       }
     } else {
       throw user;
