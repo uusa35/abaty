@@ -18,7 +18,11 @@ const OrderIndexScreen = ({orders}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <ScrollView
-      contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
+      contentContainerStyle={{
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
       horizontal={false}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
@@ -56,7 +60,7 @@ const OrderIndexScreen = ({orders}) => {
       ) : (
         <Button
           raised
-          containerStyle={{marginBottom: 10, width: '100%'}}
+          containerStyle={{marginBottom: 10, width: '90%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
             borderRadius: 0

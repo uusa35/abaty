@@ -470,6 +470,7 @@
   "content" : "المحتوى",
   "submit_comment" : "أضف تعليق",
   "no_comments" : "لا توجد تعليقات",
-  "order_history" : "قائمة طلباتي السابقة"
+  "order_history" : "قائمة طلباتي السابقة",
+  "no_orders" : "لا توجد طلبات حاليا"
 
 }
