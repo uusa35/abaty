@@ -1,5 +1,5 @@
-import React, {useContext, useState, useMemo, useEffect} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React, {useContext, useState, useMemo} from 'react';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
 import {text} from '../../../constants';
@@ -7,11 +7,7 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
-import {
-  becomeFan,
-  enableSuccessMessage,
-  rateUser
-} from '../../../redux/actions';
+import {becomeFan, rateUser} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
 import {Icon} from 'react-native-elements';
@@ -28,7 +24,8 @@ const UserImageProfile = ({
   showFans,
   showRating,
   guest,
-  views
+  views,
+  showComments = false
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
@@ -111,18 +108,25 @@ const UserImageProfile = ({
             {views} {I18n.t('views')}
           </Text>
         ) : null}
-        {showRating ? (
-          <Rating
-            readonly={guest}
-            showRating={false}
-            startingValue={currentRating}
-            count={10}
-            ratingCount={5}
-            style={{paddingVertical: 0}}
-            onFinishRating={rating => setRating(rating)}
-            imageSize={20}
-          />
-        ) : null}
+        <View>
+          {showRating ? (
+            <Rating
+              readonly={guest}
+              showRating={false}
+              startingValue={currentRating}
+              count={10}
+              ratingCount={5}
+              style={{paddingVertical: 0}}
+              onFinishRating={rating => setRating(rating)}
+              imageSize={20}
+            />
+          ) : null}
+          {showComments ? (
+            <TouchableOpacity>
+              <Text>show comments</Text>
+            </TouchableOpacity>
+          ) : null}
+        </View>
       </View>
     </View>
   );
@@ -136,7 +140,8 @@ UserImageProfile.propTypes = {
   slug: PropTypes.string.isRequired,
   showFans: PropTypes.bool.isRequired,
   showRating: PropTypes.bool.isRequired,
-  guest: PropTypes.bool.isRequired
+  guest: PropTypes.bool.isRequired,
+  showComments: PropTypes.bool.isRequired
 };
 
 const styles = StyleSheet.create({

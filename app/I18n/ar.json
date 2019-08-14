@@ -461,7 +461,7 @@
   "choose_day" : "أختر اليوم",
   "choose_time" : "اختر التوقيت",
   "service_date_and_time" : "موعد الخدمة",
-  "fan_success" : "تمت العملية بنجاح",
+  "fan_success" : "تمت عملية الإعجاب بنجاح",
   "orders_that_include_services_are_not_accepted_out_side_kuwait" : "يرجى أختيار دولة الكويت أولاً في حالة طلب أي من خدماتنا .. حيث انه لا يتم تقديم أيه من الخدمات بالتطبيق خارج دولة الكويت",
   "fans" : "المعجبين",
   "our_services" : "خدماتنا",

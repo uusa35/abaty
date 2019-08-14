@@ -85,6 +85,7 @@ const DesignerShowScreen = ({user, searchParams}) => {
             slug={user.slug}
             type={user.role.slug}
             views={user.views}
+            showComments={user.comments ? true : false}
           />
           {!validate.isEmpty(user.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>

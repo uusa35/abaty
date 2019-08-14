@@ -242,6 +242,9 @@ export function* startGetDesignerScenario(action) {
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_DESIGNER, payload: user});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
+      if (!validate.isEmpty(user.comments)) {
+        yield put({type: actions.SET_COMMENTS, payload: user.comments});
+      }
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
@@ -891,10 +894,10 @@ export function* startRateUserScenario(action) {
 export function* startBecomeFanScenario(action) {
   try {
     const user = yield call(api.becomeFan, action.payload);
-    // console.log('the user', user);
-    // if (!validate.isEmpty(user) && validate.isObject(user)) {
-    //   yield call(enableSuccessMessage, I18n.t('fan_success'));
-    // }
+    console.log('the user', user);
+    if (!validate.isEmpty(user) && validate.isObject(user)) {
+      yield call(enableSuccessMessage, I18n.t('fan_success'));
+    }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
   }

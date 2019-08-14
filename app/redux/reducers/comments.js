@@ -4,7 +4,7 @@ export default function(categories = [], action) {
   switch (action.type) {
     case SET_COMMENTS:
       return action.payload;
-      case GET_COMMENTS:
+    case GET_COMMENTS:
       return action.payload;
     default:
       return categories;
