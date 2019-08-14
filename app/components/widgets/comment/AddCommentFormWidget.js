@@ -13,76 +13,66 @@ const AddCommentFormWidget = ({model, id}) => {
   const [content, setContent] = useState('');
   const {dispatch} = useContext(DispatchContext);
   return (
-    <KeyboardAwareScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
+    <View
+      style={{
+        height: 300,
+        width: width - 20,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        alignItems: 'center'
       }}>
-      <View
-        style={{
-          height: 300,
-          width: width,
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-        }}>
-        <Input
-          placeholder={I18n.t('title') + '*'}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
-          }}
-          shake={true}
-          keyboardType="default"
-          value={title}
-          onChangeText={title => setTitle(title)}
-        />
-        <Input
-          placeholder={I18n.t('content') + '*'}
-          numberOfLines={3}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20,
-            height: 70
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
-          }}
-          value={content}
-          shake={true}
-          keyboardType="default"
-          onChangeText={content => setContent(content)}
-        />
-        <Button
-          onPress={() => {
-            setTitle('');
-            setContent('');
-            return dispatch(addComment({title, content, model, id}));
-          }}
-          raised
-          title={I18n.t('submit_comment')}
-          type="outline"
-          containerStyle={{width: '90%'}}
-          titleStyle={{fontFamily: text.font}}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+      <Input
+        placeholder={I18n.t('title') + '*'}
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: 'lightgrey',
+          borderRadius: 10,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginBottom: 20
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          textAlign: isRTL ? 'right' : 'left'
+        }}
+        shake={true}
+        keyboardType="default"
+        value={title}
+        onChangeText={title => setTitle(title)}
+      />
+      <Input
+        placeholder={I18n.t('content') + '*'}
+        numberOfLines={3}
+        inputContainerStyle={{
+          borderWidth: 1,
+          borderColor: 'lightgrey',
+          borderRadius: 10,
+          paddingLeft: 15,
+          paddingRight: 15,
+          marginBottom: 20,
+          height: 70
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          textAlign: isRTL ? 'right' : 'left'
+        }}
+        value={content}
+        shake={true}
+        keyboardType="default"
+        onChangeText={content => setContent(content)}
+      />
+      <Button
+        onPress={() => {
+          setTitle('');
+          setContent('');
+          return dispatch(addComment({title, content, model, id}));
+        }}
+        raised
+        title={I18n.t('submit_comment')}
+        type="outline"
+        containerStyle={{width: '90%'}}
+        titleStyle={{fontFamily: text.font}}
+      />
+    </View>
   );
 };
 

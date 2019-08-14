@@ -909,6 +909,7 @@ export function* startBecomeFanScenario(action) {
 
 export function* startAddCommentScenario(action) {
   try {
+    console.log('the action', action);
     const comment = yield call(api.addComment, action.payload);
     console.log('the comment', comment);
     if (!validate.isEmpty(comment) && validate.isObject(comment)) {
