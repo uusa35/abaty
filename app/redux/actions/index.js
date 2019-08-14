@@ -486,3 +486,15 @@ export function hideLoginModal() {
     type: actions.HIDE_LOGIN_MODAL
   };
 }
+
+export function showCommentModal() {
+  return {
+    type: actions.HIDE_COMMENT_MODAL
+  };
+}
+
+export function hideCommentModal() {
+  return {
+    type: actions.HIDE_COMMENT_MODAL
+  };
+}

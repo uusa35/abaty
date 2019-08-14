@@ -116,6 +116,20 @@ class App extends Component<Props> {
                   guest
                 }}>
                 <AppNavigator uriPrefix={prefix} />
+                {validate.isBoolean(loginModal) ? (
+                  <LoginScreenModal
+                    colors={colors}
+                    logo={logo}
+                    loginModal={loginModal}
+                  />
+                ) : null}
+                {validate.isBoolean(countryModal) && countryModal ? (
+                  <CountriesList
+                    country={country}
+                    countries={countries}
+                    countryModal={countryModal}
+                  />
+                ) : null}
               </GlobalValuesContext.Provider>
             ) : (
               <LoadingView
@@ -129,20 +143,6 @@ class App extends Component<Props> {
             network.isConnected &&
             validate.isString(message.content) ? (
               <AlertMessage message={message} />
-            ) : null}
-            {validate.isBoolean(countryModal) && countryModal ? (
-              <CountriesList
-                country={country}
-                countries={countries}
-                countryModal={countryModal}
-              />
-            ) : null}
-            {validate.isBoolean(loginModal) ? (
-              <LoginScreenModal
-                colors={colors}
-                logo={logo}
-                loginModal={loginModal}
-              />
             ) : null}
           </View>
         ) : (

@@ -15,6 +15,7 @@ import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
 import {registerConstrains, submitLogin} from '../../../constants';
 import {axiosInstance} from '../api';
+import {HIDE_LOGIN_MODAL} from '../types';
 
 export function* setHomeCategories() {
   try {
@@ -678,7 +679,8 @@ export function* startAuthenticateScenario(action) {
 export function* startSubmitAuthScenario(action) {
   try {
     const {email, password} = action.payload;
-    const {player_id} = yield select();
+    const {player_id, loginModal} = yield select();
+    console.log('the loginModal', loginModal);
     const result = validate(
       {
         email,
@@ -709,13 +711,18 @@ export function* startSubmitAuthScenario(action) {
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
-        call(enableSuccessMessage, I18n.t('login_success')),
-        put(
+        call(enableSuccessMessage, I18n.t('login_success'))
+      ]);
+      if (!loginModal) {
+        yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
+        yield put(
           NavigationActions.navigate({
             routeName: 'Home'
           })
-        )
-      ]);
+        );
+      } else {
+        yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
+      }
     } else {
       throw user;
     }
