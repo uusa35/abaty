@@ -290,8 +290,10 @@ export async function rateUser(params) {
   console.log('the params', params);
   return await axiosInstance
     .post(`rating`, params)
+    // .then(r => console.log(r.data))
     .then(r => r.data)
     .catch(e => e.response.date.message);
+  // .catch(e => console.log(e.response));
 }
 
 export async function becomeFan(params) {

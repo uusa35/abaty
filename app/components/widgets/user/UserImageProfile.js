@@ -36,7 +36,8 @@ const UserImageProfile = ({
 
   useMemo(() => {
     if (rating !== currentRating) {
-      dispatch(rateUser({value: rating, member_id}));
+      console.log('fired Rating');
+      return dispatch(rateUser({value: rating, member_id}));
     }
   }, [rating]);
 

@@ -29,9 +29,7 @@ import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWi
 import SearchForm from '../components/SearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
-import {SafeAreaView} from 'react-navigation';
 import {has} from 'lodash';
-import {NavContext} from '../redux/NavContext';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 

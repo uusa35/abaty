@@ -886,6 +886,7 @@ export function* startRateUserScenario(action) {
   try {
     console.log('the action from saga', action.payload);
     const user = yield call(api.rateUser, action.payload);
+    console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield call(enableSuccessMessage, I18n.t('rate_success'));
     }
