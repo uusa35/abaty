@@ -5,6 +5,7 @@ import {hideCommentModal} from '../redux/actions';
 import {DispatchContext} from '../redux/DispatchContext';
 import CommentsList from '../components/Lists/CommentsList';
 import {Icon} from 'react-native-elements';
+import {SafeAreaView} from 'react-navigation';
 
 const CommentScreenModal = ({commentModal, elements, model, id}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -18,7 +19,7 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
       <View
         style={{
           position: 'absolute',
-          top: 45,
+          top: 40,
           alignSelf: 'flex-end',
           padding: 10,
           zIndex: 999

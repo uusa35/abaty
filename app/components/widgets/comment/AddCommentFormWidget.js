@@ -61,7 +61,11 @@ const AddCommentFormWidget = ({model, id}) => {
         onChangeText={content => setContent(content)}
       />
       <Button
-        onPress={() => dispatch(addComment({title, content, model, id}))}
+        onPress={() => {
+          setTitle('');
+          setContent('');
+          return dispatch(addComment({title, content, model, id}));
+        }}
         raised
         title={I18n.t('submit_comment')}
         type="outline"

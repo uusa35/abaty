@@ -244,6 +244,8 @@ export function* startGetDesignerScenario(action) {
       yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
       if (!validate.isEmpty(user.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: user.comments});
+      } else {
+        yield put({type: actions.SET_COMMENTS, payload: []});
       }
       yield put(
         NavigationActions.navigate({
