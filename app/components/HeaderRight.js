@@ -3,7 +3,6 @@
  */
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
 import {showCountryModal} from '../redux/actions';

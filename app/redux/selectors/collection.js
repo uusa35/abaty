@@ -21,6 +21,7 @@ const product = state => state.product;
 const designer = state => state.designer;
 const service = state => state.service;
 const loginModal = state => state.loginModal;
+const commentModal = state => state.commentModal;
 
 export const tokenSelector = createSelector(
   token,
@@ -111,6 +112,11 @@ export const productSelector = createSelector(
 export const loginModalSelector = createSelector(
   loginModal,
   loginModal => loginModal
+);
+
+export const commentModalSelector = createSelector(
+  commentModal,
+  commentModal => commentModal
 );
 
 export const designerSelector = createSelector(

@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
-import {becomeFan, rateUser} from '../../../redux/actions';
+import {becomeFan, rateUser, showCommentModal} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
-import {Icon} from 'react-native-elements';
+import {Badge, Icon} from 'react-native-elements';
 
 const UserImageProfile = ({
   medium,
@@ -25,7 +25,8 @@ const UserImageProfile = ({
   showRating,
   guest,
   views,
-  showComments = false
+  showComments = false,
+  commentsCount
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
@@ -33,7 +34,7 @@ const UserImageProfile = ({
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
 
-  console.log('isFanned', isFanned);
+  console.log('isFanned', commentsCount);
 
   useMemo(() => {
     if (rating !== currentRating) {
@@ -108,7 +109,12 @@ const UserImageProfile = ({
             {views} {I18n.t('views')}
           </Text>
         ) : null}
-        <View>
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}>
           {showRating ? (
             <Rating
               readonly={guest}
@@ -122,8 +128,18 @@ const UserImageProfile = ({
             />
           ) : null}
           {showComments ? (
-            <TouchableOpacity>
-              <Text>show comments</Text>
+            <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
+              <Icon
+                name="comment-account-outline"
+                type="material-community"
+                color={colors.header_tow_theme_color}
+                size={25}
+              />
+              <Badge
+                status="warning"
+                value={commentsCount}
+                containerStyle={{position: 'absolute', top: -10, right: -4}}
+              />
             </TouchableOpacity>
           ) : null}
         </View>

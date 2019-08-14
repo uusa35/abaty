@@ -17,11 +17,16 @@ import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import {getDesigner} from '../redux/actions';
-import {designerSelector} from '../redux/selectors/collection';
+import {
+  commentModalSelector,
+  designerSelector
+} from '../redux/selectors/collection';
 import {searchParamsSelector} from '../redux/selectors/collections';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
+import CommentScreenModal from './CommentScreenModal';
 
-const DesignerShowScreen = ({user, searchParams}) => {
+const DesignerShowScreen = ({user, searchParams, commentModal}) => {
+  console.log('the user', user);
   const {colors, dispatch, guest, logo} = useContext(GlobalValuesContext);
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
@@ -85,7 +90,8 @@ const DesignerShowScreen = ({user, searchParams}) => {
             slug={user.slug}
             type={user.role.slug}
             views={user.views}
-            showComments={user.comments ? true : false}
+            showComments={!validate.isEmpty(user.comments)}
+            commentsCount={user.commentsCount}
           />
           {!validate.isEmpty(user.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
@@ -158,6 +164,12 @@ const DesignerShowScreen = ({user, searchParams}) => {
             initialLayout={{width: width}}
           />
         </TriggeringView>
+        {!validate.isEmpty(user.comments) ? (
+          <CommentScreenModal
+            commentModal={commentModal}
+            elements={user.comments}
+          />
+        ) : null}
       </View>
     </HeaderImageScrollView>
   );
@@ -166,6 +178,7 @@ const DesignerShowScreen = ({user, searchParams}) => {
 function mapStateToProps(state) {
   return {
     user: designerSelector(state),
+    commentModal: commentModalSelector(state),
     searchParams: searchParamsSelector(state)
   };
 }
@@ -174,7 +187,8 @@ export default connect(mapStateToProps)(DesignerShowScreen);
 
 DesignerShowScreen.propTypes = {
   user: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
+  commentModal: PropTypes.bool.isRequired
 };
 
 const styles = StyleSheet.create({

@@ -489,7 +489,7 @@ export function hideLoginModal() {
 
 export function showCommentModal() {
   return {
-    type: actions.HIDE_COMMENT_MODAL
+    type: actions.SHOW_COMMENT_MODAL
   };
 }
 

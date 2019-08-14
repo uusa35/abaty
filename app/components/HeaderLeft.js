@@ -4,7 +4,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Icon, Badge} from 'react-native-elements';
-import {SafeAreaView} from 'react-navigation';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 
@@ -35,7 +34,7 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
           <Badge
             status="error"
             value={cartLength}
-            containerStyle={{position: 'absolute', top: -4, right: -4}}
+            containerStyle={{position: 'absolute', top: -10, right: -4}}
           />
         ) : null}
       </View>
@@ -45,7 +44,6 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     paddingRight: 5,
     paddingLeft: 5,
     flexDirection: 'row',
