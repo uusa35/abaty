@@ -34,8 +34,6 @@ const UserImageProfile = ({
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
 
-  console.log('isFanned', commentsCount);
-
   useMemo(() => {
     if (rating !== currentRating) {
       dispatch(rateUser({value: rating, member_id}));

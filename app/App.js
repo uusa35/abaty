@@ -77,7 +77,6 @@ class App extends Component<Props> {
       network,
       loginModal
     } = this.props;
-    console.log('loginModal', loginModal);
     const cartLength = cart.length;
     if (!bootStrapped) {
       return (

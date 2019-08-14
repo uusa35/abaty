@@ -30,7 +30,6 @@ import CommentScreenModal from './CommentScreenModal';
 import {DispatchContext} from '../redux/DispatchContext';
 
 const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
-  console.log('the user', user);
   const {colors, guest, logo} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const collectedCatetories = !validate.isEmpty(user.products)

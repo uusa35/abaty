@@ -15,7 +15,6 @@ import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
 import {registerConstrains, submitLogin} from '../../../constants';
 import {axiosInstance} from '../api';
-import {HIDE_LOGIN_MODAL} from '../types';
 
 export function* setHomeCategories() {
   try {

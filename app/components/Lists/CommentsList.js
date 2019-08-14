@@ -1,24 +1,17 @@
 import React, {useContext, useState, useMemo} from 'react';
-import {RefreshControl, FlatList, View, StyleSheet} from 'react-native';
-import {
-  getDesigner,
-  hideCommentModal,
-  refetchHomeCategories
-} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
+import {RefreshControl, FlatList, StyleSheet} from 'react-native';
 import {text, width} from './../../constants';
-import {Button, Icon} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import CommentWidget from '../widgets/comment/CommentWidget';
 import {SafeAreaView} from 'react-navigation';
 import AddCommentFormWidget from '../widgets/comment/AddCommentFormWidget';
-import I18n, {isRTL} from '../../I18n';
+import I18n from '../../I18n';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const CommentsList = ({elements, model, id}) => {
   const [refresh, setRefresh] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
   const {guest} = useContext(GlobalValuesContext);
 
   useMemo(() => {
