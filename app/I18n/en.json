@@ -432,5 +432,9 @@
   "fans" : "Fans",
   "fan_success" :  "You are a fan now.",
   "our_services" : "Our Services",
-  "views" : "views"
+  "views" : "views",
+  "title" : "Title",
+  "content" : "Content",
+  "submit_comment" : "Add Comment",
+  "no_comments" : "No Comments"
 }

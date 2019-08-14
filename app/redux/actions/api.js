@@ -300,3 +300,10 @@ export async function becomeFan(params) {
     .then(r => r.data)
     .catch(e => e.response.date.message);
 }
+
+export async function addComment(params) {
+  return await axiosInstance
+    .post(`comment`, params)
+    .then(r => r.data)
+    .catch(e => e.response.date.message);
+}

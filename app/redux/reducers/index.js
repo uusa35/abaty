@@ -47,6 +47,7 @@ import coupon from './coupon';
 import {reducer as network} from 'react-native-offline';
 import searchParams from './searchParams';
 import commentModal from './commentModal';
+import comments from './comments';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -96,7 +97,8 @@ let reducers = combineReducers({
   searchParams,
   loginModal,
   showIntroduction,
-  commentModal
+  commentModal,
+  comments
 });
 
 export default reducers;

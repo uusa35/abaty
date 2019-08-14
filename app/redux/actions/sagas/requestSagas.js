@@ -237,8 +237,8 @@ export function* startGetUsersScenario(action) {
 
 export function* startGetDesignerScenario(action) {
   try {
-    const {element, searchElements} = action.payload;
-    const user = yield call(api.getUser, element.id);
+    const {id, searchElements} = action.payload;
+    const user = yield call(api.getUser, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_DESIGNER, payload: user});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
@@ -897,6 +897,18 @@ export function* startBecomeFanScenario(action) {
     console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield call(enableSuccessMessage, I18n.t('fan_success'));
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
+export function* startAddCommentScenario(action) {
+  try {
+    const comment = yield call(api.addComment, action.payload);
+    console.log('the comment', comment);
+    if (!validate.isEmpty(comment) && validate.isObject(comment)) {
+      yield call(enableSuccessMessage, I18n.t('comment_added_success'));
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);

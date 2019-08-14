@@ -55,7 +55,7 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
               onPress={() =>
                 dispatch(
                   getDesigner({
-                    element: c,
+                    id: c.id,
                     searchElements: {user_id: c.id}
                   })
                 )

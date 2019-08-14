@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Text, Divider} from 'react-native-elements';
-import {images, text} from '../../../constants';
+import {images, text, width} from '../../../constants';
 import PropTypes from 'prop-types';
 
 const CommentWidget = ({element}) => {
@@ -13,7 +13,7 @@ const CommentWidget = ({element}) => {
         borderRadius: 10,
         borderColor: 'lightgrey',
         margin: 5,
-        width: '97%',
+        width: width - 20,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         padding: 10
@@ -21,12 +21,14 @@ const CommentWidget = ({element}) => {
       <FastImage
         style={{width: 80, height: 80, marginLeft: 10, marginRight: 10}}
         resizeMode="cover"
-        source={{uri: element.owner.thumb}}
+        source={{uri: element.owner ? element.owner.thumb : null}}
         loadingIndicatorSource={images.logo}
       />
       <View style={{flex: 1, padding: 5}}>
         <View>
-          <Text style={styles.elementName}>{element.owner.slug}</Text>
+          <Text style={styles.elementName}>
+            {element.owner ? element.owner.slug : null}
+          </Text>
           <Text style={styles.elementName}>{element.created_at}</Text>
           <Divider />
         </View>

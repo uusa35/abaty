@@ -39,7 +39,8 @@ import {
   startGetServiceScenario,
   setServices,
   startRateUserScenario,
-  startBecomeFanScenario
+  startBecomeFanScenario,
+  startAddCommentScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -241,6 +242,10 @@ export function* rateUser() {
 
 export function* becomeFan() {
   yield takeLatest(actions.BECOME_FAN, startBecomeFanScenario);
+}
+
+export function* addComment() {
+  yield takeLatest(actions.ADD_COMMENT, startAddCommentScenario);
 }
 
 export function* resetStore() {

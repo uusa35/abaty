@@ -498,3 +498,10 @@ export function hideCommentModal() {
     type: actions.HIDE_COMMENT_MODAL
   };
 }
+
+export function addComment(payload) {
+  return {
+    type: actions.ADD_COMMENT,
+    payload
+  };
+}

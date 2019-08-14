@@ -1,74 +1,78 @@
 import React, {useContext, useState, useMemo} from 'react';
+import {RefreshControl, FlatList, View, StyleSheet} from 'react-native';
 import {
-  RefreshControl,
-  ScrollView,
-  FlatList,
-  View,
-  StyleSheet
-} from 'react-native';
-import CategoryWidget from '../widgets/CategoryWidget';
-import {hideCommentModal, refetchHomeCategories} from '../../redux/actions';
+  getDesigner,
+  hideCommentModal,
+  refetchHomeCategories
+} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {map} from 'lodash';
-import {height, text, width} from './../../constants';
-import validate from 'validate.js';
+import {text, width} from './../../constants';
 import {Button, Icon} from 'react-native-elements';
-import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 import CommentWidget from '../widgets/comment/CommentWidget';
 import {SafeAreaView} from 'react-navigation';
+import AddCommentFormWidget from '../widgets/comment/AddCommentFormWidget';
+import I18n, {isRTL} from '../../I18n';
+import validate from 'validate.js';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const CommentsList = ({elements, columns}) => {
+const CommentsList = ({elements, model, id}) => {
   const [refresh, setRefresh] = useState(false);
   const {dispatch} = useContext(DispatchContext);
+  const {guest} = useContext(GlobalValuesContext);
 
   useMemo(() => {
     if (refresh) {
-      dispatch(refetchHomeCategories());
       return setRefresh(false);
     }
   }, [refresh]);
 
   return (
-    <SafeAreaView>
-      <FlatList
-        keyboardShouldPersistTaps="always"
-        keyboardDismissMode="none"
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[0]}
-        keyExtractor={(item, index) => index.toString()}
-        onEndReachedThreshold={1}
-        numColumns={1}
-        data={elements}
-        refreshing={refresh}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => setRefresh(true)}
-          />
-        }
-        contentContainerStyle={{
-          width: width,
-          minHeight: height,
-          justifyContent: 'flex-start',
-          alignItems: 'flex-end'
-        }}
-        ListHeaderComponentStyle={{
-          padding: 10
-        }}
-        ListHeaderComponent={
-          <Icon
-            name="close"
-            size={25}
-            onPress={() => dispatch(hideCommentModal())}
-            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          />
-        }
-        renderItem={({item}) => <CommentWidget element={item} />}
-      />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
+      }}>
+      {validate.isEmpty(elements) ? (
+        <Button
+          raised
+          containerStyle={{width: '90%'}}
+          title={I18n.t('no_comments')}
+          type="outline"
+          titleStyle={{fontFamily: text.font}}
+        />
+      ) : (
+        <FlatList
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="none"
+          horizontal={false}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          // stickyHeaderIndices={[0]}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReachedThreshold={1}
+          numColumns={1}
+          data={elements}
+          refreshing={refresh}
+          contentInset={{bottom: 50}}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => setRefresh(true)}
+            />
+          }
+          contentContainerStyle={{
+            width,
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+          renderItem={({item}) => <CommentWidget element={item} />}
+        />
+      )}
+      {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
     </SafeAreaView>
   );
 };

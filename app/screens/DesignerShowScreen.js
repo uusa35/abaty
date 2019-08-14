@@ -21,13 +21,18 @@ import {
   commentModalSelector,
   designerSelector
 } from '../redux/selectors/collection';
-import {searchParamsSelector} from '../redux/selectors/collections';
+import {
+  commentsSelector,
+  searchParamsSelector
+} from '../redux/selectors/collections';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import CommentScreenModal from './CommentScreenModal';
+import {DispatchContext} from '../redux/DispatchContext';
 
-const DesignerShowScreen = ({user, searchParams, commentModal}) => {
+const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
   console.log('the user', user);
-  const {colors, dispatch, guest, logo} = useContext(GlobalValuesContext);
+  const {colors, guest, logo} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
     : user.productGroupCategories.concat(user.productCategories);
@@ -40,6 +45,18 @@ const DesignerShowScreen = ({user, searchParams, commentModal}) => {
   ]);
   const [refresh, setRefresh] = useState(false);
   const [categories, setCategories] = useState(collectedCatetories);
+
+  useMemo(() => {
+    if (refresh) {
+      setRefresh(false);
+      return dispatch(
+        getDesigner({
+          id: user.id,
+          searchElements: {user_id: user.id}
+        })
+      );
+    }
+  }, [refresh]);
 
   useMemo(() => {
     return false;
@@ -65,13 +82,7 @@ const DesignerShowScreen = ({user, searchParams, commentModal}) => {
         <RefreshControl
           refreshing={refresh}
           onRefresh={() => {
-            setRefresh(false);
-            dispatch(
-              getDesigner({
-                element: user,
-                searchElements: {user_id: user.id}
-              })
-            );
+            setRefresh(true);
           }}
         />
       }>
@@ -90,7 +101,7 @@ const DesignerShowScreen = ({user, searchParams, commentModal}) => {
             slug={user.slug}
             type={user.role.slug}
             views={user.views}
-            showComments={!validate.isEmpty(user.comments)}
+            showComments={!guest}
             commentsCount={user.commentsCount}
           />
           {!validate.isEmpty(user.slides) ? (
@@ -164,12 +175,12 @@ const DesignerShowScreen = ({user, searchParams, commentModal}) => {
             initialLayout={{width: width}}
           />
         </TriggeringView>
-        {!validate.isEmpty(user.comments) ? (
-          <CommentScreenModal
-            commentModal={commentModal}
-            elements={user.comments}
-          />
-        ) : null}
+        <CommentScreenModal
+          commentModal={commentModal}
+          elements={comments}
+          model="user"
+          id={user.id}
+        />
       </View>
     </HeaderImageScrollView>
   );
@@ -178,6 +189,7 @@ const DesignerShowScreen = ({user, searchParams, commentModal}) => {
 function mapStateToProps(state) {
   return {
     user: designerSelector(state),
+    comments: commentsSelector(state),
     commentModal: commentModalSelector(state),
     searchParams: searchParamsSelector(state)
   };

@@ -16,6 +16,7 @@ const companies = state => state.companies;
 const splashes = state => state.splashes;
 const galleries = state => state.galleries;
 const searchParams = state => state.searchParams;
+const comments = state => state.comments;
 
 export const brandsSelector = createSelector(
   brands,
@@ -76,6 +77,10 @@ export const cartSelector = createSelector(
 export const designersSelector = createSelector(
   designers,
   designers => designers
+);
+export const commentsSelector = createSelector(
+  comments,
+  comments => comments
 );
 
 export const searchParamsSelector = createSelector(

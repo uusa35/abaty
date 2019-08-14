@@ -38,6 +38,7 @@ export default function* rootSaga() {
     fork(appSagas.register),
     fork(appSagas.rateUser),
     fork(appSagas.becomeFan),
+    fork(appSagas.addComment),
     fork(appSagas.resetStore),
     fork(networkSaga, {pingInterval: 20000})
   ]);

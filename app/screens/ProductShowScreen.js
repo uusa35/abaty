@@ -125,7 +125,7 @@ class ProductShowScreen extends Component {
                 link={() =>
                   dispatch(
                     getDesigner({
-                      element: product.user,
+                      id: product.user.id,
                       searchElements: {user_id: product.user.id}
                     })
                   )
