@@ -19,15 +19,13 @@ const AddCommentFormWidget = ({model, id}) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        width: width - 20,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
       }}>
       <View
         style={{
           height: 300,
-          width,
-          padding: 10,
+          width: width,
           justifyContent: 'flex-start',
           alignItems: 'center'
         }}>
@@ -80,7 +78,7 @@ const AddCommentFormWidget = ({model, id}) => {
           raised
           title={I18n.t('submit_comment')}
           type="outline"
-          containerStyle={{width: '100%'}}
+          containerStyle={{width: '90%'}}
           titleStyle={{fontFamily: text.font}}
         />
       </View>

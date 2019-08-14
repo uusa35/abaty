@@ -5,35 +5,38 @@ import {hideCommentModal} from '../redux/actions';
 import {DispatchContext} from '../redux/DispatchContext';
 import CommentsList from '../components/Lists/CommentsList';
 import {Icon} from 'react-native-elements';
+import {SafeAreaView} from 'react-navigation';
 
 const CommentScreenModal = ({commentModal, elements, model, id}) => {
   const {dispatch} = useContext(DispatchContext);
   const [visible, setVisible] = useState(commentModal);
   return (
-    <Modal
-      transparent={false}
-      visible={commentModal}
-      animationType={'slide'}
-      onRequestClose={() => setVisible(false)}>
-      <View
-        style={{
-          position: 'absolute',
-          top: 40,
-          alignSelf: 'flex-end',
-          padding: 10,
-          zIndex: 999
-        }}>
-        <Icon
-          raised
-          name="close"
-          size={15}
-          style={{zIndex: 999}}
-          onPress={() => dispatch(hideCommentModal())}
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-        />
-      </View>
-      <CommentsList elements={elements} model={model} id={id} />
-    </Modal>
+    <SafeAreaView horizontal="always">
+      <Modal
+        transparent={false}
+        visible={commentModal}
+        animationType={'slide'}
+        onRequestClose={() => setVisible(false)}>
+        <View
+          style={{
+            height: 80,
+            width: '100%',
+            justifyContent: 'flex-end',
+            alignItems: 'flex-end',
+            zIndex: 999
+          }}>
+          <Icon
+            raised
+            name="close"
+            size={15}
+            style={{zIndex: 999}}
+            onPress={() => dispatch(hideCommentModal())}
+            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          />
+        </View>
+        <CommentsList elements={elements} model={model} id={id} />
+      </Modal>
+    </SafeAreaView>
   );
 };
 

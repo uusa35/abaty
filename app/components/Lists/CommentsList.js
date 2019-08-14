@@ -24,7 +24,6 @@ const CommentsList = ({elements, model, id}) => {
     <SafeAreaView
       style={{
         flex: 1,
-        paddingTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%'
