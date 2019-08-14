@@ -18,34 +18,13 @@ const CommentScreenModal = ({commentModal, elements}) => {
     }
   }, [visible]);
   return (
-    <SafeAreaView>
-      <Modal
-        transparent={false}
-        visible={commentModal}
-        animationType={'slide'}
-        onRequestClose={() => setVisible(false)}>
-        <View
-          style={{
-            padding: 5,
-            paddingTop: 40,
-            justifyContent: 'center',
-            alignItems: 'flex-end'
-          }}>
-          <Icon
-            name="close"
-            size={25}
-            onPress={() => dispatch(hideCommentModal())}
-            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          />
-        </View>
-        <View
-          style={{
-            justifyContent: 'center'
-          }}>
-          <CommentsList elements={elements} />
-        </View>
-      </Modal>
-    </SafeAreaView>
+    <Modal
+      transparent={false}
+      visible={commentModal}
+      animationType={'slide'}
+      onRequestClose={() => setVisible(false)}>
+      <CommentsList elements={elements} />
+    </Modal>
   );
 };
 

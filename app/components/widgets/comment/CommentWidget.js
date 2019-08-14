@@ -1,17 +1,11 @@
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Button, Text, Divider} from 'react-native-elements';
-import {images, text, width} from '../../../constants';
-import {getCategoryElements, getSearchProducts} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {Text, Divider} from 'react-native-elements';
+import {images, text} from '../../../constants';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const CommentWidget = ({element, columns, showBtn = false}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
-  console.log('the element form CommentWidget', element);
+const CommentWidget = ({element}) => {
   return (
     <View
       style={{
@@ -19,7 +13,7 @@ const CommentWidget = ({element, columns, showBtn = false}) => {
         borderRadius: 10,
         borderColor: 'lightgrey',
         margin: 5,
-        width: '95%',
+        width: '97%',
         flexDirection: 'row',
         justifyContent: 'flex-start',
         padding: 10
@@ -33,10 +27,13 @@ const CommentWidget = ({element, columns, showBtn = false}) => {
       <View style={{flex: 1, padding: 5}}>
         <View>
           <Text style={styles.elementName}>{element.owner.slug}</Text>
+          <Text style={styles.elementName}>{element.created_at}</Text>
           <Divider />
         </View>
         <Text style={styles.elementName}>{element.title}</Text>
-        <Text style={styles.elementName}>{element.content}</Text>
+        <Text style={[styles.elementName, {fontSize: text.medium}]}>
+          {element.content}
+        </Text>
       </View>
     </View>
   );
@@ -54,13 +51,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  mainCategoryBg: {
-    width: '100%',
-    height: '100%'
-  },
   elementName: {
     fontFamily: text.font,
-    fontSize: text.medium,
+    fontSize: text.small,
     textAlign: 'left',
     paddingTop: 10
   }
