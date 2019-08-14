@@ -48,7 +48,6 @@ export function* setSettings() {
 export function* setUsers(action) {
   try {
     const searchElements = action.payload;
-    console.log('searchElements', searchElements);
     const users = yield call(api.getUsers, searchElements);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
       yield all([

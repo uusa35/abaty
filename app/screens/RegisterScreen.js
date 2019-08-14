@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {images, isIOS} from '../constants';
+import {images, isIOS, width} from '../constants';
 import RegisterFormWidget from '../components/widgets/user/RegisterFormWidget';
 import {
   countrySelector,
@@ -11,23 +11,29 @@ import {
   playerIdSelector,
   tokenSelector
 } from '../redux/selectors/collection';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const RegisterScreen = ({logo, playerId}) => {
   const [userCountryId, setUserCountryId] = useState('');
   return (
-    <ScrollView
-      contentContainerStyle={{
-        minHeight: !isIOS ? '120%' : null,
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-      }}
+    <KeyboardAwareScrollView
       horizontal={false}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}
-      style={{flex: 1}}>
-      <View style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
+      contentContainerStyle={{
+        flex: 1,
+        width,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+      <View
+        style={{
+          flex: 1,
+          marginTop: 0,
+          alignItems: 'center',
+          width: width - 20
+        }}>
         <FastImage
           source={{uri: logo}}
           style={{width: 100, height: 100, margin: 20}}
@@ -39,7 +45,7 @@ const RegisterScreen = ({logo, playerId}) => {
           player_id={playerId}
         />
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
