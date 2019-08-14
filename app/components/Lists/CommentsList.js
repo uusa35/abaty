@@ -29,6 +29,7 @@ const CommentsList = ({elements, model, id}) => {
         alignItems: 'center',
         height: '100%'
       }}>
+      {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
       {validate.isEmpty(elements) ? (
         <Button
           raised
@@ -66,7 +67,6 @@ const CommentsList = ({elements, model, id}) => {
           renderItem={({item}) => <CommentWidget element={item} />}
         />
       )}
-      {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
     </SafeAreaView>
   );
 };
