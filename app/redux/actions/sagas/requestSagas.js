@@ -13,8 +13,13 @@ import {
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
-import {registerConstrains, submitLogin} from '../../../constants';
+import {
+  commentStoreConstrains,
+  registerConstrains,
+  submitLogin
+} from '../../../constants';
 import {axiosInstance} from '../api';
+import {hideCommentModal} from '../index';
 
 export function* setHomeCategories() {
   try {
@@ -287,24 +292,21 @@ export function* startGetProductScenario(action) {
 
 export function* startGetServiceScenario(action) {
   try {
-    console.log('the action', action);
     const service = yield call(api.getService, action.payload);
+    console.log('the service result from api', service);
     if (!validate.isEmpty(service) && validate.isObject(service)) {
-      yield all([
-        put({type: actions.SET_SERVICE, payload: service}),
-        put(
-          NavigationActions.navigate({
-            routeName: 'Service',
-            params: {name: service.name, id: service.id, model: 'service'}
-          })
-        )
-      ]);
+      yield put({type: actions.SET_SERVICE, payload: service});
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'Service',
+          params: {name: service.name, id: service.id, model: 'service'}
+        })
+      );
     }
   } catch (e) {
-    // console.log('the e from set Commercials', e)
     yield all([
       disableLoading,
-      enableWarningMessage(I18n.t('error_while_loading_product'))
+      enableWarningMessage(I18n.t('error_while_loading_service'))
     ]);
   }
 }
@@ -909,13 +911,18 @@ export function* startBecomeFanScenario(action) {
 
 export function* startAddCommentScenario(action) {
   try {
-    console.log('the action', action);
-    const comment = yield call(api.addComment, action.payload);
-    console.log('the comment', comment);
-    if (!validate.isEmpty(comment) && validate.isObject(comment)) {
-      yield call(enableSuccessMessage, I18n.t('comment_added_success'));
+    yield put({type: actions.HIDE_COMMENT_MODAL});
+    const {title, content} = action.payload;
+    const result = validate({title, content}, commentStoreConstrains);
+    if (validate.isEmpty(result)) {
+      const comment = yield call(api.addComment, action.payload);
+      if (!validate.isEmpty(comment) && validate.isObject(comment)) {
+        yield call(enableSuccessMessage, I18n.t('comment_added_success'));
+      }
+    } else {
+      throw result['title'] || result['content'];
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([disableLoading, enableErrorMessage(first(e))]);
   }
 }

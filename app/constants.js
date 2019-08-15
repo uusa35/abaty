@@ -147,3 +147,8 @@ export const registerConstrains = {
   mobile: {length: {minimum: 6}, presence: true},
   address: {length: {minimum: 3}, presence: true}
 };
+
+export const commentStoreConstrains = {
+  title: {length: {minimum: 3}, presence: true},
+  content: {length: {minimum: 6}, presence: true}
+};

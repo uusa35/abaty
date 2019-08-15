@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, ActivityIndicator, StyleSheet} from 'react-native';
-import {width, animations, isIOS, images} from './../constants';
+import {isIOS, images, text} from './../constants';
 import FastImage from 'react-native-fast-image';
 // import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   loadingText: {
-    fontFamily: 'cairo',
+    fontFamily: text.font,
     fontSize: 15,
     color: 'black',
     marginBottom: isIOS ? 35 : 50

@@ -30,7 +30,7 @@ const OrderIndexScreen = ({orders}) => {
       contentInset={{bottom: 100}}>
       {!validate.isEmpty(orders) ? (
         <View
-          animation="fadeInUpBig"
+          animation="lightSpeedIn"
           easing="ease-out"
           style={{
             marginTop: 50,

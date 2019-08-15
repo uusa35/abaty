@@ -444,5 +444,6 @@
   "terms_and_conditions" : "Terms and conditions",
   "terms" : "Terms",
   "conditions" : "Conditions",
-  "policies" : "Policies"
+  "policies" : "Policies",
+  "comment_added_success" : "Comment added successfully. thank you"
 }

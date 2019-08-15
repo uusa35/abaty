@@ -157,14 +157,6 @@ const ServiceShowScreen = ({
         !validate.isEmpty(service.videoGroup) ? (
           <VideosWidget videos={service.videoGroup} />
         ) : null}
-        {!validate.isEmpty(services) ? (
-          <ServiceHorizontalWidget
-            elements={services}
-            showName={true}
-            currency={currency}
-            title="related_services"
-          />
-        ) : null}
       </ScrollView>
     </NavContext.Provider>
   );
