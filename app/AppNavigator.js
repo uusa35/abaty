@@ -47,6 +47,7 @@ import VideoIndexScreen from './screens/VideoIndexScreen';
 import ServiceIndexScreen from './screens/ServiceIndexScreen';
 import ServiceShowScreen from './screens/ServiceShowScreen';
 import OrderIndexScreen from './screens/OrderIndexScreen';
+import TermAndConditionScreen from './screens/TermAndConditionScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -229,6 +230,12 @@ const HomeStack = createStackNavigator(
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />
       }),
       path: 'contactus'
+    },
+    TermAndCondition: {
+      screen: TermAndConditionScreen,
+      navigationOptions: () => ({
+        headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />
+      })
     },
     BrandIndex: {
       screen: BrandIndexScreen,

@@ -1,5 +1,4 @@
 import React, {useState, useContext, useMemo} from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';

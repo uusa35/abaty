@@ -16,17 +16,11 @@ import LoginForm from '../components/widgets/LoginForm';
 const LoginScreen = () => {
   return (
     <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-      <LoginForm />
+      <LoginForm showBtns={true} />
     </View>
   );
 };
 
-// function mapStateToProps(state) {
-//   return {
-//   };
-// }
-
-// export default connect(mapStateToProps)(React.memo(LoginScreen));
 export default React.memo(LoginScreen);
 
 LoginScreen.propTypes = {

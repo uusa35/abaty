@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text} from '../../../constants';
+import {isIOS, text, width} from '../../../constants';
 import {
   clearCart,
   getCoupon,
@@ -10,7 +10,7 @@ import {
   showLoginModal,
   submitCart
 } from '../../../redux/actions';
-import {Button, Input} from 'react-native-elements';
+import {Button, Input, CheckBox, Icon} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
@@ -48,6 +48,7 @@ const CartList = ({
     !validate.isEmpty(coupon) ? coupon.code : ''
   );
   const [editMode, setEditMode] = useState(editModeDefault);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     setEmail(auth.email);
@@ -462,8 +463,35 @@ const CartList = ({
               </View>
             ) : null}
           </View>
+          <View
+            style={{
+              marginTop: 0,
+              marginBottom: 10,
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+            <CheckBox
+              containerStyle={{width: '90%'}}
+              title={I18n.t('agree_on_conditions_and_terms')}
+              iconType="material"
+              checkedIcon="check-box"
+              uncheckedIcon="check-box-outline-blank"
+              checked={checked}
+              onPress={() => setChecked(!checked)}
+              textStyle={{fontFamily: text.font, paddingTop: 5}}
+            />
+            <Icon
+              name="book-open"
+              type="simple-line-icon"
+              size={15}
+              onPress={() => navigate('TermAndCondition')}
+            />
+          </View>
           {editMode ? (
             <Button
+              disabled={!checked}
               raised
               containerStyle={{marginBottom: 10, width: '100%'}}
               buttonStyle={{

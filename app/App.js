@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {appBootstrap, resetStore} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/LoadingView';
-import {CountriesContext} from './redux/CountriesContext';
 import I18n, {isRTL} from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';

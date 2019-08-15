@@ -126,21 +126,20 @@ const UserImageProfile = ({
               imageSize={20}
             />
           ) : null}
-          {showComments ? (
-            <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
-              <Icon
-                name="comment-account-outline"
-                type="material-community"
-                color={colors.header_tow_theme_color}
-                size={25}
-              />
-              <Badge
-                status="warning"
-                value={commentsCount}
-                containerStyle={{position: 'absolute', top: -10, right: -4}}
-              />
-            </TouchableOpacity>
-          ) : null}
+          <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
+            <Icon
+              name="comment-account-outline"
+              type="material-community"
+              color={colors.header_tow_theme_color}
+              size={25}
+              hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+            />
+            <Badge
+              status="warning"
+              value={commentsCount}
+              containerStyle={{position: 'absolute', top: -10, right: -4}}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

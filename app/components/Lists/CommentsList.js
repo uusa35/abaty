@@ -1,5 +1,5 @@
 import React, {useContext, useState, useMemo} from 'react';
-import {RefreshControl, FlatList, StyleSheet} from 'react-native';
+import {RefreshControl, FlatList, StyleSheet, View} from 'react-native';
 import {text, width} from './../../constants';
 import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types';
@@ -9,10 +9,15 @@ import AddCommentFormWidget from '../widgets/comment/AddCommentFormWidget';
 import I18n from '../../I18n';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
+import {hideCommentModal} from '../../redux/actions';
+import {DispatchContext} from '../../redux/DispatchContext';
 
 const CommentsList = ({elements, model, id}) => {
   const [refresh, setRefresh] = useState(false);
   const {guest} = useContext(GlobalValuesContext);
+  const {navigate} = useNavigation();
+  const {dispatch} = useContext(DispatchContext);
 
   useMemo(() => {
     if (refresh) {
@@ -28,11 +33,26 @@ const CommentsList = ({elements, model, id}) => {
         alignItems: 'center',
         height: '100%'
       }}>
-      {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
+      <View>
+        {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
+        {guest ? (
+          <Button
+            onPress={() => {
+              dispatch(hideCommentModal());
+              return navigate('Register');
+            }}
+            raised
+            containerStyle={{width: width - 20, marginBottom: 20}}
+            title={I18n.t('register_with_us')}
+            type="outline"
+            titleStyle={{fontFamily: text.font}}
+          />
+        ) : null}
+      </View>
       {validate.isEmpty(elements) ? (
         <Button
           raised
-          containerStyle={{width: '90%'}}
+          containerStyle={{width: width - 20}}
           title={I18n.t('no_comments')}
           type="outline"
           titleStyle={{fontFamily: text.font}}

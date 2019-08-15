@@ -11,7 +11,6 @@ class SubCategoryIndexScreen extends Component {
   }
 
   render() {
-    console.log('this props of nav', this.props.navigation.state.params);
     const {category, columns} = this.props.navigation.state.params;
     const {navigation, commercials} = this.props;
     return (

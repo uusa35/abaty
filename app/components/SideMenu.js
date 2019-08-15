@@ -228,6 +228,23 @@ const SideMeu = ({
                 {I18n.t('contactus')}
               </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('TermAndCondition')}
+              style={styles.menuBtn}>
+              <Icon
+                name="old-phone"
+                type="entypo"
+                size={20}
+                color={colors.icon_theme_color}
+              />
+              <Text
+                style={[
+                  styles.titleStyle,
+                  {color: colors.header_one_theme_color}
+                ]}>
+                {I18n.t('terms_and_conditions')}
+              </Text>
+            </TouchableOpacity>
             {!validate.isEmpty(images) ? (
               <TouchableOpacity
                 onPress={() =>

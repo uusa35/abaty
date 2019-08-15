@@ -11,12 +11,12 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
 
-const LoginForm = () => {
+const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
   const {dispatch} = useContext(DispatchContext);
   const {logo, colors} = useContext(GlobalValuesContext);
-  const {navigate} = useNavigation();
+  const navigation = useNavigation();
   return (
     <KeyboardAwareScrollView
       horizontal={false}
@@ -29,7 +29,13 @@ const LoginForm = () => {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-      <View style={{width: '100%', marginTop: 0, alignItems: 'center'}}>
+      <View
+        style={{
+          width: '100%',
+          marginTop: 0,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
         <FastImage
           source={{uri: logo}}
           style={{width: 100, height: 100, margin: 20}}
@@ -75,7 +81,7 @@ const LoginForm = () => {
         />
         <Button
           raised
-          containerStyle={{marginBottom: 50, width: '100%'}}
+          containerStyle={{marginBottom: 10, width: '100%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
             borderRadius: 0
@@ -87,34 +93,38 @@ const LoginForm = () => {
           }}
           onPress={() => dispatch(submitAuth({email, password}))}
         />
-        <Button
-          raised
-          containerStyle={{marginBottom: 50, width: '100%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
-          }}
-          title={I18n.t('new_user')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color
-          }}
-          onPress={() => navigate('Register')}
-        />
-        <Button
-          raised
-          containerStyle={{marginBottom: 10, width: '100%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
-          }}
-          title={I18n.t('forget_password')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color
-          }}
-          onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
-        />
+        {showBtns ? (
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0
+            }}
+            title={I18n.t('new_user')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+            onPress={() => navigation.navigate('Register')}
+          />
+        ) : null}
+        {showBtns ? (
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0
+            }}
+            title={I18n.t('forget_password')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+            onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
+          />
+        ) : null}
       </View>
     </KeyboardAwareScrollView>
   );

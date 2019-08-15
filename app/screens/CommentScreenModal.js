@@ -20,15 +20,16 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
         <View
           style={{
             height: 80,
+            paddingLeft: 20,
+            paddingRight: 20,
             width: '100%',
             justifyContent: 'flex-end',
             alignItems: 'flex-end',
             zIndex: 999
           }}>
           <Icon
-            raised
             name="close"
-            size={15}
+            size={20}
             style={{zIndex: 999}}
             onPress={() => dispatch(hideCommentModal())}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}

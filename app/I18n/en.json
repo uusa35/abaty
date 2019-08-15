@@ -438,5 +438,11 @@
   "submit_comment" : "Add Comment",
   "no_comments" : "No Comments",
   "order_history" : "My Orders History",
-  "no_orders" : "No Orders"
+  "no_orders" : "No Orders",
+  "register_with_us" : "Join us.",
+  "agree_on_conditions_and_terms" : "Accept Terms and Conditions",
+  "terms_and_conditions" : "Terms and conditions",
+  "terms" : "Terms",
+  "conditions" : "Conditions",
+  "policies" : "Policies"
 }
