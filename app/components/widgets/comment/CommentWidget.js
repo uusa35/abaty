@@ -17,23 +17,29 @@ const CommentWidget = ({element}) => {
         width: width - 20,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        padding: 10
+        padding: 2
       }}>
       <ListItem
         key={element.id}
         leftAvatar={{source: {uri: element.owner.thumb}}}
         title={element.title}
         subtitle={
-          <View style={{}}>
-            <FastImage
-              source={element.owner.thumb}
-              style={{fontFamily: text.font}}
-            />
-            <Text style={{fontFamily: text.font}}>5 months ago</Text>
+          <View>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: text.small,
+                marginBottom: 10
+              }}>
+              {element.created_at}
+            </Text>
+            <Text style={{fontFamily: text.font, fontSize: text.medium}}>
+              {element.content}
+            </Text>
           </View>
         }
-        titleStyle={{color: 'red', fontWeight: 'bold'}}
-        subtitleStyle={{color: 'red'}}
+        titleStyle={{fontWeight: 'bold', fontFamily: text.font}}
+        style={{width: '100%'}}
       />
     </View>
   );

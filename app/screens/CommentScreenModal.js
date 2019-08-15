@@ -22,6 +22,7 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
             height: 80,
             paddingLeft: 20,
             paddingRight: 20,
+            paddingBottom: 5,
             width: '100%',
             justifyContent: 'flex-end',
             alignItems: 'flex-end',

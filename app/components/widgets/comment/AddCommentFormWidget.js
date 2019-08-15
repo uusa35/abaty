@@ -6,7 +6,6 @@ import {View} from 'react-native';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {addComment} from '../../../redux/actions';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const AddCommentFormWidget = ({model, id}) => {
   const [title, setTitle] = useState('');
@@ -15,10 +14,10 @@ const AddCommentFormWidget = ({model, id}) => {
   return (
     <View
       style={{
-        height: 300,
         width: width - 20,
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 10
       }}>
       <Input
         placeholder={I18n.t('title') + '*'}
