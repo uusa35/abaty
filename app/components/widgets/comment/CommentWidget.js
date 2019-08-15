@@ -21,7 +21,7 @@ const CommentWidget = ({element}) => {
       }}>
       <ListItem
         key={element.id}
-        leftAvatar={{source: {uri: element.owner.thumb}}}
+        leftAvatar={{source: {uri: element.owner ? element.owner.thumb : null}}}
         title={element.title}
         subtitle={
           <View>
