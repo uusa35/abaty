@@ -15,6 +15,7 @@ const ActionBtnWidget = () => {
       style={{
         position: 'absolute',
         left: '1%',
+        bottom: '1%',
         backgroundColor: 'transparent',
         height: 100,
         zIndex: 99
