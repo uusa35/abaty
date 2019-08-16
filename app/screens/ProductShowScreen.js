@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -9,18 +9,16 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
+import {width, text, height} from './../constants';
 import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
-import I18n, {isRTL} from './../I18n';
+import I18n from './../I18n';
 import {first} from 'lodash';
 import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
-import {Button, Icon} from 'react-native-elements';
-import {find} from 'lodash';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import {
   phoneSelector,
@@ -44,11 +42,10 @@ const ProductShowScreen = ({
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
-
   return (
-    <View style={{flex: 1}}>
+    <Fragment>
       <ScrollView
-        style={{flex: 1}}
+        style={{borderWidth: 1, marginTop: -100}}
         contentContainerStyle={{
           justifyContent: 'flex-start',
           alignItems: 'center'
@@ -196,7 +193,7 @@ const ProductShowScreen = ({
         ) : null}
       </ScrollView>
       {btnVisible ? <ActionBtnWidget /> : null}
-    </View>
+    </Fragment>
   );
 };
 
@@ -213,7 +210,6 @@ function mapStateToProps(state) {
     cart: cartSelector(state)
   };
 }
-
 export default connect(mapStateToProps)(React.memo(ProductShowScreen));
 
 ProductShowScreen.propTypes = {

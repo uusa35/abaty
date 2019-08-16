@@ -1,31 +1,23 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {NavContext} from './../redux/NavContext';
-import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from '../components/widgets/splash/SplashWidget';
+import {useNavigation} from 'react-navigation-hooks';
 
-class IntroductionScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const IntroductionScreen = ({splashes}) => {
+  const {navigate} = useNavigation();
 
-  render() {
-    const {splashes, navigation} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <AppIntroSlider
-          keyExtractor={(splashes, index) => index.toString()}
-          renderItem={() => <SplashWidget elements={splashes} />}
-          slides={splashes}
-          onDone={() => navigation.navigate('Home')}
-        />
-      </NavContext.Provider>
-    );
-  }
-}
+  return (
+    <AppIntroSlider
+      keyExtractor={(splashes, index) => index.toString()}
+      renderItem={() => <SplashWidget elements={splashes} />}
+      slides={splashes}
+      onDone={() => navigate('Home')}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {
@@ -33,7 +25,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(IntroductionScreen);
+export default connect(mapStateToProps)(React.memo(IntroductionScreen));
 
 IntroductionScreen.propTypes = {
   splashes: PropTypes.array.isRequired

@@ -187,7 +187,15 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100,
+          top: 0,
+          left: 0,
+          right: 0
+        }
       }),
       path: `product/:id`
     },
@@ -202,7 +210,15 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100,
+          top: 0,
+          left: 0,
+          right: 0
+        }
       }),
       path: `product/:id`
     },
@@ -595,7 +611,7 @@ const RootNavigator = createDrawerNavigator(
     contentComponent: ({navigation}) => <SideMenu navigation={navigation} />,
     drawerPosition: isRTL ? 'right' : 'left',
     drawerBackgroundColor: 'white',
-    overlayColor: 'lightgrey',
+    overlayColor: 'black',
     contentOptions: {
       activeTintColor: '#e91e63',
       itemsContainerStyle: {

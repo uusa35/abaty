@@ -8,11 +8,10 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
-import {NavContext} from './../redux/NavContext';
+import {width, text, height} from './../constants';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
 import {View} from 'react-native-animatable';
-import I18n, {isRTL} from './../I18n';
+import I18n from './../I18n';
 import {first} from 'lodash';
 import {getDesigner, getSearchServices, getService} from '../redux/actions';
 import validate from 'validate.js';
@@ -27,134 +26,125 @@ import {
   tokenSelector
 } from '../redux/selectors/collection';
 
-const ServiceShowScreen = ({
-  service,
-  navigation,
-  phone,
-  mobile,
-  dispatch,
-  token
-}) => {
+const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
   const [refresh, setRefresh] = useState(false);
   return (
-    <NavContext.Provider value={{navigation}}>
-      <ScrollView
-        style={{flex: 1}}
-        contentContainerStyle={{
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-        }}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => {
-              setRefresh(false);
-              dispatch(
-                getService({id: service.id, api_token: token ? token : null})
-              );
-            }}
-          />
-        }
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 50}}>
-        <ImagesWidget
-          elements={service.images
-            .concat({id: service.id, large: service.large})
-            .reverse()}
-          width={width}
-          height={550}
-          name={service.name}
-          exclusive={service.exclusive}
-          isOnSale={service.isOnSale}
-          isReallyHot={service.isReallyHot}
+    <ScrollView
+      style={{borderWidth: 1, marginTop: -(height * 0.1)}}
+      contentContainerStyle={{
+        justifyContent: 'flex-start',
+        alignItems: 'center'
+      }}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => {
+            setRefresh(false);
+            dispatch(
+              getService({id: service.id, api_token: token ? token : null})
+            );
+          }}
         />
-        <View style={{width: '90%'}}>
-          <View animation="bounceInLeft" easing="ease-out">
-            <ServiceInfoWidget element={service} />
-          </View>
-          <View
-            animation="bounceInLeft"
-            easing="ease-out"
-            style={{marginTop: 15}}>
-            {service.description ? (
-              <View>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 20,
-                    fontFamily: text.font,
-                    paddingBottom: 0
-                  }}>
-                  {I18n.t('description')}
-                </Text>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 17,
-                    fontFamily: text.font,
-                    padding: 10
-                  }}>
-                  {service.description}
-                </Text>
-              </View>
-            ) : null}
-            {!validate.isEmpty(service.user) ? (
-              <ProductInfoWidgetElement
-                elementName="company"
-                name={service.user.slug}
-                link={() =>
-                  dispatch(
-                    getDesigner({
-                      id: service.user.id,
-                      searchElements: {user_id: service.user.id}
-                    })
-                  )
-                }
-              />
-            ) : null}
+      }
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 50}}>
+      <ImagesWidget
+        elements={service.images
+          .concat({id: service.id, large: service.large})
+          .reverse()}
+        width={width}
+        height={550}
+        name={service.name}
+        exclusive={service.exclusive}
+        isOnSale={service.isOnSale}
+        isReallyHot={service.isReallyHot}
+      />
+      <View style={{width: '90%'}}>
+        <View animation="bounceInLeft" easing="ease-out">
+          <ServiceInfoWidget element={service} />
+        </View>
+        <View
+          animation="bounceInLeft"
+          easing="ease-out"
+          style={{marginTop: 15}}>
+          {service.description ? (
+            <View>
+              <Text
+                style={{
+                  textAlign: 'left',
+                  fontSize: 20,
+                  fontFamily: text.font,
+                  paddingBottom: 0
+                }}>
+                {I18n.t('description')}
+              </Text>
+              <Text
+                style={{
+                  textAlign: 'left',
+                  fontSize: 17,
+                  fontFamily: text.font,
+                  padding: 10
+                }}>
+                {service.description}
+              </Text>
+            </View>
+          ) : null}
+          {!validate.isEmpty(service.user) ? (
             <ProductInfoWidgetElement
-              elementName="categories"
-              name={first(service.categories).name}
+              elementName="company"
+              name={service.user.slug}
               link={() =>
                 dispatch(
-                  getSearchServices({
-                    element: first(service.categories),
-                    searchElements: {
-                      service_category_id: first(service.categories).id
-                    }
+                  getDesigner({
+                    id: service.user.id,
+                    searchElements: {user_id: service.user.id}
                   })
                 )
               }
             />
-            {service.sku ? (
-              <ProductInfoWidgetElement
-                elementName="sku"
-                name={service.sku}
-                showArrow={false}
-              />
-            ) : null}
-            {service.individuals ? (
-              <ProductInfoWidgetElement
-                elementName="individuals_served"
-                name={service.individuals}
-                showArrow={false}
-              />
-            ) : null}
+          ) : null}
+          <ProductInfoWidgetElement
+            elementName="categories"
+            name={first(service.categories).name}
+            link={() =>
+              dispatch(
+                getSearchServices({
+                  element: first(service.categories),
+                  searchElements: {
+                    service_category_id: first(service.categories).id
+                  }
+                })
+              )
+            }
+          />
+          {service.sku ? (
             <ProductInfoWidgetElement
-              elementName="contactus_order_by_phone"
-              name={phone}
-              link={() => Linking.openURL(`tel:${mobile}`)}
+              elementName="sku"
+              name={service.sku}
+              showArrow={false}
             />
-          </View>
+          ) : null}
+          {service.individuals ? (
+            <ProductInfoWidgetElement
+              elementName="individuals_served"
+              name={service.individuals}
+              showArrow={false}
+            />
+          ) : null}
+          <ProductInfoWidgetElement
+            elementName="contactus_order_by_phone"
+            name={phone}
+            link={() => Linking.openURL(`tel:${mobile}`)}
+          />
         </View>
-        {validate.isObject(service.videoGroup) &&
-        !validate.isEmpty(service.videoGroup) ? (
-          <VideosWidget videos={service.videoGroup} />
-        ) : null}
-      </ScrollView>
-    </NavContext.Provider>
+      </View>
+      {validate.isObject(service.videoGroup) &&
+      !validate.isEmpty(service.videoGroup) ? (
+        <VideosWidget videos={service.videoGroup} />
+      ) : null}
+    </ScrollView>
   );
 };
 

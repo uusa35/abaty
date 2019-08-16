@@ -82,7 +82,7 @@ const ImagesWidget = ({
                   style={{
                     flex: 1,
                     padding: 20,
-                    justifyContent: 'flex-start',
+                    justifyContent: 'flex-end',
                     alignItems: 'flex-end'
                   }}>
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
