@@ -17,12 +17,10 @@ import {first} from 'lodash';
 import {getDesigner, getSearchServices, getService} from '../redux/actions';
 import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
-import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import {servicesSelector} from '../redux/selectors/collections';
 import {
-  currencySelector,
   mobileSelector,
   phoneSelector,
   serviceSelector,
@@ -31,12 +29,10 @@ import {
 
 const ServiceShowScreen = ({
   service,
-  currency,
   navigation,
   phone,
   mobile,
   dispatch,
-  services,
   token
 }) => {
   const [refresh, setRefresh] = useState(false);
@@ -165,7 +161,6 @@ const ServiceShowScreen = ({
 function mapStateToProps(state) {
   return {
     service: serviceSelector(state),
-    currency: currencySelector(state),
     phone: phoneSelector(state),
     mobile: mobileSelector(state),
     services: servicesSelector(state),
@@ -178,7 +173,6 @@ export default connect(mapStateToProps)(React.memo(ServiceShowScreen));
 ServiceShowScreen.propTypes = {
   services: PropTypes.array.isRequired,
   service: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired,
   token: PropTypes.string
 };
 

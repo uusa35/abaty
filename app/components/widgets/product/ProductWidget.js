@@ -44,7 +44,6 @@ const ProductWidget = ({product, showName = false}) => {
           uri: product.thumb
         }}
         loadingIndicatorSource={images.logo}
-        imageStyle={styles.imageStyling}
         style={styles.image}
         resizeMode="stretch">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
@@ -107,9 +106,5 @@ const styles = StyleSheet.create({
   image: {
     width: 175,
     height: 230
-  },
-  imageStyling: {
-    // borderTopRightRadius: 10,
-    // borderTopLeftRadius: 10
   }
 });

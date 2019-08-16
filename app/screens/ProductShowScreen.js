@@ -22,10 +22,15 @@ import PropTypes from 'prop-types';
 import {Button, Icon} from 'react-native-elements';
 import {find} from 'lodash';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import {
+  phoneSelector,
+  productSelector,
+  tokenSelector
+} from '../redux/selectors/collection';
+import {cartSelector} from '../redux/selectors/collections';
 
 const ProductShowScreen = ({
   product,
-  currency,
   navigation,
   dispatch,
   phone,
@@ -34,24 +39,11 @@ const ProductShowScreen = ({
   size_chart,
   weight,
   homeProducts,
-  token,
-  colors
+  token
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
-  // shouldComponentUpdate(nextProps, nextState) {
-  // find(this.props.cart, (c) => {
-  //     if(c.product_id === this.props.product.id) {
-  //         console.log('fired');
-  //         this.setState({ showCartBtn : true});
-  //     }
-  // });
-  //   return (
-  //     nextProps.product !== this.props.product ||
-  //     nextProps.cart !== this.props.cart
-  //   );
-  // }
 
   return (
     <View style={{flex: 1}}>
@@ -199,7 +191,6 @@ const ProductShowScreen = ({
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
-            currency={currency}
             title="featured_products"
           />
         ) : null}
@@ -211,17 +202,15 @@ const ProductShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    product: state.product,
-    currency: state.currency,
-    phone: state.settings.phone,
+    product: productSelector(state),
+    phone: phoneSelector(state),
     shipment_prices: state.settings.shipment_prices,
     size_chart: state.settings.size_chart,
     mobile: state.settings.mobile,
     weight: state.settings.weight,
     homeProducts: state.homeProducts,
-    token: state.token,
-    colors: state.settings.colors,
-    cart: state.cart
+    token: tokenSelector(state),
+    cart: cartSelector(state)
   };
 }
 
@@ -229,7 +218,6 @@ export default connect(mapStateToProps)(React.memo(ProductShowScreen));
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired,
   homeProducts: PropTypes.array.isRequired,
   token: PropTypes.string
 };

@@ -25,7 +25,7 @@ const ActionBtnWidget = () => {
         size={50}
         spacing={20}
         position="left"
-        verticalOrientation="down"
+        verticalOrientation="up"
         buttonColor={colors.btn_bg_theme_color}>
         <ActionButton.Item
           buttonColor={colors.btn_bg_theme_color}
