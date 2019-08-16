@@ -77,7 +77,13 @@ const ImagesWidget = ({
               style={{width, height}}
               resizeMode="cover">
               {showLabels && i === 0 ? (
-                <View style={{flex: 1, padding: 20}}>
+                <View
+                  style={{
+                    flex: 1,
+                    padding: 20,
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-end'
+                  }}>
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
                   {isOnSale ? (
                     <TagWidget tagName="under_sale" bgColor="red" />

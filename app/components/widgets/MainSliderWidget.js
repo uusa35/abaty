@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, TouchableOpacity, Linking, ActivityIndicator} from 'react-native';
+import {View} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {width, text, images} from './../../constants';
 import {map, random} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
+import SlideWidget from './slide/SlideWidget';
 
 const MainSliderWidget = ({slides}) => {
   return (
@@ -21,18 +21,7 @@ const MainSliderWidget = ({slides}) => {
           key={slides.length}
           removeClippedSubviews={false}>
           {map(slides, (s, i) => (
-            <TouchableOpacity
-              onPress={() => {
-                Linking.openURL(s.path ? s.path : s.url);
-              }}
-              key={i}>
-              <FastImage
-                loadingIndicatorSource={images.logo}
-                source={{uri: s.large}}
-                style={{width: width, height: '100%'}}
-                resizeMode="cover"
-              />
-            </TouchableOpacity>
+            <SlideWidget slide={s} key={i} />
           ))}
         </Swiper>
       ) : null}

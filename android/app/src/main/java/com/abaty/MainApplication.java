@@ -10,7 +10,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 
 //import com.airbnb.android.react.lottie.LottiePackage;
-//import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 //import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -27,6 +27,7 @@ import com.dylanvann.fastimage.FastImageViewPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.microsoft.codepush.react.CodePush;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.airbnb.android.react.maps.MapsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -46,27 +47,27 @@ public class MainApplication extends Application implements ReactApplication {
       @SuppressWarnings("UnnecessaryLocalVariable")
       List<ReactPackage> packages = new PackageList(this).getPackages();
       // Packages that cannot be autolinked yet can be added manually here, for example:
-        packages.add(new MyReactNativePackage());
-        //packages.add(new ReanimatedPackage()),
+        //packages.add(new MyReactNativePackage());
+        //packages.add(new ReanimatedPackage();
         //new PickerPackage(),
-        packages.add(new MapsPackage()),
+        packages.add(new MapsPackage());
         //new LottiePackage(),
-        new RNFetchBlobPackage(),
-        packages.add(new RNGestureHandlerPackage()),
-        packages.add(new SvgPackage()),
-        packages.add(new NetInfoPackage()),
-        packages.add(new RNCWebViewPackage()),
-        packages.add(new AsyncStoragePackage()),
-        packages.add(new ReactNativeOneSignalPackage()),
-        packages.add(new VectorIconsPackage()),
-        packages.add(new ReactNativeRestartPackage()),
-        packages.add(new RCTPdfView()),
-        packages.add(new RNI18nPackage()),
-        packages.add(new FastImageViewPackage()),
-        packages.add(new RNDeviceInfo()),
-        packages.add(new RNSharePackage()),
-        packages.add(new ReactVideoPackage()),
-        packages.add(new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG))
+        //packages.add(new RNFetchBlobPackage());
+        packages.add(new RNGestureHandlerPackage());
+        packages.add(new SvgPackage());
+        packages.add(new NetInfoPackage());
+        packages.add(new RNCWebViewPackage());
+        packages.add(new AsyncStoragePackage());
+        packages.add(new ReactNativeOneSignalPackage());
+        packages.add(new VectorIconsPackage());
+        packages.add(new ReactNativeRestartPackage());
+        packages.add(new RCTPdfView());
+        packages.add(new RNI18nPackage());
+        packages.add(new FastImageViewPackage());
+        packages.add(new RNDeviceInfo());
+        packages.add(new RNSharePackage());
+        packages.add(new ReactVideoPackage());
+        packages.add(new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG));
       return packages;
     }
 

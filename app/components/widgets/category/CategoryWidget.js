@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {Button, Text} from 'react-native-elements';
-import {images, text, width} from '../../constants';
-import {getCategoryElements, getSearchProducts} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
+import {Button} from 'react-native-elements';
+import {images, text, width} from '../../../constants';
+import {getSearchProducts} from '../../../redux/actions';
+import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const CategoryWidget = ({category, columns, showBtn = false}) => {
   const {dispatch} = useContext(DispatchContext);

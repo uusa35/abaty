@@ -5,7 +5,7 @@ import FastImage from 'react-native-fast-image';
 // import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';
 
-const LoadingView = ({logo, loadingText}) => {
+const LoadingView = ({logo, loadingText, isLoading}) => {
   return (
     <View style={styles.activityContainer}>
       <ActivityIndicator style={{marginBottom: 15}} />
@@ -30,7 +30,8 @@ const LoadingView = ({logo, loadingText}) => {
 export default LoadingView;
 
 LoadingView.propTypes = {
-  // logo: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool,
+  logo: PropTypes.string,
   columns: PropTypes.number
 };
 

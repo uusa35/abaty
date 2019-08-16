@@ -9,14 +9,13 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getCategoryElements, getSearchProducts} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
-import I18n, {isRTL} from './../../I18n';
+import {getSearchProducts} from '../../../redux/actions';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
-import widgetStyles from './widgetStyles';
-import {NavContext} from '../../redux/NavContext';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {images} from '../../constants';
+import widgetStyles from './../widgetStyles';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {images} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 
 const CategoryHorizontalWidget = ({elements, showName, title}) => {

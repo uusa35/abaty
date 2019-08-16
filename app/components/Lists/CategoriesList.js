@@ -1,6 +1,6 @@
 import React, {useContext, useState, useMemo} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
-import CategoryWidget from '../widgets/CategoryWidget';
+import CategoryWidget from '../widgets/category/CategoryWidget';
 import {refetchHomeCategories} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {map} from 'lodash';

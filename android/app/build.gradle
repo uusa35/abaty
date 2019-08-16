@@ -76,7 +76,8 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js"
+    entryFile: "index.js",
+      enableHermes: true  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -121,6 +122,7 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -166,29 +168,40 @@ android {
 }
 
 dependencies {
-        // implementation project(':react-native-svg')
-        // implementation project(':@react-native-community_netinfo')
-        // implementation project(':react-native-webview')
-        // implementation  project(':react-native-onesignal')
-        // implementation project(':react-native-vector-icons')
-        // implementation  project(':react-native-restart')
-        // implementation project(':react-native-pdf')
-        // implementation project(':react-native-i18n')
-        // implementation project(':react-native-fast-image')
-        // implementation project(':react-native-device-info')
-        // implementation project(':react-native-code-push')
-        // implementation  project(':react-native-share')
-        // implementation project(':react-native-video')
-        // implementation project(':@react-native-community_async-storage')
-        // implementation project(':react-native-reanimated')
-        // implementation project(':lottie-react-native')
-        // implementation project(':rn-fetch-blob')
-        // implementation  project(':react-native-image-crop-picker')
-        // implementation project(':react-native-gesture-handler')
-        // implementation(project(':react-native-maps')){
-        // exclude group: 'com.google.android.gms', module: 'play-services-base'
-        // exclude group: 'com.google.android.gms', module: 'play-services-maps'
-        // }
+         implementation project(':react-native-svg')
+         implementation project(':@react-native-community_netinfo')
+         implementation project(':react-native-webview')
+         implementation  project(':react-native-onesignal')
+         implementation project(':react-native-vector-icons')
+         implementation  project(':react-native-restart')
+         implementation project(':react-native-pdf')
+         implementation project(':react-native-i18n')
+         implementation project(':react-native-fast-image')
+         implementation project(':react-native-device-info')
+         implementation project(':react-native-code-push')
+         implementation  project(':react-native-share')
+         implementation project(':react-native-video')
+         implementation project(':@react-native-community_async-storage')
+         implementation project(':react-native-reanimated')
+         //implementation project(':lottie-react-native')
+         // implementation project(':rn-fetch-blob')
+         //implementation  project(':react-native-image-crop-picker')
+         implementation project(':react-native-gesture-handler')
+         implementation(project(':react-native-maps')){
+         exclude group: 'com.google.android.gms', module: 'play-services-base'
+         exclude group: 'com.google.android.gms', module: 'play-services-maps'
+         }
+         implementation('androidx.annotation:annotation:1.0.0-rc02') {
+             force = true
+         }
+         implementation('androidx.legacy:legacy-support-core-utils:1.0.0-rc02') {
+             force = true
+         }
+         implementation 'com.android.support:appcompat-v7:27.1.0'
+         implementation 'com.android.support:design:27.1.0'
+         implementation 'com.android.support:support-v4:27.1.0'
+
+
         implementation  'com.google.android.gms:play-services-base:+'
         implementation  'com.google.android.gms:play-services-maps:+'
 

@@ -15,14 +15,14 @@ import {
   refetchHomeElements,
   setPlayerId
 } from '../redux/actions';
-import {isIOS} from '../constants';
+import {isIOS, width} from '../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {ONE_SIGNAL_APP_ID} from './../../app.json';
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import CategoryHorizontalWidget from '../components/widgets/CategoryHorizontalWidget';
+import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import validate from 'validate.js';
 import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';

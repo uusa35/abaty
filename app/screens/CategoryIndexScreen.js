@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import CategoriesList from '../components/Lists/CategoriesList';
-import {NavContext} from '../redux/NavContext';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';

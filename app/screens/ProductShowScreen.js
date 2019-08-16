@@ -12,15 +12,16 @@ import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text} from './../constants';
 import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
-import I18n from './../I18n';
+import I18n, {isRTL} from './../I18n';
 import {first} from 'lodash';
 import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
-import {Button} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import {find} from 'lodash';
+import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 
 class ProductShowScreen extends Component {
   constructor(props) {
@@ -223,6 +224,7 @@ class ProductShowScreen extends Component {
             />
           ) : null}
         </View>
+        <ActionBtnWidget />
       </View>
     );
   }
