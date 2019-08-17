@@ -1,22 +1,16 @@
 import React, {useState, useContext} from 'react';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text, width} from '../../../constants';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import {images, text, width} from '../../../constants';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {register, showCountryModal} from '../../../redux/actions';
-import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import FastImage from 'react-native-fast-image';
 
-const RegisterFormWidget = ({userCountryId, player_id}) => {
-  const {colors, country} = useContext(GlobalValuesContext);
+const RegisterFormWidget = ({player_id}) => {
+  const {colors, country, logo} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,13 +19,22 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
   const [password, setPassword] = useState('');
   const [description, setDescription] = useState('');
   return (
-    <ScrollView
-      contentContainerStyle={{width: width - 20}}
+    <KeyboardAwareScrollView
       horizontal={false}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}>
+      contentContainerStyle={{
+        width: width,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+      <FastImage
+        source={{uri: logo}}
+        style={{width: 100, height: 100, margin: 20}}
+        resizeMode="contain"
+        loadingIndicatorSource={images.logo}
+      />
       <Input
         placeholder={I18n.t('name') + '*'}
         inputContainerStyle={{
@@ -176,7 +179,7 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
       />
       <Button
         raised
-        containerStyle={{marginBottom: 10, width: '100%'}}
+        containerStyle={{marginBottom: 10, width: '90%', alignSelf: 'center'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
           borderRadius: 0
@@ -201,7 +204,7 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
           )
         }
       />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
