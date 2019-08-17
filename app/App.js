@@ -132,6 +132,7 @@ class App extends Component<Props> {
             ) : (
               <LoadingView
                 loadingText={I18n.t('loading')}
+                color={colors.btn_bg_theme_color}
                 isLoading={isLoading}
                 logo={logo}
               />

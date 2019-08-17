@@ -1,14 +1,24 @@
-import React from 'react';
+import React , { useState}  from 'react';
 import {View, Text, ActivityIndicator, StyleSheet} from 'react-native';
 import {isIOS, images, text} from './../constants';
 import FastImage from 'react-native-fast-image';
 // import LottieView from 'lottie-react-native';
+//import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import PropTypes from 'prop-types';
 
-const LoadingView = ({logo, loadingText, isLoading}) => {
+const LoadingView = ({logo, loadingText, isLoading , color }) => {
+  const[fill,setFill] = useState(0)
   return (
     <View style={styles.activityContainer}>
-      <ActivityIndicator style={{marginBottom: 15}} />
+      {/*<AnimatedCircularProgress*/}
+      {/*    size={50}*/}
+      {/*    width={10}*/}
+      {/*    fill={fill}*/}
+      {/*    tintColor={color}*/}
+      {/*    style={{ opacity : 0.8 }}*/}
+      {/*    onAnimationComplete={() => isLoading ? setFill(100) : setFill(fill + 10)}*/}
+      {/*    backgroundColor="#3d5875" />*/}
+      <ActivityIndicator style={{marginBottom: 15}} color={color}/>
       {/*<LottieView*/}
       {/*  source={animations.circleLoading_2}*/}
       {/*  autoPlay*/}
@@ -30,7 +40,7 @@ const LoadingView = ({logo, loadingText, isLoading}) => {
 export default LoadingView;
 
 LoadingView.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
   logo: PropTypes.string,
   columns: PropTypes.number
 };
