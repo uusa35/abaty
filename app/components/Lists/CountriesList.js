@@ -7,9 +7,8 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-import {CountriesContext} from '../../redux/CountriesContext';
 import {map} from 'lodash';
-import {hideCountryModal, setCountry, setCurrency} from '../../redux/actions';
+import {hideCountryModal, setCountry} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {images, text} from '../../constants';
 import FastImage from 'react-native-fast-image';
@@ -28,7 +27,6 @@ const CountriesList = ({country, countries, countryModal}) => {
       setVisible(false);
       dispatch(hideCountryModal());
       dispatch(setCountry(currentCountry));
-      // dispatch(setCurrency(currentCurrency));
     }
   }, [visible]);
 

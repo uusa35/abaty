@@ -332,7 +332,15 @@ const BrandStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100,
+          top: 0,
+          left: 0,
+          right: 0
+        }
       }),
       path: `product/:id`
     }
@@ -365,7 +373,15 @@ const ProductStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100,
+          top: 0,
+          left: 0,
+          right: 0
+        }
       }),
       path: `product/:id`
     }
@@ -436,7 +452,15 @@ const CategoryStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100,
+          top: 0,
+          left: 0,
+          right: 0
+        }
       }),
       path: `product/:id`
     },
