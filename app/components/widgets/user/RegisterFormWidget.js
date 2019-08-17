@@ -1,8 +1,14 @@
 import React, {useState, useContext} from 'react';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text, width} from '../../../constants';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {isIOS, text, width} from '../../../constants';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import {register, showCountryModal} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -19,7 +25,13 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
   const [password, setPassword] = useState('');
   const [description, setDescription] = useState('');
   return (
-    <View style={{flex: 1, width: '100%'}}>
+    <ScrollView
+      contentContainerStyle={{width: width - 20}}
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 100}}>
       <Input
         placeholder={I18n.t('name') + '*'}
         inputContainerStyle={{
@@ -189,7 +201,7 @@ const RegisterFormWidget = ({userCountryId, player_id}) => {
           )
         }
       />
-    </View>
+    </ScrollView>
   );
 };
 

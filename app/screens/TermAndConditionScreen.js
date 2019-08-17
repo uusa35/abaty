@@ -32,7 +32,7 @@ const TermAndConditionScreen = ({settings}) => {
           <Text
             style={{
               fontFamily: text.font,
-              fontSize: text.large,
+              fontSize: 25,
               color: colors.header_one_theme_color
             }}>
             {I18n.t('terms')}
@@ -40,7 +40,8 @@ const TermAndConditionScreen = ({settings}) => {
           <Divider style={{backgroundColor: colors.header_one_theme_bg}} />
           <View
             style={{
-              borderWidth: 0.5,
+              marginTop: -50,
+              borderBottomWidth: 1,
               borderColor: 'lightgrey',
               width: '100%',
               paddingLeft: 10,
@@ -73,7 +74,7 @@ const TermAndConditionScreen = ({settings}) => {
           <Text
             style={{
               fontFamily: text.font,
-              fontSize: text.large,
+              fontSize: 25,
               color: colors.header_one_theme_color
             }}>
             {I18n.t('policies')}
@@ -81,7 +82,8 @@ const TermAndConditionScreen = ({settings}) => {
           <Divider style={{backgroundColor: colors.header_one_theme_bg}} />
           <View
             style={{
-              borderWidth: 0.5,
+              marginTop: -50,
+              borderBottomWidth: 1,
               borderColor: 'lightgrey',
               width: '100%',
               paddingLeft: 10,
