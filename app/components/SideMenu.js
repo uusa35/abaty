@@ -328,7 +328,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(SideMeu));
+export default connect(mapStateToProps)(SideMeu);
 
 SideMeu.propTypes = {
   menuBg: PropTypes.string,

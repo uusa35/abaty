@@ -18,7 +18,7 @@ const ServiceInfoWidget = ({element}) => {
   );
 };
 
-export default React.memo(ServiceInfoWidget);
+export default ServiceInfoWidget;
 
 ServiceInfoWidget.propTypes = {
   element: PropTypes.object.isRequired

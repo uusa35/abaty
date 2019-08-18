@@ -166,7 +166,7 @@ const ProductShowScreen = ({
           />
         ) : null}
       </ScrollView>
-      <ActionBtnWidget visible={btnVisible} />
+      <ActionBtnWidget />
     </Fragment>
   );
 };

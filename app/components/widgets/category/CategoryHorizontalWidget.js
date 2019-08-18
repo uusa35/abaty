@@ -85,7 +85,7 @@ const CategoryHorizontalWidget = ({elements, showName, title}) => {
   );
 };
 
-export default React.memo(CategoryHorizontalWidget);
+export default CategoryHorizontalWidget;
 
 CategoryHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

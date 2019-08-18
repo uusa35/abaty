@@ -22,6 +22,7 @@ const ActionBtnWidget = ({visible = false}) => {
       }}>
       <ActionButton
         style={{opacity: 0.6}}
+        renderIcon={() => <Icon name="ios-menu" type="ionicon" color="white" />}
         size={50}
         spacing={20}
         position="left"
