@@ -1,13 +1,14 @@
 import React, {useState, useMemo} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../I18n';
-import {animations, colors, text, width} from './../constants';
+import {colors, text, mainBg} from './../constants';
 // import LottieView from 'lottie-react-native';
 import RNRestart from 'react-native-restart';
 import CodePush from 'react-native-code-push';
+import PropTypes from 'prop-types';
 
-const LoadingOfflineView = ({isConnected}) => {
+const LoadingOfflineView = ({isConnected, mainBg}) => {
   const [connected, setConnected] = useState(isConnected);
 
   useMemo(() => {
@@ -17,20 +18,22 @@ const LoadingOfflineView = ({isConnected}) => {
   }, [connected]);
 
   return (
-    <View
+    <ImageBackground
       style={{
         flex: 1,
-        width: '90%',
+        width: '100%',
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center'
-      }}>
+      }}
+      source={{uri: mainBg}}
+      resizeMode="cover">
       <Button
         onPress={() => setConnected(!connected)}
         title={I18n.t('no_internet')}
         raised
         type="outline"
-        containerStyle={{marginBottom: 20, width: '100%'}}
+        containerStyle={{marginBottom: 20, width: '90%'}}
         titleStyle={{
           fontFamily: text.font,
           fontSize: text.medium,
@@ -39,11 +42,11 @@ const LoadingOfflineView = ({isConnected}) => {
       />
       <Button
         raised
-        icon={{name: 'repeat', type: 'font-awesome', color: 'red'}}
+        icon={{name: 'ios-repeat', type: 'ionicon', color: 'red'}}
         onPress={() => setConnected(!connected)}
         title={I18n.t('retry')}
         type="outline"
-        containerStyle={{marginBottom: 20, width: '100%'}}
+        containerStyle={{marginBottom: 20, width: '90%'}}
         titleStyle={{
           paddingRight: 10,
           paddingLeft: 10,
@@ -58,11 +61,16 @@ const LoadingOfflineView = ({isConnected}) => {
       {/*  loop*/}
       {/*  style={{height: 100}}*/}
       {/*/>*/}
-    </View>
+    </ImageBackground>
   );
 };
 
 export default React.memo(LoadingOfflineView);
+
+LoadingOfflineView.propTypes = {
+  mainBg: PropTypes.string,
+  isConnected: PropTypes.bool
+};
 
 const styles = StyleSheet.create({
   activityContainer: {

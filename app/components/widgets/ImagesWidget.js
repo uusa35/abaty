@@ -29,7 +29,6 @@ const ImagesWidget = ({
 }) => {
   const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
-  console.log('elements', elements);
   return (
     <View style={{flex: 1}}>
       <View>

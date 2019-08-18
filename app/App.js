@@ -158,7 +158,7 @@ class App extends Component<Props> {
             ) : null}
           </View>
         ) : (
-          <LoadingOfflineView />
+          <LoadingOfflineView mainBg={main_bg} />
         )}
       </DispatchContext.Provider>
     );

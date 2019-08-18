@@ -45,11 +45,8 @@ const ProductShowScreen = ({
   return (
     <Fragment>
       <ScrollView
-        style={{borderWidth: 1, marginTop: -100}}
-        contentContainerStyle={{
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-        }}
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
         onScrollEndDrag={e => {
           if (e.nativeEvent.contentOffset.y > scrollVal) {
             setBtnVisible(true);
@@ -92,24 +89,8 @@ const ProductShowScreen = ({
             style={{marginTop: 15}}>
             {product.description ? (
               <View>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 20,
-                    fontFamily: text.font,
-                    paddingBottom: 0
-                  }}>
-                  {I18n.t('description')}
-                </Text>
-                <Text
-                  style={{
-                    textAlign: 'left',
-                    fontSize: 17,
-                    fontFamily: text.font,
-                    padding: 10
-                  }}>
-                  {product.description}
-                </Text>
+                <Text style={styles.title}>{I18n.t('description')}</Text>
+                <Text style={styles.normalText}>{product.description}</Text>
               </View>
             ) : null}
             <ProductInfoWidgetElement
@@ -144,11 +125,13 @@ const ProductShowScreen = ({
               name={product.sku}
               showArrow={false}
             />
-            <ProductInfoWidgetElement
-              elementName="product_weight"
-              name={weight}
-              showArrow={false}
-            />
+            {weight ? (
+              <ProductInfoWidgetElement
+                elementName="product_weight"
+                name={weight}
+                showArrow={false}
+              />
+            ) : null}
             <ProductInfoWidgetElement
               elementName="contactus_order_by_phone"
               name={phone}
@@ -218,4 +201,25 @@ ProductShowScreen.propTypes = {
   token: PropTypes.string
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    marginTop: -100
+  },
+  contentContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  title: {
+    textAlign: 'left',
+    fontSize: 20,
+    fontFamily: text.font,
+    paddingBottom: 0
+  },
+  normalText: {
+    textAlign: 'left',
+    fontSize: 17,
+    fontFamily: text.font,
+    padding: 10
+  }
+});

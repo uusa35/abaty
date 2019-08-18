@@ -268,7 +268,6 @@ export function* startGetDesignerScenario(action) {
 
 export function* startGetProductScenario(action) {
   try {
-    console.log('the action', action);
     const product = yield call(api.getProduct, action.payload);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
       yield all([

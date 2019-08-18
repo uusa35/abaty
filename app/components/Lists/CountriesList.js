@@ -41,13 +41,7 @@ const CountriesList = ({country, countries, countryModal}) => {
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'baseline',
-              padding: 15
-            }}>
+          <View style={styles.titleContainer}>
             <Text style={styles.phoneNo}>{I18n.t('choose_country')}</Text>
             <Icon
               name="close"
@@ -120,5 +114,11 @@ const styles = StyleSheet.create({
     width: 45,
     height: 25,
     marginLeft: 10
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    padding: 15
   }
 });

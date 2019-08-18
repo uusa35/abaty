@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import SocialRowWidget from '../components/widgets/SocialRowWidget';
 import ContactInformationWidget from '../components/widgets/ContactInformationWidget';
 import {isIOS} from '../constants';
-import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {settingsSelector} from '../redux/selectors/collection';
 

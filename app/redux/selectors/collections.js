@@ -19,7 +19,7 @@ const galleries = state => state.galleries;
 const searchParams = state => state.searchParams;
 const comments = state => state.comments;
 const orders = state => state.auth.orders;
-const countries = state => state.auth.countries;
+const countries = state => state.countries;
 
 export const brandsSelector = createSelector(
   brands,

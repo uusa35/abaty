@@ -13,25 +13,9 @@ import {Button} from 'react-native-elements';
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
-    <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
+    <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (
-        <Text
-          style={{
-            fontFamily: text.font,
-            fontSize: text.large,
-            marginBottom: 10,
-            textAlign: 'left',
-            color: colors.header_one_theme_color,
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 1
-            },
-            shadowOpacity: 0.18,
-            shadowRadius: 1.0,
-
-            elevation: 1
-          }}>
+        <Text style={[styles.title, {color: colors.header_one_theme_color}]}>
           {I18n.t('videos')}
         </Text>
       ) : null}
@@ -44,25 +28,14 @@ const VideosWidget = ({videos}) => {
             !isNull(v) ? (
               <WebView
                 key={i}
-                style={{
-                  height: 200,
-                  width: width - 80,
-                  marginRight: 5,
-                  marginLeft: 5
-                }}
+                style={styles.webView}
                 javaScriptEnabled={true}
                 source={{uri: `${appUrlIos}webview?url=${v}`}}
               />
             ) : null
           )
         ) : (
-          <View
-            style={{
-              marginTop: 300,
-              flex: 1,
-              borderWidth: 1,
-              alignSelf: 'center'
-            }}>
+          <View style={styles.noVideosContainer}>
             <Button
               raised
               title={I18n.t('no_videos')}
@@ -83,4 +56,36 @@ VideosWidget.propTypes = {
   videos: PropTypes.object.isRequired
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 30
+  },
+  noVidoesContainer: {
+    marginTop: 300,
+    flex: 1,
+    borderWidth: 1,
+    alignSelf: 'center'
+  },
+  webView: {
+    height: 200,
+    width: width - 80,
+    marginRight: 5,
+    marginLeft: 5
+  },
+  title: {
+    fontFamily: text.font,
+    fontSize: text.large,
+    marginBottom: 10,
+    textAlign: 'left',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1
+  }
+});

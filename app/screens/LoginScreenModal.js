@@ -20,14 +20,7 @@ const LoginScreenModal = ({loginModal}) => {
       visible={loginModal}
       animationType={'slide'}
       onRequestClose={() => setVisible(false)}>
-      <View
-        style={{
-          flex: 0.1,
-          padding: 10,
-          paddingTop: 20,
-          justifyContent: 'center',
-          alignItems: 'flex-start'
-        }}>
+      <View style={styles.iconContainer}>
         <Icon
           name="close"
           size={25}
@@ -35,13 +28,7 @@ const LoginScreenModal = ({loginModal}) => {
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
         />
       </View>
-      <View
-        style={{
-          flex: 0.9,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: -50
-        }}>
+      <View style={styles.formContainer}>
         <LoginForm />
       </View>
     </Modal>
@@ -56,4 +43,18 @@ LoginScreenModal.propTypes = {
   logo: PropTypes.string
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  iconContainer: {
+    flex: 0.1,
+    padding: 10,
+    paddingTop: 20,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  formContainer: {
+    flex: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -50
+  }
+});
