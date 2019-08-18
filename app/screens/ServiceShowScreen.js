@@ -173,7 +173,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ServiceShowScreen);
+export default connect(mapStateToProps)(React.memo(ServiceShowScreen));
 
 ServiceShowScreen.propTypes = {
   services: PropTypes.array.isRequired,
