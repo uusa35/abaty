@@ -10,10 +10,9 @@ import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 
-const CategoriesList = ({elements, columns}) => {
+const CategoriesList = ({elements, columns, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
-
+  console.log('render CategoryList');
   useMemo(() => {
     if (refresh) {
       dispatch(refetchHomeCategories());

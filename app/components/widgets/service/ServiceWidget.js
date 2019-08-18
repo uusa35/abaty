@@ -93,7 +93,7 @@ const ServiceWidget = ({service, showName = false}) => {
   );
 };
 
-export default ServiceWidget;
+export default React.memo(ServiceWidget);
 
 ServiceWidget.propTypes = {
   service: PropTypes.object.isRequired,

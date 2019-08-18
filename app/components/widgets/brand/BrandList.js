@@ -19,15 +19,8 @@ const BrandList = ({elements, showName = false}) => {
   [refresh, setRefresh] = useState(false);
   [page, setPage] = useState(2);
   [items, setItems] = useState(elements);
-
   useMemo(() => {
     if (isLoading === true) {
-      // return axiosInstance(`product`, {params: {page}})
-      //     .then(r => {
-      //         setItems(items.concat(r.data));
-      //         setIsLoading(!isLoading);
-      //     })
-      //     .catch(e => console.log('the e', e));
     }
   }, [page]);
 
@@ -36,9 +29,7 @@ const BrandList = ({elements, showName = false}) => {
   }, [isLoading]);
 
   useMemo(() => {
-    console.log('refreshing');
     if (refresh === true) {
-      // for now i don't know what products to fetch
       setRefresh(false);
     }
   }, [refresh]);

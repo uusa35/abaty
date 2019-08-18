@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {Fragment, useState, useMemo, useContext} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -21,6 +21,7 @@ import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import {
+  colorsSelector,
   phoneSelector,
   productSelector,
   tokenSelector
@@ -37,10 +38,10 @@ const ProductShowScreen = ({
   size_chart,
   weight,
   homeProducts,
-  token
+  token,
+  colors
 }) => {
   const [refresh, setRefresh] = useState(false);
-
   return (
     <Fragment>
       <ScrollView
@@ -62,6 +63,7 @@ const ProductShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <ImagesWidget
+          colors={colors}
           elements={product.images
             .concat({id: product.id, large: product.large})
             .reverse()}
@@ -156,7 +158,7 @@ const ProductShowScreen = ({
         </View>
         {validate.isObject(product.videoGroup) &&
         !validate.isEmpty(product.videoGroup) ? (
-          <VideosWidget videos={product.videoGroup} />
+          <VideosWidget videos={product.videoGroup} colors={colors} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget
@@ -181,7 +183,8 @@ function mapStateToProps(state) {
     weight: state.settings.weight,
     homeProducts: state.homeProducts,
     token: tokenSelector(state),
-    cart: cartSelector(state)
+    cart: cartSelector(state),
+    colors: colorsSelector(state)
   };
 }
 
@@ -194,10 +197,7 @@ ProductShowScreen.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    marginTop: -100
-  },
+  container: {},
   contentContainer: {
     justifyContent: 'flex-start',
     alignItems: 'center'

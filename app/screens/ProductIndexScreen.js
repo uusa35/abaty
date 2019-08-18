@@ -7,11 +7,14 @@ import {
   productsSelector,
   searchParamsSelector
 } from '../redux/selectors/collections';
+import {colorsSelector} from '../redux/selectors/collection';
 
-const ProductIndexScreen = ({products, searchParams}) => {
+const ProductIndexScreen = ({products, searchParams, dispatch, colors}) => {
   return (
     <ProductList
       products={products}
+      dispatch={dispatch}
+      colros={colors}
       showName={true}
       searchElements={searchParams}
     />
@@ -21,7 +24,8 @@ const ProductIndexScreen = ({products, searchParams}) => {
 function mapStateToProps(state) {
   return {
     products: productsSelector(state),
-    searchParams: searchParamsSelector(state)
+    searchParams: searchParamsSelector(state),
+    colors: colorsSelector(state)
   };
 }
 

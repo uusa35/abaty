@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -8,18 +8,13 @@ import {
   FlatList
 } from 'react-native';
 import ServiceWidget from './ServiceWidget';
-import {CountryContext} from '../../../redux/CountryContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
-import {NavContext} from '../../../redux/NavContext';
 import I18n, {isRTL} from './../../../I18n';
 import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
-import {filter, has} from 'lodash';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {filter} from 'lodash';
 import validate from 'validate.js';
-import {getSearchServices} from '../../../redux/actions';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ServiceList = ({
   elements,
@@ -29,10 +24,9 @@ const ServiceList = ({
   showTitle = false,
   showMore = true,
   title,
-  searchElements
+  searchElements,
+  colors
 }) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
@@ -63,7 +57,7 @@ const ServiceList = ({
   useMemo(() => {
     if (refresh && showMore) {
       // for now i don't know what products to fetch
-      console.log('the current Params', params);
+      // console.log('the current Params', params);
       setRefresh(false);
       setIsLoading(false);
       // dispatch(getSearchServices(params));
@@ -215,7 +209,7 @@ const ServiceList = ({
   );
 };
 
-export default React.memo(ServiceList);
+export default ServiceList;
 
 ServiceList.propTypes = {
   elements: PropTypes.array.isRequired,

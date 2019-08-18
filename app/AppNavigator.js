@@ -189,7 +189,7 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'white',
           zIndex: 100
         }
       }),
@@ -208,7 +208,7 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'white',
           zIndex: 100
         }
       }),
@@ -326,7 +326,7 @@ const BrandStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'white',
           borderColor: 'transparent',
           zIndex: 100
         }
@@ -364,7 +364,7 @@ const ProductStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'white',
           zIndex: 100
         }
       }),
@@ -439,7 +439,7 @@ const CategoryStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'transparent',
+          backgroundColor: 'white',
           zIndex: 100
         }
       }),

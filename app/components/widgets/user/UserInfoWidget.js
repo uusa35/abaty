@@ -27,9 +27,9 @@ const UserInfoWidget = ({
   images,
   latitude,
   longitude,
-  thumb
+  thumb,
+  colors
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
       <Text
@@ -352,6 +352,7 @@ const UserInfoWidget = ({
       ) : null}
       {!validate.isEmpty(images) ? (
         <ImagesWidget
+          colors={colors}
           elements={images}
           name={slug}
           showLabels={false}
@@ -376,7 +377,9 @@ const UserInfoWidget = ({
 
 export default UserInfoWidget;
 
-UserInfoWidget.propTypes = {};
+UserInfoWidget.propTypes = {
+  colors: PropTypes.object.isRequired
+};
 
 const styles = StyleSheet.create({
   mainTitle: {

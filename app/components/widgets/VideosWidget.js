@@ -10,9 +10,8 @@ import validate from 'validate.js';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {Button} from 'react-native-elements';
 
-const VideosWidget = ({videos}) => {
-  const {colors} = useContext(GlobalValuesContext);
-  console.log('Rendering Video');
+const VideosWidget = ({videos, colors}) => {
+  console.log('Rendering VideosWidget');
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (

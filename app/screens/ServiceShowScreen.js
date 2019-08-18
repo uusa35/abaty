@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text, height} from './../constants';
+import {width, text} from './../constants';
 import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
 import {View} from 'react-native-animatable';
 import I18n from './../I18n';
@@ -20,6 +20,7 @@ import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import {servicesSelector} from '../redux/selectors/collections';
 import {
+  colorsSelector,
   mobileSelector,
   phoneSelector,
   serviceSelector,
@@ -27,15 +28,21 @@ import {
 } from '../redux/selectors/collection';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 
-const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
+const ServiceShowScreen = ({
+  service,
+  phone,
+  mobile,
+  dispatch,
+  token,
+  colors
+}) => {
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
-
+  console.log('render ServiceShowScreen');
   return (
     <Fragment>
       <ScrollView
-        style={{borderWidth: 1, marginTop: -(height * 0.1)}}
         contentContainerStyle={{
           justifyContent: 'flex-start',
           alignItems: 'center'
@@ -64,6 +71,7 @@ const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <ImagesWidget
+          colors={colors}
           elements={service.images
             .concat({id: service.id, large: service.large})
             .reverse()}
@@ -155,7 +163,7 @@ const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
         </View>
         {validate.isObject(service.videoGroup) &&
         !validate.isEmpty(service.videoGroup) ? (
-          <VideosWidget videos={service.videoGroup} />
+          <VideosWidget videos={service.videoGroup} colors={colors} />
         ) : null}
       </ScrollView>
       <ActionBtnWidget />
@@ -169,7 +177,8 @@ function mapStateToProps(state) {
     phone: phoneSelector(state),
     mobile: mobileSelector(state),
     services: servicesSelector(state),
-    token: tokenSelector(state)
+    token: tokenSelector(state),
+    colors: colorsSelector(state)
   };
 }
 

@@ -9,14 +9,19 @@ import {
   commercialsSelector
 } from '../redux/selectors/collections';
 
-const CategoryIndexScreen = ({categories, commercials, show_commercials}) => {
+const CategoryIndexScreen = ({
+  categories,
+  commercials,
+  show_commercials,
+  dispatch
+}) => {
   return (
     <View style={{flex: 1}}>
       <View
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={categories} columns={1} />
+        <CategoriesList elements={categories} columns={1} dispatch={dispatch} />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>

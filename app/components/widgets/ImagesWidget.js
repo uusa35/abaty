@@ -1,4 +1,4 @@
-import React, {useContext, lazy} from 'react';
+import React, {useContext} from 'react';
 import {
   I18nManager,
   StyleSheet,
@@ -25,11 +25,11 @@ const ImagesWidget = ({
   showLabels = true,
   showTitle = false,
   height = 200,
-  width = 200
+  width = 200,
+  colors
 }) => {
   const {navigate} = useNavigation();
-  const {colors} = useContext(GlobalValuesContext);
-  console.log('Render images', elements);
+  console.log('Render ImageesWidget');
   return (
     <View style={{flex: 1}}>
       <View>
@@ -105,7 +105,8 @@ export default React.memo(ImagesWidget);
 ImagesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  colors: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -8,18 +8,14 @@ import {
   FlatList
 } from 'react-native';
 import ProductWidget from './ProductWidget';
-import {CountryContext} from '../../../redux/CountryContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
-import {NavContext} from '../../../redux/NavContext';
 import I18n, {isRTL} from './../../../I18n';
 import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
-import {filter, has} from 'lodash';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {filter} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductList = ({
   products,
@@ -30,11 +26,10 @@ const ProductList = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements
+  searchElements,
+  colors,
+  dispatch
 }) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
-  const {navigation} = useContext(NavContext);
   [elements, setElements] = useState(products);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
@@ -43,6 +38,8 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
+
+  console.log('render ProductList');
 
   useMemo(() => {
     if (isLoading === true && showMore) {
@@ -220,12 +217,14 @@ const ProductList = ({
   );
 };
 
-export default ProductList;
+export default React.memo(ProductList);
 
 ProductList.propTypes = {
   products: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
+  colors: PropTypes.object
 };
 
 const styles = StyleSheet.create({});

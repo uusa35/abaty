@@ -12,13 +12,15 @@ import {
   searchParamsSelector,
   servicesSelector
 } from '../redux/selectors/collections';
+import {colorsSelector} from '../redux/selectors/collection';
 
-const ServiceIndexScreen = ({services, searchParams}) => {
+const ServiceIndexScreen = ({services, searchParams, colors, dispatch}) => {
   return (
     <ServiceList
       elements={services}
       searchElements={searchParams}
       showName={true}
+      colors={colors}
     />
   );
 };
@@ -26,7 +28,8 @@ const ServiceIndexScreen = ({services, searchParams}) => {
 function mapStateToProps(state) {
   return {
     services: servicesSelector(state),
-    searchParams: searchParamsSelector(state)
+    searchParams: searchParamsSelector(state),
+    colors: colorsSelector(state)
   };
 }
 

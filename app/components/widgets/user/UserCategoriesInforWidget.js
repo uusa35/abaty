@@ -19,10 +19,10 @@ import validate from 'validate.js';
 const UserCategoriesInfoWidget = ({
   elements,
   showTitle = true,
-  showArrow = true
+  showArrow = true,
+  colors,
+  dispatch
 }) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
   return (
     <ScrollView
       horizontal={false}
@@ -122,7 +122,8 @@ const UserCategoriesInfoWidget = ({
 export default UserCategoriesInfoWidget;
 
 UserCategoriesInfoWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
+  colors: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

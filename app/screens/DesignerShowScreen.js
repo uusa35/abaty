@@ -12,16 +12,17 @@ import PropTypes from 'prop-types';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import {getDesigner} from '../redux/actions';
 import {
+  colorsSelector,
   commentModalSelector,
-  designerSelector
+  designerSelector,
+  guestSelector,
+  logoSelector
 } from '../redux/selectors/collection';
 import {
   commentsSelector,
   searchParamsSelector
 } from '../redux/selectors/collections';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import CommentScreenModal from './CommentScreenModal';
-import {DispatchContext} from '../redux/DispatchContext';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
 import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
@@ -29,11 +30,17 @@ import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import I18n from '../I18n';
 
-const DesignerShowScreen = ({user, commentModal, comments}) => {
-  const {colors, guest, logo} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+const DesignerShowScreen = ({
+  user,
+  commentModal,
+  comments,
+  dispatch,
+  colors,
+  logo,
+  guest
+}) => {
+  console.log('the colors', colors);
   const [refresh, setRefresh] = useState(false);
-
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
     : user.productGroupCategories.concat(user.productCategories);
@@ -127,6 +134,8 @@ const DesignerShowScreen = ({user, commentModal, comments}) => {
             renderScene={SceneMap({
               products: () => (
                 <ProductList
+                  colors={colors}
+                  dispatch={dispatch}
                   products={user.productGroup.concat(user.products)}
                   showSearch={false}
                   showTitle={true}
@@ -136,10 +145,16 @@ const DesignerShowScreen = ({user, commentModal, comments}) => {
                 />
               ),
               categories: () => (
-                <UserCategoriesInfoWidget elements={collectedCatetories} />
+                <UserCategoriesInfoWidget
+                  elements={collectedCatetories}
+                  colors={colors}
+                  dispatch={dispatch}
+                />
               ),
               info: () => (
                 <UserInfoWidget
+                  dispatch={dispatch}
+                  colors={colors}
                   mobile={user.mobile}
                   phone={user.phone}
                   slug={user.slug}
@@ -159,7 +174,9 @@ const DesignerShowScreen = ({user, commentModal, comments}) => {
                   thumb={user.thumb}
                 />
               ),
-              videos: () => <VideosWidget videos={user.videoGroup} />
+              videos: () => (
+                <VideosWidget videos={user.videoGroup} colors={colors} />
+              )
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
             onIndexChange={index => setIndex(index)}
@@ -182,7 +199,10 @@ function mapStateToProps(state) {
     user: designerSelector(state),
     comments: commentsSelector(state),
     commentModal: commentModalSelector(state),
-    searchParams: searchParamsSelector(state)
+    searchParams: searchParamsSelector(state),
+    colors: colorsSelector(state),
+    logo: logoSelector(state),
+    guest: guestSelector(state)
   };
 }
 

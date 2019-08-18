@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
 import {setProducts} from '../redux/actions/sagas/requestSagas';
+import {productsSelector} from '../redux/selectors/collections';
+import {colorsSelector} from '../redux/selectors/collection';
 
 class ProductIndexAllScreen extends Component {
   constructor(props) {
@@ -18,9 +20,12 @@ class ProductIndexAllScreen extends Component {
   }
 
   render() {
-    const {products} = this.props;
+    console.log('render ProductIndexAll');
+    const {products, colors, dispatch} = this.props;
     return (
       <ProductList
+        colors={colors}
+        dispatch={dispatch}
         products={products}
         showName={true}
         searchElements={{}}
@@ -34,7 +39,8 @@ class ProductIndexAllScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.products
+    products: productsSelector(state),
+    colors: colorsSelector(state)
   };
 }
 
