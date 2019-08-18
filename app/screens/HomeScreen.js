@@ -32,6 +32,23 @@ import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
+import {
+  brandsSelector,
+  categoriesSelector,
+  celebritiesSelector,
+  celebrtiesSelector,
+  designersSelector,
+  homeProductsSelector,
+  servicesSelector,
+  slidesSelector,
+  splashesSelector
+} from '../redux/selectors/collections';
+import {
+  colorsSelector,
+  designerSelector,
+  langSelector,
+  logoSelector
+} from '../redux/selectors/collection';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -251,21 +268,21 @@ class HomeScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
-    brands: state.brands,
-    designers: state.designers,
-    celebrities: state.celebrities,
-    homeProducts: state.homeProducts,
+    categories: categoriesSelector(state),
+    brands: brandsSelector(state),
+    designers: designersSelector(state),
+    celebrities: celebritiesSelector(state),
+    homeProducts: homeProductsSelector(state),
     commercials: state.commercials,
-    slides: state.slides,
-    splashes: state.splashes,
-    logo: state.settings.logo,
+    slides: slidesSelector(state),
+    splashes: splashesSelector(state),
+    logo: logoSelector(state),
     splash_on: state.settings.splash_on,
     show_commercials: state.settings.show_commercials,
     network: state.network,
-    colors: state.settings.colors,
-    lang: state.lang,
-    services: state.services
+    colors: colorsSelector(state),
+    lang: langSelector(state),
+    services: servicesSelector(state)
   };
 }
 

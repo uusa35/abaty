@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 
 const designers = state => state.designers;
+const celebrities = state => state.celebrities;
 const cart = state => state.cart;
 const commercials = state => state.commercials;
 const slides = state => state.slides;
@@ -18,6 +19,7 @@ const galleries = state => state.galleries;
 const searchParams = state => state.searchParams;
 const comments = state => state.comments;
 const orders = state => state.auth.orders;
+const countries = state => state.auth.countries;
 
 export const brandsSelector = createSelector(
   brands,
@@ -80,6 +82,11 @@ export const designersSelector = createSelector(
   designers,
   designers => designers
 );
+
+export const celebritiesSelector = createSelector(
+  celebrities,
+  celebrities => celebrities
+);
 export const commentsSelector = createSelector(
   comments,
   comments => comments
@@ -88,6 +95,11 @@ export const commentsSelector = createSelector(
 export const ordersSelector = createSelector(
   orders,
   orders => orders
+);
+
+export const countriesSelector = createSelector(
+  countries,
+  countries => countries
 );
 
 export const searchParamsSelector = createSelector(

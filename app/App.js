@@ -16,6 +16,16 @@ import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
 import LoginScreenModal from './screens/LoginScreenModal';
+import {
+  colorsSelector,
+  countrySelector,
+  currencySelector,
+  guestSelector,
+  langSelector,
+  logoSelector,
+  tokenSelector
+} from './redux/selectors/collection';
+import {cartSelector, countriesSelector} from './redux/selectors/collections';
 
 type Props = {};
 class App extends Component<Props> {
@@ -74,7 +84,8 @@ class App extends Component<Props> {
       token,
       guest,
       network,
-      loginModal
+      loginModal,
+      main_bg
     } = this.props;
     const cartLength = cart.length;
     if (!bootStrapped) {
@@ -83,6 +94,7 @@ class App extends Component<Props> {
           loadingText={I18n.t('loading')}
           isLoading={isLoading}
           logo={logo}
+          mainBg={main_bg}
         />
       );
     }
@@ -119,6 +131,7 @@ class App extends Component<Props> {
                     colors={colors}
                     logo={logo}
                     loginModal={loginModal}
+                    mainBg={main_bg}
                   />
                 ) : null}
                 {validate.isBoolean(countryModal) && countryModal ? (
@@ -157,19 +170,20 @@ function mapStateToProps(state) {
     bootStrapped: state.bootStrapped,
     message: state.message,
     isLoading: state.isLoading,
-    country: state.country,
-    countries: state.countries,
+    country: countrySelector(state),
+    countries: countriesSelector(state),
     countryModal: state.countryModal,
-    currency: state.currency,
-    lang: state.lang,
-    cart: state.cart,
+    currency: currencySelector(state),
+    lang: langSelector(state),
+    cart: cartSelector(state),
     total: state.total,
     grossTotal: state.grossTotal,
     network: state.network,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    token: state.token,
-    guest: state.guest,
+    colors: colorsSelector(state),
+    logo: logoSelector(state),
+    main_bg: state.settings.main_bg,
+    token: tokenSelector(state),
+    guest: guestSelector(state),
     loginModal: state.loginModal
   };
 }
