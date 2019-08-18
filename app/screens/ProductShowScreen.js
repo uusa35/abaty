@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useMemo} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -42,19 +42,14 @@ const ProductShowScreen = ({
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
+
   return (
     <Fragment>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
-        onScrollEndDrag={e => {
-          if (e.nativeEvent.contentOffset.y > scrollVal) {
-            setBtnVisible(true);
-          } else {
-            setBtnVisible(false);
-          }
-        }}
-        onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
+        // onScrollEndDrag={e => setBtnVisible(e.nativeEvent.contentOffset.y > scrollVal)}
+        // onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -175,7 +170,7 @@ const ProductShowScreen = ({
           />
         ) : null}
       </ScrollView>
-      {btnVisible ? <ActionBtnWidget /> : null}
+      <ActionBtnWidget visible={btnVisible} />
     </Fragment>
   );
 };
@@ -193,7 +188,8 @@ function mapStateToProps(state) {
     cart: cartSelector(state)
   };
 }
-export default connect(mapStateToProps)(React.memo(ProductShowScreen));
+
+export default connect(mapStateToProps)(ProductShowScreen);
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,

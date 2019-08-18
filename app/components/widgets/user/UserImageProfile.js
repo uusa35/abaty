@@ -36,7 +36,6 @@ const UserImageProfile = ({
 
   useMemo(() => {
     if (rating !== currentRating) {
-      console.log('fired Rating');
       return dispatch(rateUser({value: rating, member_id}));
     }
   }, [rating]);
@@ -146,7 +145,7 @@ const UserImageProfile = ({
   );
 };
 
-export default React.memo(UserImageProfile);
+export default UserImageProfile;
 
 UserImageProfile.propTypes = {
   medium: PropTypes.string.isRequired,

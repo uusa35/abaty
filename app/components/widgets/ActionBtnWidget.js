@@ -7,7 +7,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
 import {text} from './../../constants';
 
-const ActionBtnWidget = () => {
+const ActionBtnWidget = ({visible = false}) => {
   const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -55,7 +55,7 @@ const ActionBtnWidget = () => {
   );
 };
 
-export default React.memo(ActionBtnWidget);
+export default ActionBtnWidget;
 
 const styles = StyleSheet.create({
   actionButtonIcon: {

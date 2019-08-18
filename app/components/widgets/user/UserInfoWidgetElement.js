@@ -73,7 +73,7 @@ const UserInfoWidgetElement = ({
   );
 };
 
-export default React.memo(UserInfoWidgetElement);
+export default UserInfoWidgetElement;
 
 UserInfoWidgetElement.propTypes = {
   element: PropTypes.string.isRequired,

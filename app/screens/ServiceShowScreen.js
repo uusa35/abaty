@@ -58,8 +58,8 @@ const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
             setBtnVisible(false);
           }
         }}
-        onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
-        automaticallyAdjustContentInsets={false}
+        // onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
+        // automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
@@ -158,7 +158,7 @@ const ServiceShowScreen = ({service, phone, mobile, dispatch, token}) => {
           <VideosWidget videos={service.videoGroup} />
         ) : null}
       </ScrollView>
-      {btnVisible ? <ActionBtnWidget /> : null}
+      <ActionBtnWidget />
     </Fragment>
   );
 };

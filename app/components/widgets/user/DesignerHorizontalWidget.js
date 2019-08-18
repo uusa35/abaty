@@ -86,7 +86,7 @@ const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
   );
 };
 
-export default React.memo(DesignerHorizontalWidget);
+export default DesignerHorizontalWidget;
 
 DesignerHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

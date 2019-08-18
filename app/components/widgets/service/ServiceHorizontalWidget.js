@@ -47,7 +47,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
   );
 };
 
-export default React.memo(ServiceHorizontalWidget);
+export default ServiceHorizontalWidget;
 
 ServiceHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

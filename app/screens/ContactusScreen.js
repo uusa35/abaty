@@ -8,6 +8,7 @@ import validate from 'validate.js';
 import {settingsSelector} from '../redux/selectors/collection';
 
 const ContactusScreen = ({settings}) => {
+  console.log('parentContactus screen');
   return (
     <ScrollView
       contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
@@ -15,7 +16,7 @@ const ContactusScreen = ({settings}) => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}>
+      contentInset={{bottom: 150}}>
       {!validate.isEmpty(settings) ? (
         <View>
           <SocialRowWidget settings={settings} />
@@ -32,4 +33,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(ContactusScreen));
+export default connect(mapStateToProps)(ContactusScreen);

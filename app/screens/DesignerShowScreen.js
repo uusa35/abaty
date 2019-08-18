@@ -7,14 +7,8 @@ import HeaderImageScrollView, {
 import {text, width} from '../constants';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
-import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import UserImageProfile from '../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
-import VideosWidget from '../components/widgets/VideosWidget';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import I18n from './../I18n';
-import ProductList from '../components/widgets/product/ProductList';
-import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import {getDesigner} from '../redux/actions';
 import {
@@ -28,10 +22,19 @@ import {
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import CommentScreenModal from './CommentScreenModal';
 import {DispatchContext} from '../redux/DispatchContext';
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+import ProductList from '../components/widgets/product/ProductList';
+import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
+import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
+import VideosWidget from '../components/widgets/VideosWidget';
+import I18n from '../I18n';
 
-const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
+const DesignerShowScreen = ({user, commentModal, comments}) => {
   const {colors, guest, logo} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
+  const [refresh, setRefresh] = useState(false);
+  console.log('reRedering DesignerShowScreen');
+
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
     : user.productGroupCategories.concat(user.productCategories);
@@ -42,8 +45,6 @@ const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
     {key: 'info', title: I18n.t('information').substring(0, 10)},
     {key: 'videos', title: I18n.t('videos')}
   ]);
-  const [refresh, setRefresh] = useState(false);
-  const [categories, setCategories] = useState(collectedCatetories);
 
   useMemo(() => {
     if (refresh) {
@@ -56,14 +57,6 @@ const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
       );
     }
   }, [refresh]);
-
-  useMemo(() => {
-    return false;
-  }, [index]);
-
-  useMemo(() => {
-    return false;
-  }, [categories]);
 
   return (
     <HeaderImageScrollView
@@ -144,7 +137,7 @@ const DesignerShowScreen = ({user, searchParams, commentModal, comments}) => {
                 />
               ),
               categories: () => (
-                <UserCategoriesInfoWidget elements={categories} />
+                <UserCategoriesInfoWidget elements={collectedCatetories} />
               ),
               info: () => (
                 <UserInfoWidget

@@ -43,7 +43,7 @@ const FixedCommercialSliderWidget = ({sliders}) => {
   );
 };
 
-export default React.memo(FixedCommercialSliderWidget);
+export default FixedCommercialSliderWidget;
 
 FixedCommercialSliderWidget.propTypes = {
   sliders: PropTypes.array

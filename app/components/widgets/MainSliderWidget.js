@@ -29,7 +29,7 @@ const MainSliderWidget = ({slides}) => {
   );
 };
 
-export default React.memo(MainSliderWidget);
+export default MainSliderWidget;
 
 MainSliderWidget.propTypes = {
   slides: PropTypes.array.isRequired

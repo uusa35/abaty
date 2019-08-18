@@ -48,7 +48,7 @@ const ProductHorizontalWidget = ({elements, showName, title}) => {
   );
 };
 
-export default React.memo(ProductHorizontalWidget);
+export default ProductHorizontalWidget;
 
 ProductHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

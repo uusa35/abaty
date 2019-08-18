@@ -58,7 +58,7 @@ const ProductInfoWidgetElement = ({
   );
 };
 
-export default React.memo(ProductInfoWidgetElement);
+export default ProductInfoWidgetElement;
 
 ProductInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,

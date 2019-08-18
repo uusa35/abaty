@@ -374,7 +374,7 @@ const UserInfoWidget = ({
   );
 };
 
-export default React.memo(UserInfoWidget);
+export default UserInfoWidget;
 
 UserInfoWidget.propTypes = {};
 

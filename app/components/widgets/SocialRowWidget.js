@@ -3,9 +3,9 @@ import {Linking, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {View} from 'react-native-animatable';
 
-const SocialRowWidget = props => {
+const SocialRowWidget = ({settings}) => {
   const [size, setSize] = useState(25);
-  const {settings} = props;
+  console.log('the SCroll Row Widget Rederner');
   return (
     <View animation="bounceIn" easing="ease-out" style={styles.container}>
       <View style={styles.rowWrapper}>

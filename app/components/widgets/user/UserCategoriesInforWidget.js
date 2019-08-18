@@ -119,7 +119,7 @@ const UserCategoriesInfoWidget = ({
   );
 };
 
-export default React.memo(UserCategoriesInfoWidget);
+export default UserCategoriesInfoWidget;
 
 UserCategoriesInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired

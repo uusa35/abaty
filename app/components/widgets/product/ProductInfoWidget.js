@@ -20,6 +20,7 @@ import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
 const ProductInfoWidget = ({element}) => {
+  console.log('Render ProductINfoWidget');
   return (
     <ScrollView
       contentContainerStyle={{
@@ -33,7 +34,7 @@ const ProductInfoWidget = ({element}) => {
   );
 };
 
-export default React.memo(ProductInfoWidget);
+export default ProductInfoWidget;
 
 ProductInfoWidget.propTypes = {
   element: PropTypes.object.isRequired

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, lazy} from 'react';
 import {
   I18nManager,
   StyleSheet,
@@ -29,6 +29,7 @@ const ImagesWidget = ({
 }) => {
   const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
+  console.log('Render images', elements);
   return (
     <View style={{flex: 1}}>
       <View>

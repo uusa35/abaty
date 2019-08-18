@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState, useMemo} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../constants';
 import {appUrlIos} from '../../env';
@@ -12,6 +12,7 @@ import {Button} from 'react-native-elements';
 
 const VideosWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
+  console.log('Rendering Video');
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (
@@ -28,7 +29,12 @@ const VideosWidget = ({videos}) => {
             !isNull(v) ? (
               <WebView
                 key={i}
-                style={styles.webView}
+                style={{
+                  height: 200,
+                  width: width - 80,
+                  marginRight: 5,
+                  marginLeft: 5
+                }}
                 javaScriptEnabled={true}
                 source={{uri: `${appUrlIos}webview?url=${v}`}}
               />
@@ -62,17 +68,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30
   },
-  noVidoesContainer: {
+  noVideosContainer: {
     marginTop: 300,
     flex: 1,
     borderWidth: 1,
     alignSelf: 'center'
-  },
-  webView: {
-    height: 200,
-    width: width - 80,
-    marginRight: 5,
-    marginLeft: 5
   },
   title: {
     fontFamily: text.font,

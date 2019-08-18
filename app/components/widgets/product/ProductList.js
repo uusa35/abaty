@@ -54,7 +54,7 @@ const ProductList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => console.log('the e from ProductList', e));
+        .catch(e => e);
     }
   }, [page]);
 
@@ -220,7 +220,7 @@ const ProductList = ({
   );
 };
 
-export default React.memo(ProductList);
+export default ProductList;
 
 ProductList.propTypes = {
   products: PropTypes.array.isRequired,
