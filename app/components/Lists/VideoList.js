@@ -106,7 +106,7 @@ const VideoList = ({
   );
 };
 
-export default React.memo(VideoList);
+export default VideoList;
 
 VideoList.propTypes = {
   elements: PropTypes.array.isRequired,

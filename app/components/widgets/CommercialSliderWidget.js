@@ -40,7 +40,7 @@ const CommercialSliderWidget = ({commercials}) => {
   );
 };
 
-export default React.memo(CommercialSliderWidget);
+export default CommercialSliderWidget;
 
 const styles = StyleSheet.create({
   container: {

@@ -28,7 +28,7 @@ const VideoWidget = ({element, height = 120, width = 180}) => {
   );
 };
 
-export default React.memo(VideoWidget);
+export default VideoWidget;
 
 const styles = StyleSheet.create({
   title: {

@@ -40,16 +40,12 @@ const ProductShowScreen = ({
   token
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const [scrollVal, setScrollVal] = useState(0);
-  const [btnVisible, setBtnVisible] = useState(false);
 
   return (
     <Fragment>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
-        // onScrollEndDrag={e => setBtnVisible(e.nativeEvent.contentOffset.y > scrollVal)}
-        // onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl
             refreshing={refresh}

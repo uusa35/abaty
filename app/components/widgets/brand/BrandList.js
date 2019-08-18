@@ -64,7 +64,7 @@ const BrandList = ({elements, showName = false}) => {
   );
 };
 
-export default React.memo(BrandList);
+export default BrandList;
 
 BrandList.propTypes = {
   elements: PropTypes.array.isRequired,

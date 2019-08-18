@@ -51,7 +51,7 @@ const BrandWidget = ({
   );
 };
 
-export default React.memo(BrandWidget);
+export default BrandWidget;
 
 BrandWidget.propTypes = {
   element: PropTypes.object.isRequired

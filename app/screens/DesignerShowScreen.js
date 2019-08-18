@@ -33,7 +33,6 @@ const DesignerShowScreen = ({user, commentModal, comments}) => {
   const {colors, guest, logo} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const [refresh, setRefresh] = useState(false);
-  console.log('reRedering DesignerShowScreen');
 
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
