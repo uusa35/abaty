@@ -130,4 +130,4 @@ const LoginForm = ({showBtns = false}) => {
   );
 };
 
-export default React.memo(LoginForm);
+export default LoginForm;

@@ -8,24 +8,15 @@ import LoginForm from '../components/widgets/LoginForm';
 
 const LoginScreenModal = ({loginModal}) => {
   const {dispatch} = useContext(DispatchContext);
-  const [visible, setVisible] = useState(loginModal);
-  useMemo(() => {
-    if (!visible) {
-      return dispatch(hideLoginModal());
-    }
-  }, [visible]);
+
   return (
-    <Modal
-      transparent={false}
-      visible={loginModal}
-      animationType={'slide'}
-      onRequestClose={() => setVisible(false)}>
+    <Modal transparent={false} visible={loginModal} animationType={'slide'}>
       <View style={styles.iconContainer}>
         <Icon
           name="close"
           size={25}
           onPress={() => dispatch(hideLoginModal())}
-          hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
         />
       </View>
       <View style={styles.formContainer}>

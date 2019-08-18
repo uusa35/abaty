@@ -100,7 +100,7 @@ const ImagesWidget = ({
   );
 };
 
-export default ImagesWidget;
+export default React.memo(ImagesWidget);
 
 ImagesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
