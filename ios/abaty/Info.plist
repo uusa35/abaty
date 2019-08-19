@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>CodePushDeploymentKey</key>
 	<string>vRgidQDMomBHssgVzsShdcmWcNtk0b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -65,11 +65,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your camera</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location Always And When In Use Usage Description</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location Always Usage Description</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your current location.</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

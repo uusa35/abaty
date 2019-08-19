@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -38,11 +38,13 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
+  const [shouldUpdate, useShouldUpdate] = useState(() => elements !== products);
 
   console.log('render ProductList');
 
   useMemo(() => {
-    if (isLoading === true && showMore) {
+    if (isLoading && showMore) {
+      console.log('isloading true and showmore');
       return axiosInstance(`search/product?page=${page}`, {
         params
       })
@@ -56,11 +58,17 @@ const ProductList = ({
   }, [page]);
 
   useMemo(() => {
-    isLoading ? setPage(page + 1) : null;
+    if (isLoading && showMore) {
+      console.log('isLoading true');
+      setPage(page + 1);
+    } else {
+      setIsLoading(false);
+    }
   }, [isLoading]);
 
   useMemo(() => {
     if (refresh && showMore) {
+      console.log('refresh and showmore');
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchProducts({searchElements: params, title}));
@@ -70,17 +78,18 @@ const ProductList = ({
   }, [refresh]);
 
   useMemo(() => {
-    setIsLoading(false);
-    setRefresh(false);
-    let filtered = filter(elements, i => (i.name.includes(search) ? i : null));
-    filtered.length > 0 || search.length > 0
-      ? setItems(filtered)
-      : setItems([]);
+    if (search.length > 0) {
+      console.log('search > 0');
+      setIsLoading(false);
+      setRefresh(false);
+      let filtered = filter(elements, i =>
+        i.name.includes(search) ? i : null
+      );
+      filtered.length > 0 || search.length > 0
+        ? setItems(filtered)
+        : setItems([]);
+    }
   }, [search]);
-
-  useMemo(() => {
-    return elements !== products;
-  }, [elements]);
 
   return (
     <KeyboardAvoidingView
@@ -112,7 +121,9 @@ const ProductList = ({
             />
           }
           onEndReached={() => {
-            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
+            search.length > 0 && !validate.isEmpty(search)
+              ? setIsLoading(false)
+              : setIsLoading(!isLoading);
             setEndList(false);
           }}
           contentContainerStyle={{

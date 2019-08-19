@@ -42,7 +42,7 @@ target 'abaty' do
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  # pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
+  pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
   pod 'react-native-onesignal',
       :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",

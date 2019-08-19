@@ -21,57 +21,53 @@ class UserShowScreen extends Component {
   }
 
   render() {
-    const {user, navigation, logo, colors} = this.props;
-    console.log('colors', colors);
-    console.log('user', user);
+    const {user, logo, colors} = this.props;
     return (
-      <NavContext.Provider value={{navigation}}>
-        <HeaderImageScrollView
-          maxHeight={150}
-          minHeight={50}
-          headerImage={{uri: user.banner ? user.banner : logo}}>
-          <View
-            style={[
-              styles.wrapper,
-              {backgroundColor: colors.main_theme_bg_color}
-            ]}>
-            <TriggeringView onHide={() => console.log('text hidden')}>
-              <View
-                animation="bounceInLeft"
-                easing="ease-out"
-                style={styles.elementRow}>
-                <FastImage
-                  source={{uri: user.large ? user.large : logo}}
-                  style={styles.logo}
+      <HeaderImageScrollView
+        maxHeight={150}
+        minHeight={50}
+        headerImage={{uri: user.banner ? user.banner : logo}}>
+        <View
+          style={[
+            styles.wrapper,
+            {backgroundColor: colors.main_theme_bg_color}
+          ]}>
+          <TriggeringView onHide={() => console.log('text hidden')}>
+            <View
+              animation="bounceInLeft"
+              easing="ease-out"
+              style={styles.elementRow}>
+              <FastImage
+                source={{uri: user.large ? user.large : logo}}
+                style={styles.logo}
+              />
+              <Text style={styles.mainTitle}>{user.slug}</Text>
+            </View>
+            <View animation="bounceInLeft" easing="ease-out">
+              {!validate.isEmpty(user.longitude || user.latitude) ? (
+                <MapViewWidget
+                  latitude={user.latitude}
+                  longitude={user.longitude}
+                  logo={user.thumb}
+                  title={user.slug}
+                  height={250}
                 />
-                <Text style={styles.mainTitle}>{user.slug}</Text>
-              </View>
-              <View animation="bounceInLeft" easing="ease-out">
-                {!validate.isEmpty(user.longitude || user.latitude) ? (
-                  <MapViewWidget
-                    latitude={user.latitude}
-                    longitude={user.longitude}
-                    logo={user.thumb}
-                    title={user.slug}
-                    height={250}
-                  />
-                ) : null}
-                <UserInfoWidget user={user} />
-              </View>
-            </TriggeringView>
-          </View>
-          <ImagesWidget
-            elements={user.images}
-            name={user.slug}
-            height={500}
-            width={300}
-          />
-          {validate.isObject(user.videoGroup) ? (
-            <VideosWidget videos={user.videoGroup} />
-          ) : null}
-          />
-        </HeaderImageScrollView>
-      </NavContext.Provider>
+              ) : null}
+              <UserInfoWidget user={user} />
+            </View>
+          </TriggeringView>
+        </View>
+        <ImagesWidget
+          elements={user.images}
+          name={user.slug}
+          height={500}
+          width={300}
+        />
+        {validate.isObject(user.videoGroup) ? (
+          <VideosWidget videos={user.videoGroup} />
+        ) : null}
+        />
+      </HeaderImageScrollView>
     );
   }
 }

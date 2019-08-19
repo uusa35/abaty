@@ -20,6 +20,12 @@ import {
 } from '../../../constants';
 import {axiosInstance} from '../api';
 import {hideCommentModal} from '../index';
+import {
+  checkImage,
+  getImageExtension,
+  getImageName,
+  getImagePath
+} from '../../../helpers';
 
 export function* setHomeCategories() {
   try {
@@ -741,7 +747,9 @@ export function* startSubmitAuthScenario(action) {
 export function* startUpdateUserScenario(action) {
   try {
     console.log('the payload', action.payload);
+    const {id} = action.payload;
     const user = yield call(api.updateUser, action.payload);
+    console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield all([
         put({type: actions.SET_AUTH, payload: user}),

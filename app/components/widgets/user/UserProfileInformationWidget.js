@@ -1,15 +1,24 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {isIOS, text} from '../../../constants';
+import {images, isIOS, text, width} from '../../../constants';
 import {View} from 'react-native-animatable';
+import FastImage from 'react-native-fast-image';
 
-const UserProfileInformationWidget = ({auth}) => {
-  const {colors} = useContext(GlobalValuesContext);
+const UserProfileInformationWidget = ({auth, colors}) => {
   return (
     <View animation="bounceInLeft" easing="ease-out">
+      <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
+        <FastImage
+          source={{
+            uri: auth.thumb ? auth.thumb : logo
+          }}
+          style={{width: 120, height: 120, margin: 20, borderRadius: 120 / 2}}
+          resizeMode="cover"
+          loadingIndicatorSource={images.logo}
+        />
+      </View>
       <TouchableOpacity
         onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}

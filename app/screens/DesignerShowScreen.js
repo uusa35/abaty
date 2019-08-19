@@ -39,7 +39,7 @@ const DesignerShowScreen = ({
   logo,
   guest
 }) => {
-  console.log('the colors', colors);
+  console.log('Render Designershow');
   const [refresh, setRefresh] = useState(false);
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)
@@ -179,7 +179,7 @@ const DesignerShowScreen = ({
               )
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={index => setIndex(index)}
+            onIndexChange={i => setIndex(i)}
             initialLayout={{width: width}}
           />
         </TriggeringView>

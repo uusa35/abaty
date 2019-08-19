@@ -12,6 +12,7 @@ import {isRTL} from '../I18n';
 import I18n from './../I18n';
 import UserProfileInformationWidget from '../components/widgets/user/UserProfileInformationWidget';
 import UserProfileBtns from '../components/widgets/user/UserProfileBtns';
+import {authSelector, colorsSelector} from '../redux/selectors/collection';
 
 class ProfileIndexScreen extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class ProfileIndexScreen extends Component {
           contentInset={{bottom: 100}}>
           {!validate.isEmpty(auth) ? (
             <View style={{marginTop: '10%'}}>
-              <UserProfileInformationWidget auth={auth} />
+              <UserProfileInformationWidget auth={auth} colors={colors} />
               <UserProfileBtns />
             </View>
           ) : null}
@@ -43,8 +44,8 @@ class ProfileIndexScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth,
-    colors: state.settings.colors
+    auth: authSelector(state),
+    colors: colorsSelector(state)
   };
 }
 

@@ -29,6 +29,7 @@ PODS:
     - libwebp/demux
   - libwebp/webp (1.0.3)
   - OneSignal (2.10.1)
+  - QBImagePickerController (3.4.0)
   - RCTRestart (0.0.12):
     - React
   - React (0.60.0):
@@ -131,6 +132,11 @@ PODS:
     - React
   - RNI18n (2.0.15):
     - React
+  - RNImageCropPicker (0.25.0):
+    - QBImagePickerController
+    - React-Core
+    - React-RCTImage
+    - RSKImageCropper
   - RNReanimated (1.2.0):
     - React
   - RNShare (1.2.1):
@@ -139,6 +145,7 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - RSKImageCropper (2.2.3)
   - SDWebImage (5.1.0):
     - SDWebImage/Core (= 5.1.0)
   - SDWebImage/Core (5.1.0)
@@ -184,6 +191,7 @@ DEPENDENCIES:
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -197,6 +205,8 @@ SPEC REPOS:
     - JWT
     - libwebp
     - OneSignal
+    - QBImagePickerController
+    - RSKImageCropper
     - SDWebImage
     - SDWebImageWebPCoder
     - SSZipArchive
@@ -272,6 +282,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNI18n:
     :path: "../node_modules/react-native-i18n"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNShare:
@@ -293,6 +305,7 @@ SPEC CHECKSUMS:
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   OneSignal: 8fb749fa07f88006403c9b659a570fb7fb74519a
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRestart: 3abdd55016c31254b996e0a55cc14cc2544fa3c1
   React: 4b3c068e793e96672dcd186a2b572fac43e4b031
   React-Core: 3dc86b22920597f813c62a96db3165950b64826b
@@ -324,15 +337,17 @@ SPEC CHECKSUMS:
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
+  RNImageCropPicker: 0a731d984e64ee4c28bddaa7ce52262e4b80979f
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
   RNSVG: a53a5de0d90ec96a6502cc3a4534dfcc0c130622
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
   SDWebImageWebPCoder: 7568737603c50f6237850afedd7e9e28e5917e6b
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   yoga: 616fde658be980aa60a2158835170f3f9c2d04b4
 
-PODFILE CHECKSUM: 3cd164e4ea6e9acfd6c1827425158c1940e23386
+PODFILE CHECKSUM: 2e8c2b8e0dd2e388a78d61a3f8ceccf7e5711765
 
 COCOAPODS: 1.7.3

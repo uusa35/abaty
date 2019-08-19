@@ -2,6 +2,12 @@ import axios from 'axios';
 import {links} from './../../constants';
 import {createTransform} from 'redux-persist';
 import I18n from 'react-native-i18n';
+import {
+  checkImage,
+  getImageExtension,
+  getImageName,
+  getImagePath
+} from '../../helpers';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl
@@ -265,9 +271,38 @@ export async function register(params) {
 }
 
 export async function updateUser(params) {
-  const {id} = params;
+  const {
+    id,
+    name,
+    email,
+    image,
+    api_token,
+    mobile,
+    address,
+    description,
+    notes,
+    country_id
+  } = params;
+  const form = new FormData();
+  if (checkImage(image)) {
+    form.append('image', {
+      uri: getImagePath(image),
+      name: getImageName(image),
+      type: getImageExtension(image)
+    });
+  }
+  form.append('name', name);
+  form.append('email', email);
+  form.append('mobile', mobile);
+  form.append('address', address);
+  form.append('country_id', country_id);
+  form.append('mobile', mobile);
+  form.append('description', description);
+  form.append('notes', notes);
+  form.append('api_token', api_token);
+  form.append('_method', 'put');
   return await axiosInstance
-    .put(`user/${id}`, params)
+    .post(`user/${params.id}`, form)
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

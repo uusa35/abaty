@@ -7,43 +7,32 @@ import {images, isIOS} from '../constants';
 import UserEditFormWidget from '../components/widgets/user/UserEditFormWidget';
 import {
   authSelector,
+  colorsSelector,
   countrySelector,
   logoSelector,
   playerIdSelector,
   tokenSelector
 } from '../redux/selectors/collection';
 
-const UserEditScreen = ({logo, auth, playerId, token}) => {
-  console.log('the token', token);
-  const [userCountryId, setUserCountryId] = useState('');
+const UserEditScreen = ({
+  logo,
+  auth,
+  playerId,
+  token,
+  country,
+  colors,
+  dispatch
+}) => {
   return (
-    <ScrollView
-      contentContainerStyle={{
-        minHeight: !isIOS ? '120%' : null,
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-      }}
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}
-      style={{flex: 1}}>
-      <View style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
-        <FastImage
-          source={{uri: logo}}
-          style={{width: 100, height: 100, margin: 20}}
-          resizeMode="contain"
-          loadingIndicatorSource={images.logo}
-        />
-        <UserEditFormWidget
-          auth={auth}
-          api_token={token}
-          userCountryId={userCountryId}
-          player_id={playerId}
-        />
-      </View>
-    </ScrollView>
+    <UserEditFormWidget
+      auth={auth}
+      token={token}
+      player_id={playerId}
+      logo={logo}
+      colors={colors}
+      country={country}
+      dispatch={dispatch}
+    />
   );
 };
 
@@ -52,12 +41,13 @@ function mapStateToProps(state) {
     auth: authSelector(state),
     token: tokenSelector(state),
     logo: logoSelector(state),
+    colors: colorsSelector(state),
     country: countrySelector(state),
     playerId: playerIdSelector(state)
   };
 }
 
-export default connect(mapStateToProps)(React.memo(UserEditScreen));
+export default connect(mapStateToProps)(UserEditScreen);
 
 UserEditScreen.propTypes = {
   logo: PropTypes.string,

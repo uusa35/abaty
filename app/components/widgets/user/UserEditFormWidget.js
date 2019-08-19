@@ -1,17 +1,30 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useMemo} from 'react';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {images, text} from '../../../constants';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {showCountryModal, updateUser} from '../../../redux/actions';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import validate from 'validate.js';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import FastImage from 'react-native-fast-image';
+import ImagePicker from 'react-native-image-crop-picker';
+import {
+  checkImage,
+  getImageExtension,
+  getImageName,
+  getImagePath
+} from '../../../helpers';
 
-const UserEditFormWidget = ({auth, player_id, api_token}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors, country} = useContext(GlobalValuesContext);
+const UserEditFormWidget = ({
+  auth,
+  player_id,
+  logo,
+  colors,
+  token,
+  country,
+  dispatch
+}) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
     !validate.isEmpty(auth) ? auth.email : null
@@ -25,8 +38,52 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null
   );
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [image, setImage] = useState('');
+  const [sampleLogo, setSampleLogo] = useState('');
+
+  useMemo(() => {
+    if (showImagePicker) {
+      console.log('from inside');
+      return ImagePicker.openPicker({
+        width: 1000,
+        height: 1000,
+        multiple: false,
+        cropping: true,
+        includeBase64: true,
+        includeExif: true
+      }).then(image => {
+        setImage(image);
+        setSampleLogo(image.sourceURL);
+      });
+    }
+  }, [showImagePicker]);
+  console.log('the auth tumb', auth.thumb);
   return (
-    <View style={{flexDirection: 'column', width: '100%'}}>
+    <KeyboardAwareScrollView
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        flex: 1,
+        width: '90%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center'
+      }}>
+      <TouchableOpacity
+        onPress={() => setShowImagePicker(true)}
+        style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
+        <FastImage
+          source={{
+            uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo
+          }}
+          style={{width: 120, height: 120, margin: 20}}
+          resizeMode="cover"
+          loadingIndicatorSource={images.logo}
+        />
+      </TouchableOpacity>
       <Input
         inputContainerStyle={{
           borderWidth: 1,
@@ -166,27 +223,27 @@ const UserEditFormWidget = ({auth, player_id, api_token}) => {
           dispatch(
             updateUser({
               id: auth.id,
-              api_token,
+              api_token: token,
               name,
               email,
               mobile,
               country_id: country.id,
               address,
               player_id,
-              description
+              description,
+              image
             })
           )
         }
       />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
-export default React.memo(UserEditFormWidget);
+export default UserEditFormWidget;
 
 UserEditFormWidget.propTypes = {
-  auth: PropTypes.object.isRequired,
-  api_token: PropTypes.string.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({});

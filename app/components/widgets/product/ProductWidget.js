@@ -93,7 +93,7 @@ const ProductWidget = ({product, showName = false}) => {
   );
 };
 
-export default React.memo(ProductWidget);
+export default ProductWidget;
 
 ProductWidget.propTypes = {
   product: PropTypes.object.isRequired,
