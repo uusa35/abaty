@@ -746,13 +746,14 @@ export function* startSubmitAuthScenario(action) {
 
 export function* startUpdateUserScenario(action) {
   try {
-    console.log('the payload', action.payload);
-    const {id} = action.payload;
+    yield call(enableLoading);
     const user = yield call(api.updateUser, action.payload);
     console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield all([
         put({type: actions.SET_AUTH, payload: user}),
+        call(disableLoading),
+        put(NavigationActions.back()),
         call(enableSuccessMessage, I18n.t('update_information_success'))
       ]);
     } else {

@@ -9,12 +9,7 @@ import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
-import {
-  checkImage,
-  getImageExtension,
-  getImageName,
-  getImagePath
-} from '../../../helpers';
+
 
 const UserEditFormWidget = ({
   auth,
@@ -58,7 +53,6 @@ const UserEditFormWidget = ({
       });
     }
   }, [showImagePicker]);
-  console.log('the auth tumb', auth.thumb);
   return (
     <KeyboardAwareScrollView
       horizontal={false}
