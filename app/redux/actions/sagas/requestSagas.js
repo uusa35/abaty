@@ -843,7 +843,6 @@ export function* startCreateTapPaymentUrlScenario(action) {
 }
 
 export function* startRegisterScenario(action) {
-  console.log('the action payload', action.payload);
   try {
     const {name, mobile, email, address} = action.payload;
     const result = validate({name, mobile, email, address}, registerConstrains);

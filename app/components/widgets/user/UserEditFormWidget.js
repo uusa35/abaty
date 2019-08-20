@@ -57,6 +57,7 @@ const UserEditFormWidget = ({
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 150}}
       contentContainerStyle={{
         width: '100%',
         alignItems: 'center',

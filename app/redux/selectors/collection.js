@@ -12,7 +12,7 @@ const menuBg = state => state.settings.menu_bg;
 const phone = state => state.settings.phone;
 const mobile = state => state.settings.mobile;
 const companyName = state => state.settings.company;
-const settingImages = state => state.settings.iamges;
+const settingImages = state => state.settings.images;
 const youtube = state => state.settings.youtube;
 const guest = state => state.guest;
 const lang = state => state.lang;
