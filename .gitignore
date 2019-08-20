@@ -4,6 +4,7 @@
 
 # Xcode
 #
+android/java_pid75602.hprof
 build/
 *.pbxuser
 !default.pbxuser

@@ -33,7 +33,8 @@ if (__DEV__) {
   });
   Store = createStore(
     persistedReducer,
-    applyMiddleware(networkMiddleware, appLogger, sagaMiddleware, navMiddleware)
+    applyMiddleware(networkMiddleware, appLogger, sagaMiddleware, navMiddleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
   PersistStore = persistStore(Store);
   // Only in case you want to empty the store !!!
