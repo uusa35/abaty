@@ -46,7 +46,6 @@ export async function getSplashes() {
 }
 
 export async function getHomeDesigners() {
-  console.log('FROM DESIGNERS', axiosInstance.defaults.headers);
   return await axiosInstance
     .get(`user`, {params: {on_home: 1, type: 'is_designer'}})
     .then(r => r.data)
@@ -161,7 +160,6 @@ export async function getCountries() {
 }
 
 export async function getUser(id) {
-  console.log('the headers', axiosInstance.defaults.headers);
   return await axiosInstance
     .get(`user/${id}`)
     .then(r => r.data)
@@ -322,13 +320,10 @@ export async function toggleFavorite(params) {
 }
 
 export async function rateUser(params) {
-  console.log('the params', params);
   return await axiosInstance
     .post(`rating`, params)
-    // .then(r => console.log(r.data))
     .then(r => r.data)
     .catch(e => e.response.date.message);
-  // .catch(e => console.log(e.response));
 }
 
 export async function becomeFan(params) {

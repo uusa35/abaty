@@ -14,7 +14,6 @@ const ProductColorSizeGroup = ({element}) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const {size, color, qty, show_attribute} = element;
-  console.log('the size', size);
   [requestQty, setRequestQty] = useState(0);
   [notes, setNotes] = useState('');
   return (

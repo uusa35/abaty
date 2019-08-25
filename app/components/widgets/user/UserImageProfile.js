@@ -28,7 +28,6 @@ const UserImageProfile = ({
   showComments = false,
   commentsCount
 }) => {
-  console.log('render UserImageProfile');
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const [rating, setRating] = useState(currentRating);

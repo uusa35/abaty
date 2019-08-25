@@ -29,7 +29,6 @@ const ImagesWidget = ({
   colors
 }) => {
   const {navigate} = useNavigation();
-  console.log('Render ImageesWidget');
   return (
     <View style={{flex: 1}}>
       <View>

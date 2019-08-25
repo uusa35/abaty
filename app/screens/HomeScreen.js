@@ -41,7 +41,8 @@ import {
   homeProductsSelector,
   servicesSelector,
   slidesSelector,
-  splashesSelector
+  splashesSelector,
+  usersWidgetSelector
 } from '../redux/selectors/collections';
 import {
   colorsSelector,
@@ -136,10 +137,10 @@ class HomeScreen extends Component {
   };
 
   handleOpenURL = event => {
-    console.log('Initial Url Case', event);
+    // console.log('Initial Url Case', event);
     const {type, id} = getPathForDeepLinking(event.url);
-    console.log('the type', type);
-    console.log('the id', id);
+    // console.log('the type', type);
+    // console.log('the id', id);
     return this.props.dispatch(goDeepLinking({type, id}));
   };
 
@@ -148,13 +149,13 @@ class HomeScreen extends Component {
   };
 
   onOpened = openResult => {
-    console.log('Notification Case');
+    // console.log('Notification Case');
     if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
+      // console.log('the whole thing', openResult.notification.payload);
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url
@@ -185,7 +186,8 @@ class HomeScreen extends Component {
       splash_on,
       show_commercials,
       colors,
-      services
+      services,
+      usersWidget
     } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>

@@ -6,16 +6,43 @@ import {
   StyleSheet,
   ImageBackground
 } from 'react-native';
-import {isIOS, images, text} from './../constants';
+import {isIOS, images, text} from './../../constants';
 import FastImage from 'react-native-fast-image';
 // import LottieView from 'lottie-react-native';
 //import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import PropTypes from 'prop-types';
+import Spinner from 'react-native-spinkit';
+import {first, shuffle} from 'lodash';
 
-const LoadingView = ({logo, loadingText, isLoading, color, mainBg}) => {
+const LoadingView = ({
+  logo,
+  loadingText,
+  isLoading,
+  color,
+  mainBg,
+  type = 'ThreeBounce'
+}) => {
   const [fill, setFill] = useState(0);
+  const [moveRand, setMoveRand] = useState([
+    'CircleFlip',
+    'Bounce',
+    'Wave',
+    'WanderingCubes',
+    'Pulse',
+    'ChasingDots',
+    'ThreeBounce',
+    'Circle',
+    '9CubeGrid',
+    'WordPress',
+    'FadingCircle',
+    'FadingCircleAlt',
+    'Arc',
+    'ArcAlt'
+  ]);
+
   return (
     <ImageBackground style={styles.activityContainer} source={{uri: mainBg}}>
+      <Spinner type={first(shuffle(moveRand))} color={color} size={40} />
       {/*<AnimatedCircularProgress*/}
       {/*    size={50}*/}
       {/*    width={10}*/}
@@ -24,7 +51,7 @@ const LoadingView = ({logo, loadingText, isLoading, color, mainBg}) => {
       {/*    style={{ opacity : 0.8 }}*/}
       {/*    onAnimationComplete={() => isLoading ? setFill(100) : setFill(fill + 10)}*/}
       {/*    backgroundColor="#3d5875" />*/}
-      <ActivityIndicator style={{marginBottom: 15}} color={color} />
+      {/*<ActivityIndicator style={{marginBottom: 15}} color={color} />*/}
       {/*<LottieView*/}
       {/*  source={animations.circleLoading_2}*/}
       {/*  autoPlay*/}

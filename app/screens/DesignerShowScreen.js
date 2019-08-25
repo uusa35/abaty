@@ -39,7 +39,6 @@ const DesignerShowScreen = ({
   logo,
   guest
 }) => {
-  console.log('Render Designershow');
   const [refresh, setRefresh] = useState(false);
   const collectedCatetories = !validate.isEmpty(user.products)
     ? user.productCategories.concat(user.productGroupCategories)

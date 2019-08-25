@@ -5,7 +5,6 @@ import {View} from 'react-native-animatable';
 
 const SocialRowWidget = ({settings}) => {
   const [size, setSize] = useState(25);
-  console.log('the SCroll Row Widget Rederner');
   return (
     <View animation="bounceIn" easing="ease-out" style={styles.container}>
       <View style={styles.rowWrapper}>

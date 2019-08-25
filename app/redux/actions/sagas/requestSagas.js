@@ -51,7 +51,6 @@ export function* setSettings() {
       yield put({type: actions.SET_SETTINGS, payload: settings});
     }
   } catch (e) {
-    // console.log('the e from settings', e);
     yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
   }
 }
@@ -80,7 +79,6 @@ export function* setUsers(action) {
       throw I18n.t(users);
     }
   } catch (e) {
-    // console.log('the e from setusers', e);
     yield all([disableLoading, enableWarningMessage(e)]);
   }
 }
@@ -98,7 +96,6 @@ export function* setCommercials() {
       yield put({type: actions.SET_COMMERCIALS, payload: []});
     }
   } catch (e) {
-    // console.log('the e from set Commercials', e)
     yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
   }
 }
@@ -121,7 +118,6 @@ export function* setServices() {
       yield all([put({type: actions.SET_SERVICES, payload: services})]);
     }
   } catch (e) {
-    // console.log('the e from set setProducts', e)
     yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
   }
 }
@@ -133,14 +129,12 @@ export function* setProducts() {
       yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
     }
   } catch (e) {
-    // console.log('the e from set setProducts', e)
     yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
   }
 }
 
 export function* setHomeProducts() {
   try {
-    console.log('HEADERS', axiosInstance.defaults.headers);
     const products = yield call(api.getHomeProducts);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
@@ -183,7 +177,6 @@ export function* setCountries() {
       throw I18n.t('no_countries');
     }
   } catch (e) {
-    // console.log('the e from set setcountries', e)
     yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
   }
 }
@@ -193,7 +186,6 @@ export function* getCountry(country_id = null) {
   try {
     const {country} = yield select();
     if (validate.isEmpty(country)) {
-      console.log('now inside the empty case');
       const country = isNull(country_id)
         ? yield call(api.getCountry)
         : yield call(api.getCountry, country_id);
@@ -235,7 +227,6 @@ export function* startGetUserScenario(action) {
       );
     }
   } catch (e) {
-    // console.log('the e from set get user scnario', e)
     yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
   }
 }
@@ -287,7 +278,6 @@ export function* startGetProductScenario(action) {
       ]);
     }
   } catch (e) {
-    // console.log('the e from set Commercials', e)
     yield all([
       disableLoading,
       enableWarningMessage(I18n.t('error_while_loading_product'))
@@ -298,7 +288,6 @@ export function* startGetProductScenario(action) {
 export function* startGetServiceScenario(action) {
   try {
     const service = yield call(api.getService, action.payload);
-    console.log('the service result from api', service);
     if (!validate.isEmpty(service) && validate.isObject(service)) {
       yield put({type: actions.SET_SERVICE, payload: service});
       yield put(
@@ -319,8 +308,6 @@ export function* startGetServiceScenario(action) {
 export function* startGetSearchProductsScenario(action) {
   try {
     const {element, searchElements} = action.payload;
-    console.log('the element of the ProductIndex', element);
-    console.log('the searchElements of the ProductIndex', searchElements);
     const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
@@ -341,10 +328,8 @@ export function* startGetSearchProductsScenario(action) {
 
 export function* startGetSearchServicesScenario(action) {
   try {
-    console.log('the action payload from search services', action.payload);
     const {element, searchElements} = action.payload;
     const services = yield call(api.getSearchServices, searchElements);
-    console.log('THE SERVICES', services);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
@@ -378,11 +363,9 @@ export function* startGetAllProductsScenario(action) {
 
 export function* startDeepLinkingScenario(action) {
   try {
-    console.log('the action', action);
     const {type, id} = action.payload;
     if (!isNull(type)) {
       if (type === 'user') {
-        console.log('routeName is', type);
         yield call(startGetUserScenario, {payload: id});
       } else if (type === 'product') {
         yield call(startGetProductScenario, {payload: {id}});
@@ -544,9 +527,7 @@ export function* setGrossTotalCartValue(values) {
 
 export function* startRemoveFromCartScenario(action) {
   try {
-    console.log('the action payload from remove Cart', action.payload);
     const {cart} = yield select();
-    console.log('the action', action.payload);
     const filteredCart = remove(cart, item =>
       item.type === 'product'
         ? item.product_id !== action.payload
@@ -663,7 +644,6 @@ export function* startAuthenticatedScenario() {
       }
     }
   } catch (e) {
-    console.log('the eeeeeeee from startAuth');
     yield all([
       disableLoading,
       enableErrorMessage(I18n.t('authenticated_error'))
@@ -683,15 +663,10 @@ export function* startLogoutScenario() {
   }
 }
 
-export function* startAuthenticateScenario(action) {
-  console.log('action', action);
-}
-
 export function* startSubmitAuthScenario(action) {
   try {
     const {email, password} = action.payload;
     const {player_id, loginModal} = yield select();
-    console.log('the loginModal', loginModal);
     const result = validate(
       {
         email,
@@ -703,8 +678,6 @@ export function* startSubmitAuthScenario(action) {
       throw I18n.t('invalid_email_or_password');
     }
     const user = yield call(api.authenticate, {email, password, player_id});
-    console.log('the user', user);
-    console.log('the orders', user.orders);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       // const favorites = yield call(api.getFavorites, {
       //   params: {api_token: user.api_token}
@@ -748,7 +721,6 @@ export function* startUpdateUserScenario(action) {
   try {
     yield call(enableLoading);
     const user = yield call(api.updateUser, action.payload);
-    console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield all([
         put({type: actions.SET_AUTH, payload: user}),
@@ -788,7 +760,6 @@ export function* startGetCouponScenario(action) {
 }
 
 export function* startCreateMyFatorrahPaymentUrlScenario(action) {
-  console.log('the action payload', action.payload);
   try {
     const {name, mobile, email, address} = action.payload;
     const result = validate({name, mobile, email, address}, registerConstrains);
@@ -819,10 +790,8 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
 }
 
 export function* startCreateTapPaymentUrlScenario(action) {
-  console.log('the action payload', action.payload);
   try {
     const url = yield call(api.makeTapPayment, action.payload);
-    console.log('the payment url', url.paymentUrl);
     if (validate.isObject(url) && url.paymentUrl.includes('http')) {
       yield all([
         put(
@@ -876,7 +845,6 @@ export function* startRegisterScenario(action) {
 export function* toggleFavoriteScenario(action) {
   try {
     const products = yield call(api.toggleFavorite, action.payload);
-    console.log('products', products);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCT_FAVORITES, payload: products}),
@@ -893,9 +861,7 @@ export function* toggleFavoriteScenario(action) {
 
 export function* startRateUserScenario(action) {
   try {
-    console.log('the action from saga', action.payload);
     const user = yield call(api.rateUser, action.payload);
-    console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield call(enableSuccessMessage, I18n.t('rate_success'));
     }
@@ -907,7 +873,6 @@ export function* startRateUserScenario(action) {
 export function* startBecomeFanScenario(action) {
   try {
     const user = yield call(api.becomeFan, action.payload);
-    console.log('the user', user);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield call(enableSuccessMessage, I18n.t('fan_success'));
     }

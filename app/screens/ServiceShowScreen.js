@@ -39,7 +39,6 @@ const ServiceShowScreen = ({
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
-  console.log('render ServiceShowScreen');
   return (
     <Fragment>
       <ScrollView

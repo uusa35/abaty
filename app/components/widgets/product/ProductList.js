@@ -40,11 +40,8 @@ const ProductList = ({
   [search, setSearch] = useState('');
   const [shouldUpdate, useShouldUpdate] = useState(() => elements !== products);
 
-  console.log('render ProductList');
-
   useMemo(() => {
     if (isLoading && showMore) {
-      console.log('isloading true and showmore');
       return axiosInstance(`search/product?page=${page}`, {
         params
       })
@@ -59,7 +56,6 @@ const ProductList = ({
 
   useMemo(() => {
     if (isLoading && showMore) {
-      console.log('isLoading true');
       setPage(page + 1);
     } else {
       setIsLoading(false);
@@ -68,7 +64,6 @@ const ProductList = ({
 
   useMemo(() => {
     if (refresh && showMore) {
-      console.log('refresh and showmore');
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchProducts({searchElements: params, title}));
@@ -79,7 +74,6 @@ const ProductList = ({
 
   useMemo(() => {
     if (search.length > 0) {
-      console.log('search > 0');
       setIsLoading(false);
       setRefresh(false);
       let filtered = filter(elements, i =>

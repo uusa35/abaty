@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import _ from 'lodash';
 
 const designers = state => state.designers;
 const celebrities = state => state.celebrities;
@@ -106,3 +107,9 @@ export const searchParamsSelector = createSelector(
   searchParams,
   searchParams => searchParams
 );
+
+export const usersWidgetSelector = elements => {
+  return _.forEach(elements, u => {
+    id: u.id;
+  });
+};

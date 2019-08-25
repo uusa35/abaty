@@ -20,7 +20,6 @@ class ProductIndexAllScreen extends Component {
   }
 
   render() {
-    console.log('render ProductIndexAll');
     const {products, colors, dispatch} = this.props;
     return (
       <ProductList

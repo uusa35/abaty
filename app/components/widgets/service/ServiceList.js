@@ -46,7 +46,7 @@ const ServiceList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => console.log('error catch serviceList'));
+        .catch(e => e);
     }
   }, [page]);
 

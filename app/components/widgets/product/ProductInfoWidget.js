@@ -1,26 +1,10 @@
-import React, {useContext, useState} from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  View
-} from 'react-native';
-import widgetStyles from '../widgetStyles';
-import {getProduct} from '../../../redux/actions';
-import {Icon, Button} from 'react-native-elements';
-import {getProductConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import React from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
-import {text, width} from './../../../constants';
-import I18n from './../../../I18n';
-import FastImage from 'react-native-fast-image';
 import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
 const ProductInfoWidget = ({element}) => {
-  console.log('Render ProductINfoWidget');
   return (
     <ScrollView
       contentContainerStyle={{

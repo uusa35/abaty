@@ -1,7 +1,7 @@
 import {Modal, Text, View} from 'react-native';
 import React from 'react';
 
-const LoadingViewModal = props => {
+const LoadingViewModal = () => {
   return (
     <View
       style={{

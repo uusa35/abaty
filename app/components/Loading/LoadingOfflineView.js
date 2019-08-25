@@ -1,8 +1,8 @@
 import React, {useState, useMemo} from 'react';
 import {View, Text, StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
-import I18n from './../I18n';
-import {colors, text, mainBg} from './../constants';
+import I18n from './../../I18n';
+import {colors, text, mainBg} from './../../constants';
 // import LottieView from 'lottie-react-native';
 import RNRestart from 'react-native-restart';
 import CodePush from 'react-native-code-push';

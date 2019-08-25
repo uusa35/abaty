@@ -38,7 +38,6 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   }, [sizeVisible]);
 
   useEffect(() => {
-    console.log('the element now is element', element.id);
     if (element.id !== elementId && !isNull(elementId)) {
       setRequestQty(0);
       setProductAttribute(null);
@@ -54,7 +53,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           params: {product_id: element.id, size_id: sizeItem.id}
         })
         .then(r => setColorItems(r.data))
-        .catch(e => console.log('the e', e));
+        .catch(e => e);
     }
   }, [sizeItem]);
 

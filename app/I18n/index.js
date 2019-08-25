@@ -11,5 +11,5 @@ I18n.translations = {
 };
 export const isRTL = I18nManager.isRTL;
 I18nManager.allowRTL(isRTL);
-console.log('the isRTL', isRTL);
+__DEV__ ? console.log('the isRTL', isRTL) : null;
 export default I18n;

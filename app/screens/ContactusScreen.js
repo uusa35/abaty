@@ -8,7 +8,6 @@ import validate from 'validate.js';
 import {settingsSelector} from '../redux/selectors/collection';
 
 const ContactusScreen = ({settings}) => {
-  console.log('parentContactus screen');
   return (
     <ScrollView
       contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}

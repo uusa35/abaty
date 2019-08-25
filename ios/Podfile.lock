@@ -87,6 +87,8 @@ PODS:
     - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (5.1.4):
     - React
+  - react-native-spinkit (1.0.2):
+    - React
   - react-native-video (4.4.4):
     - React
     - react-native-video/Video (= 4.4.4)
@@ -173,6 +175,7 @@ DEPENDENCIES:
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-onesignal (from `../node_modules/react-native-onesignal/react-native-onesignal.podspec`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
+  - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - react-native-video (from `../node_modules/react-native-video/react-native-video.podspec`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -246,6 +249,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-onesignal/react-native-onesignal.podspec"
   react-native-pdf:
     :path: "../node_modules/react-native-pdf"
+  react-native-spinkit:
+    :path: "../node_modules/react-native-spinkit"
   react-native-video:
     :path: "../node_modules/react-native-video/react-native-video.podspec"
   react-native-webview:
@@ -319,6 +324,7 @@ SPEC CHECKSUMS:
   react-native-netinfo: 2aa34e02a38ae66e583bcae8c489ae0edd32b31f
   react-native-onesignal: 8958311abbd9125f26e600914e48833b57321cbf
   react-native-pdf: a1fff8513efae5e3c9e2dfa57b7faff2b78e20eb
+  react-native-spinkit: 9a5d2f95aa975d5660fd3e76b7eac38e7329e46c
   react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a
   react-native-webview: 5036ed4a973ad1deeeff118262d2df7b60b3419d
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570

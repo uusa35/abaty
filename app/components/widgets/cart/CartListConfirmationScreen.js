@@ -28,14 +28,12 @@ const CartListConfirmationScreen = ({
   const {colors, total} = useContext(GlobalValuesContext);
   const {navigation} = useContext(NavContext);
   const {cName, cEmail, cMobile, cAddress, cNotes} = navigation.state.params;
-  console.log('the params', navigation.state.params);
   const [name, setName] = useState(cName);
   const [email, setEmail] = useState(cEmail);
   const [mobile, setMobile] = useState(cMobile);
   const [address, setAddress] = useState(cAddress);
   const [notes, setNotes] = useState(cNotes);
   const [editMode, setEditMode] = useState(editModeDefault);
-  console.log('the coupon', coupon);
   return (
     <View style={{width: '100%'}}>
       <View

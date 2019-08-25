@@ -4,13 +4,13 @@ import codePush from 'react-native-code-push';
 import {connect} from 'react-redux';
 import {appBootstrap, resetStore} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
-import LoadingView from './components/LoadingView';
+import LoadingView from './components/Loading/LoadingView';
 import I18n, {isRTL} from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
 import {prefix} from './constants';
-import LoadingOfflineView from './components/LoadingOfflineView';
+import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
@@ -26,6 +26,7 @@ import {
   tokenSelector
 } from './redux/selectors/collection';
 import {cartSelector, countriesSelector} from './redux/selectors/collections';
+import LoadingContentView from './components/Loading/LoadingContentView';
 
 type Props = {};
 class App extends Component<Props> {
@@ -34,7 +35,6 @@ class App extends Component<Props> {
     const {dispatch, bootStrapped, currency, lang, token} = this.props;
     codePush.checkForUpdate().then(update => {
       if (!update) {
-        console.log('The app is up to date!');
       } else {
         console.log('An update is available! Should we download it?');
         dispatch(resetStore());
@@ -48,7 +48,6 @@ class App extends Component<Props> {
     )
       ? currency
       : 'KWD';
-    console.log('the lang', lang);
     axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang)
       ? lang
       : isRTL
@@ -148,6 +147,7 @@ class App extends Component<Props> {
                 color={colors.btn_bg_theme_color}
                 isLoading={isLoading}
                 logo={logo}
+                mainBg={main_bg}
               />
             )}
             {!validate.isEmpty(message) &&

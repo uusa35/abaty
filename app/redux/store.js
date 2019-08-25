@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import {createLogger} from 'redux-logger';
 import rootSaga from './actions/sagas';
 import createSagaMiddleware from 'redux-saga';
@@ -31,10 +31,18 @@ if (__DEV__) {
     collapsed: true,
     duration: true
   });
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   Store = createStore(
     persistedReducer,
-    applyMiddleware(networkMiddleware, appLogger, sagaMiddleware, navMiddleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeEnhancers(
+      applyMiddleware(
+        networkMiddleware,
+        appLogger,
+        sagaMiddleware,
+        navMiddleware
+      )
+    )
   );
   PersistStore = persistStore(Store);
   // Only in case you want to empty the store !!!

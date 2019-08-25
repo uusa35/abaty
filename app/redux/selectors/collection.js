@@ -22,6 +22,7 @@ const designer = state => state.designer;
 const service = state => state.service;
 const loginModal = state => state.loginModal;
 const commentModal = state => state.commentModal;
+const userWidget = state => state.designers;
 
 export const tokenSelector = createSelector(
   token,
