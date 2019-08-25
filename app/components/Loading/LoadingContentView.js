@@ -24,14 +24,14 @@ const LoadingContentView = ({isLoadingContent}) => {
         padding: 0
       }}>
       <SvgAnimatedLinearGradient
-        height={400}
+        height={600}
         width={width}
-        style={{marginBottom: 10, alignSelf: 'center'}}>
+        style={{marginBottom: 5, alignSelf: 'center'}}>
         <Rect
           x="0"
           y="0"
           width={width}
-          height="400"
+          height="600"
           fill="rgb(0,0,255)"
           strokeWidth="3"
           stroke="rgb(0,0,0)"

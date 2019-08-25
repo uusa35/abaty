@@ -6,6 +6,7 @@ import {DispatchContext} from '../redux/DispatchContext';
 import CommentsList from '../components/Lists/CommentsList';
 import {Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-navigation';
+import {isRTL} from '../I18n';
 
 const CommentScreenModal = ({commentModal, elements, model, id}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -25,12 +26,13 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
             paddingBottom: 5,
             width: '100%',
             justifyContent: 'flex-end',
-            alignItems: 'flex-end',
+            alignItems: 'flex-start',
             zIndex: 999
           }}>
           <Icon
-            name="close"
-            size={20}
+            name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+            type="entypo"
+            size={25}
             style={{zIndex: 999}}
             onPress={() => dispatch(hideCommentModal())}
             hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}

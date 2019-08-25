@@ -279,10 +279,7 @@ export function* startGetProductScenario(action) {
     yield call(enableLoadingContent);
     const product = yield call(api.getProduct, action.payload);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
-      yield all([
-        put({type: actions.SET_PRODUCT, payload: product}),
-        yield delay(500)
-      ]);
+      yield put({type: actions.SET_PRODUCT, payload: product});
       yield all([
         put(
           NavigationActions.navigate({
@@ -306,10 +303,7 @@ export function* startGetServiceScenario(action) {
     yield call(enableLoadingContent);
     const service = yield call(api.getService, action.payload);
     if (!validate.isEmpty(service) && validate.isObject(service)) {
-      yield all([
-        put({type: actions.SET_SERVICE, payload: service}),
-        delay(500)
-      ]);
+      yield put({type: actions.SET_SERVICE, payload: service});
       yield all([
         put(
           NavigationActions.navigate({

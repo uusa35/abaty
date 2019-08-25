@@ -61,7 +61,6 @@ const ImagesWidget = ({
         {map(elements, (c, i) => (
           <TouchableOpacity
             key={i}
-            style={{margin: 1}}
             onPress={() =>
               navigate('ImageZoom', {
                 images: elements,

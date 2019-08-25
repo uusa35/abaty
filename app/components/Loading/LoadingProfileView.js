@@ -31,29 +31,44 @@ const LoadingProfileView = ({isLoadingContent}) => {
           x="0"
           y="0"
           width={width}
-          height="400"
+          height="250"
           fill="rgb(0,0,255)"
           strokeWidth="3"
           stroke="rgb(0,0,0)"
         />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
-        height={100}
+        height={150}
         width={width - 50}
         style={{marginBottom: 5, alignSelf: 'center'}}>
         <Rect
           x="0"
           y="0"
-          width={100}
-          height={100}
+          width={120}
+          height={120}
           fill="rgb(0,0,255)"
           strokeWidth="3"
           stroke="rgb(0,0,0)"
         />
-        <Rect x="110" y="17" rx="4" ry="4" width="800" height="10" />
-        <Rect x="110" y="40" rx="3" ry="3" width="800" height="10" />
-        <Rect x="110" y="60" rx="3" ry="3" width="800" height="10" />
-        <Rect x="110" y="80" rx="3" ry="3" width="800" height="10" />
+        <Rect x="125" y="17" rx="4" ry="2" width="300" height="10" />
+        <Rect x="125" y="40" rx="3" ry="2" width="300" height="10" />
+        <Rect x="125" y="60" rx="3" ry="2" width="300" height="10" />
+        <Rect x="125" y="80" rx="3" ry="2" width="300" height="10" />
+        <Rect x="125" y="100" rx="3" ry="2" width="300" height="10" />
+      </SvgAnimatedLinearGradient>
+      <SvgAnimatedLinearGradient
+        height={200}
+        width={width}
+        style={{marginBottom: 5, alignSelf: 'center'}}>
+        <Rect
+          x="0"
+          y="0"
+          width={width}
+          height="200"
+          fill="rgb(0,0,255)"
+          strokeWidth="3"
+          stroke="rgb(0,0,0)"
+        />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
         height={150}
