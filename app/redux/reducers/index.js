@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
 import navReducer from './navReducer';
 import isLoading from './isLoading';
+import isLoadingContent from './isLoadingContent';
+import isLoadingProfile from './isLoadingProfile';
 import bootStrapped from './bootStrapped';
 import settings from './settings';
 import lang from './lang';
@@ -53,6 +55,8 @@ import orders from './orders';
 let reducers = combineReducers({
   nav: navReducer,
   isLoading,
+  isLoadingContent,
+  isLoadingProfile,
   message,
   lang,
   bootStrapped,

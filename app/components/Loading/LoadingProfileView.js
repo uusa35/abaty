@@ -6,7 +6,7 @@ import {first, shuffle} from 'lodash';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import Svg, {Circle, Rect} from 'react-native-svg';
 
-const LoadingContentView = ({isLoadingContent}) => {
+const LoadingProfileView = ({isLoadingContent}) => {
   return (
     <Modal
       animationType="fade"
@@ -24,7 +24,7 @@ const LoadingContentView = ({isLoadingContent}) => {
         padding: 0
       }}>
       <SvgAnimatedLinearGradient
-        height={400}
+        height={250}
         width={width}
         style={{marginBottom: 10, alignSelf: 'center'}}>
         <Rect
@@ -38,48 +38,60 @@ const LoadingContentView = ({isLoadingContent}) => {
         />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        height={100}
+        width={width - 50}
+        style={{marginBottom: 5, alignSelf: 'center'}}>
+        <Rect
+          x="0"
+          y="0"
+          width={100}
+          height={100}
+          fill="rgb(0,0,255)"
+          strokeWidth="3"
+          stroke="rgb(0,0,0)"
+        />
+        <Rect x="110" y="17" rx="4" ry="4" width="800" height="10" />
+        <Rect x="110" y="40" rx="3" ry="3" width="800" height="10" />
+        <Rect x="110" y="60" rx="3" ry="3" width="800" height="10" />
+        <Rect x="110" y="80" rx="3" ry="3" width="800" height="10" />
+      </SvgAnimatedLinearGradient>
+      <SvgAnimatedLinearGradient
         height={150}
         width={width - 50}
         style={{marginBottom: 5, alignSelf: 'center'}}>
-        <Circle cx="30" cy="30" r="30" />
-        <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />
-        <Rect x="80" y="40" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="17" rx="4" ry="4" width="800" height="13" />
+        <Rect x="0" y="40" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="100" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="120" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="140" rx="3" ry="3" width="800" height="10" />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
-        height={150}
+        height={250}
         width={width - 50}
         style={{marginBottom: 5, alignSelf: 'center'}}>
-        <Circle cx="30" cy="30" r="30" />
-        <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />
-        <Rect x="80" y="40" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="17" rx="4" ry="4" width="800" height="13" />
+        <Rect x="0" y="40" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="100" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="120" rx="3" ry="3" width="800" height="10" />
         <Rect x="0" y="140" rx="3" ry="3" width="800" height="10" />
-      </SvgAnimatedLinearGradient>
-      <SvgAnimatedLinearGradient
-        height={150}
-        width={width - 50}
-        style={{marginBottom: 5, alignSelf: 'center'}}>
-        <Circle cx="30" cy="30" r="30" />
-        <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />
-        <Rect x="80" y="40" rx="3" ry="3" width="800" height="10" />
-        <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
-        <Rect x="0" y="100" rx="3" ry="3" width="800" height="10" />
-        <Rect x="0" y="120" rx="3" ry="3" width="800" height="10" />
-        <Rect x="0" y="140" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="160" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="180" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="200" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="220" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="240" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="260" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="280" rx="3" ry="3" width="800" height="10" />
+        <Rect x="0" y="300" rx="3" ry="3" width="800" height="10" />
       </SvgAnimatedLinearGradient>
     </Modal>
   );
 };
 
-export default React.memo(LoadingContentView);
+export default React.memo(LoadingProfileView);
 
-LoadingContentView.propTypes = {
+LoadingProfileView.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired,
   logo: PropTypes.string,
   columns: PropTypes.number

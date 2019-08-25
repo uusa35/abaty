@@ -1,13 +1,17 @@
 import * as actions from '../types';
-import {call, put, all, select} from 'redux-saga/effects';
+import {call, put, all, select, delay} from 'redux-saga/effects';
 import validate from 'validate.js';
 import * as api from '../api';
 import I18n from '../../../I18n';
 import {NavigationActions} from 'react-navigation';
 import {
   disableLoading,
+  disableLoadingContent,
+  disableLoadingProfile,
   enableErrorMessage,
   enableLoading,
+  enableLoadingContent,
+  enableLoadingProfile,
   enableSuccessMessage,
   enableWarningMessage
 } from './settingSagas';
@@ -237,6 +241,7 @@ export function* startGetUsersScenario(action) {
 
 export function* startGetDesignerScenario(action) {
   try {
+    yield call(enableLoadingProfile);
     const {id, searchElements} = action.payload;
     const user = yield call(api.getUser, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
@@ -247,39 +252,50 @@ export function* startGetDesignerScenario(action) {
       } else {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
-      yield put(
-        NavigationActions.navigate({
-          routeName: 'DesignerShow',
-          params: {name: user.slug, id: user.id, product: false}
-        })
-      );
+      yield all([
+        put(
+          NavigationActions.navigate({
+            routeName: 'DesignerShow',
+            params: {name: user.slug, id: user.id, product: false}
+          })
+        ),
+        call(disableLoadingProfile)
+      ]);
     } else {
       yield put({type: actions.SET_DESIGNER, payload: {}});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
       throw I18n.t('no_designers');
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_designers'))]);
+    yield all([
+      disableLoadingProfile,
+      enableWarningMessage(I18n.t('no_designers'))
+    ]);
   }
 }
 
 export function* startGetProductScenario(action) {
   try {
+    yield call(enableLoadingContent);
     const product = yield call(api.getProduct, action.payload);
     if (!validate.isEmpty(product) && validate.isObject(product)) {
       yield all([
         put({type: actions.SET_PRODUCT, payload: product}),
+        yield delay(500)
+      ]);
+      yield all([
         put(
           NavigationActions.navigate({
             routeName: 'Product',
             params: {name: product.name, id: product.id, model: 'product'}
           })
-        )
+        ),
+        call(disableLoadingContent)
       ]);
     }
   } catch (e) {
     yield all([
-      disableLoading,
+      disableLoadingContent,
       enableWarningMessage(I18n.t('error_while_loading_product'))
     ]);
   }
@@ -287,15 +303,22 @@ export function* startGetProductScenario(action) {
 
 export function* startGetServiceScenario(action) {
   try {
+    yield call(enableLoadingContent);
     const service = yield call(api.getService, action.payload);
     if (!validate.isEmpty(service) && validate.isObject(service)) {
-      yield put({type: actions.SET_SERVICE, payload: service});
-      yield put(
-        NavigationActions.navigate({
-          routeName: 'Service',
-          params: {name: service.name, id: service.id, model: 'service'}
-        })
-      );
+      yield all([
+        put({type: actions.SET_SERVICE, payload: service}),
+        delay(500)
+      ]);
+      yield all([
+        put(
+          NavigationActions.navigate({
+            routeName: 'Service',
+            params: {name: service.name, id: service.id, model: 'service'}
+          })
+        ),
+        call(disableLoadingContent)
+      ]);
     }
   } catch (e) {
     yield all([

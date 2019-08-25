@@ -21,13 +21,6 @@ export function toggleBootstrapped(bootstrapped) {
   };
 }
 
-export function toggleLoading(isLoading) {
-  return {
-    type: actions.TOGGLE_LOADING,
-    payload: isLoading
-  };
-}
-
 export function logout() {
   return {
     type: actions.REMOVE_AUTH

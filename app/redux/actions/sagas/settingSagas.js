@@ -12,6 +12,22 @@ export function* disableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: false});
 }
 
+export function* enableLoadingContent() {
+  yield put({type: actions.TOGGLE_LOADING_CONTENT, payload: true});
+}
+
+export function* disableLoadingContent() {
+  yield put({type: actions.TOGGLE_LOADING_CONTENT, payload: false});
+}
+
+export function* enableLoadingProfile() {
+  yield put({type: actions.TOGGLE_LOADING_PROFILE, payload: true});
+}
+
+export function* disableLoadingProfile() {
+  yield put({type: actions.TOGGLE_LOADING_PROFILE, payload: false});
+}
+
 export function* toggleBootStrapped(bootStrapped: boolean) {
   yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: bootStrapped});
 }

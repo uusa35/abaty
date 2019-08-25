@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
