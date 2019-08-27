@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
-import {text, width} from '../../../constants';
+import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 import I18n from './../../../I18n';
 import validate from 'validate.js';
@@ -213,7 +213,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
   );
 };
 
-export default React.memo(ProductItem);
+export default ProductItem;
 
 ProductItem.propTypes = {
   element: PropTypes.object.isRequired,

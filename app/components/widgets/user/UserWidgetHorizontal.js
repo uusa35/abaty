@@ -86,7 +86,7 @@ const UserWidgetHorizontal = ({user, showName}) => {
   );
 };
 
-export default React.memo(UserWidgetHorizontal);
+export default UserWidgetHorizontal;
 
 UserWidgetHorizontal.propTypes = {
   user: PropTypes.object,

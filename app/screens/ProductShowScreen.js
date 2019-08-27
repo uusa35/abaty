@@ -190,7 +190,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(ProductShowScreen));
+export default connect(mapStateToProps)(ProductShowScreen);
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,

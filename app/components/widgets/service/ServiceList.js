@@ -218,7 +218,7 @@ const ServiceList = ({
   );
 };
 
-export default React.memo(ServiceList);
+export default ServiceList;
 
 ServiceList.propTypes = {
   elements: PropTypes.array.isRequired,

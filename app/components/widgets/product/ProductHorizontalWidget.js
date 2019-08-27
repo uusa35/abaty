@@ -1,14 +1,12 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
 import {getSearchProducts} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductHorizontalWidget = ({
   elements,

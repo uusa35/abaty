@@ -59,7 +59,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
   );
 };
 
-export default React.memo(ProductWidgetQtyBtns);
+export default ProductWidgetQtyBtns;
 
 ProductWidgetQtyBtns.propTypes = {
   qty: PropTypes.number.isRequired,

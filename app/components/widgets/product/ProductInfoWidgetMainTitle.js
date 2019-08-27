@@ -144,7 +144,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   );
 };
 
-export default React.memo(ProductInfoWidgetMainTitle);
+export default ProductInfoWidgetMainTitle;
 
 ProductInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired

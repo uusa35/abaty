@@ -27,7 +27,7 @@ const UserWidgetVertical = ({user}) => {
   );
 };
 
-export default React.memo(UserWidgetVertical);
+export default UserWidgetVertical;
 
 UserWidgetVertical.propTypes = {
   user: PropTypes.object

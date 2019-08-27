@@ -27,4 +27,4 @@ const UsersWidget = props => {
     />
   ) : null;
 };
-export default React.memo(UsersWidget);
+export default UsersWidget;

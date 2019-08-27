@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useEffect} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -226,7 +226,7 @@ const ProductList = ({
   );
 };
 
-export default React.memo(ProductList);
+export default ProductList;
 
 ProductList.propTypes = {
   products: PropTypes.array.isRequired,

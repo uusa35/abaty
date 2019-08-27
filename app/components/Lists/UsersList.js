@@ -11,7 +11,7 @@ import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
 import {text, width} from './../../constants';
-import {has, filter} from 'lodash';
+import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import {DispatchContext} from '../../redux/DispatchContext';
@@ -167,7 +167,7 @@ const UsersList = ({elements, searchParams}) => {
   );
 };
 
-export default React.memo(UsersList);
+export default UsersList;
 
 UsersList.propTypes = {
   elements: PropTypes.array,

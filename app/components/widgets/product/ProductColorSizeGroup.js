@@ -132,7 +132,7 @@ const ProductColorSizeGroup = ({element}) => {
   );
 };
 
-export default React.memo(ProductColorSizeGroup);
+export default ProductColorSizeGroup;
 
 ProductColorSizeGroup.propTypes = {
   size: PropTypes.object,

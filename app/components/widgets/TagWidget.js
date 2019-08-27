@@ -37,7 +37,7 @@ const TagWidget = ({textColor = 'white', bgColor = 'black', tagName}) => {
   );
 };
 
-export default React.memo(TagWidget);
+export default TagWidget;
 
 TagWidget.propTypes = {
   textColor: PropTypes.string,

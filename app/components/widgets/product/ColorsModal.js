@@ -73,7 +73,7 @@ const ColorsModal = ({
   );
 };
 
-export default React.memo(ColorsModal);
+export default ColorsModal;
 
 ColorsModal.propTypes = {
   colorVisible: PropTypes.bool,

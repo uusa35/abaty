@@ -60,7 +60,7 @@ const CategoriesList = ({elements, columns, dispatch, colors}) => {
   );
 };
 
-export default React.memo(CategoriesList);
+export default CategoriesList;
 
 CategoriesList.propTypes = {
   elements: PropTypes.array.isRequired,

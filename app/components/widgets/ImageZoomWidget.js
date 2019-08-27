@@ -33,7 +33,7 @@ const ImageZoomWidget = props => {
   );
 };
 
-export default React.memo(ImageZoomWidget);
+export default ImageZoomWidget;
 
 const styles = StyleSheet.create({
   slide: {

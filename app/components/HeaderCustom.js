@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SafeAreaView} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
 import {userPrefix, productPrefix} from './../constants';

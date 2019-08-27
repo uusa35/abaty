@@ -9,7 +9,6 @@ import {
 import widgetStyles from '../widgetStyles';
 import {getProduct} from '../../../redux/actions';
 import {getProductConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';

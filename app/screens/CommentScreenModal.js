@@ -34,7 +34,7 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
   );
 };
 
-export default React.memo(CommentScreenModal);
+export default CommentScreenModal;
 
 CommentScreenModal.propTypes = {
   elements: PropTypes.array.isRequired,

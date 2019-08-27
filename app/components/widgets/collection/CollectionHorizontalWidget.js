@@ -55,7 +55,7 @@ const CollectionHorizontalWidget = ({
   );
 };
 
-export default React.memo(CollectionHorizontalWidget);
+export default CollectionHorizontalWidget;
 
 CollectionInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired,

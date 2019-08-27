@@ -204,7 +204,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   );
 };
 
-export default React.memo(ProductColorSizeGroupWithAttributes);
+export default ProductColorSizeGroupWithAttributes;
 
 ProductColorSizeGroupWithAttributes.propTypes = {
   element: PropTypes.object.isRequired

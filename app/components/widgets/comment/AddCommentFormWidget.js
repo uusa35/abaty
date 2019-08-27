@@ -80,4 +80,4 @@ AddCommentFormWidget.propTypes = {
   id: PropTypes.number.isRequired
 };
 
-export default React.memo(AddCommentFormWidget);
+export default AddCommentFormWidget;

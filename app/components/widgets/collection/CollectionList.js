@@ -226,7 +226,7 @@ const CollectionList = ({
   );
 };
 
-export default React.memo(CollectionList);
+export default CollectionList;
 
 CollectionList.propTypes = {
   collections: PropTypes.array.isRequired,

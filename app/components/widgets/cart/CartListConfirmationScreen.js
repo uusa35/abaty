@@ -556,7 +556,7 @@ const CartListConfirmationScreen = ({
   );
 };
 
-export default React.memo(CartListConfirmationScreen);
+export default CartListConfirmationScreen;
 
 CartListConfirmationScreen.propTypes = {
   cart: PropTypes.array.isRequired,

@@ -78,7 +78,7 @@ const MapViewWidget = ({
   );
 };
 
-export default React.memo(MapViewWidget);
+export default MapViewWidget;
 
 MapViewWidget.propTypes = {
   latitude: PropTypes.number.isRequired,

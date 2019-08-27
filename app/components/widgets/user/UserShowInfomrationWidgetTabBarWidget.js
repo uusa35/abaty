@@ -67,7 +67,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
   );
 };
 
-export default React.memo(UserShowInformationTabBarWidget);
+export default UserShowInformationTabBarWidget;
 
 UserShowInformationTabBarWidget.propTypes = {
   element: PropTypes.object.isRequired

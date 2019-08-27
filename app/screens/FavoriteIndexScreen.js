@@ -14,15 +14,20 @@ import {
 import {colorsSelector} from '../redux/selectors/collection';
 import {useNavigation} from 'react-navigation-hooks';
 
-const FavoriteIndexScreen = ({productFavorites, searchParams, colors}) => {
+const FavoriteIndexScreen = ({
+  productFavorites,
+  searchParams,
+  dispatch,
+  colors
+}) => {
   const {navigate} = useNavigation();
-  console.log('the productFavorites', productFavorites);
-
   return (
     <View>
       {!validate.isEmpty(productFavorites) ? (
         <ProductList
           products={productFavorites}
+          dispatch={dispatch}
+          colors={colors}
           showName={true}
           showSearch={false}
           title={I18n.t('wishlist')}
@@ -65,13 +70,13 @@ const FavoriteIndexScreen = ({productFavorites, searchParams, colors}) => {
 
 function mapStateToProps(state) {
   return {
-    productFavorites: productFavoritesSelector(state),
-    searchParams: searchParamsSelector(state),
-    colors: colorsSelector(state)
+    productFavorites: state.productFavorites,
+    searchParams: state.searchParams,
+    colors: state.settings.colors
   };
 }
 
-export default connect(mapStateToProps)(React.memo(FavoriteIndexScreen));
+export default connect(mapStateToProps)(FavoriteIndexScreen);
 
 FavoriteIndexScreen.propTypes = {
   productFavorites: PropTypes.array.isRequired

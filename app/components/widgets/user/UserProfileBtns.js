@@ -50,4 +50,4 @@ const UserProfileBtns = () => {
   );
 };
 
-export default React.memo(UserProfileBtns);
+export default UserProfileBtns;

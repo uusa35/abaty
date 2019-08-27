@@ -187,7 +187,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
   );
 };
 
-export default React.memo(UserProfileInformationWidget);
+export default UserProfileInformationWidget;
 
 UserProfileInformationWidget.propTypes = {};
 
