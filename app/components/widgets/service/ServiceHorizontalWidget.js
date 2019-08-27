@@ -11,8 +11,7 @@ import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
 
-const ServiceHorizontalWidget = ({elements, showName, title}) => {
-  const {dispatch} = useContext(DispatchContext);
+const ServiceHorizontalWidget = ({elements, showName, title, dispatch}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
@@ -40,7 +39,12 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ServiceWidget service={c} showName={showName} key={i} />
+          <ServiceWidget
+            service={c}
+            showName={showName}
+            key={i}
+            dispatch={dispatch}
+          />
         ))}
       </ScrollView>
     </View>

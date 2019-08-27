@@ -227,6 +227,13 @@ export async function authenticated(api_token) {
     .catch(e => e.response.data.message);
 }
 
+export async function reAuthenticate(api_token) {
+  return await axiosInstance
+    .get(`reauthenticate`, {params: {api_token}})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function authenticate(elements) {
   const {email, password, player_id} = elements;
   return await axiosInstance

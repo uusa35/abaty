@@ -1,5 +1,12 @@
-import React, {useContext} from 'react';
-import {StyleSheet, ScrollView, Linking} from 'react-native';
+import React, {useState, useMemo} from 'react';
+import {
+  StyleSheet,
+  ScrollView,
+  Linking,
+  Text,
+  RefreshControl,
+  FlatList
+} from 'react-native';
 import {connect} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
@@ -9,17 +16,17 @@ import {Button} from 'react-native-elements';
 import {isRTL} from '../I18n';
 import I18n from './../I18n';
 import {ordersSelector} from '../redux/selectors/collections';
-import {appUrlIos} from '../env';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import {map} from 'lodash';
+import OrderWidget from '../components/widgets/order/OrderWidget';
+import {colorsSelector, logoSelector} from '../redux/selectors/collection';
+import {reAuthenticate} from '../redux/actions';
 
-const OrderIndexScreen = ({orders}) => {
-  console.log('the orders', orders);
-  const {colors} = useContext(GlobalValuesContext);
+const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
+  const [refresh, setRefres] = useState(false);
+
   return (
     <ScrollView
       contentContainerStyle={{
-        height: '100%',
         alignItems: 'center',
         justifyContent: 'center'
       }}
@@ -27,34 +34,18 @@ const OrderIndexScreen = ({orders}) => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}>
+      contentInset={{bottom: 100}}
+      refreshing={refresh}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => dispatch(reAuthenticate())}
+        />
+      }>
       {!validate.isEmpty(orders) ? (
-        <View
-          animation="lightSpeedIn"
-          easing="ease-out"
-          style={{
-            marginTop: 50,
-            width: width - 50,
-            alignSelf: 'center'
-          }}>
+        <View style={{width: '100%', padding: 5}}>
           {map(orders, (o, i) => (
-            <Button
-              key={i}
-              onPress={() =>
-                Linking.openURL(`${appUrlIos}/view/invoice/${o.id}`)
-              }
-              title={o.name}
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0
-              }}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color
-              }}
-            />
+            <OrderWidget o={o} colors={colors} key={i} logo={logo} />
           ))}
         </View>
       ) : (
@@ -78,11 +69,13 @@ const OrderIndexScreen = ({orders}) => {
 
 function mapStateToProps(state) {
   return {
-    orders: ordersSelector(state)
+    orders: ordersSelector(state),
+    logo: logoSelector(state),
+    colors: colorsSelector(state)
   };
 }
 
-export default connect(mapStateToProps)(React.memo(OrderIndexScreen));
+export default connect(mapStateToProps)(OrderIndexScreen);
 
 OrderIndexScreen.propTypes = {
   orders: PropTypes.array

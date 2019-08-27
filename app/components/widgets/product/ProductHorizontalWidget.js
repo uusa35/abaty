@@ -10,8 +10,7 @@ import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ProductHorizontalWidget = ({elements, showName, title}) => {
-  const {dispatch} = useContext(DispatchContext);
+const ProductHorizontalWidget = ({elements, showName, title, dispatch}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
@@ -41,7 +40,12 @@ const ProductHorizontalWidget = ({elements, showName, title}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ProductWidget product={c} showName={showName} key={i} />
+          <ProductWidget
+            product={c}
+            showName={showName}
+            key={i}
+            dispatch={dispatch}
+          />
         ))}
       </ScrollView>
     </View>

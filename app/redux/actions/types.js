@@ -15,6 +15,7 @@ export const REMOVE_AUTH = 'REMOVE_AUTH';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_AUTH = 'GET_AUTH';
 export const SET_AUTH = 'SET_AUTH';
+export const REAUTHENTICATE = 'REAUTHENTICATE';
 export const SET_SETTINGS = 'SET_SETTINGS';
 export const GET_ROLES = 'GET_ROLES';
 export const SET_ROLE = 'SET_ROLE';

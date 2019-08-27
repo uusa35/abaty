@@ -12,8 +12,13 @@ import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 
-const DesignerHorizontalWidget = ({elements, showName, title, name}) => {
-  const {dispatch} = useContext(DispatchContext);
+const DesignerHorizontalWidget = ({
+  elements,
+  showName,
+  title,
+  name,
+  dispatch
+}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.container}>

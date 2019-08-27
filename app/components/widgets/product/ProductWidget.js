@@ -15,8 +15,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
 
-const ProductWidget = ({product, showName = false}) => {
-  const {dispatch} = useContext(DispatchContext);
+const ProductWidget = ({product, showName = false, dispatch}) => {
   const {currency_symbol, exchange_rate, colors, token} = useContext(
     GlobalValuesContext
   );

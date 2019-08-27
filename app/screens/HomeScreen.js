@@ -187,7 +187,8 @@ class HomeScreen extends Component {
       show_commercials,
       colors,
       services,
-      usersWidget
+      usersWidget,
+      dispatch
     } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
@@ -217,6 +218,7 @@ class HomeScreen extends Component {
               showName={true}
               name="designers"
               title="designers"
+              dispatch={dispatch}
             />
           ) : null}
           {!validate.isEmpty(categories) && validate.isArray(categories) ? (
@@ -224,6 +226,7 @@ class HomeScreen extends Component {
               elements={categories}
               showName={true}
               title="categories"
+              dispatch={dispatch}
             />
           ) : null}
           {!validate.isEmpty(celebrities) && validate.isArray(celebrities) ? (
@@ -232,6 +235,7 @@ class HomeScreen extends Component {
               showName={true}
               name="celebrities"
               title="celebrities"
+              dispatch={dispatch}
             />
           ) : null}
           {!validate.isEmpty(homeProducts) ? (
@@ -239,6 +243,7 @@ class HomeScreen extends Component {
               elements={homeProducts}
               showName={true}
               title="featured_products"
+              dispatch={dispatch}
             />
           ) : null}
           {!validate.isEmpty(brands) && validate.isArray(brands) ? (
@@ -253,6 +258,7 @@ class HomeScreen extends Component {
               elements={services}
               showName={true}
               title="our_services"
+              dispatch={dispatch}
             />
           ) : null}
         </ScrollView>

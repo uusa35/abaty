@@ -734,6 +734,36 @@ export function* startSubmitAuthScenario(action) {
   }
 }
 
+export function* startReAuthenticateScenario() {
+  try {
+    const {token, loginModal} = yield select();
+    const user = yield call(api.reAuthenticate, token);
+    if (!validate.isEmpty(user) && validate.isObject(user)) {
+      if (
+        !validate.isEmpty(user.product_favorites) &&
+        validate.isArray(user.product_favorites)
+      ) {
+        yield put({
+          type: actions.SET_PRODUCT_FAVORITES,
+          payload: user.product_favorites
+        });
+      } else {
+        yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
+      }
+      yield all([
+        put({type: actions.SET_TOKEN, payload: user.api_token}),
+        put({type: actions.SET_AUTH, payload: user}),
+        put({type: actions.SET_ORDERS, payload: user.orders}),
+        put({type: actions.TOGGLE_GUEST, payload: false})
+      ]);
+    } else {
+      throw user;
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
 export function* startUpdateUserScenario(action) {
   try {
     yield call(enableLoading);

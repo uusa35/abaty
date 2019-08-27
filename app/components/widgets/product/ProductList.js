@@ -204,7 +204,11 @@ const ProductList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ProductWidget product={item} showName={showName} />
+            <ProductWidget
+              product={item}
+              showName={showName}
+              dispatch={dispatch}
+            />
           )}
         />
       ) : (

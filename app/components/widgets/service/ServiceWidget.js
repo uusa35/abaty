@@ -15,8 +15,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
 
-const ServiceWidget = ({service, showName = false}) => {
-  const {dispatch} = useContext(DispatchContext);
+const ServiceWidget = ({service, showName = false, dispatch}) => {
   const {currency_symbol, exchange_rate, colors, token} = useContext(
     GlobalValuesContext
   );
@@ -93,7 +92,7 @@ const ServiceWidget = ({service, showName = false}) => {
   );
 };
 
-export default React.memo(ServiceWidget);
+export default ServiceWidget;
 
 ServiceWidget.propTypes = {
   service: PropTypes.object.isRequired,

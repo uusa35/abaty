@@ -25,7 +25,8 @@ const ServiceList = ({
   showMore = true,
   title,
   searchElements,
-  colors
+  colors,
+  dispatch
 }) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
@@ -37,7 +38,7 @@ const ServiceList = ({
   // console.log('THE SEARCH ELEMENTS FROM SErvice LIST', searchElements);
   // console.log('THE PARAMS FROM SERVice LIST', params);
   useMemo(() => {
-    if (isLoading === true && showMore) {
+    if (isLoading && showMore) {
       return axiosInstance(`search/service?page=${page}`, {
         params
       })
@@ -51,7 +52,11 @@ const ServiceList = ({
   }, [page]);
 
   useMemo(() => {
-    isLoading ? setPage(page + 1) : null;
+    if (isLoading && showMore) {
+      setPage(page + 1);
+    } else {
+      setIsLoading(false);
+    }
   }, [isLoading]);
 
   useMemo(() => {
@@ -192,7 +197,11 @@ const ServiceList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ServiceWidget service={item} showName={showName} />
+            <ServiceWidget
+              service={item}
+              showName={showName}
+              dispatch={dispatch}
+            />
           )}
         />
       ) : (
@@ -209,7 +218,7 @@ const ServiceList = ({
   );
 };
 
-export default ServiceList;
+export default React.memo(ServiceList);
 
 ServiceList.propTypes = {
   elements: PropTypes.array.isRequired,

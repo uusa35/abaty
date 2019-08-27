@@ -352,7 +352,7 @@
   "skip": "skip",
   "next": "next",
   "done": "done",
-  "brands": "brands",
+  "brands": "Brands",
   "users": "users",
   "choose_size": "choose size",
   "kwd": "KWD",
@@ -445,5 +445,17 @@
   "terms" : "Terms",
   "conditions" : "Conditions",
   "policies" : "Policies",
-  "comment_added_success" : "Comment added successfully. thank you"
+  "comment_added_success" : "Comment added successfully. thank you",
+  "order_no" : "Order No : ",
+  "order_status" : "Order Status : ",
+  "order_date" : "Order Date : ",
+  "received" : "ٌReceived",
+  "success" : "Success",
+  "completed" : "Completed",
+  "delivered" : "Delivered",
+  "shipped" : "Shipped",
+  "under_process" : "Under Process",
+  "shipment_reference" : "Shipment Reference : ",
+  "see_invoice" : "See Invoice Details",
+  "track" : "track"
 }

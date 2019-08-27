@@ -55,7 +55,7 @@ const CommentWidget = ({element}) => {
   );
 };
 
-export default React.memo(CommentWidget);
+export default CommentWidget;
 
 CommentWidget.propTypes = {
   element: PropTypes.object,

@@ -90,7 +90,7 @@ const CommentsList = ({elements, model, id}) => {
   );
 };
 
-export default React.memo(CommentsList);
+export default CommentsList;
 
 CommentsList.propTypes = {
   elements: PropTypes.array.isRequired,

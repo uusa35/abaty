@@ -498,3 +498,9 @@ export function addComment(payload) {
     payload
   };
 }
+
+export function reAuthenticate() {
+  return {
+    type: actions.REAUTHENTICATE
+  };
+}

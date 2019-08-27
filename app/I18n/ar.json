@@ -478,6 +478,17 @@
   "terms" : "الشروط",
   "conditions" : "الأحكام",
   "policies" : "السياسات",
-  "comment_added_success" : "تم إضافة التعليق بنجاح شكرا للمشاركتكم"
-
+  "comment_added_success" : "تم إضافة التعليق بنجاح شكرا للمشاركتكم",
+  "order_no" : "رقم الطلب :",
+  "order_status" : "حالة الطلب :",
+  "order_date" : "تاريخ الطلب :",
+  "received" : "تم الاستلام",
+  "success" : "ناجح",
+  "completed" : "مكتمل",
+  "delivered" : "تم التسليم",
+  "shipped" : "تم الشحن",
+  "under_process" : "قيد التنفيذ",
+  "shipment_reference" : "رقم الشحنة",
+  "see_invoice" : "مشاهدة تفاصيل الفاتورة",
+  "track" : "تتبع الشحنة"
 }

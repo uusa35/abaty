@@ -18,8 +18,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 
-const CategoryHorizontalWidget = ({elements, showName, title}) => {
-  const {dispatch} = useContext(DispatchContext);
+const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
   const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (

@@ -48,6 +48,7 @@ import ServiceIndexScreen from './screens/ServiceIndexScreen';
 import ServiceShowScreen from './screens/ServiceShowScreen';
 import OrderIndexScreen from './screens/OrderIndexScreen';
 import TermAndConditionScreen from './screens/TermAndConditionScreen';
+import ServiceIndexAllScreen from './screens/ServiceIndexAllScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -377,6 +378,43 @@ const ProductStack = createStackNavigator(
   }
 );
 
+const ServiceStack = createStackNavigator(
+  {
+    ServiceIndexAll: {
+      screen: ServiceIndexAllScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('services')} />,
+        headerBackTitle: null
+      })
+    },
+    Service: {
+      screen: ServiceShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          backgroundColor: 'white',
+          zIndex: 100
+        }
+      }),
+      path: `service/:id`
+    }
+  },
+  {
+    mode: 'card',
+    headerMode: 'float'
+  }
+);
+
 const VideoStack = createStackNavigator(
   {
     VideoIndex: {
@@ -495,28 +533,23 @@ const TabsStack = createBottomTabNavigator(
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-shirt" type="ionicon" color={tintColor} />
+          <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
         ),
         title: I18n.t('all_products')
       })
     },
-    BrandIndexScreen: {
-      screen: BrandStack,
+    ServiceIndexAll: {
+      screen: ServiceStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
-            type="simple-line-icon"
-            name="tag"
+            name="customerservice"
+            type="antdesign"
             size={18}
             color={tintColor}
           />
         ),
-        tabBarLabel: ({tintColor}) => (
-          <Text
-            style={[navLabelStyle, {color: tintColor, fontFamily: text.font}]}>
-            {I18n.t('brands')}
-          </Text>
-        )
+        title: I18n.t('services')
       })
     }
   },
@@ -542,7 +575,7 @@ const TabsStack = createBottomTabNavigator(
       'Home',
       'CategoryIndexScreen',
       'VideoIndexScreen',
-      'BrandIndexScreen',
+      'ServiceIndexAll',
       'ProductIndexAll'
     ]
   }

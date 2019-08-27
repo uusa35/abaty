@@ -18,17 +18,7 @@ const CommentScreenModal = ({commentModal, elements, model, id}) => {
         visible={commentModal}
         animationType={'slide'}
         onRequestClose={() => setVisible(false)}>
-        <View
-          style={{
-            height: 80,
-            paddingLeft: 20,
-            paddingRight: 20,
-            paddingBottom: 5,
-            width: '100%',
-            justifyContent: 'flex-end',
-            alignItems: 'flex-start',
-            zIndex: 999
-          }}>
+        <View style={styles.iconModalWrapper}>
           <Icon
             name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
             type="entypo"
@@ -51,4 +41,15 @@ CommentScreenModal.propTypes = {
   commentModal: PropTypes.bool.isRequired
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  iconModalWrapper: {
+    height: 80,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 5,
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    zIndex: 999
+  }
+});

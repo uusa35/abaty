@@ -40,7 +40,8 @@ import {
   setServices,
   startRateUserScenario,
   startBecomeFanScenario,
-  startAddCommentScenario
+  startAddCommentScenario,
+  startReAuthenticateScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -204,6 +205,10 @@ export function* submitCart() {
 
 export function* submitAuth() {
   yield takeLatest(actions.SUBMIT_AUTH, startSubmitAuthScenario);
+}
+
+export function* reAuthenticate() {
+  yield takeLatest(actions.REAUTHENTICATE, startReAuthenticateScenario);
 }
 
 export function* updateUser() {
