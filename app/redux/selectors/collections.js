@@ -21,6 +21,7 @@ const searchParams = state => state.searchParams;
 const comments = state => state.comments;
 const orders = state => state.auth.orders;
 const countries = state => state.countries;
+const homeCollections = state => state.homeCollections;
 
 export const brandsSelector = createSelector(
   brands,

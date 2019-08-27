@@ -104,23 +104,6 @@ const SideMeu = ({
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ServiceIndex')}
-              style={styles.menuBtn}>
-              <Icon
-                name="customerservice"
-                type="antdesign"
-                size={20}
-                color={colors.icon_theme_color}
-              />
-              <Text
-                style={[
-                  styles.titleStyle,
-                  {color: colors.header_one_theme_color}
-                ]}>
-                {I18n.t('services')}
-              </Text>
-            </TouchableOpacity>
             {guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}

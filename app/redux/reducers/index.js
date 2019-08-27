@@ -29,8 +29,11 @@ import slides from './slides';
 import splashes from './splashes';
 import product from './product';
 import homeProducts from './homeProducts';
+import homeCollections from './homeCollections';
 import productFavorites from './productFavorites';
 import products from './products';
+import collection from './collection';
+import collections from './collections';
 import services from './services';
 import service from './service';
 import videos from './videos';
@@ -67,6 +70,9 @@ let reducers = combineReducers({
   products,
   service,
   services,
+  collection,
+  collections,
+  homeCollections,
   homeProducts,
   productFavorites,
   videos,

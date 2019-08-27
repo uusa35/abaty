@@ -152,6 +152,13 @@ export async function getHomeProducts() {
     .catch(e => e.response.data.message);
 }
 
+export async function getHomeCollections() {
+  return await axiosInstance
+    .get(`collection`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getCountries() {
   return await axiosInstance
     .get(`country`)

@@ -148,6 +148,19 @@ export function* setHomeProducts() {
   }
 }
 
+export function* setHomeCollections() {
+  try {
+    const collections = yield call(api.getHomeCollections);
+    if (!validate.isEmpty(collections) && validate.isArray(collections)) {
+      yield all([
+        put({type: actions.SET_HOME_COLLECTIONS, payload: collections})
+      ]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_home_products'))]);
+  }
+}
+
 export function* getProductIndex() {
   try {
     const products = yield call(api.getProducts);

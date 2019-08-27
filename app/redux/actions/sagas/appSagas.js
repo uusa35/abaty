@@ -1,5 +1,6 @@
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
+import {ABATI, MALLR} from './../../../../app';
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
@@ -41,7 +42,8 @@ import {
   startRateUserScenario,
   startBecomeFanScenario,
   startAddCommentScenario,
-  startReAuthenticateScenario
+  startReAuthenticateScenario,
+  setHomeCollections
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -70,7 +72,6 @@ function* startAppBootStrap() {
         call(setSettings),
         call(setCountries),
         call(setSlides),
-        call(setServices),
         call(setCommercials),
         call(setHomeBrands),
         call(startAuthenticatedScenario),
@@ -80,6 +81,8 @@ function* startAppBootStrap() {
       ]);
       yield call(setHomeCategories);
       yield call(setHomeProducts);
+      MALLR ? yield call(setHomeCollections) : null;
+      ABATI ? yield call(setServices) : null;
       yield call(getProductIndex);
       yield call(getVideos);
       yield call(setHomeDesigners);

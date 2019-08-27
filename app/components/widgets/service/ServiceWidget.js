@@ -31,7 +31,8 @@ const ServiceWidget = ({service, showName = false, dispatch}) => {
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 285
+          height: 285,
+          justifyContent: 'space-evenly'
         }
       ]}
       onPress={() =>

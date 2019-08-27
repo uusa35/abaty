@@ -3,27 +3,25 @@ import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
-import {getSearchProducts} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import ProductWidget from './../product/ProductWidget';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import CollectionWidget from './CollectionWidget';
+import CollectionInfoWidget from './CollectionInfoWidget';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ProductHorizontalWidget = ({
+const CollectionHorizontalWidget = ({
   elements,
   showName,
   title,
   dispatch,
   colors
 }) => {
+  const {navigate} = useNavigation();
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() =>
-          dispatch(getSearchProducts({searchElements: {on_home: true}}))
-        }>
+        onPress={() => navigate('CollectionIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
@@ -45,7 +43,7 @@ const ProductHorizontalWidget = ({
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ProductWidget
+          <CollectionWidget
             element={c}
             showName={showName}
             key={i}
@@ -57,9 +55,9 @@ const ProductHorizontalWidget = ({
   );
 };
 
-export default ProductHorizontalWidget;
+export default CollectionHorizontalWidget;
 
-ProductHorizontalWidget.propTypes = {
+CollectionInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   showName: PropTypes.bool
 };

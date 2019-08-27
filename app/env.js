@@ -1,4 +1,4 @@
-import {ENV, PORT} from '../app';
+import {MALLR, ABATI, ENV, PORT} from '../app';
 
 if (ENV === 'local') {
   console.log('the env testing>>>>', ENV);
@@ -13,8 +13,11 @@ if (ENV === 'local') {
   };
 } else if (ENV === 'production') {
   module.exports = {
-    appUrlIos: 'http://abati.ideasowners.net/',
-    appUrlAndroid: 'http://abati.ideasowners.net/',
+    appUrlIos: ABATI ? 'http://abati.ideasowners.net/' : 'http://mallr.net/',
+    // appUrlIos: 'http://abati.ideasowners.net/',
+    appUrlAndroid: ABATI
+      ? 'http://abati.ideasowners.net/'
+      : 'http://mallr.net/',
     port: PORT
   };
 }

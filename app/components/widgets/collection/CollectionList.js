@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useEffect} from 'react';
+import React, {useState, useMemo} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -7,7 +7,7 @@ import {
   KeyboardAvoidingView,
   FlatList
 } from 'react-native';
-import ProductWidget from './ProductWidget';
+import CollectionWidget from './CollectionWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
@@ -17,8 +17,8 @@ import {filter} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
 
-const ProductList = ({
-  products,
+const CollectionList = ({
+  elements,
   showName = true,
   showSearch = true,
   showFooter = true,
@@ -30,7 +30,7 @@ const ProductList = ({
   colors,
   dispatch
 }) => {
-  [elements, setElements] = useState(products);
+  [elements, setElements] = useState(elements);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
@@ -38,7 +38,6 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  const [shouldUpdate, useShouldUpdate] = useState(() => elements !== products);
 
   useMemo(() => {
     if (isLoading && showMore) {
@@ -77,7 +76,7 @@ const ProductList = ({
       setIsLoading(false);
       setRefresh(false);
       let filtered = filter(elements, i =>
-        i.name.includes(search) ? i : null
+        i.slug.includes(search) ? i : null
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
@@ -196,7 +195,7 @@ const ProductList = ({
                 <Button
                   loading={endList}
                   raised
-                  title={I18n.t('no_more_products')}
+                  title={I18n.t('no_more_collections')}
                   type="outline"
                   titleStyle={{fontFamily: text.font}}
                 />
@@ -204,8 +203,7 @@ const ProductList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ProductWidget
-              colors={colors}
+            <CollectionWidget
               element={item}
               showName={showName}
               dispatch={dispatch}
@@ -217,7 +215,7 @@ const ProductList = ({
           style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
           <Button
             raised
-            title={I18n.t('no_products')}
+            title={I18n.t('no_collections')}
             type="outline"
             titleStyle={{fontFamily: text.font}}
           />
@@ -227,10 +225,10 @@ const ProductList = ({
   );
 };
 
-export default React.memo(ProductList);
+export default React.memo(CollectionList);
 
-ProductList.propTypes = {
-  products: PropTypes.array.isRequired,
+CollectionList.propTypes = {
+  elements: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,

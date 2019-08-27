@@ -165,6 +165,8 @@ const ProductShowScreen = ({
             elements={homeProducts}
             showName={true}
             title="featured_products"
+            colors={colors}
+            dispatch={dispatch}
           />
         ) : null}
       </ScrollView>

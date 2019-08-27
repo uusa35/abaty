@@ -49,6 +49,7 @@ import ServiceShowScreen from './screens/ServiceShowScreen';
 import OrderIndexScreen from './screens/OrderIndexScreen';
 import TermAndConditionScreen from './screens/TermAndConditionScreen';
 import ServiceIndexAllScreen from './screens/ServiceIndexAllScreen';
+import CollectionIndexScreen from './screens/CollectionIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -163,6 +164,17 @@ const HomeStack = createStackNavigator(
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+        headerBackTitle: null
+      })
+    },
+    CollectionIndex: {
+      screen: CollectionIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
         headerBackTitle: null
       })
     },
