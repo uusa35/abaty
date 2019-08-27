@@ -3,13 +3,13 @@ import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import CategoryWidget from '../widgets/category/CategoryWidget';
 import {refetchHomeCategories} from '../../redux/actions';
 import {map} from 'lodash';
-import {height, text} from './../../constants';
+import {text} from './../../constants';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 
-const CategoriesList = ({elements, columns, dispatch}) => {
+const CategoriesList = ({elements, columns, dispatch, colors}) => {
   const [refresh, setRefresh] = useState(false);
   useMemo(() => {
     if (refresh) {
@@ -39,7 +39,13 @@ const CategoriesList = ({elements, columns, dispatch}) => {
         ]}>
         {!validate.isEmpty(elements) ? (
           map(elements, (c, i) => (
-            <CategoryWidget category={c} key={i} columns={columns} />
+            <CategoryWidget
+              element={c}
+              key={i}
+              columns={columns}
+              dispatch={dispatch}
+              colors={colors}
+            />
           ))
         ) : (
           <Button
@@ -54,10 +60,11 @@ const CategoriesList = ({elements, columns, dispatch}) => {
   );
 };
 
-export default CategoriesList;
+export default React.memo(CategoriesList);
 
 CategoriesList.propTypes = {
   elements: PropTypes.array.isRequired,
+  colors: PropTypes.object.isRequired,
   columns: PropTypes.number
 };
 

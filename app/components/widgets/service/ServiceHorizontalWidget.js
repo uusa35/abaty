@@ -11,8 +11,13 @@ import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
 
-const ServiceHorizontalWidget = ({elements, showName, title, dispatch}) => {
-  const {colors} = useContext(GlobalValuesContext);
+const ServiceHorizontalWidget = ({
+  elements,
+  showName,
+  title,
+  dispatch,
+  colors
+}) => {
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
@@ -40,10 +45,11 @@ const ServiceHorizontalWidget = ({elements, showName, title, dispatch}) => {
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <ServiceWidget
-            service={c}
+            element={c}
             showName={showName}
             key={i}
             dispatch={dispatch}
+            colors={colors}
           />
         ))}
       </ScrollView>

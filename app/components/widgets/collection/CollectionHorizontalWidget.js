@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
@@ -16,12 +16,11 @@ const CollectionHorizontalWidget = ({
   dispatch,
   colors
 }) => {
-  const {navigate} = useNavigation();
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigate('CollectionIndex')}>
+        onPress={() => dispatch({type: 'GET_COLLECTIONS'})}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
@@ -48,6 +47,7 @@ const CollectionHorizontalWidget = ({
             showName={showName}
             key={i}
             dispatch={dispatch}
+            colors={colors}
           />
         ))}
       </ScrollView>
@@ -55,9 +55,10 @@ const CollectionHorizontalWidget = ({
   );
 };
 
-export default CollectionHorizontalWidget;
+export default React.memo(CollectionHorizontalWidget);
 
 CollectionInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired,
+  colors: PropTypes.object.isRequired,
   showName: PropTypes.bool
 };

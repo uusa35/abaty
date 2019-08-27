@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -7,18 +7,11 @@ import {
   Text
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getProduct} from '../../../redux/actions';
-import {getProductConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {getSearchProducts} from '../../../redux/actions';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
-import TagWidget from './../TagWidget';
 
-const CollectionWidget = ({element, showName = false, dispatch}) => {
-  const {currency_symbol, exchange_rate, colors, token} = useContext(
-    GlobalValuesContext
-  );
+const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
   return (
     <TouchableOpacity
       key={element.id}
@@ -36,9 +29,15 @@ const CollectionWidget = ({element, showName = false, dispatch}) => {
           justifyContent: 'space-evenly'
         }
       ]}
-      onPress={() =>
-        dispatch(getProduct({id: element.id, api_token: token ? token : null}))
-      }>
+      onPress={() => {
+        dispatch({type: 'SET_COLLECTION', payload: element});
+        dispatch(
+          getSearchProducts({
+            name: element.slug,
+            searchElements: {collection_id: element.id}
+          })
+        );
+      }}>
       <ImageBackground
         source={{
           uri: element.thumb
@@ -69,8 +68,7 @@ export default CollectionWidget;
 
 CollectionWidget.propTypes = {
   element: PropTypes.object.isRequired,
-  exchange_rate: PropTypes.number,
-  currency_symbol: PropTypes.string,
+  colors: PropTypes.object,
   showName: PropTypes.bool
 };
 

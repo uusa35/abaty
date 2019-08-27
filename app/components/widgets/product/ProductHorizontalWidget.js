@@ -50,6 +50,7 @@ const ProductHorizontalWidget = ({
             showName={showName}
             key={i}
             dispatch={dispatch}
+            colors={colors}
           />
         ))}
       </ScrollView>

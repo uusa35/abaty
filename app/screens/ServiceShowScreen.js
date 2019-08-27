@@ -18,18 +18,12 @@ import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
 import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
-import {servicesSelector} from '../redux/selectors/collections';
-import {
-  colorsSelector,
-  mobileSelector,
-  phoneSelector,
-  serviceSelector,
-  tokenSelector
-} from '../redux/selectors/collection';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 
 const ServiceShowScreen = ({
   service,
+  services,
   phone,
   mobile,
   dispatch,
@@ -164,6 +158,15 @@ const ServiceShowScreen = ({
         !validate.isEmpty(service.videoGroup) ? (
           <VideosWidget videos={service.videoGroup} colors={colors} />
         ) : null}
+        {validate.isArray(services) && !validate.isEmpty(services) ? (
+          <ServiceHorizontalWidget
+            dispatch={dispatch}
+            colors={colors}
+            showName={true}
+            title="our_services"
+            elements={services}
+          />
+        ) : null}
       </ScrollView>
       <ActionBtnWidget />
     </Fragment>
@@ -172,12 +175,12 @@ const ServiceShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    service: serviceSelector(state),
-    phone: phoneSelector(state),
-    mobile: mobileSelector(state),
-    services: servicesSelector(state),
-    token: tokenSelector(state),
-    colors: colorsSelector(state)
+    service: state.service,
+    services: state.services,
+    phone: state.settings.phone,
+    mobile: state.settings.mobile,
+    token: state.token,
+    colors: state.settings.colors
   };
 }
 

@@ -11,7 +11,7 @@ import I18n from './../I18n';
 
 const HeaderCustom = ({navigation}) => {
   const shareLink = link => {
-    console.log('the link', link);
+    __DEV__ ? console.log('the link', link) : null;
     return Share.open({
       title: I18n.t('share_file'),
       url: link,
@@ -20,7 +20,7 @@ const HeaderCustom = ({navigation}) => {
       subject: I18n.t('share_file')
     })
       .then(res => {
-        console.log(res);
+        __DEV__ ? console.log(res) : null;
       })
       .catch(err => {
         err && console.log(err);

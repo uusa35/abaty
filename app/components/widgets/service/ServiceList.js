@@ -35,8 +35,7 @@ const ServiceList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  // console.log('THE SEARCH ELEMENTS FROM SErvice LIST', searchElements);
-  // console.log('THE PARAMS FROM SERVice LIST', params);
+
   useMemo(() => {
     if (isLoading && showMore) {
       return axiosInstance(`search/service?page=${page}`, {
@@ -198,8 +197,9 @@ const ServiceList = ({
           }
           renderItem={({item}) => (
             <ServiceWidget
-              service={item}
+              element={item}
               showName={showName}
+              colors={colors}
               dispatch={dispatch}
             />
           )}

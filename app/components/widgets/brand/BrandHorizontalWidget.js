@@ -51,7 +51,7 @@ const BrandHorizontalWidget = ({elements, title}) => {
   );
 };
 
-export default BrandHorizontalWidget;
+export default React.memo(BrandHorizontalWidget);
 
 BrandHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

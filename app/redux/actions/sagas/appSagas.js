@@ -43,7 +43,8 @@ import {
   startBecomeFanScenario,
   startAddCommentScenario,
   startReAuthenticateScenario,
-  setHomeCollections
+  setHomeCollections,
+  startGetCollectionsScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -63,7 +64,6 @@ function* startAppBootStrap() {
   try {
     const {network, bootStrapped} = yield select();
     if (!bootStrapped || (__DEV__ && network.isConnected)) {
-      console.log('from inside');
       yield all([
         put({
           type: offlineActionTypes.CONNECTION_CHANGE,
@@ -258,6 +258,10 @@ export function* addComment() {
 
 export function* resetStore() {
   yield takeLatest(actions.RESET_STORE, startResetStoreScenario);
+}
+
+export function* getCollections() {
+  yield takeLatest(actions.GET_COLLECTIONS, startGetCollectionsScenario);
 }
 
 export function* startResetStoreScenario() {

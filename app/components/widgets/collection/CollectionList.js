@@ -18,7 +18,7 @@ import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
 
 const CollectionList = ({
-  elements,
+  collections,
   showName = true,
   showSearch = true,
   showFooter = true,
@@ -30,7 +30,7 @@ const CollectionList = ({
   colors,
   dispatch
 }) => {
-  [elements, setElements] = useState(elements);
+  [elements, setElements] = useState(collections);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [items, setItems] = useState(elements);
@@ -207,6 +207,7 @@ const CollectionList = ({
               element={item}
               showName={showName}
               dispatch={dispatch}
+              colors={colors}
             />
           )}
         />
@@ -228,7 +229,7 @@ const CollectionList = ({
 export default React.memo(CollectionList);
 
 CollectionList.propTypes = {
-  elements: PropTypes.array.isRequired,
+  collections: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,

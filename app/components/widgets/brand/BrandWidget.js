@@ -32,7 +32,10 @@ const BrandWidget = ({
       onPress={() => {
         dispatch({type: 'SET_BRAND', payload: element});
         dispatch(
-          getSearchProducts({element, searchElements: {brand_id: element.id}})
+          getSearchProducts({
+            name: element.name,
+            searchElements: {brand_id: element.id}
+          })
         );
       }}>
       <FastImage

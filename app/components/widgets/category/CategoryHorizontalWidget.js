@@ -53,8 +53,7 @@ const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
             onPress={() =>
               dispatch(
                 getSearchProducts({
-                  element: c,
-                  category: c,
+                  name: c.name,
                   searchElements: {product_category_id: c.id}
                 })
               )
@@ -84,7 +83,7 @@ const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
   );
 };
 
-export default CategoryHorizontalWidget;
+export default React.memo(CategoryHorizontalWidget);
 
 CategoryHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,

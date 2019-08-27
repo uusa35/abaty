@@ -3,18 +3,13 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
-import {
-  productsSelector,
-  searchParamsSelector
-} from '../redux/selectors/collections';
-import {colorsSelector} from '../redux/selectors/collection';
 
 const ProductIndexScreen = ({products, searchParams, dispatch, colors}) => {
   return (
     <ProductList
       products={products}
       dispatch={dispatch}
-      colros={colors}
+      colors={colors}
       showName={true}
       searchElements={searchParams}
     />
@@ -23,9 +18,9 @@ const ProductIndexScreen = ({products, searchParams, dispatch, colors}) => {
 
 function mapStateToProps(state) {
   return {
-    products: productsSelector(state),
-    searchParams: searchParamsSelector(state),
-    colors: colorsSelector(state)
+    products: state.products,
+    searchParams: state.searchParams,
+    colors: state.settings.colors
   };
 }
 

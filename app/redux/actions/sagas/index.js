@@ -17,6 +17,7 @@ export default function* rootSaga() {
     fork(appSagas.getSearchProducts),
     fork(appSagas.getSearchServices),
     fork(appSagas.getAllProducts),
+    fork(appSagas.getCollections),
     fork(appSagas.toggleFavorite),
     fork(langSagas.changeLang),
     fork(appSagas.goBackBtn),

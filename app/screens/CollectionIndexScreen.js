@@ -4,19 +4,15 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import CollectionList from '../components/widgets/collection/CollectionList';
 
-const CollectionIndexScreen = ({
-  collections,
-  searchParams,
-  dispatch,
-  colors
-}) => {
+const CollectionIndexScreen = ({collections, dispatch, colors}) => {
   return (
     <CollectionList
-      elements={collections}
+      collections={collections}
       dispatch={dispatch}
-      colros={colors}
-      showName={true}
-      searchElements={searchParams}
+      colors={colors}
+      showMore={false}
+      showLoading={false}
+      searchElements={{}}
     />
   );
 };
@@ -33,7 +29,8 @@ export default connect(mapStateToProps)(CollectionIndexScreen);
 
 CollectionIndexScreen.propTypes = {
   collections: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
+  colors: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({});

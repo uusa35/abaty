@@ -161,6 +161,29 @@ export function* setHomeCollections() {
   }
 }
 
+export function* startGetCollectionsScenario() {
+  try {
+    const collections = yield call(api.getCollections);
+    if (!validate.isEmpty(collections) && validate.isArray(collections)) {
+      yield all([
+        put({type: actions.SET_COLLECTIONS, payload: collections}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'CollectionIndex',
+            params: {
+              name: I18n.t('collections'),
+              searchElements: {}
+            }
+          })
+        )
+      ]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_collections'))]);
+  }
+}
+
 export function* getProductIndex() {
   try {
     const products = yield call(api.getProducts);
@@ -337,7 +360,7 @@ export function* startGetServiceScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {element, searchElements} = action.payload;
+    const {name, searchElements} = action.payload;
     const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
@@ -346,10 +369,12 @@ export function* startGetSearchProductsScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'ProductIndex',
-            params: {name: element ? element.name : I18n.t('products')}
+            params: {name: name ? name : I18n.t('products')}
           })
         )
       ]);
+    } else {
+      throw products;
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);

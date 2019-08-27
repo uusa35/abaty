@@ -62,8 +62,7 @@ const UserCategoriesInfoWidget = ({
                   onPress={() =>
                     dispatch(
                       getSearchProducts({
-                        element: c,
-                        category: c,
+                        name: c.name,
                         searchElements: {product_category_id: c.id}
                       })
                     )

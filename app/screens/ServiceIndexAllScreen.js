@@ -1,8 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {NavContext} from './../redux/NavContext';
-import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
@@ -28,8 +26,8 @@ const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
 
 function mapStateToProps(state) {
   return {
-    services: servicesSelector(state),
-    colors: colorsSelector(state)
+    services: state.services,
+    colors: state.settings.colors
   };
 }
 

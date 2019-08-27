@@ -264,6 +264,7 @@ class HomeScreen extends Component {
               showName={true}
               title="our_services"
               dispatch={dispatch}
+              colors={colors}
             />
           ) : null}
           {!validate.isEmpty(homeCollections) && MALLR ? (

@@ -163,7 +163,7 @@ const HomeStack = createStackNavigator(
         headerRight: (
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
-        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null
       })
     },

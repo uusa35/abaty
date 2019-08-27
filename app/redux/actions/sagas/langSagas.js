@@ -55,6 +55,6 @@ export function* defaultLang() {
       ]);
     }
   } catch (e) {
-    console.log('the e from default Lang', e);
+    __DEV__ ? console.log('the e from default Lang', e) : null;
   }
 }

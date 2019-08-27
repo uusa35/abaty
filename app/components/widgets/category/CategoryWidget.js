@@ -1,37 +1,35 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
 import {getSearchProducts} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const CategoryWidget = ({category, columns, showBtn = false}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+const CategoryWidget = ({
+  element,
+  columns,
+  showBtn = false,
+  dispatch,
+  colors
+}) => {
   return (
     <View>
       <TouchableOpacity
-        key={category.id}
-        style={[
-          styles.categoriesContainer,
-          // {width: columns ? 120 : width - 40, height: columns ? 250 : 300}
-          {width: '100%'}
-        ]}
+        key={element.id}
+        style={[styles.categoriesContainer, {width: '100%'}]}
         onPress={() =>
           dispatch(
             getSearchProducts({
-              element: category,
-              searchElements: {product_category_id: category.id}
+              name: element.name,
+              searchElements: {product_category_id: element.id}
             })
           )
         }>
         <FastImage
           style={{width: width, height: 400}}
           resizeMode="cover"
-          source={{uri: category.large}}
+          source={{uri: element.large}}
           loadingIndicatorSource={images.logo}
         />
         {showBtn ? (
@@ -39,15 +37,15 @@ const CategoryWidget = ({category, columns, showBtn = false}) => {
             onPress={() =>
               dispatch(
                 getSearchProducts({
-                  element: category,
-                  searchElements: {product_category_id: category.id}
+                  name: element.name,
+                  searchElements: {product_category_id: element.id}
                 })
               )
             }
             raised
             containerStyle={{width: '70%', marginBottom: 10, marginTop: 10}}
             buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={category.name}
+            title={element.name}
             titleStyle={{
               fontFamily: text.font,
               color: colors.btn_text_theme_color
@@ -59,10 +57,10 @@ const CategoryWidget = ({category, columns, showBtn = false}) => {
   );
 };
 
-export default React.memo(CategoryWidget);
+export default CategoryWidget;
 
 CategoryWidget.propTypes = {
-  category: PropTypes.object,
+  element: PropTypes.object,
   columns: PropTypes.number
 };
 

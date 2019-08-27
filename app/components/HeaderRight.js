@@ -21,7 +21,7 @@ export const HeaderRight = ({
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const shareLink = link => {
-    console.log('the link', link);
+    __DEV__ ? console.log('the link', link) : null;
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t('appName')}),
       url: link,
@@ -30,7 +30,7 @@ export const HeaderRight = ({
       subject: I18n.t('share_file', {name: I18n.t('appName')})
     })
       .then(res => {
-        console.log(res);
+        __DEV__ ? console.log(res) : null;
       })
       .catch(err => {
         err && console.log(err);

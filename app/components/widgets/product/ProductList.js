@@ -38,7 +38,6 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  const [shouldUpdate, useShouldUpdate] = useState(() => elements !== products);
 
   useMemo(() => {
     if (isLoading && showMore) {
@@ -205,10 +204,10 @@ const ProductList = ({
           }
           renderItem={({item}) => (
             <ProductWidget
-              colors={colors}
               element={item}
               showName={showName}
               dispatch={dispatch}
+              colors={colors}
             />
           )}
         />

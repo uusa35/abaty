@@ -13,7 +13,8 @@ const CategoryIndexScreen = ({
   categories,
   commercials,
   show_commercials,
-  dispatch
+  dispatch,
+  colors
 }) => {
   return (
     <View style={{flex: 1}}>
@@ -21,7 +22,12 @@ const CategoryIndexScreen = ({
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={categories} columns={1} dispatch={dispatch} />
+        <CategoriesList
+          elements={categories}
+          columns={1}
+          dispatch={dispatch}
+          colors={colors}
+        />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
@@ -34,9 +40,10 @@ const CategoryIndexScreen = ({
 
 function mapStateToProps(state) {
   return {
-    categories: categoriesSelector(state),
-    commercials: commercialsSelector(state),
-    show_commercials: state.settings.show_commercials
+    categories: state.categories,
+    commercials: state.commercials,
+    show_commercials: state.settings.show_commercials,
+    colors: state.settings.colors
   };
 }
 
