@@ -1,7 +1,7 @@
 {
   "name": "abaty",
-  "ABATI" : false,
-  "MALLR" : true,
+  "ABATI" : true,
+  "MALLR" : false,
   "displayName": "abati",
   "apiUrl" : "http://mallr.test/api/",
   "ENV" : "production",
