@@ -2,13 +2,12 @@ import React from 'react';
 import {View, Linking, Text, StyleSheet} from 'react-native';
 import {appUrlIos} from '../../../env';
 import {images, text} from '../../../constants';
-import {Button} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
 
 const OrderWidget = ({element, colors, logo}) => {
-  console.log('element', element);
   return (
     <View
       style={{
@@ -26,22 +25,58 @@ const OrderWidget = ({element, colors, logo}) => {
           resizeMode="contain"
           loadingIndicatorSource={images.logo}
         />
-        <View>
-          <View style={{flexDirection: 'row', paddingBottom: 3}}>
+        <View style={{flex: 1, paddingRight: 10}}>
+          <View style={styles.itemWrapper}>
+            <Icon
+              type="feather"
+              name="folder"
+              containerStyle={styles.iconElement}
+              size={20}
+            />
             <Text style={styles.title}>{I18n.t('order_no')}</Text>
             <Text style={styles.normalText}>{element.id}</Text>
           </View>
-          <View style={{flexDirection: 'row', paddingBottom: 3}}>
+          <View style={styles.itemWrapper}>
+            <Icon
+              type="feather"
+              name="clipboard"
+              containerStyle={styles.iconElement}
+              size={20}
+            />
             <Text style={styles.title}>{I18n.t('order_status')}</Text>
             <Text style={styles.normalText}>{element.status}</Text>
           </View>
-          <View style={{flexDirection: 'row', paddingBottom: 3}}>
+          <View style={styles.itemWrapper}>
+            <Icon
+              type="feather"
+              name="calendar"
+              containerStyle={styles.iconElement}
+              size={20}
+            />
             <Text style={styles.title}>{I18n.t('order_date')}</Text>
             <Text style={styles.normalText}>{element.date}</Text>
           </View>
+          <View style={styles.itemWrapper}>
+            <Icon
+              type="feather"
+              name="tag"
+              containerStyle={styles.iconElement}
+              size={20}
+            />
+            <Text style={styles.title}>{I18n.t('net_price')}</Text>
+            <Text style={styles.normalText}>
+              {element.net_price} {I18n.t('kwd')}
+            </Text>
+          </View>
           {element.shipment_reference ? (
             <View style={{paddingBottom: 3}}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={styles.itemWrapper}>
+                <Icon
+                  type="material-community"
+                  name="truck-fast"
+                  containerStyle={styles.iconElement}
+                  size={20}
+                />
                 <Text style={styles.title}>{I18n.t('shipment_reference')}</Text>
                 <Text style={styles.normalText}>
                   {element.shipment_reference}
@@ -49,6 +84,7 @@ const OrderWidget = ({element, colors, logo}) => {
               </View>
               <Button
                 onPress={() => Linking.openURL(`http://dhl.com`)}
+                containerStyle={{alignSelf: 'flex-end'}}
                 buttonStyle={{padding: 3}}
                 titleStyle={{fontFamily: text.font, fontSize: text.small}}
                 raised
@@ -95,5 +131,14 @@ const styles = StyleSheet.create({
   smText: {
     fontFamily: text.font,
     fontSize: 10
+  },
+  itemWrapper: {
+    flexDirection: 'row',
+    paddingBottom: 5,
+    alignItems: 'center'
+  },
+  iconElement: {
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });

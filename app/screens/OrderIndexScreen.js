@@ -1,16 +1,9 @@
-import React, {useState, useMemo} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Linking,
-  Text,
-  RefreshControl,
-  FlatList
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, RefreshControl, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
-import {isIOS, text, width} from '../constants';
+import {isIOS, text} from '../constants';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import {isRTL} from '../I18n';
@@ -19,8 +12,9 @@ import {ordersSelector} from '../redux/selectors/collections';
 import {map} from 'lodash';
 import OrderWidget from '../components/widgets/order/OrderWidget';
 import {colorsSelector, logoSelector} from '../redux/selectors/collection';
+import {reAuthenticate} from '../redux/actions';
 
-const OrderIndexScreen = ({orders, colors, logo}) => {
+const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
 
   return (

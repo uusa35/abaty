@@ -488,8 +488,9 @@
   "delivered" : "تم التسليم",
   "shipped" : "تم الشحن",
   "under_process" : "قيد التنفيذ",
-  "shipment_reference" : "رقم الشحنة",
+  "shipment_reference" : "رقم الشحنة : ",
   "see_invoice" : "مشاهدة تفاصيل الفاتورة",
   "track" : "تتبع الشحنة",
-  "our_collections" : "اختيارات المتسوقين الشخصيين"
+  "our_collections" : "اختيارات المتسوقين الشخصيين",
+  "net_price" : "القيمة المدفوعة : "
 }

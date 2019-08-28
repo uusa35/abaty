@@ -458,5 +458,6 @@
   "shipment_reference" : "Shipment Reference : ",
   "see_invoice" : "See Invoice Details",
   "track" : "track",
-  "our_collections" : "Personal Shoppers Choices"
+  "our_collections" : "Personal Shoppers Choices",
+  "net_price" : "Net Price : "
 }
