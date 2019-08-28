@@ -1,14 +1,14 @@
 import React from 'react';
 import {View, Linking, Text, StyleSheet} from 'react-native';
 import {appUrlIos} from '../../../env';
-import {images, text } from '../../../constants';
+import {images, text} from '../../../constants';
 import {Button} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
 
 const OrderWidget = ({element, colors, logo}) => {
-    console.log('element', element);
+  console.log('element', element);
   return (
     <View
       style={{
@@ -16,8 +16,8 @@ const OrderWidget = ({element, colors, logo}) => {
         borderColor: 'lightgrey',
         borderRadius: 10,
         marginBottom: 10,
-          paddingTop: 10,
-          paddingBottom : 10,
+        paddingTop: 10,
+        paddingBottom: 10
       }}>
       <View style={{flexDirection: 'row'}}>
         <FastImage

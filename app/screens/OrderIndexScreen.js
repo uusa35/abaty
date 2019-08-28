@@ -30,10 +30,10 @@ const OrderIndexScreen = ({orders, colors, logo}) => {
           contentContainerStyle={{
             alignItems: 'center',
             justifyContent: 'center',
-            width :'95%',
+            width: '95%',
             marginTop: 10
           }}
-          style={{ alignSelf : 'center'}}
+          style={{alignSelf: 'center'}}
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="none"
           horizontal={false}

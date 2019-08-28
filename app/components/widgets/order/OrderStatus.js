@@ -3,7 +3,7 @@ import {Text, View, StyleSheet} from 'react-native';
 import I18n from '../../../I18n';
 import {text} from './../../../constants';
 
-const OrderStatus = ({ element }) => {
+const OrderStatus = ({element}) => {
   return (
     <View style={styles.statusContainer}>
       <View
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '16.5%',
-    height: 40,
+    height: 40
   },
   smText: {
     fontFamily: text.font,
