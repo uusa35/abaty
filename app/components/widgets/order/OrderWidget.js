@@ -1,24 +1,23 @@
 import React from 'react';
 import {View, Linking, Text, StyleSheet} from 'react-native';
 import {appUrlIos} from '../../../env';
-import {images, text} from '../../../constants';
+import {images, text } from '../../../constants';
 import {Button} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
 
-const OrderWidget = ({o, colors, logo}) => {
+const OrderWidget = ({element, colors, logo}) => {
+    console.log('element', element);
   return (
     <View
       style={{
         borderWidth: 0.5,
         borderColor: 'lightgrey',
-        width: '100%',
         borderRadius: 10,
-        padding: 10,
         marginBottom: 10,
-        alignItems: 'flex-start',
-        justifyContent: 'center'
+          paddingTop: 10,
+          paddingBottom : 10,
       }}>
       <View style={{flexDirection: 'row'}}>
         <FastImage
@@ -30,21 +29,23 @@ const OrderWidget = ({o, colors, logo}) => {
         <View>
           <View style={{flexDirection: 'row', paddingBottom: 3}}>
             <Text style={styles.title}>{I18n.t('order_no')}</Text>
-            <Text style={styles.normalText}>{o.id}</Text>
+            <Text style={styles.normalText}>{element.id}</Text>
           </View>
           <View style={{flexDirection: 'row', paddingBottom: 3}}>
             <Text style={styles.title}>{I18n.t('order_status')}</Text>
-            <Text style={styles.normalText}>{o.status}</Text>
+            <Text style={styles.normalText}>{element.status}</Text>
           </View>
           <View style={{flexDirection: 'row', paddingBottom: 3}}>
             <Text style={styles.title}>{I18n.t('order_date')}</Text>
-            <Text style={styles.normalText}>{o.date}</Text>
+            <Text style={styles.normalText}>{element.date}</Text>
           </View>
-          {o.shipment_reference ? (
+          {element.shipment_reference ? (
             <View style={{paddingBottom: 3}}>
               <View style={{flexDirection: 'row'}}>
                 <Text style={styles.title}>{I18n.t('shipment_reference')}</Text>
-                <Text style={styles.normalText}>{o.shipment_reference}</Text>
+                <Text style={styles.normalText}>
+                  {element.shipment_reference}
+                </Text>
               </View>
               <Button
                 onPress={() => Linking.openURL(`http://dhl.com`)}
@@ -58,10 +59,12 @@ const OrderWidget = ({o, colors, logo}) => {
           ) : null}
         </View>
       </View>
-      <OrderStatus o={o} />
+      <OrderStatus element={element} />
       <Button
-        key={o.id}
-        onPress={() => Linking.openURL(`${appUrlIos}/view/invoice/${o.id}`)}
+        key={element.id}
+        onPress={() =>
+          Linking.openURL(`${appUrlIos}/view/invoice/${element.id}`)
+        }
         title={I18n.t('see_invoice')}
         raised
         containerStyle={{marginBottom: 10, width: '100%'}}

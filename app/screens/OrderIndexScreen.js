@@ -19,35 +19,42 @@ import {ordersSelector} from '../redux/selectors/collections';
 import {map} from 'lodash';
 import OrderWidget from '../components/widgets/order/OrderWidget';
 import {colorsSelector, logoSelector} from '../redux/selectors/collection';
-import {reAuthenticate} from '../redux/actions';
 
-const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
-  const [refresh, setRefres] = useState(false);
+const OrderIndexScreen = ({orders, colors, logo}) => {
+  const [refresh, setRefresh] = useState(false);
 
   return (
-    <ScrollView
-      contentContainerStyle={{
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}
-      refreshing={refresh}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => dispatch(reAuthenticate())}
-        />
-      }>
+    <View>
       {!validate.isEmpty(orders) ? (
-        <View style={{width: '100%', padding: 5}}>
-          {map(orders, (o, i) => (
-            <OrderWidget o={o} colors={colors} key={i} logo={logo} />
-          ))}
-        </View>
+        <FlatList
+          contentContainerStyle={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width :'95%',
+            marginTop: 10
+          }}
+          style={{ alignSelf : 'center'}}
+          keyboardShouldPersistTaps="always"
+          keyboardDismissMode="none"
+          horizontal={false}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+          onEndReachedThreshold={1}
+          numColumns={1}
+          data={orders}
+          refreshing={refresh}
+          refreshControl={
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => dispatch(reAuthenticate())}
+            />
+          }
+          renderItem={({item}) => (
+            <OrderWidget element={item} colors={colors} logo={logo} />
+          )}
+        />
       ) : (
         <Button
           raised
@@ -63,7 +70,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
           }}
         />
       )}
-    </ScrollView>
+    </View>
   );
 };
 
