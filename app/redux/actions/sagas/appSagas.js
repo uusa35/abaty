@@ -44,7 +44,8 @@ import {
   startAddCommentScenario,
   startReAuthenticateScenario,
   setHomeCollections,
-  startGetCollectionsScenario
+  startGetCollectionsScenario,
+  startGoogleLoginScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -212,6 +213,10 @@ export function* submitAuth() {
 
 export function* reAuthenticate() {
   yield takeLatest(actions.REAUTHENTICATE, startReAuthenticateScenario);
+}
+
+export function* googleLogin() {
+  yield takeLatest(actions.GOOGLE_LOGIN, startGoogleLoginScenario);
 }
 
 export function* updateUser() {

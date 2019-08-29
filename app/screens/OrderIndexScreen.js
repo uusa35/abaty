@@ -18,7 +18,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
 
   return (
-    <View>
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       {!validate.isEmpty(orders) ? (
         <FlatList
           contentContainerStyle={{

@@ -30,6 +30,7 @@ export default function* rootSaga() {
     fork(appSagas.setCountry),
     fork(appSagas.setPlayerId),
     fork(appSagas.submitAuth),
+    fork(appSagas.googleLogin),
     fork(appSagas.reAuthenticate),
     fork(appSagas.updateUser),
     fork(appSagas.submitLogout),

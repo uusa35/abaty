@@ -47,17 +47,17 @@ target 'abaty' do
   pod 'react-native-onesignal',
       :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",
       :inhibit_warnings => true
-  # pod 'lottie-ios', :path => '../node_modules/lottie-ios'
   pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-  pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
+  # pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
   pod 'RNShare', :path => '../node_modules/react-native-share'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
-  # pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
   target 'abatyTests' do
     inherit! :search_paths

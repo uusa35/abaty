@@ -2,14 +2,15 @@ import React, {useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
 import {images, text, width} from '../../constants';
 import {appUrlIos} from './../../env';
-import {Button, Input} from 'react-native-elements';
+import {Button, Input, SocialIcon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {submitAuth} from '../../redux/actions';
+import {googleLogin, submitAuth} from '../../redux/actions';
 import {View, Linking} from 'react-native';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
+import {GoogleSignin} from 'react-native-google-signin';
 
 const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');
@@ -17,6 +18,20 @@ const LoginForm = ({showBtns = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {logo, colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
+
+  GoogleSignin.configure({
+    scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+    webClientId:
+      '138610078320-tiktp898sbsjsjgossmpv093d6i9k60h.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    hostedDomain: 'http://abati.ideasowners.net', // specifies a hosted domain restriction
+    loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+    forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
+    accountName: '', // [Android] specifies an account name on the device that should be used
+    iosClientId:
+      '138610078320-tiktp898sbsjsjgossmpv093d6i9k60h.apps.googleusercontent.com' // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
+
   return (
     <KeyboardAwareScrollView
       horizontal={false}
@@ -125,6 +140,13 @@ const LoginForm = ({showBtns = false}) => {
             onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
           />
         ) : null}
+        <SocialIcon
+          title={I18n.t('sign_with_google')}
+          button
+          type="google-plus-official"
+          style={{width: '100%', height: 50}}
+          onPress={() => dispatch(googleLogin())}
+        />
       </View>
     </KeyboardAwareScrollView>
   );

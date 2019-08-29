@@ -84,7 +84,7 @@ const OrderWidget = ({element, colors, logo}) => {
               </View>
               <Button
                 onPress={() => Linking.openURL(`http://dhl.com`)}
-                containerStyle={{alignSelf: 'flex-end'}}
+                containerStyle={{alignSelf: 'flex-end', width: 100}}
                 buttonStyle={{padding: 3}}
                 titleStyle={{fontFamily: text.font, fontSize: text.small}}
                 raised

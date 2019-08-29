@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text} from 'react-native';
 import {connect} from 'react-redux';
 import {
   createBottomTabNavigator,
@@ -661,7 +660,7 @@ const RootNavigator = createDrawerNavigator(
     contentComponent: ({navigation}) => <SideMenu navigation={navigation} />,
     drawerPosition: isRTL ? 'right' : 'left',
     drawerBackgroundColor: 'white',
-    overlayColor: 'black',
+    overlayColor: 'transparent',
     contentOptions: {
       activeTintColor: '#e91e63',
       itemsContainerStyle: {

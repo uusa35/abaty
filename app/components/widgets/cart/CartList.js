@@ -128,7 +128,7 @@ const CartList = ({
               fontSize: text.medium,
               color: colors.header_one_theme_color
             }}>
-            {I18n.t('shipment_fees')}
+            {I18n.t('shipment_fees_per_piece')}
           </Text>
           <View style={{flexDirection: 'row'}}>
             <Text

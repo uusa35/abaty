@@ -30,6 +30,7 @@ import {
   getImageName,
   getImagePath
 } from '../../../helpers';
+import {GoogleSignin, statusCodes} from 'react-native-google-signin';
 
 export function* setHomeCategories() {
   try {
@@ -676,13 +677,18 @@ export function* startSubmitCartScenario(action) {
         })
       );
     } else {
-      throw result['name'] ||
-        result['mobile'] ||
-        result['address'] ||
-        result['email'];
+      throw result['name']
+        ? result['name'].toString()
+        : null || result['email']
+        ? result['email'].toString()
+        : null || result['mobile']
+        ? result['mobile'].toString()
+        : null || result['address']
+        ? result['address'].toString()
+        : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(first(e))]);
+    yield all([disableLoading, enableErrorMessage(e)]);
   }
 }
 export function* startAuthenticatedScenario() {
@@ -804,17 +810,31 @@ export function* startReAuthenticateScenario() {
 
 export function* startUpdateUserScenario(action) {
   try {
-    yield call(enableLoading);
-    const user = yield call(api.updateUser, action.payload);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
-      yield all([
-        put({type: actions.SET_AUTH, payload: user}),
-        call(disableLoading),
-        put(NavigationActions.back()),
-        call(enableSuccessMessage, I18n.t('update_information_success'))
-      ]);
+    const {name, mobile, email, address} = action.payload;
+    const result = validate({name, mobile, email, address}, registerConstrains);
+    if (validate.isEmpty(result)) {
+      yield call(enableLoading);
+      const user = yield call(api.updateUser, action.payload);
+      if (!validate.isEmpty(user) && validate.isObject(user)) {
+        yield all([
+          put({type: actions.SET_AUTH, payload: user}),
+          call(disableLoading),
+          call(enableSuccessMessage, I18n.t('update_information_success')),
+          put(NavigationActions.back())
+        ]);
+      } else {
+        throw user;
+      }
     } else {
-      throw user;
+      throw result['name']
+        ? result['name'].toString()
+        : null || result['email']
+        ? result['email'].toString()
+        : null || result['mobile']
+        ? result['mobile'].toString()
+        : null || result['address']
+        ? result['address'].toString()
+        : null;
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(e)]);
@@ -917,13 +937,18 @@ export function* startRegisterScenario(action) {
         throw user;
       }
     } else {
-      throw result['name'] ||
-        result['email'] ||
-        result['mobile'] ||
-        result['address'];
+      throw result['name']
+        ? result['name'].toString()
+        : null || result['email']
+        ? result['email'].toString()
+        : null || result['mobile']
+        ? result['mobile'].toString()
+        : null || result['address']
+        ? result['address'].toString()
+        : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(first(e))]);
+    yield all([disableLoading, enableErrorMessage(e)]);
   }
 }
 
@@ -977,9 +1002,44 @@ export function* startAddCommentScenario(action) {
         yield call(enableSuccessMessage, I18n.t('comment_added_success'));
       }
     } else {
-      throw result['title'] || result['content'];
+      throw result['title']
+        ? result['title'].toString()
+        : null || result['content']
+        ? result['content'].toString()
+        : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(first(e))]);
+    yield all([disableLoading, enableErrorMessage(e)]);
+  }
+}
+
+export function* startGoogleLoginScenario() {
+  try {
+    const signIn = yield call(GoogleSignin.hasPlayServices);
+    if (signIn) {
+      const userInfo = yield call(GoogleSignin.signIn);
+      if (!validate.isEmpty(userInfo)) {
+        const {email, name} = userInfo.user;
+        const user = yield call(api.googleAuthenticate, {email, name});
+        if (validate.isObject(user) && !validate.isEmpty(user)) {
+          yield all([
+            put({type: actions.SET_TOKEN, payload: user.api_token}),
+            put({type: actions.SET_AUTH, payload: user}),
+            put({type: actions.TOGGLE_GUEST, payload: false}),
+            call(enableSuccessMessage, I18n.t('register_success')),
+            put(
+              NavigationActions.navigate({
+                routeName: 'Home'
+              })
+            )
+          ]);
+        } else {
+          throw user;
+        }
+      }
+    }
+  } catch (e) {
+    console.log('the error', e);
+    yield all([disableLoading, enableErrorMessage(e)]);
   }
 }

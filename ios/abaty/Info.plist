@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.6</string>
+	<string>4.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -32,6 +32,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>abati</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.138610078320-tiktp898sbsjsjgossmpv093d6i9k60h</string>
 			</array>
 		</dict>
 	</array>

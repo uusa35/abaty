@@ -72,7 +72,14 @@ const UserEditFormWidget = ({
           source={{
             uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo
           }}
-          style={{width: 120, height: 120, margin: 20}}
+          style={{
+            width: 120,
+            height: 120,
+            margin: 20,
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 120 / 2
+          }}
           resizeMode="cover"
           loadingIndicatorSource={images.logo}
         />

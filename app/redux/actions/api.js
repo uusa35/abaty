@@ -260,6 +260,14 @@ export async function authenticate(elements) {
     .catch(e => e.response.data.message);
 }
 
+export async function googleAuthenticate(action) {
+  const {name, email} = action;
+  return await axiosInstance
+    .get(`google/authenticate`, {params: {name, email}})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getCoupon(elements) {
   const {code} = elements;
   return await axiosInstance

@@ -504,3 +504,15 @@ export function reAuthenticate() {
     type: actions.REAUTHENTICATE
   };
 }
+
+export function googleLogin() {
+  return {
+    type: actions.GOOGLE_LOGIN
+  };
+}
+
+export function googleRegister() {
+  return {
+    type: actions.GOOGLE_REGISTER
+  };
+}

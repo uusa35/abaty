@@ -126,7 +126,7 @@ class HomeScreen extends Component {
       this.state.appState.match(/inactive|background/) &&
       nextAppState === 'active'
     ) {
-      console.log('HERE NOW');
+      __DEV__ ? console.log('HERE NOW') : null;
     }
     this.setState({appState: nextAppState});
   };
@@ -138,26 +138,23 @@ class HomeScreen extends Component {
   };
 
   handleOpenURL = event => {
-    // console.log('Initial Url Case', event);
     const {type, id} = getPathForDeepLinking(event.url);
-    // console.log('the type', type);
-    // console.log('the id', id);
     return this.props.dispatch(goDeepLinking({type, id}));
   };
 
   onReceived = notification => {
-    console.log('Notification received: ', notification);
+    __DEV__ ? console.log('Notification received: ', notification) : null;
   };
 
   onOpened = openResult => {
     // console.log('Notification Case');
-    if (__DEV__) {
-      // console.log('the whole thing', openResult.notification.payload);
-      // console.log('Message: ', openResult.notification.payload.body);
-      // console.log('Data: ', openResult.notification.payload.additionalData);
-      // console.log('isActive: ', openResult.notification.isAppInFocus);
-      // console.log('openResult: ', openResult.notification.payload.launchURL);
-    }
+    // if (__DEV__) {
+    // console.log('the whole thing', openResult.notification.payload);
+    // console.log('Message: ', openResult.notification.payload.body);
+    // console.log('Data: ', openResult.notification.payload.additionalData);
+    // console.log('isActive: ', openResult.notification.isAppInFocus);
+    // console.log('openResult: ', openResult.notification.payload.launchURL);
+    // }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url
     );

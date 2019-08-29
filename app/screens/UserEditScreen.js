@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import FastImage from 'react-native-fast-image';
-import {images, isIOS} from '../constants';
+import {StyleSheet} from 'react-native';
 import UserEditFormWidget from '../components/widgets/user/UserEditFormWidget';
 import {
   authSelector,
@@ -38,12 +36,12 @@ const UserEditScreen = ({
 
 function mapStateToProps(state) {
   return {
-    auth: authSelector(state),
-    token: tokenSelector(state),
-    logo: logoSelector(state),
-    colors: colorsSelector(state),
-    country: countrySelector(state),
-    playerId: playerIdSelector(state)
+    auth: state.auth,
+    token: state.token,
+    logo: state.settings.logo,
+    colors: state.settings.colors,
+    country: state.country,
+    playerId: state.playerId
   };
 }
 

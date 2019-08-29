@@ -22,30 +22,18 @@
 		41256A8CB4ACAA58F2001486 /* libPods-abatyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF79ADFC55BFFB8E382DA5C /* libPods-abatyTests.a */; };
 		48A03DA77EE9412CB57D31A7 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44FFA95F3B94422BB6A0CDCD /* Octicons.ttf */; };
 		4DA1063BC578472EAE92718B /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2A657256D0B47A3BA9C3031 /* Ionicons.ttf */; };
-		508D81E322D24DF80057D75A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81CB22D24DF80057D75A /* Octicons.ttf */; };
-		508D81E422D24DF80057D75A /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81CC22D24DF80057D75A /* Feather.ttf */; };
-		508D81E522D24DF80057D75A /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81CD22D24DF80057D75A /* Entypo.ttf */; };
 		508D81E622D24DF80057D75A /* Tajawal-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81CE22D24DF80057D75A /* Tajawal-ExtraBold.ttf */; };
-		508D81E722D24DF80057D75A /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81CF22D24DF80057D75A /* FontAwesome5_Brands.ttf */; };
-		508D81E822D24DF80057D75A /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D022D24DF80057D75A /* MaterialCommunityIcons.ttf */; };
 		508D81E922D24DF80057D75A /* Tajawal-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D122D24DF80057D75A /* Tajawal-Light.ttf */; };
 		508D81EA22D24DF80057D75A /* Tajawal-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D222D24DF80057D75A /* Tajawal-Bold.ttf */; };
-		508D81EB22D24DF80057D75A /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D322D24DF80057D75A /* AntDesign.ttf */; };
-		508D81EC22D24DF80057D75A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D422D24DF80057D75A /* Foundation.ttf */; };
-		508D81ED22D24DF80057D75A /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D522D24DF80057D75A /* Ionicons.ttf */; };
-		508D81EE22D24DF80057D75A /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D622D24DF80057D75A /* FontAwesome5_Solid.ttf */; };
-		508D81EF22D24DF80057D75A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D722D24DF80057D75A /* FontAwesome5_Regular.ttf */; };
 		508D81F022D24DF80057D75A /* Tajawal-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D822D24DF80057D75A /* Tajawal-ExtraLight.ttf */; };
 		508D81F122D24DF80057D75A /* Tajawal-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81D922D24DF80057D75A /* Tajawal-Regular.ttf */; };
 		508D81F222D24DF80057D75A /* Tajawal-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DA22D24DF80057D75A /* Tajawal-Medium.ttf */; };
-		508D81F322D24DF80057D75A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DB22D24DF80057D75A /* FontAwesome.ttf */; };
-		508D81F422D24DF80057D75A /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DC22D24DF80057D75A /* Zocial.ttf */; };
 		508D81F522D24DF80057D75A /* Cairo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DD22D24DF80057D75A /* Cairo-Black.ttf */; };
-		508D81F622D24DF80057D75A /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DE22D24DF80057D75A /* EvilIcons.ttf */; };
 		508D81F722D24DF80057D75A /* Cairo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81DF22D24DF80057D75A /* Cairo-Bold.ttf */; };
 		508D81F822D24DF80057D75A /* Tajawal-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81E022D24DF80057D75A /* Tajawal-Black.ttf */; };
-		508D81F922D24DF80057D75A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81E122D24DF80057D75A /* SimpleLineIcons.ttf */; };
-		508D81FA22D24DF80057D75A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 508D81E222D24DF80057D75A /* MaterialIcons.ttf */; };
+		50D814502316968B00B621A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50D8144F2316968B00B621A0 /* GoogleService-Info.plist */; };
+		50D87F192317BB75007D2A14 /* libBase64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D87F182317BB75007D2A14 /* libBase64.a */; };
+		50D87F1C2317BD15007D2A14 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D87F1B2317BD15007D2A14 /* File.swift */; };
 		57218A607FCA4C53B1E741F0 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED9DECE3411C4135AC6AA4A7 /* Foundation.ttf */; };
 		6C056CB29669450D843D87F0 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B292B8D22AC4084A1E52E26 /* Entypo.ttf */; };
 		97F6FF59EFE44D099AC2E1B1 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EDFAB6F5B9F4F2CBFCE9ADB /* FontAwesome5_Solid.ttf */; };
@@ -104,7 +92,6 @@
 		3FB43694945A566B71F45E6C /* Pods-abaty-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-abaty-tvOSTests/Pods-abaty-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		44FFA95F3B94422BB6A0CDCD /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4B95A30D37B49224BBF80961 /* Pods-abaty-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-tvOS.release.xcconfig"; path = "Target Support Files/Pods-abaty-tvOS/Pods-abaty-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		506D5E1622D49EAB00907269 /* liblottie-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liblottie-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		508D81CB22D24DF80057D75A /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		508D81CC22D24DF80057D75A /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
 		508D81CD22D24DF80057D75A /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
@@ -130,6 +117,10 @@
 		508D81E122D24DF80057D75A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		508D81E222D24DF80057D75A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		508D81FB22D24E290057D75A /* abaty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = abaty.entitlements; path = abaty/abaty.entitlements; sourceTree = "<group>"; };
+		50D8144F2316968B00B621A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50D87F182317BB75007D2A14 /* libBase64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBase64.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		50D87F1A2317BD14007D2A14 /* abaty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "abaty-Bridging-Header.h"; sourceTree = "<group>"; };
+		50D87F1B2317BD15007D2A14 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		58D827A6582B4B4FBA4CA68B /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		6B565656D60E49EFBAC463A9 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		6B641038383234EAEE37D95F /* libPods-abaty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abaty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D87F192317BB75007D2A14 /* libBase64.a in Frameworks */,
 				D28EF18C858BAA95CF090988 /* libPods-abaty.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +205,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				50D8144F2316968B00B621A0 /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -222,7 +215,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				506D5E1622D49EAB00907269 /* liblottie-ios.a */,
+				50D87F182317BB75007D2A14 /* libBase64.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				6B641038383234EAEE37D95F /* libPods-abaty.a */,
@@ -274,6 +267,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				50D87F1B2317BD15007D2A14 /* File.swift */,
 				508D81CA22D24DF80057D75A /* Fonts */,
 				13B07FAE1A68108700A75B9A /* abaty */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -282,6 +276,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B68BA6FC487470C888D5B0D9 /* Pods */,
 				F5ADD0BEAB6644CF959C7F11 /* Resources */,
+				50D87F1A2317BD14007D2A14 /* abaty-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -435,6 +430,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 9YG8XP6U8E;
+						LastSwiftMigration = 1030;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -443,10 +439,12 @@
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9YG8XP6U8E;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 9YG8XP6U8E;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -487,28 +485,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				508D81F022D24DF80057D75A /* Tajawal-ExtraLight.ttf in Resources */,
-				508D81EE22D24DF80057D75A /* FontAwesome5_Solid.ttf in Resources */,
-				508D81EF22D24DF80057D75A /* FontAwesome5_Regular.ttf in Resources */,
-				508D81F622D24DF80057D75A /* EvilIcons.ttf in Resources */,
-				508D81E722D24DF80057D75A /* FontAwesome5_Brands.ttf in Resources */,
-				508D81E522D24DF80057D75A /* Entypo.ttf in Resources */,
 				508D81F122D24DF80057D75A /* Tajawal-Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				508D81F822D24DF80057D75A /* Tajawal-Black.ttf in Resources */,
 				508D81E622D24DF80057D75A /* Tajawal-ExtraBold.ttf in Resources */,
-				508D81E422D24DF80057D75A /* Feather.ttf in Resources */,
-				508D81EB22D24DF80057D75A /* AntDesign.ttf in Resources */,
-				508D81F322D24DF80057D75A /* FontAwesome.ttf in Resources */,
-				508D81FA22D24DF80057D75A /* MaterialIcons.ttf in Resources */,
+				50D814502316968B00B621A0 /* GoogleService-Info.plist in Resources */,
 				508D81E922D24DF80057D75A /* Tajawal-Light.ttf in Resources */,
-				508D81F922D24DF80057D75A /* SimpleLineIcons.ttf in Resources */,
-				508D81F422D24DF80057D75A /* Zocial.ttf in Resources */,
-				508D81E322D24DF80057D75A /* Octicons.ttf in Resources */,
 				508D81F522D24DF80057D75A /* Cairo-Black.ttf in Resources */,
-				508D81EC22D24DF80057D75A /* Foundation.ttf in Resources */,
-				508D81ED22D24DF80057D75A /* Ionicons.ttf in Resources */,
 				508D81EA22D24DF80057D75A /* Tajawal-Bold.ttf in Resources */,
-				508D81E822D24DF80057D75A /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				508D81F722D24DF80057D75A /* Cairo-Bold.ttf in Resources */,
 				508D81F222D24DF80057D75A /* Tajawal-Medium.ttf in Resources */,
@@ -561,7 +545,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -650,6 +634,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-abaty/Pods-abaty-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -671,6 +657,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
@@ -771,6 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				50D87F1C2317BD15007D2A14 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -825,6 +814,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DB9DAF1E19C32009769B8D9 /* Pods-abatyTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9YG8XP6U8E;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -849,6 +839,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B76D89CD5A45D8C9D5D10998 /* Pods-abatyTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 9YG8XP6U8E;
@@ -871,6 +862,7 @@
 			baseConfigurationReference = A21FA747311C872A1B0036FD /* Pods-abaty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = abaty/abaty.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -927,7 +919,68 @@
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 				);
 				INFOPLIST_FILE = abaty/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks /usr/lib/swift";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Base64\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CodePush\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKShareKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JWT\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFastImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGoogleSignin\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RSKImageCropper\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-DevSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTWebSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-fishhook\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libwebp\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-react-native\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-fbsdk\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-onesignal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-pdf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-spinkit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-video\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -935,6 +988,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.abati;
 				PRODUCT_NAME = abaty;
+				SWIFT_OBJC_BRIDGING_HEADER = "abaty-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -944,6 +1000,7 @@
 			baseConfigurationReference = 20D5258C3623174E53FEE888 /* Pods-abaty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = abaty/abaty.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1000,7 +1057,68 @@
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
 				);
 				INFOPLIST_FILE = abaty/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks /usr/lib/swift";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Base64\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CodePush\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKShareKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/JWT\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFastImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGoogleSignin\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNI18n\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNImageCropPicker\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNVectorIcons\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RSKImageCropper\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-DevSupport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTWebSocket\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-fishhook\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SDWebImageWebPCoder\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/libwebp\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-react-native\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-fbsdk\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-onesignal\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-pdf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-spinkit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-video\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1008,6 +1126,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.abati;
 				PRODUCT_NAME = abaty;
+				SWIFT_OBJC_BRIDGING_HEADER = "abaty-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1023,6 +1143,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9YG8XP6U8E;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "abaty-tvOS/Info.plist";
@@ -1052,6 +1173,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9YG8XP6U8E;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "abaty-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1078,6 +1200,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9YG8XP6U8E;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "abaty-tvOSTests/Info.plist";
@@ -1106,6 +1229,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9YG8XP6U8E;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "abaty-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
