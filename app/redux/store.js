@@ -20,8 +20,7 @@ const persistConfig = {
     'loginModal',
     'isLoadingProfile',
     'isLoadingContent',
-    'isLoading',
-    'productFavorites'
+    'isLoading'
   ] // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
 };
