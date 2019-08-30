@@ -80,6 +80,7 @@ const ProductList = ({
         ? setItems(filtered)
         : setItems([]);
     } else {
+      setShowMore(true);
       setItems(elements);
     }
   }, [search]);
@@ -104,7 +105,7 @@ const ProductList = ({
           stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
-          contentInset={{bottom: 60}}
+          // contentInset={{bottom: 60}}
           numColumns={2}
           data={items}
           refreshing={refresh}
@@ -120,7 +121,8 @@ const ProductList = ({
           }}
           contentContainerStyle={{
             width: width - 20,
-            minHeight: '100%'
+            minHeight: '100%',
+            marginBottom: 15
           }}
           columnWrapperStyle={{
             justifyContent: 'space-around',

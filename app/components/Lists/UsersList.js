@@ -68,6 +68,7 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
         setItems([]);
       }
     } else {
+      setShowMore(true);
       setItems(elements);
     }
   }, [search]);

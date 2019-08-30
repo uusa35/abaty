@@ -78,6 +78,7 @@ const ServiceList = ({
         ? setItems(filtered)
         : setItems([]);
     } else {
+      setShowMore(true);
       setItems(elements);
     }
   }, [search]);
