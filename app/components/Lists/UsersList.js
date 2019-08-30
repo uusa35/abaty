@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useContext} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {
   View,
   FlatList,
@@ -14,53 +14,61 @@ import {text, width} from './../../constants';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
-import {DispatchContext} from '../../redux/DispatchContext';
 
-const UsersList = ({elements, searchParams}) => {
+const UsersList = ({elements, searchParams, dispatch, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
+  [showMore, setShowMore] = useState(showMore);
   [items, setItems] = useState(elements);
   [searchElements, setSearchElements] = useState(searchParams);
   [page, setPage] = useState(1);
-  [endList, setEndList] = useState('test');
   [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
 
-  useMemo(() => {
-    if (isLoading === true) {
-      setIsLoading(false);
+  const handleLoading = useCallback(() => {
+    setPage(page + 1);
+    setIsLoading(true);
+    if (showMore) {
       return axiosInstance(`user?page=${page}`, {
-        params: searchElements
+        params: searchParams
       })
         .then(r => {
+          setIsLoading(false);
+          setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => setEndList(e.response.data));
+        .catch(e => {
+          setIsLoading(false);
+          setRefresh(false);
+        });
     }
-  }, [page]);
+  }, [isLoading, showMore, page]);
 
-  useMemo(() => {
-    if (isLoading) {
-      setPage(page + 1);
-    }
-  }, [isLoading]);
-
-  useMemo(() => {
-    if (refresh) {
-      // for now i don't know what products to fetch
+  const handleRefresh = useCallback(() => {
+    if (refresh && showMore) {
       setRefresh(false);
-      console.log('searchElements', searchElements);
       dispatch(getUsers(searchElements));
+      setIsLoading(false);
+    } else {
+      setRefresh(false);
       setIsLoading(false);
     }
   }, [refresh]);
 
   useMemo(() => {
-    let filtered = filter(elements, i => (i.slug.includes(search) ? i : null));
-    if (filtered.length > 0 || search.length > 0) {
-      setItems(filtered);
+    if (search.length > 0) {
+      setIsLoading(false);
+      setRefresh(false);
+      setShowMore(false);
+      let filtered = filter(elements, i =>
+        i.slug.includes(search) ? i : null
+      );
+      if (filtered.length > 0 || search.length > 0) {
+        setItems(filtered);
+      } else {
+        setItems([]);
+      }
     } else {
-      setItems([]);
+      setItems(elements);
     }
   }, [search]);
 
@@ -85,13 +93,16 @@ const UsersList = ({elements, searchParams}) => {
           numColumns={2}
           data={items}
           keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => setIsLoading(!isLoading)}
+          onEndReached={() => {
+            setShowMore(true);
+            handleLoading();
+          }}
           onEndReachedThreshold={1}
           refreshing={refresh}
           refreshControl={
             <RefreshControl
               refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
+              onRefresh={() => handleRefresh()}
             />
           }
           contentContainerStyle={{

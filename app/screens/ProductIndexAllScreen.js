@@ -29,7 +29,7 @@ class ProductIndexAllScreen extends Component {
         showName={true}
         searchElements={{}}
         showSearch={true}
-        showFooter={false}
+        showFooter={true}
         showRefresh={false}
       />
     );

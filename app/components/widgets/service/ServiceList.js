@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -15,6 +15,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter} from 'lodash';
 import validate from 'validate.js';
+import {getSearchProducts} from '../../../redux/actions';
 
 const ServiceList = ({
   elements,
@@ -28,16 +29,18 @@ const ServiceList = ({
   colors,
   dispatch
 }) => {
+  [items, setItems] = useState(elements);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
-  [items, setItems] = useState(elements);
+  [showMore, setShowMore] = useState(showMore);
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
-  [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
 
-  useMemo(() => {
-    if (isLoading && showMore) {
+  const handleLoading = useCallback(() => {
+    setPage(page + 1);
+    setIsLoading(true);
+    if (showMore) {
       return axiosInstance(`search/service?page=${page}`, {
         params
       })
@@ -46,22 +49,15 @@ const ServiceList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => e);
+        .catch(e => {
+          setIsLoading(false);
+          setRefresh(false);
+        });
     }
-  }, [page]);
+  }, [isLoading, showMore, page]);
 
-  useMemo(() => {
-    if (isLoading && showMore) {
-      setPage(page + 1);
-    } else {
-      setIsLoading(false);
-    }
-  }, [isLoading]);
-
-  useMemo(() => {
+  const handleRefresh = useCallback(() => {
     if (refresh && showMore) {
-      // for now i don't know what products to fetch
-      // console.log('the current Params', params);
       setRefresh(false);
       setIsLoading(false);
       // dispatch(getSearchServices(params));
@@ -71,12 +67,19 @@ const ServiceList = ({
   }, [refresh]);
 
   useMemo(() => {
-    setIsLoading(false);
-    setRefresh(false);
-    let filtered = filter(elements, i => (i.name.includes(search) ? i : null));
-    filtered.length > 0 || search.length > 0
-      ? setItems(filtered)
-      : setItems([]);
+    if (search.length > 0) {
+      setIsLoading(false);
+      setRefresh(false);
+      setShowMore(false);
+      let filtered = filter(elements, i =>
+        i.name.includes(search) ? i : null
+      );
+      filtered.length > 0 || search.length > 0
+        ? setItems(filtered)
+        : setItems([]);
+    } else {
+      setItems(elements);
+    }
   }, [search]);
 
   return (
@@ -105,12 +108,12 @@ const ServiceList = ({
           refreshControl={
             <RefreshControl
               refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
+              onRefresh={() => handleRefresh()}
             />
           }
           onEndReached={() => {
-            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
-            setEndList(false);
+            setShowMore(true);
+            handleLoading();
           }}
           contentContainerStyle={{
             width: width - 20,
@@ -186,7 +189,7 @@ const ServiceList = ({
             showFooter ? (
               <View style={{minHeight: 100}}>
                 <Button
-                  loading={endList}
+                  loading={isLoading}
                   raised
                   title={I18n.t('no_more_services')}
                   type="outline"

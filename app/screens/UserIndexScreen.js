@@ -5,16 +5,16 @@ import {NavContext} from '../redux/NavContext';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 
-class UserIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {users, searchParams} = this.props;
-    return <UsersList elements={users} searchParams={searchParams} />;
-  }
-}
+const UserIndexScreen = ({users, searchParams, dispatch}) => {
+  return (
+    <UsersList
+      elements={users}
+      searchParams={searchParams}
+      dispatch={dispatch}
+      showMore={true}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {

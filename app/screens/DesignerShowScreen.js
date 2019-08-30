@@ -37,7 +37,8 @@ const DesignerShowScreen = ({
   dispatch,
   colors,
   logo,
-  guest
+  guest,
+  searchParams
 }) => {
   const [refresh, setRefresh] = useState(false);
   const collectedCatetories = !validate.isEmpty(user.products)
@@ -140,7 +141,7 @@ const DesignerShowScreen = ({
                   showTitle={true}
                   showFooter={false}
                   showMore={false}
-                  searchElements={{}}
+                  searchElements={searchParams}
                 />
               ),
               categories: () => (
@@ -195,13 +196,13 @@ const DesignerShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    user: designerSelector(state),
-    comments: commentsSelector(state),
-    commentModal: commentModalSelector(state),
-    searchParams: searchParamsSelector(state),
-    colors: colorsSelector(state),
-    logo: logoSelector(state),
-    guest: guestSelector(state)
+    user: state.designer,
+    comments: state.comments,
+    commentModal: state.commentModal,
+    searchParams: state.searchParams,
+    colors: state.settings.colors,
+    logo: state.settings.logo,
+    guest: state.guest
   };
 }
 

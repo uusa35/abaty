@@ -1,15 +1,9 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  StyleSheet,
-  ImageBackground
-} from 'react-native';
-import {isIOS, images, text} from './../../constants';
+import {Text, StyleSheet, ImageBackground} from 'react-native';
+import {isIOS, images, text, animations} from './../../constants';
 import FastImage from 'react-native-fast-image';
-// import LottieView from 'lottie-react-native';
-//import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import LottieView from 'lottie-react-native';
+import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import PropTypes from 'prop-types';
 import Spinner from 'react-native-spinkit';
 import {first, shuffle} from 'lodash';
@@ -43,22 +37,6 @@ const LoadingView = ({
   return (
     <ImageBackground style={styles.activityContainer} source={{uri: mainBg}}>
       <Spinner type={first(shuffle(moveRand))} color={color} size={40} />
-      {/*<AnimatedCircularProgress*/}
-      {/*    size={50}*/}
-      {/*    width={10}*/}
-      {/*    fill={fill}*/}
-      {/*    tintColor={color}*/}
-      {/*    style={{ opacity : 0.8 }}*/}
-      {/*    onAnimationComplete={() => isLoading ? setFill(100) : setFill(fill + 10)}*/}
-      {/*    backgroundColor="#3d5875" />*/}
-      {/*<ActivityIndicator style={{marginBottom: 15}} color={color} />*/}
-      {/*<LottieView*/}
-      {/*  source={animations.circleLoading_2}*/}
-      {/*  autoPlay*/}
-      {/*  loop*/}
-      {/*  style={{marginTop: isIOS ? 65 : 100}}*/}
-      {/*  enableMergePathsAndroidForKitKatAndAbove*/}
-      {/*/>*/}
       <FastImage
         source={{uri: logo}}
         style={{width: 150, height: 100, margin: 10}}
@@ -70,7 +48,7 @@ const LoadingView = ({
   );
 };
 
-export default React.memo(LoadingView);
+export default LoadingView;
 
 LoadingView.propTypes = {
   isLoading: PropTypes.bool.isRequired,

@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -33,14 +33,16 @@ const ProductList = ({
   [elements, setElements] = useState(products);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
+  [showMore, setShowMore] = useState(showMore);
   [items, setItems] = useState(elements);
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
-  [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
 
-  useMemo(() => {
-    if (isLoading && showMore) {
+  const handleLoading = useCallback(() => {
+    setPage(page + 1);
+    setIsLoading(true);
+    if (showMore) {
       return axiosInstance(`search/product?page=${page}`, {
         params
       })
@@ -49,19 +51,14 @@ const ProductList = ({
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch(e => e);
+        .catch(e => {
+          setIsLoading(false);
+          setRefresh(false);
+        });
     }
-  }, [page]);
+  }, [isLoading, showMore, page]);
 
-  useMemo(() => {
-    if (isLoading && showMore) {
-      setPage(page + 1);
-    } else {
-      setIsLoading(false);
-    }
-  }, [isLoading]);
-
-  useMemo(() => {
+  const handleRefresh = useCallback(() => {
     if (refresh && showMore) {
       setRefresh(false);
       setIsLoading(false);
@@ -75,12 +72,15 @@ const ProductList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
+      setShowMore(false);
       let filtered = filter(elements, i =>
         i.name.includes(search) ? i : null
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
         : setItems([]);
+    } else {
+      setItems(elements);
     }
   }, [search]);
 
@@ -104,20 +104,19 @@ const ProductList = ({
           stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
+          contentInset={{bottom: 60}}
           numColumns={2}
           data={items}
           refreshing={refresh}
           refreshControl={
             <RefreshControl
               refreshing={refresh}
-              onRefresh={() => (showRefresh ? setRefresh(true) : null)}
+              onRefresh={() => (showRefresh ? handleRefresh() : null)}
             />
           }
           onEndReached={() => {
-            search.length > 0 && !validate.isEmpty(search)
-              ? setIsLoading(false)
-              : setIsLoading(!isLoading);
-            setEndList(false);
+            setShowMore(true);
+            handleLoading();
           }}
           contentContainerStyle={{
             width: width - 20,
@@ -193,7 +192,7 @@ const ProductList = ({
             showFooter ? (
               <View style={{minHeight: 100}}>
                 <Button
-                  loading={endList}
+                  loading={isLoading}
                   raised
                   title={I18n.t('no_more_products')}
                   type="outline"

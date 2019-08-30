@@ -28,7 +28,6 @@ import {
 import {cartSelector, countriesSelector} from './redux/selectors/collections';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
-import isLoadingProfile from './redux/reducers/isLoadingProfile';
 
 type Props = {};
 class App extends Component<Props> {
@@ -91,22 +90,13 @@ class App extends Component<Props> {
       main_bg
     } = this.props;
     const cartLength = cart.length;
-    if (!bootStrapped) {
+    if (!bootStrapped || isLoading) {
       return (
         <LoadingView
           loadingText={I18n.t('loading')}
           isLoading={isLoading}
           logo={logo}
           mainBg={main_bg}
-        />
-      );
-    }
-    if (isLoading) {
-      return (
-        <LoadingView
-          loadingText={I18n.t('loading')}
-          isLoading={isLoading}
-          logo={logo}
         />
       );
     }

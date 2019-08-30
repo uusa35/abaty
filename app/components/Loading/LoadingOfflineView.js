@@ -1,10 +1,9 @@
 import React, {useState, useMemo} from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
-import {colors, text, mainBg} from './../../constants';
-// import LottieView from 'lottie-react-native';
-import RNRestart from 'react-native-restart';
+import {colors, text, animations} from './../../constants';
+import LottieView from 'lottie-react-native';
 import CodePush from 'react-native-code-push';
 import PropTypes from 'prop-types';
 
@@ -28,6 +27,12 @@ const LoadingOfflineView = ({isConnected, mainBg}) => {
       }}
       source={{uri: mainBg}}
       resizeMode="cover">
+      <LottieView
+        source={animations.offline}
+        autoPlay
+        loop
+        style={{height: 120}}
+      />
       <Button
         onPress={() => setConnected(!connected)}
         title={I18n.t('no_internet')}
@@ -55,17 +60,11 @@ const LoadingOfflineView = ({isConnected, mainBg}) => {
           color: colors.main_text_theme_color
         }}
       />
-      {/*<LottieView*/}
-      {/*  source={animations.offline}*/}
-      {/*  autoPlay*/}
-      {/*  loop*/}
-      {/*  style={{height: 100}}*/}
-      {/*/>*/}
     </ImageBackground>
   );
 };
 
-export default React.memo(LoadingOfflineView);
+export default LoadingOfflineView;
 
 LoadingOfflineView.propTypes = {
   mainBg: PropTypes.string,
