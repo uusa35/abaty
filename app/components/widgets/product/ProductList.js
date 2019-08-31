@@ -47,9 +47,11 @@ const ProductList = ({
         params
       })
         .then(r => {
+          const productsGroup = items.concat(r.data);
           setIsLoading(false);
           setRefresh(false);
-          setItems(items.concat(r.data));
+          dispatch({type: 'SET_PRODUCTS', payload: productsGroup});
+          setItems(productsGroup);
         })
         .catch(e => {
           setIsLoading(false);
@@ -81,6 +83,7 @@ const ProductList = ({
         : setItems([]);
     } else {
       setShowMore(true);
+      setPage(1);
       setItems(elements);
     }
   }, [search]);

@@ -32,9 +32,11 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
         params: searchParams
       })
         .then(r => {
+          const users = items.concat(r.data);
           setIsLoading(false);
           setRefresh(false);
-          setItems(items.concat(r.data));
+          dispatch({type: 'SET_USERS', payload: users});
+          setItems(users);
         })
         .catch(e => {
           setIsLoading(false);
@@ -69,6 +71,7 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
       }
     } else {
       setShowMore(true);
+      setPage(1);
       setItems(elements);
     }
   }, [search]);

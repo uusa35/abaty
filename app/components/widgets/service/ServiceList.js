@@ -45,9 +45,11 @@ const ServiceList = ({
         params
       })
         .then(r => {
+          const serviceGroup = items.concat(r.data);
           setIsLoading(false);
           setRefresh(false);
-          setItems(items.concat(r.data));
+          dispatch({type: 'SET_SERVICES', payload: serviceGroup});
+          setItems(serviceGroup);
         })
         .catch(e => {
           setIsLoading(false);
@@ -79,6 +81,7 @@ const ServiceList = ({
         : setItems([]);
     } else {
       setShowMore(true);
+      setPage(1);
       setItems(elements);
     }
   }, [search]);
