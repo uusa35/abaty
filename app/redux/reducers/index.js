@@ -35,6 +35,7 @@ import products from './products';
 import collection from './collection';
 import collections from './collections';
 import services from './services';
+import homeServices from './homeServices';
 import service from './service';
 import videos from './videos';
 import cart from './cart';
@@ -70,6 +71,7 @@ let reducers = combineReducers({
   products,
   service,
   services,
+  homeServices,
   collection,
   collections,
   homeCollections,

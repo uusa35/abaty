@@ -82,6 +82,7 @@ function* startAppBootStrap() {
       ]);
       yield call(setHomeCategories);
       yield call(setHomeProducts);
+      yield call(setHomeServices);
       MALLR ? yield call(setHomeCollections) : null;
       ABATI ? yield call(setServices) : null;
       yield call(getProductIndex);

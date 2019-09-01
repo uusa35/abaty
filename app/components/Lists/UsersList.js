@@ -32,9 +32,9 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
         params: searchParams
       })
         .then(r => {
-          const users = items.concat(r.data);
           setIsLoading(false);
           setRefresh(false);
+          const users = uniqBy(items.concat(r.data), 'id');
           dispatch({type: 'SET_USERS', payload: users});
           setItems(users);
         })
@@ -71,7 +71,6 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
       }
     } else {
       setShowMore(true);
-      setPage(1);
       setItems(elements);
     }
   }, [search]);

@@ -31,6 +31,7 @@ import {
   getImagePath
 } from '../../../helpers';
 import {GoogleSignin, statusCodes} from 'react-native-google-signin';
+import {SET_HOME_SERVICES} from '../types';
 
 export function* setHomeCategories() {
   try {
@@ -118,7 +119,18 @@ export function* setSlides() {
 
 export function* setServices() {
   try {
-    const services = yield call(api.getServices);
+    const services = yield call(api.getServices, {is_home: true, page: 1});
+    if (!validate.isEmpty(services) && validate.isArray(services)) {
+      yield all([put({type: actions.SET_HOME_SERVICES, payload: services})]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
+  }
+}
+
+export function* setHomeServices() {
+  try {
+    const services = yield call(api.getServices, {page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([put({type: actions.SET_SERVICES, payload: services})]);
     }

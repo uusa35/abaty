@@ -21,6 +21,7 @@
     "npx": "^10.2.0",
     "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
+    "pusher-js": "^5.0.0",
     "react": "16.8.6",
     "react-native": "0.60.0",
     "react-native-action-button": "^2.8.5",

@@ -13,7 +13,7 @@ import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
 import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
-import {filter} from 'lodash';
+import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
 
@@ -47,9 +47,9 @@ const ProductList = ({
         params
       })
         .then(r => {
-          const productsGroup = items.concat(r.data);
           setIsLoading(false);
           setRefresh(false);
+          const productsGroup = uniqBy(items.concat(r.data), 'id');
           dispatch({type: 'SET_PRODUCTS', payload: productsGroup});
           setItems(productsGroup);
         })
@@ -83,7 +83,6 @@ const ProductList = ({
         : setItems([]);
     } else {
       setShowMore(true);
-      setPage(1);
       setItems(elements);
     }
   }, [search]);

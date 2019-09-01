@@ -87,9 +87,9 @@ export async function getProducts(page = 1) {
     .catch(e => e.response.data.message);
 }
 
-export async function getServices(page = 1) {
+export async function getServices(params) {
   return await axiosInstance
-    .get(`service`, {params: {page}})
+    .get(`service`, {params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
