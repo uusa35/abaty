@@ -144,7 +144,8 @@ const LoginForm = ({showBtns = false}) => {
           title={I18n.t('sign_with_google')}
           button
           type="google-plus-official"
-          style={{width: '100%', height: 50}}
+          fontStyle={{fontFamily: text.font, fontSize: text.medium}}
+          style={{width: '100%', height: 50, borderRadius: 0}}
           onPress={() => dispatch(googleLogin())}
         />
       </View>

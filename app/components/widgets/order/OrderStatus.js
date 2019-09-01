@@ -64,8 +64,10 @@ const styles = StyleSheet.create({
   statusWrapper: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '16.5%',
-    height: 40
+    width: '17%',
+    height: 40,
+    borderWidth: 1,
+    borderColor: 'white'
   },
   smText: {
     fontFamily: text.font,

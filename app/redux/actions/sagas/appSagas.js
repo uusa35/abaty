@@ -45,7 +45,8 @@ import {
   startReAuthenticateScenario,
   setHomeCollections,
   startGetCollectionsScenario,
-  startGoogleLoginScenario
+  startGoogleLoginScenario,
+  setHomeServices
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
