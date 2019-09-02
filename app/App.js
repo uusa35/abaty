@@ -120,7 +120,7 @@ class App extends Component<Props> {
     }
     return (
       <DispatchContext.Provider value={{dispatch}}>
-        {network.isConnected ? (
+        {network.isConnected && bootStrapped ? (
           <View style={{flex: 1}}>
             {bootStrapped ? (
               <GlobalValuesContext.Provider
@@ -145,7 +145,7 @@ class App extends Component<Props> {
                     mainBg={main_bg}
                   />
                 ) : null}
-                {validate.isBoolean(countryModal) && countryModal ? (
+                {validate.isBoolean(countryModal) && countryModal && country ? (
                   <CountriesList
                     country={country}
                     countries={countries}

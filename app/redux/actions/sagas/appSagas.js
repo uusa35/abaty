@@ -38,7 +38,6 @@ import {
   getVideos,
   startGetSearchServicesScenario,
   startGetServiceScenario,
-  setServices,
   startRateUserScenario,
   startBecomeFanScenario,
   startAddCommentScenario,
@@ -46,7 +45,8 @@ import {
   setHomeCollections,
   startGetCollectionsScenario,
   startGoogleLoginScenario,
-  setHomeServices
+  getHomeServices,
+  getServices
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -83,9 +83,9 @@ function* startAppBootStrap() {
       ]);
       yield call(setHomeCategories);
       yield call(setHomeProducts);
-      yield call(setHomeServices);
+      yield call(getHomeServices);
       MALLR ? yield call(setHomeCollections) : null;
-      ABATI ? yield call(setServices) : null;
+      ABATI ? yield call(getServices) : null;
       yield call(getProductIndex);
       yield call(getVideos);
       yield call(setHomeDesigners);

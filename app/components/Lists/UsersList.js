@@ -15,11 +15,12 @@ import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 
-const UsersList = ({elements, searchParams, dispatch, showMore}) => {
+const UsersList = ({users, searchParams, dispatch, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
-  [items, setItems] = useState(elements);
+  [items, setItems] = useState(users);
+  [elements, setElements] = useState(users);
   [searchElements, setSearchElements] = useState(searchParams);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
@@ -34,9 +35,10 @@ const UsersList = ({elements, searchParams, dispatch, showMore}) => {
         .then(r => {
           setIsLoading(false);
           setRefresh(false);
-          const users = uniqBy(items.concat(r.data), 'id');
-          dispatch({type: 'SET_USERS', payload: users});
-          setItems(users);
+          const userGroup = uniqBy(items.concat(r.data), 'id');
+          // dispatch({type: 'SET_USERS', payload: users});
+          setItems(userGroup);
+          setElements(userGroup);
         })
         .catch(e => {
           setIsLoading(false);

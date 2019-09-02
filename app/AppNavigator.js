@@ -293,7 +293,7 @@ const HomeStack = createStackNavigator(
   },
   {
     mode: 'card',
-    headerMode: 'float',
+    headerMode: 'screen',
     swipeEnabled: false
   }
 );
@@ -569,8 +569,9 @@ const TabsStack = createBottomTabNavigator(
       showIcon: true,
       scrollEnabled: true,
       allowFontScaling: true,
-      activeTintColor: '#ddca21',
-      inactiveTintColor: 'black',
+      activeTintColor: 'black',
+      // activeTintColor: '#ddca21',
+      inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
       animationEnabled: true,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
@@ -662,7 +663,8 @@ const RootNavigator = createDrawerNavigator(
     drawerBackgroundColor: 'white',
     overlayColor: 'transparent',
     contentOptions: {
-      activeTintColor: '#e91e63',
+      // activeTintColor: '#e91e63',
+      activeTintColor: 'black',
       itemsContainerStyle: {
         marginVertical: 0
       },

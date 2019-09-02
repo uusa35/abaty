@@ -348,6 +348,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomWidth: 1,
     padding: 10,
+    minHeight: 50,
     borderBottomColor: 'lightgrey'
   },
   mainMenuText: {

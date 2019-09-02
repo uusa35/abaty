@@ -13,6 +13,7 @@ export const axiosInstance = axios.create({
   baseURL: links.apiUrl
 });
 
+__DEV__ ? console.log('link', links.apiUrl) : null;
 export function getLangForHeader() {
   return I18n.locale;
 }

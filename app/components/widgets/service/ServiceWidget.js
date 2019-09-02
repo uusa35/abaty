@@ -9,7 +9,6 @@ import {
 import widgetStyles from '../widgetStyles';
 import {getService} from '../../../redux/actions';
 import {getProductConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
@@ -25,7 +24,8 @@ const ServiceWidget = ({element, showName = false, dispatch, colors}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: 173,
+          width: '48%',
+          maxWidth: 175,
           margin: 5,
           borderWidth: 0.5,
           borderColor: 'lightgrey',

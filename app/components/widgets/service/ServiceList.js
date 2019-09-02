@@ -15,10 +15,9 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {getSearchProducts} from '../../../redux/actions';
 
 const ServiceList = ({
-  elements,
+  services,
   showName = true,
   showSearch = true,
   showFooter = true,
@@ -29,7 +28,8 @@ const ServiceList = ({
   colors,
   dispatch
 }) => {
-  [items, setItems] = useState(elements);
+  [items, setItems] = useState(services);
+  [elements, setElements] = useState(services);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
@@ -48,8 +48,8 @@ const ServiceList = ({
           setIsLoading(false);
           setRefresh(false);
           const serviceGroup = uniqBy(items.concat(r.data), 'id');
-          dispatch({type: 'SET_SERVICES', payload: serviceGroup});
           setItems(serviceGroup);
+          setElements(serviceGroup);
         })
         .catch(e => {
           setIsLoading(false);
@@ -94,7 +94,7 @@ const ServiceList = ({
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(elements) ? (
+      {!validate.isEmpty(services) ? (
         <FlatList
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="none"
@@ -227,7 +227,7 @@ const ServiceList = ({
 export default ServiceList;
 
 ServiceList.propTypes = {
-  elements: PropTypes.array.isRequired,
+  services: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool
 };

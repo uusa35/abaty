@@ -117,22 +117,22 @@ export function* setSlides() {
   }
 }
 
-export function* setServices() {
+export function* getServices() {
   try {
-    const services = yield call(api.getServices, {is_home: true, page: 1});
+    const services = yield call(api.getServices, {page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
-      yield all([put({type: actions.SET_HOME_SERVICES, payload: services})]);
+      yield all([put({type: actions.SET_SERVICES, payload: services})]);
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
   }
 }
 
-export function* setHomeServices() {
+export function* getHomeServices() {
   try {
-    const services = yield call(api.getServices, {page: 1});
+    const services = yield call(api.getServices, {is_home: true, page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
-      yield all([put({type: actions.SET_SERVICES, payload: services})]);
+      yield all([put({type: actions.SET_HOME_SERVICES, payload: services})]);
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
@@ -499,10 +499,11 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeCategories),
       call(setCountries),
       call(setSlides),
-      call(setServices),
       call(setCommercials),
       call(setHomeBrands),
       call(setHomeProducts),
+      call(getServices),
+      call(getHomeServices),
       call(getProductIndex),
       call(setHomeDesigners),
       call(setHomeCelebrities),

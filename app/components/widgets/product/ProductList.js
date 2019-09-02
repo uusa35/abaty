@@ -30,6 +30,7 @@ const ProductList = ({
   colors,
   dispatch
 }) => {
+  [items, setItems] = useState(products);
   [elements, setElements] = useState(products);
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
@@ -50,8 +51,8 @@ const ProductList = ({
           setIsLoading(false);
           setRefresh(false);
           const productsGroup = uniqBy(items.concat(r.data), 'id');
-          dispatch({type: 'SET_PRODUCTS', payload: productsGroup});
           setItems(productsGroup);
+          setElements(productsGroup);
         })
         .catch(e => {
           setIsLoading(false);

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import {StyleSheet, Modal} from 'react-native';
 import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -7,9 +7,15 @@ import {height, text} from './../../../constants';
 import I18n from './../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const IntroductionWidget = ({elements, visible}) => {
+const IntroductionWidget = ({elements, showIntroduction, dispatch}) => {
   const {colors} = useContext(GlobalValuesContext);
-  [visible, setVisible] = useState(visible);
+  [visible, setVisible] = useState(showIntroduction);
+  const handleClick = useCallback(() => {
+    setVisible(false);
+    dispatch({type: 'HIDE_INTRODUCTION'});
+  }, [visible]);
+
+  console.log('visible', visible);
   return (
     <Modal
       transparent={false}
@@ -37,13 +43,13 @@ const IntroductionWidget = ({elements, visible}) => {
         }}
         renderItem={() => <SplashWidget elements={elements} />}
         slides={elements}
-        onDone={() => setVisible(false)}
+        onDone={() => handleClick()}
       />
     </Modal>
   );
 };
 
-export default React.memo(IntroductionWidget);
+export default IntroductionWidget;
 
 IntroductionWidget.propTypes = {
   elements: PropTypes.array.isRequired

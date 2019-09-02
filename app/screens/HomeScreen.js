@@ -186,12 +186,18 @@ class HomeScreen extends Component {
       show_commercials,
       colors,
       services,
+      showIntroduction,
       dispatch
     } = this.props;
+    console.log('showINtroduction', showIntroduction);
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
         {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
-          <IntroductionWidget elements={splashes} visible={splash_on} />
+          <IntroductionWidget
+            elements={splashes}
+            showIntroduction={showIntroduction}
+            dispatch={dispatch}
+          />
         ) : null}
         <ScrollView
           contentContainerStyle={{backgroundColor: 'transparent'}}
@@ -303,7 +309,8 @@ function mapStateToProps(state) {
     colors: state.settings.colors,
     lang: state.lang,
     services: state.services,
-    homeCollections: state.homeCollections
+    homeCollections: state.homeCollections,
+    showIntroduction: state.showIntroduction
   };
 }
 

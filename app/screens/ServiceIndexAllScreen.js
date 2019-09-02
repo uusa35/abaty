@@ -9,13 +9,12 @@ import {
   productsSelector,
   servicesSelector
 } from '../redux/selectors/collections';
-import {colorsSelector} from '../redux/selectors/collection';
 import ServiceList from '../components/widgets/service/ServiceList';
 
 const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
   return (
     <ServiceList
-      elements={services}
+      services={services}
       searchElements={{}}
       showName={true}
       colors={colors}

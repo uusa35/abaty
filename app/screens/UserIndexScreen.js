@@ -8,7 +8,7 @@ import {StyleSheet} from 'react-native';
 const UserIndexScreen = ({users, searchParams, dispatch}) => {
   return (
     <UsersList
-      elements={users}
+      users={users}
       searchParams={searchParams}
       dispatch={dispatch}
       showMore={true}
