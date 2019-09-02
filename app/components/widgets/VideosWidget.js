@@ -11,7 +11,6 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {Button} from 'react-native-elements';
 
 const VideosWidget = ({videos, colors}) => {
-  console.log('videos', videos);
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (

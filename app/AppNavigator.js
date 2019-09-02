@@ -201,8 +201,8 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          zIndex: 100
+          // backgroundColor: 'white',
+          // zIndex: 100
         }
       }),
       path: `product/:id`
@@ -220,8 +220,8 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          zIndex: 100
+          // backgroundColor: 'white',
+          // zIndex: 100
         }
       }),
       path: `product/:id`
@@ -338,9 +338,9 @@ const BrandStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'transparent',
-          zIndex: 100
+          // backgroundColor: 'white',
+          // borderColor: 'transparent',
+          // zIndex: 100
         }
       }),
       path: `product/:id`
@@ -376,8 +376,8 @@ const ProductStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          zIndex: 100
+          //backgroundColor: 'white',
+          //zIndex: 100
         }
       }),
       path: `product/:id`
@@ -413,8 +413,8 @@ const ServiceStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          zIndex: 100
+          // backgroundColor: 'white',
+          // zIndex: 100
         }
       }),
       path: `service/:id`
@@ -488,8 +488,8 @@ const CategoryStack = createStackNavigator(
         ),
         headerBackTitle: null,
         headerStyle: {
-          backgroundColor: 'white',
-          zIndex: 100
+          //backgroundColor: 'white',
+          //zIndex: 100
         }
       }),
       path: `product/:id`
