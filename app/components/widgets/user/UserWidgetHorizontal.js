@@ -15,8 +15,7 @@ import PropTypes from 'prop-types';
 import I18n from '../../../I18n';
 import {Rating} from 'react-native-ratings';
 
-const UserWidgetHorizontal = ({user, showName}) => {
-  const {dispatch} = useContext(DispatchContext);
+const UserWidgetHorizontal = ({user, showName, dispatch}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
@@ -90,7 +89,8 @@ export default UserWidgetHorizontal;
 
 UserWidgetHorizontal.propTypes = {
   user: PropTypes.object,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

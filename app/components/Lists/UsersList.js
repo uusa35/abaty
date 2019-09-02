@@ -118,7 +118,11 @@ const UsersList = ({users, searchParams, dispatch, showMore}) => {
             alignItems: 'center'
           }}
           renderItem={({item}) => (
-            <UserWidgetHorizontal user={item} showName={true} />
+            <UserWidgetHorizontal
+              dispatch={dispatch}
+              user={item}
+              showName={true}
+            />
           )}
           ListFooterComponent={
             <View style={{width: '100%', minHeight: 100}}>
@@ -188,5 +192,6 @@ export default UsersList;
 UsersList.propTypes = {
   elements: PropTypes.array,
   category: PropTypes.object,
-  searchParams: PropTypes.object
+  searchParams: PropTypes.object,
+  dispatch: PropTypes.func.isRequired
 };

@@ -199,10 +199,11 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: 'test',
         headerStyle: {
-          // backgroundColor: 'white',
-          // zIndex: 100
+          position: 'absolute',
+          backgroundColor: 'transparent',
+          zIndex: 100
         }
       }),
       path: `product/:id`

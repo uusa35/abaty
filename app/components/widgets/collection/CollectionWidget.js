@@ -26,7 +26,7 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
           marginTop: 5,
           marginBottom: 5,
           height: 285,
-          justifyContent: 'space-evenly'
+          justifyContent: 'space-between'
         }
       ]}
       onPress={() => {
@@ -53,6 +53,7 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
               {
                 textAlign: 'center',
                 fontSize: text.medium,
+                paddingBottom: 20,
                 color: colors.header_tow_theme_color
               }
             ]}>
@@ -69,7 +70,8 @@ export default CollectionWidget;
 CollectionWidget.propTypes = {
   element: PropTypes.object.isRequired,
   colors: PropTypes.object,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

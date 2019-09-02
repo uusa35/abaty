@@ -64,15 +64,16 @@ class HomeScreen extends Component {
         headerTitle: (
           <View style={styles.safeContainer}>
             <FastImage
-              resizeMode="stretch"
+              resizeMode="contain"
               source={{
                 uri: navigation.state.params.logo
                   ? navigation.state.params.logo
                   : null
               }}
               style={{
-                width: 50,
-                height: 35
+                width: '100%',
+                height: 35,
+                maxWidth: 80
               }}
             />
           </View>
@@ -189,7 +190,6 @@ class HomeScreen extends Component {
       showIntroduction,
       dispatch
     } = this.props;
-    console.log('showINtroduction', showIntroduction);
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
         {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (

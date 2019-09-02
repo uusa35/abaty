@@ -61,5 +61,6 @@ export default ServiceHorizontalWidget;
 
 ServiceHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired
 };

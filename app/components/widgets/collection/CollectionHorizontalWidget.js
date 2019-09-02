@@ -60,5 +60,6 @@ export default CollectionHorizontalWidget;
 CollectionInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   colors: PropTypes.object.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired
 };

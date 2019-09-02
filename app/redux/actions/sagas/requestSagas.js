@@ -117,7 +117,7 @@ export function* setSlides() {
   }
 }
 
-export function* getServices() {
+export function* getServicesScenario() {
   try {
     const services = yield call(api.getServices, {page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
@@ -128,7 +128,7 @@ export function* getServices() {
   }
 }
 
-export function* getHomeServices() {
+export function* getHomeServicesScenario() {
   try {
     const services = yield call(api.getServices, {is_home: true, page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
@@ -161,7 +161,7 @@ export function* setHomeProducts() {
   }
 }
 
-export function* setHomeCollections() {
+export function* getHomeCollectionsScenario() {
   try {
     const collections = yield call(api.getHomeCollections);
     if (!validate.isEmpty(collections) && validate.isArray(collections)) {
@@ -502,8 +502,8 @@ export function* startRefetchHomeElementsScenario() {
       call(setCommercials),
       call(setHomeBrands),
       call(setHomeProducts),
-      call(getServices),
-      call(getHomeServices),
+      call(getServicesScenario),
+      call(getHomeServicesScenario),
       call(getProductIndex),
       call(setHomeDesigners),
       call(setHomeCelebrities),

@@ -42,11 +42,10 @@ import {
   startBecomeFanScenario,
   startAddCommentScenario,
   startReAuthenticateScenario,
-  setHomeCollections,
   startGetCollectionsScenario,
   startGoogleLoginScenario,
-  getHomeServices,
-  getServices
+  getHomeServicesScenario,
+  getHomeCollectionsScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -79,25 +78,24 @@ function* startAppBootStrap() {
         call(startAuthenticatedScenario),
         call(defaultLang),
         call(getCountry),
-        call(setDeviceId)
+        call(setDeviceId),
+        call(setHomeCategories),
+        call(setHomeProducts),
+        call(getHomeServicesScenario),
+        call(getProductIndex),
+        call(getVideos),
+        call(setHomeDesigners),
+        call(setHomeCelebrities),
+        call(setHomeSplashes)
       ]);
-      yield call(setHomeCategories);
-      yield call(setHomeProducts);
-      yield call(getHomeServices);
-      MALLR ? yield call(setHomeCollections) : null;
-      ABATI ? yield call(getServices) : null;
-      yield call(getProductIndex);
-      yield call(getVideos);
-      yield call(setHomeDesigners);
-      yield call(setHomeCelebrities);
-      yield call(setHomeSplashes);
+      MALLR ? yield call(getHomeCollectionsScenario) : null;
+      ABATI ? yield call(getHomeServicesScenario) : null;
       yield all([
         put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         call(disableLoading)
       ]);
     }
   } catch (e) {
-    console.log('the eeee', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('app_general_error'))
