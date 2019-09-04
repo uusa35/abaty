@@ -17,7 +17,7 @@ const widgetStyles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: 'row',
-    width: '98%',
+    width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center'
   },

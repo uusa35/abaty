@@ -49,6 +49,8 @@ import OrderIndexScreen from './screens/OrderIndexScreen';
 import TermAndConditionScreen from './screens/TermAndConditionScreen';
 import ServiceIndexAllScreen from './screens/ServiceIndexAllScreen';
 import CollectionIndexScreen from './screens/CollectionIndexScreen';
+import HomeKeyScreen from './screens/HomeKeyScreen';
+import ClassifiedShowScreen from './screens/ClassifiedShowScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -65,6 +67,16 @@ const HomeStack = createStackNavigator(
     // },
     Home: {
       screen: HomeScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
+      }),
+      path: 'home'
+    },
+    HomeKey: {
+      screen: HomeKeyScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -345,6 +357,26 @@ const BrandStack = createStackNavigator(
         }
       }),
       path: `product/:id`
+    },
+    Classified: {
+      screen: ClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'transparent',
+          zIndex: 100
+        }
+      }),
+      path: `classified/:id`
     }
   },
   {

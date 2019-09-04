@@ -1,6 +1,6 @@
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import {ABATI, MALLR} from './../../../../app';
+import {ABATI, MALLR, HOMEKEY} from './../../../../app';
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
@@ -45,7 +45,10 @@ import {
   startGetCollectionsScenario,
   startGoogleLoginScenario,
   getHomeServicesScenario,
-  getHomeCollectionsScenario
+  getHomeCollectionsScenario,
+  getHomeClassifiedsScenario,
+  startGetClassifiedsScenario,
+  startGetClassifiedScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -88,8 +91,18 @@ function* startAppBootStrap() {
         call(setHomeCelebrities),
         call(setHomeSplashes)
       ]);
-      MALLR ? yield call(getHomeCollectionsScenario) : null;
-      ABATI ? yield call(getHomeServicesScenario) : null;
+      if (MALLR) {
+        yield call(getHomeCollectionsScenario);
+      }
+      if (ABATI) {
+        yield call(getHomeServicesScenario);
+      }
+      if (HOMEKEY) {
+        yield put({
+          type: actions.GET_CLASSIFIEDS,
+          payload: {params: {on_home: true, page: 1}}
+        });
+      }
       yield all([
         put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         call(disableLoading)
@@ -103,6 +116,13 @@ function* startAppBootStrap() {
   }
 }
 
+export function* getClassifieds() {
+  yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
+}
+
+export function* getClassified() {
+  yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
+}
 export function* appBootstrap() {
   yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);
 }

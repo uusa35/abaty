@@ -21,18 +21,7 @@ import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {
-  authNameSelector,
-  colorsSelector,
-  companyNameSelector,
-  guestSelector,
-  langSelector,
-  logoSelector,
-  menuBgSelector,
-  settingImagesSelector,
-  youtubeSelector
-} from '../redux/selectors/collection';
-import {DispatchContext} from '../redux/DispatchContext';
+import {MALLR, ABATI, HOMEKEY} from './../../app';
 
 const SideMeu = ({
   menuBg,
@@ -44,9 +33,9 @@ const SideMeu = ({
   guest,
   lang,
   navigation,
-  name
+  name,
+  dispatch
 }) => {
-  const {dispatch} = useContext(DispatchContext);
   return (
     <ImageBackground
       source={{
@@ -104,6 +93,25 @@ const SideMeu = ({
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
+            {HOMEKEY ? (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('HomeKey')}
+                style={styles.menuBtn}>
+                <Icon
+                  name="home"
+                  type="antdesign"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color}
+                  ]}>
+                  {I18n.t('home_key')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
             {guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}
@@ -299,15 +307,15 @@ const SideMeu = ({
 
 function mapStateToProps(state) {
   return {
-    menuBg: menuBgSelector(state),
-    logo: logoSelector(state),
-    company: companyNameSelector(state),
-    images: settingImagesSelector(state),
-    youtube: youtubeSelector(state),
-    colors: colorsSelector(state),
-    guest: guestSelector(state),
-    lang: langSelector(state),
-    name: authNameSelector(state)
+    menuBg: state.settings.menu_bg,
+    logo: state.settings.logo,
+    company: state.settings.company,
+    images: state.settings.images,
+    youtube: state.settings.youtube,
+    colors: state.settings.colors,
+    guest: state.guest,
+    lang: state.lang,
+    name: state.auth.name
   };
 }
 

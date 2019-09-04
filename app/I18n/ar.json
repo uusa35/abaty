@@ -494,5 +494,11 @@
   "track" : "تتبع الشحنة",
   "our_collections" : "اختيارات المتسوقين الشخصيين",
   "net_price" : "القيمة المدفوعة : ",
-  "sign_with_google" : "الدخول بحساب جوجل"
+  "sign_with_google" : "الدخول بحساب جوجل",
+  "classifieds" : "إعلانات مبوبة",
+  "featured_classifieds" : "إعلانات مبوبة مختارة",
+  "classified" : "إعلان مبوب",
+  "no_more_classifieds" : "لا يوجد مزيد من الإعلانات المبوبة",
+  "no_classifieds" : "لا يوجد إعلانات مبوبة",
+  "no_videos" : "لا يوجد فيدوهات للعرض حالياً"
 }

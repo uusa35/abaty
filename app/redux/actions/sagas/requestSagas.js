@@ -139,6 +139,43 @@ export function* getHomeServicesScenario() {
   }
 }
 
+export function* startGetClassifiedsScenario(action) {
+  const {params} = action.payload;
+  try {
+    const classifieds = yield call(api.getSearchClassifieds, params);
+    if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
+      yield all([put({type: actions.SET_CLASSIFIEDS, payload: classifieds})]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
+  }
+}
+
+export function* startGetClassifiedScenario(action) {
+  try {
+    yield call(enableLoadingContent);
+    const classified = yield call(api.getClassified, action.payload);
+    if (!validate.isEmpty(classified) && validate.isObject(classified)) {
+      yield put({type: actions.SET_CLASSIFIED, payload: classified});
+      yield all([
+        put(
+          NavigationActions.navigate({
+            routeName: 'Classified',
+            params: {
+              name: classified.name,
+              id: classified.id,
+              model: 'classified'
+            }
+          })
+        ),
+        call(disableLoadingContent)
+      ]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
+  }
+}
+
 export function* setProducts() {
   try {
     const products = yield call(api.getProducts);

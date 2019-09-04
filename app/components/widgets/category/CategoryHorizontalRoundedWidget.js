@@ -18,7 +18,12 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 
-const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
+const CategoryHorizontalRoundedWidget = ({
+  elements,
+  showName,
+  title,
+  dispatch
+}) => {
   const {navigate} = useNavigation();
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -83,16 +88,17 @@ const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
   );
 };
 
-export default CategoryHorizontalWidget;
+export default CategoryHorizontalRoundedWidget;
 
-CategoryHorizontalWidget.propTypes = {
+CategoryHorizontalRoundedWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   showName: PropTypes.bool
 };
 
 const styles = StyleSheet.create({
   image: {
-    width: 150,
-    height: 150
+    width: 90,
+    height: 90,
+    borderRadius: 20
   }
 });

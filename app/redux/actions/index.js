@@ -516,3 +516,17 @@ export function googleRegister() {
     type: actions.GOOGLE_REGISTER
   };
 }
+
+export function getClassifieds(payload) {
+  return {
+    type: actions.GET_CLASSIFIEDS,
+    payload
+  };
+}
+
+export function getClassified(payload) {
+  return {
+    type: actions.GET_CLASSIFIED,
+    payload
+  };
+}

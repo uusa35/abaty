@@ -30,7 +30,7 @@ const CategoryCarouselWidget = ({elements}) => {
   );
 };
 
-export default React.memo(CategoryCarouselWidget);
+export default CategoryCarouselWidget;
 
 CategoryCarouselWidget.propTypes = {
   elements: PropTypes.array.isRequired

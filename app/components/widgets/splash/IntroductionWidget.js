@@ -15,7 +15,6 @@ const IntroductionWidget = ({elements, showIntroduction, dispatch}) => {
     dispatch({type: 'HIDE_INTRODUCTION'});
   }, [visible]);
 
-  console.log('visible', visible);
   return (
     <Modal
       transparent={false}

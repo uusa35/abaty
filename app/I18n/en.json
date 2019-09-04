@@ -461,5 +461,12 @@
   "our_collections" : "Personal Shoppers Choices",
   "net_price" : "Net Price : ",
   "sign_with_google" : "Sign with Google Account",
-  "shipment_fees_per_piece" : "Shipment Fees (per piece)"
+  "shipment_fees_per_piece" : "Shipment Fees (per piece)",
+  "classifieds" : "Classifieds",
+  "classified" : "Classified",
+  "featured_classifieds" : "Featured Classifieds",
+  "classified" : "إعلان مبوب",
+  "no_more_classifieds" : "No more Classifieds",
+  "no_classifieds" : "No Classifieds",
+  "no_videos" : "No Videos Available Now."
 }

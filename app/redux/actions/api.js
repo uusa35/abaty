@@ -95,6 +95,21 @@ export async function getServices(params) {
     .catch(e => e.response.data.message);
 }
 
+export async function getClassified(params) {
+  const {id} = params;
+  return await axiosInstance
+    .get(`classified/${id}`, {params})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getSearchClassifieds(params) {
+  return await axiosInstance
+    .get(`search/classified`, {params})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getIndexVideo() {
   return await axiosInstance
     .get(`video`)

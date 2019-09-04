@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getProduct} from '../../../redux/actions';
-import {getProductConvertedFinalPrice} from '../../../helpers';
+import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
@@ -82,7 +82,7 @@ const ProductWidget = ({element, showName = false, dispatch, colors}) => {
                   paddingLeft: 5
                 }
               ]}>
-              {getProductConvertedFinalPrice(element.finalPrice, exchange_rate)}
+              {getConvertedFinalPrice(element.finalPrice, exchange_rate)}
             </Text>
             <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
           </View>

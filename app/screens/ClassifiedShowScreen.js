@@ -16,14 +16,15 @@ import I18n from './../I18n';
 import {first} from 'lodash';
 import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
 import validate from 'validate.js';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import {useNavigation} from 'react-navigation-hooks';
 
-const ProductShowScreen = ({
-  product,
+const ClassifiedShowScreen = ({
+  classified,
+  classifieds,
   dispatch,
   phone,
   mobile,
@@ -47,7 +48,7 @@ const ProductShowScreen = ({
             onRefresh={() => {
               setRefresh(false);
               dispatch(
-                getProduct({id: product.id, api_token: token ? token : null})
+                getProduct({id: classified.id, api_token: token ? token : null})
               );
             }}
           />
@@ -58,15 +59,15 @@ const ProductShowScreen = ({
         contentInset={{bottom: 50}}>
         <ImagesWidget
           colors={colors}
-          elements={product.images
-            .concat({id: product.id, large: product.large})
+          elements={classified.images
+            .concat({id: classified.id, large: classified.large})
             .reverse()}
           width={width}
           height={550}
-          name={product.name}
-          exclusive={product.exclusive}
-          isOnSale={product.isOnSale}
-          isReallyHot={product.isReallyHot}
+          name={classified.name}
+          exclusive={classified.exclusive}
+          isOnSale={classified.isOnSale}
+          isReallyHot={classified.isReallyHot}
         />
         <View style={{width: '90%'}}>
           <ProductInfoWidget element={product} />
@@ -74,34 +75,34 @@ const ProductShowScreen = ({
             animation="bounceInLeft"
             easing="ease-out"
             style={{marginTop: 15}}>
-            {product.description ? (
+            {classified.description ? (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>
-                <Text style={styles.normalText}>{product.description}</Text>
+                <Text style={styles.normalText}>{classified.description}</Text>
               </View>
             ) : null}
             <ProductInfoWidgetElement
               elementName="designer"
-              name={product.user.slug}
+              name={classified.user.slug}
               link={() =>
                 dispatch(
                   getDesigner({
-                    id: product.user.id,
-                    searchElements: {user_id: product.user.id}
+                    id: classified.user.id,
+                    searchElements: {user_id: classified.user.id}
                   })
                 )
               }
             />
             <ProductInfoWidgetElement
               elementName="categories"
-              name={first(product.categories).name}
+              name={first(classified.categories).name}
               link={() =>
                 dispatch(
                   getSearchProducts({
-                    element: first(product.categories),
-                    category: first(product.categories),
+                    element: first(classified.categories),
+                    category: first(classified.categories),
                     searchElements: {
-                      product_category_id: first(product.categories).id
+                      product_category_id: first(classified.categories).id
                     }
                   })
                 )
@@ -109,7 +110,7 @@ const ProductShowScreen = ({
             />
             <ProductInfoWidgetElement
               elementName="sku"
-              name={product.sku}
+              name={classified.sku}
               showArrow={false}
             />
             {weight ? (
@@ -124,39 +125,15 @@ const ProductShowScreen = ({
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
             />
-            {shipment_prices ? (
-              <ProductInfoWidgetElement
-                elementName="shipment_prices"
-                link={() =>
-                  navigate('ImageZoom', {
-                    images: [{id: product.id, large: shipment_prices}],
-                    name: product.name,
-                    index: 0
-                  })
-                }
-              />
-            ) : null}
-            {size_chart ? (
-              <ProductInfoWidgetElement
-                elementName="size_chart"
-                link={() =>
-                  navigation.navigate('ImageZoom', {
-                    images: [{id: product.id, large: size_chart}],
-                    name: product.name,
-                    index: 0
-                  })
-                }
-              />
-            ) : null}
           </View>
         </View>
-        {validate.isObject(product.videoGroup) &&
-        !validate.isEmpty(product.videoGroup) ? (
-          <VideosWidget videos={product.videoGroup} colors={colors} />
+        {validate.isObject(classified.videoGroup) &&
+        !validate.isEmpty(classified.videoGroup) ? (
+          <VideosWidget videos={classified.videoGroup} colors={colors} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
-          <ProductHorizontalWidget
-            elements={homeProducts}
+          <ClassifiedListHorizontal
+            elements={classifieds}
             showName={true}
             title="featured_products"
             colors={colors}
@@ -171,22 +148,21 @@ const ProductShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    product: state.product,
+    classified: state.classified,
     phone: state.settings.phone,
     shipment_prices: state.settings.shipment_prices,
-    size_chart: state.settings.size_chart,
     mobile: state.settings.mobile,
     weight: state.settings.weight,
-    homeProducts: state.homeProducts,
+    classifieds: state.classifieds,
     token: state.token,
     cart: state.cart,
     colors: state.settings.colors
   };
 }
 
-export default connect(mapStateToProps)(ProductShowScreen);
+export default connect(mapStateToProps)(ClassifiedShowScreen);
 
-ProductShowScreen.propTypes = {
+ClassifiedShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
   homeProducts: PropTypes.array.isRequired,
   token: PropTypes.string

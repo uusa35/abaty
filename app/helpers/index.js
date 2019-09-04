@@ -168,3 +168,7 @@ export function getPathForDeepLinking(url) {
 export function getProductConvertedFinalPrice(price, rate) {
   return _.round(price * rate, 2);
 }
+
+export function getConvertedFinalPrice(price, rate) {
+  return _.round(price * rate, 2);
+}

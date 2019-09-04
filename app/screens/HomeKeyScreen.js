@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
+  getClassifieds,
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
@@ -35,36 +36,13 @@ import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizo
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
 import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
+import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 
-class HomeScreen extends Component {
+class HomeKeyScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {refresh: false, appState: AppState.currentState};
   }
-
-  static navigationOptions = ({navigation, navigationOptions}) => {
-    if (has(navigation.state, 'params')) {
-      return {
-        headerTitle: (
-          <View style={styles.safeContainer}>
-            <FastImage
-              resizeMode="contain"
-              source={{
-                uri: navigation.state.params.logo
-                  ? navigation.state.params.logo
-                  : null
-              }}
-              style={{
-                width: '100%',
-                height: 35,
-                maxWidth: 80
-              }}
-            />
-          </View>
-        )
-      };
-    }
-  };
 
   shouldComponentUpdate(
     nextProps: Readonly<P>,
@@ -93,6 +71,7 @@ class HomeScreen extends Component {
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
     const {logo} = this.props;
+    console.log('the logo', logo);
     this.props.navigation.setParams({
       logo: !validate.isEmpty(logo) ? logo : null
     });
@@ -177,91 +156,46 @@ class HomeScreen extends Component {
     } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-        {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
-          <IntroductionWidget
-            elements={splashes}
-            showIntroduction={showIntroduction}
-            dispatch={dispatch}
-          />
-        ) : null}
         <ScrollView
           contentContainerStyle={{backgroundColor: 'transparent'}}
           contentInset={{bottom: 50}}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refresh}
-              onRefresh={() => this._refetchElements()}
+              onRefresh={() =>
+                dispatch(getClassifieds({params: {on_home: true, page: 1}}))
+              }
             />
           }
           showsHorizontalScrollIndicator={false}
           endFillColor="white"
           showsVerticalScrollIndicator={false}
           style={{flex: 0.8}}>
-          <SearchForm />
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-          {!validate.isEmpty(designers) && validate.isArray(designers) ? (
-            <DesignerHorizontalWidget
-              elements={designers}
-              showName={true}
-              name="designers"
-              title="designers"
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(categories) && validate.isArray(categories) ? (
-            <CategoryHorizontalWidget
+          {!validate.isEmpty(categories) &&
+          validate.isArray(categories) &&
+          HOMEKEY ? (
+            <CategoryHorizontalRoundedWidget
               elements={categories}
               showName={true}
               title="categories"
               dispatch={dispatch}
             />
           ) : null}
-          {!validate.isEmpty(celebrities) &&
-          validate.isArray(celebrities) &&
-          ABATI ? (
-            <DesignerHorizontalWidget
-              elements={celebrities}
+          {!validate.isEmpty(classifieds) &&
+          validate.isArray(classifieds) &&
+          HOMEKEY ? (
+            <ClassifiedListHorizontal
+              classifieds={classifieds}
               showName={true}
-              name="celebrities"
-              title="celebrities"
-              dispatch={dispatch}
-            />
-          ) : null}
-          {!validate.isEmpty(homeProducts) ? (
-            <ProductHorizontalWidget
-              elements={homeProducts}
-              showName={true}
-              title="featured_products"
+              showSearch={false}
+              showTitle={true}
+              title="featured_classifieds"
               dispatch={dispatch}
               colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-            <BrandHorizontalWidget
-              elements={brands}
-              showName={false}
-              title="brands"
-            />
-          ) : null}
-          {!validate.isEmpty(services) && ABATI ? (
-            <ServiceHorizontalWidget
-              elements={services}
-              showName={true}
-              title="our_services"
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(homeCollections) && MALLR ? (
-            <CollectionHorizontalWidget
-              colors={colors}
-              elements={homeCollections}
-              showName={true}
-              title="our_collections"
-              dispatch={dispatch}
+              searchElements={{on_home: true}}
             />
           ) : null}
         </ScrollView>
@@ -300,9 +234,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(HomeScreen);
+export default connect(mapStateToProps)(HomeKeyScreen);
 
-HomeScreen.propTypes = {
+HomeKeyScreen.propTypes = {
   categories: PropTypes.array,
   brands: PropTypes.array,
   designers: PropTypes.array,

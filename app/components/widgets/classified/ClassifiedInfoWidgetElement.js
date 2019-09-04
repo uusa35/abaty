@@ -7,7 +7,7 @@ import {Icon} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ProductInfoWidgetElement = ({
+const ClassifiedInfoWidgetElement = ({
   link,
   elementName,
   name,
@@ -58,9 +58,9 @@ const ProductInfoWidgetElement = ({
   );
 };
 
-export default ProductInfoWidgetElement;
+export default ClassifiedInfoWidgetElement;
 
-ProductInfoWidgetElement.propTypes = {
+ClassifiedInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,
   // name : PropTypes.string,
   link: PropTypes.func,
