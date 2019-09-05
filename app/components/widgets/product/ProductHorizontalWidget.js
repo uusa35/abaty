@@ -20,7 +20,9 @@ const ProductHorizontalWidget = ({
       <TouchableOpacity
         style={widgetStyles.titleContainer}
         onPress={() =>
-          dispatch(getSearchProducts({searchElements: {on_home: true}}))
+          dispatch(
+            getSearchProducts({searchElements: {on_home: true}, redirect: true})
+          )
         }>
         <View style={widgetStyles.titleWrapper}>
           <Text

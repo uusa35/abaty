@@ -76,6 +76,8 @@ const DesignerShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
+            colors={colors}
+            dispatch={dispatch}
             member_id={user.id}
             showFans={true}
             showRating={true}

@@ -76,16 +76,6 @@ const HomeStack = createStackNavigator(
       }),
       path: 'home'
     },
-    HomeKey: {
-      screen: HomeKeyScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      }),
-      path: 'home'
-    },
     CartIndex: {
       screen: CartIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -212,7 +202,7 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: 'test',
+        headerBackTitle: null,
         headerStyle: {
           position: 'absolute',
           backgroundColor: 'transparent',
@@ -239,37 +229,6 @@ const HomeStack = createStackNavigator(
         }
       }),
       path: `product/:id`
-    },
-    ClassifiedIndex: {
-      screen: ClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerBackTitle: null
-      })
-    },
-    Classified: {
-      screen: ClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerBackTitle: null,
-        headerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'transparent',
-          zIndex: 100
-        }
-      }),
-      path: `classified/:id`
     },
     FavoriteIndex: {
       screen: FavoriteIndexScreen,
@@ -334,6 +293,44 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       }),
       path: `product/:id`
+    },
+    HomeKey: {
+      screen: HomeKeyScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
+      })
+    },
+    ClassifiedIndex: {
+      screen: ClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
+      })
+    },
+    Classified: {
+      screen: ClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'transparent',
+          zIndex: 100
+        }
+      }),
+      path: `classified/:id`
     }
   },
   {
@@ -343,6 +340,53 @@ const HomeStack = createStackNavigator(
   }
 );
 
+const ClassifiedStack = createStackNavigator(
+  {
+    HomeKey: {
+      screen: HomeKeyScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
+      })
+    },
+    ClassifiedIndex: {
+      screen: ClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
+      })
+    },
+    Classified: {
+      screen: ClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'transparent',
+          zIndex: 100
+        }
+      }),
+      path: `classified/:id`
+    }
+  },
+  {
+    mode: 'card',
+    headerMode: 'screen',
+    swipeEnabled: false
+  }
+);
 const BrandStack = createStackNavigator(
   {
     BrandIndex: {
@@ -629,9 +673,9 @@ const TabsStack = createBottomTabNavigator(
     },
     initialRouteName: 'Home',
     order: [
-      'Home',
       'CategoryIndexScreen',
       'VideoIndexScreen',
+      'Home',
       'ServiceIndexAll',
       'ProductIndexAll'
     ]

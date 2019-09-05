@@ -44,6 +44,30 @@ class HomeKeyScreen extends Component {
     this.state = {refresh: false, appState: AppState.currentState};
   }
 
+  static navigationOptions = ({navigation, navigationOptions}) => {
+    if (has(navigation.state, 'params')) {
+      return {
+        headerTitle: (
+          <View style={styles.safeContainer}>
+            <FastImage
+              resizeMode="contain"
+              source={{
+                uri: navigation.state.params.logo
+                  ? navigation.state.params.logo
+                  : null
+              }}
+              style={{
+                width: '100%',
+                height: 35,
+                maxWidth: 80
+              }}
+            />
+          </View>
+        )
+      };
+    }
+  };
+
   // shouldComponentUpdate(
   //   nextProps: Readonly<P>,
   //   nextState: Readonly<S>,
@@ -71,7 +95,6 @@ class HomeKeyScreen extends Component {
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
     const {logo} = this.props;
-    console.log('the logo', logo);
     this.props.navigation.setParams({
       logo: !validate.isEmpty(logo) ? logo : null
     });

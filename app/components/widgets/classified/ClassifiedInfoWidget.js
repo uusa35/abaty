@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {Text, View, TouchableHighlight} from 'react-native';
+import {Text, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {text} from '../../../constants';
 import {getConvertedFinalPrice} from '../../../helpers';
@@ -13,7 +13,7 @@ const ClassifiedInfoWidget = ({
   currency_symbol
 }) => {
   return (
-    <TouchableHighlight
+    <View
       onPress={() => console.log('clicked')}
       style={{
         width: '100%',
@@ -57,7 +57,7 @@ const ClassifiedInfoWidget = ({
           <PropertiesWidget elements={element.properties} colors={colors} />
         ) : null}
       </Fragment>
-    </TouchableHighlight>
+    </View>
   );
 };
 

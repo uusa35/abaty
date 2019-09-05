@@ -63,7 +63,8 @@ const UserCategoriesInfoWidget = ({
                     dispatch(
                       getSearchProducts({
                         name: c.name,
-                        searchElements: {product_category_id: c.id}
+                        searchElements: {product_category_id: c.id},
+                        redirect: true
                       })
                     )
                   }

@@ -128,7 +128,8 @@ const ServiceShowScreen = ({
                     element: first(service.categories),
                     searchElements: {
                       service_category_id: first(service.categories).id
-                    }
+                    },
+                    redirect: true
                   })
                 )
               }

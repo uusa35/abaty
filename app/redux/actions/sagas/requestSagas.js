@@ -118,7 +118,7 @@ export function* setSlides() {
   }
 }
 
-export function* getServicesScenario() {
+export function* getServiceIndex() {
   try {
     const services = yield call(api.getServices, {page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
@@ -171,6 +171,7 @@ export function* startGetClassifiedScenario(action) {
     yield call(enableLoadingContent);
     const classified = yield call(api.getClassified, action.payload);
     if (!validate.isEmpty(classified) && validate.isObject(classified)) {
+      console.log('here');
       yield put({type: actions.SET_CLASSIFIED, payload: classified});
       yield all([
         put(
@@ -423,19 +424,21 @@ export function* startGetServiceScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {name, searchParams} = action.payload;
-    const products = yield call(api.getSearchProducts, searchParams);
+    const {name, searchElements, redirect} = action.payload;
+    const products = yield call(api.getSearchProducts, searchElements);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
-        put(
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+      ]);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
           NavigationActions.navigate({
             routeName: 'ProductIndex',
             params: {name: name ? name : I18n.t('products')}
           })
-        )
-      ]);
+        );
+      }
     } else {
       throw products;
     }
@@ -446,19 +449,21 @@ export function* startGetSearchProductsScenario(action) {
 
 export function* startGetSearchServicesScenario(action) {
   try {
-    const {element, searchParams} = action.payload;
-    const services = yield call(api.getSearchServices, searchParams);
+    const {element, searchElements, redirect} = action.payload;
+    const services = yield call(api.getSearchServices, searchElements);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
-        put(
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+      ]);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
           NavigationActions.navigate({
             routeName: 'ServiceIndex',
             params: {name: element ? element.name : I18n.t('services')}
           })
-        )
-      ]);
+        );
+      }
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_services'))]);
@@ -555,7 +560,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setCommercials),
       call(setHomeBrands),
       call(setHomeProducts),
-      call(getServicesScenario),
+      call(getServiceIndex),
       call(getHomeServicesScenario),
       call(getProductIndex),
       call(setHomeDesigners),

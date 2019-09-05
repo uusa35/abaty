@@ -10,7 +10,7 @@ import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images} from '../../../constants';
+import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
 
 const ClassifiedWidgetHorizontal = ({
@@ -69,8 +69,10 @@ const ClassifiedWidgetHorizontal = ({
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20
           }}>
-          <Text style={{textAlign: 'left'}}>{element.name}</Text>
-          <Text style={{textAlign: 'left'}}>
+          <Text style={{textAlign: 'left', fontFamily: text.font}}>
+            {element.name}
+          </Text>
+          <Text style={{textAlign: 'left', fontFamily: text.font}}>
             {element.price} {currency_symbol}
           </Text>
         </View>

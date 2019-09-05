@@ -59,7 +59,8 @@ const CategoryHorizontalWidget = ({
               dispatch(
                 getSearchProducts({
                   name: c.name,
-                  searchParams: {product_category_id: c.id}
+                  searchElements: {product_category_id: c.id},
+                  redirect: true
                 })
               )
             }>

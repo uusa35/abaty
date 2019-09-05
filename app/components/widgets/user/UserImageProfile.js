@@ -25,11 +25,11 @@ const UserImageProfile = ({
   showRating,
   guest,
   views,
+  dispatch,
+  colors,
   showComments = false,
   commentsCount
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);

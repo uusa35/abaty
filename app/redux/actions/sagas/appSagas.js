@@ -47,7 +47,8 @@ import {
   getHomeServicesScenario,
   getHomeCollectionsScenario,
   startGetClassifiedsScenario,
-  startGetClassifiedScenario
+  startGetClassifiedScenario,
+  getServiceIndex
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n, {isRTL} from './../../../I18n';
@@ -85,28 +86,21 @@ function* startAppBootStrap() {
         call(setHomeProducts),
         call(getHomeServicesScenario),
         call(getProductIndex),
+        call(getServiceIndex),
         call(getVideos),
         call(setHomeDesigners),
         call(setHomeCelebrities),
-        call(setHomeSplashes)
-      ]);
-      if (MALLR) {
-        yield call(getHomeCollectionsScenario);
-      }
-      if (ABATI) {
-        yield call(getHomeServicesScenario);
-      }
-      if (HOMEKEY) {
-        yield put({
+        call(setHomeSplashes),
+        call(getHomeCollectionsScenario),
+        put({
           type: actions.GET_CLASSIFIEDS,
-          payload: {searchParams: {on_home: true, page: 1}}
-        });
-      }
+          payload: {searchElements: {is_home: true}}
+        })
+      ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);
     }
   } catch (e) {
-    console.log('the eeeee', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('app_general_error'))
