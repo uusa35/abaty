@@ -8,15 +8,11 @@ import {
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getClassified, getProduct} from '../../../redux/actions';
-import {
-  getConvertedFinalPrice,
-  getProductConvertedFinalPrice
-} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text, width} from '../../../constants';
 import TagWidget from './../TagWidget';
-import ClassifiedWidgetProperties from './ClassifiedWidgetProperties';
+import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 
 const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
   const {currency_symbol, exchange_rate, token} = useContext(
@@ -62,7 +58,7 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
         </View>
       </ImageBackground>
       {showName ? (
-        <ClassifiedWidgetProperties
+        <ClassifiedInfoWidget
           element={element}
           colors={colors}
           exchange_rate={exchange_rate}

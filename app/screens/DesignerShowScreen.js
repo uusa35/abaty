@@ -11,17 +11,6 @@ import UserImageProfile from '../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import {getDesigner} from '../redux/actions';
-import {
-  colorsSelector,
-  commentModalSelector,
-  designerSelector,
-  guestSelector,
-  logoSelector
-} from '../redux/selectors/collection';
-import {
-  commentsSelector,
-  searchParamsSelector
-} from '../redux/selectors/collections';
 import CommentScreenModal from './CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';

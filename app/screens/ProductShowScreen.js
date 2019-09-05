@@ -164,7 +164,7 @@ const ProductShowScreen = ({
           />
         ) : null}
       </ScrollView>
-      <ActionBtnWidget />
+      <ActionBtnWidget colors={colors} />
     </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {map} from 'lodash';
@@ -8,7 +8,6 @@ import {getDesigner, getUsers} from '../../../redux/actions';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 
 const DesignerHorizontalWidget = ({
@@ -16,9 +15,11 @@ const DesignerHorizontalWidget = ({
   showName,
   title,
   name,
-  dispatch
+  dispatch,
+  colors,
+  searchElements
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
+  const [params, setParams] = useState(searchElements);
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
@@ -26,7 +27,7 @@ const DesignerHorizontalWidget = ({
         onPress={() =>
           dispatch(
             getUsers({
-              type: title === 'designers' ? 'is_designer' : 'is_celebrity',
+              searchParams: params,
               name
             })
           )
@@ -60,7 +61,7 @@ const DesignerHorizontalWidget = ({
                 dispatch(
                   getDesigner({
                     id: c.id,
-                    searchElements: {user_id: c.id}
+                    searchParams: {user_id: c.id}
                   })
                 )
               }>
@@ -94,6 +95,7 @@ export default React.memo(DesignerHorizontalWidget);
 
 DesignerHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
+  searchElements: PropTypes.object.isRequired,
   colors: PropTypes.object,
   showName: PropTypes.bool,
   title: PropTypes.string

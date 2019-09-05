@@ -62,12 +62,10 @@ const ProductList = ({
   }, [isLoading, showMore, page]);
 
   const handleRefresh = useCallback(() => {
-    if (refresh && showMore) {
+    if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchProducts({searchElements: params, title}));
-    } else {
-      setRefresh(false);
+      dispatch(getSearchProducts({searchParams: params, title}));
     }
   }, [refresh]);
 

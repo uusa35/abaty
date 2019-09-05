@@ -63,19 +63,20 @@ export function* setSettings() {
 
 export function* setUsers(action) {
   try {
-    const searchElements = action.payload;
-    const users = yield call(api.getUsers, searchElements);
+    const {searchParams} = action.payload;
+    console.log('searchParams', searchParams);
+    const users = yield call(api.getUsers, searchParams);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
       yield all([
         put({type: actions.SET_USERS, payload: users}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
       yield put(
         NavigationActions.navigate({
           routeName: 'UserIndex',
           params: {
             name: action.payload.name,
-            searchElements
+            searchParams
           }
         })
       );
@@ -140,11 +141,25 @@ export function* getHomeServicesScenario() {
 }
 
 export function* startGetClassifiedsScenario(action) {
-  const {params} = action.payload;
+  const {searchParams, redirect, name} = action.payload;
+  console.log('the search Prams', searchParams);
   try {
-    const classifieds = yield call(api.getSearchClassifieds, params);
+    const classifieds = yield call(api.getSearchClassifieds, searchParams);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
-      yield all([put({type: actions.SET_CLASSIFIEDS, payload: classifieds})]);
+      yield all([
+        put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'ClassifiedIndex',
+            params: {
+              name: name ? name : I18n.t('classifieds')
+            }
+          })
+        );
+      }
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
@@ -274,15 +289,13 @@ export function* setCountries() {
 // get the country if it' snot set
 export function* getCountry(country_id = null) {
   try {
-    const {country} = yield select();
-    if (validate.isEmpty(country)) {
-      const country = isNull(country_id)
-        ? yield call(api.getCountry)
-        : yield call(api.getCountry, country_id);
-      if (!validate.isEmpty(country)) {
-        yield put({type: actions.SET_COUNTRY, payload: country});
-        yield call(startSetCountryScenario, {payload: country});
-      }
+    const country = isNull(country_id)
+      ? yield call(api.getCountry)
+      : yield call(api.getCountry, country_id);
+    if (!validate.isEmpty(country)) {
+      yield put({type: actions.SET_COUNTRY, payload: country});
+      yield put({type: actions.SET_CURRENCY, payload: country.currency_symbol});
+      yield call(startSetCountryScenario, {payload: country});
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
@@ -328,11 +341,11 @@ export function* startGetUsersScenario(action) {
 export function* startGetDesignerScenario(action) {
   try {
     yield call(enableLoadingProfile);
-    const {id, searchElements} = action.payload;
+    const {id, searchParams} = action.payload;
     const user = yield call(api.getUser, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_DESIGNER, payload: user});
-      yield put({type: actions.SET_SEARCH_PARAMS, payload: searchElements});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: searchParams});
       if (!validate.isEmpty(user.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: user.comments});
       } else {
@@ -410,12 +423,12 @@ export function* startGetServiceScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {name, searchElements} = action.payload;
-    const products = yield call(api.getSearchProducts, searchElements);
+    const {name, searchParams} = action.payload;
+    const products = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
         put(
           NavigationActions.navigate({
             routeName: 'ProductIndex',
@@ -433,12 +446,12 @@ export function* startGetSearchProductsScenario(action) {
 
 export function* startGetSearchServicesScenario(action) {
   try {
-    const {element, searchElements} = action.payload;
-    const services = yield call(api.getSearchServices, searchElements);
+    const {element, searchParams} = action.payload;
+    const services = yield call(api.getSearchServices, searchParams);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
         put(
           NavigationActions.navigate({
             routeName: 'ServiceIndex',
@@ -502,7 +515,7 @@ export function* setHomeBrands() {
 
 export function* setHomeDesigners() {
   try {
-    const designers = yield call(api.getHomeDesigners);
+    const designers = yield call(api.getUsers, {on_home: true, is_designer: 1});
     if (!validate.isEmpty(designers) && validate.isArray(designers)) {
       yield put({type: actions.SET_DESIGNERS, payload: designers});
     } else {
@@ -518,7 +531,10 @@ export function* setHomeDesigners() {
 
 export function* setHomeCelebrities() {
   try {
-    const celebrities = yield call(api.getHomeCelebrities);
+    const celebrities = yield call(api.getUsers, {
+      on_home: true,
+      is_celebrity: 1
+    });
     if (!validate.isEmpty(celebrities) && validate.isArray(celebrities)) {
       yield put({type: actions.SET_CELEBRITIES, payload: celebrities});
     } else {

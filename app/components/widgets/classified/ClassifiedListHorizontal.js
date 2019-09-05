@@ -24,6 +24,7 @@ import {
 import ClassifiedWidget from './ClassifiedWidget';
 import widgetStyles from '../widgetStyles';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
+import {useNavigation} from 'react-navigation-hooks';
 
 const ClassifiedListHorizontal = ({
   classifieds,
@@ -44,74 +45,23 @@ const ClassifiedListHorizontal = ({
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
   [items, setItems] = useState(elements);
-  [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  console.log('the page from outeside ::', page);
-
-  const handleLoading = useCallback(() => {
-    setPage(page + 1);
-    setIsLoading(true);
-    if (showMore) {
-      return axiosInstance(`search/classified?page=${page}`, {
-        params
-      })
-        .then(r => {
-          setIsLoading(false);
-          setRefresh(false);
-          const classifiedGroup = uniqBy(items.concat(r.data), 'id');
-          console.log('the page', page);
-          setItems(classifiedGroup);
-          setElements(classifiedGroup);
-        })
-        .catch(e => {
-          setIsLoading(false);
-          setRefresh(false);
-        });
-    }
-  }, [isLoading, showMore, page]);
-
-  const handleRefresh = useCallback(() => {
-    if (refresh && showMore) {
-      console.log('Classifieds Refresh List');
-      setRefresh(false);
-      setIsLoading(false);
-      dispatch(getClassifieds({params: {on_home: true, page: 1}}));
-    } else {
-      setRefresh(false);
-    }
-  }, [refresh]);
-
-  useMemo(() => {
-    if (search.length > 0) {
-      setIsLoading(false);
-      setRefresh(false);
-      setShowMore(false);
-      let filtered = filter(elements, i =>
-        i.name.includes(search) ? i : null
-      );
-      filtered.length > 0 || search.length > 0
-        ? setItems(filtered)
-        : setItems([]);
-    } else {
-      setShowMore(true);
-      setItems(elements);
-    }
-  }, [search]);
-
+  console.log('serachelements', searchElements);
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() =>
+        onPress={() => {
           dispatch(
-            getUsers({
-              type: title === 'designers' ? 'is_designer' : 'is_celebrity',
-              name
+            getClassifieds({
+              searchParams: searchElements,
+              redirect: true,
+              name: I18n.t('related_classifieds')
             })
-          )
-        }>
+          );
+        }}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

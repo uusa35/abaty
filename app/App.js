@@ -33,7 +33,8 @@ type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
-    const {dispatch, bootStrapped, currency, lang, token} = this.props;
+    const {dispatch, currency, lang, token} = this.props;
+    dispatch(appBootstrap());
     codePush.checkForUpdate().then(update => {
       if (!update) {
       } else {
@@ -62,9 +63,7 @@ class App extends Component<Props> {
     axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
       ? `Bearer ${token}`
       : null;
-    if (!bootStrapped) {
-      dispatch(appBootstrap());
-    }
+    //__DEV__ ? console.log(axiosInstance.defaults.headers) : null;
   }
 
   render() {

@@ -9,7 +9,7 @@ const UserIndexScreen = ({users, searchParams, dispatch}) => {
   return (
     <UsersList
       users={users}
-      searchParams={searchParams}
+      searchElements={searchParams}
       dispatch={dispatch}
       showMore={true}
     />

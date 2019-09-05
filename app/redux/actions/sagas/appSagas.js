@@ -46,12 +46,11 @@ import {
   startGoogleLoginScenario,
   getHomeServicesScenario,
   getHomeCollectionsScenario,
-  getHomeClassifiedsScenario,
   startGetClassifiedsScenario,
   startGetClassifiedScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
-import I18n from './../../../I18n';
+import I18n, {isRTL} from './../../../I18n';
 import {
   setHomeCategories,
   setSettings,
@@ -66,21 +65,21 @@ import {offlineActionTypes} from 'react-native-offline';
 
 function* startAppBootStrap() {
   try {
+    yield call(defaultLang);
     const {network, bootStrapped} = yield select();
-    if (!bootStrapped || (__DEV__ && network.isConnected)) {
+    if (!bootStrapped) {
       yield all([
         put({
           type: offlineActionTypes.CONNECTION_CHANGE,
           payload: network.isConnected
         }),
+        call(getCountry),
         call(setSettings),
         call(setCountries),
         call(setSlides),
         call(setCommercials),
         call(setHomeBrands),
         call(startAuthenticatedScenario),
-        call(defaultLang),
-        call(getCountry),
         call(setDeviceId),
         call(setHomeCategories),
         call(setHomeProducts),
@@ -100,15 +99,14 @@ function* startAppBootStrap() {
       if (HOMEKEY) {
         yield put({
           type: actions.GET_CLASSIFIEDS,
-          payload: {params: {on_home: true, page: 1}}
+          payload: {searchParams: {on_home: true, page: 1}}
         });
       }
-      yield all([
-        put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
-        call(disableLoading)
-      ]);
+      yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
+        yield call(disableLoading);
     }
   } catch (e) {
+    console.log('the eeeee', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('app_general_error'))

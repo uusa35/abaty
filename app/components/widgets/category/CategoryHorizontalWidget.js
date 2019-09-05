@@ -18,9 +18,14 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 
-const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
+const CategoryHorizontalWidget = ({
+  elements,
+  showName,
+  title,
+  dispatch,
+  colors
+}) => {
   const {navigate} = useNavigation();
-  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
@@ -54,7 +59,7 @@ const CategoryHorizontalWidget = ({elements, showName, title, dispatch}) => {
               dispatch(
                 getSearchProducts({
                   name: c.name,
-                  searchElements: {product_category_id: c.id}
+                  searchParams: {product_category_id: c.id}
                 })
               )
             }>

@@ -22,6 +22,7 @@ const ImagesWidget = ({
   exclusive,
   isOnSale,
   isReallyHot,
+  isFeatured = false,
   showLabels = true,
   showTitle = false,
   height = 200,
@@ -83,6 +84,7 @@ const ImagesWidget = ({
                     justifyContent: 'flex-end',
                     alignItems: 'flex-end'
                   }}>
+                  {isFeatured ? <TagWidget tagName="featured" /> : null}
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
                   {isOnSale ? (
                     <TagWidget tagName="under_sale" bgColor="red" />

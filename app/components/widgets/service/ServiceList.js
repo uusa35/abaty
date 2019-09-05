@@ -15,6 +15,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
+import {getSearchServices} from '../../../redux/actions';
 
 const ServiceList = ({
   services,
@@ -62,9 +63,7 @@ const ServiceList = ({
     if (refresh && showMore) {
       setRefresh(false);
       setIsLoading(false);
-      // dispatch(getSearchServices(params));
-    } else {
-      setRefresh(false);
+      dispatch(getSearchServices({searchParams: params}));
     }
   }, [refresh]);
 

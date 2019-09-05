@@ -37,6 +37,7 @@ import collections from './collections';
 import services from './services';
 import homeServices from './homeServices';
 import classifieds from './classifieds';
+import classified from './classified';
 import service from './service';
 import videos from './videos';
 import cart from './cart';
@@ -114,7 +115,8 @@ let reducers = combineReducers({
   commentModal,
   comments,
   orders,
-  classifieds
+  classifieds,
+  classified
 });
 
 export default reducers;

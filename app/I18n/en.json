@@ -468,5 +468,8 @@
   "classified" : "إعلان مبوب",
   "no_more_classifieds" : "No more Classifieds",
   "no_classifieds" : "No Classifieds",
-  "no_videos" : "No Videos Available Now."
+  "no_videos" : "No Videos Available Now.",
+  "user_name" : "Username",
+  "related_classifieds" : "ٌRelated Classifieds",
+  "call_user"  : "Contact Advertiser"
 }

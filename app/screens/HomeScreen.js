@@ -66,19 +66,19 @@ class HomeScreen extends Component {
     }
   };
 
-  shouldComponentUpdate(
-    nextProps: Readonly<P>,
-    nextState: Readonly<S>,
-    nextContext: any
-  ): boolean {
-    return (
-      nextProps.settings !== this.props.settings ||
-      nextProps.products !== this.props.products ||
-      nextProps.categories !== this.props.categories ||
-      nextProps.designers !== this.props.designers ||
-      nextProps.celebrities !== this.props.celebrities
-    );
-  }
+  // shouldComponentUpdate(
+  //   nextProps: Readonly<P>,
+  //   nextState: Readonly<S>,
+  //   nextContext: any
+  // ): boolean {
+  //   return (
+  //     nextProps.settings !== this.props.settings ||
+  //     nextProps.products !== this.props.products ||
+  //     nextProps.categories !== this.props.categories ||
+  //     nextProps.designers !== this.props.designers ||
+  //     nextProps.celebrities !== this.props.celebrities
+  //   );
+  // }
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
@@ -207,6 +207,7 @@ class HomeScreen extends Component {
               showName={true}
               name="designers"
               title="designers"
+              searchElements={{is_designer: true}}
               dispatch={dispatch}
               colors={colors}
             />
@@ -217,6 +218,7 @@ class HomeScreen extends Component {
               showName={true}
               title="categories"
               dispatch={dispatch}
+              colors={colors}
             />
           ) : null}
           {!validate.isEmpty(celebrities) &&
@@ -227,6 +229,8 @@ class HomeScreen extends Component {
               showName={true}
               name="celebrities"
               title="celebrities"
+              searchElements={{is_celebrity: true}}
+              colors={colors}
               dispatch={dispatch}
             />
           ) : null}

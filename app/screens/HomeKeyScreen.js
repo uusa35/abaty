@@ -44,19 +44,19 @@ class HomeKeyScreen extends Component {
     this.state = {refresh: false, appState: AppState.currentState};
   }
 
-  shouldComponentUpdate(
-    nextProps: Readonly<P>,
-    nextState: Readonly<S>,
-    nextContext: any
-  ): boolean {
-    return (
-      nextProps.settings !== this.props.settings ||
-      nextProps.products !== this.props.products ||
-      nextProps.categories !== this.props.categories ||
-      nextProps.designers !== this.props.designers ||
-      nextProps.celebrities !== this.props.celebrities
-    );
-  }
+  // shouldComponentUpdate(
+  //   nextProps: Readonly<P>,
+  //   nextState: Readonly<S>,
+  //   nextContext: any
+  // ): boolean {
+  //   return (
+  //     nextProps.settings !== this.props.settings ||
+  //     nextProps.products !== this.props.products ||
+  //     nextProps.categories !== this.props.categories ||
+  //     nextProps.designers !== this.props.designers ||
+  //     nextProps.celebrities !== this.props.celebrities
+  //   );
+  // }
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
@@ -163,7 +163,9 @@ class HomeKeyScreen extends Component {
             <RefreshControl
               refreshing={this.state.refresh}
               onRefresh={() =>
-                dispatch(getClassifieds({params: {on_home: true, page: 1}}))
+                dispatch(
+                  getClassifieds({searchParams: {on_home: true, page: 1}})
+                )
               }
             />
           }
@@ -179,6 +181,7 @@ class HomeKeyScreen extends Component {
           HOMEKEY ? (
             <CategoryHorizontalRoundedWidget
               elements={categories}
+              colors={colors}
               showName={true}
               title="categories"
               dispatch={dispatch}

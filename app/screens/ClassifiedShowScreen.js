@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo, useContext} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -10,33 +10,25 @@ import {
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text} from './../constants';
-import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
-import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../I18n';
-import {first} from 'lodash';
-import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
+import {getClassified, getClassifieds, getDesigner} from '../redux/actions';
 import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
-import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import ClassifiedInfoWidgetElement from '../components/widgets/classified/ClassifiedInfoWidgetElement';
 import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
-import {useNavigation} from 'react-navigation-hooks';
+import MapViewWidget from '../components/widgets/MapViewWidget';
+import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
+import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
 
 const ClassifiedShowScreen = ({
   classified,
   classifieds,
   dispatch,
-  phone,
-  mobile,
-  shipment_prices,
-  size_chart,
-  weight,
-  homeProducts,
   token,
   colors
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const {navigate} = useNavigation();
   return (
     <Fragment>
       <ScrollView
@@ -48,7 +40,10 @@ const ClassifiedShowScreen = ({
             onRefresh={() => {
               setRefresh(false);
               dispatch(
-                getProduct({id: classified.id, api_token: token ? token : null})
+                getClassified({
+                  id: classified.id,
+                  api_token: token ? token : null
+                })
               );
             }}
           />
@@ -65,12 +60,15 @@ const ClassifiedShowScreen = ({
           width={width}
           height={550}
           name={classified.name}
-          exclusive={classified.exclusive}
-          isOnSale={classified.isOnSale}
-          isReallyHot={classified.isReallyHot}
+          isFeatured={classified.is_featured}
         />
         <View style={{width: '90%'}}>
-          <ProductInfoWidget element={product} />
+          {!validate.isEmpty(classified.properties) ? (
+            <PropertiesWidget
+              elements={classified.properties}
+              colors={colors}
+            />
+          ) : null}
           <View
             animation="bounceInLeft"
             easing="ease-out"
@@ -81,9 +79,10 @@ const ClassifiedShowScreen = ({
                 <Text style={styles.normalText}>{classified.description}</Text>
               </View>
             ) : null}
-            <ProductInfoWidgetElement
-              elementName="designer"
+            <ClassifiedInfoWidgetElement
+              elementName="user_name"
               name={classified.user.slug}
+              showArrow={false}
               link={() =>
                 dispatch(
                   getDesigner({
@@ -93,55 +92,65 @@ const ClassifiedShowScreen = ({
                 )
               }
             />
-            <ProductInfoWidgetElement
+            <ClassifiedInfoWidgetElement
               elementName="categories"
-              name={first(classified.categories).name}
+              name={classified.category.name}
               link={() =>
                 dispatch(
-                  getSearchProducts({
-                    element: first(classified.categories),
-                    category: first(classified.categories),
-                    searchElements: {
-                      product_category_id: first(classified.categories).id
-                    }
-                  })
+                  getClassifieds({classified_category_id: classified.id})
                 )
               }
             />
-            <ProductInfoWidgetElement
-              elementName="sku"
-              name={classified.sku}
+            <ClassifiedInfoWidgetElement
+              elementName="address"
+              name={classified.address}
               showArrow={false}
             />
-            {weight ? (
-              <ProductInfoWidgetElement
-                elementName="product_weight"
-                name={weight}
-                showArrow={false}
+            {classified.only_whatsapp ? (
+              <ClassifiedInfoWidgetElement
+                elementName="whatsapp"
+                name={classified.mobile}
+                link={() =>
+                  Linking.openURL(
+                    `https://api.whatsapp.com/send?phone=${classified.mobile}&text=`
+                  )
+                }
+              />
+            ) : (
+              <ClassifiedInfoWidgetElement
+                elementName="mobile"
+                name={classified.mobile}
+                link={() => Linking.openURL(`tel:${classified.user.mobile}`)}
+              />
+            )}
+            {!validate.isEmpty(classified.longitude || classified.latitude) ? (
+              <MapViewWidget
+                latitude={classified.latitude}
+                longitude={classified.longitude}
+                logo={classified.image}
+                title={classified.name}
+                showTitle={true}
+                height={250}
               />
             ) : null}
-            <ProductInfoWidgetElement
-              elementName="contactus_order_by_phone"
-              name={phone}
-              link={() => Linking.openURL(`tel:${mobile}`)}
-            />
           </View>
         </View>
         {validate.isObject(classified.videoGroup) &&
         !validate.isEmpty(classified.videoGroup) ? (
           <VideosWidget videos={classified.videoGroup} colors={colors} />
         ) : null}
-        {!validate.isEmpty(homeProducts) ? (
+        {!validate.isEmpty(classifieds) ? (
           <ClassifiedListHorizontal
-            elements={classifieds}
+            classifieds={classifieds}
             showName={true}
-            title="featured_products"
+            title="related_classifieds"
             colors={colors}
             dispatch={dispatch}
+            searchElements={{classified_category_id: classified.category_id}}
           />
         ) : null}
       </ScrollView>
-      <ActionBtnWidget />
+      <QuickCallActionBtnWidget colors={colors} mobile={classified.mobile} />
     </Fragment>
   );
 };
@@ -149,22 +158,19 @@ const ClassifiedShowScreen = ({
 function mapStateToProps(state) {
   return {
     classified: state.classified,
-    phone: state.settings.phone,
-    shipment_prices: state.settings.shipment_prices,
-    mobile: state.settings.mobile,
-    weight: state.settings.weight,
     classifieds: state.classifieds,
     token: state.token,
     cart: state.cart,
-    colors: state.settings.colors
+    colors: state.settings.colors,
+    searchParams: state.searchParams
   };
 }
 
 export default connect(mapStateToProps)(ClassifiedShowScreen);
 
 ClassifiedShowScreen.propTypes = {
-  product: PropTypes.object.isRequired,
-  homeProducts: PropTypes.array.isRequired,
+  classified: PropTypes.object.isRequired,
+  classifieds: PropTypes.array.isRequired,
   token: PropTypes.string
 };
 

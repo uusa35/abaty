@@ -9,7 +9,7 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchProducts} from '../../../redux/actions';
+import {getClassifieds, getSearchProducts} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
@@ -22,10 +22,10 @@ const CategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
-  dispatch
+  dispatch,
+  colors
 }) => {
   const {navigate} = useNavigation();
-  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
@@ -55,14 +55,15 @@ const CategoryHorizontalRoundedWidget = ({
           <TouchableOpacity
             key={i}
             style={widgetStyles.btnStyle}
-            onPress={() =>
+            onPress={() => {
               dispatch(
-                getSearchProducts({
+                getClassifieds({
                   name: c.name,
-                  searchElements: {product_category_id: c.id}
+                  searchParams: {classified_category_id: c.id},
+                  redirect: true
                 })
-              )
-            }>
+              );
+            }}>
             <FastImage
               source={{
                 uri: c.thumb,

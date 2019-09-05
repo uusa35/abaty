@@ -69,8 +69,8 @@ const ClassifiedWidgetHorizontal = ({
             borderBottomLeftRadius: 20,
             borderBottomRightRadius: 20
           }}>
-          <Text>{element.name}</Text>
-          <Text>
+          <Text style={{textAlign: 'left'}}>{element.name}</Text>
+          <Text style={{textAlign: 'left'}}>
             {element.price} {currency_symbol}
           </Text>
         </View>

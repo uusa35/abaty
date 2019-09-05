@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {map} from 'lodash';
+import {map, filter} from 'lodash';
 import {Icon} from 'react-native-elements';
 import {text} from './../../../constants';
 
@@ -12,9 +12,13 @@ const PropertiesWidget = ({elements, colors}) => {
         flexDirection: 'row',
         borderColor: 'lightgrey',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 10,
+        marginTop: 10,
+        borderWidth: 0.5,
+        borderRadius: 10
       }}>
-      {map(elements, (p, i) => {
+      {map(filter(elements, e => (e.on_home ? e : null)), (p, i) => {
         return (
           <View
             key={i}

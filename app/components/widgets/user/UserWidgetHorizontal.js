@@ -37,7 +37,7 @@ const UserWidgetHorizontal = ({user, showName, dispatch}) => {
         dispatch(
           getDesigner({
             id: user.id,
-            searchElements: {user_id: user.id}
+            searchParams: {user_id: user.id}
           })
         )
       }>

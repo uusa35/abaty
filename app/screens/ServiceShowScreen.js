@@ -168,7 +168,7 @@ const ServiceShowScreen = ({
           />
         ) : null}
       </ScrollView>
-      <ActionBtnWidget />
+      <ActionBtnWidget colors={colors} />
     </Fragment>
   );
 };

@@ -51,6 +51,7 @@ import ServiceIndexAllScreen from './screens/ServiceIndexAllScreen';
 import CollectionIndexScreen from './screens/CollectionIndexScreen';
 import HomeKeyScreen from './screens/HomeKeyScreen';
 import ClassifiedShowScreen from './screens/ClassifiedShowScreen';
+import ClassifiedIndexScreen from './screens/ClassifiedIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -239,6 +240,37 @@ const HomeStack = createStackNavigator(
       }),
       path: `product/:id`
     },
+    ClassifiedIndex: {
+      screen: ClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null
+      })
+    },
+    Classified: {
+      screen: ClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          backgroundColor: 'white',
+          borderColor: 'transparent',
+          zIndex: 100
+        }
+      }),
+      path: `classified/:id`
+    },
     FavoriteIndex: {
       screen: FavoriteIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -357,26 +389,6 @@ const BrandStack = createStackNavigator(
         }
       }),
       path: `product/:id`
-    },
-    Classified: {
-      screen: ClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerBackTitle: null,
-        headerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'transparent',
-          zIndex: 100
-        }
-      }),
-      path: `classified/:id`
     }
   },
   {

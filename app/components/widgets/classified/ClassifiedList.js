@@ -42,8 +42,6 @@ const ClassifiedList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  console.log('the page from outeside ::', page);
-
   const handleLoading = useCallback(() => {
     setPage(page + 1);
     setIsLoading(true);
@@ -55,7 +53,6 @@ const ClassifiedList = ({
           setIsLoading(false);
           setRefresh(false);
           const classifiedGroup = uniqBy(items.concat(r.data), 'id');
-          console.log('the page', page);
           setItems(classifiedGroup);
           setElements(classifiedGroup);
         })
@@ -67,13 +64,10 @@ const ClassifiedList = ({
   }, [isLoading, showMore, page]);
 
   const handleRefresh = useCallback(() => {
-    if (refresh && showMore) {
-      console.log('Classifieds Refresh List');
+    if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getClassifieds({params: {on_home: true, page: 1}}));
-    } else {
-      setRefresh(false);
+      dispatch(getClassifieds({searchParams: params, redirect: false}));
     }
   }, [refresh]);
 
@@ -81,7 +75,6 @@ const ClassifiedList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      setShowMore(false);
       let filtered = filter(elements, i =>
         i.name.includes(search) ? i : null
       );

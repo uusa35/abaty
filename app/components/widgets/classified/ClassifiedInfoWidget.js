@@ -1,11 +1,12 @@
 import React, {Fragment} from 'react';
-import {Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import {Text, View, TouchableHighlight} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {text} from '../../../constants';
 import {getConvertedFinalPrice} from '../../../helpers';
 import validate from 'validate.js';
+import PropertiesWidget from './PropertiesWidget';
 
-const PropertiesWidget = ({
+const ClassifiedInfoWidget = ({
   element,
   colors,
   exchange_rate,
@@ -60,4 +61,4 @@ const PropertiesWidget = ({
   );
 };
 
-export default PropertiesWidget;
+export default ClassifiedInfoWidget;
