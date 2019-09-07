@@ -341,8 +341,8 @@ export function* startGetUsersScenario(action) {
 
 export function* startGetDesignerScenario(action) {
   try {
-    yield call(enableLoadingProfile);
-    const {id, searchParams} = action.payload;
+    // yield call(enableLoadingProfile);
+    const {id, searchParams, redirect} = action.payload;
     const user = yield call(api.getUser, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield put({type: actions.SET_DESIGNER, payload: user});
@@ -352,15 +352,15 @@ export function* startGetDesignerScenario(action) {
       } else {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
-      yield all([
-        put(
+      yield call(disableLoadingProfile);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
           NavigationActions.navigate({
             routeName: 'DesignerShow',
             params: {name: user.slug, id: user.id, product: false}
           })
-        ),
-        call(disableLoadingProfile)
-      ]);
+        );
+      }
     } else {
       yield put({type: actions.SET_DESIGNER, payload: {}});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
@@ -368,8 +368,8 @@ export function* startGetDesignerScenario(action) {
     }
   } catch (e) {
     yield all([
-      disableLoadingProfile,
-      enableWarningMessage(I18n.t('no_designers'))
+      call(disableLoadingProfile),
+      call(enableWarningMessage, I18n.t('no_designers'))
     ]);
   }
 }
@@ -392,8 +392,8 @@ export function* startGetProductScenario(action) {
     }
   } catch (e) {
     yield all([
-      disableLoadingContent,
-      enableWarningMessage(I18n.t('error_while_loading_product'))
+      call(disableLoadingContent),
+      call(enableWarningMessage, I18n.t('error_while_loading_product'))
     ]);
   }
 }
@@ -416,8 +416,8 @@ export function* startGetServiceScenario(action) {
     }
   } catch (e) {
     yield all([
-      disableLoading,
-      enableWarningMessage(I18n.t('error_while_loading_service'))
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('error_while_loading_service'))
     ]);
   }
 }
@@ -443,7 +443,10 @@ export function* startGetSearchProductsScenario(action) {
       throw products;
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
+    yield all([
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_products'))
+    ]);
   }
 }
 
@@ -466,7 +469,10 @@ export function* startGetSearchServicesScenario(action) {
       }
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_services'))]);
+    yield all([
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_services'))
+    ]);
   }
 }
 
@@ -480,7 +486,10 @@ export function* startGetAllProductsScenario(action) {
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_products'))]);
+    yield all([
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_products'))
+    ]);
   }
 }
 
@@ -495,7 +504,10 @@ export function* startDeepLinkingScenario(action) {
       }
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_deep_product'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_deep_product'))
+    ]);
   }
 }
 
@@ -514,7 +526,10 @@ export function* setHomeBrands() {
       yield put({type: actions.SET_BRANDS, payload: brands});
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_brands'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_brands'))
+    ]);
   }
 }
 
@@ -528,8 +543,8 @@ export function* setHomeDesigners() {
     }
   } catch (e) {
     yield all([
-      disableLoading,
-      enableWarningMessage(I18n.t('no_home_designers'))
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_home_designers'))
     ]);
   }
 }
@@ -546,7 +561,10 @@ export function* setHomeCelebrities() {
       yield put({type: actions.SET_CELEBRITIES, payload: []});
     }
   } catch (e) {
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_celebrities'))]);
+    yield all([
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_celebrities'))
+    ]);
   }
 }
 
@@ -571,8 +589,8 @@ export function* startRefetchHomeElementsScenario() {
     ]);
   } catch (e) {
     yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('refetch_home_error'))
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('refetch_home_error'))
     ]);
   }
 }
@@ -586,7 +604,10 @@ export function* setHomeSplashes() {
       yield put({type: actions.SET_HOME_SPLASHES, payload: []});
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_splashes'))
+    ]);
   }
 }
 
@@ -609,7 +630,7 @@ export function* startAddToCartScenario(action) {
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -626,7 +647,10 @@ export function* setTotalCartValue(cart) {
       throw 'Cart is Empty';
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('cart_is_empty'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('cart_is_empty'))
+    ]);
   }
 }
 
@@ -646,8 +670,8 @@ export function* setGrossTotalCartValue(values) {
     }
   } catch (e) {
     yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('cart_is_empty_gross_total'))
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'))
     ]);
   }
 }
@@ -682,8 +706,8 @@ export function* startRemoveFromCartScenario(action) {
     }
   } catch (e) {
     yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('error_removing_product_from_cart'))
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('error_removing_product_from_cart'))
     ]);
   }
 }
@@ -723,8 +747,8 @@ export function* startClearCartScenario() {
     ]);
   } catch (e) {
     yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('authenticated_error'))
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('authenticated_error'))
     ]);
   }
 }
@@ -759,7 +783,7 @@ export function* startSubmitCartScenario(action) {
         : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 export function* startAuthenticatedScenario() {
@@ -777,8 +801,8 @@ export function* startAuthenticatedScenario() {
     }
   } catch (e) {
     yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('authenticated_error'))
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('authenticated_error'))
     ]);
   }
 }
@@ -791,7 +815,10 @@ export function* startLogoutScenario() {
       put({type: actions.SET_ORDERS, payload: []})
     ]);
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('logout_error'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('logout_error'))
+    ]);
   }
 }
 
@@ -811,25 +838,13 @@ export function* startSubmitAuthScenario(action) {
     }
     const user = yield call(api.authenticate, {email, password, player_id});
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      // const favorites = yield call(api.getFavorites, {
-      //   params: {api_token: user.api_token}
-      // });
-      if (
-        !validate.isEmpty(user.product_favorites) &&
-        validate.isArray(user.product_favorites)
-      ) {
-        yield put({
-          type: actions.SET_PRODUCT_FAVORITES,
-          payload: user.product_favorites
-        });
-      } else {
-        yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
-      }
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.SET_ORDERS, payload: user.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
+        call(setProductFavorites, user.product_favorites),
+        call(setClassifiedFavorites, user.classified_favorites),
         call(enableSuccessMessage, I18n.t('login_success'))
       ]);
       if (loginModal) {
@@ -845,7 +860,35 @@ export function* startSubmitAuthScenario(action) {
       throw user;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
+}
+
+export function* setProductFavorites(productFavorites) {
+  if (
+    !validate.isEmpty(productFavorites) &&
+    validate.isArray(productFavorites)
+  ) {
+    yield put({
+      type: actions.SET_PRODUCT_FAVORITES,
+      payload: productFavorites
+    });
+  } else {
+    yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
+  }
+}
+
+export function* setClassifiedFavorites(classifiedFavorites) {
+  if (
+    !validate.isEmpty(classifiedFavorites) &&
+    validate.isArray(classifiedFavorites)
+  ) {
+    yield put({
+      type: actions.SET_CLASSIFIED_FAVORITES,
+      payload: classifiedFavorites
+    });
+  } else {
+    yield put({type: actions.SET_CLASSIFIED_FAVORITES, payload: []});
   }
 }
 
@@ -854,28 +897,19 @@ export function* startReAuthenticateScenario() {
     const {token, loginModal} = yield select();
     const user = yield call(api.reAuthenticate, token);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      if (
-        !validate.isEmpty(user.product_favorites) &&
-        validate.isArray(user.product_favorites)
-      ) {
-        yield put({
-          type: actions.SET_PRODUCT_FAVORITES,
-          payload: user.product_favorites
-        });
-      } else {
-        yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
-      }
       yield all([
         put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
         put({type: actions.SET_ORDERS, payload: user.orders}),
-        put({type: actions.TOGGLE_GUEST, payload: false})
+        put({type: actions.TOGGLE_GUEST, payload: false}),
+        call(setProductFavorites, user.product_favorites),
+        call(setClassifiedFavorites, user.classified_favorites)
       ]);
     } else {
       throw user;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -908,7 +942,7 @@ export function* startUpdateUserScenario(action) {
         : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -931,7 +965,7 @@ export function* startGetCouponScenario(action) {
       throw I18n.t('coupon_is_not_correct');
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -961,7 +995,7 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
       throw I18n.t('information_you_entered_not_correct');
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -983,7 +1017,7 @@ export function* startCreateTapPaymentUrlScenario(action) {
       throw url;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1019,7 +1053,7 @@ export function* startRegisterScenario(action) {
         : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1036,7 +1070,7 @@ export function* toggleFavoriteScenario(action) {
       throw products;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1047,7 +1081,7 @@ export function* startRateUserScenario(action) {
       yield call(enableSuccessMessage, I18n.t('rate_success'));
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1058,7 +1092,7 @@ export function* startBecomeFanScenario(action) {
       yield call(enableSuccessMessage, I18n.t('fan_success'));
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1080,7 +1114,7 @@ export function* startAddCommentScenario(action) {
         : null;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -1111,6 +1145,6 @@ export function* startGoogleLoginScenario() {
     }
   } catch (e) {
     console.log('the error', e);
-    yield all([disableLoading, enableErrorMessage(e)]);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }

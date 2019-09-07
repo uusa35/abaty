@@ -61,7 +61,8 @@ const DesignerHorizontalWidget = ({
                 dispatch(
                   getDesigner({
                     id: c.id,
-                    searchParams: {user_id: c.id}
+                    searchParams: {user_id: c.id},
+                    redirect: true
                   })
                 )
               }>

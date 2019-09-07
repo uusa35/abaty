@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -41,16 +41,13 @@ const DesignerShowScreen = ({
     {key: 'videos', title: I18n.t('videos')}
   ]);
 
-  useMemo(() => {
-    if (refresh) {
-      setRefresh(false);
-      return dispatch(
-        getDesigner({
-          id: user.id,
-          searchElements: {user_id: user.id}
-        })
-      );
-    }
+  const handleRefresh = useCallback(() => {
+    return dispatch(
+      getDesigner({
+        id: user.id,
+        searchElements: {user_id: user.id}
+      })
+    );
   }, [refresh]);
 
   return (
@@ -68,9 +65,7 @@ const DesignerShowScreen = ({
       refreshControl={
         <RefreshControl
           refreshing={refresh}
-          onRefresh={() => {
-            setRefresh(true);
-          }}
+          onRefresh={() => handleRefresh()}
         />
       }>
       <View style={styles.wrapper}>
