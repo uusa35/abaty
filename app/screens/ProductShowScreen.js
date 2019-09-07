@@ -86,8 +86,9 @@ const ProductShowScreen = ({
               link={() =>
                 dispatch(
                   getDesigner({
-                    id: product.user.id,
-                    searchElements: {user_id: product.user.id}
+                    id: product.user_id,
+                    searchParams: {user_id: product.user_id},
+                    redirect: true
                   })
                 )
               }

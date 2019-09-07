@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, useCallback} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
@@ -34,17 +34,23 @@ const UserImageProfile = ({
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
 
-  useMemo(() => {
-    if (rating !== currentRating) {
-      return dispatch(rateUser({value: rating, member_id}));
-    }
-  }, [rating]);
+  const handleRating = useCallback(
+    rating => {
+      if (rating !== currentRating) {
+        return dispatch(rateUser({value: rating, member_id}));
+      }
+    },
+    [rating]
+  );
 
-  useMemo(() => {
-    if (fanMe !== isFanned) {
-      return dispatch(becomeFan({id: member_id}));
-    }
-  }, [fanMe]);
+  const handleFan = useCallback(
+    fanMe => {
+      fanMe ? setFans(fans + 1) : setFans(fans - 1);
+      setFanMe(fanMe);
+      return dispatch(becomeFan({id: member_id, fanMe}));
+    },
+    [fanMe]
+  );
 
   return (
     <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
@@ -76,7 +82,7 @@ const UserImageProfile = ({
               name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
               type="material-community"
               color={colors.header_tow_theme_color}
-              onPress={() => setFanMe(!fanMe)}
+              onPress={() => handleFan(!fanMe)}
             />
           ) : null}
         </View>
@@ -121,7 +127,7 @@ const UserImageProfile = ({
               count={10}
               ratingCount={5}
               style={{paddingVertical: 0}}
-              onFinishRating={rating => setRating(rating)}
+              onFinishRating={rating => handleRating(rating)}
               imageSize={20}
             />
           ) : null}

@@ -341,12 +341,14 @@ export function* startGetUsersScenario(action) {
 
 export function* startGetDesignerScenario(action) {
   try {
-    // yield call(enableLoadingProfile);
+    yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const user = yield call(api.getUser, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      yield put({type: actions.SET_DESIGNER, payload: user});
-      yield put({type: actions.SET_SEARCH_PARAMS, payload: searchParams});
+      yield all([
+        put({type: actions.SET_DESIGNER, payload: user}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
       if (!validate.isEmpty(user.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: user.comments});
       } else {
@@ -364,12 +366,12 @@ export function* startGetDesignerScenario(action) {
     } else {
       yield put({type: actions.SET_DESIGNER, payload: {}});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
-      throw I18n.t('no_designers');
+      throw I18n.t('no_designer');
     }
   } catch (e) {
     yield all([
       call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_designers'))
+      call(enableWarningMessage, I18n.t('no_designer'))
     ]);
   }
 }
@@ -1087,12 +1089,18 @@ export function* startRateUserScenario(action) {
 
 export function* startBecomeFanScenario(action) {
   try {
-    const user = yield call(api.becomeFan, action.payload);
+    const {id, fanMe} = action.payload;
+    const user = yield call(api.becomeFan, id);
     if (!validate.isEmpty(user) && validate.isObject(user)) {
-      yield call(enableSuccessMessage, I18n.t('fan_success'));
+      fanMe
+        ? yield call(enableSuccessMessage, I18n.t('fan_success'))
+        : yield call(enableWarningMessage, I18n.t('fan_deactivated'));
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('fan_error'))
+    ]);
   }
 }
 

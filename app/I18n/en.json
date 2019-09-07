@@ -471,5 +471,8 @@
   "no_videos" : "No Videos Available Now.",
   "user_name" : "Username",
   "related_classifieds" : "ٌRelated Classifieds",
-  "call_user"  : "Contact Advertiser"
+  "call_user"  : "Contact Advertiser",
+  "no_designers" : "No Designers at this moment",
+  "no_designer" : "Designer is not available now. please try again later",
+  "fan_deactivated" : "Fan deactivated."
 }

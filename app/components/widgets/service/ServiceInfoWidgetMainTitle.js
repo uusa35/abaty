@@ -127,7 +127,7 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
   );
 };
 
-export default React.memo(ServiceInfoWidgetMainTitle);
+export default ServiceInfoWidgetMainTitle;
 
 ServiceInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired

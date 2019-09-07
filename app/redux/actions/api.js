@@ -371,9 +371,9 @@ export async function rateUser(params) {
     .catch(e => e.response.date.message);
 }
 
-export async function becomeFan(params) {
+export async function becomeFan(id) {
   return await axiosInstance
-    .post(`fan`, params)
+    .post(`fan`, {id})
     .then(r => r.data)
     .catch(e => e.response.date.message);
 }

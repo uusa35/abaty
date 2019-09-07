@@ -16,15 +16,6 @@ import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
 import LoginScreenModal from './screens/LoginScreenModal';
-import {
-  colorsSelector,
-  countrySelector,
-  currencySelector,
-  guestSelector,
-  langSelector,
-  logoSelector,
-  tokenSelector
-} from './redux/selectors/collection';
 import {cartSelector, countriesSelector} from './redux/selectors/collections';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
@@ -183,20 +174,20 @@ function mapStateToProps(state) {
     isLoading: state.isLoading,
     isLoadingContent: state.isLoadingContent,
     isLoadingProfile: state.isLoadingProfile,
-    country: countrySelector(state),
-    countries: countriesSelector(state),
+    country: state.country,
+    countries: state.countries,
     countryModal: state.countryModal,
-    currency: currencySelector(state),
-    lang: langSelector(state),
-    cart: cartSelector(state),
+    currency: state.currency,
+    lang: state.lang,
+    cart: state.cart,
     total: state.total,
     grossTotal: state.grossTotal,
     network: state.network,
-    colors: colorsSelector(state),
-    logo: logoSelector(state),
+    colors: state.settings.colors,
+    logo: state.settings.logo,
     main_bg: state.settings.main_bg,
-    token: tokenSelector(state),
-    guest: guestSelector(state),
+    token: state.token,
+    guest: state.guest,
     loginModal: state.loginModal
   };
 }

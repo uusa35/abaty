@@ -112,8 +112,9 @@ const ServiceShowScreen = ({
                 link={() =>
                   dispatch(
                     getDesigner({
-                      id: service.user.id,
-                      searchElements: {user_id: service.user.id}
+                      id: service.user_id,
+                      searchParams: {user_id: service.user_id},
+                      redirect: true
                     })
                   )
                 }
