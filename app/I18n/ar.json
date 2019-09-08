@@ -506,5 +506,6 @@
   "call_user"  : "تواصل مع صاحب الإعلان",
   "no_designers" : "لا يوجد مصممين حاليا",
   "no_designer" : "هذا المصمم غير متاح حالياً",
-  "fan_deactivated" : "تم إلغاء الإعجاب"
+  "fan_deactivated" : "تم إلغاء الإعجاب",
+  "add_your_images" : "أضف صور إعلانك"
 }

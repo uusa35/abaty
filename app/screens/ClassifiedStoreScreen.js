@@ -1,7 +1,13 @@
 import React, {useState, useMemo, useCallback} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Input} from 'react-native-elements';
+import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../I18n';
 import {images, text, width} from '../constants';
 import {showCountryModal, storeClassified} from '../redux/actions';
@@ -11,6 +17,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
 import {map} from 'lodash';
+import widgetStyles from '../components/widgets/widgetStyles';
 
 const ClassifiedStoreScreen = ({
   auth,
@@ -41,13 +48,12 @@ const ClassifiedStoreScreen = ({
       height: 1080,
       multiple: true,
       cropping: true,
-      includeBase64: false,
-      includeExif: false,
+      includeBase64: true,
+      includeExif: true,
       maxFiles: 5
     }).then(images => {
-      map(images, (img, i) => {
-        console.log(img);
-      });
+      console.log('images', images);
+      setImages(images);
     });
   });
 
@@ -62,28 +68,54 @@ const ClassifiedStoreScreen = ({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'center',
-        flex: 1
+        alignSelf: 'center'
       }}>
       <TouchableOpacity
         onPress={() => openPicker()}
         style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
-        <FastImage
-          source={{
-            uri: auth.thumb ? auth.thumb : logo
-          }}
-          style={{
+        <Icon
+          name="camera"
+          type="evilicon"
+          color="lightgrey"
+          size={90}
+          containerStyle={{
+            margin: 15,
             width: 120,
             height: 120,
-            margin: 20,
-            borderWidth: 1,
+            borderRadius: 120 / 2,
             borderColor: 'lightgrey',
-            borderRadius: 120 / 2
+            borderWidth: 1,
+            justifyContent: 'center',
+            alignItems: 'center'
           }}
-          resizeMode="cover"
-          loadingIndicatorSource={images.logo}
         />
+        <Text style={{fontFamily: text.font, fontSize: text.medium}}>
+          {I18n.t('add_your_images')}
+        </Text>
       </TouchableOpacity>
+      {!validate.isEmpty(images) ? (
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            padding: 10
+          }}
+          style={[
+            widgetStyles.wrapper,
+            {borderWidth: 1, borderColor: 'lightgrey', minHeight: 120}
+          ]}>
+          {map(images, (img, i) => (
+            <FastImage
+              key={i}
+              source={{uri: img.sourceURL}}
+              style={{width: 100, height: 100, marginRight: 5, marginLeft: 5}}
+            />
+          ))}
+        </ScrollView>
+      ) : null}
       <View style={{width: '90%', alignItems: 'center'}}>
         <Input
           inputContainerStyle={{
@@ -101,12 +133,41 @@ const ClassifiedStoreScreen = ({
           shake={true}
           keyboardType="default"
           onChangeText={text => setName(text)}
-          placeholder={name ? name : I18n.t('name')}
-          label={I18n.t('name')}
+          placeholder={I18n.t('title')}
+          label={I18n.t('title')}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
-            fontFamily: text.font
+            fontFamily: text.font,
+            textAlign: 'left'
+          }}
+        />
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 10,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: 20,
+            height: 80
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            fontSize: 14,
+            textAlign: isRTL ? 'right' : 'left'
+          }}
+          numberOfLines={3}
+          shake={true}
+          keyboardType="default"
+          onChangeText={text => setDescription(text)}
+          placeholder={description ? description : I18n.t('description')}
+          label={I18n.t('description')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font,
+            textAlign: 'left'
           }}
         />
         <Input
@@ -130,7 +191,8 @@ const ClassifiedStoreScreen = ({
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
-            fontFamily: text.font
+            fontFamily: text.font,
+            textAlign: 'left'
           }}
         />
         <Input
@@ -154,7 +216,8 @@ const ClassifiedStoreScreen = ({
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
-            fontFamily: text.font
+            fontFamily: text.font,
+            textAlign: 'left'
           }}
         />
         <TouchableOpacity
@@ -184,33 +247,31 @@ const ClassifiedStoreScreen = ({
             {country.slug}
           </Text>
         </TouchableOpacity>
-        <Input
-          inputContainerStyle={{
+        <TouchableOpacity
+          onPress={() => {}}
+          style={{
             borderWidth: 1,
             borderColor: 'lightgrey',
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
-          }}
-          numberOfLines={3}
-          shake={true}
-          keyboardType="default"
-          onChangeText={text => setDescription(text)}
-          placeholder={description ? description : I18n.t('description')}
-          label={I18n.t('description')}
-          labelStyle={{
-            paddingBottom: 10,
-            paddingTop: 10,
-            fontFamily: text.font
-          }}
-        />
+            height: 45,
+            width: '95%',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <Text
+            style={{
+              fontFamily: text.font,
+              fontSize: text.large,
+              textAlign: isRTL ? 'right' : 'left',
+              color: colors.main_theme_color
+            }}>
+            Area Here
+          </Text>
+        </TouchableOpacity>
         <Button
           raised
           containerStyle={{marginBottom: 10, width: '90%'}}
@@ -222,7 +283,7 @@ const ClassifiedStoreScreen = ({
             fontFamily: text.font,
             color: colors.btn_text_theme_color
           }}
-          title={I18n.t('update_information')}
+          title={I18n.t('confirm')}
           onPress={() =>
             dispatch(
               storeClassified({

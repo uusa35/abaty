@@ -61,7 +61,7 @@ const ClassifiedShowScreen = ({
     <Fragment>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+        contentContainerStyle={[styles.contentContainer]}
         onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl

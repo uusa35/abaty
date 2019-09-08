@@ -474,5 +474,6 @@
   "call_user"  : "Contact Advertiser",
   "no_designers" : "No Designers at this moment",
   "no_designer" : "Designer is not available now. please try again later",
-  "fan_deactivated" : "Fan deactivated."
+  "fan_deactivated" : "Fan deactivated.",
+  "add_your_images" : "Add Your images here"
 }

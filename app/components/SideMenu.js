@@ -112,9 +112,13 @@ const SideMeu = ({
                 </Text>
               </TouchableOpacity>
             ) : null}
-            {HOMEKEY && !guest ? (
+            {HOMEKEY ? (
               <TouchableOpacity
-                onPress={() => navigation.navigate('ClassifiedStore')}
+                onPress={() =>
+                  !guest
+                    ? navigation.navigate('ClassifiedStore')
+                    : navigation.navigate('Login')
+                }
                 style={styles.menuBtn}>
                 <Icon
                   name="home"
