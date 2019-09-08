@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo, useContext} from 'react';
+import React, {Fragment, useState, useMemo, useContext, useEffect} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -21,6 +21,7 @@ import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import {useNavigation} from 'react-navigation-hooks';
+import {NavigationContext} from 'react-navigation';
 
 const ProductShowScreen = ({
   product,
@@ -35,12 +36,32 @@ const ProductShowScreen = ({
   colors
 }) => {
   const [refresh, setRefresh] = useState(false);
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [currentY, setCurrentY] = useState(0);
+  const navigation = useContext(NavigationContext);
   const {navigate} = useNavigation();
+
+  useEffect(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg]);
+
+  useMemo(() => {
+    if (currentY > 100) {
+      setHeaderBg(false);
+      setHeaderBgColor('#e5e5e5');
+    } else {
+      setHeaderBg(true);
+      setHeaderBgColor('transparent');
+    }
+  }, [currentY]);
+
   return (
     <Fragment>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
+        onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -186,6 +207,13 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(ProductShowScreen);
+
+ProductShowScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor
+  }
+});
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,

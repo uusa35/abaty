@@ -307,7 +307,7 @@ const HomeStack = createStackNavigator(
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
-          headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerBackTitle: null
       })
@@ -426,12 +426,7 @@ const BrandStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
-        headerStyle: {
-          // backgroundColor: 'white',
-          // borderColor: 'transparent',
-          // zIndex: 100
-        }
+        headerBackTitle: null
       }),
       path: `product/:id`
     }
