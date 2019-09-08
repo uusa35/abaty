@@ -45,7 +45,10 @@ class HomeKeyScreen extends Component {
   }
 
   static navigationOptions = ({navigation, navigationOptions}) => {
-    if (has(navigation.state, 'params')) {
+    if (
+      has(navigation.state, 'params') &&
+      has(navigation.state.params, 'logo')
+    ) {
       return {
         headerTitle: (
           <View style={styles.safeContainer}>

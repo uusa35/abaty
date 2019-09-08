@@ -307,8 +307,8 @@ const HomeStack = createStackNavigator(
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
+          headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
         headerBackTitle: null
       })
     },
@@ -322,13 +322,14 @@ const HomeStack = createStackNavigator(
             displayShare={true}
             display={true}
           />
-        ),
-        headerBackTitle: null,
-        headerStyle: {
-          backgroundColor: 'white',
-          borderColor: 'transparent',
-          zIndex: 100
-        }
+        )
+        // headerBackTitle: null,
+        //   headerTransparent: true,
+        // headerStyle: {
+        // backgroundColor: 'white',
+        // borderColor: 'transparent',
+        // zIndex: 100
+        // }
       }),
       path: `classified/:id`
     }

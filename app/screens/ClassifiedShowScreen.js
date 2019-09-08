@@ -1,4 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {
+  Fragment,
+  useState,
+  useContext,
+  useMemo,
+  useCallback,
+  useEffect
+} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -15,11 +22,13 @@ import {getClassified, getClassifieds, getDesigner} from '../redux/actions';
 import validate from 'validate.js';
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
+import {map} from 'lodash';
 import ClassifiedInfoWidgetElement from '../components/widgets/classified/ClassifiedInfoWidgetElement';
 import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import MapViewWidget from '../components/widgets/MapViewWidget';
 import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
 import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
+import {NavigationContext} from 'react-navigation';
 
 const ClassifiedShowScreen = ({
   classified,
@@ -29,11 +38,31 @@ const ClassifiedShowScreen = ({
   colors
 }) => {
   const [refresh, setRefresh] = useState(false);
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [currentY, setCurrentY] = useState(0);
+  const navigation = useContext(NavigationContext);
+
+  useEffect(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg]);
+
+  useMemo(() => {
+    if (currentY > 100) {
+      setHeaderBg(false);
+      setHeaderBgColor('#e5e5e5');
+    } else {
+      setHeaderBg(true);
+      setHeaderBgColor('transparent');
+    }
+  }, [currentY]);
+
   return (
     <Fragment>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
+        onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -92,6 +121,22 @@ const ClassifiedShowScreen = ({
                 )
               }
             />
+            {map(classified.properties, (p, i) => (
+              <ClassifiedInfoWidgetElement
+                key={i}
+                elementName={p.name}
+                name={p.value}
+                showArrow={false}
+                translate={false}
+              />
+            ))}
+            {classified.address ? (
+              <ClassifiedInfoWidgetElement
+                elementName="address"
+                name={classified.address}
+                showArrow={false}
+              />
+            ) : null}
             <ClassifiedInfoWidgetElement
               elementName="categories"
               name={classified.category.name}
@@ -100,11 +145,6 @@ const ClassifiedShowScreen = ({
                   getClassifieds({classified_category_id: classified.id})
                 )
               }
-            />
-            <ClassifiedInfoWidgetElement
-              elementName="address"
-              name={classified.address}
-              showArrow={false}
             />
             {classified.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
@@ -165,6 +205,13 @@ function mapStateToProps(state) {
     searchParams: state.searchParams
   };
 }
+
+ClassifiedShowScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor
+  }
+});
 
 export default connect(mapStateToProps)(ClassifiedShowScreen);
 

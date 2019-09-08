@@ -142,7 +142,6 @@ export function* getHomeServicesScenario() {
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
-  console.log('the search Prams', searchParams);
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {

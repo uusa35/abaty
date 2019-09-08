@@ -11,7 +11,8 @@ const ClassifiedInfoWidgetElement = ({
   link,
   elementName,
   name,
-  showArrow = true
+  showArrow = true,
+  translate = true
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -31,7 +32,7 @@ const ClassifiedInfoWidgetElement = ({
           fontFamily: text.font,
           color: colors.header_one_theme_color
         }}>
-        {I18n.t(elementName)}
+        {translate ? I18n.t(elementName) : elementName}
       </Text>
       <View style={{flexDirection: 'row'}}>
         <Text
