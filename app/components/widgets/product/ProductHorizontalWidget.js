@@ -21,7 +21,7 @@ const ProductHorizontalWidget = ({
         style={widgetStyles.titleContainer}
         onPress={() =>
           dispatch(
-            getSearchProducts({searchElements: {on_home: true}, redirect: true})
+            getSearchProducts({searchParams: {on_home: true}, redirect: true})
           )
         }>
         <View style={widgetStyles.titleWrapper}>

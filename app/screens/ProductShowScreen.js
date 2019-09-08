@@ -47,6 +47,7 @@ const ProductShowScreen = ({
   }, [headerBg]);
 
   useMemo(() => {
+    console.log('the currentY', currentY);
     if (currentY > 100) {
       setHeaderBg(false);
       setHeaderBgColor('#e5e5e5');
@@ -62,6 +63,7 @@ const ProductShowScreen = ({
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
+        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl
             refreshing={refresh}

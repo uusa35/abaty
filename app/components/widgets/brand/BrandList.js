@@ -15,25 +15,6 @@ import {map} from 'lodash';
 import {View} from 'react-native-animatable';
 
 const BrandList = ({elements, showName = false}) => {
-  [isLoading, setIsLoading] = useState(false);
-  [refresh, setRefresh] = useState(false);
-  [page, setPage] = useState(2);
-  [items, setItems] = useState(elements);
-  useMemo(() => {
-    if (isLoading === true) {
-    }
-  }, [page]);
-
-  useMemo(() => {
-    isLoading ? setPage(page + 1) : null;
-  }, [isLoading]);
-
-  useMemo(() => {
-    if (refresh === true) {
-      setRefresh(false);
-    }
-  }, [refresh]);
-
   return (
     <ScrollView
       style={{backgroundColor: 'white'}}

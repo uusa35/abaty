@@ -63,23 +63,23 @@ export function* setSettings() {
 
 export function* setUsers(action) {
   try {
-    const {searchParams} = action.payload;
-    console.log('searchParams', searchParams);
+    const {searchParams, redirect} = action.payload;
     const users = yield call(api.getUsers, searchParams);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
       yield all([
         put({type: actions.SET_USERS, payload: users}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
-      yield put(
-        NavigationActions.navigate({
-          routeName: 'UserIndex',
-          params: {
-            name: action.payload.name,
-            searchParams
-          }
-        })
-      );
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'UserIndex',
+            params: {
+              name: action.payload.name
+            }
+          })
+        );
+      }
     } else {
       yield put({type: actions.SET_USERS, payload: []});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
@@ -425,12 +425,12 @@ export function* startGetServiceScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    const {name, searchElements, redirect} = action.payload;
-    const products = yield call(api.getSearchProducts, searchElements);
+    const {name, searchParams, redirect} = action.payload;
+    const products = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(

@@ -28,7 +28,8 @@ const DesignerHorizontalWidget = ({
           dispatch(
             getUsers({
               searchParams: params,
-              name
+              name,
+              redirect: true
             })
           )
         }>

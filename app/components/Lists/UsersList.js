@@ -30,7 +30,7 @@ const UsersList = ({users, searchElements, dispatch, showMore}) => {
     setIsLoading(true);
     if (showMore) {
       return axiosInstance(`user?page=${page}`, {
-        params: searchParams
+        params
       })
         .then(r => {
           setIsLoading(false);

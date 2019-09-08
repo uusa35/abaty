@@ -34,7 +34,8 @@ const BrandWidget = ({
         dispatch(
           getSearchProducts({
             name: element.name,
-            searchElements: {brand_id: element.id}
+            searchParams: {brand_id: element.id},
+            redirect: true
           })
         );
       }}>

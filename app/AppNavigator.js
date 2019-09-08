@@ -202,12 +202,7 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
-        headerStyle: {
-          position: 'absolute',
-          backgroundColor: 'transparent',
-          zIndex: 100
-        }
+        headerBackTitle: null
       }),
       path: `product/:id`
     },
@@ -322,8 +317,8 @@ const HomeStack = createStackNavigator(
             displayShare={true}
             display={true}
           />
-        )
-        // headerBackTitle: null,
+        ),
+        headerBackTitle: null
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -459,11 +454,7 @@ const ProductStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
-        headerStyle: {
-          //backgroundColor: 'white',
-          //zIndex: 100
-        }
+        headerBackTitle: null
       }),
       path: `product/:id`
     }
@@ -571,11 +562,8 @@ const CategoryStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
-        headerStyle: {
-          //backgroundColor: 'white',
-          //zIndex: 100
-        }
+        headerTransparent: true,
+        headerBackTitle: null
       }),
       path: `product/:id`
     },

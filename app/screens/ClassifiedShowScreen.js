@@ -63,6 +63,7 @@ const ClassifiedShowScreen = ({
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
+        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
