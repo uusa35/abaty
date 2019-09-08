@@ -530,3 +530,10 @@ export function getClassified(payload) {
     payload
   };
 }
+
+export function storeClassified(payload) {
+  return {
+    type: actions.STORE_CLASSIFIED,
+    payload
+  };
+}

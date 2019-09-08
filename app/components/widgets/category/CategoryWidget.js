@@ -22,7 +22,8 @@ const CategoryWidget = ({
           dispatch(
             getSearchProducts({
               name: element.name,
-              searchElements: {product_category_id: element.id}
+              searchParams: {product_category_id: element.id},
+              redirect: true
             })
           )
         }>

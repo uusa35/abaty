@@ -4,10 +4,6 @@ import CategoriesList from '../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
-import {
-  categoriesSelector,
-  commercialsSelector
-} from '../redux/selectors/collections';
 
 const CategoryIndexScreen = ({
   categories,

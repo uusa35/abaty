@@ -112,6 +112,25 @@ const SideMeu = ({
                 </Text>
               </TouchableOpacity>
             ) : null}
+            {HOMEKEY && !guest ? (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('ClassifiedStore')}
+                style={styles.menuBtn}>
+                <Icon
+                  name="home"
+                  type="antdesign"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color}
+                  ]}>
+                  {I18n.t('new_classified')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
             {guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}

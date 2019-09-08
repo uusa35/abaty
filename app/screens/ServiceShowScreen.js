@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext, useEffect, useMemo} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -20,6 +20,7 @@ import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
+import {NavigationContext} from 'react-navigation';
 
 const ServiceShowScreen = ({
   service,
@@ -33,6 +34,25 @@ const ServiceShowScreen = ({
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [currentY, setCurrentY] = useState(0);
+  const navigation = useContext(NavigationContext);
+
+  useEffect(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg]);
+
+  useMemo(() => {
+    if (currentY > 50) {
+      setHeaderBg(false);
+      setHeaderBgColor('#e5e5e5');
+    } else {
+      setHeaderBg(true);
+      setHeaderBgColor('transparent');
+    }
+  }, [currentY]);
+
   return (
     <Fragment>
       <ScrollView
@@ -40,6 +60,7 @@ const ServiceShowScreen = ({
           justifyContent: 'flex-start',
           alignItems: 'center'
         }}
+        onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -58,8 +79,6 @@ const ServiceShowScreen = ({
             setBtnVisible(false);
           }
         }}
-        // onScrollBeginDrag={e => setScrollVal(e.nativeEvent.contentOffset.y)}
-        // automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
@@ -186,7 +205,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(ServiceShowScreen));
+ServiceShowScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor
+  }
+});
+
+export default connect(mapStateToProps)(ServiceShowScreen);
 
 ServiceShowScreen.propTypes = {
   services: PropTypes.array.isRequired,

@@ -48,7 +48,7 @@ const ClassifiedShowScreen = ({
   }, [headerBg]);
 
   useMemo(() => {
-    if (currentY > 100) {
+    if (currentY > 50) {
       setHeaderBg(false);
       setHeaderBgColor('#e5e5e5');
     } else {
@@ -63,7 +63,6 @@ const ClassifiedShowScreen = ({
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
-        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl
             refreshing={refresh}

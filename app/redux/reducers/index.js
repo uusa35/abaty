@@ -57,6 +57,7 @@ import searchParams from './searchParams';
 import commentModal from './commentModal';
 import comments from './comments';
 import orders from './orders';
+import newClassified from './newClassified';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -116,7 +117,8 @@ let reducers = combineReducers({
   comments,
   orders,
   classifieds,
-  classified
+  classified,
+  newClassified
 });
 
 export default reducers;

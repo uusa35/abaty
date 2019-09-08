@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import BrandList from '../components/widgets/brand/BrandList';
-import {brandsSelector} from './../redux/selectors/collections';
 
 const BrandIndexScreen = ({brands}) => {
   return <BrandList elements={brands} />;
@@ -11,7 +10,7 @@ const BrandIndexScreen = ({brands}) => {
 
 function mapStateToProps(state) {
   return {
-    brands: brandsSelector(state)
+    brands: state.brands
   };
 }
 

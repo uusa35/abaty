@@ -52,6 +52,7 @@ import CollectionIndexScreen from './screens/CollectionIndexScreen';
 import HomeKeyScreen from './screens/HomeKeyScreen';
 import ClassifiedShowScreen from './screens/ClassifiedShowScreen';
 import ClassifiedIndexScreen from './screens/ClassifiedIndexScreen';
+import ClassifiedStoreScreen from './screens/ClassifiedStoreScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -217,11 +218,7 @@ const HomeStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
-        headerStyle: {
-          // backgroundColor: 'white',
-          // zIndex: 100
-        }
+        headerBackTitle: null
       }),
       path: `product/:id`
     },
@@ -327,10 +324,24 @@ const HomeStack = createStackNavigator(
         // }
       }),
       path: `classified/:id`
+    },
+    ClassifiedStore: {
+      screen: ClassifiedStoreScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={false}
+            display={false}
+          />
+        ),
+        headerBackTitle: null
+      })
     }
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
     swipeEnabled: false
   }

@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {text, links} from '../constants';
-import FastImage from 'react-native-fast-image';
-import validate from 'validate.js';
-import {NavContext} from './../redux/NavContext';
-import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import ProductList from '../components/widgets/product/ProductList';
 

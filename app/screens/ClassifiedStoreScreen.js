@@ -1,21 +1,21 @@
 import React, {useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {connect} from 'react-redux';
 import {Button, Input} from 'react-native-elements';
-import I18n, {isRTL} from '../../../I18n';
-import {images, text, width} from '../../../constants';
-import {showCountryModal, updateUser} from '../../../redux/actions';
+import I18n, {isRTL} from '../I18n';
+import {images, text, width} from '../constants';
+import {showCountryModal, storeClassified} from '../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
+import {map} from 'lodash';
 
-const UserEditFormWidget = ({
+const ClassifiedStoreScreen = ({
   auth,
-  player_id,
-  logo,
+  categories,
   colors,
-  token,
   country,
   dispatch
 }) => {
@@ -32,20 +32,22 @@ const UserEditFormWidget = ({
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null
   );
-  const [image, setImage] = useState('');
+  const [images, setImages] = useState('');
   const [sampleLogo, setSampleLogo] = useState('');
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({
-      width: 1000,
-      height: 1000,
-      multiple: false,
+      width: 1440,
+      height: 1080,
+      multiple: true,
       cropping: true,
-      includeBase64: true,
-      includeExif: true
-    }).then(image => {
-      setImage(image);
-      setSampleLogo(image.sourceURL);
+      includeBase64: false,
+      includeExif: false,
+      maxFiles: 5
+    }).then(images => {
+      map(images, (img, i) => {
+        console.log(img);
+      });
     });
   });
 
@@ -68,7 +70,7 @@ const UserEditFormWidget = ({
         style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{
-            uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo
+            uri: auth.thumb ? auth.thumb : logo
           }}
           style={{
             width: 120,
@@ -100,6 +102,12 @@ const UserEditFormWidget = ({
           keyboardType="default"
           onChangeText={text => setName(text)}
           placeholder={name ? name : I18n.t('name')}
+          label={I18n.t('name')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font
+          }}
         />
         <Input
           inputContainerStyle={{
@@ -118,6 +126,12 @@ const UserEditFormWidget = ({
           keyboardType="email-address"
           onChangeText={text => setEmail(text)}
           placeholder={email ? email : I18n.t('email')}
+          label={I18n.t('email')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font
+          }}
         />
         <Input
           inputContainerStyle={{
@@ -136,6 +150,12 @@ const UserEditFormWidget = ({
           keyboardType="number-pad"
           onChangeText={text => setMobile(text)}
           placeholder={mobile ? mobile : I18n.t('mobile')}
+          label={I18n.t('mobile')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font
+          }}
         />
         <TouchableOpacity
           onPress={() => {
@@ -182,29 +202,14 @@ const UserEditFormWidget = ({
           numberOfLines={3}
           shake={true}
           keyboardType="default"
-          onChangeText={text => setAddress(text)}
-          placeholder={address ? address : I18n.t('full_address')}
-        />
-        <Input
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20,
-            height: 80
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
-          }}
-          numberOfLines={3}
-          shake={true}
-          keyboardType="default"
           onChangeText={text => setDescription(text)}
           placeholder={description ? description : I18n.t('description')}
+          label={I18n.t('description')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font
+          }}
         />
         <Button
           raised
@@ -220,17 +225,15 @@ const UserEditFormWidget = ({
           title={I18n.t('update_information')}
           onPress={() =>
             dispatch(
-              updateUser({
-                id: auth.id,
-                api_token: token,
+              storeClassified({
+                user_id: auth.id,
+                api_token: auth.token,
                 name,
-                email,
+                description,
                 mobile,
                 country_id: country.id,
-                address,
-                player_id,
-                description,
-                image
+                area_id: area.id,
+                images
               })
             )
           }
@@ -240,9 +243,19 @@ const UserEditFormWidget = ({
   );
 };
 
-export default UserEditFormWidget;
+function mapStateToProps(state) {
+  return {
+    categories: state.categories,
+    auth: state.auth,
+    country: state.country,
+    colors: state.settings.colors,
+    newClassified: state.newClassified
+  };
+}
 
-UserEditFormWidget.propTypes = {
+export default connect(mapStateToProps)(ClassifiedStoreScreen);
+
+ClassifiedStoreScreen.propTypes = {
   auth: PropTypes.object.isRequired
 };
 

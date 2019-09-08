@@ -48,7 +48,7 @@ const ProductShowScreen = ({
 
   useMemo(() => {
     console.log('the currentY', currentY);
-    if (currentY > 100) {
+    if (currentY > 50) {
       setHeaderBg(false);
       setHeaderBgColor('#e5e5e5');
     } else {
@@ -63,7 +63,6 @@ const ProductShowScreen = ({
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
         onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
-        scrollEventThrottle={16}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -208,14 +207,14 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ProductShowScreen);
-
 ProductShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
     backgroundColor: navigation.state.params.headerBgColor
   }
 });
+
+export default connect(mapStateToProps)(ProductShowScreen);
 
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,

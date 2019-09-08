@@ -2,13 +2,6 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {has} from 'lodash';
-import {getAllProducts, getSearchProducts} from '../redux/actions';
-import {setProducts} from '../redux/actions/sagas/requestSagas';
-import {
-  productsSelector,
-  servicesSelector
-} from '../redux/selectors/collections';
 import ServiceList from '../components/widgets/service/ServiceList';
 
 const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
