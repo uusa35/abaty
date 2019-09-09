@@ -28,8 +28,6 @@ import ClassifiedListHorizontal from '../components/widgets/classified/Classifie
 import MapViewWidget from '../components/widgets/MapViewWidget';
 import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
 import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
-import {NavigationContext} from 'react-navigation';
-import ProductInfoWidgetMainTitle from '../components/widgets/product/ProductInfoWidgetMainTitle';
 import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 
 const ClassifiedShowScreen = ({
@@ -37,15 +35,13 @@ const ClassifiedShowScreen = ({
   classifieds,
   dispatch,
   token,
-  colors
+  colors,
+  navigation
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [currentY, setCurrentY] = useState(0);
-  const navigation = useContext(NavigationContext);
-
-  console.log('classified', classified);
 
   useEffect(() => {
     navigation.setParams({headerBg, headerBgColor});

@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo, useContext, useEffect} from 'react';
+import React, {Fragment, useState, useMemo, useEffect} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -20,8 +20,6 @@ import ProductHorizontalWidget from '../components/widgets/product/ProductHorizo
 import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
-import {useNavigation} from 'react-navigation-hooks';
-import {NavigationContext} from 'react-navigation';
 
 const ProductShowScreen = ({
   product,
@@ -33,14 +31,13 @@ const ProductShowScreen = ({
   weight,
   homeProducts,
   token,
-  colors
+  colors,
+  navigation
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [currentY, setCurrentY] = useState(0);
-  const navigation = useContext(NavigationContext);
-  const {navigate} = useNavigation();
 
   useEffect(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -157,7 +154,7 @@ const ProductShowScreen = ({
                 colors={colors}
                 elementName="shipment_prices"
                 link={() =>
-                  navigate('ImageZoom', {
+                  navigation.navigate('ImageZoom', {
                     images: [{id: product.id, large: shipment_prices}],
                     name: product.name,
                     index: 0

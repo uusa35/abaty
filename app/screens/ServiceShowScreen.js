@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useContext, useEffect, useMemo} from 'react';
+import React, {Fragment, useState, useEffect, useMemo} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -20,7 +20,6 @@ import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
-import {NavigationContext} from 'react-navigation';
 
 const ServiceShowScreen = ({
   service,
@@ -29,7 +28,8 @@ const ServiceShowScreen = ({
   mobile,
   dispatch,
   token,
-  colors
+  colors,
+  navigation
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
@@ -37,7 +37,6 @@ const ServiceShowScreen = ({
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [currentY, setCurrentY] = useState(0);
-  const navigation = useContext(NavigationContext);
 
   useEffect(() => {
     navigation.setParams({headerBg, headerBgColor});
