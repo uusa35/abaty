@@ -29,6 +29,8 @@ import MapViewWidget from '../components/widgets/MapViewWidget';
 import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
 import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
 import {NavigationContext} from 'react-navigation';
+import ProductInfoWidgetMainTitle from '../components/widgets/product/ProductInfoWidgetMainTitle';
+import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 
 const ClassifiedShowScreen = ({
   classified,
@@ -42,6 +44,8 @@ const ClassifiedShowScreen = ({
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [currentY, setCurrentY] = useState(0);
   const navigation = useContext(NavigationContext);
+
+  console.log('classified', classified);
 
   useEffect(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -92,6 +96,7 @@ const ClassifiedShowScreen = ({
           isFeatured={classified.is_featured}
         />
         <View style={{width: '90%'}}>
+          <ClassifiedInfoWidgetMainTitle element={classified} />
           {!validate.isEmpty(classified.properties) ? (
             <PropertiesWidget
               elements={classified.properties}
@@ -110,8 +115,9 @@ const ClassifiedShowScreen = ({
             ) : null}
             <ClassifiedInfoWidgetElement
               elementName="user_name"
+              colors={colors}
               name={classified.user.slug}
-              showArrow={false}
+              showIcon={false}
               link={() =>
                 dispatch(
                   getDesigner({
@@ -126,19 +132,23 @@ const ClassifiedShowScreen = ({
                 key={i}
                 elementName={p.name}
                 name={p.value}
-                showArrow={false}
+                showIcon={true}
                 translate={false}
+                iconName={p.icon}
+                colors={colors}
               />
             ))}
             {classified.address ? (
               <ClassifiedInfoWidgetElement
                 elementName="address"
                 name={classified.address}
-                showArrow={false}
+                showIcon={false}
+                colors={colors}
               />
             ) : null}
             <ClassifiedInfoWidgetElement
               elementName="categories"
+              colors={colors}
               name={classified.category.name}
               link={() =>
                 dispatch(
@@ -149,6 +159,7 @@ const ClassifiedShowScreen = ({
             {classified.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
+                colors={colors}
                 name={classified.mobile}
                 link={() =>
                   Linking.openURL(
@@ -159,6 +170,7 @@ const ClassifiedShowScreen = ({
             ) : (
               <ClassifiedInfoWidgetElement
                 elementName="mobile"
+                colors={colors}
                 name={classified.mobile}
                 link={() => Linking.openURL(`tel:${classified.user.mobile}`)}
               />

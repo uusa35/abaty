@@ -476,5 +476,7 @@
   "no_designer" : "Designer is not available now. please try again later",
   "fan_deactivated" : "Fan deactivated.",
   "add_your_images" : "Add Your images here",
-  "new_classified" : "New Classified"
+  "new_classified" : "New Classified",
+  "product_favorites" : "Favored Products",
+  "classified_favorites" : "Favored Classifieds"
 }

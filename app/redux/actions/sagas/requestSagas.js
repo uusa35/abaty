@@ -1058,7 +1058,7 @@ export function* startRegisterScenario(action) {
   }
 }
 
-export function* toggleFavoriteScenario(action) {
+export function* startToggleProductFavoriteScenario(action) {
   try {
     const products = yield call(api.toggleFavorite, action.payload);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
@@ -1069,6 +1069,23 @@ export function* toggleFavoriteScenario(action) {
     } else {
       yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
       throw products;
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
+}
+
+export function* startToggleClassifiedFavoriteScenario(action) {
+  try {
+    const classifieds = yield call(api.toggleFavorite, action.payload);
+    if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
+      yield all([
+        put({type: actions.SET_CLASSIFIED_FAVORITES, payload: classifieds}),
+        call(enableWarningMessage, I18n.t('favorite_success'))
+      ]);
+    } else {
+      yield put({type: actions.SET_CLASSIFIED_FAVORITES, payload: []});
+      throw classifieds;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);

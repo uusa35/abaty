@@ -42,10 +42,17 @@ const ClassifiedList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  const handleLoading = useCallback(() => {
+  const loadMore = useCallback(() => {
+    setShowMore(true);
     setPage(page + 1);
-    setIsLoading(true);
+  });
+
+  useMemo(() => {
     if (showMore) {
+      setIsLoading(true);
+      setIsLoading(false);
+      setRefresh(false);
+      setShowMore(false);
       return axiosInstance(`search/classified?page=${page}`, {
         params
       })
@@ -61,7 +68,7 @@ const ClassifiedList = ({
           setRefresh(false);
         });
     }
-  }, [isLoading, showMore, page]);
+  }, [page]);
 
   const handleRefresh = useCallback(() => {
     if (showMore) {
@@ -117,10 +124,7 @@ const ClassifiedList = ({
               onRefresh={() => (showRefresh ? handleRefresh() : null)}
             />
           }
-          onEndReached={() => {
-            setShowMore(true);
-            handleLoading();
-          }}
+          onEndReached={() => loadMore()}
           contentContainerStyle={{
             width: width - 20,
             minHeight: '100%',

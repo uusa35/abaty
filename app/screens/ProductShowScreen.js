@@ -102,6 +102,7 @@ const ProductShowScreen = ({
               </View>
             ) : null}
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="designer"
               name={product.user.slug}
               link={() =>
@@ -115,6 +116,7 @@ const ProductShowScreen = ({
               }
             />
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="categories"
               name={first(product.categories).name}
               link={() =>
@@ -131,24 +133,28 @@ const ProductShowScreen = ({
               }
             />
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="sku"
               name={product.sku}
-              showArrow={false}
+              showIcon={false}
             />
             {weight ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="product_weight"
                 name={weight}
-                showArrow={false}
+                showIcon={false}
               />
             ) : null}
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="contactus_order_by_phone"
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
             />
             {shipment_prices ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="shipment_prices"
                 link={() =>
                   navigate('ImageZoom', {
@@ -161,6 +167,7 @@ const ProductShowScreen = ({
             ) : null}
             {size_chart ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="size_chart"
                 link={() =>
                   navigation.navigate('ImageZoom', {

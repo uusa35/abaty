@@ -1,31 +1,25 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import I18n from './../I18n';
 import {text, width} from '../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
-import {
-  productFavoritesSelector,
-  searchParamsSelector
-} from '../redux/selectors/collections';
-import {colorsSelector} from '../redux/selectors/collection';
-import {useNavigation} from 'react-navigation-hooks';
+import ClassifiedList from '../components/widgets/classified/ClassifiedList';
 
-const FavoriteIndexScreen = ({
-  productFavorites,
+const FavoriteClassifiedIndexScreen = ({
+  classifiedFavorites,
   searchParams,
   dispatch,
-  colors
+  colors,
+  navigation
 }) => {
-  const {navigate} = useNavigation();
   return (
     <View>
-      {!validate.isEmpty(productFavorites) ? (
-        <ProductList
-          products={productFavorites}
+      {!validate.isEmpty(classifiedFavorites) ? (
+        <ClassifiedList
+          classifieds={classifiedFavorites}
           dispatch={dispatch}
           colors={colors}
           showName={true}
@@ -45,13 +39,13 @@ const FavoriteIndexScreen = ({
           }}>
           <Button
             raised
-            title={I18n.t('no_items')}
+            title={I18n.t('no_classifieds')}
             type="outline"
             containerStyle={{marginBottom: 20}}
             titleStyle={{fontFamily: text.font}}
           />
           <Button
-            onPress={() => navigate('Home')}
+            onPress={() => navigation.navigate('Home')}
             raised
             title={I18n.t('shop_now')}
             type="outline"
@@ -70,16 +64,16 @@ const FavoriteIndexScreen = ({
 
 function mapStateToProps(state) {
   return {
-    productFavorites: state.productFavorites,
+    classifiedFavorites: state.classifiedFavorites,
     searchParams: state.searchParams,
     colors: state.settings.colors
   };
 }
 
-export default connect(mapStateToProps)(FavoriteIndexScreen);
+export default connect(mapStateToProps)(FavoriteClassifiedIndexScreen);
 
-FavoriteIndexScreen.propTypes = {
-  productFavorites: PropTypes.array.isRequired
+FavoriteClassifiedIndexScreen.propTypes = {
+  classifiedFavorites: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

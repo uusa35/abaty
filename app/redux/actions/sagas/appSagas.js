@@ -48,7 +48,9 @@ import {
   getHomeCollectionsScenario,
   startGetClassifiedsScenario,
   startGetClassifiedScenario,
-  getServiceIndex
+  getServiceIndex,
+  startToggleProductFavoriteScenario,
+  startToggleClassifiedFavoriteScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n, {isRTL} from './../../../I18n';
@@ -180,8 +182,18 @@ export function* getAllProducts() {
   yield takeLatest(actions.GET_ALL_PRODUCTS, startGetAllProductsScenario);
 }
 
-export function* toggleFavorite() {
-  yield takeLatest(actions.TOGGLE_FAVORITE, toggleFavoriteScenario);
+export function* toggleProductFavorite() {
+  yield takeLatest(
+    actions.TOGGLE_PRODUCT_FAVORITE,
+    startToggleProductFavoriteScenario
+  );
+}
+
+export function* toggleClassifiedFavorite() {
+  yield takeLatest(
+    actions.TOGGLE_CLASSIFIED_FAVORITE,
+    startToggleClassifiedFavoriteScenario
+  );
 }
 
 export function* setCountry() {

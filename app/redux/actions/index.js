@@ -274,9 +274,16 @@ export function getAllProducts(payload) {
   };
 }
 
-export function toggleFavorite(payload) {
+export function toggleProductFavorite(payload) {
   return {
-    type: actions.TOGGLE_FAVORITE,
+    type: actions.TOGGLE_PRODUCT_FAVORITE,
+    payload
+  };
+}
+
+export function toggleClassifiedFavorite(payload) {
+  return {
+    type: actions.TOGGLE_CLASSIFIED_FAVORITE,
     payload
   };
 }

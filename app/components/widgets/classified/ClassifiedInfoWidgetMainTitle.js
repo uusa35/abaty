@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Icon} from 'react-native-elements';
-import {toggleFavorite, toggleProductFavorite} from '../../../redux/actions';
+import {toggleClassifiedFavorite, toggleFavorite} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductInfoWidgetMainTitle = ({element}) => {
+const ClassifiedInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, token, guest, exchange_rate, currency_symbol} = useContext(
     GlobalValuesContext
@@ -130,9 +130,9 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             onPress={() => {
               setFavorite(!favorite);
               dispatch(
-                toggleProductFavorite({
+                toggleClassifiedFavorite({
                   api_token: token,
-                  product_id: element.id
+                  classified_id: element.id
                 })
               );
             }}
@@ -149,9 +149,9 @@ const ProductInfoWidgetMainTitle = ({element}) => {
   );
 };
 
-export default ProductInfoWidgetMainTitle;
+export default ClassifiedInfoWidgetMainTitle;
 
-ProductInfoWidgetMainTitle.propTypes = {
+ClassifiedInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired
 };
 

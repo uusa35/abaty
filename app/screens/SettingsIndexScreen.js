@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {height, width, text} from '../constants';
+import {text} from '../constants';
 import {Icon} from 'react-native-elements';
 import I18n from './../I18n';
 import {changeLang} from '../redux/actions';
@@ -19,10 +19,20 @@ const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
       <View style={styles.container}>
         {!guest ? (
           <TouchableOpacity
-            onPress={() => navigation.navigate('FavoriteIndex')}
+            onPress={() => navigation.navigate('FavoriteProductIndex')}
             style={styles.btnWrapper}>
             <Icon name="staro" type="antdesign" size={45} />
-            <Text style={styles.btnTitle}>{I18n.t('favorites')}</Text>
+            <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
+          </TouchableOpacity>
+        ) : null}
+        {!guest ? (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
+            style={styles.btnWrapper}>
+            <Icon name="staro" type="antdesign" size={45} />
+            <Text style={styles.btnTitle}>
+              {I18n.t('classified_favorites')}
+            </Text>
           </TouchableOpacity>
         ) : null}
         {!guest ? (

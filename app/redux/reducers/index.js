@@ -38,6 +38,7 @@ import services from './services';
 import homeServices from './homeServices';
 import classifieds from './classifieds';
 import classified from './classified';
+import classifiedFavorites from './classifiedFavorites';
 import service from './service';
 import videos from './videos';
 import cart from './cart';
@@ -118,6 +119,7 @@ let reducers = combineReducers({
   orders,
   classifieds,
   classified,
+  classifiedFavorites,
   newClassified
 });
 

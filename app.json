@@ -2,7 +2,7 @@
   "name": "abaty",
   "ABATI" : true,
   "MALLR" : false,
-  "HOMEKEY" : false,
+  "HOMEKEY" : true,
   "displayName": "abati",
   "apiUrl" : "http://mallr.test/api/",
   "ENV" : "production",

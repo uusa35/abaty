@@ -37,7 +37,8 @@ import RegisterScreen from './screens/RegisterScreen';
 import CartConfirmationScreen from './screens/CartConfirmationScreen';
 import PaymentIndexScreen from './screens/PaymentIndexScreen';
 import IntroductionScreen from './screens/IntroductionScreen';
-import FavoriteIndexScreen from './screens/FavoriteIndexScreen';
+import FavoriteProductIndexScreen from './screens/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from './screens/FavoriteClassifiedIndexScreen';
 import ProductIndexAllScreen from './screens/ProductIndexAllScreen';
 import ProfileIndexScreen from './screens/ProfileIndexScreen';
 import UserEditScreen from './screens/UserEditScreen';
@@ -223,8 +224,19 @@ const HomeStack = createStackNavigator(
       }),
       path: `product/:id`
     },
-    FavoriteIndex: {
-      screen: FavoriteIndexScreen,
+    FavoriteProductIndex: {
+      screen: FavoriteProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
+        headerBackTitle: null
+      })
+    },
+    FavoriteClassifiedIndex: {
+      screen: FavoriteClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: (

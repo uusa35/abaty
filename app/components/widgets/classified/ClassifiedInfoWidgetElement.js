@@ -11,10 +11,12 @@ const ClassifiedInfoWidgetElement = ({
   link,
   elementName,
   name,
-  showArrow = true,
-  translate = true
+  showIcon = true,
+  translate = true,
+  iconName = null,
+  colors
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
+  console.log('iconName', iconName);
   return (
     <TouchableOpacity
       style={{
@@ -45,10 +47,18 @@ const ClassifiedInfoWidgetElement = ({
           }}>
           {name}
         </Text>
-        {showArrow ? (
+        {showIcon ? (
           <Icon
-            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-            type="entypo"
+            name={
+              isRTL
+                ? iconName
+                  ? iconName
+                  : 'chevron-thin-left'
+                : iconName
+                ? iconName
+                : 'chevron-thin-right'
+            }
+            type={iconName ? 'font-awesome' : 'entypo'}
             color={colors.header_one_theme_color}
             size={15}
             iconStyle={{}}
@@ -65,7 +75,8 @@ ClassifiedInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,
   // name : PropTypes.string,
   link: PropTypes.func,
-  showArrow: PropTypes.bool
+  showArrow: PropTypes.bool,
+  colors: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({

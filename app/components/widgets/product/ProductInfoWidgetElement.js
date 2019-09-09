@@ -11,9 +11,10 @@ const ProductInfoWidgetElement = ({
   link,
   elementName,
   name,
-  showArrow = true
+  iconName = null,
+  showIcon = true,
+  colors
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
       style={{
@@ -44,10 +45,18 @@ const ProductInfoWidgetElement = ({
           }}>
           {name}
         </Text>
-        {showArrow ? (
+        {showIcon ? (
           <Icon
-            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-            type="entypo"
+            name={
+              isRTL
+                ? iconName
+                  ? iconName
+                  : 'chevron-thin-left'
+                : iconName
+                ? iconName
+                : 'chevron-thin-right'
+            }
+            type={iconName ? 'font-awesome' : 'entypo'}
             color={colors.header_one_theme_color}
             size={15}
             iconStyle={{}}
@@ -64,7 +73,8 @@ ProductInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,
   // name : PropTypes.string,
   link: PropTypes.func,
-  showArrow: PropTypes.bool
+  showArrow: PropTypes.bool,
+  colors: PropTypes.object.isRequired
 };
 
 const styles = StyleSheet.create({
