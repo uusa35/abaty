@@ -40,7 +40,9 @@ const IntroductionWidget = ({elements, showIntroduction, dispatch}) => {
           fontFamily: text.font,
           color: colors.btn_text_theme_color
         }}
-        renderItem={() => <SplashWidget elements={elements} />}
+        renderItem={() => (
+          <SplashWidget elements={elements} handleClick={handleClick} />
+        )}
         slides={elements}
         onDone={() => handleClick()}
       />

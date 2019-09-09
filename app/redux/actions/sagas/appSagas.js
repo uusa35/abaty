@@ -94,7 +94,7 @@ function* startAppBootStrap() {
         call(getHomeCollectionsScenario),
         put({
           type: actions.GET_CLASSIFIEDS,
-          payload: {searchElements: {is_home: true}}
+          payload: {searchParams: {is_home: true}}
         })
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),

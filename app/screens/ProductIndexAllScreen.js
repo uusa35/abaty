@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {NavContext} from './../redux/NavContext';
 import ProductList from '../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
-import {has} from 'lodash';
 import {getAllProducts, getSearchProducts} from '../redux/actions';
-import {setProducts} from '../redux/actions/sagas/requestSagas';
 import {productsSelector} from '../redux/selectors/collections';
 import {colorsSelector} from '../redux/selectors/collection';
 
@@ -30,7 +27,7 @@ class ProductIndexAllScreen extends Component {
         searchElements={{}}
         showSearch={true}
         showFooter={true}
-        showRefresh={false}
+        showRefresh={true}
       />
     );
   }

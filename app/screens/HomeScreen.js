@@ -172,7 +172,6 @@ class HomeScreen extends Component {
       colors,
       services,
       showIntroduction,
-      classifieds,
       dispatch
     } = this.props;
     return (

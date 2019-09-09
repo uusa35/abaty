@@ -294,7 +294,7 @@ export function* getCountry(country_id = null) {
       : yield call(api.getCountry, country_id);
     if (!validate.isEmpty(country)) {
       yield put({type: actions.SET_COUNTRY, payload: country});
-      yield put({type: actions.SET_CURRENCY, payload: country.currency_symbol});
+      // yield put({type: actions.SET_CURRENCY, payload: country.currency_symbol});
       yield call(startSetCountryScenario, {payload: country});
     }
   } catch (e) {

@@ -53,6 +53,7 @@ import HomeKeyScreen from './screens/HomeKeyScreen';
 import ClassifiedShowScreen from './screens/ClassifiedShowScreen';
 import ClassifiedIndexScreen from './screens/ClassifiedIndexScreen';
 import ClassifiedStoreScreen from './screens/ClassifiedStoreScreen';
+import SettingsIndexScreen from './screens/SettingsIndexScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -338,10 +339,17 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null
       })
+    },
+    SettingIndex: {
+      screen: SettingsIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('settings')} />,
+        headerBackTitle: null
+      })
     }
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     swipeEnabled: false
   }
@@ -535,7 +543,7 @@ const CategoryStack = createStackNavigator(
     CategoryIndex: {
       screen: CategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
+        // headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: (
           <HeaderMiddle
             title={
@@ -545,7 +553,8 @@ const CategoryStack = createStackNavigator(
             }
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerTransparent: true
       }),
       params: {
         category: null,

@@ -47,7 +47,6 @@ const ProductShowScreen = ({
   }, [headerBg]);
 
   useMemo(() => {
-    console.log('the currentY', currentY);
     if (currentY > 50) {
       setHeaderBg(false);
       setHeaderBgColor('#e5e5e5');
@@ -123,9 +122,10 @@ const ProductShowScreen = ({
                   getSearchProducts({
                     element: first(product.categories),
                     category: first(product.categories),
-                    searchElements: {
+                    searchParams: {
                       product_category_id: first(product.categories).id
-                    }
+                    },
+                    redirect: true
                   })
                 )
               }

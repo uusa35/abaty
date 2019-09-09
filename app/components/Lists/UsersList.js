@@ -25,27 +25,28 @@ const UsersList = ({users, searchElements, dispatch, showMore}) => {
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  const handleLoading = useCallback(() => {
+  const loadMore = useCallback(() => {
+    setShowMore(true);
     setPage(page + 1);
-    setIsLoading(true);
+  });
+
+  useMemo(() => {
     if (showMore) {
+      setIsLoading(true);
+      setIsLoading(false);
+      setRefresh(false);
+      setShowMore(false);
       return axiosInstance(`user?page=${page}`, {
         params
       })
         .then(r => {
-          setIsLoading(false);
-          setRefresh(false);
           const userGroup = uniqBy(items.concat(r.data), 'id');
-          // dispatch({type: 'SET_USERS', payload: users});
           setItems(userGroup);
           setElements(userGroup);
         })
-        .catch(e => {
-          setIsLoading(false);
-          setRefresh(false);
-        });
+        .catch(e => e);
     }
-  }, [isLoading, showMore, page]);
+  }, [page]);
 
   const handleRefresh = useCallback(() => {
     if (showMore) {
@@ -69,7 +70,6 @@ const UsersList = ({users, searchElements, dispatch, showMore}) => {
         setItems([]);
       }
     } else {
-      setShowMore(true);
       setItems(elements);
     }
   }, [search]);
@@ -95,10 +95,7 @@ const UsersList = ({users, searchElements, dispatch, showMore}) => {
           numColumns={2}
           data={items}
           keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => {
-            setShowMore(true);
-            handleLoading();
-          }}
+          onEndReached={() => loadMore()}
           onEndReachedThreshold={1}
           refreshing={refresh}
           refreshControl={

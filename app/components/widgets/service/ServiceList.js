@@ -38,29 +38,31 @@ const ServiceList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  const handleLoading = useCallback(() => {
+  const loadMore = useCallback(() => {
+    setShowMore(true);
     setPage(page + 1);
+  });
+
+  useMemo(() => {
     setIsLoading(true);
+    setIsLoading(false);
+    setRefresh(false);
+    setShowMore(false);
     if (showMore) {
       return axiosInstance(`search/service?page=${page}`, {
         params
       })
         .then(r => {
-          setIsLoading(false);
-          setRefresh(false);
           const serviceGroup = uniqBy(items.concat(r.data), 'id');
           setItems(serviceGroup);
           setElements(serviceGroup);
         })
-        .catch(e => {
-          setIsLoading(false);
-          setRefresh(false);
-        });
+        .catch(e => e);
     }
-  }, [isLoading, showMore, page]);
+  }, [page]);
 
   const handleRefresh = useCallback(() => {
-    if (refresh && showMore) {
+    if (showMore) {
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchServices({searchParams: params}));
@@ -68,10 +70,10 @@ const ServiceList = ({
   }, [refresh]);
 
   useMemo(() => {
+    setIsLoading(false);
+    setRefresh(false);
+    setShowMore(false);
     if (search.length > 0) {
-      setIsLoading(false);
-      setRefresh(false);
-      setShowMore(false);
       let filtered = filter(elements, i =>
         i.name.includes(search) ? i : null
       );
@@ -79,7 +81,6 @@ const ServiceList = ({
         ? setItems(filtered)
         : setItems([]);
     } else {
-      setShowMore(true);
       setItems(elements);
     }
   }, [search]);
@@ -113,10 +114,7 @@ const ServiceList = ({
               onRefresh={() => handleRefresh()}
             />
           }
-          onEndReached={() => {
-            setShowMore(true);
-            handleLoading();
-          }}
+          onEndReached={() => loadMore()}
           contentContainerStyle={{
             width: width - 20,
             minHeight: '100%'

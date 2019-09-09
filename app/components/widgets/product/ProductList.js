@@ -40,41 +40,42 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
-  const handleLoading = useCallback(() => {
+  const loadMore = useCallback(() => {
+    setShowMore(true);
     setPage(page + 1);
-    setIsLoading(true);
+  });
+
+  useMemo(() => {
     if (showMore) {
+      setIsLoading(true);
+      setIsLoading(false);
+      setRefresh(false);
+      setShowMore(false);
       return axiosInstance(`search/product?page=${page}`, {
         params
       })
         .then(r => {
-          setIsLoading(false);
-          setRefresh(false);
           const productsGroup = uniqBy(items.concat(r.data), 'id');
           setItems(productsGroup);
           setElements(productsGroup);
         })
-        .catch(e => {
-          setIsLoading(false);
-          setRefresh(false);
-        });
+        .catch(e => e);
     }
-  }, [isLoading, showMore, page]);
+  }, [page]);
 
   const handleRefresh = useCallback(() => {
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      console.log('params', params);
-      dispatch(getSearchProducts({searchElements: params, redirect: true}));
+      dispatch(getSearchProducts({searchParams: params, redirect: true}));
     }
   }, [refresh]);
 
   useMemo(() => {
+    setShowMore(false);
+    setIsLoading(false);
+    setRefresh(false);
     if (search.length > 0) {
-      setIsLoading(false);
-      setRefresh(false);
-      setShowMore(false);
       let filtered = filter(elements, i =>
         i.name.includes(search) ? i : null
       );
@@ -82,20 +83,12 @@ const ProductList = ({
         ? setItems(filtered)
         : setItems([]);
     } else {
-      setShowMore(true);
       setItems(elements);
     }
   }, [search]);
 
   return (
-    <KeyboardAvoidingView
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: width
-      }}
-      behavior="padding"
-      enabled>
+    <KeyboardAvoidingView style={{}} behavior="padding" enabled>
       {!validate.isEmpty(elements) ? (
         <FlatList
           keyboardShouldPersistTaps="always"
@@ -117,26 +110,21 @@ const ProductList = ({
               onRefresh={() => (showRefresh ? handleRefresh() : null)}
             />
           }
-          onEndReached={() => {
-            setShowMore(true);
-            handleLoading();
-          }}
+          onEndReached={() => loadMore()}
           contentContainerStyle={{
-            width: width - 20,
             minHeight: '100%',
-            marginBottom: 15
+            marginBottom: 15,
+            justifyContent: 'flex-start'
           }}
           columnWrapperStyle={{
             justifyContent: 'space-around',
             alignItems: 'center'
           }}
           ListHeaderComponentStyle={{
-            width: '100%',
-            padding: 10,
             backgroundColor: 'white'
           }}
           ListHeaderComponent={
-            <View>
+            <View style={{paddingTop: 10, paddingBottom: 10}}>
               {showSearch ? (
                 <Input
                   placeholder={I18n.t('search')}
@@ -174,7 +162,9 @@ const ProductList = ({
                       fontFamily: text.font,
                       fontSize: text.large,
                       marginTop: 20,
-                      marginBottom: 10,
+                      marginBottom: 5,
+                      paddingLeft: 20,
+                      paddingRight: 20,
                       textAlign: 'left',
                       color: colors.header_one_theme_color,
                       shadowColor: '#000',
@@ -194,7 +184,7 @@ const ProductList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{minHeight: 100}}>
+              <View style={{paddingTop: 10, paddingBottom: 10, flex: 1}}>
                 <Button
                   loading={isLoading}
                   raised

@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  ImageBackground,
-  ActivityIndicator
-} from 'react-native';
+import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
 import {width, height, text, images} from './../../../constants';
+import {Button, Icon} from 'react-native-elements';
+import {isRTL} from '../../../I18n';
 
-const SplashWidget = ({elements}) => {
+const SplashWidget = ({elements, handleClick}) => {
   return (
     <View>
       {map(elements, (s, i) => (
@@ -25,9 +21,25 @@ const SplashWidget = ({elements}) => {
           }}
           loadingIndicatorSource={images.logo}
           resizeMode="stretch">
+          {i == 0 ? (
+            <Icon
+              size={30}
+              name="close"
+              type="evil-icons"
+              containerStyle={{
+                position: 'absolute',
+                top: 50,
+                alignSelf: 'flex-end',
+                padding: 30
+              }}
+              onPress={() => handleClick()}
+              title="testing"
+              hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+            />
+          ) : null}
           <Text
             style={{
-              marginTop: '80%',
+              // marginTop: '80%',
               color: 'white',
               fontSize: 30,
               fontFamily: text.font
