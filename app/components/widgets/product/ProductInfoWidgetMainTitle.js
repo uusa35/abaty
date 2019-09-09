@@ -119,7 +119,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                   2
                 )}
               </Text>
-              <Text style={styles.productTitle}>{symbol}</Text>
+              <Text style={styles.productTitle}>{currency_symbol}</Text>
             </View>
           ) : null}
         </View>

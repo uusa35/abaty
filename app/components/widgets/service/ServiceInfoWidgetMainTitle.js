@@ -12,8 +12,14 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ServiceInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, country, token, guest} = useContext(GlobalValuesContext);
-  const {symbol, exchange_rate} = country.currency;
+  const {
+    colors,
+    country,
+    token,
+    guest,
+    currency_symbol,
+    exchange_rate
+  } = useContext(GlobalValuesContext);
   const [favorite, setFavorite] = useState(element.isFavorite);
 
   return (
@@ -104,7 +110,7 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
                   textDecorationLine: element.isOnSale ? 'line-through' : null
                 }
               ]}>
-              {symbol}
+              {currency_symbol}
             </Text>
           </View>
           {element.isOnSale ? (
@@ -118,7 +124,7 @@ const ServiceInfoWidgetMainTitle = ({element}) => {
                   2
                 )}
               </Text>
-              <Text style={styles.productTitle}>{symbol}</Text>
+              <Text style={styles.productTitle}>{currency_symbol}</Text>
             </View>
           ) : null}
         </View>
