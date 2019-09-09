@@ -126,6 +126,7 @@ const ServiceShowScreen = ({
             ) : null}
             {!validate.isEmpty(service.user) ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="company"
                 name={service.user.slug}
                 link={() =>
@@ -140,6 +141,7 @@ const ServiceShowScreen = ({
               />
             ) : null}
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="categories"
               name={first(service.categories).name}
               link={() =>
@@ -156,6 +158,7 @@ const ServiceShowScreen = ({
             />
             {service.sku ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="sku"
                 name={service.sku}
                 showArrow={false}
@@ -163,12 +166,14 @@ const ServiceShowScreen = ({
             ) : null}
             {service.individuals ? (
               <ProductInfoWidgetElement
+                colors={colors}
                 elementName="individuals_served"
                 name={service.individuals}
                 showArrow={false}
               />
             ) : null}
             <ProductInfoWidgetElement
+              colors={colors}
               elementName="contactus_order_by_phone"
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
