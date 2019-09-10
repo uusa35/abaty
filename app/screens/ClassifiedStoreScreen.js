@@ -252,31 +252,34 @@ const ClassifiedStoreScreen = ({
             {country.slug}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => dispatch(showAreaModal())}
-          style={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20,
-            height: 45,
-            width: '95%',
-            alignSelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-          <Text
+        {!validate.isEmpty(area) ? (
+          <TouchableOpacity
+            // onPress={() => dispatch(showAreaModal())}
             style={{
-              fontFamily: text.font,
-              fontSize: text.large,
-              textAlign: isRTL ? 'right' : 'left',
-              color: colors.main_theme_color
+              borderWidth: 1,
+              borderColor: 'lightgrey',
+              borderRadius: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+              marginBottom: 20,
+              height: 45,
+              width: '95%',
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
-            {area ? area.slug : I18n.t('choose_area')}
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: text.large,
+                textAlign: isRTL ? 'right' : 'left',
+                color: colors.main_theme_color
+              }}>
+              {I18n.t('area')} {area ? area.slug : I18n.t('choose_area')}
+            </Text>
+          </TouchableOpacity>
+        ) : null}
+
         <Button
           raised
           containerStyle={{marginBottom: 10, width: '90%'}}

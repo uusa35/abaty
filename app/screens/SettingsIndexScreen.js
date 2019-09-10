@@ -12,6 +12,7 @@ import {text} from '../constants';
 import {Icon} from 'react-native-elements';
 import I18n from './../I18n';
 import {changeLang} from '../redux/actions';
+import {HOMEKEY} from './../../app';
 
 const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
   return (
@@ -25,7 +26,7 @@ const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
             <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
           </TouchableOpacity>
         ) : null}
-        {!guest ? (
+        {!guest && HOMEKEY ? (
           <TouchableOpacity
             onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
             style={styles.btnWrapper}>

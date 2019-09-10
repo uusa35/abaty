@@ -35,7 +35,7 @@ import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizo
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
 import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
-import CategoryCarouselWidget from '../components/widgets/category/CategoryCarouselWidget';
+import CommercialCarouselWidget from '../components/widgets/commercial/CommercialCarouselWidget';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -214,15 +214,6 @@ class HomeScreen extends Component {
           ) : null}
           {!validate.isEmpty(categories) && validate.isArray(categories) ? (
             <CategoryHorizontalWidget
-              elements={categories}
-              showName={true}
-              title="categories"
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(categories) && validate.isArray(categories) ? (
-            <CategoryCarouselWidget
               elements={categories}
               showName={true}
               title="categories"

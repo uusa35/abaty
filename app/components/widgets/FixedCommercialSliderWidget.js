@@ -6,6 +6,7 @@ import {map, random} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
+import CommercialWidget from './commercial/CommercialWidget';
 
 const FixedCommercialSliderWidget = ({sliders}) => {
   return (
@@ -23,20 +24,9 @@ const FixedCommercialSliderWidget = ({sliders}) => {
           autoplay={true}
           key={random(9999)}
           removeClippedSubviews={false}>
-          {map(sliders, (s, i) => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  s.path ? s.path : s.url;
-                }}
-                key={i}>
-                <FastImage
-                  source={{uri: s.thumb}}
-                  style={{width: width, height: '100%'}}
-                />
-              </TouchableOpacity>
-            );
-          })}
+          {map(sliders, (s, i) => (
+            <CommercialWidget element={s} />
+          ))}
         </Swiper>
       ) : null}
     </View>
