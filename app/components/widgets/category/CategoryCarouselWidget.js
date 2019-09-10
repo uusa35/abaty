@@ -5,16 +5,18 @@ import CategoryWidget from './CategoryWidget';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 
-const CategoryCarouselWidget = ({elements}) => {
+const CategoryCarouselWidget = ({elements, dispatch}) => {
   return (
     <Carousel
       layout={'tinder'}
+      // layout={'default'}
+      // layout={'stack'}
       layoutCardOffset={18}
       ref={c => {
         this._carousel = c;
       }}
       data={elements}
-      renderItem={c => <CategoryWidget category={c.item} />}
+      renderItem={c => <CategoryWidget element={c.item} dispatch={dispatch} />}
       sliderWidth={width}
       itemWidth={width}
       hasParallaxImages={true}
@@ -24,7 +26,7 @@ const CategoryCarouselWidget = ({elements}) => {
       loop={true}
       loopClonesPerSide={2}
       autoplay={true}
-      autoplayDelay={500}
+      autoplayDelay={1500}
       autoplayInterval={3000}
     />
   );

@@ -305,10 +305,12 @@ export function* getCountry(country_id = null) {
 export function* startSetCountryScenario(action) {
   try {
     const country = action.payload;
-    if (!validate.isEmpty(country)) {
+    if (!validate.isEmpty(country) && validate.isObject(country)) {
       const {total, coupon} = yield select();
       yield all([
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
+        put({type: actions.SET_AREAS, payload: country.areas}),
+        put({type: actions.HIDE_COUNTRY_MODAL}),
         call(setGrossTotalCartValue, {total, coupon, country})
       ]);
     }

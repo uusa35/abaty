@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useState, useContext, useMemo, useCallback, A} from 'react';
 import {
   View,
   ScrollView,
@@ -8,32 +8,39 @@ import {
   TouchableOpacity
 } from 'react-native';
 import {map} from 'lodash';
-import {hideCountryModal, setCountry} from '../../redux/actions';
+import {
+  hideCountryModal,
+  setArea,
+  setCountry,
+  showAreaModal
+} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {images, text} from '../../constants';
 import FastImage from 'react-native-fast-image';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
+import validate from 'validate.js';
 
 const CountriesList = ({country, countries, countryModal}) => {
   const {dispatch} = useContext(DispatchContext);
   [visible, setVisible] = useState(countryModal);
   [currentCountry, setCurrentCountry] = useState(country);
-  [currentCurrency, setCurrentCurrency] = useState(country.currency);
+  [currentCurrency, setCurrentCurrency] = useState(country.currency.symbol);
 
-  useMemo(() => {
-    if (!visible) {
-      setVisible(false);
-      dispatch(hideCountryModal());
-      dispatch(setCountry(currentCountry));
+  const handleClick = useCallback(country => {
+    dispatch(setCountry(country));
+    if (!validate.isEmpty(country.areas)) {
+      dispatch(showAreaModal());
+    } else {
+      dispatch(setArea({}));
     }
-  }, [visible]);
+  });
 
   return (
     <Modal
       transparent={true}
-      visible={visible}
+      visible={countryModal}
       animationType={'slide'}
       onRequestClose={() => setVisible(false)}>
       <View style={styles.container}>
@@ -45,29 +52,26 @@ const CountriesList = ({country, countries, countryModal}) => {
             <Text style={styles.phoneNo}>{I18n.t('choose_country')}</Text>
             <Icon
               name="close"
-              size={15}
-              onPress={() => setVisible(false)}
+              type="evil-icons"
+              size={30}
+              onPress={() => dispatch(hideCountryModal())}
               hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
             />
           </View>
-          {map(countries, (c, i) => {
+          {map(countries, (country, i) => {
             return (
               <TouchableOpacity
                 activeOpacity={1}
-                key={c.id}
+                key={country.id}
                 hitSlop={{left: 15, right: 15}}
-                onPress={() => {
-                  setCurrentCountry(c);
-                  setCurrentCurrency(c.currency.symbol);
-                  setVisible(false);
-                }}
+                onPress={() => handleClick(country)}
                 style={styles.wrapper}>
                 <FastImage
-                  source={{uri: c.thumb}}
+                  source={{uri: country.thumb}}
                   style={styles.countryFlag}
                   loadingIndicatorSource={images.logo}
                 />
-                <Text style={styles.phoneNo}>{c.slug}</Text>
+                <Text style={styles.phoneNo}>{country.slug}</Text>
               </TouchableOpacity>
             );
           })}

@@ -19,7 +19,9 @@ const SearchForm = () => {
           color="#c4c4c4"
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
           onPress={() =>
-            dispatch(getSearchProducts({searchElements: {search}}))
+            dispatch(
+              getSearchProducts({searchParams: {search}, redirect: true})
+            )
           }
         />
       }

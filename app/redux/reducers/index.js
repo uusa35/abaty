@@ -21,6 +21,8 @@ import companies from './companies';
 import company from './company';
 import countries from './countries';
 import country from './country';
+import area from './area';
+import areas from './areas';
 import currency from './currency';
 import galleries from './galleries';
 import deviceId from './deviceId';
@@ -53,12 +55,13 @@ import linking from './linking';
 import playerId from './playerId';
 import auth from './auth';
 import coupon from './coupon';
-import {reducer as network} from 'react-native-offline';
 import searchParams from './searchParams';
 import commentModal from './commentModal';
 import comments from './comments';
 import orders from './orders';
 import newClassified from './newClassified';
+import areaModal from './areaModal';
+import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -101,6 +104,8 @@ let reducers = combineReducers({
   splashes,
   country,
   currency,
+  area,
+  areas,
   galleries,
   deviceId,
   playerId,
@@ -108,6 +113,7 @@ let reducers = combineReducers({
   auth,
   token,
   countryModal,
+  areaModal,
   linking,
   coupon,
   network,

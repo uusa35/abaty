@@ -10,7 +10,11 @@ import {connect} from 'react-redux';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../I18n';
 import {images, text, width} from '../constants';
-import {showCountryModal, storeClassified} from '../redux/actions';
+import {
+  showAreaModal,
+  showCountryModal,
+  storeClassified
+} from '../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -24,6 +28,7 @@ const ClassifiedStoreScreen = ({
   categories,
   colors,
   country,
+  area,
   dispatch
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
@@ -248,7 +253,7 @@ const ClassifiedStoreScreen = ({
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => dispatch(showAreaModal())}
           style={{
             borderWidth: 1,
             borderColor: 'lightgrey',
@@ -269,7 +274,7 @@ const ClassifiedStoreScreen = ({
               textAlign: isRTL ? 'right' : 'left',
               color: colors.main_theme_color
             }}>
-            Area Here
+            {area ? area.slug : I18n.t('choose_area')}
           </Text>
         </TouchableOpacity>
         <Button
@@ -309,6 +314,7 @@ function mapStateToProps(state) {
     categories: state.categories,
     auth: state.auth,
     country: state.country,
+    area: state.area,
     colors: state.settings.colors,
     newClassified: state.newClassified
   };

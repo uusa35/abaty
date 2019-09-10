@@ -19,6 +19,7 @@ import LoginScreenModal from './screens/LoginScreenModal';
 import {cartSelector, countriesSelector} from './redux/selectors/collections';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
+import AreasList from './components/Lists/AreasList';
 
 type Props = {};
 class App extends Component<Props> {
@@ -68,6 +69,9 @@ class App extends Component<Props> {
       countries,
       country,
       countryModal,
+      area,
+      areas,
+      areaModal,
       colors,
       logo,
       cart,
@@ -142,6 +146,9 @@ class App extends Component<Props> {
                     countryModal={countryModal}
                   />
                 ) : null}
+                {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
+                  <AreasList area={area} areas={areas} areaModal={areaModal} />
+                ) : null}
               </GlobalValuesContext.Provider>
             ) : (
               <LoadingView
@@ -177,6 +184,9 @@ function mapStateToProps(state) {
     country: state.country,
     countries: state.countries,
     countryModal: state.countryModal,
+    area: state.area,
+    areas: state.areas,
+    areaModal: state.areaModal,
     currency: state.currency,
     lang: state.lang,
     cart: state.cart,

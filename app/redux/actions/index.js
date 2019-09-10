@@ -350,6 +350,13 @@ export function setCountry(payload) {
   };
 }
 
+export function setArea(payload) {
+  return {
+    type: actions.SET_AREA,
+    payload
+  };
+}
+
 export function setCurrency(payload) {
   return {
     type: actions.SET_CURRENCY,
@@ -372,6 +379,18 @@ export function showCountryModal() {
 export function hideCountryModal() {
   return {
     type: actions.HIDE_COUNTRY_MODAL
+  };
+}
+
+export function showAreaModal() {
+  return {
+    type: actions.SHOW_AREA_MODAL
+  };
+}
+
+export function hideAreaModal() {
+  return {
+    type: actions.HIDE_AREA_MODAL
   };
 }
 
