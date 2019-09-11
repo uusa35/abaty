@@ -12,9 +12,13 @@ import PropTypes from 'prop-types';
 import {map, first, filter} from 'lodash';
 import {width, height, text} from './../constants';
 import {Icon} from 'react-native-elements';
-import {isRTL} from '../I18n';
+import I18n, {isRTL} from '../I18n';
+import FastImage from 'react-native-fast-image';
+import {setProperties} from '../redux/actions';
+import validate from 'validate.js';
+import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
 
-const CategoryGroupsScreen = ({category, navigation}) => {
+const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
   [currentGroupId, setCurrentGroupId] = useState(
     first(category.categoryGroups).id
   );
@@ -23,29 +27,44 @@ const CategoryGroupsScreen = ({category, navigation}) => {
 
   const handleClick = useCallback(property => {
     setSelectedProperties([
-      {property_id: property.id, value: property.value},
+      {
+        property_id: property.id,
+        value: property.value,
+        name: property.name,
+        icon: property.icon,
+        thumb: property.thumb
+      },
       ...selectedProperties
     ]);
     const rest = filter(remainingGroups, (g, i) => g.id !== currentGroupId);
-    if (rest.length > 0) {
+    console.log('the rest', rest);
+    if (!validate.isEmpty(rest)) {
       setRemainingGroups(rest);
     } else {
-      console.log('done');
+      setCurrentGroupId(0);
     }
   });
 
   useMemo(() => {
-    console.log('new id', first(remainingGroups).id);
-    if (remainingGroups.length > 0) {
+    console.log('here tracking', category.steps);
+    console.log('the selected Properties', selectedProperties);
+    if (selectedProperties.length === category.steps) {
+      dispatch(setProperties(selectedProperties));
+    }
+  }, [selectedProperties]);
+
+  useMemo(() => {
+    if (!validate.isEmpty(remainingGroups)) {
       setCurrentGroupId(first(remainingGroups).id);
     }
   }, [remainingGroups]);
-  console.log('selected', selectedProperties);
+
   return (
     <Fragment>
       {map(remainingGroups, (group, i) => {
         return (
           <Modal
+            key={i}
             transparent={false}
             animationType={'slide'}
             onRequestClose={() => setVisible(false)}
@@ -80,35 +99,26 @@ const CategoryGroupsScreen = ({category, navigation}) => {
             </View>
             <ScrollView
               contentContainerStyle={{
-                borderWidth: 5,
                 flex: 0.9,
+                paddingTop: 10,
                 width: '100%'
               }}>
               <View>
                 {map(group.properties, (property, i) => {
                   return (
                     <TouchableOpacity
-                      style={{
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                        alignItems: 'baseline',
-                        height: 50,
-                        borderBottomWidth: 0.5,
-                        borderColor: 'lightgrey',
-                        padding: 10
-                      }}
+                      style={styles.propertiesWrapper}
                       onPress={() => handleClick(property)}
                       key={i}>
-                      <Icon type="font-awesome" name={property.icon} />
-                      <Text
-                        style={{
-                          fontFamily: text.font,
-                          fontSize: text.medium,
-                          paddingLeft: 20,
-                          paddingRight: 20
-                        }}>
-                        {property.name}
-                      </Text>
+                      {property.icon ? (
+                        <Icon type="font-awesome" name={property.icon} />
+                      ) : (
+                        <FastImage
+                          source={{uri: property.thumb}}
+                          style={{width: 30, height: 30}}
+                        />
+                      )}
+                      <Text style={styles.title}>{property.name}</Text>
                     </TouchableOpacity>
                   );
                 })}
@@ -117,13 +127,17 @@ const CategoryGroupsScreen = ({category, navigation}) => {
           </Modal>
         );
       })}
+      {!validate.isEmpty(properties) ? (
+        <ClassifiedStorePropertiesWidget elements={properties} />
+      ) : null}
     </Fragment>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    category: state.category
+    category: state.category,
+    properties: state.properties
   };
 }
 
@@ -146,5 +160,21 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     zIndex: 999
+  },
+  propertiesWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'baseline',
+    height: 50,
+    borderBottomWidth: 0.5,
+    borderTopWidth: 0.5,
+    borderColor: 'lightgrey',
+    padding: 10
+  },
+  title: {
+    fontFamily: text.font,
+    fontSize: text.medium,
+    paddingLeft: 20,
+    paddingRight: 20
   }
 });

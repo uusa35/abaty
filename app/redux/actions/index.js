@@ -563,3 +563,10 @@ export function storeClassified(payload) {
     payload
   };
 }
+
+export function setProperties(payload) {
+  return {
+    type: actions.SET_PROPERTIES,
+    payload
+  };
+}

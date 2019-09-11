@@ -478,5 +478,7 @@
   "add_your_images" : "Add Your images here",
   "new_classified" : "New Classified",
   "product_favorites" : "Favored Products",
-  "classified_favorites" : "Favored Classifieds"
+  "classified_favorites" : "Favored Classifieds",
+  "classified_properties" : "Classified Properties",
+  "add_your_properties" : "Add Properties"
 }

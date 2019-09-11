@@ -117,6 +117,14 @@ export function* getClassified() {
   yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
 }
 
+export function* setProperties() {
+  yield takeLatest(actions.SET_PROPERTIES, startSetPropertiesScenario);
+}
+
+export function* startSetPropertiesScenario() {
+  yield put(NavigationActions.navigate({routeName: 'ClassifiedStore'}));
+}
+
 export function* startNewClassified() {
   yield takeLatest(actions.START_NEW_CLASSIFIED, startNewClassifiedScenario);
 }
@@ -124,7 +132,7 @@ export function* startNewClassified() {
 export function* startNewClassifiedScenario(action) {
   const category = action.payload;
   yield put({type: actions.SET_CATEGORY, payload: category});
-  console.log('category', category);
+  yield put({type: actions.CLEAR_PROPERTIES});
   if (category.has_categoryGroups) {
     yield put(
       NavigationActions.navigate({

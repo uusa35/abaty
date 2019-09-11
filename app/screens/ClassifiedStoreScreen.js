@@ -22,6 +22,7 @@ import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
 import {map} from 'lodash';
 import widgetStyles from '../components/widgets/widgetStyles';
+import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
 
 const ClassifiedStoreScreen = ({
   auth,
@@ -29,7 +30,8 @@ const ClassifiedStoreScreen = ({
   colors,
   country,
   area,
-  dispatch
+  dispatch,
+  properties
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -279,10 +281,12 @@ const ClassifiedStoreScreen = ({
             </Text>
           </TouchableOpacity>
         ) : null}
-
+        {!validate.isEmpty(properties) ? (
+          <ClassifiedStorePropertiesWidget elements={properties} />
+        ) : null}
         <Button
           raised
-          containerStyle={{marginBottom: 10, width: '90%'}}
+          containerStyle={{marginBottom: 10, marginTop: 10, width: '100%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
             borderRadius: 0
@@ -319,14 +323,19 @@ function mapStateToProps(state) {
     country: state.country,
     area: state.area,
     colors: state.settings.colors,
-    newClassified: state.newClassified
+    newClassified: state.newClassified,
+    properties: state.properties
   };
 }
 
 export default connect(mapStateToProps)(ClassifiedStoreScreen);
 
 ClassifiedStoreScreen.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  country: PropTypes.object.isRequired,
+  colors: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
+  properties: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

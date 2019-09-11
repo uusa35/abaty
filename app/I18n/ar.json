@@ -511,5 +511,7 @@
   "new_classified" : "إعلان جديد",
   "product_favorites" : "المنتجات المفضلة",
   "classified_favorites" : "الإعلانات المفضلة",
-  "choose_your_category" : "اختر التصنيف المطلوب"
+  "choose_your_category" : "اختر التصنيف المطلوب",
+  "classified_properties" : "مواصفات الإعلان",
+  "add_your_properties" : "إضافة مواصفات الإعلان"
 }
