@@ -31,7 +31,6 @@ import {
   startRemoveFromCartScenario,
   startRegisterScenario,
   getProductIndex,
-  toggleFavoriteScenario,
   startGetAllProductsScenario,
   startUpdateUserScenario,
   startSubmitCartScenario,
@@ -53,7 +52,7 @@ import {
   startToggleClassifiedFavoriteScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
-import I18n, {isRTL} from './../../../I18n';
+import I18n from './../../../I18n';
 import {
   setHomeCategories,
   setSettings,
@@ -116,6 +115,25 @@ export function* getClassifieds() {
 
 export function* getClassified() {
   yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
+}
+
+export function* startNewClassified() {
+  yield takeLatest(actions.START_NEW_CLASSIFIED, startNewClassifiedScenario);
+}
+
+export function* startNewClassifiedScenario(action) {
+  const category = action.payload;
+  yield put({type: actions.SET_CATEGORY, payload: category});
+  console.log('category', category);
+  if (category.has_categoryGroups) {
+    yield put(
+      NavigationActions.navigate({
+        routeName: 'ChooseCategoryGroups'
+      })
+    );
+  } else {
+    yield put(NavigationActions.navigate({routeName: 'ClassifiedStore'}));
+  }
 }
 export function* appBootstrap() {
   yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);

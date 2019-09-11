@@ -55,6 +55,8 @@ import ClassifiedShowScreen from './screens/ClassifiedShowScreen';
 import ClassifiedIndexScreen from './screens/ClassifiedIndexScreen';
 import ClassifiedStoreScreen from './screens/ClassifiedStoreScreen';
 import SettingsIndexScreen from './screens/SettingsIndexScreen';
+import ChooseCategoryScreen from './screens/ChooseCategoryScreen';
+import CategoryGroupsScreen from './screens/CategoryGroupsScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
@@ -342,6 +344,34 @@ const HomeStack = createStackNavigator(
       screen: ClassifiedStoreScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={false}
+            display={false}
+          />
+        ),
+        headerBackTitle: null
+      })
+    },
+    ChooseCategory: {
+      screen: ChooseCategoryScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={false}
+            display={false}
+          />
+        ),
+        headerBackTitle: null
+      })
+    },
+    ChooseCategoryGroups: {
+      screen: CategoryGroupsScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
         headerRight: (
           <HeaderRight
             navigation={navigation}

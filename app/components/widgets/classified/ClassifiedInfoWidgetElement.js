@@ -1,11 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {text} from '../../../constants';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
 import PropTypes from 'prop-types';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ClassifiedInfoWidgetElement = ({
   link,
@@ -16,7 +15,6 @@ const ClassifiedInfoWidgetElement = ({
   iconName = null,
   colors
 }) => {
-  console.log('iconName', iconName);
   return (
     <TouchableOpacity
       style={{

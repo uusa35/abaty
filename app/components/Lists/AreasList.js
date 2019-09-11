@@ -37,6 +37,7 @@ const AreasList = ({area, areas, areaModal}) => {
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
           data={areas}
           renderItem={({item}) => (
             <TouchableOpacity

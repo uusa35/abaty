@@ -1,0 +1,146 @@
+import React, {Fragment} from 'react';
+import {
+  Collapse,
+  CollapseBody,
+  CollapseHeader
+} from 'accordion-collapse-react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {map} from 'lodash';
+import {width, text, height} from '../../../constants';
+import FastImage from 'react-native-fast-image';
+import validate from 'validate.js';
+import PropTypes from 'prop-types';
+
+const ChooseCategoryItem = ({category, dispatch}) => {
+  console.log('category', category.children);
+  return (
+    <Collapse key={category.id}>
+      <CollapseHeader>
+        <View style={styles.categoryItemWrapper}>
+          <FastImage
+            style={{width: 80, height: 80}}
+            source={{uri: category.thumb}}
+            resizeMode="cover"
+          />
+          <Text style={styles.categoryTitle}>{category.name}</Text>
+        </View>
+      </CollapseHeader>
+      <CollapseBody>
+        {!validate.isEmpty(category.children) ? (
+          <Fragment>
+            {map(category.children, (child, i) => {
+              return (
+                <Collapse key={child.id}>
+                  <CollapseHeader>
+                    <View
+                      style={[
+                        styles.categoryItemWrapper,
+                        {height: 50, paddingLeft: 80}
+                      ]}>
+                      <FastImage
+                        style={{width: 50, height: 50}}
+                        source={{uri: category.thumb}}
+                        resizeMode="cover"
+                      />
+                      <Text style={styles.categoryTitle}>{child.name}</Text>
+                    </View>
+                  </CollapseHeader>
+                  <CollapseBody>
+                    {!validate.isEmpty(child.children) ? (
+                      <Fragment>
+                        {map(child.children, (sub, i) => {
+                          return (
+                            <TouchableOpacity
+                              style={[
+                                styles.categoryItemWrapper,
+                                {height: 50, paddingLeft: 130}
+                              ]}
+                              onPress={() =>
+                                dispatch({
+                                  type: 'START_NEW_CLASSIFIED',
+                                  payload: sub
+                                })
+                              }
+                              key={sub.id}>
+                              <FastImage
+                                style={{width: 50, height: 50}}
+                                source={{uri: sub.thumb}}
+                                resizeMode="cover"
+                              />
+                              <Text style={styles.categoryTitle}>
+                                {sub.name}
+                              </Text>
+                            </TouchableOpacity>
+                          );
+                        })}
+                      </Fragment>
+                    ) : (
+                      <TouchableOpacity
+                        style={[
+                          styles.categoryItemWrapper,
+                          {height: 50, paddingLeft: 80}
+                        ]}
+                        onPress={() =>
+                          dispatch({
+                            type: 'START_NEW_CLASSIFIED',
+                            payload: child
+                          })
+                        }>
+                        <FastImage
+                          style={{width: 50, height: 50}}
+                          source={{uri: child.thumb}}
+                          resizeMode="cover"
+                        />
+                        <Text style={styles.categoryTitle}>{child.name}</Text>
+                      </TouchableOpacity>
+                    )}
+                  </CollapseBody>
+                </Collapse>
+              );
+            })}
+          </Fragment>
+        ) : (
+          <TouchableOpacity
+            style={[styles.categoryItemWrapper, {height: 50, paddingLeft: 80}]}
+            onPress={() =>
+              dispatch({type: 'START_NEW_CLASSIFIED', payload: category})
+            }>
+            <FastImage
+              style={{width: 50, height: 50}}
+              source={{uri: category.thumb}}
+              resizeMode="cover"
+            />
+            <Text style={styles.categoryTitle}>{category.name}</Text>
+          </TouchableOpacity>
+        )}
+      </CollapseBody>
+    </Collapse>
+  );
+};
+
+export default ChooseCategoryItem;
+
+ChooseCategoryItem.propTypes = {
+  category: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
+};
+
+const styles = StyleSheet.create({
+  categoryItemWrapper: {
+    flex: 1,
+    borderBottomWidth: 0.5,
+    borderColor: 'lightgrey',
+    height: 80,
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  categoryTitle: {
+    paddingRight: 20,
+    paddingLeft: 20,
+    fontFamily: text.font,
+    textAlign: 'left',
+    fontSize: text.large
+  }
+});

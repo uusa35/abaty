@@ -46,6 +46,7 @@ export default function* rootSaga() {
     fork(appSagas.resetStore),
     fork(appSagas.getClassifieds),
     fork(appSagas.getClassified),
+    fork(appSagas.startNewClassified),
     fork(networkSaga, {pingInterval: 20000})
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store

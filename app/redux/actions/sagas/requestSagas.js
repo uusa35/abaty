@@ -355,7 +355,6 @@ export function* startGetDesignerScenario(action) {
       } else {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
-      yield call(disableLoadingProfile);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
@@ -364,6 +363,7 @@ export function* startGetDesignerScenario(action) {
           })
         );
       }
+      yield call(disableLoadingProfile);
     } else {
       yield put({type: actions.SET_DESIGNER, payload: {}});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});

@@ -1,13 +1,11 @@
-import React, {useState, useContext, useMemo} from 'react';
+import React, {useState, useMemo} from 'react';
 import {text} from './../constants';
-import {DispatchContext} from '../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import Toaster from 'react-native-toaster';
 import validate from 'validate.js';
 
-const AlertMessage = ({message}) => {
+const AlertMessage = ({message, dispatch}) => {
   const [visible, setVisible] = useState(message.visible);
-  const {dispatch} = useContext(DispatchContext);
   const styles = {
     container: {
       opacity: 0.9,

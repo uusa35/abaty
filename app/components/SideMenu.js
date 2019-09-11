@@ -116,7 +116,7 @@ const SideMeu = ({
               <TouchableOpacity
                 onPress={() =>
                   !guest
-                    ? navigation.navigate('ClassifiedStore')
+                    ? navigation.navigate('ChooseCategory')
                     : navigation.navigate('Login')
                 }
                 style={styles.menuBtn}>

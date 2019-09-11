@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "react-native-community/async-storage",
     "@react-native-community/netinfo": "react-native-community/react-native-netinfo",
+    "accordion-collapse-react-native": "^0.1.11",
     "axios": "^0.19.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "geolib": "^3.0.4",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {width} from './../../constants';
@@ -22,10 +22,9 @@ const FixedCommercialSliderWidget = ({sliders}) => {
           showsButtons={false}
           showsPagination={false}
           autoplay={true}
-          key={random(9999)}
           removeClippedSubviews={false}>
           {map(sliders, (s, i) => (
-            <CommercialWidget element={s} />
+            <CommercialWidget element={s} key={s.id} />
           ))}
         </Swiper>
       ) : null}

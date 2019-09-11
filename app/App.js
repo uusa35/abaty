@@ -163,7 +163,7 @@ class App extends Component<Props> {
             message.visible &&
             network.isConnected &&
             validate.isString(message.content) ? (
-              <AlertMessage message={message} />
+              <AlertMessage message={message} dispatch={dispatch} />
             ) : null}
           </View>
         ) : (
