@@ -9,134 +9,81 @@ import {text, width} from '../constants';
 import {Button} from 'react-native-elements';
 import I18n from '../I18n';
 import CartListConfirmationScreen from '../components/widgets/cart/CartListConfirmationScreen';
-class CartConfirmationScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      shipmentCountry: {},
-      grossTotal: 0,
-      coupon: {}
-    };
-  }
-
-  componentDidMount() {
-    const {country, total, coupon} = this.props;
-    this.setState({
-      shipmentCountry: country,
-      coupon,
-      grossTotal: parseInt(
-        total +
-          country.fixed_shipment_charge -
-          (validate.isEmpty(coupon) ? 0 : coupon.value)
-      )
-    });
-  }
-
-  couponVal = coupon => (!validate.isEmpty(coupon) ? coupon.value : 0);
-
-  shouldComponentUpdate(nextProps, nextState) {
-    const {total, coupon, country, guest, cart, auth} = this.props;
-    if (nextProps.country.id !== this.state.shipmentCountry.id) {
-      let discount = this.couponVal(coupon);
-      let shipment = nextProps.country.fixed_shipment_charge;
-      this.setState({
-        shipmentCountry: nextProps.country,
-        grossTotal: parseFloat(total + shipment - discount)
-      });
-    }
-    if (nextProps.coupon.id !== coupon.id) {
-      let discount = this.couponVal(nextProps.coupon);
-      let shipment = country.fixed_shipment_charge;
-      this.setState({
-        coupon: nextProps.coupon,
-        grossTotal: parseFloat(total + shipment - discount)
-      });
-    }
-    return (
-      nextProps.country.id !== this.state.shipmentCountry.id ||
-      nextProps.guest !== guest ||
-      nextProps.coupon.id !== coupon.id ||
-      nextProps.cart.length !== cart.length ||
-      nextProps.auth.id !== auth.id
-    );
-  }
-
-  render() {
-    const {
-      cart,
-      shipment_notes,
-      navigation,
-      auth,
-      guest,
-      coupon,
-      colors
-    } = this.props;
-    const {shipmentCountry, grossTotal} = this.state;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: '5%'
-          }}>
-          <ScrollView
-            style={{width: '95%'}}
-            contentContainerStyle={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 10
-            }}
-            automaticallyAdjustContentInsets={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            contentInset={{bottom: 50}}>
-            {!validate.isEmpty(cart) ? (
-              <CartListConfirmationScreen
-                cart={cart}
-                shipmentCountry={shipmentCountry}
-                auth={auth}
-                guest={guest}
-                grossTotal={grossTotal}
-                discount={this.couponVal(coupon)}
-                shipment_notes={shipment_notes}
-                editModeDefault={false}
-                coupon={!validate.isEmpty(coupon) ? coupon : null}
-              />
-            ) : (
-              <View
-                style={{
-                  marginTop: 300,
-                  width: width - 50,
-                  alignSelf: 'center'
-                }}>
-                <Button
-                  raised
-                  title={I18n.t('no_items')}
-                  type="outline"
-                  containerStyle={{marginBottom: 20}}
-                  titleStyle={{fontFamily: text.font}}
-                />
-                <Button
-                  onPress={() => navigation.navigate('Home')}
-                  raised
-                  title={I18n.t('shop_now')}
-                  type="outline"
-                  containerStyle={{marginBottom: 20}}
-                  titleStyle={{
-                    fontFamily: text.font,
-                    color: colors.main_text_theme_color
-                  }}
-                />
-              </View>
-            )}
-          </ScrollView>
-        </View>
-      </NavContext.Provider>
-    );
-  }
-}
+const CartConfirmationScreen = ({
+  cart,
+  shipment_notes,
+  navigation,
+  auth,
+  guest,
+  coupon,
+  colors,
+  grossTotal,
+  country
+}) => {
+  console.log('coupon', coupon);
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '5%'
+      }}>
+      <ScrollView
+        style={{width: '95%'}}
+        contentContainerStyle={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 10
+        }}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentInset={{bottom: 50}}>
+        {!validate.isEmpty(cart) ? (
+          <CartListConfirmationScreen
+            cart={cart}
+            shipmentCountry={country}
+            auth={auth}
+            guest={guest}
+            grossTotal={grossTotal}
+            discount={coupon ? coupon.value : null}
+            shipment_notes={shipment_notes}
+            editModeDefault={false}
+            coupon={coupon ? coupon : null}
+            navigation={navigation}
+          />
+        ) : (
+          <View
+            style={{
+              marginTop: 300,
+              width: width - 50,
+              alignSelf: 'center'
+            }}>
+            <Button
+              raised
+              title={I18n.t('no_items')}
+              type="outline"
+              containerStyle={{marginBottom: 20}}
+              titleStyle={{fontFamily: text.font}}
+            />
+            <Button
+              onPress={() => navigation.navigate('Home')}
+              raised
+              title={I18n.t('shop_now')}
+              type="outline"
+              containerStyle={{marginBottom: 20}}
+              titleStyle={{
+                fontFamily: text.font,
+                color: colors.main_text_theme_color
+              }}
+            />
+          </View>
+        )}
+      </ScrollView>
+    </View>
+  );
+};
 
 function mapStateToProps(state) {
   return {
@@ -147,7 +94,8 @@ function mapStateToProps(state) {
     auth: state.auth,
     country: state.country,
     guest: state.guest,
-    coupon: state.coupon
+    coupon: state.coupon,
+    grossTotal: state.grossTotal
   };
 }
 

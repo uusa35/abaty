@@ -480,5 +480,7 @@
   "product_favorites" : "Favored Products",
   "classified_favorites" : "Favored Classifieds",
   "classified_properties" : "Classified Properties",
-  "add_your_properties" : "Add Properties"
+  "add_your_properties" : "Add Properties",
+  "save_classified" : "Save Classified",
+  "category_name" : "Category Name : "
 }

@@ -31,7 +31,8 @@ const ClassifiedStoreScreen = ({
   country,
   area,
   dispatch,
-  properties
+  properties,
+  categoryName
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -282,7 +283,10 @@ const ClassifiedStoreScreen = ({
           </TouchableOpacity>
         ) : null}
         {!validate.isEmpty(properties) ? (
-          <ClassifiedStorePropertiesWidget elements={properties} />
+          <ClassifiedStorePropertiesWidget
+            elements={properties}
+            name={categoryName}
+          />
         ) : null}
         <Button
           raised
@@ -295,7 +299,7 @@ const ClassifiedStoreScreen = ({
             fontFamily: text.font,
             color: colors.btn_text_theme_color
           }}
-          title={I18n.t('confirm')}
+          title={I18n.t('save_classified')}
           onPress={() =>
             dispatch(
               storeClassified({
@@ -306,7 +310,8 @@ const ClassifiedStoreScreen = ({
                 mobile,
                 country_id: country.id,
                 area_id: area.id,
-                images
+                images,
+                properties
               })
             )
           }
@@ -324,7 +329,8 @@ function mapStateToProps(state) {
     area: state.area,
     colors: state.settings.colors,
     newClassified: state.newClassified,
-    properties: state.properties
+    properties: state.properties,
+    categoryName: state.category.name
   };
 }
 

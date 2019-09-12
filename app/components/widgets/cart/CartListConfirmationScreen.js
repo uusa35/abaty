@@ -20,13 +20,13 @@ const CartListConfirmationScreen = ({
   grossTotal,
   shipment_notes,
   guest,
-  discount,
+  discount = 0,
   editModeDefault = true,
-  coupon
+  coupon = {},
+  navigation
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total} = useContext(GlobalValuesContext);
-  const {navigation} = useContext(NavContext);
   const {cName, cEmail, cMobile, cAddress, cNotes} = navigation.state.params;
   const [name, setName] = useState(cName);
   const [email, setEmail] = useState(cEmail);
@@ -562,7 +562,7 @@ CartListConfirmationScreen.propTypes = {
   cart: PropTypes.array.isRequired,
   auth: PropTypes.object,
   grossTotal: PropTypes.number.isRequired,
-  discount: PropTypes.number.isRequired,
+  discount: PropTypes.number,
   shipment_notes: PropTypes.string.isRequired,
   shipmentCountry: PropTypes.object.isRequired,
   editModeDefault: PropTypes.bool.isRequired

@@ -18,6 +18,7 @@ import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {useNavigation} from 'react-navigation-hooks';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const CartList = ({
   cart,
@@ -26,7 +27,8 @@ const CartList = ({
   shipment_notes,
   guest,
   editModeDefault = true,
-  coupon
+  coupon,
+  selectedArea
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total, grossTotal} = useContext(GlobalValuesContext);
@@ -45,10 +47,12 @@ const CartList = ({
     !validate.isEmpty(auth) ? auth.description : null
   );
   const [code, setCode] = useState(
-    !validate.isEmpty(coupon) ? coupon.code : ''
+    !validate.isEmpty(coupon) ? coupon.code : '27222734701'
   );
   const [editMode, setEditMode] = useState(editModeDefault);
   const [checked, setChecked] = useState(false);
+
+  console.log('the area', selectedArea);
 
   useEffect(() => {
     setEmail(auth.email);
@@ -59,7 +63,14 @@ const CartList = ({
   }, [auth]);
 
   return (
-    <View style={{width: '100%'}}>
+    <KeyboardAwareScrollView
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        width: '100%'
+      }}>
       <View
         animation="bounceInLeft"
         easing="ease-out"
@@ -81,8 +92,8 @@ const CartList = ({
             justifyContent: 'space-between',
             alignText: 'center',
             marginTop: 10,
-            paddingTop: 10,
             paddingBottom: 20,
+            paddingTop: 20,
             borderTopWidth: 0.5,
             borderTopColor: 'lightgrey'
           }}>
@@ -119,7 +130,7 @@ const CartList = ({
             justifyContent: 'space-between',
             alignText: 'center',
             marginTop: 10,
-            paddingTop: 10,
+
             paddingBottom: 20
           }}>
           <Text
@@ -156,7 +167,7 @@ const CartList = ({
               justifyContent: 'space-between',
               alignText: 'center',
               marginTop: 10,
-              paddingTop: 10,
+
               paddingBottom: 20
             }}>
             <Text
@@ -193,7 +204,7 @@ const CartList = ({
             justifyContent: 'space-between',
             alignText: 'center',
             marginTop: 10,
-            paddingTop: 10,
+            paddingTop: 20,
             paddingBottom: 20,
             borderTopWidth: 0.5,
             borderTopColor: 'lightgrey'
@@ -289,6 +300,13 @@ const CartList = ({
                 fontFamily: text.font,
                 textAlign: isRTL ? 'right' : 'left'
               }}
+              label={I18n.t('name')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left'
+              }}
               shake={true}
               keyboardType="default"
               onChangeText={name => setName(name)}
@@ -308,6 +326,13 @@ const CartList = ({
               inputStyle={{
                 fontFamily: text.font,
                 textAlign: isRTL ? 'right' : 'left'
+              }}
+              label={I18n.t('email')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left'
               }}
               shake={true}
               keyboardType="email-address"
@@ -329,6 +354,13 @@ const CartList = ({
               inputStyle={{
                 fontFamily: text.font,
                 textAlign: isRTL ? 'right' : 'left'
+              }}
+              label={I18n.t('mobile')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left'
               }}
               shake={true}
               keyboardType="number-pad"
@@ -361,6 +393,34 @@ const CartList = ({
                 {shipmentCountry.slug}
               </Text>
             </TouchableOpacity>
+            {!validate.isEmpty(selectedArea) ? (
+              <View
+                // onPress={() => dispatch(showAreaModal())}
+                style={{
+                  borderWidth: 1,
+                  borderColor: 'lightgrey',
+                  borderRadius: 10,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  marginBottom: 20,
+                  height: 45,
+                  width: '95%',
+                  alignSelf: 'center',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
+                <Text
+                  style={{
+                    fontFamily: text.font,
+                    fontSize: text.large,
+                    textAlign: isRTL ? 'right' : 'left',
+                    color: colors.main_theme_color
+                  }}>
+                  {I18n.t('area')}{' '}
+                  {selectedArea ? selectedArea.slug : I18n.t('choose_area')}
+                </Text>
+              </View>
+            ) : null}
             <Input
               editable={editMode}
               placeholder={address ? address : I18n.t('full_address')}
@@ -378,6 +438,13 @@ const CartList = ({
                 fontFamily: text.font,
                 fontSize: 14,
                 textAlign: isRTL ? 'right' : 'left'
+              }}
+              label={I18n.t('address')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left'
               }}
               numberOfLines={3}
               shake={true}
@@ -401,6 +468,13 @@ const CartList = ({
               inputStyle={{
                 fontFamily: text.font,
                 textAlign: isRTL ? 'right' : 'left'
+              }}
+              label={I18n.t('additional_information')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left'
               }}
               shake={true}
               keyboardType="default"
@@ -467,7 +541,7 @@ const CartList = ({
             style={{
               marginTop: 0,
               marginBottom: 10,
-              flex: 1,
+              width: '100%',
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center'
@@ -511,7 +585,8 @@ const CartList = ({
                     mobile,
                     address,
                     country_id: shipmentCountry.id,
-                    notes
+                    notes,
+                    area: selectedArea.slug
                   })
                 )
               }
@@ -592,7 +667,7 @@ const CartList = ({
       </View>
       <Button
         raised
-        containerStyle={{marginBottom: 10, width: '100%'}}
+        containerStyle={{marginBottom: 10}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
           borderRadius: 0
@@ -604,11 +679,11 @@ const CartList = ({
         }}
         onPress={() => dispatch(clearCart())}
       />
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 
-export default React.memo(CartList);
+export default CartList;
 
 CartList.propTypes = {
   cart: PropTypes.array.isRequired,

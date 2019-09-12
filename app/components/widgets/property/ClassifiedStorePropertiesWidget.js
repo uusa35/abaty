@@ -7,10 +7,17 @@ import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
 
-const ClassifiedStorePropertiesWidget = ({elements}) => {
+const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.title}>{I18n.t('classified_properties')}</Text>
+      {name ? (
+        <View>
+          <Text style={styles.title}>
+            {I18n.t('category_name')} {name}
+          </Text>
+        </View>
+      ) : null}
       {map(elements, (p, i) => {
         return (
           <View style={styles.propertiesWrapper} key={i}>
@@ -36,7 +43,8 @@ const ClassifiedStorePropertiesWidget = ({elements}) => {
 export default ClassifiedStorePropertiesWidget;
 
 ClassifiedStorePropertiesWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
+  name: PropTypes.string
 };
 
 const styles = StyleSheet.create({

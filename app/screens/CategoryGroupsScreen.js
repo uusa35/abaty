@@ -128,7 +128,10 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
         );
       })}
       {!validate.isEmpty(properties) ? (
-        <ClassifiedStorePropertiesWidget elements={properties} />
+        <ClassifiedStorePropertiesWidget
+          elements={properties}
+          name={category.name}
+        />
       ) : null}
     </Fragment>
   );

@@ -15,7 +15,8 @@ const persistConfig = {
   transforms: [networkTransform],
   blacklist: [
     'message',
-    'cart',
+    // 'cart',
+    //   'coupon',
     'countryModal',
     'loginModal',
     'isLoadingProfile',

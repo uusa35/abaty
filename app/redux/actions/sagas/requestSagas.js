@@ -629,6 +629,7 @@ export function* startAddToCartScenario(action) {
           I18n.t(`${action.payload.type}_added_to_cart_successfully`)
         ),
         put({type: actions.FILTER_CART, payload: filteredCart}),
+        put({type: actions.SET_COUPON, payload: {}}),
         call(setTotalCartValue, filteredCart)
       ]);
     }
@@ -662,7 +663,9 @@ export function* setGrossTotalCartValue(values) {
     const {total, coupon, country} = values;
     const {cart} = yield select();
     const countPieces = sumBy(cart, i => i.qty);
+    console.log('the total', total);
     if (!validate.isEmpty(total) && total > 0) {
+      console.log('the coupon from calculating', coupon);
       const finalShipment = country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
@@ -670,8 +673,10 @@ export function* setGrossTotalCartValue(values) {
         total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0)
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
+      console.log('the grossTotal Now is ::::', grossTotal);
     }
   } catch (e) {
+    console.log('the e from grossTotal', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'))
@@ -859,6 +864,7 @@ export function* startSubmitAuthScenario(action) {
           })
         );
       }
+      yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
     } else {
       throw user;
     }
@@ -951,13 +957,12 @@ export function* startUpdateUserScenario(action) {
 
 export function* startGetCouponScenario(action) {
   try {
-    const {total} = yield select();
+    const {total, country} = yield select();
     if (validate.isEmpty(action.payload)) {
       throw I18n.t('coupon_is_empty');
     }
     const coupon = yield call(api.getCoupon, {code: action.payload, total});
     if (!validate.isEmpty(coupon) && validate.isObject(coupon)) {
-      const {total, country} = yield select;
       yield all([
         put({type: actions.SET_COUPON, payload: coupon}),
         call(setGrossTotalCartValue, {total, coupon, country}),
@@ -974,23 +979,22 @@ export function* startGetCouponScenario(action) {
 
 export function* startCreateMyFatorrahPaymentUrlScenario(action) {
   try {
+    yield call(enableLoading);
     const {name, mobile, email, address} = action.payload;
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
       yield call(enableLoading, I18n.t('create_payment_url'));
       const url = yield call(api.makeMyFatoorahPayment, action.payload);
       if (validate.isObject(url) && url.paymentUrl.includes('https')) {
-        yield all([
-          call(disableLoading),
-          put(
-            NavigationActions.navigate({
-              routeName: 'PaymentIndex',
-              params: {
-                paymentUrl: url.paymentUrl
-              }
-            })
-          )
-        ]);
+        yield call(disableLoading);
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'PaymentIndex',
+            params: {
+              paymentUrl: url.paymentUrl
+            }
+          })
+        );
       } else {
         throw url;
       }
@@ -1004,18 +1008,18 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
 
 export function* startCreateTapPaymentUrlScenario(action) {
   try {
+    yield call(enableLoading);
     const url = yield call(api.makeTapPayment, action.payload);
     if (validate.isObject(url) && url.paymentUrl.includes('http')) {
-      yield all([
-        put(
-          NavigationActions.navigate({
-            routeName: 'PaymentIndex',
-            params: {
-              paymentUrl: url.paymentUrl
-            }
-          })
-        )
-      ]);
+      yield call(disableLoading);
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'PaymentIndex',
+          params: {
+            paymentUrl: url.paymentUrl
+          }
+        })
+      );
     } else {
       throw url;
     }

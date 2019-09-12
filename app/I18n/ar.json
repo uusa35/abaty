@@ -513,5 +513,7 @@
   "classified_favorites" : "الإعلانات المفضلة",
   "choose_your_category" : "اختر التصنيف المطلوب",
   "classified_properties" : "مواصفات الإعلان",
-  "add_your_properties" : "إضافة مواصفات الإعلان"
+  "add_your_properties" : "إضافة مواصفات الإعلان",
+  "save_classified" : "حفظ الإعلان",
+  "category_name" : "إسم التصنيف :"
 }

@@ -24,7 +24,7 @@ const FixedCommercialSliderWidget = ({sliders}) => {
           autoplay={true}
           removeClippedSubviews={false}>
           {map(sliders, (s, i) => (
-            <CommercialWidget element={s} key={s.id} />
+            <CommercialWidget element={s} key={i} />
           ))}
         </Swiper>
       ) : null}
