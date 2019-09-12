@@ -19,6 +19,7 @@ const CartListConfirmationScreen = ({
   shipmentCountry,
   grossTotal,
   shipment_notes,
+  shipmentFees,
   guest,
   discount = 0,
   editModeDefault = true,
@@ -488,9 +489,9 @@ const CartListConfirmationScreen = ({
                         country_id: shipmentCountry.id,
                         coupon_id: !isNull(coupon) ? coupon.id : null,
                         cart,
-                        total,
-                        grossTotal,
-                        shipment_fees: shipmentCountry.fixed_shipment_charge,
+                        price: total,
+                        net_price: grossTotal,
+                        shipment_fees: shipmentFees,
                         discount,
                         payment_method: isIOS
                           ? 'IOS - My Fatoorah'
@@ -523,9 +524,9 @@ const CartListConfirmationScreen = ({
                       country_id: shipmentCountry.id,
                       coupon_id: !isNull(coupon) ? coupon.id : null,
                       cart,
-                      total,
-                      grossTotal,
-                      shipment_fees: shipmentCountry.fixed_shipment_charge,
+                      price: total,
+                      net_price: grossTotal,
+                      shipment_fees: shipmentFees,
                       discount,
                       payment_method: isIOS
                         ? 'Iphone - Tap Payment'
@@ -565,7 +566,8 @@ CartListConfirmationScreen.propTypes = {
   discount: PropTypes.number,
   shipment_notes: PropTypes.string.isRequired,
   shipmentCountry: PropTypes.object.isRequired,
-  editModeDefault: PropTypes.bool.isRequired
+  editModeDefault: PropTypes.bool.isRequired,
+  shipmentFees: PropTypes.number.isRequired
 };
 
 const styles = StyleSheet.create({});

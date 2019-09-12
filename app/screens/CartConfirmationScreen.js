@@ -12,6 +12,7 @@ import CartListConfirmationScreen from '../components/widgets/cart/CartListConfi
 const CartConfirmationScreen = ({
   cart,
   shipment_notes,
+  shipmentFees,
   navigation,
   auth,
   guest,
@@ -47,6 +48,7 @@ const CartConfirmationScreen = ({
             auth={auth}
             guest={guest}
             grossTotal={grossTotal}
+            shipmentFees={shipmentFees}
             discount={coupon ? coupon.value : null}
             shipment_notes={shipment_notes}
             editModeDefault={false}
@@ -95,7 +97,8 @@ function mapStateToProps(state) {
     country: state.country,
     guest: state.guest,
     coupon: state.coupon,
-    grossTotal: state.grossTotal
+    grossTotal: state.grossTotal,
+    shipmentFees: state.shipmentFees
   };
 }
 
@@ -109,7 +112,8 @@ CartConfirmationScreen.propTypes = {
   country: PropTypes.object,
   auth: PropTypes.object,
   guest: PropTypes.bool,
-  coupon: PropTypes.object
+  coupon: PropTypes.object,
+  shipmentFees: PropTypes.number
 };
 
 const styles = StyleSheet.create({});

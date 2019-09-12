@@ -62,6 +62,7 @@ import orders from './orders';
 import newClassified from './newClassified';
 import areaModal from './areaModal';
 import properties from './properties';
+import shipmentFees from './shipmentFees';
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -128,7 +129,8 @@ let reducers = combineReducers({
   classified,
   classifiedFavorites,
   newClassified,
-  properties
+  properties,
+  shipmentFees
 });
 
 export default reducers;

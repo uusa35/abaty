@@ -673,6 +673,7 @@ export function* setGrossTotalCartValue(values) {
         total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0)
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
+      yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
       console.log('the grossTotal Now is ::::', grossTotal);
     }
   } catch (e) {
@@ -1009,6 +1010,7 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
 export function* startCreateTapPaymentUrlScenario(action) {
   try {
     yield call(enableLoading);
+    console.log('the action payload', action);
     const url = yield call(api.makeTapPayment, action.payload);
     if (validate.isObject(url) && url.paymentUrl.includes('http')) {
       yield call(disableLoading);
