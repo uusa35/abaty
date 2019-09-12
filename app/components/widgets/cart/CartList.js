@@ -47,7 +47,7 @@ const CartList = ({
     !validate.isEmpty(auth) ? auth.description : null
   );
   const [code, setCode] = useState(
-    !validate.isEmpty(coupon) ? coupon.code : '27222734701'
+    !validate.isEmpty(coupon) ? coupon.code : ''
   );
   const [editMode, setEditMode] = useState(editModeDefault);
   const [checked, setChecked] = useState(false);

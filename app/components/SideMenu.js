@@ -173,23 +173,6 @@ const SideMeu = ({
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('FavoriteIndex')}
-                  style={styles.menuBtn}>
-                  <Icon
-                    name="star"
-                    type="fontawesome"
-                    size={25}
-                    color={colors.icon_theme_color}
-                  />
-                  <Text
-                    style={[
-                      styles.titleStyle,
-                      {color: colors.header_one_theme_color}
-                    ]}>
-                    {I18n.t('wishlist')}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
                   onPress={() => navigation.navigate('OrderIndex')}
                   style={styles.menuBtn}>
                   <Icon
