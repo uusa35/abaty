@@ -5,7 +5,7 @@
   "HOMEKEY" : true,
   "displayName": "abati",
   "apiUrl" : "http://mallr.test/api/",
-  "ENV" : "local",
+  "ENV" : "production",
   "PORT" : 4000,
   "ONE_SIGNAL_APP_ID" : "4e81df51-996b-4f66-93ff-e921abb51b32"
 }
