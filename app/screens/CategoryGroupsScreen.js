@@ -37,7 +37,6 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
       ...selectedProperties
     ]);
     const rest = filter(remainingGroups, (g, i) => g.id !== currentGroupId);
-    console.log('the rest', rest);
     if (!validate.isEmpty(rest)) {
       setRemainingGroups(rest);
     } else {
@@ -46,8 +45,6 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
   });
 
   useMemo(() => {
-    console.log('here tracking', category.steps);
-    console.log('the selected Properties', selectedProperties);
     if (selectedProperties.length === category.steps) {
       dispatch(setProperties(selectedProperties));
     }

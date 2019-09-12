@@ -13,8 +13,6 @@ const PropertiesWidget = ({elements, colors}) => {
         borderColor: 'lightgrey',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 10,
-        marginTop: 10,
         borderWidth: 0.5,
         borderRadius: 10
       }}>
@@ -25,7 +23,7 @@ const PropertiesWidget = ({elements, colors}) => {
             style={{
               alignSelf: 'center',
               justifyContent: 'space-between',
-              minHeight: 70,
+              padding: 15,
               width: '25%'
             }}>
             <Icon
@@ -34,10 +32,20 @@ const PropertiesWidget = ({elements, colors}) => {
               size={25}
               color={colors.icon_theme_color}
             />
-            <Text style={{textAlign: 'center', fontFamily: text.font}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontFamily: text.font,
+                fontSize: text.small
+              }}>
               {p.name}
             </Text>
-            <Text style={{textAlign: 'center', fontFamily: text.font}}>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontFamily: text.font,
+                fontSize: text.small
+              }}>
               {p.value}
             </Text>
           </View>

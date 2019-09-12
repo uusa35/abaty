@@ -18,7 +18,13 @@ import {
 import {isIOS, width} from '../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {ONE_SIGNAL_APP_ID, ABATI, MALLR, HOMEKEY} from './../../app.json';
+import {
+  ONE_SIGNAL_APP_ID,
+  ABATI,
+  MALLR,
+  HOMEKEY,
+  ESCRAP
+} from './../../app.json';
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
@@ -173,8 +179,10 @@ class HomeScreen extends Component {
       colors,
       services,
       showIntroduction,
-      dispatch
+      dispatch,
+      navigation
     } = this.props;
+    console.log('categories', categories);
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
         {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
@@ -201,7 +209,9 @@ class HomeScreen extends Component {
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-          {!validate.isEmpty(designers) && validate.isArray(designers) ? (
+          {!validate.isEmpty(designers) &&
+          validate.isArray(designers) &&
+          (ABATI || MALLR) ? (
             <DesignerHorizontalWidget
               elements={designers}
               showName={true}
@@ -212,13 +222,29 @@ class HomeScreen extends Component {
               colors={colors}
             />
           ) : null}
-          {!validate.isEmpty(categories) && validate.isArray(categories) ? (
+          {!validate.isEmpty(categories) &&
+          validate.isArray(categories) &&
+          (ABATI || MALLR) ? (
             <CategoryHorizontalWidget
               elements={categories}
               showName={true}
               title="categories"
               dispatch={dispatch}
               colors={colors}
+              navigation={navigation}
+              type="products"
+            />
+          ) : null}
+          {!validate.isEmpty(categories) &&
+          validate.isArray(categories) &&
+          (HOMEKEY || ESCRAP) ? (
+            <CategoryHorizontalRoundedWidget
+              elements={categories}
+              colors={colors}
+              showName={true}
+              title="categories"
+              dispatch={dispatch}
+              navigation={navigation}
             />
           ) : null}
           {!validate.isEmpty(celebrities) &&
@@ -234,7 +260,7 @@ class HomeScreen extends Component {
               dispatch={dispatch}
             />
           ) : null}
-          {!validate.isEmpty(homeProducts) ? (
+          {!validate.isEmpty(homeProducts) && (ABATI || MALLR) ? (
             <ProductHorizontalWidget
               elements={homeProducts}
               showName={true}
@@ -243,7 +269,9 @@ class HomeScreen extends Component {
               colors={colors}
             />
           ) : null}
-          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+          {!validate.isEmpty(brands) &&
+          validate.isArray(brands) &&
+          (ABATI || MALLR) ? (
             <BrandHorizontalWidget
               elements={brands}
               showName={false}

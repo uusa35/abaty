@@ -178,7 +178,8 @@ class HomeKeyScreen extends Component {
       services,
       showIntroduction,
       classifieds,
-      dispatch
+      dispatch,
+      navigation
     } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
@@ -211,6 +212,7 @@ class HomeKeyScreen extends Component {
               showName={true}
               title="categories"
               dispatch={dispatch}
+              navigation={navigation}
             />
           ) : null}
           {!validate.isEmpty(classifieds) &&

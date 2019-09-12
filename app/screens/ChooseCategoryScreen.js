@@ -23,10 +23,6 @@ import {
 import ChooseCategoryItem from '../components/widgets/category/ChooseCategoryItem';
 
 const ChooseCategoryScreen = ({categories, dispatch}) => {
-  const handleClick = useCallback(() => {
-    console.log('click');
-  });
-  console.log('categories', categories);
   return (
     <View style={styles.container}>
       <FlatList
@@ -36,7 +32,11 @@ const ChooseCategoryScreen = ({categories, dispatch}) => {
         keyExtractor={(item, index) => index.toString()}
         data={categories}
         renderItem={({item}) => (
-          <ChooseCategoryItem category={item} dispatch={dispatch} />
+          <ChooseCategoryItem
+            category={item}
+            dispatch={dispatch}
+            key={item.id}
+          />
         )}></FlatList>
     </View>
   );

@@ -30,7 +30,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
             <CollapseBody>
               {map(category.children, (child, i) => {
                 return (
-                  <Fragment>
+                  <Fragment key={i}>
                     {!validate.isEmpty(child.children) && child.has_children ? (
                       <Collapse key={child.id}>
                         <CollapseHeader>
@@ -41,7 +41,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                             ]}>
                             <FastImage
                               style={{width: 50, height: 50}}
-                              source={{uri: category.thumb}}
+                              source={{uri: child.thumb}}
                               resizeMode="cover"
                             />
                             <Text style={styles.categoryTitle}>
@@ -117,7 +117,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                         }>
                         <FastImage
                           style={{width: 50, height: 50}}
-                          source={{uri: category.thumb}}
+                          source={{uri: child.thumb}}
                           resizeMode="cover"
                         />
                         <Text style={styles.categoryTitle}>{child.name}</Text>
@@ -127,23 +127,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                 );
               })}
             </CollapseBody>
-          ) : (
-            <TouchableOpacity
-              style={[
-                styles.categoryItemWrapper,
-                {height: 50, paddingLeft: 80}
-              ]}
-              onPress={() =>
-                dispatch({type: 'START_NEW_CLASSIFIED', payload: category})
-              }>
-              <FastImage
-                style={{width: 50, height: 50}}
-                source={{uri: category.thumb}}
-                resizeMode="cover"
-              />
-              <Text style={styles.categoryTitle}>{category.name}</Text>
-            </TouchableOpacity>
-          )}
+          ) : null}
         </Collapse>
       ) : (
         <TouchableOpacity

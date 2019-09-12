@@ -13,11 +13,17 @@ if (ENV === 'local') {
   };
 } else if (ENV === 'production') {
   module.exports = {
-    appUrlIos: ABATI ? 'http://abati.ideasowners.net/' : 'http://mallr.net/',
+    appUrlIos: ABATI
+      ? 'http://abati.ideasowners.net/'
+      : MALLR
+      ? 'http://mallr.net/'
+      : 'http://escrapco.com/',
     // appUrlIos: 'http://abati.ideasowners.net/',
     appUrlAndroid: ABATI
       ? 'http://abati.ideasowners.net/'
-      : 'http://mallr.net/',
+      : MALLR
+      ? 'http://mallr.net/'
+      : 'http://escrapco.com/',
     port: PORT
   };
 }

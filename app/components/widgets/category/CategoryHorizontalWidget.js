@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useCallback} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -9,28 +9,38 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts, getClassifieds} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
-import {useNavigation} from 'react-navigation-hooks';
+import {HOMEKEY, ESCRAP, MALLR, ABATI} from './../../../../app';
 
 const CategoryHorizontalWidget = ({
   elements,
   showName,
   title,
   dispatch,
-  colors
+  colors,
+  navigation
 }) => {
-  const {navigate} = useNavigation();
+  const handleProductClick = useCallback(c => {
+    return dispatch(
+      getSearchProducts({
+        name: c.name,
+        searchParams: {product_category_id: c.id},
+        redirect: true
+      })
+    );
+  });
+
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigate('CategoryIndex')}>
+        onPress={() => navigation.navigate('CategoryIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
@@ -55,15 +65,7 @@ const CategoryHorizontalWidget = ({
           <TouchableOpacity
             key={i}
             style={widgetStyles.btnStyle}
-            onPress={() =>
-              dispatch(
-                getSearchProducts({
-                  name: c.name,
-                  searchParams: {product_category_id: c.id},
-                  redirect: true
-                })
-              )
-            }>
+            onPress={() => handleProductClick(c)}>
             <FastImage
               source={{
                 uri: c.thumb,

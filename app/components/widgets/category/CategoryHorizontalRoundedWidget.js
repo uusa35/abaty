@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useCallback} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -16,16 +16,25 @@ import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
-import {useNavigation} from 'react-navigation-hooks';
 
 const CategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
   dispatch,
-  colors
+  colors,
+  navigation
 }) => {
-  const {navigate} = useNavigation();
+  const handleClassifiedClick = useCallback(c => {
+    return dispatch(
+      getClassifieds({
+        name: c.name,
+        searchParams: {classified_category_id: c.id},
+        redirect: true
+      })
+    );
+  });
+
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity
@@ -55,15 +64,7 @@ const CategoryHorizontalRoundedWidget = ({
           <TouchableOpacity
             key={i}
             style={widgetStyles.btnStyle}
-            onPress={() => {
-              dispatch(
-                getClassifieds({
-                  name: c.name,
-                  searchParams: {classified_category_id: c.id},
-                  redirect: true
-                })
-              );
-            }}>
+            onPress={() => handleClassifiedClick(c)}>
             <FastImage
               source={{
                 uri: c.thumb,
