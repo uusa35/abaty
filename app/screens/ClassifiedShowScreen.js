@@ -1,11 +1,4 @@
-import React, {
-  Fragment,
-  useState,
-  useContext,
-  useMemo,
-  useCallback,
-  useEffect
-} from 'react';
+import React, {Fragment, useState, useMemo, useEffect} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -29,10 +22,12 @@ import MapViewWidget from '../components/widgets/MapViewWidget';
 import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
 import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
 import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
+import CommentScreenModal from './CommentScreenModal';
 
 const ClassifiedShowScreen = ({
   classified,
   classifieds,
+  commentModal,
   dispatch,
   token,
   colors,
@@ -199,6 +194,12 @@ const ClassifiedShowScreen = ({
         ) : null}
       </ScrollView>
       <QuickCallActionBtnWidget colors={colors} mobile={classified.mobile} />
+      <CommentScreenModal
+        commentModal={commentModal}
+        elements={classified.comments}
+        model="classified"
+        id={classified.id}
+      />
     </Fragment>
   );
 };
@@ -207,6 +208,7 @@ function mapStateToProps(state) {
   return {
     classified: state.classified,
     classifieds: state.classifieds,
+    commentModal: state.commentModal,
     token: state.token,
     cart: state.cart,
     colors: state.settings.colors,

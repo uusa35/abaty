@@ -170,7 +170,6 @@ export function* startGetClassifiedScenario(action) {
     yield call(enableLoadingContent);
     const classified = yield call(api.getClassified, action.payload);
     if (!validate.isEmpty(classified) && validate.isObject(classified)) {
-      console.log('here');
       yield put({type: actions.SET_CLASSIFIED, payload: classified});
       yield all([
         put(
@@ -848,8 +847,8 @@ export function* startSubmitAuthScenario(action) {
     const user = yield call(api.authenticate, {email, password, player_id});
     if (!validate.isEmpty(user) && validate.isObject(user)) {
       yield all([
-        put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_AUTH, payload: user}),
+        put({type: actions.SET_TOKEN, payload: user.api_token}),
         put({type: actions.SET_ORDERS, payload: user.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(setProductFavorites, user.product_favorites),

@@ -26,6 +26,7 @@ class App extends Component<Props> {
   componentDidMount() {
     codePush.allowRestart();
     const {dispatch, currency, lang, token} = this.props;
+    console.log('the token', token);
     dispatch(appBootstrap());
     codePush.checkForUpdate().then(update => {
       if (!update) {

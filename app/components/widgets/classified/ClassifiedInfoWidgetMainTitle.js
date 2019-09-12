@@ -1,14 +1,19 @@
 import React, {useContext, useEffect, useState, useMemo} from 'react';
 import FastImage from 'react-native-fast-image';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {images, text} from '../../../constants';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {Icon} from 'react-native-elements';
-import {toggleClassifiedFavorite, toggleFavorite} from '../../../redux/actions';
+import {Badge, Icon} from 'react-native-elements';
+import {
+  showCommentModal,
+  toggleClassifiedFavorite,
+  toggleFavorite
+} from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
+import CommentScreenModal from '../../../screens/CommentScreenModal';
 
 const ClassifiedInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -45,7 +50,7 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{width: '75%'}}>
+      <View style={{width: '65%'}}>
         <Text
           style={{
             paddingRight: 5,
@@ -124,7 +129,12 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
           ) : null}
         </View>
       </View>
-      <View style={{justifyContent: 'flex-end'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          flex: 1
+        }}>
         {!guest ? (
           <Icon
             onPress={() => {
@@ -144,6 +154,20 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
             color="#FCD12A"
           />
         ) : null}
+        <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
+          <Icon
+            name="comment-account-outline"
+            type="material-community"
+            color={colors.header_tow_theme_color}
+            size={25}
+            hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+          />
+          <Badge
+            status="warning"
+            value={element.commentsCount}
+            containerStyle={{position: 'absolute', top: -10, right: -4}}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
