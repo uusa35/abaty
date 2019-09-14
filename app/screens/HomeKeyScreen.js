@@ -6,7 +6,9 @@ import {
   ScrollView,
   View,
   AppState,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -16,10 +18,18 @@ import {
   refetchHomeElements,
   setPlayerId
 } from '../redux/actions';
-import {isIOS, width} from '../constants';
+import {Icon} from 'react-native-elements';
+import I18n from './../I18n';
+import {isIOS, width, text} from '../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {ONE_SIGNAL_APP_ID, ABATI, MALLR, HOMEKEY} from './../../app.json';
+import {
+  ONE_SIGNAL_APP_ID,
+  ABATI,
+  MALLR,
+  HOMEKEY,
+  ESCRAP
+} from './../../app.json';
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
@@ -37,6 +47,7 @@ import CollectionHorizontalWidget from '../components/widgets/collection/Collect
 import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
 import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
+import widgetStyles from '../components/widgets/widgetStyles';
 
 class HomeKeyScreen extends Component {
   constructor(props) {
@@ -156,11 +167,6 @@ class HomeKeyScreen extends Component {
     return isConnected ? this.props.dispatch(setPlayerId(device.userId)) : null;
   };
 
-  _refetchElements = () => {
-    this.props.dispatch(refetchHomeElements());
-    this.setState({refresh: false});
-  };
-
   render() {
     const {
       categories,
@@ -179,7 +185,8 @@ class HomeKeyScreen extends Component {
       showIntroduction,
       classifieds,
       dispatch,
-      navigation
+      navigation,
+      guest
     } = this.props;
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
@@ -189,11 +196,7 @@ class HomeKeyScreen extends Component {
           refreshControl={
             <RefreshControl
               refreshing={this.state.refresh}
-              onRefresh={() =>
-                dispatch(
-                  getClassifieds({searchParams: {on_home: true, page: 1}})
-                )
-              }
+              onRefresh={() => dispatch(refetchHomeElements())}
             />
           }
           showsHorizontalScrollIndicator={false}
@@ -215,9 +218,10 @@ class HomeKeyScreen extends Component {
               navigation={navigation}
             />
           ) : null}
-          {!validate.isEmpty(classifieds) &&
-          validate.isArray(classifieds) &&
-          HOMEKEY ? (
+          {(!validate.isEmpty(classifieds) &&
+            validate.isArray(classifieds) &&
+            HOMEKEY) ||
+          ESCRAP ? (
             <ClassifiedListHorizontal
               classifieds={classifieds}
               showName={true}
@@ -229,6 +233,33 @@ class HomeKeyScreen extends Component {
               searchElements={{on_home: true}}
             />
           ) : null}
+          <TouchableOpacity
+            onPress={() =>
+              !guest
+                ? navigation.navigate('ChooseCategory')
+                : navigation.navigate('Login')
+            }
+            style={[
+              widgetStyles.newClassifiedBtnWrapper,
+              {backgroundColor: colors.btn_bg_theme_color}
+            ]}>
+            <View style={[widgetStyles.newClassifiedWrapper]}>
+              <Text
+                style={[
+                  widgetStyles.newClassifiedTitle,
+                  {color: colors.btn_text_theme_color}
+                ]}>
+                {I18n.t('new_classified')}
+              </Text>
+              <Icon
+                name="home"
+                type="material-icon"
+                size={120}
+                color={colors.btn_text_theme_color}
+                containerStyle={{opacity: 0.8}}
+              />
+            </View>
+          </TouchableOpacity>
         </ScrollView>
         {show_commercials ? (
           <View style={{flex: 0.2}}>
@@ -261,7 +292,8 @@ function mapStateToProps(state) {
     services: state.services,
     homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    classifieds: state.classifieds
+    classifieds: state.classifieds,
+    guest: state.guest
   };
 }
 

@@ -9,17 +9,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BrandList from '../components/widgets/brand/BrandList';
-import FastImage from 'react-native-fast-image';
-import {images, text} from '../constants';
-import {Icon} from 'react-native-elements';
-import {isRTL} from '../I18n';
-import {
-  Collapse,
-  CollapseHeader,
-  CollapseBody,
-  AccordionList
-} from 'accordion-collapse-react-native';
+import {text} from '../constants';
 import ChooseCategoryItem from '../components/widgets/category/ChooseCategoryItem';
 
 const ChooseCategoryScreen = ({categories, dispatch}) => {

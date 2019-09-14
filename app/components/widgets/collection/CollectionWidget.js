@@ -34,7 +34,8 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
         dispatch(
           getSearchProducts({
             name: element.slug,
-            searchElements: {collection_id: element.id}
+            searchParams: {collection_id: element.id},
+            redirect: true
           })
         );
       }}>

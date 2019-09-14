@@ -36,10 +36,10 @@ const CategoryHorizontalRoundedWidget = ({
   });
 
   return (
-    <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
+    <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigate('CategoryIndex')}>
+        onPress={() => navigation.navigate('CategoryIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

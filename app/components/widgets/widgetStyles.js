@@ -59,6 +59,36 @@ const widgetStyles = StyleSheet.create({
     alignItems: 'center',
     width: 80,
     height: '100%'
+  },
+  newClassifiedBtnWrapper: {
+    width: '90%',
+    borderRadius: 20,
+    height: 100,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowOpacity: 0.38,
+    shadowRadius: 5.0,
+    elevation: 1
+  },
+  newClassifiedWrapper: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    padding: 5
+  },
+  newClassifiedTitle: {
+    fontFamily: text.font,
+    fontSize: text.large,
+    paddingRight: 20,
+    paddingLeft: 20
   }
 });
 

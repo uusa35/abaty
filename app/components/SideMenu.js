@@ -21,7 +21,7 @@ import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {MALLR, ABATI, HOMEKEY} from './../../app';
+import {MALLR, ABATI, HOMEKEY, ESCRAP} from './../../app';
 
 const SideMeu = ({
   menuBg,
@@ -93,7 +93,7 @@ const SideMeu = ({
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
-            {HOMEKEY ? (
+            {HOMEKEY || ESCRAP ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('HomeKey')}
                 style={styles.menuBtn}>
@@ -112,7 +112,7 @@ const SideMeu = ({
                 </Text>
               </TouchableOpacity>
             ) : null}
-            {HOMEKEY ? (
+            {HOMEKEY || ESCRAP ? (
               <TouchableOpacity
                 onPress={() =>
                   !guest

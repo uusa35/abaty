@@ -182,7 +182,6 @@ class HomeScreen extends Component {
       dispatch,
       navigation
     } = this.props;
-    console.log('categories', categories);
     return (
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
         {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
@@ -233,18 +232,6 @@ class HomeScreen extends Component {
               colors={colors}
               navigation={navigation}
               type="products"
-            />
-          ) : null}
-          {!validate.isEmpty(categories) &&
-          validate.isArray(categories) &&
-          (HOMEKEY || ESCRAP) ? (
-            <CategoryHorizontalRoundedWidget
-              elements={categories}
-              colors={colors}
-              showName={true}
-              title="categories"
-              dispatch={dispatch}
-              navigation={navigation}
             />
           ) : null}
           {!validate.isEmpty(celebrities) &&

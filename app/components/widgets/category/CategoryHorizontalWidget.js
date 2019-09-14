@@ -37,7 +37,7 @@ const CategoryHorizontalWidget = ({
   });
 
   return (
-    <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
+    <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
         onPress={() => navigation.navigate('CategoryIndex')}>

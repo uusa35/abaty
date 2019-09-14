@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  ImageBackground
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Input, Icon} from 'react-native-elements';
@@ -20,7 +21,7 @@ import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
-import {map} from 'lodash';
+import {map, filter, remove, first} from 'lodash';
 import widgetStyles from '../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
 
@@ -48,6 +49,7 @@ const ClassifiedStoreScreen = ({
     !validate.isEmpty(auth) ? auth.description : null
   );
   const [images, setImages] = useState('');
+  const [image, setImage] = useState('');
   const [sampleLogo, setSampleLogo] = useState('');
 
   const openPicker = useCallback(() => {
@@ -61,8 +63,14 @@ const ClassifiedStoreScreen = ({
       maxFiles: 5
     }).then(images => {
       console.log('images', images);
+      setImage(first(images));
       setImages(images);
     });
+  });
+
+  const removeImage = useCallback(i => {
+    const newImages = remove(images, (img, index) => i !== index);
+    setImages(newImages);
   });
 
   return (
@@ -87,6 +95,7 @@ const ClassifiedStoreScreen = ({
           color="lightgrey"
           size={90}
           containerStyle={{
+            paddingTop: 10,
             margin: 15,
             width: 120,
             height: 120,
@@ -116,11 +125,33 @@ const ClassifiedStoreScreen = ({
             {borderWidth: 1, borderColor: 'lightgrey', minHeight: 120}
           ]}>
           {map(images, (img, i) => (
-            <FastImage
+            <ImageBackground
               key={i}
               source={{uri: img.sourceURL}}
-              style={{width: 100, height: 100, marginRight: 5, marginLeft: 5}}
-            />
+              style={{width: 100, height: 100, marginRight: 5, marginLeft: 5}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  backgroundColor: 'white',
+                  opacity: 0.7
+                }}>
+                <Icon
+                  size={40}
+                  name="ios-checkmark-circle"
+                  type="ionicon"
+                  color={img.sourceURL == image.sourceURL ? 'green' : 'black'}
+                  onPress={() => setImage(img)}
+                />
+                <Icon
+                  size={30}
+                  name="close"
+                  type="evil-icons"
+                  onPress={() => removeImage(i)}
+                />
+              </View>
+            </ImageBackground>
           ))}
         </ScrollView>
       ) : null}
@@ -143,6 +174,7 @@ const ClassifiedStoreScreen = ({
           onChangeText={text => setName(text)}
           placeholder={I18n.t('title')}
           label={I18n.t('title')}
+          value="this is a test"
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -310,6 +342,7 @@ const ClassifiedStoreScreen = ({
                 mobile,
                 country_id: country.id,
                 area_id: area.id,
+                image,
                 images,
                 properties
               })

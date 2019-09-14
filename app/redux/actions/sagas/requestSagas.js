@@ -144,7 +144,6 @@ export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
-    console.log('classifieds', classifieds);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
         put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
@@ -160,9 +159,14 @@ export function* startGetClassifiedsScenario(action) {
           })
         );
       }
+    } else {
+      throw classifieds;
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
+    yield all([
+      call(disableLoading),
+      call(enableWarningMessage, I18n.t('no_classifieds'))
+    ]);
   }
 }
 
