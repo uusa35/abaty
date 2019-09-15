@@ -1,16 +1,15 @@
-import React, {Fragment, useContext} from 'react';
+import React, {useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  View,
-  Text
+  View
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getClassified, getProduct} from '../../../redux/actions';
+import {getClassified} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, text, width} from '../../../constants';
+import {images} from '../../../constants';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 

@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
+import {getConvertedFinalPrice} from '../../../helpers';
 
 const ClassifiedWidgetHorizontal = ({
   element,
@@ -21,7 +22,9 @@ const ClassifiedWidgetHorizontal = ({
   widthVal = '100%',
   heightVal = '100%'
 }) => {
-  const {currency_symbol, token} = useContext(GlobalValuesContext);
+  const {currency_symbol, token, exchange_rate} = useContext(
+    GlobalValuesContext
+  );
   return (
     <TouchableOpacity
       key={element.id}
@@ -73,7 +76,8 @@ const ClassifiedWidgetHorizontal = ({
             {element.name}
           </Text>
           <Text style={{textAlign: 'left', fontFamily: text.font}}>
-            {element.price} {currency_symbol}
+            {getConvertedFinalPrice(element.price, exchange_rate)}{' '}
+            {currency_symbol}
           </Text>
         </View>
       </ImageBackground>

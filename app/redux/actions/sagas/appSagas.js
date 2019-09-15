@@ -49,7 +49,8 @@ import {
   startGetClassifiedScenario,
   getServiceIndex,
   startToggleProductFavoriteScenario,
-  startToggleClassifiedFavoriteScenario
+  startToggleClassifiedFavoriteScenario,
+  startStoreClassifiedScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -119,6 +120,10 @@ export function* getClassified() {
 
 export function* setProperties() {
   yield takeLatest(actions.SET_PROPERTIES, startSetPropertiesScenario);
+}
+
+export function* storeClassified() {
+  yield takeLatest(actions.STORE_CLASSIFIED, startStoreClassifiedScenario);
 }
 
 export function* startSetPropertiesScenario() {

@@ -148,6 +148,15 @@ export const registerConstrains = {
   address: {length: {minimum: 3}, presence: true}
 };
 
+export const storeClassifiedConstrains = {
+  name: {length: {minimum: 3}, presence: true},
+  price: {length: {minimum: 1}, presence: true},
+  mobile: {length: {minimum: 6}, presence: true},
+  address: {length: {minimum: 3}, presence: true},
+  description: {length: {minimum: 5}, presence: true},
+  images: {presence: true}
+};
+
 export const commentStoreConstrains = {
   title: {length: {minimum: 3}, presence: true},
   content: {length: {minimum: 6}, presence: true}

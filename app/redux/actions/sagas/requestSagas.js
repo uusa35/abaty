@@ -20,6 +20,7 @@ import {startAppBootStrap} from './appSagas';
 import {
   commentStoreConstrains,
   registerConstrains,
+  storeClassifiedConstrains,
   submitLogin
 } from '../../../constants';
 import {axiosInstance} from '../api';
@@ -952,6 +953,61 @@ export function* startUpdateUserScenario(action) {
         : null || result['mobile']
         ? result['mobile'].toString()
         : null || result['address']
+        ? result['address'].toString()
+        : null;
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
+}
+
+export function* startStoreClassifiedScenario(action) {
+  try {
+    console.log('the action', action.payload);
+    const {
+      name,
+      mobile,
+      email,
+      address,
+      description,
+      images,
+      price
+    } = action.payload;
+    const result = validate(
+      {name, mobile, email, address, images, description, price},
+      storeClassifiedConstrains
+    );
+    console.log('the result', result);
+    if (validate.isEmpty(result)) {
+      console.log('inside result');
+      yield call(enableLoading);
+      const classified = yield call(api.storeClassified, action.payload);
+      console.log('classified', classified);
+      debugger;
+      if (!validate.isEmpty(classified) && validate.isObject(classified)) {
+        console.log('the classified success', classified);
+        yield all([
+          call(disableLoading),
+          call(enableSuccessMessage, I18n.t('update_information_success'))
+          // put(NavigationActions.navigate('HomeKey'))
+        ]);
+      } else {
+        console.log('classified failure', classified);
+        throw classified;
+      }
+    } else {
+      console.log('the else case', result);
+      throw result['name']
+        ? result['name'].toString()
+        : null || result['email']
+        ? result['email'].toString()
+        : null || result['mobile']
+        ? result['mobile'].toString()
+        : null || result['address']
+        ? result['description'].toString()
+        : null || result['description']
+        ? result['images'].toString()
+        : null || result['images']
         ? result['address'].toString()
         : null;
     }

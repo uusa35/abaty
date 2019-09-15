@@ -515,5 +515,6 @@
   "classified_properties" : "مواصفات الإعلان",
   "add_your_properties" : "إضافة مواصفات الإعلان",
   "save_classified" : "حفظ الإعلان",
-  "category_name" : "إسم التصنيف :"
+  "category_name" : "إسم التصنيف :",
+  "only_whatsapp" : "التواصل عن طريق الواتس اب فقط"
 }

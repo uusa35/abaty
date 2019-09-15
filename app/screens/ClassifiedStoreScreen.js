@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -8,40 +8,32 @@ import {
   ImageBackground
 } from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Input, Icon} from 'react-native-elements';
+import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../I18n';
-import {images, text, width} from '../constants';
-import {
-  showAreaModal,
-  showCountryModal,
-  storeClassified
-} from '../redux/actions';
+import {images, text} from '../constants';
+import {showCountryModal, storeClassified} from '../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
-import {map, filter, remove, first} from 'lodash';
+import {map, remove, first} from 'lodash';
 import widgetStyles from '../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
 
 const ClassifiedStoreScreen = ({
   auth,
-  categories,
+  category,
   colors,
   country,
   area,
   dispatch,
-  properties,
-  categoryName
+  properties
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
-  const [email, setEmail] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
-  );
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null
   );
+  const [price, setPrice] = useState('');
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
@@ -50,6 +42,7 @@ const ClassifiedStoreScreen = ({
   );
   const [images, setImages] = useState('');
   const [image, setImage] = useState('');
+  const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);
   const [sampleLogo, setSampleLogo] = useState('');
 
   const openPicker = useCallback(() => {
@@ -224,10 +217,10 @@ const ClassifiedStoreScreen = ({
             textAlign: isRTL ? 'right' : 'left'
           }}
           shake={true}
-          keyboardType="email-address"
-          onChangeText={text => setEmail(text)}
-          placeholder={email ? email : I18n.t('email')}
-          label={I18n.t('email')}
+          keyboardType="number-pad"
+          onChangeText={text => setMobile(text)}
+          placeholder={mobile ? mobile : I18n.t('mobile')}
+          label={I18n.t('mobile')}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -250,9 +243,10 @@ const ClassifiedStoreScreen = ({
           }}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={text => setMobile(text)}
-          placeholder={mobile ? mobile : I18n.t('mobile')}
-          label={I18n.t('mobile')}
+          onChangeText={text => setPrice(text)}
+          placeholder={I18n.t('price')}
+          value="12"
+          label={I18n.t('price')}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -260,6 +254,26 @@ const ClassifiedStoreScreen = ({
             textAlign: 'left'
           }}
         />
+        <View
+          style={{
+            // marginTop: 0,
+            marginBottom: 10,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+          <CheckBox
+            containerStyle={{width: '90%'}}
+            title={I18n.t('only_whatsapp')}
+            iconType="material"
+            checkedIcon="check-box"
+            uncheckedIcon="check-box-outline-blank"
+            checked={onlyWhatsapp}
+            onPress={() => setOnlyWhatsapp(!onlyWhatsapp)}
+            textStyle={{fontFamily: text.font, paddingTop: 5}}
+          />
+        </View>
         <TouchableOpacity
           onPress={() => {
             dispatch(showCountryModal());
@@ -317,7 +331,7 @@ const ClassifiedStoreScreen = ({
         {!validate.isEmpty(properties) ? (
           <ClassifiedStorePropertiesWidget
             elements={properties}
-            name={categoryName}
+            name={category.name}
           />
         ) : null}
         <Button
@@ -336,15 +350,18 @@ const ClassifiedStoreScreen = ({
             dispatch(
               storeClassified({
                 user_id: auth.id,
-                api_token: auth.token,
+                api_token: auth.api_token,
                 name,
+                address,
                 description,
                 mobile,
+                price,
                 country_id: country.id,
-                area_id: area.id,
+                area_id: area ? area.id : null,
                 image,
                 images,
-                properties
+                properties,
+                only_whatsapp: onlyWhatsapp
               })
             )
           }
@@ -356,7 +373,7 @@ const ClassifiedStoreScreen = ({
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
+    category: state.category,
     auth: state.auth,
     country: state.country,
     area: state.area,
@@ -367,13 +384,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ClassifiedStoreScreen);
+export default connect(mapStateToProps)(React.memo(ClassifiedStoreScreen));
 
 ClassifiedStoreScreen.propTypes = {
   auth: PropTypes.object.isRequired,
   country: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
-  categories: PropTypes.array.isRequired,
+  category: PropTypes.object.isRequired,
   properties: PropTypes.array.isRequired
 };
 

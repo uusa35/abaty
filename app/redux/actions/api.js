@@ -8,6 +8,7 @@ import {
   getImageName,
   getImagePath
 } from '../../helpers';
+import {map} from 'lodash';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl
@@ -348,6 +349,65 @@ export async function updateUser(params) {
     .post(`user/${params.id}`, form)
     .then(r => r.data)
     .catch(e => e.response.data.message);
+}
+
+export async function storeClassified(params) {
+  console.log('params', params);
+  const {
+    name,
+    email,
+    image,
+    images,
+    api_token,
+    mobile,
+    address,
+    description,
+    area_id,
+    country_id,
+    properties,
+    price
+  } = params;
+  const form = new FormData();
+  // if (checkImage(image)) {
+  //   form.append('image', {
+  //     uri: getImagePath(image),
+  //     name: getImageName(image),
+  //     type: getImageExtension(image)
+  //   });
+  // }
+  // const filteredImages = filter(
+  //   images,
+  //   (img, i) => img.sourceURL !== image.sourceURL
+  // );
+  // map(filteredImages, (img, i) => {
+  //   if (checkImage(img)) {
+  //     form.append(`images[${i}]`, {
+  //       uri: getImagePath(img),
+  //       name: getImageName(img),
+  //       type: getImageExtension(img)
+  //     });
+  //   }
+  // });
+  form.append('name_ar', name);
+  form.append('name_en', name);
+  form.append('mobile', mobile);
+  form.append('address', address);
+  form.append('country_id', country_id);
+  form.append('area_id', area_id);
+  form.append('mobile', mobile);
+  form.append('description_ar', description);
+  form.append('description_en', description);
+  form.append('price', price);
+  form.append('api_token', api_token);
+  form.append('properties', properties);
+  // form.append('_method', 'put');
+  console.log('the form', form);
+  return await axiosInstance
+    .post(`classified`, form)
+    .then(r => console.log('the r', r.data))
+    // .then(r => r.data)
+    .catch(e => console.log('the e', e.response));
+  // .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {
