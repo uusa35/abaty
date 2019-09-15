@@ -27,6 +27,7 @@ const ImagesWidget = ({
   showTitle = false,
   height = 200,
   width = 200,
+  resizeMode = 'cover',
   colors
 }) => {
   const {navigate} = useNavigation();
@@ -75,7 +76,7 @@ const ImagesWidget = ({
               }}
               loadingIndicatorSource={images.logo}
               style={{width, height}}
-              resizeMode="cover">
+              resizeMode={resizeMode}>
               {showLabels && i === 0 ? (
                 <View
                   style={{

@@ -78,6 +78,7 @@ const ClassifiedShowScreen = ({
         contentInset={{bottom: 50}}>
         <ImagesWidget
           colors={colors}
+          resizeMode="cover"
           elements={classified.images
             .concat({id: classified.id, large: classified.large})
             .reverse()}
@@ -118,17 +119,21 @@ const ClassifiedShowScreen = ({
                 )
               }
             />
-            {map(classified.properties, (p, i) => (
-              <ClassifiedInfoWidgetElement
-                key={i}
-                elementName={p.name}
-                name={p.value}
-                showIcon={true}
-                translate={false}
-                iconName={p.icon}
-                colors={colors}
-              />
-            ))}
+            {classified.has_properties ? (
+              <Fragment>
+                {map(classified.properties, (p, i) => (
+                  <ClassifiedInfoWidgetElement
+                    key={i}
+                    elementName={p.name}
+                    name={p.value}
+                    showIcon={true}
+                    translate={false}
+                    iconName={p.icon}
+                    colors={colors}
+                  />
+                ))}
+              </Fragment>
+            ) : null}
             {classified.address ? (
               <ClassifiedInfoWidgetElement
                 elementName="address"
@@ -166,7 +171,7 @@ const ClassifiedShowScreen = ({
                 link={() => Linking.openURL(`tel:${classified.user.mobile}`)}
               />
             )}
-            {!validate.isEmpty(classified.longitude || classified.latitude) ? (
+            {classified.has_map ? (
               <MapViewWidget
                 latitude={classified.latitude}
                 longitude={classified.longitude}

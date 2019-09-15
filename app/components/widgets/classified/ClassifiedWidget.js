@@ -23,7 +23,8 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '100%',
+          width: '90%',
+          height: 450,
           borderWidth: 1,
           borderColor: 'lightgrey',
           borderRadius: 20,
@@ -47,11 +48,10 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
         style={styles.image}
         imageStyle={{
           width: '100%',
-          height: '100%',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20
+          height: 450,
+          borderRadius: 20
         }}
-        resizeMode="stretch">
+        resizeMode="cover">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
           {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
         </View>

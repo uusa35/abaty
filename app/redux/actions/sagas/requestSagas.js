@@ -963,7 +963,6 @@ export function* startUpdateUserScenario(action) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
-    console.log('the action', action.payload);
     const {
       name,
       mobile,
@@ -988,7 +987,7 @@ export function* startStoreClassifiedScenario(action) {
           // put({type: actions.STORE_CLASSIFIED, payload: classified}),
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
-          call(getClassified({id: classified.id, api_token}))
+          put(NavigationActions.navigate({routeName: 'HomeKey'}))
         ]);
       } else {
         console.log('classified failure', classified);

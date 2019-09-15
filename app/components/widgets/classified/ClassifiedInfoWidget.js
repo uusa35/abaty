@@ -17,14 +17,17 @@ const ClassifiedInfoWidget = ({
       onPress={() => console.log('clicked')}
       style={{
         width: '100%',
-        minHeight: 50,
         flex: 1,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        position: 'absolute',
+        bottom: -5
       }}>
       <Fragment>
         <View
           style={{
             flexDirection: 'row',
+            backgroundColor: 'white',
+            opacity: 0.7,
             justifyContent: 'space-between',
             alignItems: 'center',
             padding: 15

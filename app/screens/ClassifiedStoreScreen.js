@@ -47,8 +47,8 @@ const ClassifiedStoreScreen = ({
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({
-      compressImageMaxWidth: 1440,
-      compressImageMaxHeight: 1080,
+      compressImageMaxWidth: 1080,
+      compressImageMaxHeight: 1440,
       multiple: true,
       cropping: true,
       includeBase64: true,

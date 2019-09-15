@@ -9,12 +9,13 @@ const PropertiesWidget = ({elements, colors}) => {
     <View
       style={{
         width: '100%',
+        backgroundColor: 'white',
+        opacity: 0.7,
         flexDirection: 'row',
         borderColor: 'lightgrey',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 0.5,
-        borderRadius: 10
+        borderWidth: 0.5
       }}>
       {map(filter(elements, e => (e.on_home ? e : null)), (p, i) => {
         return (
@@ -23,12 +24,10 @@ const PropertiesWidget = ({elements, colors}) => {
             style={{
               justifyContent: 'space-between',
               alignItems: 'center',
-              padding: 5,
+              alignSelf: 'center',
+              padding: 10,
               width: '25%',
-              borderRightWidth: 0.5,
-              borderLeftWidth: 0.5,
-              borderColor: 'lightgrey',
-              minHeight: 75
+              minHeight: 85
             }}>
             <Icon
               name={p.icon}

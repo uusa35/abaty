@@ -84,8 +84,8 @@ const ClassifiedListHorizontal = ({
           style={[widgetStyles.wrapper, {}]}>
           {map(elements, (c, i) => (
             <ClassifiedWidgetHorizontal
-              widthVal={width - 200}
-              heightVal={180}
+              widthVal={width / 2}
+              heightVal={280}
               key={i}
               dispatch={dispatch}
               element={c}

@@ -34,6 +34,7 @@ const ClassifiedWidgetHorizontal = ({
           width: widthVal,
           height: heightVal,
           margin: 5,
+          borderRadius: 15,
           justifyContent: 'flex-start',
           alignItems: 'center',
           alignSelf: 'center'
@@ -53,7 +54,7 @@ const ClassifiedWidgetHorizontal = ({
         imageStyle={{
           width: widthVal,
           height: heightVal,
-          borderRadius: 20,
+          borderRadius: 15,
           borderWidth: 0.5,
           borderColor: 'lightgrey'
         }}
@@ -69,8 +70,8 @@ const ClassifiedWidgetHorizontal = ({
             padding: 10,
             backgroundColor: 'white',
             opacity: 0.7,
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 20
+            borderBottomLeftRadius: 15,
+            borderBottomRightRadius: 15
           }}>
           <Text style={{textAlign: 'left', fontFamily: text.font}}>
             {element.name}
