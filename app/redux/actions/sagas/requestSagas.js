@@ -24,7 +24,7 @@ import {
   submitLogin
 } from '../../../constants';
 import {axiosInstance} from '../api';
-import {hideCommentModal} from '../index';
+import {getClassified, hideCommentModal} from '../index';
 import {
   checkImage,
   getImageExtension,
@@ -971,25 +971,24 @@ export function* startStoreClassifiedScenario(action) {
       address,
       description,
       images,
-      price
+      price,
+      api_token
     } = action.payload;
     const result = validate(
       {name, mobile, email, address, images, description, price},
       storeClassifiedConstrains
     );
-    console.log('the result', result);
     if (validate.isEmpty(result)) {
-      console.log('inside result');
       yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
       console.log('classified', classified);
-      debugger;
       if (!validate.isEmpty(classified) && validate.isObject(classified)) {
         console.log('the classified success', classified);
         yield all([
+          // put({type: actions.STORE_CLASSIFIED, payload: classified}),
           call(disableLoading),
-          call(enableSuccessMessage, I18n.t('update_information_success'))
-          // put(NavigationActions.navigate('HomeKey'))
+          call(enableSuccessMessage, I18n.t('update_information_success')),
+          call(getClassified({id: classified.id, api_token}))
         ]);
       } else {
         console.log('classified failure', classified);

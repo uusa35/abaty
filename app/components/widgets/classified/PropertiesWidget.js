@@ -21,10 +21,14 @@ const PropertiesWidget = ({elements, colors}) => {
           <View
             key={i}
             style={{
-              alignSelf: 'center',
               justifyContent: 'space-between',
-              padding: 15,
-              width: '25%'
+              alignItems: 'center',
+              padding: 5,
+              width: '25%',
+              borderRightWidth: 0.5,
+              borderLeftWidth: 0.5,
+              borderColor: 'lightgrey',
+              minHeight: 75
             }}>
             <Icon
               name={p.icon}

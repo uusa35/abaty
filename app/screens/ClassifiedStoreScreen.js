@@ -33,7 +33,7 @@ const ClassifiedStoreScreen = ({
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null
   );
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState(12);
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
@@ -47,13 +47,14 @@ const ClassifiedStoreScreen = ({
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({
-      width: 1440,
-      height: 1080,
+      compressImageMaxWidth: 1440,
+      compressImageMaxHeight: 1080,
       multiple: true,
       cropping: true,
       includeBase64: true,
       includeExif: true,
-      maxFiles: 5
+      maxFiles: 5,
+      compressImageQuality: 0.5
     }).then(images => {
       console.log('images', images);
       setImage(first(images));
@@ -167,7 +168,6 @@ const ClassifiedStoreScreen = ({
           onChangeText={text => setName(text)}
           placeholder={I18n.t('title')}
           label={I18n.t('title')}
-          value="this is a test"
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -245,7 +245,6 @@ const ClassifiedStoreScreen = ({
           keyboardType="number-pad"
           onChangeText={text => setPrice(text)}
           placeholder={I18n.t('price')}
-          value="12"
           label={I18n.t('price')}
           labelStyle={{
             paddingBottom: 10,
@@ -361,6 +360,7 @@ const ClassifiedStoreScreen = ({
                 image,
                 images,
                 properties,
+                category_id: category.id,
                 only_whatsapp: onlyWhatsapp
               })
             )

@@ -150,7 +150,7 @@ export const registerConstrains = {
 
 export const storeClassifiedConstrains = {
   name: {length: {minimum: 3}, presence: true},
-  price: {length: {minimum: 1}, presence: true},
+  price: {presence: true},
   mobile: {length: {minimum: 6}, presence: true},
   address: {length: {minimum: 3}, presence: true},
   description: {length: {minimum: 5}, presence: true},
