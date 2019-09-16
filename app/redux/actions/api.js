@@ -404,8 +404,11 @@ export async function storeClassified(elements) {
   form.append('description_en', description);
   form.append('price', price);
   form.append('api_token', api_token);
-  form.append('properties[]', classifiedProps);
-  console.log('props', classifiedProps);
+  map(classifiedProps, (prop, i) => {
+    form.append(`properties[${i}][property_id]`, prop.property_id);
+    form.append(`properties[${i}][value]`, prop.value);
+  });
+  console.log('the form', form);
   return await axiosInstance
     .post(`classified`, form)
     .then(r => r.data)

@@ -1,6 +1,10 @@
 import {fork, take, all} from 'redux-saga/effects';
 import * as appSagas from './appSagas';
 import * as langSagas from './langSagas';
+import * as productSagas from './productSagas';
+import * as serviceSagas from './serviceSagas';
+import * as userSagas from './userSagas';
+import * as classifiedSagas from './classifiedSagas';
 import {networkSaga} from 'react-native-offline';
 import {REHYDRATE, PURGE} from 'redux-persist/lib/constants';
 
@@ -8,17 +12,29 @@ export default function* rootSaga() {
   yield all([
     fork(appSagas.appBootstrap),
     fork(appSagas.refetchHomeCategories),
-    fork(appSagas.refetchUsers),
-    fork(appSagas.getUsers),
-    fork(appSagas.getUser),
-    fork(appSagas.getDesigner),
-    fork(appSagas.getProduct),
-    fork(appSagas.getService),
-    fork(appSagas.getSearchProducts),
-    fork(appSagas.getSearchServices),
-    fork(appSagas.getAllProducts),
-    fork(appSagas.getCollections),
-    fork(appSagas.toggleProductFavorite),
+    fork(userSagas.refetchUsers),
+    fork(userSagas.getUsers),
+    fork(userSagas.getUser),
+    fork(userSagas.getDesigner),
+    fork(userSagas.submitAuth),
+    fork(userSagas.googleLogin),
+    fork(userSagas.reAuthenticate),
+    fork(userSagas.updateUser),
+    fork(userSagas.submitLogout),
+    fork(userSagas.register),
+    fork(userSagas.rateUser),
+    fork(userSagas.becomeFan),
+    fork(productSagas.getProduct),
+    fork(productSagas.getSearchProducts),
+    fork(serviceSagas.getService),
+    fork(serviceSagas.getSearchServices),
+    fork(productSagas.getAllProducts),
+    fork(productSagas.getCollections),
+    fork(classifiedSagas.getClassifieds),
+    fork(classifiedSagas.getClassified),
+    fork(classifiedSagas.startNewClassified),
+    fork(classifiedSagas.storeClassified),
+    fork(productSagas.toggleProductFavorite),
     fork(appSagas.toggleClassifiedFavorite),
     fork(langSagas.changeLang),
     fork(appSagas.goBackBtn),
@@ -30,24 +46,12 @@ export default function* rootSaga() {
     fork(appSagas.submitCart),
     fork(appSagas.setCountry),
     fork(appSagas.setPlayerId),
-    fork(appSagas.submitAuth),
-    fork(appSagas.googleLogin),
-    fork(appSagas.reAuthenticate),
-    fork(appSagas.updateUser),
-    fork(appSagas.submitLogout),
     fork(appSagas.getCoupon),
     fork(appSagas.createMyFatoorahPaymentUrl),
     fork(appSagas.createTapPaymentUrl),
     fork(appSagas.goDeepLinking),
-    fork(appSagas.register),
-    fork(appSagas.rateUser),
-    fork(appSagas.becomeFan),
     fork(appSagas.addComment),
     fork(appSagas.resetStore),
-    fork(appSagas.getClassifieds),
-    fork(appSagas.getClassified),
-    fork(appSagas.startNewClassified),
-    fork(appSagas.storeClassified),
     fork(networkSaga, {pingInterval: 20000})
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store

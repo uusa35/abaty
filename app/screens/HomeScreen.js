@@ -42,6 +42,7 @@ import CollectionHorizontalWidget from '../components/widgets/collection/Collect
 import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
 import CommercialCarouselWidget from '../components/widgets/commercial/CommercialCarouselWidget';
+import homeCompanies from '../redux/reducers/homeCompanies';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -72,20 +73,6 @@ class HomeScreen extends Component {
       };
     }
   };
-
-  // shouldComponentUpdate(
-  //   nextProps: Readonly<P>,
-  //   nextState: Readonly<S>,
-  //   nextContext: any
-  // ): boolean {
-  //   return (
-  //     nextProps.settings !== this.props.settings ||
-  //     nextProps.products !== this.props.products ||
-  //     nextProps.categories !== this.props.categories ||
-  //     nextProps.designers !== this.props.designers ||
-  //     nextProps.celebrities !== this.props.celebrities
-  //   );
-  // }
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
@@ -170,8 +157,8 @@ class HomeScreen extends Component {
       slides,
       splashes,
       brands,
-      designers,
-      celebrities,
+      homeDesigners,
+      homeCelebrities,
       homeProducts,
       homeCollections,
       splash_on,
@@ -179,6 +166,7 @@ class HomeScreen extends Component {
       colors,
       services,
       showIntroduction,
+      homeCompanies,
       dispatch,
       navigation
     } = this.props;
@@ -208,15 +196,26 @@ class HomeScreen extends Component {
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-          {!validate.isEmpty(designers) &&
-          validate.isArray(designers) &&
+          {!validate.isEmpty(homeDesigners) &&
+          validate.isArray(homeDesigners) &&
           (ABATI || MALLR) ? (
             <DesignerHorizontalWidget
-              elements={designers}
+              elements={homeDesigners}
               showName={true}
               name="designers"
               title="designers"
               searchElements={{is_designer: true}}
+              dispatch={dispatch}
+              colors={colors}
+            />
+          ) : null}
+          {MALLR ? (
+            <DesignerHorizontalWidget
+              elements={homeCompanies}
+              showName={true}
+              name="companies"
+              title="companies"
+              searchElements={{is_company: true}}
               dispatch={dispatch}
               colors={colors}
             />
@@ -234,11 +233,11 @@ class HomeScreen extends Component {
               type="products"
             />
           ) : null}
-          {!validate.isEmpty(celebrities) &&
-          validate.isArray(celebrities) &&
+          {!validate.isEmpty(homeCelebrities) &&
+          validate.isArray(homeCelebrities) &&
           ABATI ? (
             <DesignerHorizontalWidget
-              elements={celebrities}
+              elements={homeCelebrities}
               showName={true}
               name="celebrities"
               title="celebrities"
@@ -300,8 +299,8 @@ function mapStateToProps(state) {
   return {
     categories: state.categories,
     brands: state.brands,
-    designers: state.designers,
-    celebrities: state.celebrities,
+    homeDesigners: state.homeDesigners,
+    homeCelebrities: state.homeCelebrities,
     homeProducts: state.homeProducts,
     commercials: state.commercials,
     slides: state.slides,
@@ -315,7 +314,7 @@ function mapStateToProps(state) {
     services: state.services,
     homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    classifieds: state.classifieds
+    homeCompanies: state.homeCompanies
   };
 }
 
@@ -324,7 +323,7 @@ export default connect(mapStateToProps)(HomeScreen);
 HomeScreen.propTypes = {
   categories: PropTypes.array,
   brands: PropTypes.array,
-  designers: PropTypes.array,
+  homeDesigners: PropTypes.array,
   homeProducts: PropTypes.array,
   homeCollections: PropTypes.array,
   commercials: PropTypes.array,

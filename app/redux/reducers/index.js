@@ -14,10 +14,13 @@ import category from './category';
 import brands from './brands';
 import brand from './brand';
 import designers from './designers';
+import homeDesigners from './homeDesigners';
 import designer from './designer';
 import celebrities from './celebrities';
+import homeCelebrities from './homeCelebrities';
 import celebrity from './celebrity';
 import companies from './companies';
+import homeCompanies from './homeCompanies';
 import company from './company';
 import countries from './countries';
 import country from './country';
@@ -39,6 +42,7 @@ import collections from './collections';
 import services from './services';
 import homeServices from './homeServices';
 import classifieds from './classifieds';
+import homeClassifieds from './homeClassifieds';
 import classified from './classified';
 import classifiedFavorites from './classifiedFavorites';
 import service from './service';
@@ -63,6 +67,7 @@ import newClassified from './newClassified';
 import areaModal from './areaModal';
 import classifiedProps from './classifiedProps';
 import shipmentFees from './shipmentFees';
+import version from './version';
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -98,10 +103,13 @@ let reducers = combineReducers({
   brands,
   company,
   companies,
+  homeCompanies,
   designer,
   designers,
+  homeDesigners,
   celebrity,
   celebrities,
+  homeCelebrities,
   countries,
   splashes,
   country,
@@ -126,11 +134,13 @@ let reducers = combineReducers({
   comments,
   orders,
   classifieds,
+  homeClassifieds,
   classified,
   classifiedFavorites,
   newClassified,
   classifiedProps,
-  shipmentFees
+  shipmentFees,
+  version
 });
 
 export default reducers;

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
-  getClassifieds,
+  gethomeClassifieds,
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
@@ -183,7 +183,7 @@ class HomeKeyScreen extends Component {
       colors,
       services,
       showIntroduction,
-      classifieds,
+      homeClassifieds,
       dispatch,
       navigation,
       guest
@@ -218,16 +218,16 @@ class HomeKeyScreen extends Component {
               navigation={navigation}
             />
           ) : null}
-          {(!validate.isEmpty(classifieds) &&
-            validate.isArray(classifieds) &&
+          {(!validate.isEmpty(homeClassifieds) &&
+            validate.isArray(homeClassifieds) &&
             HOMEKEY) ||
           ESCRAP ? (
             <ClassifiedListHorizontal
-              classifieds={classifieds}
+              classifieds={homeClassifieds}
               showName={true}
               showSearch={false}
               showTitle={true}
-              title="featured_classifieds"
+              title="featured_homeClassifieds"
               dispatch={dispatch}
               colors={colors}
               searchElements={{on_home: true}}
@@ -292,7 +292,7 @@ function mapStateToProps(state) {
     services: state.services,
     homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    classifieds: state.classifieds,
+    homeClassifieds: state.homehomeClassifieds,
     guest: state.guest
   };
 }
@@ -301,6 +301,7 @@ export default connect(mapStateToProps)(HomeKeyScreen);
 
 HomeKeyScreen.propTypes = {
   categories: PropTypes.array,
+  homeClassifieds: PropTypes.array,
   brands: PropTypes.array,
   designers: PropTypes.array,
   homeProducts: PropTypes.array,

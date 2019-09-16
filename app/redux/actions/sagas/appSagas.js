@@ -6,70 +6,67 @@ import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
 import {
   getCountry,
-  setHomeBrands,
-  setHomeProducts,
   setSlides,
   startDeepLinkingScenario,
   startSetCountryScenario,
-  startStorePlayerIdScenario,
-  setHomeDesigners,
-  startGetDesignerScenario,
-  startGetProductScenario,
-  setHomeCelebrities,
-  startGetSearchProductsScenario,
   startRefetchHomeElementsScenario,
   setHomeSplashes,
-  startGetUsersScenario,
   startAddToCartScenario,
   startClearCartScenario,
-  startAuthenticatedScenario,
-  startSubmitAuthScenario,
-  startLogoutScenario,
   startGetCouponScenario,
   startCreateMyFatorrahPaymentUrlScenario,
   startCreateTapPaymentUrlScenario,
   startRemoveFromCartScenario,
-  startRegisterScenario,
-  getProductIndex,
-  startGetAllProductsScenario,
-  startUpdateUserScenario,
   startSubmitCartScenario,
   getVideos,
-  startGetSearchServicesScenario,
-  startGetServiceScenario,
-  startRateUserScenario,
-  startBecomeFanScenario,
   startAddCommentScenario,
-  startReAuthenticateScenario,
-  startGetCollectionsScenario,
-  startGoogleLoginScenario,
-  getHomeServicesScenario,
-  getHomeCollectionsScenario,
-  startGetClassifiedsScenario,
-  startGetClassifiedScenario,
-  getServiceIndex,
-  startToggleProductFavoriteScenario,
-  startToggleClassifiedFavoriteScenario,
-  startStoreClassifiedScenario
-} from './requestSagas';
-import {NavigationActions} from 'react-navigation';
-import I18n from './../../../I18n';
-import {
   setHomeCategories,
   setSettings,
   startRefetchHomeCategories,
-  startRefetchUserScenario,
   setCommercials,
-  setCountries,
-  startGetUserScenario
+  setCountries
 } from './requestSagas';
+import {NavigationActions} from 'react-navigation';
+import I18n from './../../../I18n';
 import {disableLoading, setDeviceId, enableErrorMessage} from './settingSagas';
 import {offlineActionTypes} from 'react-native-offline';
+import validate from 'validate.js';
+import DeviceInfo from 'react-native-device-info';
+import {
+  getHomeServicesScenario,
+  getServiceIndex,
+  startToggleClassifiedFavoriteScenario
+} from './serviceSagas';
+import {
+  setHomeBrands,
+  setHomeCelebrities,
+  setHomeCompanies,
+  setHomeDesigners,
+  startAuthenticatedScenario,
+  startStorePlayerIdScenario
+} from './userSagas';
+import {
+  getHomeCollectionsScenario,
+  getProductIndex,
+  setHomeProducts
+} from './productSagas';
+import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 
 function* startAppBootStrap() {
   try {
     yield call(defaultLang);
-    const {network, bootStrapped} = yield select();
+    const {network, bootStrapped, version} = yield select();
+    if (validate.isEmpty(version)) {
+      if (version !== DeviceInfo.getVersion()) {
+        yield put({
+          type: actions.SET_VERSION,
+          payload: DeviceInfo.getVersion()
+        });
+        yield call(startResetStoreScenario);
+      }
+    } else {
+      yield put({type: actions.SET_VERSION, payload: DeviceInfo.getVersion()});
+    }
     if (!bootStrapped) {
       yield all([
         put({
@@ -94,10 +91,10 @@ function* startAppBootStrap() {
         call(setHomeCelebrities),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),
-        put({
-          type: actions.GET_CLASSIFIEDS,
+        call(startGetHomeClassifiedsScenario, {
           payload: {searchParams: {on_home: true}}
-        })
+        }),
+        call(setHomeCompanies, {payload: {searchParams: {on_home: true}}})
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);
@@ -110,40 +107,6 @@ function* startAppBootStrap() {
   }
 }
 
-export function* getClassifieds() {
-  yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
-}
-
-export function* getClassified() {
-  yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
-}
-
-export function* storeClassified() {
-  yield takeLatest(actions.STORE_CLASSIFIED, startStoreClassifiedScenario);
-}
-
-export function* startNewClassified() {
-  yield takeLatest(actions.START_NEW_CLASSIFIED, startNewClassifiedScenario);
-}
-
-export function* startNewClassifiedScenario(action) {
-  const category = action.payload;
-  yield put({type: actions.CLEAR_PROPERTIES});
-  yield put({type: actions.SET_CATEGORY, payload: category});
-  if (category.has_categoryGroups) {
-    yield put(
-      NavigationActions.navigate({
-        routeName: 'ChooseCategoryGroups'
-      })
-    );
-  } else {
-    yield put(
-      NavigationActions.navigate({
-        routeName: 'ClassifiedStore'
-      })
-    );
-  }
-}
 export function* appBootstrap() {
   yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);
 }
@@ -171,49 +134,6 @@ export function* goBackBtn() {
 
 export function* refetchHomeCategories() {
   yield takeLatest(actions.REFETCH_HOME_CATEGORIES, startRefetchHomeCategories);
-}
-
-export function* refetchUsers() {
-  yield takeLatest(actions.REFETCH_USERS, startRefetchUserScenario);
-}
-
-export function* getUsers() {
-  yield takeLatest(actions.GET_USERS, startGetUsersScenario);
-}
-
-export function* getUser() {
-  yield takeLatest(actions.GET_USER, startGetUserScenario);
-}
-
-export function* getDesigner() {
-  yield takeLatest(actions.GET_DESIGNER, startGetDesignerScenario);
-}
-
-export function* getProduct() {
-  yield takeLatest(actions.GET_PRODUCT, startGetProductScenario);
-}
-
-export function* getService() {
-  yield takeLatest(actions.GET_SERVICE, startGetServiceScenario);
-}
-
-export function* getSearchProducts() {
-  yield takeLatest(actions.GET_SEARCH_PRODUCTS, startGetSearchProductsScenario);
-}
-
-export function* getSearchServices() {
-  yield takeLatest(actions.GET_SEARCH_SERVICES, startGetSearchServicesScenario);
-}
-
-export function* getAllProducts() {
-  yield takeLatest(actions.GET_ALL_PRODUCTS, startGetAllProductsScenario);
-}
-
-export function* toggleProductFavorite() {
-  yield takeLatest(
-    actions.TOGGLE_PRODUCT_FAVORITE,
-    startToggleProductFavoriteScenario
-  );
 }
 
 export function* toggleClassifiedFavorite() {
@@ -258,26 +178,6 @@ export function* submitCart() {
   yield takeLatest(actions.SUBMIT_CART, startSubmitCartScenario);
 }
 
-export function* submitAuth() {
-  yield takeLatest(actions.SUBMIT_AUTH, startSubmitAuthScenario);
-}
-
-export function* reAuthenticate() {
-  yield takeLatest(actions.REAUTHENTICATE, startReAuthenticateScenario);
-}
-
-export function* googleLogin() {
-  yield takeLatest(actions.GOOGLE_LOGIN, startGoogleLoginScenario);
-}
-
-export function* updateUser() {
-  yield takeLatest(actions.UPDATE_USER, startUpdateUserScenario);
-}
-
-export function* submitLogout() {
-  yield takeLatest(actions.REMOVE_AUTH, startLogoutScenario);
-}
-
 export function* getCoupon() {
   yield takeLatest(actions.GET_COUPON, startGetCouponScenario);
 }
@@ -296,28 +196,12 @@ export function* createTapPaymentUrl() {
   );
 }
 
-export function* register() {
-  yield takeLatest(actions.REGISTER, startRegisterScenario);
-}
-
-export function* rateUser() {
-  yield takeLatest(actions.RATE_USER, startRateUserScenario);
-}
-
-export function* becomeFan() {
-  yield takeLatest(actions.BECOME_FAN, startBecomeFanScenario);
-}
-
 export function* addComment() {
   yield takeLatest(actions.ADD_COMMENT, startAddCommentScenario);
 }
 
 export function* resetStore() {
   yield takeLatest(actions.RESET_STORE, startResetStoreScenario);
-}
-
-export function* getCollections() {
-  yield takeLatest(actions.GET_COLLECTIONS, startGetCollectionsScenario);
 }
 
 export function* startResetStoreScenario() {

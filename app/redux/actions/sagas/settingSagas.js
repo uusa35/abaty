@@ -1,4 +1,4 @@
-import {takeLatest, call, put, all, select, delay} from 'redux-saga/effects';
+import {call, put} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
