@@ -105,6 +105,7 @@ export async function getClassified(params) {
 }
 
 export async function getSearchClassifieds(params) {
+  console.log('params', params);
   return await axiosInstance
     .get(`search/classified`, {params})
     .then(r => r.data)

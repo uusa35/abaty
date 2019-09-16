@@ -47,7 +47,6 @@ const ClassifiedListHorizontal = ({
   [items, setItems] = useState(elements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
-
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity

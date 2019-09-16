@@ -16,6 +16,7 @@ import validate from 'validate.js';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
+  console.log('searchParams', searchParams);
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
@@ -172,6 +173,7 @@ export function* startNewClassified() {
 export function* startNewClassifiedScenario(action) {
   const category = action.payload;
   yield put({type: actions.CLEAR_PROPERTIES});
+  yield put({type: actions.SHOW_PROPERTIES_MODAL});
   yield put({type: actions.SET_CATEGORY, payload: category});
   if (category.has_categoryGroups) {
     yield put(
@@ -180,6 +182,7 @@ export function* startNewClassifiedScenario(action) {
       })
     );
   } else {
+    yield put({type: actions.HIDE_PROPERTIES_MODAL});
     yield put(
       NavigationActions.navigate({
         routeName: 'ClassifiedStore'

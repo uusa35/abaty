@@ -10,6 +10,7 @@ import message from './message';
 import users from './users';
 import user from './user';
 import categories from './categories';
+import homeCategories from './homeCategories';
 import category from './category';
 import brands from './brands';
 import brand from './brand';
@@ -68,6 +69,7 @@ import areaModal from './areaModal';
 import classifiedProps from './classifiedProps';
 import shipmentFees from './shipmentFees';
 import version from './version';
+import propertiesModal from './propertiesModal';
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -98,6 +100,7 @@ let reducers = combineReducers({
   users,
   user,
   categories,
+  homeCategories,
   category,
   brand,
   brands,
@@ -140,7 +143,8 @@ let reducers = combineReducers({
   newClassified,
   classifiedProps,
   shipmentFees,
-  version
+  version,
+  propertiesModal
 });
 
 export default reducers;

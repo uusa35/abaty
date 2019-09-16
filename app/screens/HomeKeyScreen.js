@@ -227,7 +227,7 @@ class HomeKeyScreen extends Component {
               showName={true}
               showSearch={false}
               showTitle={true}
-              title="featured_homeClassifieds"
+              title="featured_classifieds"
               dispatch={dispatch}
               colors={colors}
               searchElements={{on_home: true}}
@@ -277,9 +277,6 @@ function mapStateToProps(state) {
   return {
     categories: state.categories,
     brands: state.brands,
-    designers: state.designers,
-    celebrities: state.celebrities,
-    homeProducts: state.homeProducts,
     commercials: state.commercials,
     slides: state.slides,
     splashes: state.splashes,
@@ -292,7 +289,7 @@ function mapStateToProps(state) {
     services: state.services,
     homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    homeClassifieds: state.homehomeClassifieds,
+    homeClassifieds: state.homeClassifieds,
     guest: state.guest
   };
 }
@@ -303,9 +300,6 @@ HomeKeyScreen.propTypes = {
   categories: PropTypes.array,
   homeClassifieds: PropTypes.array,
   brands: PropTypes.array,
-  designers: PropTypes.array,
-  homeProducts: PropTypes.array,
-  homeCollections: PropTypes.array,
   commercials: PropTypes.array,
   slides: PropTypes.array,
   splashes: PropTypes.array,

@@ -28,6 +28,7 @@ const CategoryGroupsScreen = ({
   category,
   dispatch,
   classifiedProps,
+  propertiesModal,
   navigation
 }) => {
   [currentGroupId, setCurrentGroupId] = useState(
@@ -89,83 +90,87 @@ const CategoryGroupsScreen = ({
 
   return (
     <Fragment>
-      {map(remainingGroups, (group, i) => {
-        return (
-          <Modal
-            key={i}
-            transparent={false}
-            animationType={'slide'}
-            onRequestClose={() => setCategoryGroupVisible(false)}
-            visible={currentGroupId === group.id && categoryGroupVisible}>
-            <View
-              style={{
-                width: '100%',
-                minHeight: 50,
-                justifyContent: 'center',
-                marginTop: '10%',
-                alignSelf: 'center',
-                alignItems: 'center',
-                flexDirection: 'row-reverse'
-              }}>
-              <Icon
-                containerStyle={{position: 'absolute', left: 0}}
-                name="close"
-                type="evil-icons"
-                size={25}
-                style={{zIndex: 999}}
-                // onPress={() => navigation.goBack()}
-                onPress={() => setCategoryGroupVisible(false)}
-                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-              />
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: text.font,
-                  fontSize: text.large
-                }}>
-                {group.name}
-              </Text>
-              <Icon
-                containerStyle={{position: 'absolute', right: 0}}
-                name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
-                type="entypo"
-                size={25}
-                style={{zIndex: 999}}
-                onPress={() => navigation.goBack()}
-                // onPress={() => setCategoryGroupVisible(false)}
-                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-              />
-            </View>
-            <ScrollView
-              contentContainerStyle={{
-                flex: 0.9,
-                paddingTop: 10,
-                width: '100%'
-              }}>
-              <View>
-                {map(group.properties, (property, i) => {
-                  return (
-                    <TouchableOpacity
-                      style={styles.propertiesWrapper}
-                      onPress={() => handleClick(property)}
-                      key={i}>
-                      {property.icon ? (
-                        <Icon type="font-awesome" name={property.icon} />
-                      ) : (
-                        <FastImage
-                          source={{uri: property.thumb}}
-                          style={{width: 30, height: 30}}
-                        />
-                      )}
-                      <Text style={styles.title}>{property.name}</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </ScrollView>
-          </Modal>
-        );
-      })}
+      {propertiesModal ? (
+        <Fragment>
+          {map(remainingGroups, (group, i) => {
+            return (
+              <Modal
+                key={i}
+                transparent={false}
+                animationType={'slide'}
+                onRequestClose={() => setCategoryGroupVisible(false)}
+                visible={currentGroupId === group.id && categoryGroupVisible}>
+                <View
+                  style={{
+                    width: '100%',
+                    minHeight: 50,
+                    justifyContent: 'center',
+                    marginTop: '10%',
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row-reverse'
+                  }}>
+                  <Icon
+                    containerStyle={{position: 'absolute', left: 0}}
+                    name="close"
+                    type="evil-icons"
+                    size={25}
+                    style={{zIndex: 999}}
+                    // onPress={() => navigation.goBack()}
+                    onPress={() => setCategoryGroupVisible(false)}
+                    hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                  />
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      fontFamily: text.font,
+                      fontSize: text.large
+                    }}>
+                    {group.name}
+                  </Text>
+                  <Icon
+                    containerStyle={{position: 'absolute', right: 0}}
+                    name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+                    type="entypo"
+                    size={25}
+                    style={{zIndex: 999}}
+                    onPress={() => navigation.goBack()}
+                    // onPress={() => setCategoryGroupVisible(false)}
+                    hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                  />
+                </View>
+                <ScrollView
+                  contentContainerStyle={{
+                    flex: 0.9,
+                    paddingTop: 10,
+                    width: '100%'
+                  }}>
+                  <View>
+                    {map(group.properties, (property, i) => {
+                      return (
+                        <TouchableOpacity
+                          style={styles.propertiesWrapper}
+                          onPress={() => handleClick(property)}
+                          key={i}>
+                          {property.icon ? (
+                            <Icon type="font-awesome" name={property.icon} />
+                          ) : (
+                            <FastImage
+                              source={{uri: property.thumb}}
+                              style={{width: 30, height: 30}}
+                            />
+                          )}
+                          <Text style={styles.title}>{property.name}</Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                </ScrollView>
+              </Modal>
+            );
+          })}
+        </Fragment>
+      ) : null}
       {!validate.isEmpty(classifiedProps) ? (
         <ClassifiedStorePropertiesWidget
           elements={classifiedProps}
@@ -179,11 +184,12 @@ const CategoryGroupsScreen = ({
 function mapStateToProps(state) {
   return {
     category: state.category,
-    classifiedProps: state.classifiedProps
+    classifiedProps: state.classifiedProps,
+    propertiesModal: state.propertiesModal
   };
 }
 
-export default connect(mapStateToProps)(CategoryGroupsScreen);
+export default connect(mapStateToProps)(React.memo(CategoryGroupsScreen));
 
 CategoryGroupsScreen.propTypes = {
   category: PropTypes.object.isRequired

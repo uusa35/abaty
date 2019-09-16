@@ -146,10 +146,11 @@ const ClassifiedShowScreen = ({
               elementName="categories"
               colors={colors}
               name={classified.category.name}
-              link={() =>
-                dispatch(
-                  getClassifieds({classified_category_id: classified.id})
-                )
+              link={
+                () => console.log('here')
+                // dispatch(
+                //   getClassifieds({searchParams : {classified_category_id: classified.id}, redirect : true , name : classified.category.name})
+                // )
               }
             />
             {classified.only_whatsapp ? (

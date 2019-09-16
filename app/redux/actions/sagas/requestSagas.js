@@ -24,14 +24,24 @@ import {
   submitLogin
 } from '../../../constants';
 import {GoogleSignin} from 'react-native-google-signin';
+import {
+  setHomeBrands,
+  setHomeCelebrities,
+  setHomeCompanies,
+  setHomeDesigners,
+  startAuthenticatedScenario
+} from './userSagas';
+import {getProductIndex, setHomeProducts} from './productSagas';
+import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
+import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 
 export function* setHomeCategories() {
   try {
     const categories = yield call(api.getHomeCategories);
     if (!validate.isEmpty(categories) && validate.isArray(categories)) {
-      yield put({type: actions.SET_CATEGORIES, payload: categories});
+      yield put({type: actions.SET_HOME_CATEGORIES, payload: categories});
     } else {
-      yield put({type: actions.SET_CATEGORIES, payload: []});
+      yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
@@ -172,10 +182,10 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeSplashes),
       call(getVideos),
       call(startAuthenticatedScenario),
-      put({
-        type: actions.GET_CLASSIFIEDS,
+      call(startGetHomeClassifiedsScenario, {
         payload: {searchParams: {on_home: true}}
-      })
+      }),
+      call(setHomeCompanies, {payload: {searchParams: {on_home: true}}})
     ]);
   } catch (e) {
     yield all([

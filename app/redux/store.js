@@ -22,7 +22,8 @@ const persistConfig = {
     'loginModal',
     'isLoadingProfile',
     'isLoadingContent',
-    'isLoading'
+    'isLoading',
+    'propertiesModal'
     // 'showIntroduction'
   ] // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
