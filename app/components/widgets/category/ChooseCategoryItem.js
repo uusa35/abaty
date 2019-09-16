@@ -6,7 +6,7 @@ import {
 } from 'accordion-collapse-react-native';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {map} from 'lodash';
-import {width, text, height} from '../../../constants';
+import {text} from '../../../constants';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';

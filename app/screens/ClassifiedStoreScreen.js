@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -27,7 +27,8 @@ const ClassifiedStoreScreen = ({
   country,
   area,
   dispatch,
-  properties
+  classifiedProps,
+  navigation
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [mobile, setMobile] = useState(
@@ -54,9 +55,9 @@ const ClassifiedStoreScreen = ({
       includeBase64: true,
       includeExif: true,
       maxFiles: 5,
+      minFiles: 2,
       compressImageQuality: 0.5
     }).then(images => {
-      console.log('images', images);
       setImage(first(images));
       setImages(images);
     });
@@ -65,6 +66,12 @@ const ClassifiedStoreScreen = ({
   const removeImage = useCallback(i => {
     const newImages = remove(images, (img, index) => i !== index);
     setImages(newImages);
+  });
+
+  useEffect(() => {
+    if (validate.isEmpty(category)) {
+      navigation.navigate('ChooseCategory');
+    }
   });
 
   return (
@@ -327,9 +334,9 @@ const ClassifiedStoreScreen = ({
             </Text>
           </TouchableOpacity>
         ) : null}
-        {!validate.isEmpty(properties) ? (
+        {!validate.isEmpty(classifiedProps) ? (
           <ClassifiedStorePropertiesWidget
-            elements={properties}
+            elements={classifiedProps}
             name={category.name}
           />
         ) : null}
@@ -345,8 +352,9 @@ const ClassifiedStoreScreen = ({
             color: colors.btn_text_theme_color
           }}
           title={I18n.t('save_classified')}
-          onPress={() =>
-            dispatch(
+          onPress={() => {
+            console.log('the props', classifiedProps);
+            return dispatch(
               storeClassified({
                 user_id: auth.id,
                 api_token: auth.api_token,
@@ -359,12 +367,12 @@ const ClassifiedStoreScreen = ({
                 area_id: area ? area.id : null,
                 image,
                 images,
-                properties,
+                classifiedProps,
                 category_id: category.id,
                 only_whatsapp: onlyWhatsapp
               })
-            )
-          }
+            );
+          }}
         />
       </View>
     </KeyboardAwareScrollView>
@@ -379,19 +387,19 @@ function mapStateToProps(state) {
     area: state.area,
     colors: state.settings.colors,
     newClassified: state.newClassified,
-    properties: state.properties,
+    classifiedProps: state.classifiedProps,
     categoryName: state.category.name
   };
 }
 
-export default connect(mapStateToProps)(React.memo(ClassifiedStoreScreen));
+export default connect(mapStateToProps)(ClassifiedStoreScreen);
 
 ClassifiedStoreScreen.propTypes = {
   auth: PropTypes.object.isRequired,
   country: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   category: PropTypes.object.isRequired,
-  properties: PropTypes.array.isRequired
+  classifiedProps: PropTypes.array.isRequired
 };
 
 const styles = StyleSheet.create({});

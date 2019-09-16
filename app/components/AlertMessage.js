@@ -5,7 +5,9 @@ import Toaster from 'react-native-toaster';
 import validate from 'validate.js';
 
 const AlertMessage = ({message, dispatch}) => {
-  const [visible, setVisible] = useState(message.visible);
+  const [alertMessageVisible, setAlertMessageVisible] = useState(
+    message.visible
+  );
   const styles = {
     container: {
       opacity: 0.9,
@@ -28,10 +30,10 @@ const AlertMessage = ({message, dispatch}) => {
   };
 
   useMemo(() => {
-    if (!visible) {
+    if (!alertMessageVisible) {
       dispatch({type: 'DISABLE_MESSAGE'});
     }
-  }, [visible]);
+  }, [alertMessageVisible]);
 
   return (
     <Toaster
@@ -43,12 +45,12 @@ const AlertMessage = ({message, dispatch}) => {
         styles
       }}
       style={styles.content}
-      onHide={() => setVisible(false)}
+      onHide={() => setAlertMessageVisible(false)}
       duration={3000}
     />
   );
 };
-export default React.memo(AlertMessage);
+export default AlertMessage;
 
 AlertMessage.propTypes = {
   message: PropTypes.object.isRequired

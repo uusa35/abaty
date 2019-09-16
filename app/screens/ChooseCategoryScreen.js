@@ -1,12 +1,5 @@
-import React, {useCallback, Fragment} from 'react';
-import {
-  StyleSheet,
-  FlatList,
-  View,
-  TouchableOpacity,
-  Text,
-  Modal
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from '../constants';

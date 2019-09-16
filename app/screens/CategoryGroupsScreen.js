@@ -1,29 +1,49 @@
-import React, {Fragment, useState, useCallback, useMemo} from 'react';
+import React, {
+  Fragment,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect
+} from 'react';
 import {
   StyleSheet,
-  Modal,
   ScrollView,
   Text,
   View,
   TouchableOpacity
 } from 'react-native';
+import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter} from 'lodash';
-import {width, height, text} from './../constants';
+import {text} from './../constants';
 import {Icon} from 'react-native-elements';
-import I18n, {isRTL} from '../I18n';
+import {isRTL} from '../I18n';
 import FastImage from 'react-native-fast-image';
-import {setProperties} from '../redux/actions';
 import validate from 'validate.js';
 import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
+import {addToProperties} from '../redux/actions';
 
-const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
+const CategoryGroupsScreen = ({
+  category,
+  dispatch,
+  classifiedProps,
+  navigation
+}) => {
   [currentGroupId, setCurrentGroupId] = useState(
-    first(category.categoryGroups).id
+    !validate.isEmpty(category) ? first(category.categoryGroups).id : null
   );
+  const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
   [remainingGroups, setRemainingGroups] = useState(category.categoryGroups);
+
+  useMemo(() => {
+    if (validate.isEmpty(remainingGroups)) {
+      setCategoryGroupVisible(false);
+    } else {
+      setCategoryGroupVisible(!categoryGroupVisible);
+    }
+  }, [currentGroupId, remainingGroups]);
 
   const handleClick = useCallback(property => {
     setSelectedProperties([
@@ -36,25 +56,36 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
       },
       ...selectedProperties
     ]);
+    dispatch(
+      addToProperties({
+        property_id: property.id,
+        value: property.value,
+        name: property.name,
+        icon: property.icon,
+        thumb: property.thumb
+      })
+    );
     const rest = filter(remainingGroups, (g, i) => g.id !== currentGroupId);
     if (!validate.isEmpty(rest)) {
+      setCurrentRaminingId(first(rest).id);
       setRemainingGroups(rest);
     } else {
-      setCurrentGroupId(0);
+      setRemainingGroups(null);
     }
   });
 
-  useMemo(() => {
-    if (selectedProperties.length === category.steps) {
-      dispatch(setProperties(selectedProperties));
-    }
-  }, [selectedProperties]);
+  const doneWithProperties = useCallback(() => {
+    setCategoryGroupVisible(false);
+    dispatch(navigation.navigate('ClassifiedStore'));
+  });
 
   useMemo(() => {
-    if (!validate.isEmpty(remainingGroups)) {
-      setCurrentGroupId(first(remainingGroups).id);
+    if (validate.isEmpty(remainingGroups)) {
+      setCategoryGroupVisible(false);
+      setCurrentGroupId(0);
+      doneWithProperties();
     }
-  }, [remainingGroups]);
+  }, [selectedProperties]);
 
   return (
     <Fragment>
@@ -64,8 +95,8 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
             key={i}
             transparent={false}
             animationType={'slide'}
-            onRequestClose={() => setVisible(false)}
-            visible={currentGroupId === group.id}>
+            onRequestClose={() => setCategoryGroupVisible(false)}
+            visible={currentGroupId === group.id && categoryGroupVisible}>
             <View
               style={{
                 width: '100%',
@@ -76,6 +107,16 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
                 alignItems: 'center',
                 flexDirection: 'row-reverse'
               }}>
+              <Icon
+                containerStyle={{position: 'absolute', left: 0}}
+                name="close"
+                type="evil-icons"
+                size={25}
+                style={{zIndex: 999}}
+                // onPress={() => navigation.goBack()}
+                onPress={() => setCategoryGroupVisible(false)}
+                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              />
               <Text
                 style={{
                   textAlign: 'center',
@@ -91,6 +132,7 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
                 size={25}
                 style={{zIndex: 999}}
                 onPress={() => navigation.goBack()}
+                // onPress={() => setCategoryGroupVisible(false)}
                 hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
               />
             </View>
@@ -124,9 +166,9 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
           </Modal>
         );
       })}
-      {!validate.isEmpty(properties) ? (
+      {!validate.isEmpty(classifiedProps) ? (
         <ClassifiedStorePropertiesWidget
-          elements={properties}
+          elements={classifiedProps}
           name={category.name}
         />
       ) : null}
@@ -137,7 +179,7 @@ const CategoryGroupsScreen = ({category, navigation, dispatch, properties}) => {
 function mapStateToProps(state) {
   return {
     category: state.category,
-    properties: state.properties
+    classifiedProps: state.classifiedProps
   };
 }
 

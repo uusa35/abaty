@@ -45,7 +45,8 @@ export const coreState = {
   deviceId: '',
   playerId: '',
   countryModal: false,
-  linking: {}
+  linking: {},
+  classifiedProps: []
 };
 
 export const links = {

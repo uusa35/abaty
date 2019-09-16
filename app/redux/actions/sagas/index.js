@@ -47,7 +47,6 @@ export default function* rootSaga() {
     fork(appSagas.getClassifieds),
     fork(appSagas.getClassified),
     fork(appSagas.startNewClassified),
-    fork(appSagas.setProperties),
     fork(appSagas.storeClassified),
     fork(networkSaga, {pingInterval: 20000})
   ]);

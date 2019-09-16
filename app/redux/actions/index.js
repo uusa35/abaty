@@ -570,3 +570,10 @@ export function setProperties(payload) {
     payload
   };
 }
+
+export function addToProperties(payload) {
+  return {
+    type: actions.ADD_TO_PROPERTIES,
+    payload
+  };
+}

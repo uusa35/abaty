@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
@@ -10,11 +10,14 @@ import PropTypes from 'prop-types';
 const LoadingOfflineView = ({isConnected, mainBg}) => {
   const [connected, setConnected] = useState(isConnected);
 
-  useMemo(() => {
-    if (connected) {
-      CodePush.restartApp();
-    }
-  }, [connected]);
+  const handleClick = useCallback(
+    connected => {
+      if (connected) {
+        CodePush.restartApp();
+      }
+    },
+    [connected]
+  );
 
   return (
     <ImageBackground
@@ -48,7 +51,7 @@ const LoadingOfflineView = ({isConnected, mainBg}) => {
       <Button
         raised
         icon={{name: 'ios-repeat', type: 'ionicon', color: 'red'}}
-        onPress={() => setConnected(!connected)}
+        onPress={() => handleClick(!connect)}
         title={I18n.t('retry')}
         type="outline"
         containerStyle={{marginBottom: 20, width: '90%'}}

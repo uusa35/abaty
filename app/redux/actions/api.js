@@ -351,7 +351,8 @@ export async function updateUser(params) {
     .catch(e => e.response.data.message);
 }
 
-export async function storeClassified(params) {
+export async function storeClassified(elements) {
+  console.log('the params', elements);
   const {
     name,
     api_token,
@@ -362,11 +363,11 @@ export async function storeClassified(params) {
     area_id,
     country_id,
     category_id,
-    properties,
     price,
     image,
-    images
-  } = params;
+    images,
+    classifiedProps
+  } = elements;
   const form = new FormData();
   if (checkImage(image)) {
     form.append('image', {
@@ -403,11 +404,13 @@ export async function storeClassified(params) {
   form.append('description_en', description);
   form.append('price', price);
   form.append('api_token', api_token);
-  form.append('properties', properties);
+  form.append('properties[]', classifiedProps);
+  console.log('props', classifiedProps);
   return await axiosInstance
     .post(`classified`, form)
     .then(r => r.data)
-    .catch(e => e.response.data.message);
+    .catch(e => console.log('eee', e.response));
+  // .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

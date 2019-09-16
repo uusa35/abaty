@@ -963,51 +963,43 @@ export function* startUpdateUserScenario(action) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
-    const {
-      name,
-      mobile,
-      email,
-      address,
-      description,
-      images,
-      price,
-      api_token
-    } = action.payload;
+    const {name, mobile, address, description, images, price} = action.payload;
     const result = validate(
-      {name, mobile, email, address, images, description, price},
+      {name, mobile, address, images, description, price},
       storeClassifiedConstrains
     );
+    console.log('the result', result);
     if (validate.isEmpty(result)) {
-      yield call(enableLoading);
+      console.log('inside');
+      // yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
-      console.log('classified', classified);
+      console.log('classifed', classified);
       if (!validate.isEmpty(classified) && validate.isObject(classified)) {
-        console.log('the classified success', classified);
         yield all([
-          // put({type: actions.STORE_CLASSIFIED, payload: classified}),
-          call(disableLoading),
+          // call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
           put(NavigationActions.navigate({routeName: 'HomeKey'}))
         ]);
       } else {
-        console.log('classified failure', classified);
-        throw classified;
+        console.log('else one');
+        // yield call(disableLoading);
+        yield call(enableErrorMessage, classified);
       }
     } else {
-      console.log('the else case', result);
-      throw result['name']
-        ? result['name'].toString()
-        : null || result['email']
-        ? result['email'].toString()
-        : null || result['mobile']
-        ? result['mobile'].toString()
-        : null || result['address']
-        ? result['description'].toString()
-        : null || result['description']
-        ? result['images'].toString()
-        : null || result['images']
-        ? result['address'].toString()
-        : null;
+      console.log('else one');
+      // throw result['name']
+      //   ? result['name'].toString()
+      //   : null || result['email']
+      //   ? result['email'].toString()
+      //   : null || result['mobile']
+      //   ? result['mobile'].toString()
+      //   : null || result['address']
+      //   ? result['description'].toString()
+      //   : null || result['description']
+      //   ? result['images'].toString()
+      //   : null || result['images']
+      //   ? result['address'].toString()
+      //   : null;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
