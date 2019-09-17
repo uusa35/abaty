@@ -16,7 +16,6 @@ import validate from 'validate.js';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
-  console.log('searchParams', searchParams);
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
@@ -46,8 +45,8 @@ export function* startGetClassifiedsScenario(action) {
 }
 
 export function* startGetHomeClassifiedsScenario(action) {
-  const {searchParams, redirect, name} = action.payload;
   try {
+    const {searchParams, redirect, name} = action.payload;
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
@@ -64,7 +63,7 @@ export function* startGetHomeClassifiedsScenario(action) {
         );
       }
     } else {
-      throw classifieds;
+      yield put({type: actions.SET_HOME_CLASSIFIEDS, payload: []});
     }
   } catch (e) {
     yield all([
@@ -115,9 +114,9 @@ export function* setClassifiedFavorites(classifiedFavorites) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
-    const {name, mobile, address, description, images, price} = action.payload;
+    const {name, mobile, description, images, image, price} = action.payload;
     const result = validate(
-      {name, mobile, address, images, description, price},
+      {name, mobile, images, image, description, price},
       storeClassifiedConstrains
     );
     console.log('the result', result);
@@ -135,23 +134,24 @@ export function* startStoreClassifiedScenario(action) {
       } else {
         console.log('else one');
         // yield call(disableLoading);
-        yield call(enableErrorMessage, classified);
+        throw classified;
+        // yield call(enableErrorMessage, classified);
       }
     } else {
       console.log('else one');
-      // throw result['name']
-      //   ? result['name'].toString()
-      //   : null || result['email']
-      //   ? result['email'].toString()
-      //   : null || result['mobile']
-      //   ? result['mobile'].toString()
-      //   : null || result['address']
-      //   ? result['description'].toString()
-      //   : null || result['description']
-      //   ? result['images'].toString()
-      //   : null || result['images']
-      //   ? result['address'].toString()
-      //   : null;
+      throw result['name']
+        ? result['name'].toString()
+        : null || result['price']
+        ? result['price'].toString()
+        : null || result['mobile']
+        ? result['mobile'].toString()
+        : null || result['address']
+        ? result['description'].toString()
+        : null || result['description']
+        ? result['images'].toString()
+        : null || result['image']
+        ? result['image'].toString()
+        : null;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);

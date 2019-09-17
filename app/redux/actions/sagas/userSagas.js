@@ -279,7 +279,7 @@ export function* setHomeCompanies(action) {
     const {searchParams, redirect} = action.payload;
     const users = yield call(api.getUsers, searchParams);
     if (!validate.isEmpty(users) && validate.isArray(users)) {
-      yield all([put({type: actions.SET_HOME_COMPANIES, payload: users})]);
+      yield put({type: actions.SET_HOME_COMPANIES, payload: users});
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
@@ -291,6 +291,7 @@ export function* setHomeCompanies(action) {
         );
       }
     } else {
+      yield put({type: actions.SET_HOME_COMPANIES, payload: []});
       throw users;
     }
   } catch (e) {

@@ -6,7 +6,9 @@ import {
   ScrollView,
   View,
   AppState,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -43,6 +45,10 @@ import CategoryHorizontalRoundedWidget from '../components/widgets/category/Cate
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
 import CommercialCarouselWidget from '../components/widgets/commercial/CommercialCarouselWidget';
 import homeCompanies from '../redux/reducers/homeCompanies';
+import CategoryCarouselWidget from '../components/widgets/category/CategoryCarouselWidget';
+import {SafeAreaView} from 'react-navigation';
+import {HeaderLeft} from '../components/HeaderLeft';
+import {HeaderRight} from '../components/HeaderRight';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -152,7 +158,7 @@ class HomeScreen extends Component {
 
   render() {
     const {
-      categories,
+      homeCategories,
       commercials,
       slides,
       splashes,
@@ -192,7 +198,6 @@ class HomeScreen extends Component {
           endFillColor="white"
           showsVerticalScrollIndicator={false}
           style={{flex: 0.8}}>
-          <SearchForm />
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
@@ -220,11 +225,11 @@ class HomeScreen extends Component {
               colors={colors}
             />
           ) : null}
-          {!validate.isEmpty(categories) &&
-          validate.isArray(categories) &&
+          {!validate.isEmpty(homeCategories) &&
+          validate.isArray(homeCategories) &&
           (ABATI || MALLR) ? (
             <CategoryHorizontalWidget
-              elements={categories}
+              elements={homeCategories}
               showName={true}
               title="categories"
               dispatch={dispatch}
@@ -297,7 +302,7 @@ class HomeScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
+    homeCategories: state.homeCategories,
     brands: state.brands,
     homeDesigners: state.homeDesigners,
     homeCelebrities: state.homeCelebrities,
@@ -321,7 +326,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(HomeScreen);
 
 HomeScreen.propTypes = {
-  categories: PropTypes.array,
+  homeCategories: PropTypes.array,
   brands: PropTypes.array,
   homeDesigners: PropTypes.array,
   homeProducts: PropTypes.array,

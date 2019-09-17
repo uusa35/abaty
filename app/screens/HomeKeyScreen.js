@@ -169,7 +169,7 @@ class HomeKeyScreen extends Component {
 
   render() {
     const {
-      categories,
+      homeCategories,
       commercials,
       slides,
       splashes,
@@ -206,11 +206,11 @@ class HomeKeyScreen extends Component {
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-          {!validate.isEmpty(categories) &&
-          validate.isArray(categories) &&
-          HOMEKEY ? (
+          {!validate.isEmpty(homeCategories) &&
+          validate.isArray(homeCategories) &&
+          (HOMEKEY || ESCRAP) ? (
             <CategoryHorizontalRoundedWidget
-              elements={categories}
+              elements={homeCategories}
               colors={colors}
               showName={true}
               title="categories"
@@ -218,10 +218,9 @@ class HomeKeyScreen extends Component {
               navigation={navigation}
             />
           ) : null}
-          {(!validate.isEmpty(homeClassifieds) &&
-            validate.isArray(homeClassifieds) &&
-            HOMEKEY) ||
-          ESCRAP ? (
+          {!validate.isEmpty(homeClassifieds) &&
+          validate.isArray(homeClassifieds) &&
+          (HOMEKEY || ESCRAP) ? (
             <ClassifiedListHorizontal
               classifieds={homeClassifieds}
               showName={true}
@@ -275,7 +274,7 @@ class HomeKeyScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories,
+    homeCategories: state.homeCategories,
     brands: state.brands,
     commercials: state.commercials,
     slides: state.slides,
@@ -297,7 +296,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(HomeKeyScreen);
 
 HomeKeyScreen.propTypes = {
-  categories: PropTypes.array,
+  homeCategories: PropTypes.array,
   homeClassifieds: PropTypes.array,
   brands: PropTypes.array,
   commercials: PropTypes.array,

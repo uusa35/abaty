@@ -84,6 +84,7 @@ function* startAppBootStrap() {
         call(setHomeCategories),
         call(setHomeProducts),
         call(getHomeServicesScenario),
+
         call(getProductIndex),
         call(getServiceIndex),
         call(getVideos),
@@ -94,7 +95,9 @@ function* startAppBootStrap() {
         call(startGetHomeClassifiedsScenario, {
           payload: {searchParams: {on_home: true}}
         }),
-        call(setHomeCompanies, {payload: {searchParams: {on_home: true}}})
+        call(setHomeCompanies, {
+          payload: {searchParams: {on_home: true, is_company: true}}
+        })
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);

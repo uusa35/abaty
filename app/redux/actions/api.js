@@ -105,7 +105,6 @@ export async function getClassified(params) {
 }
 
 export async function getSearchClassifieds(params) {
-  console.log('params', params);
   return await axiosInstance
     .get(`search/classified`, {params})
     .then(r => r.data)
@@ -409,12 +408,10 @@ export async function storeClassified(elements) {
     form.append(`properties[${i}][property_id]`, prop.property_id);
     form.append(`properties[${i}][value]`, prop.value);
   });
-  console.log('the form', form);
   return await axiosInstance
     .post(`classified`, form)
     .then(r => r.data)
-    .catch(e => console.log('eee', e.response));
-  // .catch(e => e.response.data.message);
+    .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

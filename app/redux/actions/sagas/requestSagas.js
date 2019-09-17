@@ -185,7 +185,9 @@ export function* startRefetchHomeElementsScenario() {
       call(startGetHomeClassifiedsScenario, {
         payload: {searchParams: {on_home: true}}
       }),
-      call(setHomeCompanies, {payload: {searchParams: {on_home: true}}})
+      call(setHomeCompanies, {
+        payload: {searchParams: {on_home: true, is_company: 1}}
+      })
     ]);
   } catch (e) {
     yield all([

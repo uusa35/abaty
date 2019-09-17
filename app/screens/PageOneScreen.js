@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import BrandList from '../components/widgets/brand/BrandList';
+import {SafeAreaView} from 'react-navigation';
 import CategoriesList from '../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
-import PropTypes from 'prop-types';
-import {View} from 'react-native-animatable';
-
-const CategoryIndexScreen = ({
+import I18n from './../I18n';
+const PageOneScreen = ({
   homeCategories,
   commercials,
   show_commercials,
   dispatch,
   colors
 }) => {
+  useEffect(() => {
+    navigation.setParams({title: I18n.t('home_categories')});
+  });
+
   return (
     <View style={{flex: 1}}>
       <View
@@ -43,9 +49,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CategoryIndexScreen);
+PageOneScreen.navigationOptions = ({navigation}) => ({
+  headerTitle: navigation.state.params.title
+});
 
-CategoryIndexScreen.propTypes = {
+export default connect(mapStateToProps)(PageOneScreen);
+
+PageOneScreen.propTypes = {
   categories: PropTypes.array,
   commercials: PropTypes.array,
   show_commercials: PropTypes.bool

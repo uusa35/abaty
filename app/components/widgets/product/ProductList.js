@@ -67,7 +67,7 @@ const ProductList = ({
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchProducts({searchParams: params, redirect: true}));
+      dispatch(getSearchProducts({searchParams: params, redirect: false}));
     }
   }, [refresh]);
 

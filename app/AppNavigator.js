@@ -6,6 +6,7 @@ import {
   createDrawerNavigator,
   createAppContainer
 } from 'react-navigation';
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import {
   createReactNavigationReduxMiddleware,
   createReduxContainer
@@ -57,9 +58,19 @@ import ClassifiedStoreScreen from './screens/ClassifiedStoreScreen';
 import SettingsIndexScreen from './screens/SettingsIndexScreen';
 import ChooseCategoryScreen from './screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from './screens/CategoryGroupsScreen';
+import PageOneScreen from './screens/PageOneScreen';
+import PageTwoScreen from './screens/PageTwoScreen';
+import PageThreeScreen from './screens/PageThreeScreen';
+import PageFourScreen from './screens/PageFourScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
-
+// navigationOptions: ({navigation}) => ({
+//     headerLeft: <HeaderLeft {...navigation} />,
+//     headerRight: <HeaderRight {...navigation} display={true}/>,
+//     // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+//     headerBackTitle: null
+// }),
+//     path: 'home'
 const HomeStack = createStackNavigator(
   {
     // Introduction: {
@@ -72,14 +83,73 @@ const HomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: HomeScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      }),
-      path: 'home'
+      screen: createMaterialTopTabNavigator(
+        {
+          Main: {
+            screen: HomeScreen
+          },
+          PageOne: {
+            screen: PageOneScreen,
+            navigationOptions: {
+              headerBackTitle: null
+            }
+          },
+          PageTwo: {
+            screen: PageTwoScreen,
+            navigationOptions: {
+              headerBackTitle: null
+            }
+          },
+          PageThree: {
+            screen: PageThreeScreen,
+            navigationOptions: {
+              headerBackTitle: null
+            }
+          },
+          PageFour: {
+            screen: PageFourScreen,
+            navigationOptions: {
+              headerBackTitle: null
+            }
+          }
+        },
+        {
+          tabBarOptions: {
+            lazy: true,
+            showIcon: false,
+            scrollEnabled: true,
+            allowFontScaling: true,
+            activeTintColor: 'black',
+            inactiveTintColor: '#b2b2b2',
+            activeBackgroundColor: 'white',
+            animationEnabled: true,
+            labelStyle: {fontFamily: text.font},
+            style: {
+              backgroundColor: 'transparent',
+              maxHeight: 50,
+              alignSelf: 'flex-start',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start'
+            },
+            tabStyle: {
+              borderColor: 'black',
+              backgroundColor: 'transparent'
+            },
+            indicatorStyle: {
+              backgroundColor: 'black'
+            }
+          },
+          navigationOptions: ({navigation}) => ({
+            tabBarVisible: true,
+            headerLeft: <HeaderLeft {...navigation} />,
+            headerRight: <HeaderRight {...navigation} display={true} />,
+            headerTitle: <HeaderMiddle title={I18n.t('home')} />,
+            headerBackTitle: null
+          }),
+          initialRouteName: 'Main',
+          order: ['Main', 'PageOne', 'PageTwo', 'PageThree', 'PageFour']
+        }
+      )
     },
     CartIndex: {
       screen: CartIndexScreen,
@@ -174,17 +244,6 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
-    CollectionIndex: {
-      screen: CollectionIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
-        headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
-        headerBackTitle: null
-      })
-    },
     ServiceIndex: {
       screen: ServiceIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -196,6 +255,18 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
+    CollectionIndex: {
+      screen: CollectionIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
+        headerBackTitle: null
+      })
+    },
+
     Product: {
       screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
@@ -643,13 +714,18 @@ const CategoryStack = createStackNavigator(
     headerMode: 'float'
   }
 );
-const TabsStack = createBottomTabNavigator(
+
+const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => <Icon name="home" color={tintColor} />,
-        title: I18n.t('home')
+        title: I18n.t('home'),
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
       })
     },
     CategoryIndexScreen: {
@@ -701,6 +777,7 @@ const TabsStack = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
+      lazy: true,
       showIcon: true,
       scrollEnabled: true,
       allowFontScaling: true,
@@ -719,9 +796,9 @@ const TabsStack = createBottomTabNavigator(
     },
     initialRouteName: 'Home',
     order: [
+      'Home',
       'CategoryIndexScreen',
       'VideoIndexScreen',
-      'Home',
       'ServiceIndexAll',
       'ProductIndexAll'
     ]
@@ -789,7 +866,7 @@ BrandStack.navigationOptions = ({navigation}) => {
 const RootNavigator = createDrawerNavigator(
   {
     Tabs: {
-      screen: TabsStack
+      screen: BottomTabsStack
     }
   },
   {

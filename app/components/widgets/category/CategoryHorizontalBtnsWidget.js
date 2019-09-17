@@ -18,7 +18,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 import {HOMEKEY, ESCRAP, MALLR, ABATI} from './../../../../app';
 
-const CategoryHorizontalWidget = ({
+const CategoryHorizontalBtnsWidget = ({
   elements,
   title,
   dispatch,
@@ -52,7 +52,7 @@ const CategoryHorizontalWidget = ({
               widgetStyles.title,
               {color: colors.header_one_theme_color}
             ]}>
-            {I18n.t(title)}
+            {title}
           </Text>
         </View>
         <Icon
@@ -69,7 +69,14 @@ const CategoryHorizontalWidget = ({
         {map(elements, (c, i) => (
           <TouchableOpacity
             key={i}
-            style={widgetStyles.btnStyle}
+            style={[
+              widgetStyles.btnStyle,
+              {
+                borderWidth: 0.5,
+                borderColor: colors.btn_bg_theme_color,
+                padding: 10
+              }
+            ]}
             onPress={() => handleProductClick(c)}>
             {showImage ? (
               <FastImage
@@ -98,9 +105,9 @@ const CategoryHorizontalWidget = ({
   );
 };
 
-export default CategoryHorizontalWidget;
+export default CategoryHorizontalBtnsWidget;
 
-CategoryHorizontalWidget.propTypes = {
+CategoryHorizontalBtnsWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
   showName: PropTypes.bool

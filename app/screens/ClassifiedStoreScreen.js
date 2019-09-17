@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, Fragment} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -34,7 +34,7 @@ const ClassifiedStoreScreen = ({
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null
   );
-  const [price, setPrice] = useState(12);
+  const [price, setPrice] = useState(10);
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
@@ -340,41 +340,41 @@ const ClassifiedStoreScreen = ({
             name={category.name}
           />
         ) : null}
-        <Button
-          raised
-          containerStyle={{marginBottom: 10, marginTop: 10, width: '100%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
-          }}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color
-          }}
-          title={I18n.t('save_classified')}
-          onPress={() => {
-            console.log('the props', classifiedProps);
-            return dispatch(
-              storeClassified({
-                user_id: auth.id,
-                api_token: auth.api_token,
-                name,
-                address,
-                description,
-                mobile,
-                price,
-                country_id: country.id,
-                area_id: area ? area.id : null,
-                image,
-                images,
-                classifiedProps,
-                category_id: category.id,
-                only_whatsapp: onlyWhatsapp
-              })
-            );
-          }}
-        />
       </View>
+      <Button
+        raised
+        containerStyle={{marginBottom: 10, marginTop: 10, width: '90%'}}
+        buttonStyle={{
+          backgroundColor: colors.btn_bg_theme_color,
+          borderRadius: 0
+        }}
+        titleStyle={{
+          fontFamily: text.font,
+          color: colors.btn_text_theme_color
+        }}
+        title={I18n.t('save_classified')}
+        onPress={() => {
+          console.log('the props', classifiedProps);
+          return dispatch(
+            storeClassified({
+              user_id: auth.id,
+              api_token: auth.api_token,
+              name,
+              address,
+              description,
+              mobile,
+              price,
+              country_id: country.id,
+              area_id: area ? area.id : null,
+              image,
+              images,
+              classifiedProps,
+              category_id: category.id,
+              only_whatsapp: onlyWhatsapp
+            })
+          );
+        }}
+      />
     </KeyboardAwareScrollView>
   );
 };

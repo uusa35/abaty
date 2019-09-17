@@ -77,7 +77,9 @@ export function* getHomeServicesScenario() {
   try {
     const services = yield call(api.getServices, {is_home: true, page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
-      yield all([put({type: actions.SET_HOME_SERVICES, payload: services})]);
+      yield put({type: actions.SET_HOME_SERVICES, payload: services});
+    } else {
+      yield put({type: actions.SET_HOME_SERVICES, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);

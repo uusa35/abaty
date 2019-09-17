@@ -18,6 +18,8 @@ import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesI
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import I18n from '../I18n';
+import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
+import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
 
 const DesignerShowScreen = ({
   user,
@@ -92,6 +94,15 @@ const DesignerShowScreen = ({
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
               <MainSliderWidget slides={user.slides} />
             </View>
+          ) : null}
+          {!validate.isEmpty(collectedCatetories) ? (
+            <CategoryHorizontalBtnsWidget
+              elements={collectedCatetories}
+              showImage={false}
+              colors={colors}
+              dispatch={dispatch}
+              title={I18n.t('categories')}
+            />
           ) : null}
           <TabView
             lazy={true}

@@ -1,4 +1,4 @@
-import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
+import {call, put, all, takeLatest} from 'redux-saga/effects';
 import * as api from '../api';
 import validate from 'validate.js';
 import * as actions from '../types';
@@ -16,7 +16,9 @@ export function* setHomeProducts() {
   try {
     const products = yield call(api.getHomeProducts);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
-      yield all([put({type: actions.SET_HOME_PRODUCTS, payload: products})]);
+      yield put({type: actions.SET_HOME_PRODUCTS, payload: products});
+    } else {
+      yield put({type: actions.SET_HOME_PRODUCTS, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_home_products'))]);
