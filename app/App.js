@@ -16,7 +16,6 @@ import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
 import LoginScreenModal from './screens/LoginScreenModal';
-import {cartSelector, countriesSelector} from './redux/selectors/collections';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';

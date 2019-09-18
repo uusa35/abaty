@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect, useMemo} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -18,7 +18,6 @@ import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesI
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import I18n from '../I18n';
-import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
 
 const DesignerShowScreen = ({
