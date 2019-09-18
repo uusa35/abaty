@@ -516,5 +516,7 @@
   "add_your_properties" : "إضافة مواصفات الإعلان",
   "save_classified" : "حفظ الإعلان",
   "category_name" : "إسم التصنيف :",
-  "only_whatsapp" : "التواصل عن طريق الواتس اب فقط"
+  "only_whatsapp" : "التواصل عن طريق الواتس اب فقط",
+  "home_key" : "هوم كي",
+  "me" : "حسابي"
 }

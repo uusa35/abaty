@@ -96,6 +96,13 @@ export async function getServices(params) {
     .catch(e => e.response.data.message);
 }
 
+export async function getPages() {
+  return await axiosInstance
+    .get(`page`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getClassified(params) {
   const {id} = params;
   return await axiosInstance

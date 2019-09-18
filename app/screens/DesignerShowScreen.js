@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -29,7 +29,8 @@ const DesignerShowScreen = ({
   colors,
   logo,
   guest,
-  searchParams
+  searchParams,
+  navigation
 }) => {
   const [refresh, setRefresh] = useState(false);
   const collectedCatetories = !validate.isEmpty(user.products)
@@ -42,6 +43,13 @@ const DesignerShowScreen = ({
     {key: 'info', title: I18n.t('information').substring(0, 10)},
     {key: 'videos', title: I18n.t('videos')}
   ]);
+
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+
+  useMemo(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg, headerBgColor]);
 
   const handleRefresh = useCallback(() => {
     return dispatch(
@@ -59,8 +67,9 @@ const DesignerShowScreen = ({
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       maxHeight={150}
-      minHeight={50}
+      minHeight={90}
       containerStyle={{flex: 1}}
+      overlayColor="white"
       headerImage={{
         uri: user.banner ? user.banner : logo
       }}
@@ -202,6 +211,13 @@ function mapStateToProps(state) {
     guest: state.guest
   };
 }
+
+DesignerShowScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor
+  }
+});
 
 export default connect(mapStateToProps)(DesignerShowScreen);
 

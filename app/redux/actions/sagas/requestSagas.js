@@ -538,3 +538,19 @@ export function* startGoogleLoginScenario() {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
+
+export function* getPages() {
+  try {
+    const pages = yield call(api.getPages);
+    if (!validate.isEmpty(pages) && validate.isArray(pages)) {
+      yield put({type: actions.SET_PAGES, payload: pages});
+    } else {
+      yield put({type: actions.SET_PAGES, payload: []});
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_pages'))
+    ]);
+  }
+}

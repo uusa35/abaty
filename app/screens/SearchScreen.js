@@ -7,9 +7,9 @@ import {SafeAreaView} from 'react-navigation';
 import CategoriesList from '../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import I18n from './../I18n';
-import {first, has} from 'lodash';
+import {first} from 'lodash';
 
-const PageOneScreen = ({
+const SearchScreen = ({
   homeCategories,
   commercials,
   show_commercials,
@@ -18,29 +18,13 @@ const PageOneScreen = ({
   navigation
 }) => {
   [title, setTitle] = useState('');
-
   useEffect(() => {
     navigation.setParams({title: I18n.t('categories')});
   }, [title]);
 
   return (
     <View style={{flex: 1}}>
-      <View
-        animation="bounceIn"
-        easing="ease-out"
-        style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList
-          elements={homeCategories}
-          columns={1}
-          dispatch={dispatch}
-          colors={colors}
-        />
-      </View>
-      {show_commercials ? (
-        <View style={{flex: 0.2}}>
-          <CommercialSliderWidget commercials={commercials} />
-        </View>
-      ) : null}
+      <Text>search here</Text>
     </View>
   );
 };
@@ -54,15 +38,15 @@ function mapStateToProps(state) {
   };
 }
 
-PageOneScreen.navigationOptions = ({navigation}) => ({
+SearchScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
-  // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
-  title: I18n.t('categories')
+  // title : navigation.state.params.title
+  title: I18n.t('search')
 });
 
-export default connect(mapStateToProps)(PageOneScreen);
+export default connect(mapStateToProps)(SearchScreen);
 
-PageOneScreen.propTypes = {
+SearchScreen.propTypes = {
   categories: PropTypes.array,
   commercials: PropTypes.array,
   show_commercials: PropTypes.bool

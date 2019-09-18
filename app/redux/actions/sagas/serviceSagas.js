@@ -69,7 +69,10 @@ export function* getServiceIndex() {
       yield all([put({type: actions.SET_SERVICES, payload: services})]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_services'))
+    ]);
   }
 }
 
@@ -82,7 +85,10 @@ export function* getHomeServicesScenario() {
       yield put({type: actions.SET_HOME_SERVICES, payload: []});
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_services'))]);
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_services'))
+    ]);
   }
 }
 

@@ -62,6 +62,7 @@ import PageOneScreen from './screens/PageOneScreen';
 import PageTwoScreen from './screens/PageTwoScreen';
 import PageThreeScreen from './screens/PageThreeScreen';
 import PageFourScreen from './screens/PageFourScreen';
+import SearchScreen from './screens/SearchScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 // navigationOptions: ({navigation}) => ({
@@ -129,10 +130,11 @@ const HomeStack = createStackNavigator(
               maxHeight: 50,
               alignSelf: 'flex-start',
               alignItems: 'flex-start',
-              justifyContent: 'flex-start'
+              justifyContent: 'flex-start',
+              borderBottomWidth: 0.5,
+              borderColor: 'lightgrey'
             },
             tabStyle: {
-              borderColor: 'black',
               backgroundColor: 'transparent'
             },
             indicatorStyle: {
@@ -452,17 +454,32 @@ const HomeStack = createStackNavigator(
         ),
         headerBackTitle: null
       })
-    },
+    }
+  },
+  {
+    mode: 'card',
+    headerMode: 'screen',
+    swipeEnabled: false
+  }
+);
+
+const SettingStack = createStackNavigator(
+  {
     SettingIndex: {
       screen: SettingsIndexScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('settings')} />,
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="ios-person" type="ionicon" color={tintColor} />
+        ),
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null
       })
     }
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
     swipeEnabled: false
   }
@@ -720,12 +737,10 @@ const BottomTabsStack = createBottomTabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => <Icon name="home" color={tintColor} />,
-        title: I18n.t('home'),
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="home" type="octicon" color={tintColor} />
+        ),
+        title: I18n.t('home')
       })
     },
     CategoryIndexScreen: {
@@ -737,43 +752,69 @@ const BottomTabsStack = createBottomTabNavigator(
         title: I18n.t('categories')
       })
     },
-    VideoIndexScreen: {
-      screen: VideoStack,
+    // VideoIndexScreen: {
+    //   screen: VideoStack,
+    //   navigationOptions: ({navigation}) => ({
+    //     tabBarIcon: ({tintColor}) => (
+    //       <Icon
+    //         name="play-video"
+    //         type="foundation"
+    //         size={30}
+    //         color={tintColor}
+    //       />
+    //     ),
+    //     title: I18n.t('videos')
+    //   })
+    // },
+    Setting: {
+      screen: SettingStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="play-video"
-            type="foundation"
-            size={30}
-            color={tintColor}
-          />
+          <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('videos')
+        title: I18n.t('me'),
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
       })
     },
-    ProductIndexAll: {
-      screen: ProductStack,
+    Search: {
+      screen: SearchScreen,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
+          <Icon name="ios-search" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('all_products')
-      })
-    },
-    ServiceIndexAll: {
-      screen: ServiceStack,
-      navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="customerservice"
-            type="antdesign"
-            size={18}
-            color={tintColor}
-          />
-        ),
-        title: I18n.t('services')
+        title: I18n.t('search'),
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
+        headerBackTitle: null
       })
     }
+    // ProductIndexAll: {
+    //   screen: ProductStack,
+    //   navigationOptions: ({navigation}) => ({
+    //     tabBarIcon: ({tintColor}) => (
+    //       <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
+    //     ),
+    //     title: I18n.t('all_products')
+    //   })
+    // },
+    // ServiceIndexAll: {
+    //   screen: ServiceStack,
+    //   navigationOptions: ({navigation}) => ({
+    //     tabBarIcon: ({tintColor}) => (
+    //       <Icon
+    //         name="customerservice"
+    //         type="antdesign"
+    //         size={18}
+    //         color={tintColor}
+    //       />
+    //     ),
+    //     title: I18n.t('services')
+    //   })
+    // }
   },
   {
     tabBarOptions: {
@@ -798,9 +839,9 @@ const BottomTabsStack = createBottomTabNavigator(
     order: [
       'Home',
       'CategoryIndexScreen',
-      'VideoIndexScreen',
-      'ServiceIndexAll',
-      'ProductIndexAll'
+      'Search',
+      'Setting'
+      // 'ProductIndexAll'
     ]
   }
 );

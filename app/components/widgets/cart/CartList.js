@@ -52,8 +52,6 @@ const CartList = ({
   const [editMode, setEditMode] = useState(editModeDefault);
   const [checked, setChecked] = useState(false);
 
-  console.log('the area', selectedArea);
-
   useEffect(() => {
     setEmail(auth.email);
     setName(auth.name);

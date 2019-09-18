@@ -1,22 +1,41 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   StyleSheet,
   ScrollView,
   View,
   TouchableOpacity,
-  Text
+  Text,
+  Linking
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from '../constants';
-import {Icon} from 'react-native-elements';
-import I18n from './../I18n';
-import {changeLang} from '../redux/actions';
+import {Button, Icon} from 'react-native-elements';
+import I18n, {isRTL} from './../I18n';
+import {changeLang, getUsers} from '../redux/actions';
 import {HOMEKEY} from './../../app';
+import {appUrlIos} from '../env';
+import widgetStyles from '../components/widgets/widgetStyles';
 
-const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
+const SettingsIndexScreen = ({
+  guest,
+  navigation,
+  dispatch,
+  lang,
+  colors,
+  pages
+}) => {
+  console.log('pages', pages);
   return (
-    <ScrollView contentContainerStyle={{width: '100%'}}>
+    <ScrollView
+      contentContainerStyle={{
+        width: '100%',
+        padding: 20,
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1
+      }}>
       <View style={styles.container}>
         {!guest ? (
           <TouchableOpacity
@@ -61,6 +80,38 @@ const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
           <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
         </TouchableOpacity>
       </View>
+      {guest ? (
+        <Fragment>
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0
+            }}
+            title={I18n.t('new_user')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+            onPress={() => navigation.navigate('Register')}
+          />
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0
+            }}
+            title={I18n.t('forget_password')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+            onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
+          />
+        </Fragment>
+      ) : null}
     </ScrollView>
   );
 };
@@ -68,7 +119,9 @@ const SettingsIndexScreen = ({guest, navigation, dispatch, lang}) => {
 function mapStateToProps(state) {
   return {
     guest: state.guest,
-    lang: state.lang
+    lang: state.lang,
+    colors: state.settings.colors,
+    pages: state.pages
   };
 }
 

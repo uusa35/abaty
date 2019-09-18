@@ -24,7 +24,8 @@ import {
   setSettings,
   startRefetchHomeCategories,
   setCommercials,
-  setCountries
+  setCountries,
+  getPages
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -84,7 +85,7 @@ function* startAppBootStrap() {
         call(setHomeCategories),
         call(setHomeProducts),
         call(getHomeServicesScenario),
-
+        call(getPages),
         call(getProductIndex),
         call(getServiceIndex),
         call(getVideos),

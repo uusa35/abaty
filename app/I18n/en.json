@@ -45,7 +45,8 @@
   "paymentMethodFinish": "Pay - Finish",
   "video_content": "Watch video",
   "lang": "Lang",
-  "search": "Search ...",
+  "search": "Search",
+  "search_now": "Search ..",
   "recent_products": "Recent Products",
   "most_ordered": "Most Ordered",
   "our_shop": "Our Shop",
@@ -483,5 +484,7 @@
   "add_your_properties" : "Add Properties",
   "save_classified" : "Save Classified",
   "category_name" : "Category Name : ",
-  "only_whatsapp" : "Whatsapp Only"
+  "only_whatsapp" : "Whatsapp Only",
+  "home_key" : "homekey",
+  "me" : "Me"
 }
