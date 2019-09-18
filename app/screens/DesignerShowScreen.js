@@ -155,6 +155,7 @@ const DesignerShowScreen = ({
                   elements={collectedCatetories}
                   colors={colors}
                   dispatch={dispatch}
+                  title={I18n.t('product_categories')}
                 />
               ),
               info: () => (

@@ -41,44 +41,12 @@ import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
-import ClassifiedList from '../components/widgets/classified/ClassifiedList';
-import CommercialCarouselWidget from '../components/widgets/commercial/CommercialCarouselWidget';
-import homeCompanies from '../redux/reducers/homeCompanies';
-import CategoryCarouselWidget from '../components/widgets/category/CategoryCarouselWidget';
-import {SafeAreaView} from 'react-navigation';
-import {HeaderLeft} from '../components/HeaderLeft';
-import {HeaderRight} from '../components/HeaderRight';
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {refresh: false, appState: AppState.currentState};
   }
-
-  static navigationOptions = ({navigation, navigationOptions}) => {
-    if (has(navigation.state, 'params')) {
-      return {
-        headerTitle: (
-          <View style={styles.safeContainer}>
-            <FastImage
-              resizeMode="contain"
-              source={{
-                uri: navigation.state.params.logo
-                  ? navigation.state.params.logo
-                  : null
-              }}
-              style={{
-                width: '100%',
-                height: 35,
-                maxWidth: 80
-              }}
-            />
-          </View>
-        )
-      };
-    }
-  };
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
@@ -92,10 +60,6 @@ class HomeScreen extends Component {
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
-    const {logo} = this.props;
-    this.props.navigation.setParams({
-      logo: !validate.isEmpty(logo) ? logo : null
-    });
   }
 
   componentWillUnmount() {

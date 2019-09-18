@@ -21,6 +21,7 @@ const UserCategoriesInfoWidget = ({
   showTitle = true,
   showArrow = true,
   colors,
+  title,
   dispatch
 }) => {
   return (
@@ -51,7 +52,7 @@ const UserCategoriesInfoWidget = ({
                 shadowRadius: 1.0,
                 elevation: 1
               }}>
-              {I18n.t('product_categories')}
+              {title}
             </Text>
           ) : null}
           {map(elements, (c, i) => {

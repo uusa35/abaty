@@ -87,7 +87,11 @@ const HomeStack = createStackNavigator(
       screen: createMaterialTopTabNavigator(
         {
           Main: {
-            screen: HomeScreen
+            screen: HomeScreen,
+            navigationOptions: {
+              headerBackTitle: null,
+              title: I18n.t('home')
+            }
           },
           PageOne: {
             screen: PageOneScreen,
@@ -145,7 +149,9 @@ const HomeStack = createStackNavigator(
             tabBarVisible: true,
             headerLeft: <HeaderLeft {...navigation} />,
             headerRight: <HeaderRight {...navigation} display={true} />,
-            headerTitle: <HeaderMiddle title={I18n.t('home')} />,
+            headerTitle: (
+              <HeaderMiddle showLogo={true} title={I18n.t('home')} />
+            ),
             headerBackTitle: null
           }),
           initialRouteName: 'Main',
@@ -485,6 +491,28 @@ const SettingStack = createStackNavigator(
   }
 );
 
+const SearchStack = createStackNavigator(
+  {
+    SearchIndex: {
+      screen: SearchScreen,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="ios-search" type="ionicon" color={tintColor} />
+        ),
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('search')} />,
+        headerBackTitle: null
+      })
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'screen',
+    swipeEnabled: true
+  }
+);
+
 const ClassifiedStack = createStackNavigator(
   {
     HomeKey: {
@@ -780,16 +808,12 @@ const BottomTabsStack = createBottomTabNavigator(
       })
     },
     Search: {
-      screen: SearchScreen,
+      screen: SearchStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('search'),
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
+        title: I18n.t('search')
       })
     }
     // ProductIndexAll: {

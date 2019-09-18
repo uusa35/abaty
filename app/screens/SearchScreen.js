@@ -8,6 +8,7 @@ import CategoriesList from '../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import I18n from './../I18n';
 import {first} from 'lodash';
+import SearchForm from '../components/SearchForm';
 
 const SearchScreen = ({
   homeCategories,
@@ -17,14 +18,9 @@ const SearchScreen = ({
   colors,
   navigation
 }) => {
-  [title, setTitle] = useState('');
-  useEffect(() => {
-    navigation.setParams({title: I18n.t('categories')});
-  }, [title]);
-
   return (
     <View style={{flex: 1}}>
-      <Text>search here</Text>
+      <SearchForm />
     </View>
   );
 };

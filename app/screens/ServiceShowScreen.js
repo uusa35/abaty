@@ -20,6 +20,7 @@ import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
+import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 
 const ServiceShowScreen = ({
   service,
@@ -36,30 +37,37 @@ const ServiceShowScreen = ({
   const [btnVisible, setBtnVisible] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const [currentY, setCurrentY] = useState(0);
 
   useEffect(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
-  useMemo(() => {
-    if (currentY > 50) {
-      setHeaderBg(false);
-      setHeaderBgColor('#e5e5e5');
-    } else {
-      setHeaderBg(true);
-      setHeaderBgColor('transparent');
-    }
-  }, [currentY]);
-
   return (
     <Fragment>
-      <ScrollView
-        contentContainerStyle={{
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-        }}
-        onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={550}
+        minHeight={90}
+        style={{width}}
+        scrollViewBackgroundColor="transparent"
+        overlayColor="white"
+        renderForeground={() => (
+          <ImagesWidget
+            colors={colors}
+            elements={service.images
+              .concat({id: service.id, large: service.large})
+              .reverse()}
+            width={width}
+            height={550}
+            name={service.name}
+            exclusive={service.exclusive}
+            isOnSale={service.isOnSale}
+            isReallyHot={service.isReallyHot}
+          />
+        )}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -81,19 +89,7 @@ const ServiceShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        <ImagesWidget
-          colors={colors}
-          elements={service.images
-            .concat({id: service.id, large: service.large})
-            .reverse()}
-          width={width}
-          height={550}
-          name={service.name}
-          exclusive={service.exclusive}
-          isOnSale={service.isOnSale}
-          isReallyHot={service.isReallyHot}
-        />
-        <View style={{width: '90%'}}>
+        <View style={{alignSelf: 'center', width: '95%'}}>
           <View animation="bounceInLeft" easing="ease-out">
             <ServiceInfoWidget element={service} />
           </View>
@@ -192,7 +188,7 @@ const ServiceShowScreen = ({
             elements={services}
           />
         ) : null}
-      </ScrollView>
+      </HeaderImageScrollView>
       <ActionBtnWidget colors={colors} />
     </Fragment>
   );

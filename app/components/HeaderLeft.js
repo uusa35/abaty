@@ -27,7 +27,7 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
           type="ionicon"
           size={32}
           underlayColor="transparent"
-          hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
           color={colors.icon_theme_color}
         />
         {cartLength > 0 ? (
