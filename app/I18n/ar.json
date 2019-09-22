@@ -518,5 +518,12 @@
   "category_name" : "إسم التصنيف :",
   "only_whatsapp" : "التواصل عن طريق الواتس اب فقط",
   "home_key" : "هوم كي",
-  "me" : "حسابي"
+  "me" : "حسابي",
+  "tags" : "كلمات مفتاحية",
+  "our_support" : "الشروط والأحكام / الدعم",
+  "product_categories" : "تصنيفات المنتجات",
+  "service_categories" : "تصنيفات الخدمات",
+  "classified_categories" : "تصنيفات الإعلانات",
+  "user_categories" : "تصنيفات الشركات",
+  "sub_categories" : "تصنيفات فرعية"
 }

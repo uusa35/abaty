@@ -1,35 +1,50 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+import {View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BrandList from '../components/widgets/brand/BrandList';
-import {SafeAreaView} from 'react-navigation';
-import CategoriesList from '../components/Lists/CategoriesList';
-import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import I18n from './../I18n';
-import {first} from 'lodash';
 import SearchForm from '../components/SearchForm';
+import TagsList from '../components/widgets/tag/TagsList';
+import {ABATI, ESCRAP, MALLR} from '../../app';
+import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
+import ClassifiedCategoryVerticalWidget from '../components/widgets/category/ClassifiedCategoryVerticalWidget';
 
-const SearchScreen = ({
-  homeCategories,
-  commercials,
-  show_commercials,
-  dispatch,
-  colors,
-  navigation
-}) => {
+const SearchScreen = ({homeCategories, tags, dispatch, colors, navigation}) => {
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}}>
       <SearchForm />
-    </View>
+      <TagsList
+        title={I18n.t('tags')}
+        elements={tags}
+        dispatch={dispatch}
+        colors={colors}
+      />
+      <View>
+        {ABATI || MALLR ? (
+          <ProductCategoryVerticalWidget
+            elements={homeCategories}
+            dispatch={dispatch}
+            title={I18n.t('categories')}
+            colors={colors}
+          />
+        ) : null}
+        {ESCRAP || MALLR ? (
+          <ClassifiedCategoryVerticalWidget
+            elements={homeCategories}
+            dispatch={dispatch}
+            title={I18n.t('categories')}
+            colors={colors}
+          />
+        ) : null}
+      </View>
+    </ScrollView>
   );
 };
 
 function mapStateToProps(state) {
   return {
     homeCategories: state.homeCategories,
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
+    tags: state.tags,
     colors: state.settings.colors
   };
 }

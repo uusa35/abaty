@@ -34,7 +34,8 @@ const SideMeu = ({
   lang,
   navigation,
   name,
-  dispatch
+  dispatch,
+  showLogo = true
 }) => {
   return (
     <ImageBackground
@@ -54,12 +55,15 @@ const SideMeu = ({
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
           <StatusBar barStyle="dark-content" />
-          <FastImage
-            source={{uri: logo}}
-            style={styles.logo}
-            resizeMode="contain"
-            loadingIndicatorSource={{uri: logo}}
-          />
+          {showLogo ? (
+            <FastImage
+              source={{uri: logo}}
+              style={styles.logo}
+              resizeMode="contain"
+              loadingIndicatorSource={{uri: logo}}
+            />
+          ) : null}
+
           <Text
             style={[
               styles.mainMenuText,
@@ -155,40 +159,46 @@ const SideMeu = ({
               </TouchableOpacity>
             ) : (
               <View>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('ProfileIndex', {name})}
-                  style={styles.menuBtn}>
-                  <Icon
-                    name="profile"
-                    type="antdesign"
-                    size={20}
-                    color={colors.icon_theme_color}
-                  />
-                  <Text
-                    style={[
-                      styles.titleStyle,
-                      {color: colors.header_one_theme_color}
-                    ]}>
-                    {I18n.t('profile')}
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('OrderIndex')}
-                  style={styles.menuBtn}>
-                  <Icon
-                    name="receipt"
-                    type="material-community"
-                    size={20}
-                    color={colors.icon_theme_color}
-                  />
-                  <Text
-                    style={[
-                      styles.titleStyle,
-                      {color: colors.header_one_theme_color}
-                    ]}>
-                    {I18n.t('order_history')}
-                  </Text>
-                </TouchableOpacity>
+                {ABATI ? (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('ProfileIndex', {name})}
+                    style={styles.menuBtn}>
+                    <Icon
+                      name="profile"
+                      type="antdesign"
+                      size={20}
+                      color={colors.icon_theme_color}
+                    />
+                    <Text
+                      style={[
+                        styles.titleStyle,
+                        {color: colors.header_one_theme_color}
+                      ]}>
+                      {I18n.t('profile')}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+
+                {ABATI ? (
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('OrderIndex')}
+                    style={styles.menuBtn}>
+                    <Icon
+                      name="receipt"
+                      type="material-community"
+                      size={20}
+                      color={colors.icon_theme_color}
+                    />
+                    <Text
+                      style={[
+                        styles.titleStyle,
+                        {color: colors.header_one_theme_color}
+                      ]}>
+                      {I18n.t('order_history')}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+
                 <TouchableOpacity
                   onPress={() => dispatch(logout())}
                   style={styles.menuBtn}>

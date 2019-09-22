@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useMemo} from 'react';
 import {
   StyleSheet,
   ScrollView,

@@ -18,6 +18,7 @@ import {filter, uniqBy, map} from 'lodash';
 import validate from 'validate.js';
 import {
   getClassifieds,
+  getSearchClassifieds,
   getSearchProducts,
   getUsers
 } from '../../../redux/actions';
@@ -53,7 +54,7 @@ const ClassifiedListHorizontal = ({
         style={widgetStyles.titleContainer}
         onPress={() => {
           dispatch(
-            getClassifieds({
+            getSearchClassifieds({
               searchParams: searchElements,
               redirect: true,
               name: I18n.t('related_classifieds')

@@ -191,6 +191,6 @@ export function* startNewClassifiedScenario(action) {
   }
 }
 
-export function* getClassifieds() {
+export function* getSearchClassifieds() {
   yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
 }

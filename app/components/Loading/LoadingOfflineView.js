@@ -7,7 +7,7 @@ import LottieView from 'lottie-react-native';
 import CodePush from 'react-native-code-push';
 import PropTypes from 'prop-types';
 
-const LoadingOfflineView = ({isConnected, mainBg}) => {
+const LoadingOfflineView = ({isConnected = false, mainBg}) => {
   const [connected, setConnected] = useState(isConnected);
 
   const handleClick = useCallback(
@@ -51,7 +51,7 @@ const LoadingOfflineView = ({isConnected, mainBg}) => {
       <Button
         raised
         icon={{name: 'ios-repeat', type: 'ionicon', color: 'red'}}
-        onPress={() => handleClick(!connect)}
+        onPress={() => handleClick(!connected)}
         title={I18n.t('retry')}
         type="outline"
         containerStyle={{marginBottom: 20, width: '90%'}}

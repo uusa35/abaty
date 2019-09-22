@@ -16,6 +16,7 @@ import {changeLang, getUsers} from '../redux/actions';
 import {HOMEKEY} from './../../app';
 import {appUrlIos} from '../env';
 import widgetStyles from '../components/widgets/widgetStyles';
+import PagesList from '../components/widgets/page/PagesList';
 
 const SettingsIndexScreen = ({
   guest,
@@ -89,6 +90,20 @@ const SettingsIndexScreen = ({
               backgroundColor: colors.btn_bg_theme_color,
               borderRadius: 0
             }}
+            title={I18n.t('login')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+            onPress={() => navigation.navigate('Login')}
+          />
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0
+            }}
             title={I18n.t('new_user')}
             titleStyle={{
               fontFamily: text.font,
@@ -112,6 +127,11 @@ const SettingsIndexScreen = ({
           />
         </Fragment>
       ) : null}
+      <PagesList
+        elements={pages}
+        colors={colors}
+        title={I18n.t('our_support')}
+      />
     </ScrollView>
   );
 };

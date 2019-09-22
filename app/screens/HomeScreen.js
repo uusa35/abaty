@@ -32,7 +32,7 @@ import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSl
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import validate from 'validate.js';
-import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
+import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
 import SearchForm from '../components/SearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
@@ -41,6 +41,7 @@ import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
+import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -168,7 +169,7 @@ class HomeScreen extends Component {
           {!validate.isEmpty(homeDesigners) &&
           validate.isArray(homeDesigners) &&
           (ABATI || MALLR) ? (
-            <DesignerHorizontalWidget
+            <UserHorizontalWidget
               elements={homeDesigners}
               showName={true}
               name="designers"
@@ -179,7 +180,7 @@ class HomeScreen extends Component {
             />
           ) : null}
           {MALLR ? (
-            <DesignerHorizontalWidget
+            <UserHorizontalWidget
               elements={homeCompanies}
               showName={true}
               name="companies"
@@ -192,7 +193,7 @@ class HomeScreen extends Component {
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) &&
           (ABATI || MALLR) ? (
-            <CategoryHorizontalWidget
+            <ProductCategoryHorizontalWidget
               elements={homeCategories}
               showName={true}
               title="categories"
@@ -205,7 +206,7 @@ class HomeScreen extends Component {
           {!validate.isEmpty(homeCelebrities) &&
           validate.isArray(homeCelebrities) &&
           ABATI ? (
-            <DesignerHorizontalWidget
+            <UserHorizontalWidget
               elements={homeCelebrities}
               showName={true}
               name="celebrities"

@@ -13,7 +13,8 @@ import {
   enableLoadingContent,
   enableLoadingProfile,
   enableSuccessMessage,
-  enableWarningMessage
+  enableWarningMessage,
+  getCategories
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
@@ -181,6 +182,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeCelebrities),
       call(setHomeSplashes),
       call(getVideos),
+      call(getCategories),
       call(startAuthenticatedScenario),
       call(startGetHomeClassifiedsScenario, {
         payload: {searchParams: {on_home: true}}
@@ -262,9 +264,9 @@ export function* setGrossTotalCartValue(values) {
     const {total, coupon, country} = values;
     const {cart} = yield select();
     const countPieces = sumBy(cart, i => i.qty);
-    console.log('the total', total);
+    __DEV__ ? console.log('the total', total) : null;
     if (!validate.isEmpty(total) && total > 0) {
-      console.log('the coupon from calculating', coupon);
+      __DEV__ ? console.log('the coupon from calculating', coupon) : null;
       const finalShipment = country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
@@ -273,10 +275,9 @@ export function* setGrossTotalCartValue(values) {
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
       yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
-      console.log('the grossTotal Now is ::::', grossTotal);
+      __DEV__ ? console.log('the grossTotal Now is ::::', grossTotal) : null;
     }
   } catch (e) {
-    console.log('the e from grossTotal', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'))
@@ -551,6 +552,22 @@ export function* getPages() {
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('no_pages'))
+    ]);
+  }
+}
+
+export function* getTags() {
+  try {
+    const tags = yield call(api.getTags);
+    if (!validate.isEmpty(tags) && validate.isArray(tags)) {
+      yield put({type: actions.SET_TAGS, payload: tags});
+    } else {
+      yield put({type: actions.SET_TAGS, payload: []});
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_tags'))
     ]);
   }
 }

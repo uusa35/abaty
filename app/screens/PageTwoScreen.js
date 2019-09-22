@@ -34,8 +34,8 @@ const PageTwoScreen = ({products, colors, dispatch, navigation}) => {
 
 function mapStateToProps(state) {
   return {
-    products: productsSelector(state),
-    colors: colorsSelector(state)
+    products: state.products,
+    colors: state.settings.colors
   };
 }
 
@@ -48,7 +48,8 @@ PageTwoScreen.navigationOptions = ({navigation}) => ({
 export default connect(mapStateToProps)(PageTwoScreen);
 
 PageTwoScreen.propTypes = {
-  products: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({});

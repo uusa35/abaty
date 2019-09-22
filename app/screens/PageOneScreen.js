@@ -1,51 +1,70 @@
-import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState, useCallback} from 'react';
+import {FlatList, RefreshControl, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import CategoriesList from '../components/Lists/CategoriesList';
-import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
 import I18n from './../I18n';
-import {first, has} from 'lodash';
-import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
+import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../../app';
+import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
+import ClassifiedCategoryVerticalWidget from '../components/widgets/category/ClassifiedCategoryVerticalWidget';
+import {refetchHomeElements} from '../redux/actions';
 
 const PageOneScreen = ({
-  homeCategories,
+  categories,
   commercials,
   show_commercials,
   dispatch,
   colors,
+  showRefresh = true,
   navigation
 }) => {
   [title, setTitle] = useState('');
+  [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
 
   useEffect(() => {
     navigation.setParams({title: I18n.t('categories')});
   }, [title]);
 
   return (
-    <View style={{flex: 1}}>
-      <View
-        animation="bounceIn"
-        easing="ease-out"
-        style={{flex: show_commercials ? 0.8 : 1}}>
-        <UserCategoriesInfoWidget
-          elements={homeCategories}
-          colors={colors}
-          title={I18n.t('categories')}
+    <ScrollView
+      refreshing={refresh}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => handleRefresh()}
         />
-      </View>
-      {show_commercials ? (
-        <View style={{flex: 0.2}}>
-          <CommercialSliderWidget commercials={commercials} />
-        </View>
+      }
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 100}}>
+      {ABATI || MALLR ? (
+        <ProductCategoryVerticalWidget
+          elements={categories}
+          dispatch={dispatch}
+          title={I18n.t('product_categories')}
+          colors={colors}
+        />
       ) : null}
-    </View>
+      {ESCRAP || MALLR ? (
+        <ClassifiedCategoryVerticalWidget
+          elements={categories}
+          dispatch={dispatch}
+          title={I18n.t('classified_categories')}
+          colors={colors}
+        />
+      ) : null}
+    </ScrollView>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    homeCategories: state.homeCategories,
+    categories: state.categories,
     commercials: state.commercials,
     show_commercials: state.settings.show_commercials,
     colors: state.settings.colors

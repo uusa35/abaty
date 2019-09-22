@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect, useMemo} from 'react';
+import React, {Fragment, useState, useMemo} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -38,7 +38,7 @@ const ServiceShowScreen = ({
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  useEffect(() => {
+  useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
@@ -79,20 +79,11 @@ const ServiceShowScreen = ({
             }}
           />
         }
-        onScrollEndDrag={e => {
-          if (e.nativeEvent.contentOffset.y > scrollVal) {
-            setBtnVisible(true);
-          } else {
-            setBtnVisible(false);
-          }
-        }}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <View animation="bounceInLeft" easing="ease-out">
-            <ServiceInfoWidget element={service} />
-          </View>
+          <ServiceInfoWidget element={service} />
           <View
             animation="bounceInLeft"
             easing="ease-out"

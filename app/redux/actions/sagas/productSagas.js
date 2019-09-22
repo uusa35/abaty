@@ -4,8 +4,10 @@ import validate from 'validate.js';
 import * as actions from '../types';
 import {
   disableLoading,
+  disableLoadingBoxedList,
   disableLoadingContent,
   enableErrorMessage,
+  enableLoadingBoxedList,
   enableLoadingContent,
   enableWarningMessage
 } from './settingSagas';
@@ -109,6 +111,7 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
+    yield call(enableLoadingBoxedList);
     const {name, searchParams, redirect} = action.payload;
     const products = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
@@ -117,19 +120,23 @@ export function* startGetSearchProductsScenario(action) {
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'ProductIndex',
-            params: {name: name ? name : I18n.t('products')}
-          })
-        );
+        yield all([
+          put(
+            NavigationActions.navigate({
+              routeName: 'ProductIndex',
+              params: {name: name ? name : I18n.t('products')}
+            })
+          ),
+          call(disableLoadingBoxedList)
+        ]);
       }
     } else {
       throw products;
     }
+    yield call(disableLoadingBoxedList);
   } catch (e) {
     yield all([
-      call(disableLoading),
+      call(disableLoadingBoxedList),
       call(enableWarningMessage, I18n.t('no_products'))
     ]);
   }

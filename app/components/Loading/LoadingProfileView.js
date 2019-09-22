@@ -144,7 +144,7 @@ const LoadingProfileView = ({isLoadingContent}) => {
   );
 };
 
-export default React.memo(LoadingProfileView);
+export default LoadingProfileView;
 
 LoadingProfileView.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired,

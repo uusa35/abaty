@@ -35,7 +35,7 @@ import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSl
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import validate from 'validate.js';
-import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
+import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
 import SearchForm from '../components/SearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
@@ -48,6 +48,7 @@ import CategoryHorizontalRoundedWidget from '../components/widgets/category/Cate
 import ClassifiedList from '../components/widgets/classified/ClassifiedList';
 import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import widgetStyles from '../components/widgets/widgetStyles';
+import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
 
 class HomeKeyScreen extends Component {
   constructor(props) {
@@ -81,20 +82,6 @@ class HomeKeyScreen extends Component {
       };
     }
   };
-
-  // shouldComponentUpdate(
-  //   nextProps: Readonly<P>,
-  //   nextState: Readonly<S>,
-  //   nextContext: any
-  // ): boolean {
-  //   return (
-  //     nextProps.settings !== this.props.settings ||
-  //     nextProps.products !== this.props.products ||
-  //     nextProps.categories !== this.props.categories ||
-  //     nextProps.designers !== this.props.designers ||
-  //     nextProps.celebrities !== this.props.celebrities
-  //   );
-  // }
 
   componentDidMount() {
     AppState.addEventListener('change', this._handleAppStateChange);
@@ -209,7 +196,7 @@ class HomeKeyScreen extends Component {
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) &&
           (HOMEKEY || ESCRAP) ? (
-            <CategoryHorizontalRoundedWidget
+            <ClassifiedCategoryHorizontalRoundedWidget
               elements={homeCategories}
               colors={colors}
               showName={true}

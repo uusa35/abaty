@@ -106,7 +106,7 @@ const LoadingContentView = ({isLoadingContent}) => {
   );
 };
 
-export default React.memo(LoadingContentView);
+export default LoadingContentView;
 
 LoadingContentView.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired,

@@ -103,6 +103,13 @@ export async function getPages() {
     .catch(e => e.response.data.message);
 }
 
+export async function getTags() {
+  return await axiosInstance
+    .get(`tag`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getClassified(params) {
   const {id} = params;
   return await axiosInstance
@@ -454,4 +461,11 @@ export async function addComment(params) {
     .post(`comment`, params)
     .then(r => r.data)
     .catch(e => e.response.date.message);
+}
+
+export async function getCategories() {
+  return await axiosInstance
+    .get(`category`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }

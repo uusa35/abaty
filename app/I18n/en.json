@@ -486,5 +486,11 @@
   "category_name" : "Category Name : ",
   "only_whatsapp" : "Whatsapp Only",
   "home_key" : "homekey",
-  "me" : "Me"
+  "me" : "Me",
+  "tags" : "Tags",
+  "our_support" : "Our Support - Terms and Conditions",
+  "service_categories" : "Service Categories",
+  "classified_categories" : "Classified Categories",
+  "user_categories" : "Company Categories",
+  "sub_categories" : "Sub Categories"
 }

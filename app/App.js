@@ -19,6 +19,7 @@ import LoginScreenModal from './screens/LoginScreenModal';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
+import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
 
 type Props = {};
 class App extends Component<Props> {
@@ -64,6 +65,7 @@ class App extends Component<Props> {
       isLoading,
       isLoadingContent,
       isLoadingProfile,
+      isLoadingBoxedList,
       dispatch,
       bootStrapped,
       message,
@@ -109,6 +111,15 @@ class App extends Component<Props> {
         <LoadingProfileView
           loadingText={I18n.t('loading')}
           isLoadingContent={isLoadingProfile}
+          logo={logo}
+        />
+      );
+    }
+    if (isLoadingBoxedList) {
+      return (
+        <LoadingBoxedListView
+          loadingText={I18n.t('loading')}
+          isLoadingContent={isLoadingBoxedList}
           logo={logo}
         />
       );
@@ -182,6 +193,7 @@ function mapStateToProps(state) {
     isLoading: state.isLoading,
     isLoadingContent: state.isLoadingContent,
     isLoadingProfile: state.isLoadingProfile,
+    isLoadingBoxedList: state.isLoadingBoxedList,
     country: state.country,
     countries: state.countries,
     countryModal: state.countryModal,

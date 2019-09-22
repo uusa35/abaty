@@ -25,11 +25,17 @@ import {
   startRefetchHomeCategories,
   setCommercials,
   setCountries,
-  getPages
+  getPages,
+  getTags
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
-import {disableLoading, setDeviceId, enableErrorMessage} from './settingSagas';
+import {
+  disableLoading,
+  setDeviceId,
+  enableErrorMessage,
+  getCategories
+} from './settingSagas';
 import {offlineActionTypes} from 'react-native-offline';
 import validate from 'validate.js';
 import DeviceInfo from 'react-native-device-info';
@@ -86,6 +92,7 @@ function* startAppBootStrap() {
         call(setHomeProducts),
         call(getHomeServicesScenario),
         call(getPages),
+        call(getTags),
         call(getProductIndex),
         call(getServiceIndex),
         call(getVideos),
@@ -93,11 +100,12 @@ function* startAppBootStrap() {
         call(setHomeCelebrities),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),
+        call(getCategories),
         call(startGetHomeClassifiedsScenario, {
           payload: {searchParams: {on_home: true}}
         }),
         call(setHomeCompanies, {
-          payload: {searchParams: {on_home: true, is_company: true}}
+          payload: {searchParams: {on_home: true, is_company: 1}}
         })
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),

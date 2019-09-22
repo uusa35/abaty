@@ -30,7 +30,7 @@ export default function* rootSaga() {
     fork(serviceSagas.getSearchServices),
     fork(productSagas.getAllProducts),
     fork(productSagas.getCollections),
-    fork(classifiedSagas.getClassifieds),
+    fork(classifiedSagas.getSearchClassifieds),
     fork(classifiedSagas.getClassified),
     fork(classifiedSagas.startNewClassified),
     fork(classifiedSagas.storeClassified),

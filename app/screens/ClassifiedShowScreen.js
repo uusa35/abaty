@@ -23,6 +23,7 @@ import PropertiesWidget from '../components/widgets/classified/PropertiesWidget'
 import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
 import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './CommentScreenModal';
+import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 
 const ClassifiedShowScreen = ({
   classified,
@@ -36,28 +37,36 @@ const ClassifiedShowScreen = ({
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const [currentY, setCurrentY] = useState(0);
 
-  useEffect(() => {
+  useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
-  useMemo(() => {
-    if (currentY > 50) {
-      setHeaderBg(false);
-      setHeaderBgColor('#e5e5e5');
-    } else {
-      setHeaderBg(true);
-      setHeaderBgColor('transparent');
-    }
-  }, [currentY]);
-
   return (
     <Fragment>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={[styles.contentContainer]}
-        onScroll={e => setCurrentY(e.nativeEvent.contentOffset.y)}
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={550}
+        minHeight={90}
+        style={{width}}
+        scrollViewBackgroundColor="transparent"
+        overlayColor="white"
+        renderForeground={() => (
+          <ImagesWidget
+            colors={colors}
+            resizeMode="cover"
+            elements={classified.images
+              .concat({id: classified.id, large: classified.large})
+              .reverse()}
+            width={width}
+            height={550}
+            name={classified.name}
+            isFeatured={classified.is_featured}
+          />
+        )}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -76,18 +85,7 @@ const ClassifiedShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        <ImagesWidget
-          colors={colors}
-          resizeMode="cover"
-          elements={classified.images
-            .concat({id: classified.id, large: classified.large})
-            .reverse()}
-          width={width}
-          height={550}
-          name={classified.name}
-          isFeatured={classified.is_featured}
-        />
-        <View style={{width: '90%'}}>
+        <View style={{alignSelf: 'center', width: '95%'}}>
           <ClassifiedInfoWidgetMainTitle element={classified} />
           {!validate.isEmpty(classified.properties) ? (
             <PropertiesWidget
@@ -198,7 +196,7 @@ const ClassifiedShowScreen = ({
             searchElements={{classified_category_id: classified.category_id}}
           />
         ) : null}
-      </ScrollView>
+      </HeaderImageScrollView>
       <QuickCallActionBtnWidget colors={colors} mobile={classified.mobile} />
       <CommentScreenModal
         commentModal={commentModal}

@@ -3,6 +3,7 @@ import navReducer from './navReducer';
 import isLoading from './isLoading';
 import isLoadingContent from './isLoadingContent';
 import isLoadingProfile from './isLoadingProfile';
+import isLoadingBoxedList from './isLoadingBoxedList';
 import bootStrapped from './bootStrapped';
 import settings from './settings';
 import lang from './lang';
@@ -70,6 +71,8 @@ import classifiedProps from './classifiedProps';
 import shipmentFees from './shipmentFees';
 import version from './version';
 import propertiesModal from './propertiesModal';
+import tags from './tags';
+import pages from './pages';
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -77,6 +80,7 @@ let reducers = combineReducers({
   isLoading,
   isLoadingContent,
   isLoadingProfile,
+  isLoadingBoxedList,
   message,
   lang,
   bootStrapped,
@@ -144,7 +148,9 @@ let reducers = combineReducers({
   classifiedProps,
   shipmentFees,
   version,
-  propertiesModal
+  propertiesModal,
+  tags,
+  pages
 });
 
 export default reducers;

@@ -543,7 +543,7 @@ export function googleRegister() {
   };
 }
 
-export function getClassifieds(payload) {
+export function getSearchClassifieds(payload) {
   return {
     type: actions.GET_CLASSIFIEDS,
     payload

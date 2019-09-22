@@ -4,29 +4,29 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  View
+  View,
+  Linking
 } from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, width} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {getSearchProducts} from '../../../redux/actions';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 
-const UserCategoriesInfoWidget = ({
+const TagsList = ({
   elements,
   showTitle = true,
   showArrow = true,
   colors,
-  title,
-  dispatch
+  dispatch,
+  title
 }) => {
   return (
     <ScrollView
       horizontal={false}
+      style={{width: '90%', alignSelf: 'center'}}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
@@ -34,7 +34,7 @@ const UserCategoriesInfoWidget = ({
       {!validate.isEmpty(elements) ? (
         <View
           key={elements.length}
-          style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
+          style={{width: '100%', alignSelf: 'center', marginTop: 30}}>
           {showTitle ? (
             <Text
               style={{
@@ -60,15 +60,7 @@ const UserCategoriesInfoWidget = ({
               return (
                 <TouchableOpacity
                   key={i}
-                  onPress={() =>
-                    dispatch(
-                      getSearchProducts({
-                        name: c.name,
-                        searchParams: {product_category_id: c.id},
-                        redirect: true
-                      })
-                    )
-                  }
+                  onPress={() => Linking.openURL(c.url)}
                   hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
                   style={styles.itemRow}>
                   <View
@@ -86,7 +78,7 @@ const UserCategoriesInfoWidget = ({
                         paddingLeft: 10
                       }}
                     />
-                    <Text style={styles.subTitle}>{c.name}</Text>
+                    <Text style={styles.subTitle}>{c.slug}</Text>
                   </View>
                   {showArrow ? (
                     <Icon
@@ -120,11 +112,12 @@ const UserCategoriesInfoWidget = ({
   );
 };
 
-export default UserCategoriesInfoWidget;
+export default TagsList;
 
-UserCategoriesInfoWidget.propTypes = {
+TagsList.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired
+  colors: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
 const styles = StyleSheet.create({

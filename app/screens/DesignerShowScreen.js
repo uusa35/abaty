@@ -14,7 +14,6 @@ import {getDesigner} from '../redux/actions';
 import CommentScreenModal from './CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
-import UserCategoriesInfoWidget from '../components/widgets/user/UserCategoriesInforWidget';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import VideosWidget from '../components/widgets/VideosWidget';
 import I18n from '../I18n';
@@ -38,7 +37,6 @@ const DesignerShowScreen = ({
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
     {key: 'products', title: I18n.t('products')},
-    {key: 'categories', title: I18n.t('categories')},
     {key: 'info', title: I18n.t('information').substring(0, 10)},
     {key: 'videos', title: I18n.t('videos')}
   ]);
@@ -147,14 +145,6 @@ const DesignerShowScreen = ({
                   showFooter={false}
                   showMore={false}
                   searchElements={searchParams}
-                />
-              ),
-              categories: () => (
-                <UserCategoriesInfoWidget
-                  elements={collectedCatetories}
-                  colors={colors}
-                  dispatch={dispatch}
-                  title={I18n.t('product_categories')}
                 />
               ),
               info: () => (

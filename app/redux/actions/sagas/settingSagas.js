@@ -3,6 +3,9 @@ import I18n from './../../../I18n';
 import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
 import {displayName} from './../../../../app';
+import validate from 'validate.js';
+import * as api from '../api';
+import {isArray} from 'lodash';
 
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
@@ -10,6 +13,14 @@ export function* enableLoading() {
 
 export function* disableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: false});
+}
+
+export function* enableLoadingBoxedList() {
+  yield put({type: actions.TOGGLE_LOADING_BOXED_LIST, payload: true});
+}
+
+export function* disableLoadingBoxedList() {
+  yield put({type: actions.TOGGLE_LOADING_BOXED_LIST, payload: false});
 }
 
 export function* enableLoadingContent() {
@@ -89,4 +100,18 @@ export function* enableWarningMessage(
       color: 'orange'
     }
   });
+}
+
+export function* getCategories() {
+  try {
+    const elements = yield call(api.getCategories);
+    if (!validate.isEmpty(elements) && isArray(elements)) {
+      yield put({type: actions.SET_CATEGORIES, payload: elements});
+    } else {
+      yield put({type: actions.SET_CATEGORIES, payload: []});
+    }
+  } catch (e) {
+    console.log('eee', e);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
 }
