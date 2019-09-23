@@ -22,14 +22,14 @@ export function* startGetDesignerScenario(action) {
   try {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
-    const user = yield call(api.getUser, id);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
+    const element = yield call(api.getUser, id);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
-        put({type: actions.SET_DESIGNER, payload: user}),
+        put({type: actions.SET_DESIGNER, payload: element}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
-      if (!validate.isEmpty(user.comments)) {
-        yield put({type: actions.SET_COMMENTS, payload: user.comments});
+      if (!validate.isEmpty(element.comments)) {
+        yield put({type: actions.SET_COMMENTS, payload: element.comments});
       } else {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
@@ -37,7 +37,7 @@ export function* startGetDesignerScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'DesignerShow',
-            params: {name: user.slug, id: user.id, product: false}
+            params: {name: element.slug, id: element.id, product: false}
           })
         );
       }
@@ -55,25 +55,95 @@ export function* startGetDesignerScenario(action) {
   }
 }
 
+export function* startGetCompanyScenario(action) {
+  try {
+    yield call(enableLoadingProfile);
+    const {id, searchParams, redirect} = action.payload;
+    const element = yield call(api.getUser, id);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        put({type: actions.SET_COMPANY, payload: element}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
+      if (!validate.isEmpty(element.comments)) {
+        yield put({type: actions.SET_COMMENTS, payload: element.comments});
+      } else {
+        yield put({type: actions.SET_COMMENTS, payload: []});
+      }
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'CompanyShow',
+            params: {name: element.slug, id: element.id, product: false}
+          })
+        );
+      }
+      yield call(disableLoadingProfile);
+    } else {
+      yield put({type: actions.SET_COMPANY, payload: {}});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
+      throw I18n.t('no_company');
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoadingProfile),
+      call(enableWarningMessage, I18n.t('no_company'))
+    ]);
+  }
+}
+
+export function* startGetCelebrityScenario(action) {
+  try {
+    yield call(enableLoadingProfile);
+    const {id, searchParams, redirect} = action.payload;
+    const element = yield call(api.getUser, id);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        put({type: actions.SET_CELEBRITY, payload: element}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
+      if (!validate.isEmpty(element.comments)) {
+        yield put({type: actions.SET_COMMENTS, payload: element.comments});
+      } else {
+        yield put({type: actions.SET_COMMENTS, payload: []});
+      }
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'CelebrityShow',
+            params: {name: element.slug, id: element.id, product: false}
+          })
+        );
+      }
+      yield call(disableLoadingProfile);
+    } else {
+      yield put({type: actions.SET_CELEBRITY, payload: {}});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
+      throw I18n.t('no_celebrity');
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoadingProfile),
+      call(enableWarningMessage, I18n.t('no_celebrity'))
+    ]);
+  }
+}
+
 export function* startGetUserScenario(action) {
   try {
-    const user = yield call(api.getUser, action.payload);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
-      yield put({type: actions.SET_USER, payload: user});
+    const element = yield call(api.getUser, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield put({type: actions.SET_USER, payload: element});
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
-          params: {name: user.slug, id: user.id, model: 'user'}
+          params: {name: element.slug, id: element.id, model: 'user'}
         })
       );
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
   }
-}
-
-export function* startGetUsersScenario(action) {
-  yield call(setUsers, action);
 }
 
 export function* startStorePlayerIdScenario(action) {
@@ -86,9 +156,9 @@ export function* startStorePlayerIdScenario(action) {
 
 export function* setHomeBrands() {
   try {
-    const brands = yield call(api.getHomeBrands);
-    if (!validate.isEmpty(brands) && validate.isArray(brands)) {
-      yield put({type: actions.SET_BRANDS, payload: brands});
+    const elements = yield call(api.getHomeBrands);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_BRANDS, payload: elements});
     }
   } catch (e) {
     yield all([
@@ -98,32 +168,31 @@ export function* setHomeBrands() {
   }
 }
 
-export function* setHomeDesigners() {
+export function* startGetHomeCelebrities(action) {
   try {
-    const designers = yield call(api.getUsers, {on_home: true, is_designer: 1});
-    if (!validate.isEmpty(designers) && validate.isArray(designers)) {
-      yield put({type: actions.SET_HOME_DESIGNERS, payload: designers});
+    const {searchParams, redirect} = action.payload;
+    const elements = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_HOME_CELEBRITIES, payload: elements});
     } else {
-      yield put({type: actions.SET_HOME_DESIGNERS, payload: []});
+      yield put({type: actions.SET_HOME_CELEBRITIES, payload: []});
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_home_designers'))
+      call(enableWarningMessage, I18n.t('no_celebrities'))
     ]);
   }
 }
 
-export function* setHomeCelebrities() {
+export function* startGetHomeDesigners(action) {
   try {
-    const celebrities = yield call(api.getUsers, {
-      on_home: true,
-      is_celebrity: 1
-    });
-    if (!validate.isEmpty(celebrities) && validate.isArray(celebrities)) {
-      yield put({type: actions.SET_HOME_CELEBRITIES, payload: celebrities});
+    const {searchParams, redirect} = action.payload;
+    const elements = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_HOME_DESIGNERS, payload: elements});
     } else {
-      yield put({type: actions.SET_HOME_CELEBRITIES, payload: []});
+      yield put({type: actions.SET_HOME_DESIGNERS, payload: []});
     }
   } catch (e) {
     yield all([
@@ -162,15 +231,15 @@ export function* startSubmitAuthScenario(action) {
     if (!validate.isEmpty(result)) {
       throw I18n.t('invalid_email_or_password');
     }
-    const user = yield call(api.authenticate, {email, password, player_id});
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
+    const element = yield call(api.authenticate, {email, password, player_id});
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
-        put({type: actions.SET_AUTH, payload: user}),
-        put({type: actions.SET_TOKEN, payload: user.api_token}),
-        put({type: actions.SET_ORDERS, payload: user.orders}),
+        put({type: actions.SET_AUTH, payload: element}),
+        put({type: actions.SET_TOKEN, payload: element.api_token}),
+        put({type: actions.SET_ORDERS, payload: element.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
-        call(setProductFavorites, user.product_favorites),
-        call(setClassifiedFavorites, user.classified_favorites),
+        call(setProductFavorites, element.product_favorites),
+        call(setClassifiedFavorites, element.classified_favorites),
         call(enableSuccessMessage, I18n.t('login_success'))
       ]);
       if (loginModal) {
@@ -184,7 +253,7 @@ export function* startSubmitAuthScenario(action) {
       }
       yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
     } else {
-      throw user;
+      throw element;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -194,15 +263,15 @@ export function* startSubmitAuthScenario(action) {
 export function* startReAuthenticateScenario() {
   try {
     const {token, loginModal} = yield select();
-    const user = yield call(api.reAuthenticate, token);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
+    const element = yield call(api.reAuthenticate, token);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
-        put({type: actions.SET_TOKEN, payload: user.api_token}),
-        put({type: actions.SET_AUTH, payload: user}),
-        put({type: actions.SET_ORDERS, payload: user.orders}),
+        put({type: actions.SET_TOKEN, payload: element.api_token}),
+        put({type: actions.SET_AUTH, payload: element}),
+        put({type: actions.SET_ORDERS, payload: element.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
-        call(setProductFavorites, user.product_favorites),
-        call(setClassifiedFavorites, user.classified_favorites)
+        call(setProductFavorites, element.product_favorites),
+        call(setClassifiedFavorites, element.classified_favorites)
       ]);
     } else {
       throw user;
@@ -218,10 +287,10 @@ export function* startUpdateUserScenario(action) {
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
       yield call(enableLoading);
-      const user = yield call(api.updateUser, action.payload);
-      if (!validate.isEmpty(user) && validate.isObject(user)) {
+      const element = yield call(api.updateUser, action.payload);
+      if (!validate.isEmpty(element) && validate.isObject(element)) {
         yield all([
-          put({type: actions.SET_AUTH, payload: user}),
+          put({type: actions.SET_AUTH, payload: element}),
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
           put(NavigationActions.back())
@@ -245,19 +314,19 @@ export function* startUpdateUserScenario(action) {
   }
 }
 
-export function* setUsers(action) {
+export function* startGetSearchCompaniesScenario(action) {
   try {
     const {searchParams, redirect} = action.payload;
-    const users = yield call(api.getUsers, searchParams);
-    if (!validate.isEmpty(users) && validate.isArray(users)) {
+    const elements = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
-        put({type: actions.SET_USERS, payload: users}),
+        put({type: actions.SET_COMPANIES, payload: elements}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
-            routeName: 'UserIndex',
+            routeName: 'CompanyIndex',
             params: {
               name: action.payload.name
             }
@@ -265,25 +334,84 @@ export function* setUsers(action) {
         );
       }
     } else {
-      yield put({type: actions.SET_USERS, payload: []});
+      yield put({type: actions.SET_COMPANIES, payload: []});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
-      throw I18n.t(users);
+      throw I18n.t(elements);
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableWarningMessage, e)]);
   }
 }
 
-export function* getSearchCompanies(action) {
+export function* startGetCelebritiesScenario(action) {
   try {
     const {searchParams, redirect} = action.payload;
-    const users = yield call(api.getUsers, searchParams);
-    if (!validate.isEmpty(users) && validate.isArray(users)) {
-      yield put({type: actions.SET_HOME_COMPANIES, payload: users});
+    const elements = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield all([
+        put({type: actions.SET_CELEBRITIES, payload: elements}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
-            routeName: 'UserIndex',
+            routeName: 'CelebrityIndex',
+            params: {
+              name: action.payload.name
+            }
+          })
+        );
+      }
+    } else {
+      yield put({type: actions.SET_CELEBRITIES, payload: []});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
+      throw I18n.t(elements);
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+  }
+}
+
+export function* startGetDesignersScenario(action) {
+  try {
+    const {searchParams, redirect} = action.payload;
+    const elements = yield call(api.getUsers, searchParams);
+    console.log('elements', searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield all([
+        put({type: actions.SET_DESIGNERS, payload: elements}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'DesignerIndex',
+            params: {
+              name: action.payload.name
+            }
+          })
+        );
+      }
+    } else {
+      yield put({type: actions.SET_DESIGNERS, payload: []});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
+      throw I18n.t(elements);
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+  }
+}
+
+export function* startGetHomeCompaniesScenario(action) {
+  try {
+    const {searchParams, redirect} = action.payload;
+    const elements = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_HOME_COMPANIES, payload: elements});
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'CompanyIndex',
             params: {
               name: I18n.t('companies')
             }
@@ -292,51 +420,22 @@ export function* getSearchCompanies(action) {
       }
     } else {
       yield put({type: actions.SET_HOME_COMPANIES, payload: []});
-      throw users;
+      throw elements;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableWarningMessage, e)]);
   }
-}
-
-export function* getHomeCompanies(action) {
-  try {
-    const {searchParams, redirect} = action.payload;
-    const users = yield call(api.getUsers, searchParams);
-    if (!validate.isEmpty(users) && validate.isArray(users)) {
-      yield put({type: actions.SET_HOME_COMPANIES, payload: users});
-      if (!validate.isEmpty(redirect) && redirect) {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'UserIndex',
-            params: {
-              name: I18n.t('companies')
-            }
-          })
-        );
-      }
-    } else {
-      yield put({type: actions.SET_HOME_COMPANIES, payload: []});
-      throw users;
-    }
-  } catch (e) {
-    yield all([call(disableLoading), call(enableWarningMessage, e)]);
-  }
-}
-
-export function* startRefetchUserScenario(action) {
-  yield call(setUsers, action);
 }
 
 export function* startAuthenticatedScenario() {
   try {
     const {token} = yield select();
     if (!validate.isEmpty(token)) {
-      const user = yield call(api.authenticated, token); // get the auth user according to auth stored in storage
-      if (!validate.isEmpty(user) && !validate.isEmpty(token)) {
+      const element = yield call(api.authenticated, token); // get the auth user according to auth stored in storage
+      if (!validate.isEmpty(element) && !validate.isEmpty(token)) {
         yield all([
-          put({type: actions.SET_AUTH, payload: user}),
-          put({type: actions.SET_TOKEN, payload: user.token}),
+          put({type: actions.SET_AUTH, payload: element}),
+          put({type: actions.SET_TOKEN, payload: element.token}),
           put({type: actions.TOGGLE_GUEST, payload: false})
         ]);
       }
@@ -354,8 +453,8 @@ export function* startRegisterScenario(action) {
     const {name, mobile, email, address} = action.payload;
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
-      const user = yield call(api.register, action.payload);
-      if (validate.isObject(user) && !validate.isEmpty(user)) {
+      const element = yield call(api.register, action.payload);
+      if (validate.isObject(element) && !validate.isEmpty(element)) {
         const {email, password} = action.payload;
         yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});
         yield all([
@@ -367,7 +466,7 @@ export function* startRegisterScenario(action) {
           )
         ]);
       } else {
-        throw user;
+        throw element;
       }
     } else {
       throw result['name']
@@ -387,21 +486,13 @@ export function* startRegisterScenario(action) {
 
 export function* startRateUserScenario(action) {
   try {
-    const user = yield call(api.rateUser, action.payload);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
+    const element = yield call(api.rateUser, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield call(enableSuccessMessage, I18n.t('rate_success'));
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
-}
-
-export function* refetchUsers() {
-  yield takeLatest(actions.REFETCH_USERS, startRefetchUserScenario);
-}
-
-export function* getUsers() {
-  yield takeLatest(actions.GET_USERS, startGetUsersScenario);
 }
 
 export function* getUser() {
@@ -410,6 +501,14 @@ export function* getUser() {
 
 export function* getDesigner() {
   yield takeLatest(actions.GET_DESIGNER, startGetDesignerScenario);
+}
+
+export function* getCompany() {
+  yield takeLatest(actions.GET_COMPANY, startGetCompanyScenario);
+}
+
+export function* getCelebrity() {
+  yield takeLatest(actions.GET_CELEBRITY, startGetCelebrityScenario);
 }
 
 export function* submitAuth() {
@@ -442,4 +541,28 @@ export function* rateUser() {
 
 export function* becomeFan() {
   yield takeLatest(actions.BECOME_FAN, startBecomeFanScenario);
+}
+
+export function* getSearchCompanies() {
+  yield takeLatest(actions.GET_COMPANIES, startGetSearchCompaniesScenario);
+}
+
+export function* getSearchDesigners() {
+  yield takeLatest(actions.GET_DESIGNERS, startGetDesignersScenario);
+}
+
+export function* getSearchCelebrities() {
+  yield takeLatest(actions.GET_CELEBRITIES, startGetCelebritiesScenario);
+}
+
+export function* getHomeCompanies() {
+  yield takeLatest(actions.GET_HOME_COMPANIES, startGetHomeCompaniesScenario);
+}
+
+export function* getHomeCelebrities() {
+  yield takeLatest(actions.GET_HOME_CELEBRITIES, startGetHomeCelebrities);
+}
+
+export function* getHomeDesigners() {
+  yield takeLatest(actions.GET_HOME_DESIGNERS, startGetHomeDesigners);
 }

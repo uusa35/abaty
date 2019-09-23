@@ -5,6 +5,7 @@ import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {
+  getCompany,
   getDesigner,
   getSearchCompanies,
   getSearchDesigners,
@@ -15,7 +16,7 @@ import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants';
 
-const UserHorizontalWidget = ({
+const CompanyHorizontalWidget = ({
   elements,
   showName,
   title,
@@ -31,8 +32,8 @@ const UserHorizontalWidget = ({
         style={widgetStyles.titleContainer}
         onPress={() =>
           dispatch(
-            getSearchDesigners({
-              searchParams: {is_designer: 1},
+            getSearchCompanies({
+              searchParams: {is_company: 1},
               name,
               redirect: true
             })
@@ -65,7 +66,7 @@ const UserHorizontalWidget = ({
               style={widgetStyles.btnStyle}
               onPress={() =>
                 dispatch(
-                  getDesigner({
+                  getCompany({
                     id: c.id,
                     searchParams: {user_id: c.id},
                     redirect: true
@@ -98,9 +99,9 @@ const UserHorizontalWidget = ({
   );
 };
 
-export default UserHorizontalWidget;
+export default CompanyHorizontalWidget;
 
-UserHorizontalWidget.propTypes = {
+CompanyHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   colors: PropTypes.object,

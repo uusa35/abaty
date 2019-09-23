@@ -525,5 +525,8 @@
   "service_categories" : "تصنيفات الخدمات",
   "classified_categories" : "تصنيفات الإعلانات",
   "user_categories" : "تصنيفات الشركات",
-  "sub_categories" : "تصنيفات فرعية"
+  "sub_categories" : "تصنيفات فرعية",
+  "no_more_companies" : "لا يوجد المزيد من الشركات",
+  "no_more_designers" : "لا يوجد المزيد من المصممين",
+  "no_more_celebrities" : "لا يوجد المزيد من المشاهير"
 }

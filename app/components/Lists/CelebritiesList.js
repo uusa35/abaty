@@ -5,7 +5,7 @@ import {
   RefreshControl,
   KeyboardAvoidingView
 } from 'react-native';
-import {getUsers} from '../../redux/actions';
+import {getSearchCelebrities, getUsers} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
@@ -15,13 +15,13 @@ import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 
-const UsersList = ({elements, searchElements, dispatch, showMore}) => {
+const CelebritiesList = ({elements, searchParams, dispatch, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
   [items, setItems] = useState(elements);
   [elements, setElements] = useState(elements);
-  [params, setParams] = useState(searchElements);
+  [params, setParams] = useState(searchParams);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
@@ -52,7 +52,7 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getUsers({searchParams: params}));
+      dispatch(getSearchCelebrities({searchParams: params}));
     }
   }, [refresh]);
 
@@ -181,10 +181,10 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
   );
 };
 
-export default UsersList;
+export default CelebritiesList;
 
-UsersList.propTypes = {
-  elements: PropTypes.array,
+CelebritiesList.propTypes = {
+  elements: PropTypes.array.isRequired,
   category: PropTypes.object,
   searchParams: PropTypes.object,
   dispatch: PropTypes.func.isRequired

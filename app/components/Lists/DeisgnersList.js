@@ -5,7 +5,7 @@ import {
   RefreshControl,
   KeyboardAvoidingView
 } from 'react-native';
-import {getUsers} from '../../redux/actions';
+import {getSearchDesigners, getUsers} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
@@ -15,13 +15,13 @@ import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 
-const UsersList = ({elements, searchElements, dispatch, showMore}) => {
+const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
   [items, setItems] = useState(elements);
   [elements, setElements] = useState(elements);
-  [params, setParams] = useState(searchElements);
+  [params, setParams] = useState(searchParams);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
 
@@ -52,7 +52,7 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getUsers({searchParams: params}));
+      dispatch(getSearchDesigners({searchParams: params}));
     }
   }, [refresh]);
 
@@ -123,7 +123,7 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
               <Button
                 loading={isLoading}
                 raised
-                title={I18n.t('no_more_elements')}
+                title={I18n.t('no_more_designers')}
                 type="outline"
                 titleStyle={{fontFamily: text.font}}
               />
@@ -171,7 +171,7 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
         <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
           <Button
             raised
-            title={I18n.t('no_users')}
+            title={I18n.t('no_designers')}
             type="outline"
             titleStyle={{fontFamily: text.font}}
           />
@@ -181,10 +181,10 @@ const UsersList = ({elements, searchElements, dispatch, showMore}) => {
   );
 };
 
-export default UsersList;
+export default DesignersList;
 
-UsersList.propTypes = {
-  elements: PropTypes.array,
+DesignersList.propTypes = {
+  elements: PropTypes.array.isRequired,
   category: PropTypes.object,
   searchParams: PropTypes.object,
   dispatch: PropTypes.func.isRequired

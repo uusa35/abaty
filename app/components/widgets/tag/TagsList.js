@@ -60,7 +60,15 @@ const TagsList = ({
               return (
                 <TouchableOpacity
                   key={i}
-                  onPress={() => Linking.openURL(c.url)}
+                  onPress={() =>
+                    dispatch(
+                      getSearchProducts({
+                        name: c.slug,
+                        searchParams: {tag_id: c.id},
+                        redirect: true
+                      })
+                    )
+                  }
                   hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
                   style={styles.itemRow}>
                   <View

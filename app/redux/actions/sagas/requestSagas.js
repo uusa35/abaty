@@ -18,29 +18,24 @@ import {
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
-import {
-  commentStoreConstrains,
-  registerConstrains,
-  storeClassifiedConstrains,
-  submitLogin
-} from '../../../constants';
+import {commentStoreConstrains, registerConstrains} from '../../../constants';
 import {GoogleSignin} from 'react-native-google-signin';
 import {
+  getHomeCompanies,
+  getSearchCompanies,
   setHomeBrands,
-  setHomeCelebrities,
-  setHomeCompanies,
-  setHomeDesigners,
   startAuthenticatedScenario
 } from './userSagas';
 import {getProductIndex, setHomeProducts} from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetHomeClassifiedsScenario} from './classifiedSagas';
+import {isArray} from 'lodash';
 
-export function* setHomeCategories() {
+export function* startGetHomeCategoriesScenario(action) {
   try {
-    const categories = yield call(api.getHomeCategories);
-    if (!validate.isEmpty(categories) && validate.isArray(categories)) {
-      yield put({type: actions.SET_HOME_CATEGORIES, payload: categories});
+    const elements = yield call(api.getHomeCategories);
+    if (!validate.isEmpty(elements) && isArray(elements)) {
+      yield put({type: actions.SET_HOME_CATEGORIES, payload: elements});
     } else {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
@@ -50,7 +45,21 @@ export function* setHomeCategories() {
 }
 
 export function* startRefetchHomeCategories() {
-  yield call(setHomeCategories);
+  yield put({type: actions.GET_HOME_CATEGORIES});
+}
+
+export function* startGetCategoriesScenario() {
+  try {
+    const elements = yield call(api.getCategories);
+    if (!validate.isEmpty(elements) && isArray(elements)) {
+      yield put({type: actions.SET_CATEGORIES, payload: elements});
+    } else {
+      yield put({type: actions.SET_CATEGORIES, payload: []});
+    }
+  } catch (e) {
+    console.log('eee', e);
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
 }
 
 export function* setSettings() {
@@ -169,7 +178,6 @@ export function* startRefetchHomeElementsScenario() {
   try {
     yield all([
       call(setSettings),
-      call(setHomeCategories),
       call(setCountries),
       call(setSlides),
       call(setCommercials),
@@ -178,20 +186,30 @@ export function* startRefetchHomeElementsScenario() {
       call(getServiceIndex),
       call(getHomeServicesScenario),
       call(getProductIndex),
-      call(setHomeDesigners),
-      call(setHomeCelebrities),
       call(setHomeSplashes),
       call(getVideos),
-      call(getCategories),
       call(startAuthenticatedScenario),
-      call(startGetHomeClassifiedsScenario, {
-        payload: {searchParams: {on_home: true}}
+      put({type: actions.GET_CATEGORIES}),
+      put({type: actions.GET_HOME_CATEGORIES}),
+      put({
+        type: actions.GET_HOME_COMPANIES,
+        payload: {searchParams: {on_home: 1, is_company: 1}}
       }),
-      call(setHomeCompanies, {
-        payload: {searchParams: {on_home: true, is_company: 1}}
+      put({
+        type: actions.GET_HOME_DESIGNERS,
+        payload: {searchParams: {on_home: 1, is_designer: 1}}
+      }),
+      put({
+        type: actions.GET_HOME_CELEBRITIES,
+        payload: {searchParams: {on_home: 1, is_celebrity: 1}}
+      }),
+      put({
+        type: actions.GET_HOME_CLASSIFIEDS,
+        payload: {searchParams: {on_home: 1}}
       })
     ]);
   } catch (e) {
+    console.log('the ee', e);
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('refetch_home_error'))

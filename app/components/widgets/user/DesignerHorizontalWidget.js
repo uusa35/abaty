@@ -15,7 +15,7 @@ import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants';
 
-const UserHorizontalWidget = ({
+const DesignerHorizontalWidget = ({
   elements,
   showName,
   title,
@@ -98,9 +98,9 @@ const UserHorizontalWidget = ({
   );
 };
 
-export default UserHorizontalWidget;
+export default DesignerHorizontalWidget;
 
-UserHorizontalWidget.propTypes = {
+DesignerHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   colors: PropTypes.object,

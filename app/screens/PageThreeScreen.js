@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import UsersList from '../components/Lists/UsersList';
+import I18n from '../I18n';
+import CompaniesList from '../components/Lists/CompaniesList';
 
-const PageThreeScreen = ({companies, dispatch}) => {
+const PageThreeScreen = ({companies, dispatch, navigation}) => {
+  [title, setTitle] = useState('');
+
+  useEffect(() => {
+    navigation.setParams({title: I18n.t('companies')});
+  }, [title]);
+
   return (
-    <UsersList
+    <CompaniesList
       dispatch={dispatch}
       elements={companies}
       showMore={true}
-      searchParams={{}}
+      searchParams={{is_company: 1}}
     />
   );
 };
@@ -21,9 +28,15 @@ function mapStateToProps(state) {
   };
 }
 
+PageThreeScreen.navigationOptions = ({navigation}) => ({
+  // headerTitle: navigation.state.params.title
+  // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
+  title: I18n.t('companies')
+});
+
 export default connect(mapStateToProps)(PageThreeScreen);
 
 PageThreeScreen.propTypes = {
-  brands: PropTypes.array.isRequired
+  companies: PropTypes.array.isRequired
 };
 const styles = StyleSheet.create({});

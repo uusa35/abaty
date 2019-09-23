@@ -55,9 +55,11 @@ const ProductList = ({
         params
       })
         .then(r => {
-          const productsGroup = uniqBy(items.concat(r.data), 'id');
-          setItems(productsGroup);
-          setElements(productsGroup);
+          if (!validate.isEmpty(items) || !validate.isEmpty(r.data)) {
+            const productsGroup = uniqBy(items.concat(r.data), 'id');
+            setItems(productsGroup);
+            setElements(productsGroup);
+          }
         })
         .catch(e => e);
     }

@@ -42,6 +42,9 @@ import IntroductionWidget from '../components/widgets/splash/IntroductionWidget'
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
 import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
+import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
+import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
+import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -169,7 +172,7 @@ class HomeScreen extends Component {
           {!validate.isEmpty(homeDesigners) &&
           validate.isArray(homeDesigners) &&
           (ABATI || MALLR) ? (
-            <UserHorizontalWidget
+            <DesignerHorizontalWidget
               elements={homeDesigners}
               showName={true}
               name="designers"
@@ -180,7 +183,7 @@ class HomeScreen extends Component {
             />
           ) : null}
           {MALLR ? (
-            <UserHorizontalWidget
+            <CompanyHorizontalWidget
               elements={homeCompanies}
               showName={true}
               name="companies"
@@ -206,7 +209,7 @@ class HomeScreen extends Component {
           {!validate.isEmpty(homeCelebrities) &&
           validate.isArray(homeCelebrities) &&
           ABATI ? (
-            <UserHorizontalWidget
+            <CelebrityHorizontalWidget
               elements={homeCelebrities}
               showName={true}
               name="celebrities"

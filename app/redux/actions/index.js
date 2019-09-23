@@ -233,6 +233,20 @@ export function getDesigner(payload) {
   };
 }
 
+export function getCelebrity(payload) {
+  return {
+    type: actions.GET_CELEBRITY,
+    payload
+  };
+}
+
+export function getCompany(payload) {
+  return {
+    type: actions.GET_COMPANY,
+    payload
+  };
+}
+
 export function setDesigner(payload) {
   return {
     type: actions.SET_DESIGNER,
@@ -339,6 +353,27 @@ export function getUser(payload) {
 export function getUsers(payload) {
   return {
     type: actions.GET_USERS,
+    payload
+  };
+}
+
+export function getSearchCelebrities(payload) {
+  return {
+    type: actions.GET_CELEBRITIES,
+    payload
+  };
+}
+
+export function getSearchDesigners(payload) {
+  return {
+    type: actions.GET_DESIGNERS,
+    payload
+  };
+}
+
+export function getSearchCompanies(payload) {
+  return {
+    type: actions.GET_COMPANIES,
     payload
   };
 }

@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BrandList from '../components/widgets/brand/BrandList';
-import {SafeAreaView} from 'react-navigation';
-import BrandIndexScreen from './BrandIndexScreen';
-import {getAllProducts} from '../redux/actions';
 import ProductList from '../components/widgets/product/ProductList';
-import {productsSelector} from '../redux/selectors/collections';
-import {colorsSelector} from '../redux/selectors/collection';
 import I18n from '../I18n';
 
 const PageTwoScreen = ({products, colors, dispatch, navigation}) => {

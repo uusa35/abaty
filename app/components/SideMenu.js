@@ -81,7 +81,7 @@ const SideMeu = ({
           <View style={{width: '100%'}}>
             <Divider style={{marginTop: 10}} />
             <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}
+              onPress={() => navigation.navigate('Main')}
               style={styles.menuBtn}>
               <Icon
                 name="home"

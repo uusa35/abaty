@@ -10,7 +10,7 @@ import {View} from 'react-native-animatable';
 import UserImageProfile from '../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import {getDesigner} from '../redux/actions';
+import {getCompany, getDesigner} from '../redux/actions';
 import CommentScreenModal from './CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
@@ -20,7 +20,7 @@ import I18n from '../I18n';
 import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 
-const DesignerShowScreen = ({
+const CompanyShowScreen = ({
   element,
   commentModal,
   comments,
@@ -64,7 +64,7 @@ const DesignerShowScreen = ({
 
   const handleRefresh = useCallback(() => {
     return dispatch(
-      getDesigner({
+      getCompany({
         id: element.id,
         searchParams: {user_id: element.id}
       })
@@ -207,7 +207,7 @@ const DesignerShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    element: state.designer,
+    element: state.company,
     comments: state.comments,
     commentModal: state.commentModal,
     searchParams: state.searchParams,
@@ -217,16 +217,16 @@ function mapStateToProps(state) {
   };
 }
 
-DesignerShowScreen.navigationOptions = ({navigation}) => ({
+CompanyShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
     backgroundColor: navigation.state.params.headerBgColor
   }
 });
 
-export default connect(mapStateToProps)(DesignerShowScreen);
+export default connect(mapStateToProps)(CompanyShowScreen);
 
-DesignerShowScreen.propTypes = {
+CompanyShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
   commentModal: PropTypes.bool.isRequired

@@ -13,6 +13,7 @@ import {
 } from './settingSagas';
 import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
+import {startGetHomeCompaniesScenario} from './userSagas';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -193,4 +194,11 @@ export function* startNewClassifiedScenario(action) {
 
 export function* getSearchClassifieds() {
   yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
+}
+
+export function* getHomeClassifieds() {
+  yield takeLatest(
+    actions.GET_HOME_CLASSIFIEDS,
+    startGetHomeClassifiedsScenario
+  );
 }

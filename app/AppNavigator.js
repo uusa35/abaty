@@ -63,6 +63,11 @@ import PageTwoScreen from './screens/PageTwoScreen';
 import PageThreeScreen from './screens/PageThreeScreen';
 import PageFourScreen from './screens/PageFourScreen';
 import SearchScreen from './screens/SearchScreen';
+import DesignerIndexScreen from './screens/DesignerIndexScreen';
+import CompanyIndexScreen from './screens/CompanyIndexScreen';
+import CelebrityIndexScreen from './screens/CelebrityIndexScreen';
+import CompanyShowScreen from './screens/CompanyShowScreen';
+import CelebrityShowScreen from './screens/CelebrityShowScreen';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 // navigationOptions: ({navigation}) => ({
@@ -215,16 +220,32 @@ const HomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
-    UserIndex: {
-      screen: UserIndexScreen,
+    DesignerIndex: {
+      screen: DesignerIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
       })
     },
-    User: {
-      screen: UserShowScreen,
+    CompanyIndex: {
+      screen: CompanyIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null
+      })
+    },
+    CelebrityIndex: {
+      screen: CelebrityIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null
+      })
+    },
+    CompanyShow: {
+      screen: CompanyShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,
@@ -234,6 +255,15 @@ const HomeStack = createStackNavigator(
     },
     DesignerShow: {
       screen: DesignerShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderCustom navigation={navigation} />,
+        headerBackTitle: null
+      }),
+      path: `user/:id`
+    },
+    CelebrityShow: {
+      screen: CelebrityShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,

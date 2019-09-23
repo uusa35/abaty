@@ -20,22 +20,18 @@ import {
   startSubmitCartScenario,
   getVideos,
   startAddCommentScenario,
-  setHomeCategories,
   setSettings,
   startRefetchHomeCategories,
   setCommercials,
   setCountries,
   getPages,
-  getTags
+  getTags,
+  startGetHomeCategoriesScenario,
+  startGetCategoriesScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
-import {
-  disableLoading,
-  setDeviceId,
-  enableErrorMessage,
-  getCategories
-} from './settingSagas';
+import {disableLoading, setDeviceId, enableErrorMessage} from './settingSagas';
 import {offlineActionTypes} from 'react-native-offline';
 import validate from 'validate.js';
 import DeviceInfo from 'react-native-device-info';
@@ -45,12 +41,7 @@ import {
   startToggleClassifiedFavoriteScenario
 } from './serviceSagas';
 import {
-  getHomeCompanies,
-  getSearchCompanies,
   setHomeBrands,
-  setHomeCelebrities,
-  setHomeCompanies,
-  setHomeDesigners,
   startAuthenticatedScenario,
   startStorePlayerIdScenario
 } from './userSagas';
@@ -59,7 +50,6 @@ import {
   getProductIndex,
   setHomeProducts
 } from './productSagas';
-import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 
 function* startAppBootStrap() {
   try {
@@ -90,31 +80,40 @@ function* startAppBootStrap() {
         call(setHomeBrands),
         call(startAuthenticatedScenario),
         call(setDeviceId),
-        call(setHomeCategories),
         call(setHomeProducts),
         call(getHomeServicesScenario),
         call(getPages),
         call(getTags),
+        call(getVideos),
         call(getProductIndex),
         call(getServiceIndex),
-        call(getVideos),
-        call(setHomeDesigners),
-        call(setHomeCelebrities),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),
-        call(getCategories),
-        call(startGetHomeClassifiedsScenario, {
-          payload: {searchParams: {on_home: true}}
+        put({type: actions.GET_CATEGORIES}),
+        put({type: actions.GET_HOME_CATEGORIES}),
+        put({
+          type: actions.GET_HOME_COMPANIES,
+          payload: {searchParams: {on_home: 1, is_company: 1}}
         }),
-        call(getHomeCompanies, {
-          payload: {searchParams: {on_home: true, is_company: 1}}
+        put({
+          type: actions.GET_HOME_DESIGNERS,
+          payload: {searchParams: {on_home: 1, is_designer: 1}}
         }),
-        call(getSearchCompanies, {payload: {searchParams: {is_company: 1}}})
+        put({
+          type: actions.GET_HOME_CELEBRITIES,
+          payload: {searchParams: {on_home: 1, is_celebrity: 1}}
+        }),
+        put({
+          type: actions.GET_HOME_CLASSIFIEDS,
+          payload: {searchParams: {on_home: 1}}
+        })
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);
     }
   } catch (e) {
+    console.log('appSaga', e);
+    debugger;
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('app_general_error'))
@@ -224,4 +223,12 @@ export function* startResetStoreScenario() {
     PersistStore.purge();
   yield delay(1000);
   yield call(startAppBootStrap);
+}
+
+export function* getHomeCategories() {
+  yield takeLatest(actions.GET_HOME_CATEGORIES, startGetHomeCategoriesScenario);
+}
+
+export function* getCategories() {
+  yield takeLatest(actions.GET_HOME_CATEGORIES, startGetCategoriesScenario);
 }

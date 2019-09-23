@@ -101,17 +101,3 @@ export function* enableWarningMessage(
     }
   });
 }
-
-export function* getCategories() {
-  try {
-    const elements = yield call(api.getCategories);
-    if (!validate.isEmpty(elements) && isArray(elements)) {
-      yield put({type: actions.SET_CATEGORIES, payload: elements});
-    } else {
-      yield put({type: actions.SET_CATEGORIES, payload: []});
-    }
-  } catch (e) {
-    console.log('eee', e);
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
-  }
-}
