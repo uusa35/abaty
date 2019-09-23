@@ -109,19 +109,19 @@ const HomeStack = createStackNavigator(
             navigationOptions: {
               headerBackTitle: null
             }
-          },
-          PageThree: {
-            screen: PageThreeScreen,
-            navigationOptions: {
-              headerBackTitle: null
-            }
-          },
-          PageFour: {
-            screen: PageFourScreen,
-            navigationOptions: {
-              headerBackTitle: null
-            }
           }
+          // PageThree: {
+          //   screen: PageThreeScreen,
+          //   navigationOptions: {
+          //     headerBackTitle: null
+          //   }
+          // },
+          // PageFour: {
+          //   screen: PageFourScreen,
+          //   navigationOptions: {
+          //     headerBackTitle: null
+          //   }
+          // }
         },
         {
           tabBarOptions: {
@@ -160,7 +160,7 @@ const HomeStack = createStackNavigator(
             headerBackTitle: null
           }),
           initialRouteName: 'Main',
-          order: ['Main', 'PageOne', 'PageTwo', 'PageThree', 'PageFour']
+          order: ['Main', 'PageOne', 'PageTwo']
         }
       )
     },

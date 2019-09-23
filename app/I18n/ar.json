@@ -528,5 +528,7 @@
   "sub_categories" : "تصنيفات فرعية",
   "no_more_companies" : "لا يوجد المزيد من الشركات",
   "no_more_designers" : "لا يوجد المزيد من المصممين",
-  "no_more_celebrities" : "لا يوجد المزيد من المشاهير"
+  "no_more_celebrities" : "لا يوجد المزيد من المشاهير",
+  "no_companies" : "لا يوجد شركات",
+  "no_celebrities" : "لا يوجد مشاهير"
 }

@@ -495,5 +495,7 @@
   "sub_categories" : "Sub Categories",
   "no_more_companies" : "No More Companies",
   "no_more_designers" : "No More Designers",
-  "no_more_celebrities" : "No More Celebrities"
+  "no_more_celebrities" : "No More Celebrities",
+  "no_companies" : "No Companies",
+  "no_celebrities" : "No Celebrities"
 }

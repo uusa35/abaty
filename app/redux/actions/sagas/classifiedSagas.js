@@ -48,11 +48,9 @@ export function* startGetClassifiedsScenario(action) {
 export function* startGetHomeClassifiedsScenario(action) {
   try {
     const {searchParams, redirect, name} = action.payload;
-    const classifieds = yield call(api.getSearchClassifieds, searchParams);
-    if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
-      yield all([
-        put({type: actions.SET_HOME_CLASSIFIEDS, payload: classifieds})
-      ]);
+    const elements = yield call(api.getSearchClassifieds, searchParams);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield all([put({type: actions.SET_HOME_CLASSIFIEDS, payload: elements})]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
