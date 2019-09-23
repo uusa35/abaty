@@ -274,7 +274,32 @@ export function* setUsers(action) {
   }
 }
 
-export function* setHomeCompanies(action) {
+export function* getSearchCompanies(action) {
+  try {
+    const {searchParams, redirect} = action.payload;
+    const users = yield call(api.getUsers, searchParams);
+    if (!validate.isEmpty(users) && validate.isArray(users)) {
+      yield put({type: actions.SET_HOME_COMPANIES, payload: users});
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'UserIndex',
+            params: {
+              name: I18n.t('companies')
+            }
+          })
+        );
+      }
+    } else {
+      yield put({type: actions.SET_HOME_COMPANIES, payload: []});
+      throw users;
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+  }
+}
+
+export function* getHomeCompanies(action) {
   try {
     const {searchParams, redirect} = action.payload;
     const users = yield call(api.getUsers, searchParams);

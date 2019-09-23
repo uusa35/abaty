@@ -28,6 +28,7 @@ const UserInfoWidget = ({
   latitude,
   longitude,
   thumb,
+  has_map,
   colors
 }) => {
   return (
@@ -51,7 +52,7 @@ const UserInfoWidget = ({
         }}>
         {I18n.t('information')}
       </Text>
-      {longitude && latitude ? (
+      {longitude && latitude && has_map ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
@@ -361,7 +362,7 @@ const UserInfoWidget = ({
           height={235}
         />
       ) : null}
-      {!validate.isEmpty(longitude || latitude) ? (
+      {!validate.isEmpty(longitude || latitude) && has_map ? (
         <MapViewWidget
           latitude={latitude}
           longitude={longitude}

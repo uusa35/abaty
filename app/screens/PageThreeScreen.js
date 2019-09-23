@@ -1,20 +1,23 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {SafeAreaView} from 'react-navigation';
+import UsersList from '../components/Lists/UsersList';
 
-const PageThreeScreen = ({brands}) => {
+const PageThreeScreen = ({companies, dispatch}) => {
   return (
-    <View>
-      <Text>Test 3 Screen</Text>
-    </View>
+    <UsersList
+      dispatch={dispatch}
+      elements={companies}
+      showMore={true}
+      searchParams={{}}
+    />
   );
 };
 
 function mapStateToProps(state) {
   return {
-    brands: state.brands
+    companies: state.companies
   };
 }
 

@@ -21,6 +21,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   title,
   dispatch,
   colors,
+  showTitle = true,
   navigation
 }) => {
   const handleClick = useCallback(c => {
@@ -35,25 +36,27 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>
-      <TouchableOpacity
-        style={widgetStyles.titleContainer}
-        onPress={() => navigation.navigate('CategoryIndex')}>
-        <View style={widgetStyles.titleWrapper}>
-          <Text
-            style={[
-              widgetStyles.title,
-              {color: colors.header_one_theme_color}
-            ]}>
-            {title}
-          </Text>
-        </View>
-        <Icon
-          type="entypo"
-          name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-          size={20}
-          color={colors.header_one_theme_color}
-        />
-      </TouchableOpacity>
+      {showTitle ? (
+        <TouchableOpacity
+          style={widgetStyles.titleContainer}
+          onPress={() => navigation.navigate('CategoryIndex')}>
+          <View style={widgetStyles.titleWrapper}>
+            <Text
+              style={[
+                widgetStyles.title,
+                {color: colors.header_one_theme_color}
+              ]}>
+              {title}
+            </Text>
+          </View>
+          <Icon
+            type="entypo"
+            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+            size={20}
+            color={colors.header_one_theme_color}
+          />
+        </TouchableOpacity>
+      ) : null}
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}

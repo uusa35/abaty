@@ -117,7 +117,7 @@ const ClassifiedCategoryVerticalWidget = ({
                                 left: 15,
                                 right: 15
                               }}
-                              style={[styles.itemRow, {paddingLeft: 50}]}>
+                              style={[styles.itemRow, {paddingLeft: 10}]}>
                               <View
                                 style={{
                                   flexDirection: 'row',
@@ -166,19 +166,16 @@ const ClassifiedCategoryVerticalWidget = ({
                             </TouchableOpacity>
                             {child.has_children &&
                             showChildren &&
-                            !validate.isEmpty(child.children)
-                              ? map(child.children, (sub, n) => {
-                                  return (
-                                    <ClassifiedCategoryHorizontalRoundedWidget
-                                      colors={colors}
-                                      title={I18n.t('sub_categories')}
-                                      dispatch={dispatch}
-                                      elements={child.children}
-                                      key={n}
-                                    />
-                                  );
-                                })
-                              : null}
+                            !validate.isEmpty(child.children) ? (
+                              <ClassifiedCategoryHorizontalRoundedWidget
+                                colors={colors}
+                                title={I18n.t('sub_categories')}
+                                dispatch={dispatch}
+                                elements={child.children}
+                                key={n}
+                                showTitle={false}
+                              />
+                            ) : null}
                           </Fragment>
                         );
                       })

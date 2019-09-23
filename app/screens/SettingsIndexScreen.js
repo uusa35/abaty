@@ -15,7 +15,6 @@ import I18n, {isRTL} from './../I18n';
 import {changeLang, getUsers} from '../redux/actions';
 import {HOMEKEY} from './../../app';
 import {appUrlIos} from '../env';
-import widgetStyles from '../components/widgets/widgetStyles';
 import PagesList from '../components/widgets/page/PagesList';
 
 const SettingsIndexScreen = ({
@@ -128,6 +127,7 @@ const SettingsIndexScreen = ({
         </Fragment>
       ) : null}
       <PagesList
+        dispatch={dispatch}
         elements={pages}
         colors={colors}
         title={I18n.t('our_support')}

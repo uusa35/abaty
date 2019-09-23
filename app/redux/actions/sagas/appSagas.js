@@ -45,6 +45,8 @@ import {
   startToggleClassifiedFavoriteScenario
 } from './serviceSagas';
 import {
+  getHomeCompanies,
+  getSearchCompanies,
   setHomeBrands,
   setHomeCelebrities,
   setHomeCompanies,
@@ -104,9 +106,10 @@ function* startAppBootStrap() {
         call(startGetHomeClassifiedsScenario, {
           payload: {searchParams: {on_home: true}}
         }),
-        call(setHomeCompanies, {
+        call(getHomeCompanies, {
           payload: {searchParams: {on_home: true, is_company: 1}}
-        })
+        }),
+        call(getSearchCompanies, {payload: {searchParams: {is_company: 1}}})
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);

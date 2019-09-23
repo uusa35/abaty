@@ -151,6 +151,7 @@ const DesignerShowScreen = ({
                 <UserInfoWidget
                   dispatch={dispatch}
                   colors={colors}
+                  has_map={user.has_map}
                   mobile={user.mobile}
                   phone={user.phone}
                   slug={user.slug}
