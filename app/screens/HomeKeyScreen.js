@@ -37,7 +37,7 @@ import CategoryHorizontalWidget from '../components/widgets/category/CategoryHor
 import validate from 'validate.js';
 import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import SearchForm from '../components/SearchForm';
+import ClassifiedSearchForm from '../components/widgets/search/ClassifiedSearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';

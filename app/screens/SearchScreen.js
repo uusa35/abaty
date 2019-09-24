@@ -3,7 +3,6 @@ import {View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../I18n';
-import SearchForm from '../components/SearchForm';
 import TagsList from '../components/widgets/tag/TagsList';
 import {ABATI, ESCRAP, MALLR} from '../../app';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
@@ -12,7 +11,6 @@ import ClassifiedCategoryVerticalWidget from '../components/widgets/category/Cla
 const SearchScreen = ({homeCategories, tags, dispatch, colors, navigation}) => {
   return (
     <ScrollView style={{flex: 1}}>
-      <SearchForm />
       <TagsList
         title={I18n.t('tags')}
         elements={tags}

@@ -5,6 +5,7 @@ import {text} from '../../../constants';
 import {getConvertedFinalPrice} from '../../../helpers';
 import validate from 'validate.js';
 import PropertiesWidget from './PropertiesWidget';
+import I18n from './../../../I18n';
 
 const ClassifiedInfoWidget = ({
   element,
@@ -32,28 +33,38 @@ const ClassifiedInfoWidget = ({
             alignItems: 'center',
             padding: 15
           }}>
-          <Text
-            style={{
-              textAlign: 'left',
-              fontSize: text.medium,
-              color: colors.header_tow_theme_color
-            }}>
-            {element.name.substring(0, 20)}
-          </Text>
-          <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
+          <View>
             <Text
-              style={[
-                widgetStyles.elementName,
-                {
-                  textAlign: 'center',
-                  fontSize: text.medium,
-                  paddingRight: 5,
-                  paddingLeft: 5
-                }
-              ]}>
-              {getConvertedFinalPrice(element.price, exchange_rate)}
+              style={{
+                textAlign: 'left',
+                fontSize: text.medium,
+                color: colors.header_tow_theme_color
+              }}>
+              {element.name.substring(0, 20)}
             </Text>
-            <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
+            <Text>
+              {I18n.t('added_from')} {element.created_at}
+            </Text>
+          </View>
+          <View>
+            <View style={{flexDirection: 'row', alignItems: 'baseline'}}>
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {
+                    textAlign: 'center',
+                    fontSize: text.medium,
+                    paddingRight: 5,
+                    paddingLeft: 5
+                  }
+                ]}>
+                {getConvertedFinalPrice(element.price, exchange_rate)}
+              </Text>
+              <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
+            </View>
+            <Text>
+              {element.views} {I18n.t('views')}
+            </Text>
           </View>
         </View>
         {!validate.isEmpty(element.properties) ? (

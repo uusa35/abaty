@@ -7,6 +7,7 @@ import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import PropTypes from 'prop-types';
 import Spinner from 'react-native-spinkit';
 import {first, shuffle} from 'lodash';
+import {ABATI, MALLR} from './../../../app';
 
 const LoadingView = ({
   logo,
@@ -38,7 +39,7 @@ const LoadingView = ({
     <ImageBackground style={styles.activityContainer} source={{uri: mainBg}}>
       <Spinner type={first(shuffle(moveRand))} color={color} size={40} />
       <FastImage
-        source={{uri: logo}}
+        source={{uri: images.abati}}
         style={{width: 150, height: 100, margin: 10}}
         resizeMode="contain"
         loadingIndicatorSource={images.logo}

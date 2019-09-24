@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'abaty' do
   # Pods for abaty
-  # rn_maps_path = '../node_modules/react-native-maps'
+  rn_maps_path = '../node_modules/react-native-maps'
 
 
   pod 'React', :path => '../node_modules/react-native/'
@@ -33,9 +33,9 @@ target 'abaty' do
 
    # react-native-maps dependencies
   pod 'react-native-maps', path: '../node_modules/react-native-maps'
-  # pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support GoogleMaps on iOS
-  # pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
-  # pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
+  pod 'GoogleMaps'  # Remove this line if you don't want to support Google Maps on iOS
+  pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
+  pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
 
   # pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'

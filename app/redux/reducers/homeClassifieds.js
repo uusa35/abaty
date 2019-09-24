@@ -5,7 +5,7 @@ export default function(homeClassifieds = [], action) {
     case SET_HOME_CLASSIFIEDS:
       return action.payload;
     case GET_HOME_CLASSIFIEDS:
-      return action.payload;
+      return [];
     default:
       return homeClassifieds;
   }

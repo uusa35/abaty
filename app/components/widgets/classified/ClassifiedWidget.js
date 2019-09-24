@@ -9,7 +9,7 @@ import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images} from '../../../constants';
+import {images, width} from '../../../constants';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 
@@ -23,8 +23,8 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '100%',
-          height: 500,
+          width,
+          height: 400,
           borderWidth: 1,
           borderColor: 'lightgrey',
           // borderRadius: 20,
@@ -47,8 +47,8 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
         loadingIndicatorSource={images.logo}
         style={styles.image}
         imageStyle={{
-          width: '100%',
-          height: 500,
+          width,
+          height: 400
           // borderRadius: 20
         }}
         resizeMode="cover">

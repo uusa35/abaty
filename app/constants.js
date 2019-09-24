@@ -72,7 +72,11 @@ export const links = {
 };
 
 export const images = {
-  logo: require('./../assets/images/logo.png')
+  abati: require('./../assets/images/abati.png'),
+  mallr: require('./../assets/images/mallr.png'),
+  escrap: require('./../assets/images/escrap.png'),
+  homekey: require('./../assets/images/homekey.png'),
+  pin: require('./../assets/images/pin.png')
 };
 
 export const icons = {

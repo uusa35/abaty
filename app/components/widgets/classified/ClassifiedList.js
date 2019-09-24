@@ -18,6 +18,9 @@ import validate from 'validate.js';
 import {getClassifieds, getSearchProducts} from '../../../redux/actions';
 import ClassifiedWidget from './ClassifiedWidget';
 import widgetStyles from '../widgetStyles';
+import ClassifiedSearchForm from '../search/ClassifiedSearchForm';
+import SearchSort from '../search/SearchSort';
+import {orderBy} from 'lodash';
 
 const ClassifiedList = ({
   classifieds,
@@ -41,12 +44,35 @@ const ClassifiedList = ({
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
+  [sort, setSort] = useState('');
 
   const loadMore = useCallback(() => {
     setShowMore(true);
     setPage(page + 1);
   });
 
+  useMemo(() => {
+    switch (sort) {
+      case 1:
+        setItems(orderBy(items, ['id'], ['asc']));
+        break;
+      case 2:
+        setItems(orderBy(items, ['id'], ['desc']));
+        break;
+      case 3:
+        setItems(orderBy(items, ['price'], ['asc']));
+        break;
+      case 4:
+        console.log('case 4');
+        setItems(orderBy(items, ['price'], ['desc']));
+        break;
+      case 5:
+        setItems(orderBy(items, ['name'], ['desc']));
+        break;
+      default:
+        items;
+    }
+  }, [sort]);
   useMemo(() => {
     if (showMore) {
       setIsLoading(true);
@@ -130,7 +156,7 @@ const ClassifiedList = ({
             minHeight: '100%',
             // marginBottom: 15,
             alignSelf: 'center',
-            backgroundColor : 'transparent'
+            backgroundColor: 'transparent'
           }}
           // columnWrapperStyle={{
           //   justifyContent: 'space-around',
@@ -139,39 +165,15 @@ const ClassifiedList = ({
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'transparent'
+            backgroundColor: 'white'
           }}
           ListHeaderComponent={
             <View>
               {showSearch ? (
-                <Input
-                  placeholder={I18n.t('search')}
-                  inputStyle={{
-                    fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
-                  }}
-                  inputContainerStyle={{
-                    backgroundColor: '#E4E4E5',
-                    borderRadius: 30,
-                    paddingRight: 15,
-                    paddingLeft: 15,
-                    marginTop: 10,
-                    borderColor: '#E4E4E5'
-                  }}
-                  rightIcon={
-                    <Icon
-                      onPress={() => setSearch('')}
-                      hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-                      type="evilIcons"
-                      name={search.length > 0 ? 'close' : 'search'}
-                      color="#c4c4c4"
-                      size={18}
-                      color="black"
-                    />
-                  }
-                  onChangeText={e => setSearch(e)}
-                  value={search}
-                />
+                <View>
+                  <ClassifiedSearchForm />
+                  <SearchSort sort={sort} setSort={setSort} />
+                </View>
               ) : null}
               {showTitle ? (
                 <TouchableOpacity

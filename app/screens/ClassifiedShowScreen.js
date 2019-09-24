@@ -1,4 +1,11 @@
-import React, {Fragment, useState, useMemo, useEffect} from 'react';
+import React, {
+  Fragment,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  useContext
+} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -9,7 +16,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
+import {width, text, images} from './../constants';
 import I18n from './../I18n';
 import {getClassified, getClassifieds, getDesigner} from '../redux/actions';
 import validate from 'validate.js';
@@ -24,9 +31,12 @@ import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWi
 import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './CommentScreenModal';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
+import {getProductConvertedFinalPrice} from '../helpers';
+import {round} from 'lodash';
+import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
 const ClassifiedShowScreen = ({
-  classified,
+  element,
   classifieds,
   commentModal,
   dispatch,
@@ -34,9 +44,19 @@ const ClassifiedShowScreen = ({
   colors,
   navigation
 }) => {
+  const {exchange_rate} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+
+  const handleRefresh = useCallback(() => {
+    return dispatch(
+      getClassified({
+        id: element.id,
+        api_token: token ? token : null
+      })
+    );
+  }, [refresh]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -58,27 +78,19 @@ const ClassifiedShowScreen = ({
           <ImagesWidget
             colors={colors}
             resizeMode="cover"
-            elements={classified.images
-              .concat({id: classified.id, large: classified.large})
+            elements={element.images
+              .concat({id: element.id, large: element.large})
               .reverse()}
             width={width}
             height={550}
-            name={classified.name}
-            isFeatured={classified.is_featured}
+            name={element.name}
+            isFeatured={element.is_featured}
           />
         )}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
-            onRefresh={() => {
-              setRefresh(false);
-              dispatch(
-                getClassified({
-                  id: classified.id,
-                  api_token: token ? token : null
-                })
-              );
-            }}
+            onRefresh={() => handleRefresh()}
           />
         }
         automaticallyAdjustContentInsets={true}
@@ -86,40 +98,37 @@ const ClassifiedShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ClassifiedInfoWidgetMainTitle element={classified} />
-          {!validate.isEmpty(classified.properties) ? (
-            <PropertiesWidget
-              elements={classified.properties}
-              colors={colors}
-            />
+          <ClassifiedInfoWidgetMainTitle element={element} />
+          {!validate.isEmpty(element.properties) ? (
+            <PropertiesWidget elements={element.properties} colors={colors} />
           ) : null}
           <View
             animation="bounceInLeft"
             easing="ease-out"
             style={{marginTop: 15}}>
-            {classified.description ? (
+            {element.description ? (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>
-                <Text style={styles.normalText}>{classified.description}</Text>
+                <Text style={styles.normalText}>{element.description}</Text>
               </View>
             ) : null}
             <ClassifiedInfoWidgetElement
               elementName="user_name"
               colors={colors}
-              name={classified.user.slug}
+              name={element.user.slug}
               showIcon={false}
               link={() =>
                 dispatch(
                   getDesigner({
-                    id: classified.user.id,
-                    searchElements: {user_id: classified.user.id}
+                    id: element.user.id,
+                    searchElements: {user_id: element.user.id}
                   })
                 )
               }
             />
-            {classified.has_properties ? (
+            {element.has_properties ? (
               <Fragment>
-                {map(classified.properties, (p, i) => (
+                {map(element.properties, (p, i) => (
                   <ClassifiedInfoWidgetElement
                     key={i}
                     elementName={p.name}
@@ -132,10 +141,10 @@ const ClassifiedShowScreen = ({
                 ))}
               </Fragment>
             ) : null}
-            {classified.address ? (
+            {element.address ? (
               <ClassifiedInfoWidgetElement
                 elementName="address"
-                name={classified.address}
+                name={element.address}
                 showIcon={false}
                 colors={colors}
               />
@@ -143,22 +152,22 @@ const ClassifiedShowScreen = ({
             <ClassifiedInfoWidgetElement
               elementName="categories"
               colors={colors}
-              name={classified.category.name}
+              name={element.category.name}
               link={
                 () => console.log('here')
                 // dispatch(
-                //   getClassifieds({searchParams : {classified_category_id: classified.id}, redirect : true , name : classified.category.name})
+                //   getClassifieds({searchParams : {classified_category_id: element.id}, redirect : true , name : element.category.name})
                 // )
               }
             />
-            {classified.only_whatsapp ? (
+            {element.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
                 colors={colors}
-                name={classified.mobile}
+                name={element.mobile}
                 link={() =>
                   Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${classified.mobile}&text=`
+                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`
                   )
                 }
               />
@@ -166,25 +175,29 @@ const ClassifiedShowScreen = ({
               <ClassifiedInfoWidgetElement
                 elementName="mobile"
                 colors={colors}
-                name={classified.mobile}
-                link={() => Linking.openURL(`tel:${classified.user.mobile}`)}
+                name={element.mobile}
+                link={() => Linking.openURL(`tel:${element.user.mobile}`)}
               />
             )}
-            {classified.has_map ? (
+            {element.has_map ? (
               <MapViewWidget
-                latitude={classified.latitude}
-                longitude={classified.longitude}
-                logo={classified.image}
-                title={classified.name}
+                latitude={element.latitude}
+                longitude={element.longitude}
+                image={element.large}
+                title={element.name}
                 showTitle={true}
-                height={250}
+                height={350}
+                price={round(
+                  getProductConvertedFinalPrice(element.price, exchange_rate),
+                  2
+                )}
               />
             ) : null}
           </View>
         </View>
-        {validate.isObject(classified.videoGroup) &&
-        !validate.isEmpty(classified.videoGroup) ? (
-          <VideosWidget videos={classified.videoGroup} colors={colors} />
+        {validate.isObject(element.videoGroup) &&
+        !validate.isEmpty(element.videoGroup) ? (
+          <VideosWidget videos={element.videoGroup} colors={colors} />
         ) : null}
         {!validate.isEmpty(classifieds) ? (
           <ClassifiedListHorizontal
@@ -193,16 +206,16 @@ const ClassifiedShowScreen = ({
             title="related_classifieds"
             colors={colors}
             dispatch={dispatch}
-            searchElements={{classified_category_id: classified.category_id}}
+            searchElements={{classified_category_id: element.category_id}}
           />
         ) : null}
       </HeaderImageScrollView>
-      <QuickCallActionBtnWidget colors={colors} mobile={classified.mobile} />
+      <QuickCallActionBtnWidget colors={colors} mobile={element.mobile} />
       <CommentScreenModal
         commentModal={commentModal}
-        elements={classified.comments}
+        elements={element.comments}
         model="classified"
-        id={classified.id}
+        id={element.id}
       />
     </Fragment>
   );
@@ -210,7 +223,7 @@ const ClassifiedShowScreen = ({
 
 function mapStateToProps(state) {
   return {
-    classified: state.classified,
+    element: state.classified,
     classifieds: state.classifieds,
     commentModal: state.commentModal,
     token: state.token,
@@ -230,7 +243,7 @@ ClassifiedShowScreen.navigationOptions = ({navigation}) => ({
 export default connect(mapStateToProps)(ClassifiedShowScreen);
 
 ClassifiedShowScreen.propTypes = {
-  classified: PropTypes.object.isRequired,
+  element: PropTypes.object.isRequired,
   classifieds: PropTypes.array.isRequired,
   token: PropTypes.string
 };

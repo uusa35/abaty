@@ -36,11 +36,10 @@ import {
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import validate from 'validate.js';
 import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import SearchForm from '../components/SearchForm';
+import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';
@@ -51,9 +50,8 @@ import ProductCategoryHorizontalWidget from '../components/widgets/category/Prod
 import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
 import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from "../components/widgets/category/ProductCategoryHorizontalBtnsWidget";
-import ProductCategoryHorizontalRoundedWidget
-  from "../components/widgets/category/ProductCategoryHorizontalRoundedWidget";
+import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
+import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 
 const HomeScreen = ({
   network,

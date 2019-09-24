@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react';
-import I18n, {isRTL} from '../I18n';
+import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
-import {text} from '../constants';
-import {DispatchContext} from '../redux/DispatchContext';
-import {getSearchProducts} from '../redux/actions';
+import {text} from '../../../constants';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {getSearchProducts} from '../../../redux/actions';
 
-const SearchForm = () => {
+const ProductSearchForm = () => {
   const {dispatch} = useContext(DispatchContext);
   [search, setSearch] = useState('');
   return (
@@ -39,4 +39,4 @@ const SearchForm = () => {
   );
 };
 
-export default SearchForm;
+export default ProductSearchForm;
