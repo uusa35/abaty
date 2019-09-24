@@ -1,4 +1,10 @@
-import React, {Component} from 'react';
+import React, {
+  Component,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback
+} from 'react';
 import {
   BackHandler,
   Linking,
@@ -45,228 +51,227 @@ import ProductCategoryHorizontalWidget from '../components/widgets/category/Prod
 import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
 import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
+import ProductCategoryHorizontalBtnsWidget from "../components/widgets/category/ProductCategoryHorizontalBtnsWidget";
+import ProductCategoryHorizontalRoundedWidget
+  from "../components/widgets/category/ProductCategoryHorizontalRoundedWidget";
 
-class HomeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {refresh: false, appState: AppState.currentState};
-  }
+const HomeScreen = ({
+  network,
+  homeCategories,
+  commercials,
+  slides,
+  splashes,
+  brands,
+  homeDesigners,
+  homeCelebrities,
+  homeProducts,
+  homeCollections,
+  splash_on,
+  show_commercials,
+  colors,
+  services,
+  showIntroduction,
+  homeCompanies,
+  dispatch,
+  navigation
+}) => {
+  [refresh, setRefresh] = useState(false);
+  [appState, setAppState] = useState(AppState.currentState);
+  [device, setDevice] = useState('');
+  [deviceId, setDeviceId] = useState('');
 
-  componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+  const handleRefresh = useCallback(() => {
+    console.log('here');
+    dispatch(refetchHomeElements());
+  }, [refresh]);
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
-    // OneSignal.addEventListener('received', this.onReceived);
-    // OneSignal.addEventListener('opened', this.onOpened);
-    OneSignal.addEventListener('ids', this.onIds);
+    // OneSignal.addEventListener('received', onReceived);
+    // OneSignal.addEventListener('opened', onOpened);
+    OneSignal.addEventListener('ids', onIds);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', this.handleOpenURL);
+    Linking.addEventListener('url', handleOpenURL);
 
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
-  }
+  });
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-    Linking.removeEventListener('url', this.handleOpenURL);
-    OneSignal.removeEventListener('ids', this.onIds);
-    // OneSignal.removeEventListener('received', this.onReceived);
-    // OneSignal.removeEventListener('opened', this.onOpened);
-  }
+  const handleAppStateChange = useCallback(
+    nextAppState => {
+      if (appState.match(/inactive|background/) && nextAppState === 'active') {
+        __DEV__ ? console.log('HERE NOW') : null;
+      }
+      setAppState(nextAppState);
+    },
+    [appState]
+  );
 
-  _handleAppStateChange = nextAppState => {
-    if (
-      this.state.appState.match(/inactive|background/) &&
-      nextAppState === 'active'
-    ) {
-      __DEV__ ? console.log('HERE NOW') : null;
-    }
-    this.setState({appState: nextAppState});
-  };
-
-  handleBackPress = () => {
-    const {navigation, dispatch} = this.props;
+  const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
-  };
+  });
 
-  handleOpenURL = event => {
+  const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
     return this.props.dispatch(goDeepLinking({type, id}));
-  };
+  });
 
-  onReceived = notification => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
-  };
+  // const onReceived = useCallback((notification) => {
+  //   __DEV__ ? console.log('Notification received: ', notification) : null;
+  // },[notification]);
 
-  onOpened = openResult => {
-    // console.log('Notification Case');
-    // if (__DEV__) {
-    // console.log('the whole thing', openResult.notification.payload);
-    // console.log('Message: ', openResult.notification.payload.body);
-    // console.log('Data: ', openResult.notification.payload.additionalData);
-    // console.log('isActive: ', openResult.notification.isAppInFocus);
-    // console.log('openResult: ', openResult.notification.payload.launchURL);
-    // }
+  const onOpened = useCallback(openResult => {
+    console.log('Notification Case');
+    if (__DEV__) {
+      console.log('the whole thing', openResult.notification.payload);
+      console.log('Message: ', openResult.notification.payload.body);
+      console.log('Data: ', openResult.notification.payload.additionalData);
+      console.log('isActive: ', openResult.notification.isAppInFocus);
+      console.log('openResult: ', openResult.notification.payload.launchURL);
+    }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url
     );
-    this.props.dispatch(goDeepLinking(path, params));
-  };
+    dispatch(goDeepLinking(path, params));
+  });
 
-  onIds = device => {
-    const {isConnected} = this.props.network;
-    return isConnected ? this.props.dispatch(setPlayerId(device.userId)) : null;
-  };
+  const onIds = useCallback(
+    device => {
+      setDeviceId(device.userId);
+      if (device.userId !== deviceId) {
+        dispatch(setPlayerId(device.userId));
+      }
+    },
+    [deviceId]
+  );
 
-  _refetchElements = () => {
-    this.props.dispatch(refetchHomeElements());
-    this.setState({refresh: false});
-  };
+  useMemo(() => {}, [deviceId]);
 
-  render() {
-    const {
-      homeCategories,
-      commercials,
-      slides,
-      splashes,
-      brands,
-      homeDesigners,
-      homeCelebrities,
-      homeProducts,
-      homeCollections,
-      splash_on,
-      show_commercials,
-      colors,
-      services,
-      showIntroduction,
-      homeCompanies,
-      dispatch,
-      navigation
-    } = this.props;
-    return (
-      <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-        {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
-          <IntroductionWidget
-            elements={splashes}
-            showIntroduction={showIntroduction}
+  return (
+    <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+      {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
+        <IntroductionWidget
+          elements={splashes}
+          showIntroduction={showIntroduction}
+          dispatch={dispatch}
+        />
+      ) : null}
+      <ScrollView
+        contentContainerStyle={{backgroundColor: 'transparent'}}
+        contentInset={{bottom: 50}}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        showsHorizontalScrollIndicator={false}
+        endFillColor="white"
+        showsVerticalScrollIndicator={false}
+        style={{flex: 0.8}}>
+        {!validate.isEmpty(slides) ? (
+          <MainSliderWidget slides={slides} />
+        ) : null}
+        {!validate.isEmpty(homeDesigners) &&
+        validate.isArray(homeDesigners) &&
+        (ABATI || MALLR) ? (
+          <DesignerHorizontalWidget
+            elements={homeDesigners}
+            showName={true}
+            name="designers"
+            title="designers"
+            searchElements={{is_designer: true}}
+            dispatch={dispatch}
+            colors={colors}
+          />
+        ) : null}
+        {MALLR ? (
+          <CompanyHorizontalWidget
+            elements={homeCompanies}
+            showName={true}
+            name="companies"
+            title="companies"
+            searchElements={{is_company: true}}
+            dispatch={dispatch}
+            colors={colors}
+          />
+        ) : null}
+        {!validate.isEmpty(homeCategories) &&
+        validate.isArray(homeCategories) &&
+        (ABATI || MALLR) ? (
+          <ProductCategoryHorizontalRoundedWidget
+            elements={homeCategories}
+            showName={true}
+            title="categories"
+            dispatch={dispatch}
+            colors={colors}
+            navigation={navigation}
+            type="products"
+          />
+        ) : null}
+        {!validate.isEmpty(homeCelebrities) &&
+        validate.isArray(homeCelebrities) &&
+        ABATI ? (
+          <CelebrityHorizontalWidget
+            elements={homeCelebrities}
+            showName={true}
+            name="celebrities"
+            title="celebrities"
+            searchElements={{is_celebrity: true}}
+            colors={colors}
             dispatch={dispatch}
           />
         ) : null}
-        <ScrollView
-          contentContainerStyle={{backgroundColor: 'transparent'}}
-          contentInset={{bottom: 50}}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refresh}
-              onRefresh={() => this._refetchElements()}
-            />
-          }
-          showsHorizontalScrollIndicator={false}
-          endFillColor="white"
-          showsVerticalScrollIndicator={false}
-          style={{flex: 0.8}}>
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
-          ) : null}
-          {!validate.isEmpty(homeDesigners) &&
-          validate.isArray(homeDesigners) &&
-          (ABATI || MALLR) ? (
-            <DesignerHorizontalWidget
-              elements={homeDesigners}
-              showName={true}
-              name="designers"
-              title="designers"
-              searchElements={{is_designer: true}}
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {MALLR ? (
-            <CompanyHorizontalWidget
-              elements={homeCompanies}
-              showName={true}
-              name="companies"
-              title="companies"
-              searchElements={{is_company: true}}
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) &&
-          (ABATI || MALLR) ? (
-            <ProductCategoryHorizontalWidget
-              elements={homeCategories}
-              showName={true}
-              title="categories"
-              dispatch={dispatch}
-              colors={colors}
-              navigation={navigation}
-              type="products"
-            />
-          ) : null}
-          {!validate.isEmpty(homeCelebrities) &&
-          validate.isArray(homeCelebrities) &&
-          ABATI ? (
-            <CelebrityHorizontalWidget
-              elements={homeCelebrities}
-              showName={true}
-              name="celebrities"
-              title="celebrities"
-              searchElements={{is_celebrity: true}}
-              colors={colors}
-              dispatch={dispatch}
-            />
-          ) : null}
-          {!validate.isEmpty(homeProducts) && (ABATI || MALLR) ? (
-            <ProductHorizontalWidget
-              elements={homeProducts}
-              showName={true}
-              title="featured_products"
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(brands) &&
-          validate.isArray(brands) &&
-          (ABATI || MALLR) ? (
-            <BrandHorizontalWidget
-              elements={brands}
-              showName={false}
-              title="brands"
-            />
-          ) : null}
-          {!validate.isEmpty(services) && ABATI ? (
-            <ServiceHorizontalWidget
-              elements={services}
-              showName={true}
-              title="our_services"
-              dispatch={dispatch}
-              colors={colors}
-            />
-          ) : null}
-          {!validate.isEmpty(homeCollections) && MALLR ? (
-            <CollectionHorizontalWidget
-              colors={colors}
-              elements={homeCollections}
-              showName={true}
-              title="our_collections"
-              dispatch={dispatch}
-            />
-          ) : null}
-        </ScrollView>
-        {show_commercials ? (
-          <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
-              <FixedCommercialSliderWidget sliders={commercials} />
-            ) : null}
-          </View>
+        {!validate.isEmpty(homeProducts) && (ABATI || MALLR) ? (
+          <ProductHorizontalWidget
+            elements={homeProducts}
+            showName={true}
+            title="featured_products"
+            dispatch={dispatch}
+            colors={colors}
+          />
         ) : null}
-      </View>
-    );
-  }
-}
+        {!validate.isEmpty(brands) &&
+        validate.isArray(brands) &&
+        (ABATI || MALLR) ? (
+          <BrandHorizontalWidget
+            elements={brands}
+            showName={false}
+            title="brands"
+          />
+        ) : null}
+        {!validate.isEmpty(services) && ABATI ? (
+          <ServiceHorizontalWidget
+            elements={services}
+            showName={true}
+            title="our_services"
+            dispatch={dispatch}
+            colors={colors}
+          />
+        ) : null}
+        {!validate.isEmpty(homeCollections) && MALLR ? (
+          <CollectionHorizontalWidget
+            colors={colors}
+            elements={homeCollections}
+            showName={true}
+            title="our_collections"
+            dispatch={dispatch}
+          />
+        ) : null}
+      </ScrollView>
+      {show_commercials ? (
+        <View style={{flex: 0.2}}>
+          {!validate.isEmpty(commercials) ? (
+            <FixedCommercialSliderWidget sliders={commercials} />
+          ) : null}
+        </View>
+      ) : null}
+    </View>
+  );
+};
 
 function mapStateToProps(state) {
   return {

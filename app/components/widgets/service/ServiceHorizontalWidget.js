@@ -19,7 +19,7 @@ const ServiceHorizontalWidget = ({
   colors
 }) => {
   return (
-    <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
+    <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
         onPress={() =>

@@ -27,7 +27,7 @@ const ProductWidget = ({element, showName = false, dispatch, colors}) => {
           width: '48%',
           maxWidth: 175,
           margin: 5,
-          borderWidth: 0.5,
+          borderWidth: 0.25,
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
@@ -105,6 +105,6 @@ ProductWidget.propTypes = {
 const styles = StyleSheet.create({
   image: {
     width: 175,
-    height: 230
+    height: 240
   }
 });

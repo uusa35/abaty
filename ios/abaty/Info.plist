@@ -44,7 +44,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CodePushDeploymentKey</key>
 	<string>vRgidQDMomBHssgVzsShdcmWcNtk0b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
 	<key>LSApplicationQueriesSchemes</key>

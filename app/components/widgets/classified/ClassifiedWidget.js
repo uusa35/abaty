@@ -23,13 +23,13 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '90%',
-          height: 450,
+          width: '100%',
+          height: 500,
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 20,
-          marginTop: 5,
-          marginBottom: 5,
+          // borderRadius: 20,
+          // marginTop: 5,
+          // marginBottom: 5,
           justifyContent: 'flex-start',
           alignItems: 'center',
           alignSelf: 'center'
@@ -48,8 +48,8 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
         style={styles.image}
         imageStyle={{
           width: '100%',
-          height: 450,
-          borderRadius: 20
+          height: 500,
+          // borderRadius: 20
         }}
         resizeMode="cover">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>

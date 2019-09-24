@@ -1,4 +1,4 @@
-import React, {useContext, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchProducts, getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';

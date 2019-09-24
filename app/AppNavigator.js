@@ -155,7 +155,7 @@ const HomeStack = createStackNavigator(
             headerLeft: <HeaderLeft {...navigation} />,
             headerRight: <HeaderRight {...navigation} display={true} />,
             headerTitle: (
-              <HeaderMiddle showLogo={false} title={I18n.t('home')} />
+              <HeaderMiddle showLogo={true} title={I18n.t('home')} />
             ),
             headerBackTitle: null
           }),

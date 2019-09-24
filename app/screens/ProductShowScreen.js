@@ -180,7 +180,7 @@ const ProductShowScreen = ({
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
-            title="featured_products"
+            title="related_products"
             colors={colors}
             dispatch={dispatch}
           />

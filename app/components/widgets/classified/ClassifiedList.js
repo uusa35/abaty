@@ -126,10 +126,11 @@ const ClassifiedList = ({
           }
           onEndReached={() => loadMore()}
           contentContainerStyle={{
-            width: width - 20,
+            width: width,
             minHeight: '100%',
-            marginBottom: 15,
-            alignSelf: 'center'
+            // marginBottom: 15,
+            alignSelf: 'center',
+            backgroundColor : 'transparent'
           }}
           // columnWrapperStyle={{
           //   justifyContent: 'space-around',
@@ -138,7 +139,7 @@ const ClassifiedList = ({
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'transparent'
           }}
           ListHeaderComponent={
             <View>
