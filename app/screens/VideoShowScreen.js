@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../components/widgets/product/ProductList';
@@ -8,7 +8,7 @@ import VideoWidget from '../components/widgets/video/VideoWidget';
 const VideoShowScreen = ({video, dispatch}) => {
   console.log('video', video);
   return (
-    <Fragment>
+    <ScrollView>
       <VideoWidget element={video} showImage={false} dispatch={dispatch} />
       <ProductList
         products={video.products}
@@ -17,7 +17,7 @@ const VideoShowScreen = ({video, dispatch}) => {
         dispatch={dispatch}
         searchElements={{}}
       />
-    </Fragment>
+    </ScrollView>
   );
 };
 

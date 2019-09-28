@@ -45,7 +45,7 @@ const VideoWidget = ({
           onChangeState={e => setStatus(e.status)}
           onChangeQuality={e => setQuality(e.quality)}
           onError={e => console.log(e.error)}
-          style={{alignSelf: 'center', height, width}}
+          style={{alignSelf: 'center', height: 300, width: '100%'}}
         />
       ) : (
         <WebView
