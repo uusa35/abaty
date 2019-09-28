@@ -44,6 +44,7 @@ import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
 import AbatiHomeScreen from '../../screens/AbatiHomeScreen';
+import VideoShowScreen from '../../screens/VideoShowScreen';
 
 export const AbatiHomeStack = createStackNavigator(
   {

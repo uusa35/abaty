@@ -17,6 +17,7 @@ export default function* rootSaga() {
     fork(userSagas.getDesigner),
     fork(userSagas.getCompany),
     fork(userSagas.getCelebrity),
+    fork(userSagas.getVideo),
     fork(userSagas.submitAuth),
     fork(userSagas.googleLogin),
     fork(userSagas.reAuthenticate),

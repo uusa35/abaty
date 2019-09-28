@@ -211,6 +211,13 @@ export async function getUser(id) {
     .catch(e => e.response.data.message);
 }
 
+export async function getVideo(id) {
+  return await axiosInstance
+    .get(`video/${id}`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getCountry(country_id?) {
   return await axiosInstance
     .get(`country/ip`, {params: {country_id}})

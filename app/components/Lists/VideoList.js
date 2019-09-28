@@ -76,6 +76,7 @@ const VideoList = ({
           }
           renderItem={({item}) => (
             <VideoWidget
+              dispatch={dispatch}
               element={item}
               showName={true}
               width={width}

@@ -77,6 +77,7 @@ import latestProducts from './latestProducts';
 import onSaleProducts from './onSaleProducts';
 import hotDealsProducts from './hotDealsProducts';
 import bestSaleProducts from './bestSaleProducts';
+import video from './video';
 
 import {reducer as network} from 'react-native-offline';
 
@@ -159,7 +160,8 @@ let reducers = combineReducers({
   latestProducts,
   onSaleProducts,
   hotDealsProducts,
-  bestSaleProducts
+  bestSaleProducts,
+  video
 });
 
 export default reducers;

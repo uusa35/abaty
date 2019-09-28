@@ -5,9 +5,11 @@ import {appUrlIos} from '../../../env';
 import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';
 import FastImage from 'react-native-fast-image';
+import {GET_VIDEO} from '../../../redux/actions/types';
 
 const VideoWidget = ({
   element,
+  dispatch,
   height = 120,
   width = 180,
   showImage = false
@@ -15,8 +17,7 @@ const VideoWidget = ({
   [isReady, setIsReady] = useState(false);
   [status, setStatus] = useState(false);
   [quality, setQuality] = useState('');
-
-  console.log('element', element.large);
+  console.log('element', element.video);
   return (
     <View
       style={{
@@ -27,7 +28,8 @@ const VideoWidget = ({
         marginBottom: 5
       }}>
       {showImage ? (
-        <TouchableOpacity onPress={() => console.log('here')}>
+        <TouchableOpacity
+          onPress={() => dispatch({type: GET_VIDEO, payload: element.id})}>
           <FastImage
             source={{uri: element.large}}
             style={{width, height: 300}}

@@ -1,25 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../components/widgets/product/ProductList';
 
-class BrandShowScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {brand, searchParams} = this.props;
-    return (
-      <ProductList
-        elements={brand.products}
-        showName={true}
-        searchElements={searchParams}
-      />
-    );
-  }
-}
+const BrandShowScreen = ({brand, searchParams, dispatch}) => {
+  return (
+    <ProductList
+      products={brand.products}
+      showName={true}
+      dispatch={dispatch}
+      searchElements={searchParams}
+    />
+  );
+};
 
 function mapStateToProps(state) {
   return {

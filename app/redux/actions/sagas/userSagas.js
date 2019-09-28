@@ -146,6 +146,23 @@ export function* startGetUserScenario(action) {
   }
 }
 
+export function* startGetVideoScenario(action) {
+  try {
+    const element = yield call(api.getVideo, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield put({type: actions.SET_VIDEO, payload: element});
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'VideoShow',
+          params: {name: element.name}
+        })
+      );
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
+  }
+}
+
 export function* startStorePlayerIdScenario(action) {
   try {
     yield call(api.storePlayerId, action.payload);
@@ -509,6 +526,10 @@ export function* getCompany() {
 
 export function* getCelebrity() {
   yield takeLatest(actions.GET_CELEBRITY, startGetCelebrityScenario);
+}
+
+export function* getVideo() {
+  yield takeLatest(actions.GET_VIDEO, startGetVideoScenario);
 }
 
 export function* submitAuth() {

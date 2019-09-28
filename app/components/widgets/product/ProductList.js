@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useContext} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -16,6 +16,7 @@ import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductList = ({
   products,
@@ -27,7 +28,6 @@ const ProductList = ({
   showRefresh = true,
   title,
   searchElements,
-  colors,
   dispatch
 }) => {
   [items, setItems] = useState(products);
@@ -39,6 +39,7 @@ const ProductList = ({
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
+  const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {
     setShowMore(true);
