@@ -5,7 +5,7 @@ import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import PropTypes from 'prop-types';
-import VideoWidget from '../widgets/VideoWidget';
+import VideoWidget from '../widgets/video/VideoWidget';
 import {first} from 'lodash';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {refetchHomeElements} from '../../redux/actions';

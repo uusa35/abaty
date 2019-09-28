@@ -73,6 +73,11 @@ import version from './version';
 import propertiesModal from './propertiesModal';
 import tags from './tags';
 import pages from './pages';
+import latestProducts from './latestProducts';
+import onSaleProducts from './onSaleProducts';
+import hotDealsProducts from './hotDealsProducts';
+import bestSaleProducts from './bestSaleProducts';
+
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -150,7 +155,11 @@ let reducers = combineReducers({
   version,
   propertiesModal,
   tags,
-  pages
+  pages,
+  latestProducts,
+  onSaleProducts,
+  hotDealsProducts,
+  bestSaleProducts
 });
 
 export default reducers;

@@ -15,12 +15,17 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {getClassifieds, getSearchProducts} from '../../../redux/actions';
+import {
+  getClassifieds,
+  getSearchClassifieds,
+  getSearchProducts
+} from '../../../redux/actions';
 import ClassifiedWidget from './ClassifiedWidget';
 import widgetStyles from '../widgetStyles';
 import ClassifiedSearchForm from '../search/ClassifiedSearchForm';
 import SearchSort from '../search/SearchSort';
 import {orderBy} from 'lodash';
+import ClassifiedsMapView from '../map/ClassifiedsMapView';
 
 const ClassifiedList = ({
   classifieds,
@@ -45,6 +50,10 @@ const ClassifiedList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
   [sort, setSort] = useState('');
+  [sortModal, setSortModal] = useState(false);
+  [mapModal, setMapModal] = useState(false);
+
+  console.log('elements', filter(elements, (e, i) => e.has_map));
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -55,19 +64,24 @@ const ClassifiedList = ({
     switch (sort) {
       case 1:
         setItems(orderBy(items, ['id'], ['asc']));
+        setSortModal(false);
         break;
       case 2:
         setItems(orderBy(items, ['id'], ['desc']));
+        setSortModal(false);
         break;
       case 3:
         setItems(orderBy(items, ['price'], ['asc']));
+        setSortModal(false);
         break;
       case 4:
         console.log('case 4');
         setItems(orderBy(items, ['price'], ['desc']));
+        setSortModal(false);
         break;
       case 5:
         setItems(orderBy(items, ['name'], ['desc']));
+        setSortModal(false);
         break;
       default:
         items;
@@ -100,7 +114,7 @@ const ClassifiedList = ({
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getClassifieds({searchParams: params, redirect: false}));
+      dispatch(getSearchClassifieds({searchParams: params, redirect: false}));
     }
   }, [refresh]);
 
@@ -170,9 +184,23 @@ const ClassifiedList = ({
           ListHeaderComponent={
             <View>
               {showSearch ? (
-                <View>
-                  <ClassifiedSearchForm />
-                  <SearchSort sort={sort} setSort={setSort} />
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                  <SearchSort
+                    sort={sort}
+                    sortModal={sortModal}
+                    setSortModal={setSortModal}
+                    setSort={setSort}
+                  />
+                  <ClassifiedsMapView
+                    mapModal={mapModal}
+                    setMapModal={setMapModal}
+                    elements={filter(elements, (e, i) => e.has_map)}
+                  />
                 </View>
               ) : null}
               {showTitle ? (

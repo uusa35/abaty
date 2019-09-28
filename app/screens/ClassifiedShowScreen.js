@@ -18,9 +18,8 @@ import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text, images} from './../constants';
 import I18n from './../I18n';
-import {getClassified, getClassifieds, getDesigner} from '../redux/actions';
+import {getClassified, getClassifieds} from '../redux/actions';
 import validate from 'validate.js';
-import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
 import ClassifiedInfoWidgetElement from '../components/widgets/classified/ClassifiedInfoWidgetElement';
@@ -34,6 +33,7 @@ import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import {getProductConvertedFinalPrice} from '../helpers';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
+import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 
 const ClassifiedShowScreen = ({
   element,
@@ -117,14 +117,14 @@ const ClassifiedShowScreen = ({
               colors={colors}
               name={element.user.slug}
               showIcon={false}
-              link={() =>
-                dispatch(
-                  getDesigner({
-                    id: element.user.id,
-                    searchElements: {user_id: element.user.id}
-                  })
-                )
-              }
+              // link={() =>
+              //   dispatch(
+              //     getDesigner({
+              //       id: element.user.id,
+              //       searchElements: {user_id: element.user.id}
+              //     })
+              //   )
+              // }
             />
             {element.has_properties ? (
               <Fragment>
@@ -187,6 +187,7 @@ const ClassifiedShowScreen = ({
                 title={element.name}
                 showTitle={true}
                 height={350}
+                description={element.description}
                 price={round(
                   getProductConvertedFinalPrice(element.price, exchange_rate),
                   2
@@ -197,7 +198,7 @@ const ClassifiedShowScreen = ({
         </View>
         {validate.isObject(element.videoGroup) &&
         !validate.isEmpty(element.videoGroup) ? (
-          <VideosWidget videos={element.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={element.videoGroup} colors={colors} />
         ) : null}
         {!validate.isEmpty(classifieds) ? (
           <ClassifiedListHorizontal

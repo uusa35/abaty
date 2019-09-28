@@ -1,11 +1,5 @@
 import React, {Fragment, useState, useMemo} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  Linking,
-  RefreshControl
-} from 'react-native';
+import {StyleSheet, Text, Linking, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text} from './../constants';
@@ -15,12 +9,12 @@ import I18n from './../I18n';
 import {first} from 'lodash';
 import {getDesigner, getSearchServices, getService} from '../redux/actions';
 import validate from 'validate.js';
-import VideosWidget from '../components/widgets/VideosWidget';
 import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
+import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 
 const ServiceShowScreen = ({
   service,
@@ -168,7 +162,7 @@ const ServiceShowScreen = ({
         </View>
         {validate.isObject(service.videoGroup) &&
         !validate.isEmpty(service.videoGroup) ? (
-          <VideosWidget videos={service.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={service.videoGroup} colors={colors} />
         ) : null}
         {validate.isArray(services) && !validate.isEmpty(services) ? (
           <ServiceHorizontalWidget

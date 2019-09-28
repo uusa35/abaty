@@ -74,7 +74,7 @@ function mapStateToProps(state) {
 PageOneScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
-  title: I18n.t('categories')
+  title: I18n.t('mallr.sections')
 });
 
 export default connect(mapStateToProps)(PageOneScreen);

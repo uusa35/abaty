@@ -97,17 +97,7 @@ const PagesList = ({
             }
           })}
         </View>
-      ) : (
-        <View
-          style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
-          <Button
-            raised
-            title={I18n.t('no_categories')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
-          />
-        </View>
-      )}
+      ) : null}
     </ScrollView>
   );
 };

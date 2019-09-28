@@ -4,9 +4,14 @@ import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
 import {images, text} from '../../../constants';
 
-const SearchSort = ({sort, setSort, showPrice = true, showAlpha = true}) => {
-  [sortModal, setSortModal] = useState(false);
-
+const SearchSort = ({
+  sort,
+  setSort,
+  showPrice = true,
+  showAlpha = true,
+  sortModal,
+  setSortModal
+}) => {
   const handleClick = useCallback(e => {
     setSort(e);
   });
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 0,
     padding: 0,
-    textAlign: 'left'
+    textAlign: 'center'
   },
   countryFlag: {
     width: 45,

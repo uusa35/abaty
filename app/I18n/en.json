@@ -499,5 +499,15 @@
   "no_companies" : "No Companies",
   "no_celebrities" : "No Celebrities",
   "related_products" : "Related Products",
-  "added_from" : "added"
+  "added_from" : "added",
+  "latest_products" : "Latest Products",
+  "best_sale_products" : "Best Sale Products",
+  "on_sale_products" : "Sale",
+  "hot_deals_products" : "Hot Deals",
+  "mallr" : {
+    "our_designers" : "Personal Shoppers",
+    "designers" : "Personal Shoppers",
+    "our_companies" : "Companies",
+    "sections" : "Sections"
+  }
 }

@@ -25,7 +25,6 @@ const SettingsIndexScreen = ({
   colors,
   pages
 }) => {
-  console.log('pages', pages);
   return (
     <ScrollView
       contentContainerStyle={{

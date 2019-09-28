@@ -1,16 +1,15 @@
-import React, {useContext, useEffect, useState, useMemo} from 'react';
+import React from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {text, width} from '../../constants';
-import {appUrlIos} from '../../env';
+import {text, width} from '../../../constants';
+import {appUrlIos} from '../../../env';
 import {map, isNull} from 'lodash';
 import PropTypes from 'prop-types';
 import {WebView} from 'react-native-webview';
-import I18n from '../../I18n';
+import I18n from '../../../I18n';
 import validate from 'validate.js';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {Button} from 'react-native-elements';
 
-const VideosWidget = ({videos, colors}) => {
+const VideosHorizontalWidget = ({videos, colors}) => {
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (
@@ -54,9 +53,9 @@ const VideosWidget = ({videos, colors}) => {
   );
 };
 
-export default VideosWidget;
+export default VideosHorizontalWidget;
 
-VideosWidget.propTypes = {
+VideosHorizontalWidget.propTypes = {
   videos: PropTypes.object.isRequired
 };
 

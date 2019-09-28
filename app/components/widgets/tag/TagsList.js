@@ -24,7 +24,7 @@ const TagsList = ({
   title
 }) => {
   return (
-    <ScrollView
+    <View
       horizontal={false}
       style={{width: '90%', alignSelf: 'center'}}
       automaticallyAdjustContentInsets={false}
@@ -116,7 +116,7 @@ const TagsList = ({
           />
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 };
 

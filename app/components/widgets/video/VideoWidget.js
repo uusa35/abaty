@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {text} from '../../constants';
-import {appUrlIos} from '../../env';
+import {text} from '../../../constants';
+import {appUrlIos} from '../../../env';
 import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';
 

@@ -16,14 +16,74 @@ import {NavigationActions} from 'react-navigation';
 
 export function* setHomeProducts() {
   try {
-    const products = yield call(api.getHomeProducts);
-    if (!validate.isEmpty(products) && validate.isArray(products)) {
-      yield put({type: actions.SET_HOME_PRODUCTS, payload: products});
+    const elements = yield call(api.getHomeProducts, {on_home: 1});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_HOME_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_HOME_PRODUCTS, payload: []});
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_home_products'))]);
+  }
+}
+
+export function* getOnSaleProducts() {
+  try {
+    const elements = yield call(api.getHomeProducts, {on_sale: 1});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_ON_SALE_PRODUCTS, payload: elements});
+    } else {
+      yield put({type: actions.SET_ON_SALE_PRODUCTS, payload: []});
+    }
+  } catch (e) {
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('no_on_sale_products'))
+    ]);
+  }
+}
+
+export function* getBestSaleProducts() {
+  try {
+    const elements = yield call(api.getHomeProducts, {best_sale: 1});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_BEST_SALE_PRODUCTS, payload: elements});
+    } else {
+      yield put({type: actions.SET_BEST_SALE_PRODUCTS, payload: []});
+    }
+  } catch (e) {
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('no_best_sale_products'))
+    ]);
+  }
+}
+
+export function* getLatestProducts() {
+  try {
+    const elements = yield call(api.getHomeProducts, {latest: 1});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_LATEST_PRODUCTS, payload: elements});
+    } else {
+      yield put({type: actions.SET_LATEST_PRODUCTS, payload: []});
+    }
+  } catch (e) {
+    yield all([
+      disableLoading,
+      enableErrorMessage(I18n.t('no_latest_products'))
+    ]);
+  }
+}
+export function* getHotDealsProducts() {
+  try {
+    const elements = yield call(api.getHomeProducts, {hot_deals: 1});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield put({type: actions.SET_HOT_DEALS_PRODUCTS, payload: elements});
+    } else {
+      yield put({type: actions.SET_HOT_DEALS_PRODUCTS, payload: []});
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_hot_deals'))]);
   }
 }
 

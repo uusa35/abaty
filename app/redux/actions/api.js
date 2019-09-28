@@ -155,9 +155,9 @@ export async function getService(params) {
     .catch(e => e.response.data.message);
 }
 
-export async function getSearchProducts(elements) {
+export async function getSearchProducts(params) {
   return await axiosInstance
-    .get(`search/product`, {params: elements})
+    .get(`search/product`, params)
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -176,9 +176,9 @@ export async function getBrand(id) {
     .catch(e => e.response.data.message);
 }
 
-export async function getHomeProducts() {
+export async function getHomeProducts(params) {
   return await axiosInstance
-    .get(`product`, {params: {on_home: true}})
+    .get(`product`, {params: params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

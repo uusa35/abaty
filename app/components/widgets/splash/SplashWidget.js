@@ -33,7 +33,6 @@ const SplashWidget = ({elements, handleClick}) => {
                 padding: 30
               }}
               onPress={() => handleClick()}
-              title="testing"
               hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
             />
           ) : null}

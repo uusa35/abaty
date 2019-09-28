@@ -46,7 +46,11 @@ import {
   startStorePlayerIdScenario
 } from './userSagas';
 import {
+  getBestSaleProducts,
   getHomeCollectionsScenario,
+  getHotDealsProducts,
+  getLatestProducts,
+  getOnSaleProducts,
   getProductIndex,
   setHomeProducts
 } from './productSagas';
@@ -81,6 +85,10 @@ function* startAppBootStrap() {
         call(startAuthenticatedScenario),
         call(setDeviceId),
         call(setHomeProducts),
+        call(getOnSaleProducts),
+        call(getBestSaleProducts),
+        call(getHotDealsProducts),
+        call(getLatestProducts),
         call(getHomeServicesScenario),
         call(getPages),
         call(getTags),

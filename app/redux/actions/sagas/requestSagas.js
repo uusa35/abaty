@@ -26,7 +26,14 @@ import {
   setHomeBrands,
   startAuthenticatedScenario
 } from './userSagas';
-import {getProductIndex, setHomeProducts} from './productSagas';
+import {
+  getBestSaleProducts,
+  getHotDealsProducts,
+  getLatestProducts,
+  getOnSaleProducts,
+  getProductIndex,
+  setHomeProducts
+} from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 import {isArray} from 'lodash';
@@ -183,11 +190,16 @@ export function* startRefetchHomeElementsScenario() {
       call(setCommercials),
       call(setHomeBrands),
       call(setHomeProducts),
+      call(getOnSaleProducts),
+      call(getBestSaleProducts),
+      call(getHotDealsProducts),
+      call(getLatestProducts),
       call(getServiceIndex),
       call(getHomeServicesScenario),
       call(getProductIndex),
       call(setHomeSplashes),
       call(getVideos),
+      call(getPages),
       call(startAuthenticatedScenario),
       put({type: actions.GET_CATEGORIES}),
       put({type: actions.GET_HOME_CATEGORIES}),

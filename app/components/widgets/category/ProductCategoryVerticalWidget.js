@@ -11,6 +11,7 @@ import FastImage from 'react-native-fast-image';
 
 const ProductCategoryVerticalWidget = ({
   elements,
+  user_id,
   showTitle = true,
   showArrow = true,
   showChildren = true,
@@ -54,7 +55,7 @@ const ProductCategoryVerticalWidget = ({
                       dispatch(
                         getSearchProducts({
                           name: c.name,
-                          searchParams: {product_category_id: c.id},
+                          searchParams: {product_category_id: c.id, user_id},
                           redirect: true
                         })
                       )

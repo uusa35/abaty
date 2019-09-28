@@ -1,12 +1,5 @@
 import React, {Fragment, useState, useMemo} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  Linking,
-  RefreshControl,
-  View
-} from 'react-native';
+import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import {width, text} from './../constants';
@@ -17,10 +10,10 @@ import {first} from 'lodash';
 import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
-import VideosWidget from '../components/widgets/VideosWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
+import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 
 const ProductShowScreen = ({
   product,
@@ -174,7 +167,7 @@ const ProductShowScreen = ({
         </View>
         {validate.isObject(product.videoGroup) &&
         !validate.isEmpty(product.videoGroup) ? (
-          <VideosWidget videos={product.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget

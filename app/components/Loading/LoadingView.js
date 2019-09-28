@@ -39,10 +39,10 @@ const LoadingView = ({
     <ImageBackground style={styles.activityContainer} source={{uri: mainBg}}>
       <Spinner type={first(shuffle(moveRand))} color={color} size={40} />
       <FastImage
-        source={{uri: images.abati}}
+        source={{uri: logo}}
         style={{width: 150, height: 100, margin: 10}}
         resizeMode="contain"
-        loadingIndicatorSource={images.logo}
+        loadingIndicatorSource={{uri: logo}}
       />
       <Text style={styles.loadingText}>{loadingText}</Text>
     </ImageBackground>

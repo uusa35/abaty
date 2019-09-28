@@ -15,10 +15,11 @@ import CommentScreenModal from './CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
-import VideosWidget from '../components/widgets/VideosWidget';
 import I18n from '../I18n';
 import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
+import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
+import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
 
 const DesignerShowScreen = ({
   element,
@@ -186,7 +187,10 @@ const DesignerShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosWidget videos={element.videoGroup} colors={colors} />
+                <VideosVerticalWidget
+                  videos={element.videoGroup}
+                  colors={colors}
+                />
               )
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}

@@ -11,24 +11,28 @@ import MapView, {
 import {width, text, links, images} from '../../constants';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import CallOutView from './map/CallOutView';
+import {getProductConvertedFinalPrice} from '../../helpers';
+import {round, map} from 'lodash';
 
 const MapViewWidget = ({
   longitude,
   latitude,
   height,
   customWidth,
-  logo,
   showTitle = false,
   showCallOut = true,
   title = null,
   image = null,
   description = null,
-  price = ''
+  isMulti = false,
+  price = '',
+  elements = []
 }) => {
-  const {colors} = useContext(GlobalValuesContext);
+  const {colors, exchange_rate} = useContext(GlobalValuesContext);
   console.log('price', price);
   return (
-    <View style={{flex: 1, marginTop: 25}}>
+    <View style={{flex: 1}}>
       {showTitle ? (
         <Text
           style={{
@@ -62,48 +66,56 @@ const MapViewWidget = ({
         initialRegion={{
           latitude: parseFloat(latitude),
           longitude: parseFloat(longitude),
-          latitudeDelta: 0.08,
-          longitudeDelta: 0.08
+          latitudeDelta: 0.5,
+          longitudeDelta: 0.5
         }}>
-        <Marker
-          title={title}
-          onPress={() => console.log('here')}
-          scrollEnabled={false}
-          image={images.pin}
-          opacity={1}
-          coordinate={{
-            latitude: latitude,
-            longitude: longitude
-          }}>
-          {showCallOut && image ? (
-            <Callout
-              style={{
-                width: 250,
-                borderWidth: 0.5,
-                borderColor: 'lightgrey',
-                minHeight: 100,
-                justifyContent: 'flex-start',
-                alignItems: 'center'
+        {!isMulti ? (
+          <Marker
+            title={title}
+            onPress={() => console.log('here')}
+            scrollEnabled={false}
+            image={images.pin}
+            opacity={1}
+            coordinate={{
+              latitude: latitude,
+              longitude: longitude
+            }}>
+            {showCallOut && image ? (
+              <CallOutView
+                image={image}
+                description={description}
+                title={title}
+                price={price}
+              />
+            ) : null}
+          </Marker>
+        ) : (
+          map(elements, (element, i) => (
+            <Marker
+              key={i}
+              title={element.title}
+              onPress={() => console.log('here')}
+              scrollEnabled={false}
+              image={images.pin}
+              opacity={1}
+              coordinate={{
+                latitude: element.latitude,
+                longitude: element.longitude
               }}>
-              <TouchableOpacity
-                style={{flexDirection: 'row'}}
-                onPress={() =>
-                  Linking.openURL(
-                    `${links.googleMapUrl}${latitude},${longitude}`
-                  )
-                }>
-                <FastImage
-                  style={styles.image}
-                  source={{uri: image}}
-                  resizeMode="contain"
+              {showCallOut ? (
+                <CallOutView
+                  title={element.name}
+                  description={element.description}
+                  image={element.thumb}
+                  price={round(
+                    getProductConvertedFinalPrice(element.price, exchange_rate),
+                    2
+                  )}
                 />
-                {title ? <Text style={styles.title}>{title}</Text> : null}
-
-                {price ? <Text style={styles.title}>{price}</Text> : null}
-              </TouchableOpacity>
-            </Callout>
-          ) : null}
-        </Marker>
+              ) : null}
+            </Marker>
+          ))
+        )}
       </MapView>
     </View>
   );
@@ -125,6 +137,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: text.font,
     fontSize: text.medium,
+    textAlign: 'left',
     margin: 5
   },
   logo: {

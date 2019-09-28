@@ -20,7 +20,7 @@ import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
 import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
-
+import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../app';
 type Props = {};
 class App extends Component<Props> {
   componentDidMount() {
