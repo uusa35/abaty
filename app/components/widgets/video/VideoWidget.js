@@ -23,7 +23,8 @@ const VideoWidget = ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1
+        width: '100%',
+        marginBottom: 5
       }}>
       {showImage ? (
         <TouchableOpacity onPress={() => console.log('here')}>

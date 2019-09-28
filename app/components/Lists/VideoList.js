@@ -42,7 +42,7 @@ const VideoList = ({
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
+          // stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
           numColumns={1}
@@ -61,20 +61,6 @@ const VideoList = ({
           contentContainerStyle={{
             width: width - 20
           }}
-          // columnWrapperStyle={{
-          //   justifyContent: 'center',
-          //   alignItems: 'center',
-          //   paddingTop: 10,
-          //   paddingBottom: 10
-          // }}
-          ListHeaderComponentStyle={{
-            paddingBottom: 10,
-            paddingTop: 10,
-            backgroundColor: 'white'
-          }}
-          // ListHeaderComponent={
-          //   <VideoWidget element={first(elements)} height={250} width={width} />
-          // }
           ListFooterComponent={() =>
             showFooter ? (
               <View style={{minHeight: 100}}>
