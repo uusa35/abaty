@@ -43,6 +43,7 @@ import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
+import AbatiHomeScreen from '../../screens/AbatiHomeScreen';
 
 export const AbatiHomeStack = createStackNavigator(
   {
@@ -56,10 +57,16 @@ export const AbatiHomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: HomeScreen,
+      screen: AbatiHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
-        HeaderRight: <HeaderRight {...navigation} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            showCountry={true}
+          />
+        ),
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null
       })
@@ -213,7 +220,7 @@ export const AbatiHomeStack = createStackNavigator(
           <HeaderRight
             navigation={navigation}
             displayShare={true}
-            display={true}
+            showCountry={true}
           />
         ),
         headerBackTitle: null

@@ -79,7 +79,6 @@ const HomeScreen = ({
   [deviceId, setDeviceId] = useState('');
 
   const handleRefresh = useCallback(() => {
-    console.log('here');
     dispatch(refetchHomeElements());
   }, [refresh]);
 

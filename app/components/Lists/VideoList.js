@@ -45,7 +45,7 @@ const VideoList = ({
           stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
-          numColumns={2}
+          numColumns={1}
           data={elements}
           refreshing={refresh}
           refreshControl={
@@ -61,20 +61,20 @@ const VideoList = ({
           contentContainerStyle={{
             width: width - 20
           }}
-          columnWrapperStyle={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingTop: 10,
-            paddingBottom: 10
-          }}
+          // columnWrapperStyle={{
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          //   paddingTop: 10,
+          //   paddingBottom: 10
+          // }}
           ListHeaderComponentStyle={{
             paddingBottom: 10,
             paddingTop: 10,
             backgroundColor: 'white'
           }}
-          ListHeaderComponent={
-            <VideoWidget element={first(elements)} height={250} width={width} />
-          }
+          // ListHeaderComponent={
+          //   <VideoWidget element={first(elements)} height={250} width={width} />
+          // }
           ListFooterComponent={() =>
             showFooter ? (
               <View style={{minHeight: 100}}>
@@ -89,7 +89,12 @@ const VideoList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <VideoWidget element={item} showName={true} width={190} />
+            <VideoWidget
+              element={item}
+              showName={true}
+              width={width}
+              showImage={true}
+            />
           )}
         />
       ) : (

@@ -19,6 +19,9 @@ const VideosVerticalWidget = ({videos, colors}) => {
       ) : null}
       <ScrollView
         horizontal={false}
+        disableIntervalMomentum={true}
+        alwaysBounceHorizontal={false}
+        alwaysBounceVertical={false}
         showsHorizontalScrollIndicator={false}
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
         {!validate.isEmpty(videos) ? (

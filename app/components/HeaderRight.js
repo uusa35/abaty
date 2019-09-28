@@ -2,7 +2,7 @@
  * Created by usamaahmed on 9/28/17.
  */
 import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
 import {showCountryModal} from '../redux/actions';
@@ -14,7 +14,7 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 
 export const HeaderRight = ({
-  display = false,
+  showCountry = false,
   displayShare = false,
   navigation
 }) => {
@@ -38,10 +38,9 @@ export const HeaderRight = ({
   };
   return (
     <View style={widgetStyles.safeContainer}>
-      {display ? (
+      {showCountry ? (
         <TouchableOpacity
           onPress={() => dispatch(showCountryModal())}
-          // onPress={() => dispatch(showLoginModal())}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <FastImage
             source={{uri: country.thumb}}

@@ -99,7 +99,7 @@ ProductCategoryHorizontalRoundedWidget.propTypes = {
 const styles = StyleSheet.create({
   image: {
     width: 90,
-    height: 90,
-    borderRadius: 20
+    height: 90
+    // borderRadius: 20
   }
 });

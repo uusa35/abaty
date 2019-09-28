@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {text} from '../../../constants';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {text, width} from '../../../constants';
 import {appUrlIos} from '../../../env';
 import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';
+import FastImage from 'react-native-fast-image';
 
-const VideoWidget = ({element, height = 120, width = 180}) => {
+const VideoWidget = ({
+  element,
+  height = 120,
+  width = 180,
+  showImage = false
+}) => {
   [isReady, setIsReady] = useState(false);
   [status, setStatus] = useState(false);
   [quality, setQuality] = useState('');
 
+  console.log('element', element.large);
   return (
     <View
       style={{
@@ -18,7 +25,14 @@ const VideoWidget = ({element, height = 120, width = 180}) => {
         alignItems: 'center',
         flex: 1
       }}>
-      {element.video_id ? (
+      {showImage ? (
+        <TouchableOpacity onPress={() => console.log('here')}>
+          <FastImage
+            source={{uri: element.large}}
+            style={{width, height: 300}}
+          />
+        </TouchableOpacity>
+      ) : element.video_id ? (
         <YouTube
           videoId={`${element.url}`} // The YouTube video ID
           play={false} // control playback of video with true/false
