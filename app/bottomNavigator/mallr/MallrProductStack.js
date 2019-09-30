@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 import ProductIndexAllScreen from '../../screens/ProductIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
@@ -36,7 +36,7 @@ export const MallrProductStack = createStackNavigator(
   },
   {
     mode: 'card',
-    headerMode: 'float'
+    headerMode: 'screen'
   }
 );
 

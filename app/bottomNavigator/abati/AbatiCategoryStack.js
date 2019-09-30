@@ -5,7 +5,7 @@ import validate from 'validate.js';
 import I18n from '../../I18n';
 import ProductIndexScreen from '../../screens/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import ProductShowScreen from '../../screens/ProductShowScreen';
+import NormalProductShowScreen from '../../screens/NormalProductShowScreen';
 import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
 import React from 'react';
 
@@ -43,7 +43,7 @@ export const AbatiCategoryStack = createStackNavigator(
       })
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

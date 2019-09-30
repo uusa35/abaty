@@ -16,7 +16,7 @@ import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 import { SafeAreaView } from "react-navigation";
 
-const ProductShowScreen = ({
+const TransparentProductShowScreen = ({
   product,
   dispatch,
   phone,
@@ -200,16 +200,16 @@ function mapStateToProps(state) {
   };
 }
 
-ProductShowScreen.navigationOptions = ({navigation}) => ({
+TransparentProductShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
     backgroundColor: navigation.state.params.headerBgColor
   }
 });
 
-export default connect(mapStateToProps)(ProductShowScreen);
+export default connect(mapStateToProps)(TransparentProductShowScreen);
 
-ProductShowScreen.propTypes = {
+TransparentProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
   homeProducts: PropTypes.array.isRequired,
   token: PropTypes.string

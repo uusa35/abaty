@@ -100,7 +100,6 @@ export const BottomTabsStack = createBottomTabNavigator(
       showIcon: true,
       scrollEnabled: true,
       allowFontScaling: true,
-      // activeTintColor: 'black',
       activeTintColor: '#ddca21',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',

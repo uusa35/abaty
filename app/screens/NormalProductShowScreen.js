@@ -14,9 +14,9 @@ import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
-import { SafeAreaView } from "react-navigation";
+import {SafeAreaView, ScrollView} from "react-navigation";
 
-const ProductShowScreen = ({
+const NormalProductShowScreen = ({
   product,
   dispatch,
   phone,
@@ -38,46 +38,19 @@ const ProductShowScreen = ({
   }, [headerBg, headerBgColor]);
 
   return (
-    <Fragment>
-      <HeaderImageScrollView
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        maxHeight={550}
-        minHeight={90}
-        style={{width}}
-        scrollViewBackgroundColor="transparent"
-        overlayColor="white"
-        renderForeground={() => (
-          <ImagesWidget
-            colors={colors}
-            elements={product.images
+    <ScrollView horizontal={false}>
+      <ImagesWidget
+          colors={colors}
+          elements={product.images
               .concat({id: product.id, large: product.large})
               .reverse()}
-            width={width}
-            height={550}
-            name={product.name}
-            exclusive={product.exclusive}
-            isOnSale={product.isOnSale}
-            isReallyHot={product.isReallyHot}
-          />
-        )}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => {
-              setRefresh(false);
-              dispatch(
-                getProduct({id: product.id, api_token: token ? token : null})
-              );
-            }}
-          />
-        }
-        automaticallyAdjustContentInsets={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 50}}>
+          width={width}
+          height={550}
+          name={product.name}
+          exclusive={product.exclusive}
+          isOnSale={product.isOnSale}
+          isReallyHot={product.isReallyHot}
+      />
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
           <View animation="bounceInLeft" easing="ease-out">
@@ -179,9 +152,8 @@ const ProductShowScreen = ({
             dispatch={dispatch}
           />
         ) : null}
-      </HeaderImageScrollView>
       <ActionBtnWidget colors={colors} />
-    </Fragment>
+    </ScrollView>
   );
 };
 
@@ -200,16 +172,16 @@ function mapStateToProps(state) {
   };
 }
 
-ProductShowScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+NormalProductShowScreen.navigationOptions = ({navigation}) => ({
+  // headerTransparent: navigation.state.params.headerBg,
+  // headerStyle: {
+  //   backgroundColor: navigation.state.params.headerBgColor
+  // }
 });
 
-export default connect(mapStateToProps)(ProductShowScreen);
+export default connect(mapStateToProps)(NormalProductShowScreen);
 
-ProductShowScreen.propTypes = {
+NormalProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
   homeProducts: PropTypes.array.isRequired,
   token: PropTypes.string

@@ -4,7 +4,7 @@ import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import ProductShowScreen from '../../screens/ProductShowScreen';
+import NormalProductShowScreen from '../../screens/NormalProductShowScreen';
 import React from 'react';
 
 export const AbatiProductStack = createStackNavigator(
@@ -19,7 +19,7 @@ export const AbatiProductStack = createStackNavigator(
       })
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

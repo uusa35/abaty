@@ -57,6 +57,8 @@ const ImagesWidget = ({
       </View>
       <ScrollView
         horizontal={true}
+        alwaysBounceVertical={false}
+        alwaysBounceHorizontal={false}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{height: height}}
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>

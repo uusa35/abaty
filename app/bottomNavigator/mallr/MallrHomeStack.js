@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import HomeScreen from '../../screens/HomeScreen';
 import I18n from '../../I18n';
@@ -44,6 +44,8 @@ import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
 import MallrHomeScreen from '../../screens/MallrHomeScreen';
+import {MallrCategoryStack} from "./MallrCategoryStack";
+import {MallrProductStack} from "./MallrProductStack";
 
 export const MallrHomeStack = createStackNavigator(
   {
@@ -253,6 +255,21 @@ export const MallrHomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
+      Product: {
+          screen: ProductShowScreen,
+          navigationOptions: ({navigation}) => ({
+              headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+              headerRight: (
+                  <HeaderRight
+                      navigation={navigation}
+                      displayShare={true}
+                      display={true}
+                  />
+              ),
+              headerBackTitle: null
+          }),
+          path: `product/:id`
+      },
     ServiceIndex: {
       screen: ServiceIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -264,6 +281,21 @@ export const MallrHomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
+      Service: {
+          screen: ServiceShowScreen,
+          navigationOptions: ({navigation}) => ({
+              headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+              headerRight: (
+                  <HeaderRight
+                      navigation={navigation}
+                      displayShare={true}
+                      display={true}
+                  />
+              ),
+              headerBackTitle: null
+          }),
+          path: `product/:id`
+      },
     CollectionIndex: {
       screen: CollectionIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -274,37 +306,6 @@ export const MallrHomeStack = createStackNavigator(
         headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
         headerBackTitle: null
       })
-    },
-
-    Product: {
-      screen: ProductShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerBackTitle: null
-      }),
-      path: `product/:id`
-    },
-    Service: {
-      screen: ServiceShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerBackTitle: null
-      }),
-      path: `product/:id`
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,

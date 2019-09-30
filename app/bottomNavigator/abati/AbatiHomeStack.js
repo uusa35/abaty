@@ -22,10 +22,10 @@ import CompanyShowScreen from '../../screens/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import DesignerShowScreen from '../../screens/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/CelebrityShowScreen';
+import NormalProductShow from '../../screens/NormalProductShowScreen';
 import ProductIndexScreen from '../../screens/ProductIndexScreen';
 import ServiceIndexScreen from '../../screens/ServiceIndexScreen';
 import CollectionIndexScreen from '../../screens/CollectionIndexScreen';
-import ProductShowScreen from '../../screens/ProductShowScreen';
 import ServiceShowScreen from '../../screens/ServiceShowScreen';
 import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
@@ -214,7 +214,7 @@ export const AbatiHomeStack = createStackNavigator(
     },
 
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShow,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

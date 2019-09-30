@@ -235,10 +235,10 @@ function mapStateToProps(state) {
 }
 
 ClassifiedShowScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+  // headerTransparent: navigation.state.params.headerBg,
+  // headerStyle: {
+  //   backgroundColor: navigation.state.params.headerBgColor
+  // }
 });
 
 export default connect(mapStateToProps)(ClassifiedShowScreen);

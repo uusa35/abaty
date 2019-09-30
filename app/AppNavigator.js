@@ -7,17 +7,10 @@ import {
 } from 'react-navigation-redux-helpers';
 import I18n, {isRTL} from './I18n';
 import SideMenu from './components/SideMenu';
-// import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
-import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
+import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
+// import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
-// navigationOptions: ({navigation}) => ({
-//     headerLeft: <HeaderLeft {...navigation} />,
-//     headerRight: <HeaderRight {...navigation} display={true}/>,
-//     // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-//     headerBackTitle: null
-// }),
-//     path: 'home'
 
 const RootNavigator = createDrawerNavigator(
   {
@@ -31,7 +24,6 @@ const RootNavigator = createDrawerNavigator(
     drawerBackgroundColor: 'white',
     overlayColor: 'transparent',
     contentOptions: {
-      // activeTintColor: '#e91e63',
       activeTintColor: 'black',
       itemsContainerStyle: {
         marginVertical: 0
