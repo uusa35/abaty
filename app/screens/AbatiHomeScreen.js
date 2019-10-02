@@ -55,7 +55,6 @@ import ProductCategoryHorizontalRoundedWidget from '../components/widgets/catego
 import I18n from '../I18n';
 
 const HomeScreen = ({
-  network,
   homeCategories,
   commercials,
   slides,
@@ -64,7 +63,6 @@ const HomeScreen = ({
   homeDesigners,
   homeCelebrities,
   homeProducts,
-  homeCollections,
   splash_on,
   show_commercials,
   colors,
@@ -233,15 +231,6 @@ const HomeScreen = ({
             colors={colors}
           />
         ) : null}
-        {!validate.isEmpty(homeCollections) ? (
-          <CollectionHorizontalWidget
-            colors={colors}
-            elements={homeCollections}
-            showName={true}
-            title="our_collections"
-            dispatch={dispatch}
-          />
-        ) : null}
       </ScrollView>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
@@ -267,11 +256,9 @@ function mapStateToProps(state) {
     logo: state.settings.logo,
     splash_on: state.settings.splash_on,
     show_commercials: state.settings.show_commercials,
-    network: state.network,
     colors: state.settings.colors,
     lang: state.lang,
     services: state.services,
-    homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
     homeCompanies: state.homeCompanies
   };
@@ -284,7 +271,6 @@ HomeScreen.propTypes = {
   brands: PropTypes.array,
   homeDesigners: PropTypes.array,
   homeProducts: PropTypes.array,
-  homeCollections: PropTypes.array,
   commercials: PropTypes.array,
   slides: PropTypes.array,
   splashes: PropTypes.array,
