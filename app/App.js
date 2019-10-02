@@ -77,6 +77,7 @@ class App extends Component<Props> {
       areaModal,
       colors,
       logo,
+      app_logo,
       cart,
       total,
       grossTotal,
@@ -140,6 +141,7 @@ class App extends Component<Props> {
                   country,
                   token,
                   logo,
+                  app_logo,
                   guest
                 }}>
                 <AppNavigator uriPrefix={prefix} />
@@ -208,6 +210,7 @@ function mapStateToProps(state) {
     network: state.network,
     colors: state.settings.colors,
     logo: state.settings.logo,
+    app_logo: state.settings.app_logo,
     main_bg: state.settings.main_bg,
     token: state.token,
     guest: state.guest,
@@ -218,6 +221,7 @@ function mapStateToProps(state) {
 App.propTypes = {
   bootStrapped: PropTypes.bool.isRequired,
   logo: PropTypes.string,
+  app_logo: PropTypes.string,
   colors: PropTypes.object,
   isLoading: PropTypes.bool.isRequired,
   isLoadingContent: PropTypes.bool.isRequired,

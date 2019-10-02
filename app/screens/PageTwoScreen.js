@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,9 +7,10 @@ import I18n from '../I18n';
 
 const PageTwoScreen = ({products, colors, dispatch, navigation}) => {
   [title, setTitle] = useState('');
-  useEffect(() => {
-    navigation.setParams({title: I18n.t('products')});
-  }, [title]);
+
+  // useMemo(() => {
+  //   navigation.setParams({title: I18n.t('products')});
+  // }, [navigation]);
 
   return (
     <ProductList

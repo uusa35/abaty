@@ -6,6 +6,8 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import ProductShowScreen from '../../screens/ProductShowScreen';
 import React from 'react';
+import CartIndexScreen from '../../screens/CartIndexScreen';
+import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
 
 export const MallrProductStack = createStackNavigator(
   {
@@ -32,6 +34,21 @@ export const MallrProductStack = createStackNavigator(
         headerBackTitle: null
       }),
       path: `product/:id`
+    },
+    Home: {
+      screen: MallrHomeScreen,
+      navigationOptions: ({navigation}) => ({
+        headerLeft: <HeaderLeft {...navigation} />,
+        HeaderRight: (
+          <HeaderRight
+            {...navigation}
+            showCountry={true}
+            displayShare={false}
+          />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerBackTitle: null
+      })
     }
   },
   {

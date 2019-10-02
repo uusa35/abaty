@@ -52,6 +52,7 @@ import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizonta
 import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
+import I18n from '../I18n';
 
 const HomeScreen = ({
   network,
@@ -172,33 +173,19 @@ const HomeScreen = ({
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}
-        {!validate.isEmpty(homeDesigners) &&
-        validate.isArray(homeDesigners) &&
-        (ABATI || MALLR) ? (
+        {!validate.isEmpty(homeDesigners) && validate.isArray(homeDesigners) ? (
           <DesignerHorizontalWidget
             elements={homeDesigners}
             showName={true}
-            name="designers"
+            name={I18n.t('designers')}
             title="designers"
             searchElements={{is_designer: true}}
             dispatch={dispatch}
             colors={colors}
           />
         ) : null}
-        {MALLR ? (
-          <CompanyHorizontalWidget
-            elements={homeCompanies}
-            showName={true}
-            name="companies"
-            title="companies"
-            searchElements={{is_company: true}}
-            dispatch={dispatch}
-            colors={colors}
-          />
-        ) : null}
         {!validate.isEmpty(homeCategories) &&
-        validate.isArray(homeCategories) &&
-        (ABATI || MALLR) ? (
+        validate.isArray(homeCategories) ? (
           <ProductCategoryHorizontalRoundedWidget
             elements={homeCategories}
             showName={true}
@@ -210,8 +197,7 @@ const HomeScreen = ({
           />
         ) : null}
         {!validate.isEmpty(homeCelebrities) &&
-        validate.isArray(homeCelebrities) &&
-        ABATI ? (
+        validate.isArray(homeCelebrities) ? (
           <CelebrityHorizontalWidget
             elements={homeCelebrities}
             showName={true}
@@ -222,7 +208,7 @@ const HomeScreen = ({
             dispatch={dispatch}
           />
         ) : null}
-        {!validate.isEmpty(homeProducts) && (ABATI || MALLR) ? (
+        {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
@@ -231,16 +217,14 @@ const HomeScreen = ({
             colors={colors}
           />
         ) : null}
-        {!validate.isEmpty(brands) &&
-        validate.isArray(brands) &&
-        (ABATI || MALLR) ? (
+        {!validate.isEmpty(brands) && validate.isArray(brands) ? (
           <BrandHorizontalWidget
             elements={brands}
             showName={false}
             title="brands"
           />
         ) : null}
-        {!validate.isEmpty(services) && ABATI ? (
+        {!validate.isEmpty(services) ? (
           <ServiceHorizontalWidget
             elements={services}
             showName={true}
@@ -249,7 +233,7 @@ const HomeScreen = ({
             colors={colors}
           />
         ) : null}
-        {!validate.isEmpty(homeCollections) && MALLR ? (
+        {!validate.isEmpty(homeCollections) ? (
           <CollectionHorizontalWidget
             colors={colors}
             elements={homeCollections}

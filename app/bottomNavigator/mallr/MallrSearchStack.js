@@ -6,8 +6,8 @@ import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
-import ServiceShowScreen from "../../screens/ServiceShowScreen";
-import ProductShowScreen from "../../screens/ProductShowScreen";
+import ServiceShowScreen from '../../screens/ServiceShowScreen';
+import ProductShowScreen from '../../screens/ProductShowScreen';
 
 export const MallrSearchStack = createStackNavigator(
   {
@@ -28,11 +28,11 @@ export const MallrSearchStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
-            <HeaderRight
-                navigation={navigation}
-                displayShare={true}
-                display={true}
-            />
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
         ),
         headerBackTitle: null
       }),
@@ -43,11 +43,11 @@ export const MallrSearchStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
-            <HeaderRight
-                navigation={navigation}
-                displayShare={true}
-                display={true}
-            />
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
         ),
         headerBackTitle: null,
         headerStyle: {

@@ -44,7 +44,7 @@ const CompanyShowScreen = ({
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     if (!validate.isEmpty(element.products)) {
       setCollectedCategories(
         collectedCategories.concat(element.productCategories)

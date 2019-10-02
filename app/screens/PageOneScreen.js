@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {FlatList, RefreshControl, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,9 +24,9 @@ const PageOneScreen = ({
     dispatch(refetchHomeElements());
   }, [refresh]);
 
-  useEffect(() => {
-    navigation.setParams({title: I18n.t('categories')});
-  }, [title]);
+  // useMemo(() => {
+  //   navigation.setParams({title: I18n.t('categories')});
+  // }, [navigation.state.params]);
 
   return (
     <ScrollView

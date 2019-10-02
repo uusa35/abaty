@@ -22,8 +22,8 @@ import {
   goDeepLinking,
   refetchHomeElements,
   setPlayerId
-} from '../redux/actions';
-import {isIOS, width} from '../constants';
+} from '../../redux/actions';
+import {isIOS, width} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
@@ -32,26 +32,28 @@ import {
   MALLR,
   HOMEKEY,
   ESCRAP
-} from './../../app.json';
-import {getPathForDeepLinking} from '../helpers';
-import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../components/widgets/MainSliderWidget';
+} from './../../../app.json';
+import {getPathForDeepLinking} from '../../helpers';
+import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
+import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
-import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
+import UserHorizontalWidget from '../../components/widgets/user/UserHorizontalWidget';
+import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
+import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';
-import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
-import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
-import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
-import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
-import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
-import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
-import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
+import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
+import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
+import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
+import ProductCategoryHorizontalWidget from '../../components/widgets/category/ProductCategoryHorizontalWidget';
+import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
+import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
+import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
+import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
+import I18n from './../../I18n';
+import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
 
 const MallrHomeScreen = ({
   network,
@@ -177,10 +179,10 @@ const MallrHomeScreen = ({
           <MainSliderWidget slides={slides} />
         ) : null}
         {!validate.isEmpty(homeDesigners) && validate.isArray(homeDesigners) ? (
-          <DesignerHorizontalWidget
+          <ShopperHorizontalWidget
             elements={homeDesigners}
             showName={true}
-            name="designers"
+            name={I18n.t('mallr.designers')}
             title="mallr.designers"
             searchElements={{is_designer: true}}
             dispatch={dispatch}

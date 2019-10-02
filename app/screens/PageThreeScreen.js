@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,9 +8,9 @@ import CompaniesList from '../components/Lists/CompaniesList';
 const PageThreeScreen = ({companies, dispatch, navigation}) => {
   [title, setTitle] = useState('');
 
-  useEffect(() => {
-    navigation.setParams({title: I18n.t('companies')});
-  }, [title]);
+  // useMemo(() => {
+  //   navigation.setParams({title: I18n.t('companies')});
+  // }, [navigation]);
 
   return (
     <CompaniesList

@@ -43,9 +43,10 @@ import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
-import MallrHomeScreen from '../../screens/MallrHomeScreen';
-import {MallrCategoryStack} from "./MallrCategoryStack";
-import {MallrProductStack} from "./MallrProductStack";
+import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
+import {MallrCategoryStack} from './MallrCategoryStack';
+import {MallrProductStack} from './MallrProductStack';
+import ShopperShowScreen from '../../screens/ShopperShowScreen';
 
 export const MallrHomeStack = createStackNavigator(
   {
@@ -126,7 +127,13 @@ export const MallrHomeStack = createStackNavigator(
           navigationOptions: ({navigation}) => ({
             tabBarVisible: true,
             headerLeft: <HeaderLeft {...navigation} />,
-            headerRight: <HeaderRight {...navigation} display={true} />,
+            headerRight: (
+              <HeaderRight
+                {...navigation}
+                displayShare={false}
+                showCountry={true}
+              />
+            ),
             headerTitle: (
               <HeaderMiddle showLogo={true} title={I18n.t('home')} />
             ),
@@ -226,6 +233,15 @@ export const MallrHomeStack = createStackNavigator(
       }),
       path: `user/:id`
     },
+    ShopperShow: {
+      screen: ShopperShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderCustom navigation={navigation} />,
+        headerBackTitle: null
+      }),
+      path: `user/:id`
+    },
     DesignerShow: {
       screen: DesignerShowScreen,
       navigationOptions: ({navigation}) => ({
@@ -255,21 +271,21 @@ export const MallrHomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
-      Product: {
-          screen: ProductShowScreen,
-          navigationOptions: ({navigation}) => ({
-              headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-              headerRight: (
-                  <HeaderRight
-                      navigation={navigation}
-                      displayShare={true}
-                      display={true}
-                  />
-              ),
-              headerBackTitle: null
-          }),
-          path: `product/:id`
-      },
+    Product: {
+      screen: ProductShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
     ServiceIndex: {
       screen: ServiceIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -281,21 +297,21 @@ export const MallrHomeStack = createStackNavigator(
         headerBackTitle: null
       })
     },
-      Service: {
-          screen: ServiceShowScreen,
-          navigationOptions: ({navigation}) => ({
-              headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-              headerRight: (
-                  <HeaderRight
-                      navigation={navigation}
-                      displayShare={true}
-                      display={true}
-                  />
-              ),
-              headerBackTitle: null
-          }),
-          path: `product/:id`
-      },
+    Service: {
+      screen: ServiceShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
     CollectionIndex: {
       screen: CollectionIndexScreen,
       navigationOptions: ({navigation}) => ({

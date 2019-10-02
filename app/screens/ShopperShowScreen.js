@@ -10,7 +10,7 @@ import {View} from 'react-native-animatable';
 import UserImageProfile from '../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import {getDesigner} from '../redux/actions';
+import {getCompany} from '../redux/actions';
 import CommentScreenModal from './CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
@@ -18,10 +18,12 @@ import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import I18n from '../I18n';
 import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
-import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
+import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
+import CollectionGridWidget from '../components/widgets/collection/CollectionGridWidget';
+import ShopperImageProfile from '../components/widgets/user/ShopperImageProfile';
 
-const DesignerShowScreen = ({
+const ShopperShowScreen = ({
   element,
   commentModal,
   comments,
@@ -30,12 +32,13 @@ const DesignerShowScreen = ({
   logo,
   guest,
   searchParams,
-  navigation
+  navigation,
+  showSlider = false,
+  showTabs = false
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
-    {key: 'products', title: I18n.t('products')},
     {key: 'info', title: I18n.t('information').substring(0, 10)},
     {key: 'videos', title: I18n.t('videos')}
   ]);
@@ -43,6 +46,8 @@ const DesignerShowScreen = ({
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
+
+  console.log('from Shopper show', element.collections);
 
   useMemo(() => {
     if (!validate.isEmpty(element.products)) {
@@ -65,7 +70,7 @@ const DesignerShowScreen = ({
 
   const handleRefresh = useCallback(() => {
     return dispatch(
-      getDesigner({
+      getCompany({
         id: element.id,
         searchParams: {user_id: element.id}
       })
@@ -93,31 +98,37 @@ const DesignerShowScreen = ({
       }>
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
-          <UserImageProfile
-            colors={colors}
-            dispatch={dispatch}
-            member_id={element.id}
-            showFans={true}
-            showRating={true}
-            guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
-            logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            showComments={!guest}
-            commentsCount={element.commentsCount}
-          />
-          {!validate.isEmpty(element.slides) ? (
+          {!validate.isEmpty(element) ? (
+            <ShopperImageProfile
+              colors={colors}
+              dispatch={dispatch}
+              member_id={element.id}
+              showFans={true}
+              showRating={true}
+              guest={guest}
+              isFanned={element.isFanned}
+              totalFans={element.totalFans}
+              currentRating={element.rating}
+              medium={element.medium}
+              logo={logo}
+              slug={element.slug}
+              type={element.role.slug}
+              views={element.views}
+              showComments={!guest}
+              commentsCount={element.commentsCount}
+            />
+          ) : null}
+          {!validate.isEmpty(element.collections) ? (
+            <CollectionGridWidget elements={element.collections} />
+          ) : null}
+          {!validate.isEmpty(element.slides) && showSlider ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
               <MainSliderWidget slides={element.slides} />
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
-            <ProductCategoryHorizontalBtnsWidget
+            <ProductCategoryVerticalWidget
+              user_id={element.id}
               elements={collectedCategories}
               showImage={false}
               colors={colors}
@@ -150,18 +161,6 @@ const DesignerShowScreen = ({
               routes
             }}
             renderScene={SceneMap({
-              products: () => (
-                <ProductList
-                  colors={colors}
-                  dispatch={dispatch}
-                  products={products}
-                  showSearch={false}
-                  showTitle={true}
-                  showFooter={false}
-                  showMore={false}
-                  searchElements={searchParams}
-                />
-              ),
               info: () => (
                 <UserInfoWidget
                   dispatch={dispatch}
@@ -221,16 +220,16 @@ function mapStateToProps(state) {
   };
 }
 
-DesignerShowScreen.navigationOptions = ({navigation}) => ({
+ShopperShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
     backgroundColor: navigation.state.params.headerBgColor
   }
 });
 
-export default connect(mapStateToProps)(DesignerShowScreen);
+export default connect(mapStateToProps)(ShopperShowScreen);
 
-DesignerShowScreen.propTypes = {
+ShopperShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
   commentModal: PropTypes.bool.isRequired

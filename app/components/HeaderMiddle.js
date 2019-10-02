@@ -8,13 +8,13 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import FastImage from 'react-native-fast-image';
 
 export const HeaderMiddle = ({title, showLogo = false}) => {
-  const {colors, logo} = useContext(GlobalValuesContext);
+  const {colors, app_logo} = useContext(GlobalValuesContext);
   return (
     <View style={styles.container}>
       {showLogo ? (
         <FastImage
           resizeMode="contain"
-          source={{uri: logo}}
+          source={{uri: app_logo}}
           style={{
             width: '100%',
             height: 35,

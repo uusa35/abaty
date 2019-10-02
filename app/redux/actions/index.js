@@ -233,6 +233,13 @@ export function getDesigner(payload) {
   };
 }
 
+export function getShopper(payload) {
+  return {
+    type: actions.GET_SHOPPER,
+    payload
+  };
+}
+
 export function getCelebrity(payload) {
   return {
     type: actions.GET_CELEBRITY,

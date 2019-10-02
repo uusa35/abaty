@@ -15,6 +15,7 @@ export default function* rootSaga() {
     // fork(userSagas.refetchUsers),
     fork(userSagas.getUser),
     fork(userSagas.getDesigner),
+    fork(userSagas.getShopper),
     fork(userSagas.getCompany),
     fork(userSagas.getCelebrity),
     fork(userSagas.getVideo),

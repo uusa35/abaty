@@ -55,6 +55,49 @@ export function* startGetDesignerScenario(action) {
   }
 }
 
+export function* startGetShopperScenario(action) {
+  try {
+    yield call(enableLoadingProfile);
+    const {id, searchParams, redirect} = action.payload;
+    const element = yield call(api.getUser, id);
+    console.log('the shopper', element);
+    // debugger;
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        put({type: actions.SET_DESIGNER, payload: element}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+      ]);
+      if (!validate.isEmpty(element.comments)) {
+        yield put({type: actions.SET_COMMENTS, payload: element.comments});
+      } else {
+        yield put({type: actions.SET_COMMENTS, payload: []});
+      }
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'ShopperShow',
+            params: {
+              name: element ? element.slug : I18n.t('shopper'),
+              id: element.id,
+              product: false
+            }
+          })
+        );
+      }
+      yield call(disableLoadingProfile);
+    } else {
+      yield put({type: actions.SET_DESIGNER, payload: {}});
+      yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
+      throw I18n.t('no_designer');
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoadingProfile),
+      call(enableWarningMessage, I18n.t('no_designer'))
+    ]);
+  }
+}
+
 export function* startGetCompanyScenario(action) {
   try {
     yield call(enableLoadingProfile);
@@ -520,6 +563,10 @@ export function* getDesigner() {
   yield takeLatest(actions.GET_DESIGNER, startGetDesignerScenario);
 }
 
+export function* getShopper() {
+  yield takeLatest(actions.GET_SHOPPER, startGetShopperScenario);
+}
+
 export function* getCompany() {
   yield takeLatest(actions.GET_COMPANY, startGetCompanyScenario);
 }
@@ -570,6 +617,10 @@ export function* getSearchCompanies() {
 
 export function* getSearchDesigners() {
   yield takeLatest(actions.GET_DESIGNERS, startGetDesignersScenario);
+}
+
+export function* getSearchShoppers() {
+  yield takeLatest(actions.GET_SHOPPERS, startGetShoppersScenario);
 }
 
 export function* getSearchCelebrities() {

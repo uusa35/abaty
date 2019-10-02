@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
-import { SafeAreaView } from "react-navigation";
+import {SafeAreaView} from 'react-navigation';
 
 const TransparentProductShowScreen = ({
   product,
