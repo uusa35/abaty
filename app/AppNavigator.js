@@ -7,8 +7,8 @@ import {
 } from 'react-navigation-redux-helpers';
 import I18n, {isRTL} from './I18n';
 import SideMenu from './components/SideMenu';
-import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
-// import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
+import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
+// import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
