@@ -16,8 +16,6 @@ import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../components/widgets/product/ProductList';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import I18n from '../I18n';
-import CategoryHorizontalBtnsWidget from '../components/widgets/category/CategoryHorizontalBtnsWidget';
-import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
 

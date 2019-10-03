@@ -38,122 +38,124 @@ const NormalProductShowScreen = ({
   }, [headerBg, headerBgColor]);
 
   return (
-    <ScrollView horizontal={false}>
-      <ImagesWidget
-        colors={colors}
-        elements={product.images
-          .concat({id: product.id, large: product.large})
-          .reverse()}
-        width={width}
-        height={550}
-        name={product.name}
-        exclusive={product.exclusive}
-        isOnSale={product.isOnSale}
-        isReallyHot={product.isReallyHot}
-      />
-      <View style={{alignSelf: 'center', width: '95%'}}>
-        <ProductInfoWidget element={product} />
-        <View animation="bounceInLeft" easing="ease-out">
-          {product.description ? (
-            <View>
-              <Text style={styles.title}>{I18n.t('description')}</Text>
-              <Text style={styles.normalText}>{product.description}</Text>
-            </View>
-          ) : null}
-          <ProductInfoWidgetElement
-            colors={colors}
-            elementName="designer"
-            name={product.user.slug}
-            link={() =>
-              dispatch(
-                getDesigner({
-                  id: product.user_id,
-                  searchParams: {user_id: product.user_id},
-                  redirect: true
-                })
-              )
-            }
-          />
-          <ProductInfoWidgetElement
-            colors={colors}
-            elementName="categories"
-            name={first(product.categories).name}
-            link={() =>
-              dispatch(
-                getSearchProducts({
-                  element: first(product.categories),
-                  category: first(product.categories),
-                  searchParams: {
-                    product_category_id: first(product.categories).id
-                  },
-                  redirect: true
-                })
-              )
-            }
-          />
-          <ProductInfoWidgetElement
-            colors={colors}
-            elementName="sku"
-            name={product.sku}
-            showIcon={false}
-          />
-          {weight ? (
+    <Fragment>
+      <ScrollView horizontal={false}>
+        <ImagesWidget
+          colors={colors}
+          elements={product.images
+            .concat({id: product.id, large: product.large})
+            .reverse()}
+          width={width}
+          height={550}
+          name={product.name}
+          exclusive={product.exclusive}
+          isOnSale={product.isOnSale}
+          isReallyHot={product.isReallyHot}
+        />
+        <View style={{alignSelf: 'center', width: '95%'}}>
+          <ProductInfoWidget element={product} />
+          <View animation="bounceInLeft" easing="ease-out">
+            {product.description ? (
+              <View>
+                <Text style={styles.title}>{I18n.t('description')}</Text>
+                <Text style={styles.normalText}>{product.description}</Text>
+              </View>
+            ) : null}
             <ProductInfoWidgetElement
               colors={colors}
-              elementName="product_weight"
-              name={weight}
+              elementName="designer"
+              name={product.user.slug}
+              link={() =>
+                dispatch(
+                  getDesigner({
+                    id: product.user_id,
+                    searchParams: {user_id: product.user_id},
+                    redirect: true
+                  })
+                )
+              }
+            />
+            <ProductInfoWidgetElement
+              colors={colors}
+              elementName="categories"
+              name={first(product.categories).name}
+              link={() =>
+                dispatch(
+                  getSearchProducts({
+                    element: first(product.categories),
+                    category: first(product.categories),
+                    searchParams: {
+                      product_category_id: first(product.categories).id
+                    },
+                    redirect: true
+                  })
+                )
+              }
+            />
+            <ProductInfoWidgetElement
+              colors={colors}
+              elementName="sku"
+              name={product.sku}
               showIcon={false}
             />
-          ) : null}
-          <ProductInfoWidgetElement
-            colors={colors}
-            elementName="contactus_order_by_phone"
-            name={phone}
-            link={() => Linking.openURL(`tel:${mobile}`)}
-          />
-          {shipment_prices ? (
+            {weight ? (
+              <ProductInfoWidgetElement
+                colors={colors}
+                elementName="product_weight"
+                name={weight}
+                showIcon={false}
+              />
+            ) : null}
             <ProductInfoWidgetElement
               colors={colors}
-              elementName="shipment_prices"
-              link={() =>
-                navigation.navigate('ImageZoom', {
-                  images: [{id: product.id, large: shipment_prices}],
-                  name: product.name,
-                  index: 0
-                })
-              }
+              elementName="contactus_order_by_phone"
+              name={phone}
+              link={() => Linking.openURL(`tel:${mobile}`)}
             />
-          ) : null}
-          {size_chart ? (
-            <ProductInfoWidgetElement
-              colors={colors}
-              elementName="size_chart"
-              link={() =>
-                navigation.navigate('ImageZoom', {
-                  images: [{id: product.id, large: size_chart}],
-                  name: product.name,
-                  index: 0
-                })
-              }
-            />
-          ) : null}
+            {shipment_prices ? (
+              <ProductInfoWidgetElement
+                colors={colors}
+                elementName="shipment_prices"
+                link={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: [{id: product.id, large: shipment_prices}],
+                    name: product.name,
+                    index: 0
+                  })
+                }
+              />
+            ) : null}
+            {size_chart ? (
+              <ProductInfoWidgetElement
+                colors={colors}
+                elementName="size_chart"
+                link={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: [{id: product.id, large: size_chart}],
+                    name: product.name,
+                    index: 0
+                  })
+                }
+              />
+            ) : null}
+          </View>
         </View>
-      </View>
-      {validate.isObject(product.videoGroup) &&
-      !validate.isEmpty(product.videoGroup) ? (
-        <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
-      ) : null}
-      {!validate.isEmpty(homeProducts) ? (
-        <ProductHorizontalWidget
-          elements={homeProducts}
-          showName={true}
-          title="related_products"
-          colors={colors}
-          dispatch={dispatch}
-        />
-      ) : null}
+        {validate.isObject(product.videoGroup) &&
+        !validate.isEmpty(product.videoGroup) ? (
+          <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
+        ) : null}
+        {!validate.isEmpty(homeProducts) ? (
+          <ProductHorizontalWidget
+            elements={homeProducts}
+            showName={true}
+            title="related_products"
+            colors={colors}
+            dispatch={dispatch}
+          />
+        ) : null}
+      </ScrollView>
       <ActionBtnWidget colors={colors} />
-    </ScrollView>
+    </Fragment>
   );
 };
 

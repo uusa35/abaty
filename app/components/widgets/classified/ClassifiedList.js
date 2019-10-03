@@ -53,8 +53,6 @@ const ClassifiedList = ({
   [sortModal, setSortModal] = useState(false);
   [mapModal, setMapModal] = useState(false);
 
-  console.log('elements', filter(elements, (e, i) => e.has_map));
-
   const loadMore = useCallback(() => {
     setShowMore(true);
     setPage(page + 1);
@@ -167,8 +165,7 @@ const ClassifiedList = ({
           onEndReached={() => loadMore()}
           contentContainerStyle={{
             width: width,
-            minHeight: '100%',
-            // marginBottom: 15,
+            flex: 1,
             alignSelf: 'center',
             backgroundColor: 'transparent'
           }}
@@ -228,7 +225,7 @@ const ClassifiedList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{minHeight: 100}}>
+              <View>
                 <Button
                   loading={isLoading}
                   raised
@@ -249,8 +246,7 @@ const ClassifiedList = ({
           )}
         />
       ) : (
-        <View
-          style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
+        <View style={{marginTop: '20%', width: width - 50}}>
           <Button
             raised
             title={I18n.t('no_classifieds')}

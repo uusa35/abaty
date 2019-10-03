@@ -1,4 +1,11 @@
-import React, {Component} from 'react';
+import React, {
+  Component,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  Fragment
+} from 'react';
 import {
   BackHandler,
   Linking,
@@ -12,15 +19,12 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
-  gethomeClassifieds,
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
   setPlayerId
 } from '../redux/actions';
-import {Icon} from 'react-native-elements';
-import I18n from './../I18n';
-import {isIOS, width, text} from '../constants';
+import {isIOS, width} from '../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
@@ -33,259 +37,225 @@ import {
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import CategoryHorizontalWidget from '../components/widgets/category/CategoryHorizontalWidget';
 import validate from 'validate.js';
 import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import ClassifiedSearchForm from '../components/widgets/search/ClassifiedSearchForm';
+import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import CategoryHorizontalRoundedWidget from '../components/widgets/category/CategoryHorizontalRoundedWidget';
-import ClassifiedList from '../components/widgets/classified/ClassifiedList';
+import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
+import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
+import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
+import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
+import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
+import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
+import I18n from '../I18n';
+import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
 import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import widgetStyles from '../components/widgets/widgetStyles';
-import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
+import {Icon} from 'react-native-elements';
+import HomeKeySearchTab from '../components/widgets/search/HomeKeySearchTab';
 
-class HomeKeyScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {refresh: false, appState: AppState.currentState};
-  }
+const HomeKeyHomeScreen = ({
+  homeCategories,
+  commercials,
+  slides,
+  show_commercials,
+  colors,
+  showIntroduction,
+  homeCompanies,
+  dispatch,
+  navigation,
+  homeClassifieds
+}) => {
+  [refresh, setRefresh] = useState(false);
+  [appState, setAppState] = useState(AppState.currentState);
+  [device, setDevice] = useState('');
+  [deviceId, setDeviceId] = useState('');
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  static navigationOptions = ({navigation, navigationOptions}) => {
-    if (
-      has(navigation.state, 'params') &&
-      has(navigation.state.params, 'logo')
-    ) {
-      return {
-        headerTitle: (
-          <View style={styles.safeContainer}>
-            <FastImage
-              resizeMode="contain"
-              source={{
-                uri: navigation.state.params.logo
-                  ? navigation.state.params.logo
-                  : null
-              }}
-              style={{
-                width: '100%',
-                height: 35,
-                maxWidth: 80
-              }}
-            />
-          </View>
-        )
-      };
-    }
-  };
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
 
-  componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
+  useMemo(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg, headerBgColor]);
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
-    // OneSignal.addEventListener('received', this.onReceived);
-    // OneSignal.addEventListener('opened', this.onOpened);
-    OneSignal.addEventListener('ids', this.onIds);
+    // OneSignal.addEventListener('received', onReceived);
+    // OneSignal.addEventListener('opened', onOpened);
+    OneSignal.addEventListener('ids', onIds);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', this.handleOpenURL);
-
+    Linking.addEventListener('url', handleOpenURL);
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
-    const {logo} = this.props;
-    this.props.navigation.setParams({
-      logo: !validate.isEmpty(logo) ? logo : null
-    });
-  }
+  });
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-    Linking.removeEventListener('url', this.handleOpenURL);
-    OneSignal.removeEventListener('ids', this.onIds);
-    // OneSignal.removeEventListener('received', this.onReceived);
-    // OneSignal.removeEventListener('opened', this.onOpened);
-  }
+  const handleAppStateChange = useCallback(
+    nextAppState => {
+      if (appState.match(/inactive|background/) && nextAppState === 'active') {
+        __DEV__ ? console.log('HERE NOW') : null;
+      }
+      setAppState(nextAppState);
+    },
+    [appState]
+  );
 
-  _handleAppStateChange = nextAppState => {
-    if (
-      this.state.appState.match(/inactive|background/) &&
-      nextAppState === 'active'
-    ) {
-      __DEV__ ? console.log('HERE NOW') : null;
-    }
-    this.setState({appState: nextAppState});
-  };
-
-  handleBackPress = () => {
-    const {navigation, dispatch} = this.props;
+  const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
-  };
+  });
 
-  handleOpenURL = event => {
+  const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
     return this.props.dispatch(goDeepLinking({type, id}));
-  };
+  });
 
-  onReceived = notification => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
-  };
+  // const onReceived = useCallback((notification) => {
+  //   __DEV__ ? console.log('Notification received: ', notification) : null;
+  // },[notification]);
 
-  onOpened = openResult => {
-    // console.log('Notification Case');
-    // if (__DEV__) {
-    // console.log('the whole thing', openResult.notification.payload);
-    // console.log('Message: ', openResult.notification.payload.body);
-    // console.log('Data: ', openResult.notification.payload.additionalData);
-    // console.log('isActive: ', openResult.notification.isAppInFocus);
-    // console.log('openResult: ', openResult.notification.payload.launchURL);
-    // }
+  const onOpened = useCallback(openResult => {
+    console.log('Notification Case');
+    if (__DEV__) {
+      console.log('the whole thing', openResult.notification.payload);
+      console.log('Message: ', openResult.notification.payload.body);
+      console.log('Data: ', openResult.notification.payload.additionalData);
+      console.log('isActive: ', openResult.notification.isAppInFocus);
+      console.log('openResult: ', openResult.notification.payload.launchURL);
+    }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url
     );
-    this.props.dispatch(goDeepLinking(path, params));
-  };
+    dispatch(goDeepLinking(path, params));
+  });
 
-  onIds = device => {
-    const {isConnected} = this.props.network;
-    return isConnected ? this.props.dispatch(setPlayerId(device.userId)) : null;
-  };
+  const onIds = useCallback(
+    device => {
+      setDeviceId(device.userId);
+      if (device.userId !== deviceId) {
+        dispatch(setPlayerId(device.userId));
+      }
+    },
+    [deviceId]
+  );
 
-  render() {
-    const {
-      homeCategories,
-      commercials,
-      slides,
-      splashes,
-      brands,
-      designers,
-      celebrities,
-      homeProducts,
-      homeCollections,
-      splash_on,
-      show_commercials,
-      colors,
-      services,
-      showIntroduction,
-      homeClassifieds,
-      dispatch,
-      navigation,
-      guest
-    } = this.props;
-    return (
-      <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-        <ScrollView
-          contentContainerStyle={{backgroundColor: 'transparent'}}
-          contentInset={{bottom: 50}}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refresh}
-              onRefresh={() => dispatch(refetchHomeElements())}
-            />
-          }
-          showsHorizontalScrollIndicator={false}
-          endFillColor="white"
-          showsVerticalScrollIndicator={false}
-          style={{flex: 0.8}}>
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
-          ) : null}
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) &&
-          (HOMEKEY || ESCRAP) ? (
-            <ClassifiedCategoryHorizontalRoundedWidget
-              elements={homeCategories}
-              colors={colors}
-              showName={true}
-              title="categories"
-              dispatch={dispatch}
-              navigation={navigation}
-            />
-          ) : null}
-          {!validate.isEmpty(homeClassifieds) &&
-          validate.isArray(homeClassifieds) &&
-          (HOMEKEY || ESCRAP) ? (
-            <ClassifiedListHorizontal
-              classifieds={homeClassifieds}
-              showName={true}
-              showSearch={false}
-              showTitle={true}
-              title="featured_classifieds"
-              dispatch={dispatch}
-              colors={colors}
-              searchElements={{on_home: true}}
-            />
-          ) : null}
-          <TouchableOpacity
-            onPress={() =>
-              !guest
-                ? navigation.navigate('ChooseCategory')
-                : navigation.navigate('Login')
-            }
-            style={[
-              widgetStyles.newClassifiedBtnWrapper,
-              {backgroundColor: colors.btn_bg_theme_color}
-            ]}>
-            <View style={[widgetStyles.newClassifiedWrapper]}>
-              <Text
-                style={[
-                  widgetStyles.newClassifiedTitle,
-                  {color: colors.btn_text_theme_color}
-                ]}>
-                {I18n.t('new_classified')}
-              </Text>
-              <Icon
-                name="home"
-                type="material-icon"
-                size={120}
-                color={colors.btn_text_theme_color}
-                containerStyle={{opacity: 0.8}}
-              />
-            </View>
-          </TouchableOpacity>
-        </ScrollView>
-        {show_commercials ? (
-          <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
-              <FixedCommercialSliderWidget sliders={commercials} />
-            ) : null}
-          </View>
+  return (
+    <Fragment>
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+          backgroundColor: colors.main_theme_bg_color
+        }}
+        contentInset={{bottom: 50}}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        showsHorizontalScrollIndicator={false}
+        endFillColor="white"
+        showsVerticalScrollIndicator={false}
+        style={{flex: 0.8}}>
+        {!validate.isEmpty(slides) ? (
+          <MainSliderWidget slides={slides} />
         ) : null}
-      </View>
-    );
-  }
-}
+        <HomeKeySearchTab />
+        {!validate.isEmpty(homeCategories) &&
+        validate.isArray(homeCategories) ? (
+          <ClassifiedCategoryHorizontalRoundedWidget
+            elements={homeCategories}
+            colors={colors}
+            showName={true}
+            title="categories"
+            dispatch={dispatch}
+            navigation={navigation}
+          />
+        ) : null}
+        {!validate.isEmpty(homeClassifieds) &&
+        validate.isArray(homeClassifieds) ? (
+          <ClassifiedListHorizontal
+            classifieds={homeClassifieds}
+            showName={true}
+            showSearch={false}
+            showTitle={true}
+            title="featured_classifieds"
+            dispatch={dispatch}
+            colors={colors}
+            searchElements={{on_home: true}}
+          />
+        ) : null}
+        <TouchableOpacity
+          onPress={() =>
+            !guest
+              ? navigation.navigate('ChooseCategory')
+              : navigation.navigate('Login')
+          }
+          style={[
+            widgetStyles.newClassifiedBtnWrapper,
+            {backgroundColor: colors.btn_bg_theme_color}
+          ]}>
+          <View style={[widgetStyles.newClassifiedWrapper]}>
+            <Text
+              style={[
+                widgetStyles.newClassifiedTitle,
+                {color: colors.btn_text_theme_color}
+              ]}>
+              {I18n.t('new_classified')}
+            </Text>
+            <Icon
+              name="home"
+              type="material-icon"
+              size={120}
+              color={colors.btn_text_theme_color}
+              containerStyle={{opacity: 0.8}}
+            />
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+      {show_commercials ? (
+        <View style={{flex: 0.2}}>
+          {!validate.isEmpty(commercials) ? (
+            <FixedCommercialSliderWidget sliders={commercials} />
+          ) : null}
+        </View>
+      ) : null}
+    </Fragment>
+  );
+};
 
 function mapStateToProps(state) {
   return {
     homeCategories: state.homeCategories,
-    brands: state.brands,
+    homeClassifieds: state.homeClassifieds,
     commercials: state.commercials,
-    slides: state.slides,
     splashes: state.splashes,
     logo: state.settings.logo,
-    splash_on: state.settings.splash_on,
     show_commercials: state.settings.show_commercials,
-    network: state.network,
     colors: state.settings.colors,
     lang: state.lang,
-    services: state.services,
-    homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    homeClassifieds: state.homeClassifieds,
-    guest: state.guest
+    homeCompanies: state.homeCompanies
   };
 }
 
-export default connect(mapStateToProps)(HomeKeyScreen);
+export default connect(mapStateToProps)(HomeKeyHomeScreen);
 
-HomeKeyScreen.propTypes = {
+HomeKeyHomeScreen.propTypes = {
   homeCategories: PropTypes.array,
-  homeClassifieds: PropTypes.array,
   brands: PropTypes.array,
+  homeDesigners: PropTypes.array,
+  homeProducts: PropTypes.array,
   commercials: PropTypes.array,
   slides: PropTypes.array,
   splashes: PropTypes.array,
@@ -300,5 +270,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  }
+});
+
+HomeKeyHomeScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor
   }
 });

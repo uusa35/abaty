@@ -509,5 +509,8 @@
     "designers" : "Personal Shoppers",
     "our_companies" : "Companies",
     "sections" : "Sections"
-  }
+  },
+  "sale" : "sale",
+  "buy" : "buy",
+  "share" : "share"
 }
