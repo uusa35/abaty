@@ -37,7 +37,7 @@ const MallrSettingsIndexScreen = ({
       contentInset={{bottom: 150}}
       contentContainerStyle={{
         width: '100%',
-        // padding: 20,
+        padding: 20,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center'

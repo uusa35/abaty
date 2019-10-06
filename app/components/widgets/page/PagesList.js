@@ -25,13 +25,15 @@ const PagesList = ({
   return (
     <ScrollView
       horizontal={false}
-      style={{width: '100%'}}
+      style={{width: '100%', marginTop: 15}}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentInset={{bottom: 100}}>
       {!validate.isEmpty(elements) ? (
-        <View key={elements.length} style={{width: '80%', alignSelf: 'center'}}>
+        <View
+          key={elements.length}
+          style={{width: '100%', alignSelf: 'center'}}>
           {showTitle ? (
             <Text
               style={{
