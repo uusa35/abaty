@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -14,25 +14,57 @@ const HomeKeySearchTab = () => {
     {key: 'ThirdRoute', title: I18n.t('share')}
   ]);
   const FirstRoute = () => (
-    <View style={{padding: 20, backgroundColor: 'green', opacity: 0.7}}>
-      <Text>sale</Text>
+    <View
+      style={{
+        padding: 20,
+        backgroundColor: 'white',
+        opacity: 0.8,
+        width: '90%',
+        alignSelf: 'center'
+      }}>
+      <Text style={{fontFamily: text.font, textAlign: 'left'}}>
+        {I18n.t('search')}
+      </Text>
     </View>
   );
 
   const SecondRoute = () => (
-    <View>
-      <Text>buy</Text>
+    <View
+      style={{
+        padding: 20,
+        backgroundColor: 'white',
+        opacity: 0.8,
+        width: '90%',
+        alignSelf: 'center'
+      }}>
+      <Text style={{fontFamily: text.font, textAlign: 'left'}}>
+        {I18n.t('search')}
+      </Text>
     </View>
   );
 
   const ThirdRoute = () => (
-    <View>
-      <Text>share</Text>
+    <View
+      style={{
+        padding: 20,
+        backgroundColor: 'white',
+        opacity: 0.8,
+        width: '90%',
+        alignSelf: 'center'
+      }}>
+      <Text style={{fontFamily: text.font, textAlign: 'left'}}>
+        {I18n.t('search')}
+      </Text>
     </View>
   );
   return (
-    <View
-      style={{width: '90%', alignSelf: 'center', marginTop: 20, height: 300}}>
+    <ImageBackground
+      source={{
+        uri:
+          'https://the2d3dfloorplancompany.com/wp-content/uploads/2017/11/Real-Estate-Image-Enhancement-Sample.png'
+      }}
+      style={{width, alignSelf: 'center', height: 320}}
+      resizeMode="cover">
       <TabView
         lazy={true}
         renderTabBar={props => (
@@ -46,7 +78,13 @@ const HomeKeySearchTab = () => {
             }}
             activeColor={colors.header_one_theme_color}
             inactiveColor={colors.header_tow_theme_color}
-            style={{backgroundColor: 'green'}}
+            style={{
+              backgroundColor: 'white',
+              opacity: 0.8,
+              width: '90%',
+              alignSelf: 'center',
+              marginTop: '25%'
+            }}
             labelStyle={{
               fontFamily: text.font,
               fontSize: text.small,
@@ -63,11 +101,11 @@ const HomeKeySearchTab = () => {
           SecondRoute: () => <SecondRoute />,
           ThirdRoute: () => <ThirdRoute />
         })}
-        style={{marginTop: 10, backgroundColor: 'white'}}
+        style={{backgroundColor: 'transparent'}}
         onIndexChange={i => setIndex(i)}
         initialLayout={{width: width}}
       />
-    </View>
+    </ImageBackground>
   );
 };
 

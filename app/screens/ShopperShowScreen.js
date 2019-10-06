@@ -100,12 +100,9 @@ const ShopperShowScreen = ({
         <TriggeringView onHide={() => console.log('text hidden')}>
           {!validate.isEmpty(element) ? (
             <ShopperImageProfile
-              colors={colors}
-              dispatch={dispatch}
               member_id={element.id}
               showFans={true}
               showRating={true}
-              guest={guest}
               isFanned={element.isFanned}
               totalFans={element.totalFans}
               currentRating={element.rating}
@@ -114,7 +111,6 @@ const ShopperShowScreen = ({
               slug={element.slug}
               type={element.role.slug}
               views={element.views}
-              showComments={!guest}
               commentsCount={element.commentsCount}
             />
           ) : null}

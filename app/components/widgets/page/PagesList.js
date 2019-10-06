@@ -20,7 +20,6 @@ const PagesList = ({
   showTitle = true,
   showArrow = true,
   colors,
-  dispatch,
   title
 }) => {
   return (
@@ -32,9 +31,7 @@ const PagesList = ({
       showsVerticalScrollIndicator={false}
       contentInset={{bottom: 100}}>
       {!validate.isEmpty(elements) ? (
-        <View
-          key={elements.length}
-          style={{width: '100%', alignSelf: 'center', marginTop: 30}}>
+        <View key={elements.length} style={{width: '80%', alignSelf: 'center'}}>
           {showTitle ? (
             <Text
               style={{

@@ -12,14 +12,17 @@ import Share from 'react-native-share';
 import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
+import {useNavigation} from 'react-navigation-hooks';
 
 export const HeaderRight = ({
   showCountry = false,
   displayShare = false,
+  showFilter = false,
   navigation
 }) => {
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
+  const {navigate} = useNavigation();
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;
     return Share.open({
@@ -57,6 +60,17 @@ export const HeaderRight = ({
             )
           }
           name="share"
+          size={25}
+          underlayColor="transparent"
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          color="black"
+        />
+      ) : null}
+      {showFilter ? (
+        <Icon
+          onPress={() => navigate('ClassifiedFilter')}
+          name="tune"
+          type="material-icon"
           size={25}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}

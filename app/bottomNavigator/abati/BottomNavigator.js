@@ -13,6 +13,7 @@ import {AbatiSettingStack} from './AbatiSettingStack';
 import {AbatiSearchStack} from './AbatiSearchStack';
 import {AbatiProductStack} from './AbatiProductStack';
 import {AbatiServiceStack} from './AbatiServiceStack';
+import {HeaderMiddle} from '../../components/HeaderMiddle';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {

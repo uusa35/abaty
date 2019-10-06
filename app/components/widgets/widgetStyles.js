@@ -23,7 +23,7 @@ const widgetStyles = StyleSheet.create({
     alignItems: 'center'
   },
   titleWrapper: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 20,
     margin: 10
@@ -38,7 +38,8 @@ const widgetStyles = StyleSheet.create({
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
-    elevation: 1
+    elevation: 1,
+    textAlign: 'left'
   },
   elementName: {
     textAlign: 'center',

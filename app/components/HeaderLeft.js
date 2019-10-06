@@ -7,7 +7,7 @@ import {Icon, Badge} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 
-export const HeaderLeft = ({openDrawer, navigate}) => {
+export const HeaderLeft = ({openDrawer, navigate, showCart = true}) => {
   const {cartLength, colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.safeContainer}>
@@ -20,24 +20,26 @@ export const HeaderLeft = ({openDrawer, navigate}) => {
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         color="black"
       />
-      <View>
-        <Icon
-          onPress={() => navigate('CartIndex')}
-          name="ios-cart"
-          type="ionicon"
-          size={32}
-          underlayColor="transparent"
-          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
-          color={colors.icon_theme_color}
-        />
-        {cartLength > 0 ? (
-          <Badge
-            status="error"
-            value={cartLength}
-            containerStyle={{position: 'absolute', top: -10, right: -4}}
+      {showCart ? (
+        <View>
+          <Icon
+            onPress={() => navigate('CartIndex')}
+            name="ios-cart"
+            type="ionicon"
+            size={32}
+            underlayColor="transparent"
+            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+            color={colors.icon_theme_color}
           />
-        ) : null}
-      </View>
+          {cartLength > 0 ? (
+            <Badge
+              status="error"
+              value={cartLength}
+              containerStyle={{position: 'absolute', top: -10, right: -4}}
+            />
+          ) : null}
+        </View>
+      ) : null}
     </View>
   );
 };

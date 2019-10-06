@@ -1,7 +1,7 @@
 {
   "name": "abaty",
-  "ABATI" : true,
-  "MALLR" : false,
+  "ABATI" : false,
+  "MALLR" : true,
   "HOMEKEY" : true,
   "ESCRAP" : false,
   "displayName": "abati",

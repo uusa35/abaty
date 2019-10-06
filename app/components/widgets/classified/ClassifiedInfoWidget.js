@@ -37,12 +37,18 @@ const ClassifiedInfoWidget = ({
             <Text
               style={{
                 textAlign: 'left',
-                fontSize: text.medium,
+                fontSize: text.large,
+                paddingBottom: 10,
                 color: colors.header_tow_theme_color
               }}>
               {element.name.substring(0, 20)}
             </Text>
-            <Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: text.small,
+                textAlign: 'left'
+              }}>
               {I18n.t('added_from')} {element.created_at}
             </Text>
           </View>
@@ -62,7 +68,7 @@ const ClassifiedInfoWidget = ({
               </Text>
               <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
             </View>
-            <Text>
+            <Text style={{fontFamily: text.font}}>
               {element.views} {I18n.t('views')}
             </Text>
           </View>

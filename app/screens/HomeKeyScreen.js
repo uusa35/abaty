@@ -150,10 +150,9 @@ const HomeKeyHomeScreen = ({
   );
 
   return (
-    <Fragment>
+    <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
       <ScrollView
         contentContainerStyle={{
-          flex: 1,
           backgroundColor: colors.main_theme_bg_color
         }}
         contentInset={{bottom: 50}}
@@ -177,7 +176,7 @@ const HomeKeyHomeScreen = ({
             elements={homeCategories}
             colors={colors}
             showName={true}
-            title="categories"
+            title={I18n.t('categories')}
             dispatch={dispatch}
             navigation={navigation}
           />
@@ -230,7 +229,7 @@ const HomeKeyHomeScreen = ({
           ) : null}
         </View>
       ) : null}
-    </Fragment>
+    </View>
   );
 };
 

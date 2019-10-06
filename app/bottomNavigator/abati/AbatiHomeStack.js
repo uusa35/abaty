@@ -45,6 +45,7 @@ import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
 import VideoShowScreen from '../../screens/VideoShowScreen';
+import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
 
 export const AbatiHomeStack = createStackNavigator(
   {
@@ -64,7 +65,7 @@ export const AbatiHomeStack = createStackNavigator(
         headerRight: (
           <HeaderRight
             navigation={navigation}
-            displayShare={true}
+            displayShare={false}
             showCountry={true}
           />
         ),
@@ -321,7 +322,7 @@ export const AbatiHomeStack = createStackNavigator(
     HomeKey: {
       screen: HomeKeyScreen,
       navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
+        headerLeft: <HeaderLeft showCart={false} {...navigation} />,
         headerRight: (
           <HeaderRight
             {...navigation}
@@ -329,8 +330,11 @@ export const AbatiHomeStack = createStackNavigator(
             displayShare={false}
           />
         ),
-        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
-        headerBackTitle: null
+        headerTitle: (
+          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
+        ),
+        headerBackTitle: null,
+        headerTransparent: true
       })
     },
     ClassifiedIndex: {
@@ -338,7 +342,7 @@ export const AbatiHomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerRight: <HeaderRight navigation={navigation} showFilter={true} />,
         headerBackTitle: null
       })
     },
@@ -404,6 +408,12 @@ export const AbatiHomeStack = createStackNavigator(
         ),
         headerBackTitle: null
       })
+    },
+    ClassifiedFilter: {
+      screen: ClassifiedFilterScreen,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
     }
   },
   {
@@ -422,13 +432,3 @@ AbatiHomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible
   };
 };
-
-// CartStack.navigationOptions = ({navigation}) => {
-//   let tabBarVisible = true;
-//   if (navigation.state.index > 0) {
-//     tabBarVisible = false;
-//   }
-//   return {
-//     tabBarVisible
-//   };
-// };

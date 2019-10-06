@@ -152,7 +152,7 @@ const ClassifiedList = ({
           stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
-          contentInset={{bottom: 60}}
+          contentInset={{bottom: 150}}
           numColumns={1}
           data={items}
           refreshing={refresh}
@@ -175,17 +175,18 @@ const ClassifiedList = ({
           // }}
           ListHeaderComponentStyle={{
             width: '100%',
-            padding: 10,
+            // padding: 10,
             backgroundColor: 'white'
           }}
           ListHeaderComponent={
-            <View>
+            <View style={{padding: 5, backgroundColor: '#f2f2f2'}}>
               {showSearch ? (
                 <View
                   style={{
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    backgroundColor: 'white'
                   }}>
                   <SearchSort
                     sort={sort}

@@ -23,13 +23,13 @@ const ShopperImageProfile = ({
   isFanned,
   showFans,
   showRating,
-  guest,
   views,
-  dispatch,
-  colors,
-  showComments = false,
-  commentsCount
+  commentsCount,
+  showComments = true,
+  showLike = true
 }) => {
+  const {colors, guest} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
@@ -77,7 +77,7 @@ const ShopperImageProfile = ({
             ]}>
             {slug.substring(0, 25)}
           </Text>
-          {!guest ? (
+          {!guest && showLike ? (
             <Icon
               name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
               type="material-community"
@@ -131,20 +131,22 @@ const ShopperImageProfile = ({
               imageSize={20}
             />
           ) : null}
-          <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
-            <Icon
-              name="comment-account-outline"
-              type="material-community"
-              color={colors.header_tow_theme_color}
-              size={25}
-              hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
-            />
-            <Badge
-              status="warning"
-              value={commentsCount}
-              containerStyle={{position: 'absolute', top: -10, right: -4}}
-            />
-          </TouchableOpacity>
+          {showComments ? (
+            <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
+              <Icon
+                name="comment-account-outline"
+                type="material-community"
+                color={colors.header_tow_theme_color}
+                size={25}
+                hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+              />
+              <Badge
+                status="warning"
+                value={commentsCount}
+                containerStyle={{position: 'absolute', top: -10, right: -4}}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
       </View>
     </View>
@@ -158,9 +160,7 @@ ShopperImageProfile.propTypes = {
   logo: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   showFans: PropTypes.bool.isRequired,
-  showRating: PropTypes.bool.isRequired,
-  guest: PropTypes.bool.isRequired,
-  showComments: PropTypes.bool.isRequired
+  showRating: PropTypes.bool.isRequired
 };
 
 const styles = StyleSheet.create({
