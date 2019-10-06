@@ -553,5 +553,6 @@
   "high_low" : "الأعلى سعرا",
   "by_alpha_asc" : "أبجدي من البداية",
   "by_alpha_desc" : "أبجدي من النهاية",
-  "selected_collections" : "المجموعات المختارة"
+  "selected_collections" : "المجموعات المختارة",
+  "choose_your_category" : "اختر تصنيف"
 }

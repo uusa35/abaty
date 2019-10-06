@@ -512,5 +512,13 @@
   },
   "sale" : "sale",
   "buy" : "buy",
-  "share" : "share"
+  "share" : "share",
+  "latest" : "ordery by Latest",
+  "oldest" : "order by Oldest",
+  "low_high" : "Lowest",
+  "high_low" : "Highest",
+  "by_alpha_asc" : "order by Alpha asc",
+  "by_alpha_desc" : "order by Alpha desc",
+  "selected_collections" : "Selected Collections",
+  "choose_your_category" : "Choose Category"
 }

@@ -70,7 +70,8 @@ const HomeKeyHomeScreen = ({
   homeCompanies,
   dispatch,
   navigation,
-  homeClassifieds
+  homeClassifieds,
+  guest
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -244,7 +245,8 @@ function mapStateToProps(state) {
     colors: state.settings.colors,
     lang: state.lang,
     showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies
+    homeCompanies: state.homeCompanies,
+    guest: state.guest
   };
 }
 
