@@ -1,10 +1,9 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import LoginForm from '../components/widgets/LoginForm';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from 'react-navigation-hooks';
-import {hideLoginModal} from '../redux/actions';
 
 const LoginScreen = () => {
   const [visible, setVisible] = useState(false);
