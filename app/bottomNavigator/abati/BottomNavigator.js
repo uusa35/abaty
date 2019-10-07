@@ -14,6 +14,7 @@ import {AbatiSearchStack} from './AbatiSearchStack';
 import {AbatiProductStack} from './AbatiProductStack';
 import {AbatiServiceStack} from './AbatiServiceStack';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
+import {LoginStack} from './LoginStack';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -93,6 +94,12 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
         title: I18n.t('services')
       })
+    },
+    Login: {
+      screen: LoginStack,
+      navigationOptions: {
+        tabBarVisible: false
+      }
     }
   },
   {
@@ -115,11 +122,13 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     initialRouteName: 'Home',
     order: [
-      'Home',
-      'CategoryIndexScreen',
-      'VideoIndexAll',
+      // 'CategoryIndexScreen',
       'ProductIndexAll',
-      'Setting'
+      'VideoIndexAll',
+      'Home',
+      'ServiceIndexAll',
+      'Setting',
+      'Login'
     ]
   }
 );

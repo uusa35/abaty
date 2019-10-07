@@ -30,7 +30,6 @@ const MapViewWidget = ({
   elements = []
 }) => {
   const {colors, exchange_rate} = useContext(GlobalValuesContext);
-  console.log('price', price);
   return (
     <View style={{flex: 1}}>
       {showTitle ? (

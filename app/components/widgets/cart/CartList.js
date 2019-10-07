@@ -243,7 +243,8 @@ const CartList = ({
               width: '100%'
             }}>
             <Button
-              onPress={() => dispatch(showLoginModal())}
+              // onPress={() => dispatch(showLoginModal())}
+              onPress={() => navigate('Login')}
               raised
               containerStyle={{flex: 0.5, marginBottom: 10, margin: 5}}
               buttonStyle={{

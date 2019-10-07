@@ -40,7 +40,8 @@ const LoginForm = ({showBtns = false}) => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
         flex: 1,
-        width: width - 20,
+        width: '100%',
+        padding: 15,
         justifyContent: 'center',
         alignItems: 'center'
       }}>

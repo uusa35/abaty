@@ -1,8 +1,8 @@
 {
   "name": "abaty",
-  "ABATI" : false,
-  "MALLR" : true,
-  "HOMEKEY" : true,
+  "ABATI" : true,
+  "MALLR" : false,
+  "HOMEKEY" : false,
   "ESCRAP" : false,
   "displayName": "abati",
   "apiUrl" : "http://mallr.test/api/",

@@ -15,8 +15,8 @@ const LoginScreenModal = ({loginModal}) => {
         <Icon
           name="close"
           size={25}
-          onPress={() => dispatch(hideLoginModal())}
           hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
+          onPress={() => dispatch(hideLoginModal())}
         />
       </View>
       <View style={styles.formContainer}>
