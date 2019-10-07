@@ -46,6 +46,8 @@ import React from 'react';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
 import VideoShowScreen from '../../screens/VideoShowScreen';
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
+import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import validate from './AbatiCategoryStack';
 
 export const AbatiHomeStack = createStackNavigator(
   {
@@ -96,6 +98,25 @@ export const AbatiHomeStack = createStackNavigator(
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null
       })
+    },
+    CategoryIndex: {
+      screen: CategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerTitle: (
+          <HeaderMiddle
+            title={
+              navigation.state.params &&
+              !validate.isEmpty(navigation.state.params.name)
+                ? navigation.state.params.name
+                : I18n.t('categories')
+            }
+          />
+        ),
+        headerBackTitle: null,
+        headerTransparent: true
+      }),
+      path: 'category/:id'
     },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,

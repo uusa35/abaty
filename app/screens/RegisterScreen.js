@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
@@ -13,26 +13,26 @@ const RegisterScreen = ({playerId}) => {
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   const parent = dangerouslyGetParent();
   return (
-    <View style={styles.iconContainer}>
+    <Fragment>
       <Icon
         name="close"
         size={25}
-        style={{
+        containerStyle={{
+          zIndex: 99,
           position: 'absolute',
-          top: 100,
-          left: 100,
-          borderWidth: 10,
-          zIndex: 99
+          top: 50,
+          left: 50
         }}
         hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
         onPress={() => {
           setVisible(false);
-          return parent.state.index ? goBack() : navigate('Home');
+          return parent.state.index && parent.state.index > 0
+            ? goBack()
+            : navigate('Home');
         }}
       />
-
       <RegisterFormWidget userCountryId={userCountryId} player_id={playerId} />
-    </View>
+    </Fragment>
   );
 };
 

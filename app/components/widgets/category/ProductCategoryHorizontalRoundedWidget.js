@@ -15,15 +15,16 @@ import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
+import {useNavigation} from 'react-navigation-hooks';
 
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
   dispatch,
-  colors,
-  navigation
+  colors
 }) => {
+  const {navigate} = useNavigation();
   const handleClick = useCallback(c => {
     return dispatch(
       getSearchProducts({
@@ -38,7 +39,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
-        onPress={() => navigation.navigate('CategoryIndex')}>
+        onPress={() => navigate('CategoryIndex')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[

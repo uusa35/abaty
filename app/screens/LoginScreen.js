@@ -21,14 +21,12 @@ const LoginScreen = () => {
           zIndex: 99,
           position: 'absolute',
           top: 50,
-          left: 50,
-          borderWidth: 5
+          left: 50
         }}
         hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
         onPress={() => {
-          console.log('clicked');
           setVisible(false);
-          return parent.state.index && params.state.index > 0
+          return parent.state.index && parent.state.index > 0
             ? goBack()
             : navigate('Home');
         }}

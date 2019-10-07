@@ -17,7 +17,7 @@ const LoginForm = ({showBtns = false}) => {
   const [password, setPassword] = useState('password');
   const {dispatch} = useContext(DispatchContext);
   const {logo, colors} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
+  const {navigate} = useNavigation();
 
   GoogleSignin.configure({
     scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -122,7 +122,7 @@ const LoginForm = ({showBtns = false}) => {
               fontFamily: text.font,
               color: colors.btn_text_theme_color
             }}
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigate('Register')}
           />
         ) : null}
         {showBtns ? (

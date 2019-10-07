@@ -6,7 +6,6 @@ import ProductList from '../components/widgets/product/ProductList';
 import VideoWidget from '../components/widgets/video/VideoWidget';
 
 const VideoShowScreen = ({video, dispatch}) => {
-  console.log('video', video);
   return (
     <ScrollView>
       <VideoWidget element={video} showImage={false} dispatch={dispatch} />

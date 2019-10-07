@@ -11,6 +11,8 @@ import React from 'react';
 import LoginScreen from '../../screens/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen';
 import UserEditScreen from '../../screens/UserEditScreen';
+import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
+import {HeaderLeft} from '../../components/HeaderLeft';
 
 export const LoginStack = createStackNavigator(
   {
@@ -41,7 +43,16 @@ export const LoginStack = createStackNavigator(
   {
     mode: 'modal',
     headerMode: 'none',
-    swipeEnabled: false
+    swipeEnabled: false,
+    animation: 'spring',
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01
+    }
   }
 );
 

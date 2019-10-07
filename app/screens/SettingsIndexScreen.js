@@ -27,13 +27,14 @@ const SettingsIndexScreen = ({
 }) => {
   return (
     <ScrollView
+      style={{flex: 1, paddingTop: 20}}
       contentContainerStyle={{
         width: '100%',
         padding: 20,
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1
+        justifyContent: 'center'
+        // flex: 1
       }}>
       <View style={styles.container}>
         {!guest ? (

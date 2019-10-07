@@ -20,6 +20,7 @@ import CategoryHorizontalBtnsWidget from '../components/widgets/category/Categor
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
+import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
 
 const CelebrityShowScreen = ({
   element,
@@ -117,7 +118,7 @@ const CelebrityShowScreen = ({
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
-            <ProductCategoryHorizontalBtnsWidget
+            <ProductCategoryVerticalWidget
               elements={collectedCategories}
               showImage={false}
               colors={colors}

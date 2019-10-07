@@ -8,9 +8,7 @@ import {View} from 'react-native-animatable';
 const CategoryIndexScreen = ({
   homeCategories,
   commercials,
-  show_commercials,
-  dispatch,
-  colors
+  show_commercials
 }) => {
   return (
     <View style={{flex: 1}}>
@@ -18,12 +16,7 @@ const CategoryIndexScreen = ({
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList
-          elements={homeCategories}
-          columns={1}
-          dispatch={dispatch}
-          colors={colors}
-        />
+        <CategoriesList elements={homeCategories} columns={1} />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
@@ -38,8 +31,7 @@ function mapStateToProps(state) {
   return {
     homeCategories: state.homeCategories,
     commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors
+    show_commercials: state.settings.show_commercials
   };
 }
 

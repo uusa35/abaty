@@ -25,9 +25,11 @@ const RegisterFormWidget = ({player_id}) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        width: width,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 1,
+        width: '100%',
+        padding: 15,
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
       <FastImage
         source={{uri: logo}}

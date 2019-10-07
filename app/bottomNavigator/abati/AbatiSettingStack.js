@@ -6,6 +6,9 @@ import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
+import LoginScreen from '../../screens/LoginScreen';
+import RegisterScreen from '../../screens/RegisterScreen';
+import UserEditScreen from '../../screens/UserEditScreen';
 
 export const AbatiSettingStack = createStackNavigator(
   {
@@ -20,11 +23,43 @@ export const AbatiSettingStack = createStackNavigator(
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null
       })
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('login')} />,
+        headerRight: <HeaderRight display={false} />
+      })
+    },
+    Register: {
+      screen: RegisterScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: <HeaderRight display={false} />
+        // headerBackTitle: null
+      })
+    },
+    UserEdit: {
+      screen: UserEditScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
+        headerRight: <HeaderRight display={false} />
+        // headerBackTitle: null
+      })
     }
   },
   {
     mode: 'modal',
-    headerMode: 'screen',
-    swipeEnabled: false
+    headerMode: 'none',
+    swipeEnabled: false,
+    animation: 'spring',
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01
+    }
   }
 );

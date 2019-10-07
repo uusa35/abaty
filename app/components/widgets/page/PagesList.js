@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   wrapper: {
-    flex: 1,
+    // flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopWidth: 1,

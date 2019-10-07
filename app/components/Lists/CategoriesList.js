@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import CategoryWidget from '../widgets/category/CategoryWidget';
 import {refetchHomeCategories} from '../../redux/actions';
@@ -8,8 +8,12 @@ import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
+import {DispatchContext} from '../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const CategoriesList = ({elements, columns, dispatch, colors}) => {
+const CategoriesList = ({elements, columns}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
   useMemo(() => {
     if (refresh) {
@@ -64,7 +68,6 @@ export default CategoriesList;
 
 CategoriesList.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired,
   columns: PropTypes.number
 };
 

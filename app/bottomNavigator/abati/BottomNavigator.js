@@ -1,20 +1,16 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation';
 import {Icon} from 'react-native-elements';
-import I18n from '../../I18n';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants';
 import {AbatiHomeStack} from './AbatiHomeStack';
-import {AbatiCategoryStack} from './AbatiCategoryStack';
 import {AbatiVideoStack} from './AbatiVideoStack';
 import {AbatiSettingStack} from './AbatiSettingStack';
 import {AbatiSearchStack} from './AbatiSearchStack';
 import {AbatiProductStack} from './AbatiProductStack';
 import {AbatiServiceStack} from './AbatiServiceStack';
-import {HeaderMiddle} from '../../components/HeaderMiddle';
-import {LoginStack} from './LoginStack';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -22,20 +18,22 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: AbatiHomeStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="home" type="octicon" color={tintColor} />
-        ),
-        title: I18n.t('home')
+          <Icon size={30} name="home" type="octicon" color={tintColor} />
+        )
+        // title: I18n.t('home')
       })
     },
-    CategoryIndexScreen: {
-      screen: AbatiCategoryStack,
-      navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="layers" type="simplelineicons" color={tintColor} />
-        ),
-        title: I18n.t('categories')
-      })
-    },
+    // CategoryIndexScreen: {
+    //   screen: AbatiCategoryStack,
+    //   navigationOptions: ({navigation}) => ({
+    //     tabBarIcon: ({tintColor}) => (
+    //       <Icon
+    //           size={30}
+    //           name="layers" type="simplelineicons" color={tintColor} />
+    //     ),
+    //     // title: I18n.t('categories')
+    //   })
+    // },
     VideoIndexAll: {
       screen: AbatiVideoStack,
       navigationOptions: ({navigation}) => ({
@@ -46,39 +44,43 @@ export const BottomTabsStack = createBottomTabNavigator(
             size={30}
             color={tintColor}
           />
-        ),
-        title: I18n.t('videos')
+        )
+        // title: I18n.t('videos'),
       })
     },
     Setting: {
       screen: AbatiSettingStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-person" type="ionicon" color={tintColor} />
+          <Icon size={30} name="ios-person" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('me'),
+        // title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerRight: <HeaderRight {...navigation} display={true} />
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
       })
     },
     Search: {
       screen: AbatiSearchStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-search" type="ionicon" color={tintColor} />
-        ),
-        title: I18n.t('search')
+          <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
+        )
+        // title: I18n.t('search'),
       })
     },
     ProductIndexAll: {
       screen: AbatiProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
-        ),
-        title: I18n.t('all_products')
+          <Icon
+            size={30}
+            name="sort-by-alpha"
+            type="material-icon"
+            color={tintColor}
+          />
+        )
+        // title: I18n.t('all_products'),
       })
     },
     ServiceIndexAll: {
@@ -88,24 +90,19 @@ export const BottomTabsStack = createBottomTabNavigator(
           <Icon
             name="customerservice"
             type="antdesign"
-            size={18}
+            size={30}
             color={tintColor}
           />
-        ),
-        title: I18n.t('services')
+        )
+        // title: I18n.t('services'),
       })
-    },
-    Login: {
-      screen: LoginStack,
-      navigationOptions: {
-        tabBarVisible: false
-      }
     }
   },
   {
     tabBarOptions: {
       lazy: false,
       showIcon: true,
+      showLabel: false,
       scrollEnabled: true,
       allowFontScaling: true,
       activeTintColor: '#ddca21',
@@ -127,8 +124,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       'VideoIndexAll',
       'Home',
       'ServiceIndexAll',
-      'Setting',
-      'Login'
+      'Setting'
     ]
   }
 );
