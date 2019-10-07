@@ -13,7 +13,6 @@ const UserEditScreen = ({auth, playerId, country}) => {
   const {colors, token, logo} = useContext(GlobalValuesContext);
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   const parent = dangerouslyGetParent();
-  console.log('dengirious', parent.state.index);
   return (
     <Fragment>
       <Icon
