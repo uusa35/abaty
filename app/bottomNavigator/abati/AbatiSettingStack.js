@@ -9,6 +9,10 @@ import React from 'react';
 import LoginScreen from '../../screens/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen';
 import UserEditScreen from '../../screens/UserEditScreen';
+import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import OrderIndexScreen from '../../screens/OrderIndexScreen';
+import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
 
 export const AbatiSettingStack = createStackNavigator(
   {
@@ -46,11 +50,51 @@ export const AbatiSettingStack = createStackNavigator(
         headerRight: <HeaderRight display={false} />
         // headerBackTitle: null
       })
+    },
+    ProfileIndex: {
+      screen: ProfileIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: null,
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
+    OrderIndex: {
+      screen: OrderIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
+        headerRight: null,
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
+    FavoriteProductIndex: {
+      screen: FavoriteProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
+        headerBackTitle: null
+      })
+    },
+    FavoriteClassifiedIndex: {
+      screen: FavoriteClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft {...navigation} />,
+        headerRight: (
+          <HeaderRight {...navigation} displayShare={false} display={true} />
+        ),
+        headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
+        headerBackTitle: null
+      })
     }
   },
   {
-    mode: 'modal',
-    headerMode: 'none',
+    mode: 'card',
+    headerMode: 'screen',
     swipeEnabled: false,
     animation: 'spring',
     config: {
