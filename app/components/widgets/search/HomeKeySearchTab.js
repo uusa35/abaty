@@ -1,12 +1,20 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  TouchableOpacity
+} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, width} from '../../../constants';
+import {useNavigation} from 'react-navigation-hooks';
 
 const HomeKeySearchTab = () => {
   const {colors} = useContext(GlobalValuesContext);
+  const {navigate} = useNavigation();
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
     {key: 'FirstRoute', title: I18n.t('sale')},
@@ -14,7 +22,8 @@ const HomeKeySearchTab = () => {
     {key: 'ThirdRoute', title: I18n.t('share')}
   ]);
   const FirstRoute = () => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('ClassifiedFilter')}
       style={{
         padding: 20,
         backgroundColor: 'white',
@@ -25,11 +34,12 @@ const HomeKeySearchTab = () => {
       <Text style={{fontFamily: text.font, textAlign: 'left'}}>
         {I18n.t('search')}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 
   const SecondRoute = () => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('ClassifiedFilter')}
       style={{
         padding: 20,
         backgroundColor: 'white',
@@ -40,11 +50,12 @@ const HomeKeySearchTab = () => {
       <Text style={{fontFamily: text.font, textAlign: 'left'}}>
         {I18n.t('search')}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 
   const ThirdRoute = () => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('ClassifiedFilter')}
       style={{
         padding: 20,
         backgroundColor: 'white',
@@ -55,7 +66,7 @@ const HomeKeySearchTab = () => {
       <Text style={{fontFamily: text.font, textAlign: 'left'}}>
         {I18n.t('search')}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
   return (
     <ImageBackground
