@@ -103,7 +103,7 @@ const ProductList = ({
           stickyHeaderIndices={[0]}
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
-          // contentInset={{bottom: 60}}
+          contentInset={{bottom: 150}}
           numColumns={2}
           data={items}
           refreshing={refresh}

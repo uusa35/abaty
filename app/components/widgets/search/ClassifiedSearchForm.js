@@ -3,7 +3,8 @@ import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchClassifieds, getSearchProducts} from '../../../redux/actions';
+import {HIDE_SEARCH_MODAL} from '../../../redux/actions/types';
 
 const ClassifiedSearchForm = () => {
   const {dispatch} = useContext(DispatchContext);
@@ -18,11 +19,12 @@ const ClassifiedSearchForm = () => {
           size={18}
           color="#c4c4c4"
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          onPress={() =>
+          onPress={() => {
+            dispatch({type: HIDE_SEARCH_MODAL});
             dispatch(
-              getSearchProducts({searchParams: {search}, redirect: true})
-            )
-          }
+              getSearchClassifieds({searchParams: {search}, redirect: true})
+            );
+          }}
         />
       }
       containerStyle={{marginTop: 5, marginBottom: 5}}

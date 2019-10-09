@@ -1,18 +1,15 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  ImageBackground,
-  TouchableOpacity
-} from 'react-native';
+import {Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, width} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
+import {SHOW_SEARCH_MODAL} from '../../../redux/actions/types';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const HomeKeySearchTab = () => {
+  const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const [index, setIndex] = useState(0);
@@ -23,7 +20,10 @@ const HomeKeySearchTab = () => {
   ]);
   const FirstRoute = () => (
     <TouchableOpacity
-      onPress={() => navigate('ClassifiedFilter')}
+      onPress={() => {
+        dispatch({type: SHOW_SEARCH_MODAL});
+        navigate('ClassifiedFilter');
+      }}
       style={{
         padding: 20,
         backgroundColor: 'white',
@@ -39,7 +39,10 @@ const HomeKeySearchTab = () => {
 
   const SecondRoute = () => (
     <TouchableOpacity
-      onPress={() => navigate('ClassifiedFilter')}
+      onPress={() => {
+        dispatch({type: SHOW_SEARCH_MODAL});
+        navigate('ClassifiedFilter');
+      }}
       style={{
         padding: 20,
         backgroundColor: 'white',
@@ -55,7 +58,10 @@ const HomeKeySearchTab = () => {
 
   const ThirdRoute = () => (
     <TouchableOpacity
-      onPress={() => navigate('ClassifiedFilter')}
+      onPress={() => {
+        dispatch({type: SHOW_SEARCH_MODAL});
+        navigate('ClassifiedFilter');
+      }}
       style={{
         padding: 20,
         backgroundColor: 'white',

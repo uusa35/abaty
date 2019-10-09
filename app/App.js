@@ -85,7 +85,8 @@ class App extends Component<Props> {
       guest,
       network,
       loginModal,
-      main_bg
+      main_bg,
+      searchModal
     } = this.props;
     const cartLength = cart.length;
     if (!bootStrapped || isLoading) {
@@ -142,7 +143,8 @@ class App extends Component<Props> {
                   token,
                   logo,
                   app_logo,
-                  guest
+                  guest,
+                  searchModal
                 }}>
                 <AppNavigator uriPrefix={prefix} />
                 {validate.isBoolean(loginModal) ? (
@@ -214,7 +216,8 @@ function mapStateToProps(state) {
     main_bg: state.settings.main_bg,
     token: state.token,
     guest: state.guest,
-    loginModal: state.loginModal
+    loginModal: state.loginModal,
+    searchModal: state.searchModal
   };
 }
 
@@ -226,6 +229,7 @@ App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isLoadingContent: PropTypes.bool.isRequired,
   isLoadingProfile: PropTypes.bool.isRequired,
+  searchModal: PropTypes.bool,
   message: PropTypes.object,
   country: PropTypes.object.isRequired,
   currency: PropTypes.string.isRequired,

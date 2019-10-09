@@ -14,11 +14,13 @@ import {
 import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
 import {startGetHomeCompaniesScenario} from './userSagas';
+import {HIDE_SEARCH_MODAL} from '../types';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
+    yield put({type: HIDE_SEARCH_MODAL});
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
         put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useMemo} from 'react';
 import {Modal, ScrollView} from 'react-native';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {Icon} from 'react-native-elements';
@@ -6,18 +6,28 @@ import {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 import {SafeAreaView} from 'react-navigation';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
 
 const ClassifiedFilterScreen = () => {
   const {dispatch} = useContext(DispatchContext);
+  const {searchModal, categories} = useContext(GlobalValuesContext);
   const {goBack} = useNavigation();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(searchModal);
+
+  useMemo(() => {
+    if (!visible) {
+      dispatch({type: HIDE_SEARCH_MODAL});
+    }
+  }, [visible]);
+
   return (
     <SafeAreaView>
       <Modal
         transparent={false}
         visible={visible}
         animationType={'slide'}
-        onRequestClose={() => setVisible(false)}>
+        onRequestClose={() => dispatch({type: HIDE_SEARCH_MODAL})}>
         <ScrollView
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="none"

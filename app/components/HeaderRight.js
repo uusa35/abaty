@@ -13,6 +13,7 @@ import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
+import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -68,7 +69,10 @@ export const HeaderRight = ({
       ) : null}
       {showFilter ? (
         <Icon
-          onPress={() => navigate('ClassifiedFilter')}
+          onPress={() => {
+            dispatch({type: SHOW_SEARCH_MODAL});
+            navigate('ClassifiedFilter');
+          }}
           name="tune"
           type="material-icon"
           size={25}

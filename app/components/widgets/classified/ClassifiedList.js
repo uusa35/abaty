@@ -164,17 +164,16 @@ const ClassifiedList = ({
           }
           onEndReached={() => loadMore()}
           contentContainerStyle={{
-            width: width,
-            flex: 1,
-            alignSelf: 'center',
-            backgroundColor: 'transparent'
+            minHeight: '100%',
+            marginBottom: 15,
+            justifyContent: 'flex-start'
           }}
           // columnWrapperStyle={{
           //   justifyContent: 'space-around',
           //   alignItems: 'center'
           // }}
           ListHeaderComponentStyle={{
-            width: '100%',
+            // width: '100%',
             // padding: 10,
             backgroundColor: 'white'
           }}
