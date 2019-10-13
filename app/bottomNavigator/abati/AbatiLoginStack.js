@@ -14,7 +14,7 @@ import UserEditScreen from '../../screens/UserEditScreen';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 
-export const LoginStack = createStackNavigator(
+export const AbatiLoginStack = createStackNavigator(
   {
     Login: {
       screen: LoginScreen,

@@ -11,49 +11,39 @@ import {
 } from 'react-navigation-redux-helpers';
 import I18n, {isRTL} from './I18n';
 import SideMenu from './components/SideMenu';
-import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
+import {AbatiBottomTabsStack} from './bottomNavigator/abati/AbatiBottomNavigator';
 import {AbatiHomeStack} from './bottomNavigator/abati/AbatiHomeStack';
-import {LoginStack} from './bottomNavigator/abati/LoginStack';
+import {MallrHomeStack} from './bottomNavigator/mallr/MallrHomeStack';
+import {AbatiLoginStack} from './bottomNavigator/abati/AbatiLoginStack';
 // import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
-const DrawerNavigator = createDrawerNavigator(
-  {
-    Tabs: {
-      screen: BottomTabsStack
-    }
-  },
-  {
-    contentComponent: ({navigation}) => <SideMenu navigation={navigation} />,
-    drawerPosition: isRTL ? 'right' : 'left',
-    drawerBackgroundColor: 'white',
-    overlayColor: 'transparent',
-    contentOptions: {
-      activeTintColor: 'black',
-      itemsContainerStyle: {
-        marginVertical: 0
-      },
-      iconContainerStyle: {
-        opacity: 1
-      }
-    }
-  }
-);
-
-const RootNavigator = createSwitchNavigator({
+const AbatiRootNavigator = createSwitchNavigator({
   HomeStack: {
     screen: AbatiHomeStack
   },
   Login: {
-    screen: LoginStack
+    screen: AbatiLoginStack
   },
   DrawerStack: {
-    screen: DrawerNavigator
+    screen: AbatiBottomTabsStack
   }
 });
 
-const AppWithNavigationState = createReduxContainer(RootNavigator);
+// const MallrRootNavigator = createSwitchNavigator({
+//   HomeStack: {
+//     screen: MallrHomeStack
+//   },
+//   Login: {
+//     screen: LoginStack
+//   },
+//   DrawerStack: {
+//     screen: DrawerNavigator
+//   }
+// });
+
+const AppWithNavigationState = createReduxContainer(AbatiRootNavigator);
 
 const mapStateToProps = state => ({
   state: state.nav,
@@ -64,4 +54,4 @@ const AppNavigator = connect(mapStateToProps)(
   createAppContainer(AppWithNavigationState)
 );
 
-export {RootNavigator, AppNavigator, navMiddleware};
+export {AbatiRootNavigator, AppNavigator, navMiddleware};

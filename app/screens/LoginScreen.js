@@ -13,23 +13,23 @@ const LoginScreen = () => {
 
   return (
     <Fragment>
-      <Icon
-        name="close"
-        size={25}
-        containerStyle={{
-          zIndex: 99,
-          position: 'absolute',
-          top: 50,
-          left: 50
-        }}
-        hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
-        onPress={() => {
-          setVisible(false);
-          return parent.state.index && parent.state.index > 0
-            ? goBack()
-            : navigate('Home');
-        }}
-      />
+      {/*<Icon*/}
+      {/*  name="close"*/}
+      {/*  size={25}*/}
+      {/*  containerStyle={{*/}
+      {/*    zIndex: 99,*/}
+      {/*    position: 'absolute',*/}
+      {/*    top: 50,*/}
+      {/*    left: 50*/}
+      {/*  }}*/}
+      {/*  hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}*/}
+      {/*  onPress={() => {*/}
+      {/*    setVisible(false);*/}
+      {/*    return parent.state.index && parent.state.index > 0*/}
+      {/*      ? goBack()*/}
+      {/*      : navigate('Home');*/}
+      {/*  }}*/}
+      {/*/>*/}
       <LoginForm showBtns={true} />
     </Fragment>
   );

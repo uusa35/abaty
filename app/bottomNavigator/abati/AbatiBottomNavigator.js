@@ -12,7 +12,7 @@ import {AbatiSearchStack} from './AbatiSearchStack';
 import {AbatiProductStack} from './AbatiProductStack';
 import {AbatiServiceStack} from './AbatiServiceStack';
 
-export const BottomTabsStack = createBottomTabNavigator(
+export const AbatiBottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: AbatiHomeStack,
