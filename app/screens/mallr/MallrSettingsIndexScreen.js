@@ -70,7 +70,7 @@ const MallrSettingsIndexScreen = ({
           <TouchableOpacity
             onPress={() => navigation.navigate('FavoriteProductIndex')}
             style={styles.btnWrapper}>
-            <Icon name="staro" type="antdesign" size={45} />
+            <Icon name="heart" type="antdesign" size={45} />
             <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
           </TouchableOpacity>
         ) : null}
@@ -78,7 +78,7 @@ const MallrSettingsIndexScreen = ({
           <TouchableOpacity
             onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
             style={styles.btnWrapper}>
-            <Icon name="staro" type="antdesign" size={45} />
+            <Icon name="heart" type="antdesign" size={45} />
             <Text style={styles.btnTitle}>
               {I18n.t('classified_favorites')}
             </Text>

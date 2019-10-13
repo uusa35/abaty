@@ -13,6 +13,9 @@ import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
+import NormalProductShow from '../../screens/NormalProductShowScreen';
+import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
+import {AbatiHomeStack} from './AbatiHomeStack';
 
 export const AbatiSettingStack = createStackNavigator(
   {
@@ -80,6 +83,42 @@ export const AbatiSettingStack = createStackNavigator(
         headerBackTitle: null
       })
     },
+    Product: {
+      screen: NormalProductShow,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            showCountry={true}
+          />
+        ),
+        headerBackTitle: null
+      }),
+      path: `product/:id`
+    },
+    Classified: {
+      screen: ClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null
+        //   headerTransparent: true,
+        // headerStyle: {
+        // backgroundColor: 'white',
+        // borderColor: 'transparent',
+        // zIndex: 100
+        // }
+      }),
+      path: `classified/:id`
+    },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -107,3 +146,13 @@ export const AbatiSettingStack = createStackNavigator(
     }
   }
 );
+
+AbatiSettingStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};

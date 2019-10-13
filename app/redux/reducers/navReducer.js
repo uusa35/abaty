@@ -4,7 +4,7 @@
 import {RootNavigator} from './../../AppNavigator';
 
 const initialState = RootNavigator.router.getStateForAction(
-  RootNavigator.router.getActionForPathAndParams('Tabs')
+  RootNavigator.router.getActionForPathAndParams('DrawerStack')
 );
 
 export default function(state = initialState, action) {

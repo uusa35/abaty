@@ -96,7 +96,8 @@ const CompanyShowScreen = ({
             dispatch={dispatch}
             member_id={element.id}
             showFans={true}
-            showRating={true}
+            showRating={false}
+            showComments={false}
             guest={guest}
             isFanned={element.isFanned}
             totalFans={element.totalFans}
@@ -106,7 +107,6 @@ const CompanyShowScreen = ({
             slug={element.slug}
             type={element.role.slug}
             views={element.views}
-            showComments={!guest}
             commentsCount={element.commentsCount}
           />
           {!validate.isEmpty(element.slides) ? (

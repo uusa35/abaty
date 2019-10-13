@@ -79,7 +79,8 @@ const ShopperImageProfile = ({
           </Text>
           {!guest && showLike ? (
             <Icon
-              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+              // name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+              name={fanMe ? 'star' : 'star'}
               type="material-community"
               color={colors.header_tow_theme_color}
               onPress={() => handleFan(!fanMe)}
@@ -101,7 +102,7 @@ const ShopperImageProfile = ({
               styles.mainTitle,
               {fontSize: text.small, color: colors.header_tow_theme_color}
             ]}>
-            {fans} {I18n.t('fans')}
+            {fans} {I18n.t('followers')}
           </Text>
         ) : null}
         {views ? (

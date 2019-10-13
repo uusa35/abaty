@@ -102,7 +102,8 @@ const ShopperShowScreen = ({
             <ShopperImageProfile
               member_id={element.id}
               showFans={true}
-              showRating={true}
+              showRating={false}
+              showComments={false}
               isFanned={element.isFanned}
               totalFans={element.totalFans}
               currentRating={element.rating}

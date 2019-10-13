@@ -136,12 +136,12 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 })
               );
             }}
-            name={favorite ? 'star' : 'staro'}
+            name={favorite ? 'heart' : 'heart'}
             type="antdesign"
             size={25}
             underlayColor="transparent"
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-            color="#FCD12A"
+            color="red"
           />
         ) : null}
       </View>

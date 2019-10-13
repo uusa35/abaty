@@ -12,7 +12,6 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 const CollectionGridWidget = ({elements, showTitle = true}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
-  console.log('here');
   return (
     <Fragment>
       {showTitle ? (

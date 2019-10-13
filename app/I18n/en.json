@@ -520,5 +520,6 @@
   "by_alpha_asc" : "order by Alpha asc",
   "by_alpha_desc" : "order by Alpha desc",
   "selected_collections" : "Selected Collections",
-  "choose_your_category" : "Choose Category"
+  "choose_your_category" : "Choose Category",
+  "followers" : "followers"
 }

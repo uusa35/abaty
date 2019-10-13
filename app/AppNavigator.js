@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {createDrawerNavigator, createAppContainer} from 'react-navigation';
+import {
+  createDrawerNavigator,
+  createAppContainer,
+  createSwitchNavigator
+} from 'react-navigation';
 import {
   createReactNavigationReduxMiddleware,
   createReduxContainer
@@ -8,11 +12,13 @@ import {
 import I18n, {isRTL} from './I18n';
 import SideMenu from './components/SideMenu';
 import {BottomTabsStack} from './bottomNavigator/abati/BottomNavigator';
+import {AbatiHomeStack} from './bottomNavigator/abati/AbatiHomeStack';
+import {LoginStack} from './bottomNavigator/abati/LoginStack';
 // import {BottomTabsStack} from './bottomNavigator/mallr/BottomNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 
-const RootNavigator = createDrawerNavigator(
+const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
       screen: BottomTabsStack
@@ -34,6 +40,18 @@ const RootNavigator = createDrawerNavigator(
     }
   }
 );
+
+const RootNavigator = createSwitchNavigator({
+  HomeStack: {
+    screen: AbatiHomeStack
+  },
+  Login: {
+    screen: LoginStack
+  },
+  DrawerStack: {
+    screen: DrawerNavigator
+  }
+});
 
 const AppWithNavigationState = createReduxContainer(RootNavigator);
 
