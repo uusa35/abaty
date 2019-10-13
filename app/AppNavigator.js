@@ -1,16 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-  createDrawerNavigator,
   createAppContainer,
-  createSwitchNavigator
 } from 'react-navigation';
 import {
   createReactNavigationReduxMiddleware,
   createReduxContainer
 } from 'react-navigation-redux-helpers';
-import {AbatiRootNavigator as RootNavigator} from './bottomNavigator/abati/AbatiRootNavigator';
-// import {MallrRootNavigator as RootNavigator} from './bottomNavigator/abati/MallrRootNavigator';
+// import {AbatiRootNavigator as RootNavigator} from './bottomNavigator/abati/AbatiRootNavigator';
+import {MallrRootNavigator as RootNavigator} from './bottomNavigator/mallr/MallrRootNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 const AppWithNavigationState = createReduxContainer(RootNavigator);

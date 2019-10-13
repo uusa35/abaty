@@ -1,7 +1,4 @@
 import {createSwitchNavigator} from 'react-navigation';
-import {AbatiHomeStack} from './AbatiHomeStack';
-import {AbatiLoginStack} from './AbatiLoginStack';
-import {AbatiDrawerNavigator} from './AbatiDrawerNavigator';
 import {MallrDrawerNavigator} from './MallrDrawerNavigator';
 import {MallrHomeStack} from './MallrHomeStack';
 import {MallrLoginStack} from './MallrLoginStack';
