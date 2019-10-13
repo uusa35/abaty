@@ -3,11 +3,12 @@ import SideMenu from '../../components/SideMenu';
 import {isRTL} from '../../I18n';
 import React from 'react';
 import {AbatiBottomTabsStack} from './AbatiBottomNavigator';
+import {MallrBottomTabsStack} from './BottomNavigator';
 
-export const AbatiDrawerNavigator = createDrawerNavigator(
+export const MallrDrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
-      screen: AbatiBottomTabsStack
+      screen: MallrBottomTabsStack
     }
   },
   {

@@ -6,8 +6,10 @@ import {StyleSheet, View} from 'react-native';
 import {Icon, Badge} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
+import {useNavigation} from 'react-navigation-hooks';
 
-export const HeaderLeft = ({openDrawer, navigate, showCart = true}) => {
+export const HeaderLeft = ({showCart = true}) => {
+  const {navigate, openDrawer} = useNavigation();
   const {cartLength, colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.safeContainer}>

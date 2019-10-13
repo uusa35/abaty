@@ -109,6 +109,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
       animationEnabled: true,
+
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white'

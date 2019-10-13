@@ -21,6 +21,8 @@ import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
+import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../app';
+import ShopperImageProfile from '../components/widgets/user/ShopperImageProfile';
 
 const CelebrityShowScreen = ({
   element,
@@ -99,7 +101,8 @@ const CelebrityShowScreen = ({
             dispatch={dispatch}
             member_id={element.id}
             showFans={true}
-            showRating={true}
+            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
             guest={guest}
             isFanned={element.isFanned}
             totalFans={element.totalFans}
@@ -109,7 +112,6 @@ const CelebrityShowScreen = ({
             slug={element.slug}
             type={element.role.slug}
             views={element.views}
-            showComments={!guest}
             commentsCount={element.commentsCount}
           />
           {!validate.isEmpty(element.slides) ? (

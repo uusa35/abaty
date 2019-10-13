@@ -21,7 +21,7 @@ import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/
 import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
-
+import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../app';
 const DesignerShowScreen = ({
   element,
   commentModal,
@@ -99,7 +99,8 @@ const DesignerShowScreen = ({
             dispatch={dispatch}
             member_id={element.id}
             showFans={true}
-            showRating={false}
+            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
             guest={guest}
             isFanned={element.isFanned}
             totalFans={element.totalFans}
@@ -109,7 +110,6 @@ const DesignerShowScreen = ({
             slug={element.slug}
             type={element.role.slug}
             views={element.views}
-            showComments={!guest}
             commentsCount={element.commentsCount}
           />
           {!validate.isEmpty(element.slides) ? (

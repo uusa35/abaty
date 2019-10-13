@@ -14,7 +14,7 @@ import {MallrSearchStack} from './MallrSearchStack';
 import {MallrProductStack} from './MallrProductStack';
 import {MallrServiceStack} from './MallrServiceStack';
 
-export const BottomTabsStack = createBottomTabNavigator(
+export const MallrBottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: MallrHomeStack,

@@ -18,6 +18,8 @@ import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import I18n from '../I18n';
 import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
+import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../app';
+import ShopperImageProfile from '../components/widgets/user/ShopperImageProfile';
 
 const CompanyShowScreen = ({
   element,
@@ -96,8 +98,8 @@ const CompanyShowScreen = ({
             dispatch={dispatch}
             member_id={element.id}
             showFans={true}
-            showRating={false}
-            showComments={false}
+            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
             guest={guest}
             isFanned={element.isFanned}
             totalFans={element.totalFans}

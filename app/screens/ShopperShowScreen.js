@@ -22,6 +22,7 @@ import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidg
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
 import CollectionGridWidget from '../components/widgets/collection/CollectionGridWidget';
 import ShopperImageProfile from '../components/widgets/user/ShopperImageProfile';
+import {ABATI, MALLR, HOMEKEY, ESCRAP} from '../../app';
 
 const ShopperShowScreen = ({
   element,
@@ -102,8 +103,8 @@ const ShopperShowScreen = ({
             <ShopperImageProfile
               member_id={element.id}
               showFans={true}
-              showRating={false}
-              showComments={false}
+              showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+              showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
               isFanned={element.isFanned}
               totalFans={element.totalFans}
               currentRating={element.rating}
