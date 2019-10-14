@@ -124,15 +124,11 @@ export const MallrHomeStack = createStackNavigator(
               backgroundColor: 'black'
             }
           },
-          navigationOptions: ({navigation}) => ({
+          navigationOptions: () => ({
             tabBarVisible: true,
-            headerLeft: <HeaderLeft {...navigation} />,
+            headerLeft: <HeaderLeft />,
             headerRight: (
-              <HeaderRight
-                {...navigation}
-                displayShare={false}
-                showCountry={true}
-              />
+              <HeaderRight displayShare={false} showCountry={true} />
             ),
             headerTitle: (
               <HeaderMiddle showLogo={true} title={I18n.t('home')} />
@@ -146,24 +142,24 @@ export const MallrHomeStack = createStackNavigator(
     },
     CartIndex: {
       screen: CartIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        // HeaderRight: <HeaderRight {...navigation} />,
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft />,
+        // HeaderRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: null
       })
     },
     CartConfirmation: {
       screen: CartConfirmationScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
         headerBackTitle: null
       })
     },
     PaymentIndex: {
       screen: PaymentIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        HeaderRight: <HeaderLeft {...navigation} />,
+      navigationOptions: () => ({
+        HeaderRight: <HeaderLeft />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null
       })
@@ -178,7 +174,7 @@ export const MallrHomeStack = createStackNavigator(
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
@@ -186,7 +182,7 @@ export const MallrHomeStack = createStackNavigator(
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
@@ -194,7 +190,7 @@ export const MallrHomeStack = createStackNavigator(
     },
     UserEdit: {
       screen: UserEditScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
@@ -263,10 +259,8 @@ export const MallrHomeStack = createStackNavigator(
     ProductIndex: {
       screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+        // headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null
       })
@@ -275,24 +269,16 @@ export const MallrHomeStack = createStackNavigator(
       screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null
       }),
       path: `product/:id`
     },
     ServiceIndex: {
       screen: ServiceIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null
       })
@@ -314,33 +300,27 @@ export const MallrHomeStack = createStackNavigator(
     },
     CollectionIndex: {
       screen: CollectionIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
         headerBackTitle: null
       })
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null
       })
     },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null
       })
@@ -367,7 +347,7 @@ export const MallrHomeStack = createStackNavigator(
     },
     BrandIndex: {
       screen: BrandIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
         headerBackTitle: null
       })
@@ -391,7 +371,7 @@ export const MallrHomeStack = createStackNavigator(
     },
     OrderIndex: {
       screen: OrderIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
         headerBackTitle: null
@@ -400,9 +380,9 @@ export const MallrHomeStack = createStackNavigator(
     },
     HomeKey: {
       screen: HomeKeyScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={false} />,
         headerBackTitle: null
       })
@@ -410,9 +390,9 @@ export const MallrHomeStack = createStackNavigator(
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
+        // headerLeft: <HeaderLeft />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerRight: <HeaderRight display={true} />,
         headerBackTitle: null
       })
     },
@@ -496,13 +476,3 @@ MallrHomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible
   };
 };
-
-// CartStack.navigationOptions = ({navigation}) => {
-//   let tabBarVisible = true;
-//   if (navigation.state.index > 0) {
-//     tabBarVisible = false;
-//   }
-//   return {
-//     tabBarVisible
-//   };
-// };

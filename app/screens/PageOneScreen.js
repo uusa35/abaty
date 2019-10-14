@@ -50,7 +50,7 @@ const PageOneScreen = ({
           colors={colors}
         />
       ) : null}
-      {ESCRAP || MALLR ? (
+      {ESCRAP || HOMEKEY ? (
         <ClassifiedCategoryVerticalWidget
           elements={categories}
           dispatch={dispatch}

@@ -6,6 +6,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {text} from './../constants';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import FastImage from 'react-native-fast-image';
+import {useNavigation} from 'react-navigation-hooks';
 
 export const HeaderMiddle = ({title, showLogo = false}) => {
   const {colors, app_logo} = useContext(GlobalValuesContext);

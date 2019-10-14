@@ -136,9 +136,9 @@ export function* getProductIndex() {
 
 export function* setProducts() {
   try {
-    const products = yield call(api.getProducts);
-    if (!validate.isEmpty(products) && validate.isArray(products)) {
-      yield all([put({type: actions.SET_PRODUCTS, payload: products})]);
+    const elements = yield call(api.getProducts);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield all([put({type: actions.SET_PRODUCTS, payload: elements})]);
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
@@ -148,14 +148,14 @@ export function* setProducts() {
 export function* startGetProductScenario(action) {
   try {
     yield call(enableLoadingContent);
-    const product = yield call(api.getProduct, action.payload);
-    if (!validate.isEmpty(product) && validate.isObject(product)) {
-      yield put({type: actions.SET_PRODUCT, payload: product});
+    const element = yield call(api.getProduct, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield put({type: actions.SET_PRODUCT, payload: element});
       yield all([
         put(
           NavigationActions.navigate({
             routeName: 'Product',
-            params: {name: product.name, id: product.id, model: 'product'}
+            params: {name: element.name, id: element.id, model: 'product'}
           })
         ),
         call(disableLoadingContent)

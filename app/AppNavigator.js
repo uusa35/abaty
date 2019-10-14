@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-  createAppContainer,
-} from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import {
   createReactNavigationReduxMiddleware,
   createReduxContainer

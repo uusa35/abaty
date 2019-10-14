@@ -11,9 +11,9 @@ export const MallrServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
       screen: ServiceIndexAllScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null
       })
@@ -22,13 +22,7 @@ export const MallrServiceStack = createStackNavigator(
       screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null,
         headerStyle: {
           // backgroundColor: 'white',

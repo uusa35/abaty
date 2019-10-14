@@ -18,12 +18,11 @@ import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 export const HeaderRight = ({
   showCountry = false,
   displayShare = false,
-  showFilter = false,
-  navigation
+  showFilter = false
 }) => {
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  const {navigate} = useNavigation();
+  const navigation = useNavigation();
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;
     return Share.open({
@@ -71,7 +70,7 @@ export const HeaderRight = ({
         <Icon
           onPress={() => {
             dispatch({type: SHOW_SEARCH_MODAL});
-            navigate('ClassifiedFilter');
+            navigation.navigate('ClassifiedFilter');
           }}
           name="tune"
           type="material-icon"
