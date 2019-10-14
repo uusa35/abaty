@@ -305,11 +305,7 @@ export function* startSubmitAuthScenario(action) {
       if (loginModal) {
         yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
       } else {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'Home'
-          })
-        );
+        yield put(NavigationActions.back());
       }
       yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
     } else {

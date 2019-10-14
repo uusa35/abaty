@@ -47,6 +47,8 @@ import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
 import {MallrCategoryStack} from './MallrCategoryStack';
 import {MallrProductStack} from './MallrProductStack';
 import ShopperShowScreen from '../../screens/ShopperShowScreen';
+import MallrSettingsIndexScreen from '../../screens/mallr/MallrSettingsIndexScreen';
+import {Icon} from 'react-native-elements';
 
 export const MallrHomeStack = createStackNavigator(
   {
@@ -456,6 +458,18 @@ export const MallrHomeStack = createStackNavigator(
             display={false}
           />
         ),
+        headerBackTitle: null
+      })
+    },
+    SettingIndex: {
+      screen: MallrSettingsIndexScreen,
+      navigationOptions: () => ({
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="ios-person" type="ionicon" color={tintColor} />
+        ),
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight display={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null
       })
     }

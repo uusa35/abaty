@@ -42,26 +42,6 @@ const MallrSettingsIndexScreen = ({
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-      {!validate.isEmpty(element) ? (
-        <ShopperImageProfile
-          member_id={element.id}
-          showFans={true}
-          showRating={false}
-          showComments={false}
-          showLike={false}
-          isFanned={element.isFanned}
-          totalFans={element.totalFans}
-          currentRating={element.rating}
-          medium={element.medium}
-          logo={logo}
-          slug={element.slug}
-          views={element.views}
-          commentsCount={element.commentsCount}
-        />
-      ) : null}
-      {!validate.isEmpty(element.collections) ? (
-        <CollectionGridWidget elements={element.collections} />
-      ) : null}
       <View
         animation="bounceInRight"
         easing="ease-out"
