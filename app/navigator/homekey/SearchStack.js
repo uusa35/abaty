@@ -7,7 +7,7 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
 
-export const AbatiSearchStack = createStackNavigator(
+export const SearchStack = createStackNavigator(
   {
     SearchIndex: {
       screen: SearchScreen,

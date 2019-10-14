@@ -1,7 +1,5 @@
 import React, {
-  Component,
   useState,
-  useMemo,
   useEffect,
   useCallback
 } from 'react';
@@ -13,8 +11,6 @@ import {
   View,
   AppState,
   StyleSheet,
-  TouchableOpacity,
-  Text
 } from 'react-native';
 import {connect} from 'react-redux';
 import {

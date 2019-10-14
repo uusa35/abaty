@@ -22,10 +22,10 @@ import CompanyShowScreen from '../../screens/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import DesignerShowScreen from '../../screens/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/CelebrityShowScreen';
+import NormalProductShow from '../../screens/NormalProductShowScreen';
 import ProductIndexScreen from '../../screens/ProductIndexScreen';
 import ServiceIndexScreen from '../../screens/ServiceIndexScreen';
 import CollectionIndexScreen from '../../screens/CollectionIndexScreen';
-import ProductShowScreen from '../../screens/ProductShowScreen';
 import ServiceShowScreen from '../../screens/ServiceShowScreen';
 import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
@@ -43,12 +43,15 @@ import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
 import React from 'react';
+import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
+import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import validate from 'validate.js';
 
-export const AbatiHomeStack = createStackNavigator(
+export const HomeStack = createStackNavigator(
   {
     // Introduction: {
     //   screen: IntroductionScreen,
-    //   navigationOptions: ({navigation}) => ({
+    //   navigationOptions: ) => ({
     //     header: null,
     //     showLabel: false,
     //     showIcon: false,
@@ -56,133 +59,61 @@ export const AbatiHomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: createMaterialTopTabNavigator(
-        {
-          Main: {
-            screen: HomeScreen,
-            navigationOptions: {
-              headerBackTitle: null,
-              title: I18n.t('home')
-            }
-          },
-          PageOne: {
-            screen: PageOneScreen,
-            navigationOptions: {
-              headerBackTitle: null
-            }
-          },
-          PageTwo: {
-            screen: PageTwoScreen,
-            navigationOptions: {
-              headerBackTitle: null
-            }
-          }
-          // PageThree: {
-          //   screen: PageThreeScreen,
-          //   navigationOptions: {
-          //     headerBackTitle: null
-          //   }
-          // },
-          // PageFour: {
-          //   screen: PageFourScreen,
-          //   navigationOptions: {
-          //     headerBackTitle: null
-          //   }
-          // }
-        },
-        {
-          tabBarOptions: {
-            lazy: true,
-            showIcon: false,
-            scrollEnabled: true,
-            allowFontScaling: true,
-            activeTintColor: 'black',
-            inactiveTintColor: '#b2b2b2',
-            activeBackgroundColor: 'white',
-            animationEnabled: true,
-            labelStyle: {fontFamily: text.font},
-            style: {
-              backgroundColor: 'transparent',
-              maxHeight: 50,
-              alignSelf: 'flex-start',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-start',
-              borderBottomWidth: 0.5,
-              borderColor: 'lightgrey'
-            },
-            tabStyle: {
-              backgroundColor: 'transparent'
-            },
-            indicatorStyle: {
-              backgroundColor: 'black'
-            }
-          },
-          navigationOptions: ({navigation}) => ({
-            tabBarVisible: true,
-            headerLeft: <HeaderLeft {...navigation} />,
-            headerRight: <HeaderRight {...navigation} display={true} />,
-            headerTitle: (
-              <HeaderMiddle showLogo={true} title={I18n.t('home')} />
-            ),
-            headerBackTitle: null
-          }),
-          initialRouteName: 'Main',
-          order: ['Main', 'PageOne', 'PageTwo']
-        }
-      )
+      screen: HomeKeyScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerBackTitle: null
+      })
     },
     CartIndex: {
       screen: CartIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        // HeaderRight: <HeaderRight {...navigation} />,
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        // HeaderRight: <HeaderRight  />,
         headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: null
       })
     },
     CartConfirmation: {
       screen: CartConfirmationScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
         headerBackTitle: null
       })
     },
     PaymentIndex: {
       screen: PaymentIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        HeaderRight: <HeaderLeft {...navigation} />,
+      navigationOptions: () => ({
+        HeaderRight: <HeaderLeft />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null
       })
+    },
+    CategoryIndex: {
+      screen: CategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerTitle: (
+          <HeaderMiddle
+            title={
+              navigation.state.params &&
+              !validate.isEmpty(navigation.state.params.name)
+                ? navigation.state.params.name
+                : I18n.t('categories')
+            }
+          />
+        ),
+        headerBackTitle: null,
+        headerTransparent: true
+      }),
+      path: 'category/:id'
     },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
-    },
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
-    },
-    Register: {
-      screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
-    },
-    UserEdit: {
-      screen: UserEditScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null
       })
@@ -215,7 +146,7 @@ export const AbatiHomeStack = createStackNavigator(
       screen: CompanyShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: <HeaderCustom />,
         headerBackTitle: null
       }),
       path: `user/:id`
@@ -224,7 +155,7 @@ export const AbatiHomeStack = createStackNavigator(
       screen: DesignerShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: <HeaderCustom />,
         headerBackTitle: null
       }),
       path: `user/:id`
@@ -233,7 +164,7 @@ export const AbatiHomeStack = createStackNavigator(
       screen: CelebrityShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: <HeaderCustom />,
         headerBackTitle: null
       }),
       path: `user/:id`
@@ -241,48 +172,36 @@ export const AbatiHomeStack = createStackNavigator(
     ProductIndex: {
       screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null
       })
     },
     ServiceIndex: {
       screen: ServiceIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null
       })
     },
     CollectionIndex: {
       screen: CollectionIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
         headerBackTitle: null
       })
     },
 
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShow,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} showCountry={true} />,
         headerBackTitle: null
       }),
       path: `product/:id`
@@ -291,35 +210,25 @@ export const AbatiHomeStack = createStackNavigator(
       screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null
       }),
       path: `product/:id`
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null
       })
     },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null
       })
@@ -346,7 +255,7 @@ export const AbatiHomeStack = createStackNavigator(
     },
     BrandIndex: {
       screen: BrandIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
         headerBackTitle: null
       })
@@ -355,7 +264,7 @@ export const AbatiHomeStack = createStackNavigator(
       screen: BrandShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: <HeaderCustom />,
         headerBackTitle: null
       })
     },
@@ -370,7 +279,7 @@ export const AbatiHomeStack = createStackNavigator(
     },
     OrderIndex: {
       screen: OrderIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
         headerBackTitle: null
@@ -379,19 +288,22 @@ export const AbatiHomeStack = createStackNavigator(
     },
     HomeKey: {
       screen: HomeKeyScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={false} />,
-        headerBackTitle: null
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft showCart={false} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
+        headerTitle: (
+          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
+        ),
+        headerBackTitle: null,
+        headerTransparent: true
       })
     },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
+        // headerLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerRight: <HeaderRight showFilter={true} />,
         headerBackTitle: null
       })
     },
@@ -399,13 +311,7 @@ export const AbatiHomeStack = createStackNavigator(
       screen: ClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null
         //   headerTransparent: true,
         // headerStyle: {
@@ -418,44 +324,47 @@ export const AbatiHomeStack = createStackNavigator(
     },
     ClassifiedStore: {
       screen: ClassifiedStoreScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={false}
-            display={false}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={false} display={false} />,
         headerBackTitle: null
       })
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={false}
-            display={false}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={false} display={false} />,
         headerBackTitle: null
       })
     },
     ChooseCategoryGroups: {
       screen: CategoryGroupsScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={false}
-            display={false}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={false} display={false} />,
         headerBackTitle: null
+      })
+    },
+    ClassifiedFilter: {
+      screen: ClassifiedFilterScreen,
+      navigationOptions: () => ({
+        header: null
+      })
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('login')} />,
+        headerRight: <HeaderRight display={false} />
+      })
+    },
+    Register: {
+      screen: RegisterScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: <HeaderRight display={false} />
+        // headerBackTitle: null
       })
     }
   },
@@ -466,7 +375,7 @@ export const AbatiHomeStack = createStackNavigator(
   }
 );
 
-AbatiHomeStack.navigationOptions = ({navigation}) => {
+HomeStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -475,13 +384,3 @@ AbatiHomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible
   };
 };
-
-// CartStack.navigationOptions = ({navigation}) => {
-//   let tabBarVisible = true;
-//   if (navigation.state.index > 0) {
-//     tabBarVisible = false;
-//   }
-//   return {
-//     tabBarVisible
-//   };
-// };

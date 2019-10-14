@@ -62,6 +62,7 @@ import HomeKeySearchTab from '../components/widgets/search/HomeKeySearchTab';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
+    categories,
   commercials,
   slides,
   show_commercials,
@@ -170,7 +171,7 @@ const HomeKeyHomeScreen = ({
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}
-        <HomeKeySearchTab />
+        <HomeKeySearchTab elements={categories}/>
         {!validate.isEmpty(homeCategories) &&
         validate.isArray(homeCategories) ? (
           <ClassifiedCategoryHorizontalRoundedWidget
@@ -236,6 +237,7 @@ const HomeKeyHomeScreen = ({
 
 function mapStateToProps(state) {
   return {
+    categories : state.categories,
     homeCategories: state.homeCategories,
     homeClassifieds: state.homeClassifieds,
     commercials: state.commercials,
@@ -253,6 +255,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(HomeKeyHomeScreen);
 
 HomeKeyHomeScreen.propTypes = {
+  categories : PropTypes.array,
   homeCategories: PropTypes.array,
   brands: PropTypes.array,
   homeDesigners: PropTypes.array,

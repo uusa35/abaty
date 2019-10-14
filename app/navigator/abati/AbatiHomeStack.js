@@ -353,6 +353,21 @@ export const AbatiHomeStack = createStackNavigator(
       navigationOptions: () => ({
         header: null
       })
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('login')} />,
+        headerRight: <HeaderRight display={false} />
+      })
+    },
+    Register: {
+      screen: RegisterScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: <HeaderRight display={false} />
+        // headerBackTitle: null
+      })
     }
   },
   {

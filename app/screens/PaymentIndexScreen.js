@@ -1,32 +1,19 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
 import WebView from 'react-native-webview';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {DispatchContext} from '../redux/DispatchContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-class PaymentIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const PaymentIndexScreen = () => {
+  const {dispatch} = useContext(DispatchContext);
+  const navigation = useNavigation();
+  return (
+    <WebView
+      source={{uri: navigation.state.params.paymentUrl}}
+      style={{marginTop: 20}}
+      injectedJavaScript={'(function(){ return "test"}());'}
+      onNavigationStateChange={navEvent => dispatch({type: 'CLEAR_CART'})}
+    />
+  );
+};
 
-  render() {
-    const {dispatch} = this.props;
-    return (
-      <WebView
-        source={{uri: this.props.navigation.state.params.paymentUrl}}
-        style={{marginTop: 20}}
-        injectedJavaScript={'(function(){ return "test"}());'}
-        onNavigationStateChange={navEvent => dispatch({type: 'CLEAR_CART'})}
-      />
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {};
-}
-
-export default connect(mapStateToProps)(PaymentIndexScreen);
-
-PaymentIndexScreen.propTypes = {};
-const styles = StyleSheet.create({});
+export default PaymentIndexScreen;

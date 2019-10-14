@@ -24,7 +24,7 @@ import {
   getHomeCompanies,
   getSearchCompanies,
   setHomeBrands,
-  startAuthenticatedScenario
+  startAuthenticatedScenario, startReAuthenticateScenario
 } from './userSagas';
 import {
   getBestSaleProducts,
@@ -55,9 +55,9 @@ export function* startRefetchHomeCategories() {
   yield put({type: actions.GET_HOME_CATEGORIES});
 }
 
-export function* startGetCategoriesScenario() {
+export function* startGetParentCategoriesScenario() {
   try {
-    const elements = yield call(api.getCategories);
+    const elements = yield call(api.getParentCategories);
     if (!validate.isEmpty(elements) && isArray(elements)) {
       yield put({type: actions.SET_CATEGORIES, payload: elements});
     } else {
@@ -200,7 +200,7 @@ export function* startRefetchHomeElementsScenario() {
       call(setHomeSplashes),
       call(getVideos),
       call(getPages),
-      call(startAuthenticatedScenario),
+      call(startReAuthenticateScenario),
       put({type: actions.GET_CATEGORIES}),
       put({type: actions.GET_HOME_CATEGORIES}),
       put({

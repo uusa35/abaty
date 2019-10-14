@@ -21,7 +21,6 @@ const CartConfirmationScreen = ({
   grossTotal,
   country
 }) => {
-  console.log('coupon', coupon);
   return (
     <View
       style={{

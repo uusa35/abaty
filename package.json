@@ -76,6 +76,7 @@
     "react-navigation-redux-helpers": "^3.0.2",
     "react-navigation-tabs": "^2.4.0",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-observable": "^1.1.0",
     "redux-persist": "^5.10.0",

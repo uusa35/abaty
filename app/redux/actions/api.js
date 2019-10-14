@@ -28,7 +28,7 @@ export async function getSettings() {
 
 export async function getHomeCategories() {
   return await axiosInstance
-    .get(`category`)
+    .get(`category`, { params : { on_home : true }})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -274,14 +274,14 @@ export const networkTransform = createTransform(
 
 export async function authenticated(api_token) {
   return await axiosInstance
-    .get(`authenticate`, {params: {api_token}})
+    .post(`authenticate`, {params: {api_token}})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
 
 export async function reAuthenticate(api_token) {
   return await axiosInstance
-    .get(`reauthenticate`, {params: {api_token}})
+    .post(`reauthenticate`, {params: {api_token}})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -470,9 +470,9 @@ export async function addComment(params) {
     .catch(e => e.response.date.message);
 }
 
-export async function getCategories() {
+export async function getParentCategories() {
   return await axiosInstance
-    .get(`category`)
+    .get(`category`, { params : { is_parent : true }})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

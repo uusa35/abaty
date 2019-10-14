@@ -8,6 +8,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import {createNetworkMiddleware} from 'react-native-offline';
 import {networkTransform} from './../redux/actions/api';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const persistConfig = {
   key: 'root',
@@ -43,8 +44,9 @@ if (__DEV__) {
     collapsed: true,
     duration: true
   });
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  // const composeEnhancers =
+  //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});
   Store = createStore(
     persistedReducer,
     composeEnhancers(

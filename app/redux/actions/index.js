@@ -619,3 +619,10 @@ export function addToProperties(payload) {
     payload
   };
 }
+
+export function startClassifiedSearching(payload) {
+  return {
+    type : actions.START_CLASSIFIED_SEARCHING,
+    payload
+  }
+}

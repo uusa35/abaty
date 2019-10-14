@@ -1,25 +1,25 @@
 import {createStackNavigator} from 'react-navigation';
-import ProductIndexAllScreen from '../../screens/ProductIndexAllScreen';
+import ServiceIndexAllScreen from '../../screens/ServiceIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import ProductShowScreen from '../../screens/ProductShowScreen';
+import ServiceShowScreen from '../../screens/ServiceShowScreen';
 import React from 'react';
 
-export const AbatiProductStack = createStackNavigator(
+export const ServiceStack = createStackNavigator(
   {
-    ProductIndexAll: {
-      screen: ProductIndexAllScreen,
+    ServiceIndexAll: {
+      screen: ServiceIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+        headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null
       })
     },
-    Product: {
-      screen: ProductShowScreen,
+    Service: {
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -29,9 +29,13 @@ export const AbatiProductStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerStyle: {
+          // backgroundColor: 'white',
+          // zIndex: 100
+        }
       }),
-      path: `product/:id`
+      path: `service/:id`
     }
   },
   {
@@ -39,13 +43,3 @@ export const AbatiProductStack = createStackNavigator(
     headerMode: 'float'
   }
 );
-
-AbatiProductStack.navigationOptions = ({navigation}) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-  return {
-    tabBarVisible
-  };
-};

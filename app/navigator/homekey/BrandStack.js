@@ -1,37 +1,32 @@
 import {createStackNavigator} from 'react-navigation';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import BrandIndexScreen from '../../screens/BrandIndexScreen';
+import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
-import validate from 'validate.js';
 import I18n from '../../I18n';
+import BrandShowScreen from '../../screens/BrandShowScreen';
+import HeaderCustom from '../../components/HeaderCustom';
 import ProductIndexScreen from '../../screens/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import ProductShowScreen from '../../screens/ProductShowScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
+import NormalProductShow from '../../screens/NormalProductShowScreen';
 import React from 'react';
 
-export const AbatiCategoryStack = createStackNavigator(
+export const BrandStack = createStackNavigator(
   {
-    CategoryIndex: {
-      screen: CategoryIndexScreen,
+    BrandIndex: {
+      screen: BrandIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerTitle: (
-          <HeaderMiddle
-            title={
-              !validate.isEmpty(navigation.state.params.name)
-                ? navigation.state.params.name
-                : I18n.t('categories')
-            }
-          />
-        ),
-        headerBackTitle: null,
-        headerTransparent: true
-      }),
-      params: {
-        category: null,
-        showMainCategory: true
-      },
-      path: 'category/:id'
+        headerLeft: <HeaderLeft {...navigation} />,
+        headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
+        headerBackTitle: null
+      })
+    },
+    BrandShow: {
+      screen: BrandShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderCustom navigation={navigation} />,
+        headerBackTitle: null
+      })
     },
     ProductIndex: {
       screen: ProductIndexScreen,
@@ -43,7 +38,7 @@ export const AbatiCategoryStack = createStackNavigator(
       })
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShow,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -53,18 +48,9 @@ export const AbatiCategoryStack = createStackNavigator(
             display={true}
           />
         ),
-        headerTransparent: true,
         headerBackTitle: null
       }),
       path: `product/:id`
-    },
-    SubCategoryIndex: {
-      screen: SubCategoryIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null
-      })
     }
   },
   {
@@ -73,7 +59,7 @@ export const AbatiCategoryStack = createStackNavigator(
   }
 );
 
-AbatiCategoryStack.navigationOptions = ({navigation}) => {
+BrandStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

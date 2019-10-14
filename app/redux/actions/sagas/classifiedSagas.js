@@ -15,6 +15,8 @@ import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
 import {startGetHomeCompaniesScenario} from './userSagas';
 import {HIDE_SEARCH_MODAL} from '../types';
+import {SET_CATEGORY} from "../types";
+import {SHOW_SEARCH_MODAL} from "../types";
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -196,9 +198,25 @@ export function* getSearchClassifieds() {
   yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
 }
 
+export function* triggerStartClassifiedSearching() {
+  yield takeLatest(actions.START_CLASSIFIED_SEARCHING, startClassifiedSearchingScenario);
+}
+
 export function* getHomeClassifieds() {
   yield takeLatest(
     actions.GET_HOME_CLASSIFIEDS,
     startGetHomeClassifiedsScenario
   );
+}
+
+
+export function* startClassifiedSearchingScenario(action) {
+  console.log('action', action);
+  const element = action.payload;
+  console.log('element', element);
+  yield all([
+      put({ type : SET_CATEGORY, payload : element}),
+      put({ type : SHOW_SEARCH_MODAL }),
+      put(NavigationActions.navigate({ routeName : 'ClassifiedFilter'}))
+  ])
 }

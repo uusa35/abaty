@@ -17,13 +17,13 @@ if (ENV === 'local') {
       ? 'http://abati.ideasowners.net/'
       : MALLR
       ? 'http://mallr.net/'
-      : 'http://escrapco.com/',
+      : 'http://hkey.ideasowners.net/',
     // appUrlIos: 'http://abati.ideasowners.net/',
     appUrlAndroid: ABATI
       ? 'http://abati.ideasowners.net/'
       : MALLR
       ? 'http://mallr.net/'
-      : 'http://escrapco.com/',
+      : 'http://hkey.ideasowners.net/',
     port: PORT
   };
 }

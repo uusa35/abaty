@@ -27,7 +27,7 @@ import {
   getPages,
   getTags,
   startGetHomeCategoriesScenario,
-  startGetCategoriesScenario
+  startGetCategoriesScenario, startGetParentCategoriesScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -233,10 +233,10 @@ export function* startResetStoreScenario() {
   yield call(startAppBootStrap);
 }
 
-export function* getHomeCategories() {
+export function* triggerGetHomeCategories() {
   yield takeLatest(actions.GET_HOME_CATEGORIES, startGetHomeCategoriesScenario);
 }
 
-export function* getCategories() {
-  yield takeLatest(actions.GET_HOME_CATEGORIES, startGetCategoriesScenario);
+export function* triggerGetParentCategories() {
+  yield takeLatest(actions.GET_CATEGORIES, startGetParentCategoriesScenario);
 }
