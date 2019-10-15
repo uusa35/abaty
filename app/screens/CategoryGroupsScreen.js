@@ -196,13 +196,9 @@ CategoryGroupsScreen.propTypes = {
 };
 const styles = StyleSheet.create({
   iconModalWrapper: {
-    // flex : 0.1,
     flexDirection: 'row',
     width: '100%',
     height: 80,
-    // paddingLeft: 20,
-    // paddingRight: 20,
-    // paddingBottom: 5,
     borderWidth: 4,
     borderColor: 'green',
     justifyContent: 'flex-end',
