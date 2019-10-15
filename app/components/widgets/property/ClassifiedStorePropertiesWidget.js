@@ -21,17 +21,18 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
       {map(elements, (p, i) => {
         return (
           <View style={styles.propertiesWrapper} key={i}>
-            {p.icon ? (
-              <Icon type="font-awesome" name={p.icon} />
+            {p.property.icon ? (
+              <Icon type="font-awesome" name={p.property.icon} />
             ) : (
               <FastImage
-                source={{uri: p.thumb}}
+                source={{uri: p.property.thumb}}
                 style={{width: 30, height: 30}}
               />
             )}
             <View style={styles.infoWrapper}>
-              <Text style={styles.title}>{p.name}</Text>
-              <Text style={styles.title}>{p.value}</Text>
+              <Text style={styles.title}>{p.cateogry_group.name}</Text>
+              {/*<Text style={styles.title}>{p.property.name}</Text>*/}
+              <Text style={styles.title}>{p.property.value}</Text>
             </View>
           </View>
         );

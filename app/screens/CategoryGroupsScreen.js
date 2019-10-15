@@ -31,8 +31,8 @@ const CategoryGroupsScreen = ({
   propertiesModal,
   navigation
 }) => {
-  [currentGroupId, setCurrentGroupId] = useState(
-    !validate.isEmpty(category) ? first(category.categoryGroups).id : null
+  const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
+    !validate.isEmpty(category) ? first(category.categoryGroups) : null
   );
   const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
@@ -42,33 +42,38 @@ const CategoryGroupsScreen = ({
     if (validate.isEmpty(remainingGroups)) {
       setCategoryGroupVisible(false);
     } else {
-      setCategoryGroupVisible(!categoryGroupVisible);
+      setCategoryGroupVisible(true);
     }
-  }, [currentGroupId, remainingGroups]);
+  }, [currentCategoryGroup, remainingGroups]);
 
   const handleClick = useCallback(property => {
     setSelectedProperties([
       {
-        property_id: property.id,
-        value: property.value,
-        name: property.name,
-        icon: property.icon,
-        thumb: property.thumb
+        cateogry_group: currentCategoryGroup,
+        property: property,
+        category_group_property: property.id + currentCategoryGroup.id
+        // value: property.value,
+        // name: property.name,
+        // icon: property.icon,
+        // thumb: property.thumb
       },
       ...selectedProperties
     ]);
     dispatch(
       addToProperties({
-        property_id: property.id,
-        value: property.value,
-        name: property.name,
-        icon: property.icon,
-        thumb: property.thumb
+        cateogry_group: currentCategoryGroup,
+        property: property,
+        category_group_property: property.id + currentCategoryGroup.id
       })
     );
-    const rest = filter(remainingGroups, (g, i) => g.id !== currentGroupId);
+    const rest = filter(
+      remainingGroups,
+      (g, i) => g.id !== currentCategoryGroup.id
+    );
+    console.log('the rest', rest);
+    console.log('ramingGroups', remainingGroups);
     if (!validate.isEmpty(rest)) {
-      setCurrentRaminingId(first(rest).id);
+      setCurrentCategoryGroup(first(rest));
       setRemainingGroups(rest);
     } else {
       setRemainingGroups(null);
@@ -83,7 +88,8 @@ const CategoryGroupsScreen = ({
   useMemo(() => {
     if (validate.isEmpty(remainingGroups)) {
       setCategoryGroupVisible(false);
-      setCurrentGroupId(0);
+      // setCurrentGroupId(0);
+      setCurrentCategoryGroup([]);
       doneWithProperties();
     }
   }, [selectedProperties]);
@@ -98,8 +104,13 @@ const CategoryGroupsScreen = ({
                 key={i}
                 transparent={false}
                 animationType={'slide'}
-                onRequestClose={() => setCategoryGroupVisible(false)}
-                visible={currentGroupId === group.id && categoryGroupVisible}>
+                onRequestClose={() => {
+                  setCategoryGroupVisible(false);
+                  return navigation.goBack();
+                }}
+                visible={
+                  currentCategoryGroup.id === group.id && categoryGroupVisible
+                }>
                 <View
                   style={{
                     width: '100%',
@@ -117,7 +128,10 @@ const CategoryGroupsScreen = ({
                     size={25}
                     style={{zIndex: 999}}
                     // onPress={() => navigation.goBack()}
-                    onPress={() => setCategoryGroupVisible(false)}
+                    onPress={() => {
+                      setCategoryGroupVisible(false);
+                      return navigation.goBack();
+                    }}
                     hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
                   />
                   <Text

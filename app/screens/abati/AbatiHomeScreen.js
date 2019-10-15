@@ -48,6 +48,7 @@ import I18n from '../../I18n';
 
 const AbatiHomeScreen = ({
   homeCategories,
+  bootStrapped,
   commercials,
   slides,
   splashes,
@@ -84,7 +85,7 @@ const AbatiHomeScreen = ({
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
       : null;
-  });
+  }, [bootStrapped]);
 
   const handleAppStateChange = useCallback(
     nextAppState => {
@@ -249,7 +250,8 @@ function mapStateToProps(state) {
     lang: state.lang,
     services: state.services,
     showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies
+    homeCompanies: state.homeCompanies,
+    bootStrapped: state.bootStrapped
   };
 }
 
@@ -264,7 +266,8 @@ AbatiHomeScreen.propTypes = {
   slides: PropTypes.array,
   splashes: PropTypes.array,
   show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool
+  splash_on: PropTypes.bool,
+  bootStrapped: PropTypes.bool
 };
 
 const styles = StyleSheet.create({

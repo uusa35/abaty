@@ -9,7 +9,6 @@ const LoginScreen = () => {
   const [visible, setVisible] = useState(false);
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   const parent = dangerouslyGetParent();
-  console.log('dengirious', parent.state.index);
 
   return (
     <Fragment>

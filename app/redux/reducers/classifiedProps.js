@@ -8,7 +8,10 @@ import {uniqBy} from 'lodash';
 export default function(classifiedProps = [], action) {
   switch (action.type) {
     case ADD_TO_PROPERTIES:
-      return uniqBy(classifiedProps.concat(action.payload), 'property_id');
+      return uniqBy(
+        classifiedProps.concat(action.payload),
+        'category_group_property'
+      );
     case SET_PROPERTIES:
       return action.payload;
     case CLEAR_PROPERTIES:
