@@ -27,7 +27,7 @@ const ClassifiedSearchForm = () => {
           }}
         />
       }
-      containerStyle={{marginTop: 5, marginBottom: 5}}
+      containerStyle={{marginTop: 5, marginBottom: 5, flex: 1}}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
         borderRadius: 30,

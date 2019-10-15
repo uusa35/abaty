@@ -27,6 +27,7 @@ const ClassifiedFilterScreen = ({
     }
   }, [visible]);
 
+  console.log('category props', category);
   return (
     <SafeAreaView>
       <Modal
@@ -48,7 +49,7 @@ const ClassifiedFilterScreen = ({
             width: '100%',
             padding: 10
           }}>
-          <View>
+          <View style={{flex: 1}}>
             <View
               style={{
                 borderWidth: 5,

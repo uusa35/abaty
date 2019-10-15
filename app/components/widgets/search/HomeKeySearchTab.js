@@ -1,33 +1,31 @@
-import React, {useState, useMemo, useContext} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import {Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, width} from '../../../constants';
-import {useNavigation} from 'react-navigation-hooks';
-import {SHOW_SEARCH_MODAL} from '../../../redux/actions/types';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {take, first, map, filter} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions';
 
 const HomeKeySearchTab = ({elements}) => {
+  console.log('elements', elements);
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
-  const {navigate} = useNavigation();
   const [index, setIndex] = useState(0);
   const parentCategories = map(take(elements, 3), (e, i) => {
     return {
-      key: e.id,
-      title: e.name
+      key: i,
+      title: e.name,
+      category: e
     };
   });
   const [routes, setRoutes] = useState(parentCategories);
+
   const SearchTab = ({element}) => {
-    console.log('element', element);
-    const category = filter(elements, (e, i) => e.id === element.key);
     return (
       <TouchableOpacity
-        onPress={() => dispatch(startClassifiedSearching(category))}
+        onPress={() => dispatch(startClassifiedSearching(element.category))}
         style={{
           padding: 20,
           backgroundColor: 'white',
@@ -36,10 +34,21 @@ const HomeKeySearchTab = ({elements}) => {
           alignSelf: 'center'
         }}>
         <Text style={{fontFamily: text.font, textAlign: 'left'}}>
-          {I18n.t('search')} {element.title}
+          {I18n.t('search')} {element.category.name}
         </Text>
       </TouchableOpacity>
     );
+  };
+
+  const renderScene = ({route, jumpTo}) => {
+    switch (route.key) {
+      case 0:
+        return <SearchTab element={route} />;
+      case 1:
+        return <SearchTab element={route} />;
+      case 2:
+        return <SearchTab element={route} />;
+    }
   };
 
   return (
@@ -81,11 +90,7 @@ const HomeKeySearchTab = ({elements}) => {
           index,
           routes
         }}
-        renderScene={SceneMap({
-          0: e => <SearchTab element={e.route} />,
-          1: e => <SearchTab element={e.route} />,
-          2: e => <SearchTab element={e.route} />
-        })}
+        renderScene={renderScene}
         style={{backgroundColor: 'transparent'}}
         onIndexChange={i => setIndex(i)}
         initialLayout={{width: width}}
