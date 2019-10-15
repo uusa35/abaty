@@ -5,7 +5,6 @@ import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 
 const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
-  useMemo(() => {});
   return (
     <View
       style={{
@@ -20,7 +19,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
             ? setRequestQty(requestQty + 1)
             : null
         }
-        icon={<Icon name="plus" type="font-awesome" size={15} color="black" />}
+        icon={<Icon name="plus" type="antdesign" size={15} color="black" />}
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{
           backgroundColor: 'white',
@@ -44,7 +43,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
       </View>
       <Button
         onPress={() => (requestQty > 0 ? setRequestQty(requestQty - 1) : null)}
-        icon={<Icon name="minus" type="font-awesome" size={15} color="black" />}
+        icon={<Icon name="minus" type="antdesign" size={15} color="black" />}
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{
           backgroundColor: 'white',

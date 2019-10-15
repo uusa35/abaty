@@ -1,6 +1,7 @@
-import React, {useContext, useState, useMemo} from 'react';
+import React, {useContext, useState, useMemo, Fragment} from 'react';
+import {View} from 'react-native';
+import {connect} from 'react-redux';
 import {Modal, ScrollView} from 'react-native';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {Icon} from 'react-native-elements';
 import {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
@@ -8,12 +9,17 @@ import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSear
 import {SafeAreaView} from 'react-navigation';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
+import ProductWidgetQtyBtns from '../../components/widgets/product/ProductWidgetQtyBtns';
 
-const ClassifiedFilterScreen = () => {
-  const {dispatch} = useContext(DispatchContext);
-  const {searchModal, categories} = useContext(GlobalValuesContext);
-  const {goBack} = useNavigation();
+const ClassifiedFilterScreen = ({
+  category,
+  dispatch,
+  searchModal,
+  categories
+}) => {
   const [visible, setVisible] = useState(searchModal);
+  const [requestQty, setRequestQty] = useState(0);
+  const {goBack} = useNavigation();
 
   useMemo(() => {
     if (!visible) {
@@ -39,27 +45,48 @@ const ClassifiedFilterScreen = () => {
           contentContainerStyle={{
             marginTop: 40,
             flexDirection: 'row',
-            width: '96%',
-            alignItems: 'baseline',
+            width: '100%',
             padding: 10
           }}>
-          <Icon
-            name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
-            type="entypo"
-            size={25}
-            containerStyle={{padding: 0, margin: 0}}
-            style={{zIndex: 999}}
-            onPress={() => {
-              setVisible(false);
-              return goBack();
-            }}
-            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          />
-          <ClassifiedSearchForm />
+          <View>
+            <View
+              style={{
+                borderWidth: 5,
+                flexDirection: 'row',
+                alignItems: 'baseline'
+              }}>
+              <Icon
+                name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+                type="entypo"
+                size={25}
+                containerStyle={{padding: 0, margin: 0}}
+                style={{zIndex: 999}}
+                onPress={() => {
+                  setVisible(false);
+                  return goBack();
+                }}
+                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              />
+              <ClassifiedSearchForm />
+            </View>
+            <ProductWidgetQtyBtns
+              qty={10}
+              requestQty={requestQty}
+              setRequestQty={setRequestQty}
+            />
+          </View>
         </ScrollView>
       </Modal>
     </SafeAreaView>
   );
 };
 
-export default ClassifiedFilterScreen;
+function mapStateToProps(state) {
+  return {
+    category: state.category,
+    categories: state.categories,
+    searchModal: state.searchModal
+  };
+}
+
+export default connect(mapStateToProps)(ClassifiedFilterScreen);
