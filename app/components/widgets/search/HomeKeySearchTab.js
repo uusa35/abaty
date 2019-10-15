@@ -7,45 +7,40 @@ import {text, width} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 import {SHOW_SEARCH_MODAL} from '../../../redux/actions/types';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import { take , first, map, nth  } from 'lodash';
-import {startClassifiedSearching} from "../../../redux/actions";
+import {take, first, map, filter} from 'lodash';
+import {startClassifiedSearching} from '../../../redux/actions';
 
-const HomeKeySearchTab = ({ elements }) => {
+const HomeKeySearchTab = ({elements}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const [index, setIndex] = useState(0);
-  const parentCategories = map(take(elements,3), (e,i) => {
-      return {
-          key : e.id,
-          title : e.name
-      }
+  const parentCategories = map(take(elements, 3), (e, i) => {
+    return {
+      key: e.id,
+      title: e.name
+    };
   });
-  console.log('parentCategories', parentCategories[0]);
-  // const [routes, setRoutes] = useState([
-  //   {key: 'FirstRoute', title: I18n.t('sale')},
-  //   {key: 'SecondRoute', title: I18n.t('buy')},
-  //   {key: 'ThirdRoute', title: I18n.t('share')}
-  // ]);
-    const[routes,setRoutes] = useState(parentCategories);
-  const SearchTab = ({ element }) => (
-    <TouchableOpacity
-      onPress={() => {
-          console.log('element', element);
-          // dispatch(startClassifiedSearching(element))
-      }}
-      style={{
-        padding: 20,
-        backgroundColor: 'white',
-        opacity: 0.8,
-        width: '90%',
-        alignSelf: 'center'
-      }}>
-      <Text style={{fontFamily: text.font, textAlign: 'left'}}>
-        {/*{I18n.t('search')} {element.title}*/}
-      </Text>
-    </TouchableOpacity>
-  );
+  const [routes, setRoutes] = useState(parentCategories);
+  const SearchTab = ({element}) => {
+    console.log('element', element);
+    const category = filter(elements, (e, i) => e.id === element.key);
+    return (
+      <TouchableOpacity
+        onPress={() => dispatch(startClassifiedSearching(category))}
+        style={{
+          padding: 20,
+          backgroundColor: 'white',
+          opacity: 0.8,
+          width: '90%',
+          alignSelf: 'center'
+        }}>
+        <Text style={{fontFamily: text.font, textAlign: 'left'}}>
+          {I18n.t('search')} {element.title}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <ImageBackground
@@ -87,9 +82,9 @@ const HomeKeySearchTab = ({ elements }) => {
           routes
         }}
         renderScene={SceneMap({
-          0: () => <SearchTab element={parentCategories[0]} />,
-          1: () => <SearchTab element={parentCategories[1]} />,
-          2: () => <SearchTab element={parentCategories[2]} />,
+          0: e => <SearchTab element={e.route} />,
+          1: e => <SearchTab element={e.route} />,
+          2: e => <SearchTab element={e.route} />
         })}
         style={{backgroundColor: 'transparent'}}
         onIndexChange={i => setIndex(i)}

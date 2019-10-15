@@ -622,7 +622,7 @@ export function addToProperties(payload) {
 
 export function startClassifiedSearching(payload) {
   return {
-    type : actions.START_CLASSIFIED_SEARCHING,
+    type: actions.START_CLASSIFIED_SEARCHING,
     payload
-  }
+  };
 }

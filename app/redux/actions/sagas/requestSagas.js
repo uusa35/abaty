@@ -24,7 +24,8 @@ import {
   getHomeCompanies,
   getSearchCompanies,
   setHomeBrands,
-  startAuthenticatedScenario, startReAuthenticateScenario
+  startAuthenticatedScenario,
+  startReAuthenticateScenario
 } from './userSagas';
 import {
   getBestSaleProducts,

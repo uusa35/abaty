@@ -27,7 +27,8 @@ import {
   getPages,
   getTags,
   startGetHomeCategoriesScenario,
-  startGetCategoriesScenario, startGetParentCategoriesScenario
+  startGetCategoriesScenario,
+  startGetParentCategoriesScenario
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';

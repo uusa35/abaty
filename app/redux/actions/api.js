@@ -28,7 +28,7 @@ export async function getSettings() {
 
 export async function getHomeCategories() {
   return await axiosInstance
-    .get(`category`, { params : { on_home : true }})
+    .get(`category`, {params: {on_home: true}})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
@@ -472,7 +472,7 @@ export async function addComment(params) {
 
 export async function getParentCategories() {
   return await axiosInstance
-    .get(`category`, { params : { is_parent : true }})
+    .get(`category`, {params: {is_parent: true}})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

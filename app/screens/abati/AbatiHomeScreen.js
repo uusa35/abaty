@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback
-} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   BackHandler,
   Linking,
@@ -10,7 +6,7 @@ import {
   ScrollView,
   View,
   AppState,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
