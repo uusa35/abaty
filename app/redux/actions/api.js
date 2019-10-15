@@ -387,6 +387,7 @@ export async function storeClassified(elements) {
     price,
     image,
     images,
+    only_whatsapp,
     classifiedProps
   } = elements;
   const form = new FormData();
@@ -397,10 +398,7 @@ export async function storeClassified(elements) {
       type: getImageExtension(image)
     });
   }
-  const filteredImages = filter(
-    images,
-    (img, i) => img.sourceURL !== image.sourceURL
-  );
+  const filteredImages = filter(images, (img, i) => img.path !== image.path);
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       form.append(`images[${i}]`, {
@@ -417,6 +415,7 @@ export async function storeClassified(elements) {
   form.append('user_id', user_id);
   form.append('country_id', country_id);
   form.append('category_id', category_id);
+  form.append('only_whatsapp', only_whatsapp);
   if (area_id) {
     form.append('area_id', area_id);
   }
@@ -426,13 +425,17 @@ export async function storeClassified(elements) {
   form.append('price', price);
   form.append('api_token', api_token);
   map(classifiedProps, (prop, i) => {
-    form.append(`properties[${i}][property_id]`, prop.property_id);
-    form.append(`properties[${i}][value]`, prop.value);
+    form.append(`properties[${i}][category_group_id]`, prop.cateogry_group.id);
+    form.append(`properties[${i}][property_id]`, prop.property.id);
+    form.append(`properties[${i}][value]`, prop.property.value);
   });
+  console.log('the whole form', form);
   return await axiosInstance
     .post(`classified`, form)
-    .then(r => r.data)
-    .catch(e => e.response.data.message);
+    // .then(r => r.data)
+    .then(r => console.log('data', r.data))
+    .catch(e => console.log('eee', e.response.data));
+  // .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

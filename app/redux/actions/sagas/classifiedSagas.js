@@ -122,6 +122,7 @@ export function* startStoreClassifiedScenario(action) {
       {name, mobile, images, image, description, price},
       storeClassifiedConstrains
     );
+    console.log('image', image);
     console.log('the result', result);
     if (validate.isEmpty(result)) {
       console.log('inside');

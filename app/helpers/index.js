@@ -55,10 +55,8 @@ export function showAlert(title, message) {
 }
 
 export function checkImage(img) {
-  if (_.has(img, 'sourceURL')) {
-    return !_.isUndefined(img.sourceURL) && !_.isNull(img.sourceURL)
-      ? true
-      : false;
+  if (_.has(img, 'path')) {
+    return !_.isUndefined(img.path) && !_.isNull(img.path) ? true : false;
   } else {
     return false;
   }

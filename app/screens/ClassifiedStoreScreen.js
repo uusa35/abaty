@@ -72,8 +72,9 @@ const ClassifiedStoreScreen = ({
     if (validate.isEmpty(category)) {
       navigation.navigate('ChooseCategory');
     }
-  });
+  }, [category]);
 
+  console.log('images', images);
   return (
     <KeyboardAwareScrollView
       horizontal={false}
@@ -128,7 +129,7 @@ const ClassifiedStoreScreen = ({
           {map(images, (img, i) => (
             <ImageBackground
               key={i}
-              source={{uri: img.sourceURL}}
+              source={{uri: img.path}}
               style={{width: 100, height: 100, marginRight: 5, marginLeft: 5}}>
               <View
                 style={{
@@ -142,7 +143,7 @@ const ClassifiedStoreScreen = ({
                   size={40}
                   name="ios-checkmark-circle"
                   type="ionicon"
-                  color={img.sourceURL == image.sourceURL ? 'green' : 'black'}
+                  color={img.path == image.path ? 'green' : 'black'}
                   onPress={() => setImage(img)}
                 />
                 <Icon
@@ -370,7 +371,7 @@ const ClassifiedStoreScreen = ({
               images,
               classifiedProps,
               category_id: category.id,
-              only_whatsapp: onlyWhatsapp
+              only_whatsapp: onlyWhatsapp ? 1 : 0
             })
           );
         }}
