@@ -158,8 +158,8 @@ export const storeClassifiedConstrains = {
   price: {presence: true, length: {minimum: 1}},
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
-  image: {presence: true},
-  images: {presence: true}
+  image: {presence: {allowEmpty: false}},
+  images: {presence: {allowEmpty: false}}
 };
 
 export const commentStoreConstrains = {

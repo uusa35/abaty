@@ -54,13 +54,16 @@ import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHoriz
 import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../I18n';
-import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
-import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
+// import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
+// import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import widgetStyles from '../components/widgets/widgetStyles';
 import {Icon} from 'react-native-elements';
 import HomeKeySearchTab from '../components/widgets/search/HomeKeySearchTab';
-import Spinner from "react-native-spinkit";
-import SimpleSpinner from "../components/SimpleSpinner";
+import SimpleSpinner from '../components/SimpleSpinner';
+import {
+  ClassifiedCategoryHorizontalRoundedWidget,
+  ClassifiedListHorizontal
+} from '../components/LazyLoadingComponents/classifiedComponents';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -170,35 +173,39 @@ const HomeKeyHomeScreen = ({
         endFillColor="white"
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
-        <React.Suspense fallback={<SimpleSpinner/>}>
-        {!validate.isEmpty(slides) ? (
-          <MainSliderWidget slides={slides} />
-        ) : null}
-        <HomeKeySearchTab elements={categories} />
-        {!validate.isEmpty(homeCategories) &&
-        validate.isArray(homeCategories) ? (
-          <ClassifiedCategoryHorizontalRoundedWidget
-            elements={homeCategories}
-            colors={colors}
-            showName={true}
-            title={I18n.t('categories')}
-            dispatch={dispatch}
-            navigation={navigation}
-          />
-        ) : null}
-        {!validate.isEmpty(homeClassifieds) &&
-        validate.isArray(homeClassifieds) ? (
-          <ClassifiedListHorizontal
-            classifieds={homeClassifieds}
-            showName={true}
-            showSearch={false}
-            showTitle={true}
-            title="featured_classifieds"
-            dispatch={dispatch}
-            colors={colors}
-            searchElements={{on_home: true}}
-          />
-        ) : null}
+        <React.Suspense fallback={<SimpleSpinner />}>
+          {!validate.isEmpty(slides) ? (
+            <MainSliderWidget slides={slides} />
+          ) : null}
+        </React.Suspense>
+        <React.Suspense fallback={<SimpleSpinner />}>
+          <HomeKeySearchTab elements={categories} />
+          {!validate.isEmpty(homeCategories) &&
+          validate.isArray(homeCategories) ? (
+            <ClassifiedCategoryHorizontalRoundedWidget
+              elements={homeCategories}
+              colors={colors}
+              showName={true}
+              title={I18n.t('categories')}
+              dispatch={dispatch}
+              navigation={navigation}
+            />
+          ) : null}
+        </React.Suspense>
+        <React.Suspense fallback={<SimpleSpinner />}>
+          {!validate.isEmpty(homeClassifieds) &&
+          validate.isArray(homeClassifieds) ? (
+            <ClassifiedListHorizontal
+              classifieds={homeClassifieds}
+              showName={true}
+              showSearch={false}
+              showTitle={true}
+              title="featured_classifieds"
+              dispatch={dispatch}
+              colors={colors}
+              searchElements={{on_home: true}}
+            />
+          ) : null}
         </React.Suspense>
         <TouchableOpacity
           onPress={() =>

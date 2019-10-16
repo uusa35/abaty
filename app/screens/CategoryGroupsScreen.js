@@ -15,7 +15,7 @@ import {
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {map, first, filter} from 'lodash';
+import {map, first, filter, shuffle} from 'lodash';
 import {text} from './../constants';
 import {Icon} from 'react-native-elements';
 import {isRTL} from '../I18n';
@@ -94,6 +94,7 @@ const CategoryGroupsScreen = ({
     }
   }, [selectedProperties]);
 
+  console.log('remainingGroups', remainingGroups);
   return (
     <Fragment>
       {propertiesModal ? (
@@ -103,7 +104,8 @@ const CategoryGroupsScreen = ({
               <Modal
                 key={i}
                 transparent={false}
-                animationType={'slide'}
+                animationType={first(shuffle(['slide', 'fade']))}
+                presentationStyle="fullScreen"
                 onRequestClose={() => {
                   setCategoryGroupVisible(false);
                   return navigation.goBack();
@@ -127,21 +129,29 @@ const CategoryGroupsScreen = ({
                     type="evil-icons"
                     size={25}
                     style={{zIndex: 999}}
-                    // onPress={() => navigation.goBack()}
                     onPress={() => {
                       setCategoryGroupVisible(false);
                       return navigation.goBack();
                     }}
                     hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
                   />
-                  <Text
+                  <View
                     style={{
-                      textAlign: 'center',
-                      fontFamily: text.font,
-                      fontSize: text.large
+                      flexDirection: 'row',
+                      alignItems: 'baseline',
+                      width: 120,
+                      justifyContent: 'space-between'
                     }}>
-                    {group.name}
-                  </Text>
+                    <Icon type="font-awesome" name={group.icon} />
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        fontFamily: text.font,
+                        fontSize: text.large
+                      }}>
+                      {group.name}
+                    </Text>
+                  </View>
                   <Icon
                     containerStyle={{position: 'absolute', right: 0}}
                     name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
@@ -149,7 +159,6 @@ const CategoryGroupsScreen = ({
                     size={25}
                     style={{zIndex: 999}}
                     onPress={() => navigation.goBack()}
-                    // onPress={() => setCategoryGroupVisible(false)}
                     hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
                   />
                 </View>
@@ -203,7 +212,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(React.memo(CategoryGroupsScreen));
+export default connect(mapStateToProps)(CategoryGroupsScreen);
 
 CategoryGroupsScreen.propTypes = {
   category: PropTypes.object.isRequired

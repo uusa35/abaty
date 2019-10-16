@@ -5,7 +5,7 @@ import {
   createReactNavigationReduxMiddleware,
   createReduxContainer
 } from 'react-navigation-redux-helpers';
-import {AbatiRootNavigator as RootNavigator} from './navigator/abati/AbatiRootNavigator';
+import {RootNavigator} from './navigator/abati/RootNavigator';
 // import {MallrRootNavigator as RootNavigator} from './navigator/mallr/MallrRootNavigator';
 // import {RootNavigator} from './navigator/homekey/RootNavigator';
 

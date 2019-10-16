@@ -5,3 +5,7 @@ export const ClassifiedCategoryHorizontalRoundedWidget = lazy(() =>
     '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget'
   )
 );
+
+export const ClassifiedListHorizontal = lazy(() =>
+  import('../../components/widgets/classified/ClassifiedListHorizontal')
+);

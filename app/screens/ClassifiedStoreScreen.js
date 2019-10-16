@@ -74,7 +74,6 @@ const ClassifiedStoreScreen = ({
     }
   }, [category]);
 
-  console.log('images', images);
   return (
     <KeyboardAwareScrollView
       horizontal={false}
@@ -354,9 +353,8 @@ const ClassifiedStoreScreen = ({
           color: colors.btn_text_theme_color
         }}
         title={I18n.t('save_classified')}
-        onPress={() => {
-          console.log('the props', classifiedProps);
-          return dispatch(
+        onPress={() =>
+          dispatch(
             storeClassified({
               user_id: auth.id,
               api_token: auth.api_token,
@@ -373,8 +371,8 @@ const ClassifiedStoreScreen = ({
               category_id: category.id,
               only_whatsapp: onlyWhatsapp ? 1 : 0
             })
-          );
-        }}
+          )
+        }
       />
     </KeyboardAwareScrollView>
   );

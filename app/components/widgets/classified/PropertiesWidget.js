@@ -5,6 +5,7 @@ import {Icon} from 'react-native-elements';
 import {text} from './../../../constants';
 
 const PropertiesWidget = ({elements, colors}) => {
+  console.log('elements', elements);
   return (
     <View
       style={{
@@ -17,7 +18,8 @@ const PropertiesWidget = ({elements, colors}) => {
         alignItems: 'center',
         borderWidth: 0.5
       }}>
-      {map(filter(elements, e => (e.on_home ? e : null)), (p, i) => {
+      {map(filter(elements, e => (e.on_home ? e : null)), (item, i) => {
+        console.log('item', item);
         return (
           <View
             key={i}
@@ -30,7 +32,7 @@ const PropertiesWidget = ({elements, colors}) => {
               minHeight: 85
             }}>
             <Icon
-              name={p.icon}
+              name={item.categoryGroup.icon}
               type="font-awesome"
               size={25}
               color={colors.icon_theme_color}
@@ -41,7 +43,7 @@ const PropertiesWidget = ({elements, colors}) => {
                 fontFamily: text.font,
                 fontSize: text.small
               }}>
-              {p.name}
+              {item.categoryGroup.name}
             </Text>
             <Text
               style={{
@@ -49,7 +51,7 @@ const PropertiesWidget = ({elements, colors}) => {
                 fontFamily: text.font,
                 fontSize: text.small
               }}>
-              {p.value}
+              {item.property.value}
             </Text>
           </View>
         );

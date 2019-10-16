@@ -73,8 +73,8 @@ const ClassifiedInfoWidget = ({
             </Text>
           </View>
         </View>
-        {!validate.isEmpty(element.properties) ? (
-          <PropertiesWidget elements={element.properties} colors={colors} />
+        {!validate.isEmpty(element.items) ? (
+          <PropertiesWidget elements={element.items} colors={colors} />
         ) : null}
       </Fragment>
     </View>

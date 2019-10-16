@@ -7,6 +7,7 @@ import {
   disableLoading,
   disableLoadingContent,
   enableErrorMessage,
+  enableLoading,
   enableLoadingContent,
   enableSuccessMessage,
   enableWarningMessage
@@ -117,13 +118,17 @@ export function* setClassifiedFavorites(classifiedFavorites) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
+    console.log('fired');
     const {name, mobile, description, images, image, price} = action.payload;
     const result = validate(
       {name, mobile, images, image, description, price},
       storeClassifiedConstrains
     );
 
+    console.log('result', result);
+    console.log('payload', action.payload);
     if (validate.isEmpty(result)) {
+      console.log('inside if');
       yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
       console.log('classifed', classified);

@@ -3,7 +3,7 @@ import {AbatiHomeStack} from './AbatiHomeStack';
 import {AbatiLoginStack} from './AbatiLoginStack';
 import {AbatiDrawerNavigator} from './AbatiDrawerNavigator';
 
-export const AbatiRootNavigator = createSwitchNavigator({
+export const RootNavigator = createSwitchNavigator({
   HomeStack: {
     screen: AbatiHomeStack
   },

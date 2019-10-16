@@ -9,7 +9,6 @@ import {take, first, map, filter} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions';
 
 const HomeKeySearchTab = ({elements}) => {
-  console.log('elements', elements);
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
