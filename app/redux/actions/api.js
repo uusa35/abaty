@@ -432,10 +432,8 @@ export async function storeClassified(elements) {
   console.log('the whole form', form);
   return await axiosInstance
     .post(`classified`, form)
-    // .then(r => r.data)
-    .then(r => console.log('data', r.data))
-    .catch(e => console.log('eee', e.response.data));
-  // .catch(e => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

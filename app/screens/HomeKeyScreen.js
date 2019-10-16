@@ -59,6 +59,8 @@ import ClassifiedListHorizontal from '../components/widgets/classified/Classifie
 import widgetStyles from '../components/widgets/widgetStyles';
 import {Icon} from 'react-native-elements';
 import HomeKeySearchTab from '../components/widgets/search/HomeKeySearchTab';
+import Spinner from "react-native-spinkit";
+import SimpleSpinner from "../components/SimpleSpinner";
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -168,6 +170,7 @@ const HomeKeyHomeScreen = ({
         endFillColor="white"
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
+        <React.Suspense fallback={<SimpleSpinner/>}>
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}
@@ -196,6 +199,7 @@ const HomeKeyHomeScreen = ({
             searchElements={{on_home: true}}
           />
         ) : null}
+        </React.Suspense>
         <TouchableOpacity
           onPress={() =>
             !guest

@@ -122,27 +122,22 @@ export function* startStoreClassifiedScenario(action) {
       {name, mobile, images, image, description, price},
       storeClassifiedConstrains
     );
-    console.log('image', image);
-    console.log('the result', result);
+
     if (validate.isEmpty(result)) {
-      console.log('inside');
-      // yield call(enableLoading);
+      yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
       console.log('classifed', classified);
       if (!validate.isEmpty(classified) && validate.isObject(classified)) {
         yield all([
-          // call(disableLoading),
+          call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
           put(NavigationActions.navigate({routeName: 'HomeKey'}))
         ]);
       } else {
-        console.log('else one');
-        // yield call(disableLoading);
+        yield call(disableLoading);
         throw classified;
-        // yield call(enableErrorMessage, classified);
       }
     } else {
-      console.log('else one');
       throw result['name']
         ? result['name'].toString()
         : null || result['price']
