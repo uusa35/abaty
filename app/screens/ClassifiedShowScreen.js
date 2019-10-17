@@ -62,6 +62,7 @@ const ClassifiedShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
+  console.log('items', element);
   return (
     <Fragment>
       <HeaderImageScrollView
@@ -99,7 +100,7 @@ const ClassifiedShowScreen = ({
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ClassifiedInfoWidgetMainTitle element={element} />
-          {!validate.isEmpty(element.properties) ? (
+          {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} colors={colors} />
           ) : null}
           <View
@@ -126,16 +127,16 @@ const ClassifiedShowScreen = ({
               //   )
               // }
             />
-            {element.has_properties ? (
+            {element.has_items ? (
               <Fragment>
-                {map(element.properties, (p, i) => (
+                {map(element.items, (p, i) => (
                   <ClassifiedInfoWidgetElement
                     key={i}
-                    elementName={p.name}
-                    name={p.value}
-                    showIcon={true}
+                    elementName={p.categoryGroup.name}
+                    name={p.property.value}
+                    showIcon={false}
                     translate={false}
-                    iconName={p.icon}
+                    iconName={p.categoryGroup.icon}
                     colors={colors}
                   />
                 ))}

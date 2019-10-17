@@ -23,6 +23,7 @@ import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
 import {addToProperties} from '../redux/actions';
+import * as actions from '../redux/actions/types';
 
 const CategoryGroupsScreen = ({
   category,
@@ -82,6 +83,7 @@ const CategoryGroupsScreen = ({
 
   const doneWithProperties = useCallback(() => {
     setCategoryGroupVisible(false);
+    dispatch({type: actions.SHOW_PROPERTIES_MODAL});
     dispatch(navigation.navigate('ClassifiedStore'));
   });
 

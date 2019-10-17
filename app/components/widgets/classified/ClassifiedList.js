@@ -42,6 +42,9 @@ const ClassifiedList = ({
 }) => {
   [items, setItems] = useState(classifieds);
   [elements, setElements] = useState(classifieds);
+  [elementsWithMap, setElementsWithMap] = useState(
+    filter(elements, (e, i) => (e.has_map ? e : null))
+  );
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
@@ -165,6 +168,7 @@ const ClassifiedList = ({
           onEndReached={() => loadMore()}
           contentContainerStyle={{
             minHeight: '100%',
+            width,
             marginBottom: 15,
             justifyContent: 'flex-start'
           }}
@@ -193,11 +197,13 @@ const ClassifiedList = ({
                     setSortModal={setSortModal}
                     setSort={setSort}
                   />
-                  <ClassifiedsMapView
-                    mapModal={mapModal}
-                    setMapModal={setMapModal}
-                    elements={filter(elements, (e, i) => e.has_map)}
-                  />
+                  {!validate.isEmpty(elementsWithMap) ? (
+                    <ClassifiedsMapView
+                      mapModal={mapModal}
+                      setMapModal={setMapModal}
+                      elements={elementsWithMap}
+                    />
+                  ) : null}
                 </View>
               ) : null}
               {showTitle ? (

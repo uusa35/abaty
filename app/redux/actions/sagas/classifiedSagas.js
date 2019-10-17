@@ -123,11 +123,7 @@ export function* startStoreClassifiedScenario(action) {
       {name, mobile, images, image, description, price},
       storeClassifiedConstrains
     );
-
-    // console.log('result', result);
-    // console.log('payload', action.payload);
     if (validate.isEmpty(result)) {
-      console.log('inside if');
       yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
       console.log('classifed', classified);
@@ -138,24 +134,10 @@ export function* startStoreClassifiedScenario(action) {
           put(NavigationActions.navigate({routeName: 'HomeKey'}))
         ]);
       } else {
-        yield call(disableLoading);
         throw classified;
       }
     } else {
       throw first(values(result))[0];
-      // throw result['name']
-      //   ? result['name'].toString()
-      //   : null || result['price']
-      //   ? result['price'].toString()
-      //   : null || result['mobile']
-      //   ? result['mobile'].toString()
-      //   : null || result['address']
-      //   ? result['description'].toString()
-      //   : null || result['description']
-      //   ? result['images'].toString()
-      //   : null || result['image']
-      //   ? result['image'].toString()
-      //   : null;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);

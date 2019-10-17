@@ -30,11 +30,11 @@ const ClassifiedStoreScreen = ({
   classifiedProps,
   navigation
 }) => {
-  const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
+  const [name, setName] = useState('testing');
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null
   );
-  const [price, setPrice] = useState(10);
+  const [price, setPrice] = useState('10');
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
@@ -172,6 +172,7 @@ const ClassifiedStoreScreen = ({
           }}
           shake={true}
           keyboardType="default"
+          defaultValue={name}
           onChangeText={text => setName(text)}
           placeholder={I18n.t('title')}
           label={I18n.t('title')}
@@ -199,6 +200,7 @@ const ClassifiedStoreScreen = ({
           }}
           numberOfLines={3}
           shake={true}
+          defaultValue={description}
           keyboardType="default"
           onChangeText={text => setDescription(text)}
           placeholder={description ? description : I18n.t('description')}
@@ -226,6 +228,7 @@ const ClassifiedStoreScreen = ({
           shake={true}
           keyboardType="number-pad"
           onChangeText={text => setMobile(text)}
+          defaultValue={mobile}
           placeholder={mobile ? mobile : I18n.t('mobile')}
           label={I18n.t('mobile')}
           labelStyle={{
@@ -251,6 +254,7 @@ const ClassifiedStoreScreen = ({
           shake={true}
           keyboardType="number-pad"
           onChangeText={text => setPrice(text)}
+          defaultValue={price}
           placeholder={I18n.t('price')}
           label={I18n.t('price')}
           labelStyle={{

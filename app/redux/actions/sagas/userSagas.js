@@ -355,15 +355,7 @@ export function* startUpdateUserScenario(action) {
         throw user;
       }
     } else {
-      throw result['name']
-        ? result['name'].toString()
-        : null || result['email']
-        ? result['email'].toString()
-        : null || result['mobile']
-        ? result['mobile'].toString()
-        : null || result['address']
-        ? result['address'].toString()
-        : null;
+      throw first(values(result))[0];
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -525,15 +517,7 @@ export function* startRegisterScenario(action) {
         throw element;
       }
     } else {
-      throw result['name']
-        ? result['name'].toString()
-        : null || result['email']
-        ? result['email'].toString()
-        : null || result['mobile']
-        ? result['mobile'].toString()
-        : null || result['address']
-        ? result['address'].toString()
-        : null;
+      throw first(values(result))[0];
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);

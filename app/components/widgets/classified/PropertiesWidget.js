@@ -5,7 +5,6 @@ import {Icon} from 'react-native-elements';
 import {text} from './../../../constants';
 
 const PropertiesWidget = ({elements, colors}) => {
-  console.log('elements', elements);
   return (
     <View
       style={{
