@@ -19,7 +19,6 @@ const PropertiesWidget = ({elements, colors}) => {
         borderWidth: 0.5
       }}>
       {map(filter(elements, e => (e.on_home ? e : null)), (item, i) => {
-        console.log('item', item);
         return (
           <View
             key={i}

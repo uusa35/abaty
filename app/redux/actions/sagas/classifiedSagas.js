@@ -14,10 +14,9 @@ import {
 } from './settingSagas';
 import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
+import {HIDE_SEARCH_MODAL, SHOW_SEARCH_MODAL, SET_CATEGORY} from '../types';
+import {first, values} from 'lodash';
 import {startGetHomeCompaniesScenario} from './userSagas';
-import {HIDE_SEARCH_MODAL} from '../types';
-import {SET_CATEGORY} from '../types';
-import {SHOW_SEARCH_MODAL} from '../types';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -125,8 +124,8 @@ export function* startStoreClassifiedScenario(action) {
       storeClassifiedConstrains
     );
 
-    console.log('result', result);
-    console.log('payload', action.payload);
+    // console.log('result', result);
+    // console.log('payload', action.payload);
     if (validate.isEmpty(result)) {
       console.log('inside if');
       yield call(enableLoading);
@@ -143,19 +142,20 @@ export function* startStoreClassifiedScenario(action) {
         throw classified;
       }
     } else {
-      throw result['name']
-        ? result['name'].toString()
-        : null || result['price']
-        ? result['price'].toString()
-        : null || result['mobile']
-        ? result['mobile'].toString()
-        : null || result['address']
-        ? result['description'].toString()
-        : null || result['description']
-        ? result['images'].toString()
-        : null || result['image']
-        ? result['image'].toString()
-        : null;
+      throw first(values(result))[0];
+      // throw result['name']
+      //   ? result['name'].toString()
+      //   : null || result['price']
+      //   ? result['price'].toString()
+      //   : null || result['mobile']
+      //   ? result['mobile'].toString()
+      //   : null || result['address']
+      //   ? result['description'].toString()
+      //   : null || result['description']
+      //   ? result['images'].toString()
+      //   : null || result['image']
+      //   ? result['image'].toString()
+      //   : null;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);

@@ -100,7 +100,7 @@ const ClassifiedShowScreen = ({
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ClassifiedInfoWidgetMainTitle element={element} />
           {!validate.isEmpty(element.properties) ? (
-            <PropertiesWidget elements={element.properties} colors={colors} />
+            <PropertiesWidget elements={element.items} colors={colors} />
           ) : null}
           <View
             animation="bounceInLeft"

@@ -425,9 +425,9 @@ export async function storeClassified(elements) {
   form.append('price', price);
   form.append('api_token', api_token);
   map(classifiedProps, (prop, i) => {
-    form.append(`properties[${i}][category_group_id]`, prop.cateogry_group.id);
-    form.append(`properties[${i}][property_id]`, prop.property.id);
-    form.append(`properties[${i}][value]`, prop.property.value);
+    form.append(`items[${i}][category_group_id]`, prop.cateogry_group.id);
+    form.append(`items[${i}][property_id]`, prop.property.id);
+    form.append(`items[${i}][value]`, prop.property.value);
   });
   console.log('the whole form', form);
   return await axiosInstance
