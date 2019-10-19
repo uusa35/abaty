@@ -16,14 +16,14 @@ import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter, shuffle} from 'lodash';
-import {text} from './../constants';
+import {text} from './../../constants';
 import {Icon} from 'react-native-elements';
-import {isRTL} from '../I18n';
+import {isRTL} from '../../I18n';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
-import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
-import {addToProperties} from '../redux/actions';
-import * as actions from '../redux/actions/types';
+import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
+import {addToProperties} from '../../redux/actions';
+import {SHOW_PROPERTIES_MODAL} from '../../redux/actions/types';
 
 const CategoryGroupsScreen = ({
   category,
@@ -83,7 +83,7 @@ const CategoryGroupsScreen = ({
 
   const doneWithProperties = useCallback(() => {
     setCategoryGroupVisible(false);
-    dispatch({type: actions.SHOW_PROPERTIES_MODAL});
+    dispatch({type: SHOW_PROPERTIES_MODAL});
     dispatch(navigation.navigate('ClassifiedStore'));
   });
 

@@ -2,9 +2,9 @@ import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {hideLoginModal} from '../redux/actions';
-import {DispatchContext} from '../redux/DispatchContext';
-import LoginForm from '../components/widgets/LoginForm';
+import {hideLoginModal} from '../../redux/actions';
+import {DispatchContext} from '../../redux/DispatchContext';
+import LoginForm from '../../components/widgets/LoginForm';
 
 const LoginScreenModal = ({loginModal}) => {
   const {dispatch} = useContext(DispatchContext);

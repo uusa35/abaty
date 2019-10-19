@@ -1,19 +1,19 @@
 import React, {Fragment, useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
-import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
-import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
-import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
-import I18n from './../I18n';
+import ImagesWidget from '../../components/widgets/ImagesWidget';
+import {width, text} from './../../constants';
+import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
+import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
+import I18n from './../../I18n';
 import {first} from 'lodash';
-import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
+import {getDesigner, getProduct, getSearchProducts} from '../../redux/actions';
 import validate from 'validate.js';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
+import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
-import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
+import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
 const ProductShowScreen = ({
   product,

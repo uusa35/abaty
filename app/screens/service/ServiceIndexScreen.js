@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {has} from 'lodash';
-import ServiceList from '../components/widgets/service/ServiceList';
+import ServiceList from '../../components/widgets/service/ServiceList';
 
 const ServiceIndexScreen = ({services, searchParams, colors, dispatch}) => {
   return (

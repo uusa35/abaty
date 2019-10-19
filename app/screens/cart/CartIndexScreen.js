@@ -1,13 +1,12 @@
-import React, {useMemo, useState} from 'react';
-import {Text, StyleSheet, ScrollView, View} from 'react-native';
+import React from 'react';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import validate from 'validate.js';
-import {NavContext} from './../redux/NavContext';
 import PropTypes from 'prop-types';
-import CartList from '../components/widgets/cart/CartList';
-import {text, width} from '../constants';
+import CartList from '../../components/widgets/cart/CartList';
+import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
-import I18n from '../I18n';
+import I18n from '../../I18n';
 const CartIndexScreen = ({
   cart,
   country,

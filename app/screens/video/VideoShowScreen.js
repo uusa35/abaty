@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ProductList from '../components/widgets/product/ProductList';
-import VideoWidget from '../components/widgets/video/VideoWidget';
+import ProductList from '../../components/widgets/product/ProductList';
+import VideoWidget from '../../components/widgets/video/VideoWidget';
 
 const VideoShowScreen = ({video, dispatch}) => {
   return (

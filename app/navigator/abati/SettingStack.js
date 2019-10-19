@@ -6,7 +6,7 @@ import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
-import LoginScreen from '../../screens/LoginScreen';
+import LoginScreen from '../../screens/auth/LoginScreen';
 import RegisterScreen from '../../screens/auth/RegisterScreen';
 import UserEditScreen from '../../screens/auth/UserEditScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';

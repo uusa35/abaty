@@ -2,7 +2,6 @@ import React, {
   Fragment,
   useState,
   useMemo,
-  useEffect,
   useCallback,
   useContext
 } from 'react';
@@ -15,25 +14,25 @@ import {
   View
 } from 'react-native';
 import {connect} from 'react-redux';
-import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text, images} from './../constants';
-import I18n from './../I18n';
-import {getClassified, getClassifieds} from '../redux/actions';
+import ImagesWidget from '../../components/widgets/ImagesWidget';
+import {width, text, images} from './../../constants';
+import I18n from './../../I18n';
+import {getClassified, getClassifieds} from '../../redux/actions';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
-import ClassifiedInfoWidgetElement from '../components/widgets/classified/ClassifiedInfoWidgetElement';
-import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
-import MapViewWidget from '../components/widgets/MapViewWidget';
-import PropertiesWidget from '../components/widgets/classified/PropertiesWidget';
-import QuickCallActionBtnWidget from '../components/widgets/QuickCallActionBtnWidget';
-import ClassifiedInfoWidgetMainTitle from '../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
-import CommentScreenModal from './CommentScreenModal';
+import ClassifiedInfoWidgetElement from '../../components/widgets/classified/ClassifiedInfoWidgetElement';
+import ClassifiedListHorizontal from '../../components/widgets/classified/ClassifiedListHorizontal';
+import MapViewWidget from '../../components/widgets/MapViewWidget';
+import PropertiesWidget from '../../components/widgets/classified/PropertiesWidget';
+import QuickCallActionBtnWidget from '../../components/widgets/QuickCallActionBtnWidget';
+import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
+import CommentScreenModal from './../CommentScreenModal';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import {getProductConvertedFinalPrice} from '../helpers';
+import {getProductConvertedFinalPrice} from '../../helpers';
 import {round} from 'lodash';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
-import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
 const ClassifiedShowScreen = ({
   element,

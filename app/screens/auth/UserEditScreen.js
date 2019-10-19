@@ -2,11 +2,11 @@ import React, {Fragment, useContext} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
-import UserEditFormWidget from '../components/widgets/user/UserEditFormWidget';
+import UserEditFormWidget from '../../components/widgets/user/UserEditFormWidget';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from 'react-navigation-hooks';
-import {DispatchContext} from '../redux/DispatchContext';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
+import {DispatchContext} from '../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const UserEditScreen = ({auth, playerId, country}) => {
   const {dispatch} = useContext(DispatchContext);

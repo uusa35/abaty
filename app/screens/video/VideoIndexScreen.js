@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import VideoList from '../components/Lists/VideoList';
-import {videosSelector} from '../redux/selectors/collections';
+import VideoList from '../../components/Lists/VideoList';
+import {videosSelector} from '../../redux/selectors/collections';
 
 const VideoIndexScreen = ({videos}) => {
   return <VideoList elements={videos} />;

@@ -9,16 +9,16 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
-import I18n, {isRTL} from '../I18n';
-import {images, text} from '../constants';
-import {showCountryModal, storeClassified} from '../redux/actions';
+import I18n, {isRTL} from '../../I18n';
+import {images, text} from '../../constants';
+import {showCountryModal, storeClassified} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
-import widgetStyles from '../components/widgets/widgetStyles';
-import ClassifiedStorePropertiesWidget from '../components/widgets/property/ClassifiedStorePropertiesWidget';
+import widgetStyles from '../../components/widgets/widgetStyles';
+import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
 
 const ClassifiedStoreScreen = ({
   auth,

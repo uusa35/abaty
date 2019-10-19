@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import BrandList from '../components/widgets/brand/BrandList';
+import BrandList from '../../components/widgets/brand/BrandList';
 
 const BrandIndexScreen = ({brands}) => {
   return <BrandList elements={brands} />;

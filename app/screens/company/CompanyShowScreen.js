@@ -1,25 +1,24 @@
-import React, {useState, useCallback, useMemo, useEffect} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView
 } from 'react-native-image-header-scroll-view';
-import {text, width} from '../constants';
+import {text, width} from '../../constants';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
-import UserImageProfile from '../components/widgets/user/UserImageProfile';
+import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
-import MainSliderWidget from '../components/widgets/MainSliderWidget';
-import {getCompany} from '../redux/actions';
-import CommentScreenModal from './CommentScreenModal';
+import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import {getCompany} from '../../redux/actions';
+import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import ProductList from '../components/widgets/product/ProductList';
-import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
-import I18n from '../I18n';
-import VideosVerticalWidget from '../components/widgets/video/VideosVerticalWidget';
-import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
-import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../app';
-import ShopperImageProfile from '../components/widgets/user/ShopperImageProfile';
+import ProductList from '../../components/widgets/product/ProductList';
+import UserInfoWidget from '../../components/widgets/user/UserInfoWidget';
+import I18n from '../../I18n';
+import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
+import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
+import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 
 const CompanyShowScreen = ({
   element,

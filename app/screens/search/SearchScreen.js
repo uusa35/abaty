@@ -2,12 +2,12 @@ import React, {Fragment} from 'react';
 import {View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import I18n from './../I18n';
-import TagsList from '../components/widgets/tag/TagsList';
-import {ABATI, ESCRAP, MALLR} from '../../app';
-import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
-import ClassifiedCategoryVerticalWidget from '../components/widgets/category/ClassifiedCategoryVerticalWidget';
-import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
+import I18n from './../../I18n';
+import TagsList from '../../components/widgets/tag/TagsList';
+import {ABATI, ESCRAP, MALLR} from '../../../app';
+import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
+import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 
 const SearchScreen = ({homeCategories, tags, dispatch, colors, navigation}) => {
   return (

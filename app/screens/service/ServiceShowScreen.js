@@ -1,20 +1,20 @@
 import React, {Fragment, useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
-import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
-import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
+import ImagesWidget from '../../components/widgets/ImagesWidget';
+import {width, text} from './../../constants';
+import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import {View} from 'react-native-animatable';
-import I18n from './../I18n';
+import I18n from './../../I18n';
 import {first} from 'lodash';
-import {getDesigner, getSearchServices, getService} from '../redux/actions';
+import {getDesigner, getSearchServices, getService} from '../../redux/actions';
 import validate from 'validate.js';
-import ServiceInfoWidget from '../components/widgets/service/ServiceInfoWidget';
+import ServiceInfoWidget from '../../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';
-import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
-import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
+import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
+import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
+import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
 const ServiceShowScreen = ({
   service,

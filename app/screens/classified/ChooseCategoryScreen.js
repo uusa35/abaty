@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from '../constants';
-import ChooseCategoryItem from '../components/widgets/category/ChooseCategoryItem';
+import {text} from '../../constants';
+import ChooseCategoryItem from '../../components/widgets/category/ChooseCategoryItem';
 
 const ChooseCategoryScreen = ({categories, dispatch}) => {
   return (

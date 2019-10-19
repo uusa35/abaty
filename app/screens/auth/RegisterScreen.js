@@ -1,10 +1,12 @@
 import React, {useState, Fragment} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import RegisterFormWidget from '../components/widgets/user/RegisterFormWidget';
-import {playerIdSelector, tokenSelector} from '../redux/selectors/collection';
-import {Icon} from 'react-native-elements';
+import {StyleSheet} from 'react-native';
+import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
+import {
+  playerIdSelector,
+  tokenSelector
+} from '../../redux/selectors/collection';
 import {useNavigation} from 'react-navigation-hooks';
 
 const RegisterScreen = ({playerId}) => {

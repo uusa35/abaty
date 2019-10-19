@@ -1,4 +1,4 @@
-import React, {useContext, useState, useMemo, Fragment} from 'react';
+import React, {useState, useMemo} from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
 import {Modal, ScrollView} from 'react-native';
@@ -7,7 +7,6 @@ import {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 import {SafeAreaView} from 'react-navigation';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
 import ProductWidgetQtyBtns from '../../components/widgets/product/ProductWidgetQtyBtns';
 

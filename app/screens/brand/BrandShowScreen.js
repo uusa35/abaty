@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ProductList from '../components/widgets/product/ProductList';
+import ProductList from '../../components/widgets/product/ProductList';
 
 const BrandShowScreen = ({brand, searchParams, dispatch}) => {
   return (

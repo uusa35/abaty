@@ -1,46 +1,33 @@
-import React, {Component} from 'react';
-import {Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
-import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
-import {isIOS, text, width} from '../constants';
+import {isIOS, text} from '../../constants';
 import validate from 'validate.js';
-import {getCategoryElements} from '../redux/actions';
-import {Button, Icon} from 'react-native-elements';
-import {isRTL} from '../I18n';
-import I18n from './../I18n';
-import UserProfileInformationWidget from '../components/widgets/user/UserProfileInformationWidget';
-import UserProfileBtns from '../components/widgets/user/UserProfileBtns';
-import {authSelector, colorsSelector} from '../redux/selectors/collection';
+import {isRTL} from '../../I18n';
+import UserProfileInformationWidget from '../../components/widgets/user/UserProfileInformationWidget';
+import UserProfileBtns from '../../components/widgets/user/UserProfileBtns';
+import {authSelector, colorsSelector} from '../../redux/selectors/collection';
 
-class ProfileIndexScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {auth, colors, navigation} = this.props;
-    return (
-      <NavContext.Provider value={{navigation}}>
-        <ScrollView
-          contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          contentInset={{bottom: 100}}>
-          {!validate.isEmpty(auth) ? (
-            <View style={{marginTop: '10%'}}>
-              <UserProfileInformationWidget auth={auth} colors={colors} />
-              <UserProfileBtns />
-            </View>
-          ) : null}
-        </ScrollView>
-      </NavContext.Provider>
-    );
-  }
-}
+const ProfileIndexScreen = ({auth, colors}) => {
+  return (
+    <ScrollView
+      contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 100}}>
+      {!validate.isEmpty(auth) ? (
+        <View style={{marginTop: '10%'}}>
+          <UserProfileInformationWidget auth={auth} colors={colors} />
+          <UserProfileBtns />
+        </View>
+      ) : null}
+    </ScrollView>
+  );
+};
 
 function mapStateToProps(state) {
   return {

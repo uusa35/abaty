@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ServiceList from '../components/widgets/service/ServiceList';
+import ServiceList from '../../components/widgets/service/ServiceList';
 
 const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
   return (

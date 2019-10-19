@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import UsersList from '../components/Lists/UsersList';
-import {NavContext} from '../redux/NavContext';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
-import CelebritiesList from '../components/Lists/CelebritiesList';
+import CelebritiesList from '../../components/Lists/CelebritiesList';
 
 const CelebrityIndexScreen = ({celebrities, searchParams, dispatch}) => {
   return (

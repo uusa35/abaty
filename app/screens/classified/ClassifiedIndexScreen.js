@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import ClassifiedList from '../components/widgets/classified/ClassifiedList';
+import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 
 const ClassifiedIndexScreen = ({
   classifieds,

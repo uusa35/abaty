@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 import {connect} from 'react-redux';
-import CategoriesList from '../components/Lists/CategoriesList';
-import {NavContext} from '../redux/NavContext';
-import CommercialSliderWidget from '../components/widgets/CommercialSliderWidget';
+import CategoriesList from '../../components/Lists/CategoriesList';
+import {NavContext} from '../../redux/NavContext';
+import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 
 class SubCategoryIndexScreen extends Component {
   constructor(props) {

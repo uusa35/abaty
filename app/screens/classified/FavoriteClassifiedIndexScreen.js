@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import I18n from './../I18n';
-import {text, width} from '../constants';
+import I18n from './../../I18n';
+import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
-import ClassifiedList from '../components/widgets/classified/ClassifiedList';
+import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 
 const FavoriteClassifiedIndexScreen = ({
   classifiedFavorites,

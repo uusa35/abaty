@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
-import LoginForm from '../components/widgets/LoginForm';
+import LoginForm from '../../components/widgets/LoginForm';
 import {Icon} from 'react-native-elements';
 import {useNavigation} from 'react-navigation-hooks';
 

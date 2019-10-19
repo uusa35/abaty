@@ -15,7 +15,7 @@ import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
-import LoginScreenModal from './screens/LoginScreenModal';
+import LoginScreenModal from './screens/auth/LoginScreenModal';
 import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';

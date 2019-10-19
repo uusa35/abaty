@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../components/widgets/product/ProductList';
+import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
-import I18n from './../I18n';
-import {text, width} from '../constants';
+import I18n from './../../I18n';
+import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
-import {useNavigation} from 'react-navigation-hooks';
 
 const FavoriteProductIndexScreen = ({
   productFavorites,

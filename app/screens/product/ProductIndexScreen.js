@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../components/widgets/product/ProductList';
+import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 
 const ProductIndexScreen = ({products, searchParams, dispatch, colors}) => {

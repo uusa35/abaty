@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../components/widgets/product/ProductList';
+import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
-import {getAllProducts, getSearchProducts} from '../redux/actions';
-import {productsSelector} from '../redux/selectors/collections';
-import {colorsSelector} from '../redux/selectors/collection';
+import {getAllProducts} from '../../redux/actions';
+import {productsSelector} from '../../redux/selectors/collections';
+import {colorsSelector} from '../../redux/selectors/collection';
 
 class ProductIndexAllScreen extends Component {
   constructor(props) {
