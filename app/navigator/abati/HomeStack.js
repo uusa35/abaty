@@ -1,10 +1,5 @@
 import {createStackNavigator} from 'react-navigation';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import HomeScreen from '../../screens/HomeScreen';
 import I18n from '../../I18n';
-import PageOneScreen from '../../screens/PageOneScreen';
-import PageTwoScreen from '../../screens/PageTwoScreen';
-import {text} from '../../constants';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
@@ -14,7 +9,6 @@ import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
 import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
 import LoginScreen from '../../screens/LoginScreen';
 import RegisterScreen from '../../screens/RegisterScreen';
-import UserEditScreen from '../../screens/UserEditScreen';
 import DesignerIndexScreen from '../../screens/DesignerIndexScreen';
 import CompanyIndexScreen from '../../screens/CompanyIndexScreen';
 import CelebrityIndexScreen from '../../screens/CelebrityIndexScreen';
@@ -22,34 +16,33 @@ import CompanyShowScreen from '../../screens/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import DesignerShowScreen from '../../screens/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/CelebrityShowScreen';
-import NormalProductShow from '../../screens/NormalProductShowScreen';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
-import ServiceIndexScreen from '../../screens/ServiceIndexScreen';
-import CollectionIndexScreen from '../../screens/CollectionIndexScreen';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
-import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
-import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
+import NormalProductShow from '../../screens/product/NormalProductShowScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import ServiceIndexScreen from '../../screens/service/ServiceIndexScreen';
+import CollectionIndexScreen from '../../screens/collection/CollectionIndexScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import ContactusScreen from '../../screens/ContactusScreen';
 import TermAndConditionScreen from '../../screens/TermAndConditionScreen';
-import BrandIndexScreen from '../../screens/BrandIndexScreen';
-import BrandShowScreen from '../../screens/BrandShowScreen';
-import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
+import BrandShowScreen from '../../screens/brand/BrandShowScreen';
+import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyScreen from '../../screens/HomeKeyScreen';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
-import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
-import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
-import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
+import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
+import CategoryGroupsScreen from '../../screens/category/CategoryGroupsScreen';
 import React from 'react';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
-import VideoShowScreen from '../../screens/VideoShowScreen';
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
-import validate from './AbatiCategoryStack';
+import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
+import validate from 'validate.js';
 
-export const AbatiHomeStack = createStackNavigator(
+export const HomeStack = createStackNavigator(
   {
     // Introduction: {
     //   screen: IntroductionScreen,
@@ -377,7 +370,7 @@ export const AbatiHomeStack = createStackNavigator(
   }
 );
 
-AbatiHomeStack.navigationOptions = ({navigation}) => {
+HomeStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

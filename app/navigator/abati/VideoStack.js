@@ -1,13 +1,13 @@
 import {createStackNavigator} from 'react-navigation';
-import VideoIndexScreen from '../../screens/VideoIndexScreen';
+import VideoIndexScreen from '../../screens/video/VideoIndexScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
-import VideoShowScreen from '../../screens/VideoShowScreen';
+import VideoShowScreen from '../../screens/video/VideoShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 
-export const AbatiVideoStack = createStackNavigator(
+export const VideoStack = createStackNavigator(
   {
     VideoIndex: {
       screen: VideoIndexScreen,
@@ -32,7 +32,7 @@ export const AbatiVideoStack = createStackNavigator(
   }
 );
 
-AbatiVideoStack.navigationOptions = ({navigation}) => {
+VideoStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

@@ -7,17 +7,16 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
 import LoginScreen from '../../screens/LoginScreen';
-import RegisterScreen from '../../screens/RegisterScreen';
-import UserEditScreen from '../../screens/UserEditScreen';
-import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import RegisterScreen from '../../screens/auth/RegisterScreen';
+import UserEditScreen from '../../screens/auth/UserEditScreen';
+import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
-import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
-import NormalProductShow from '../../screens/NormalProductShowScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
-import {AbatiHomeStack} from './AbatiHomeStack';
+import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
+import NormalProductShow from '../../screens/product/NormalProductShowScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 
-export const AbatiSettingStack = createStackNavigator(
+export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
       screen: SettingsIndexScreen,
@@ -147,7 +146,7 @@ export const AbatiSettingStack = createStackNavigator(
   }
 );
 
-AbatiSettingStack.navigationOptions = ({navigation}) => {
+SettingStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

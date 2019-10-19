@@ -5,12 +5,12 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import BrandShowScreen from '../../screens/BrandShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import NormalProductShow from '../../screens/NormalProductShowScreen';
+import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
 
-export const AbatiBrandStack = createStackNavigator(
+export const BrandStack = createStackNavigator(
   {
     BrandIndex: {
       screen: BrandIndexScreen,
@@ -59,7 +59,7 @@ export const AbatiBrandStack = createStackNavigator(
   }
 );
 
-AbatiBrandStack.navigationOptions = ({navigation}) => {
+BrandStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

@@ -2,12 +2,12 @@ import {createDrawerNavigator} from 'react-navigation';
 import SideMenu from '../../components/SideMenu';
 import {isRTL} from '../../I18n';
 import React from 'react';
-import {AbatiBottomTabsStack} from './AbatiBottomNavigator';
+import {BottomTabsStack} from './BottomNavigator';
 
-export const AbatiDrawerNavigator = createDrawerNavigator(
+export const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
-      screen: AbatiBottomTabsStack
+      screen: BottomTabsStack
     }
   },
   {

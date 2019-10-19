@@ -1,16 +1,16 @@
 import {createSwitchNavigator} from 'react-navigation';
-import {AbatiHomeStack} from './AbatiHomeStack';
-import {AbatiLoginStack} from './AbatiLoginStack';
-import {AbatiDrawerNavigator} from './AbatiDrawerNavigator';
+import {HomeStack} from './HomeStack';
+import {LoginStack} from './LoginStack';
+import {DrawerNavigator} from './DrawerNavigator';
 
 export const RootNavigator = createSwitchNavigator({
   HomeStack: {
-    screen: AbatiHomeStack
+    screen: HomeStack
   },
   Login: {
-    screen: AbatiLoginStack
+    screen: LoginStack
   },
   DrawerStack: {
-    screen: AbatiDrawerNavigator
+    screen: DrawerNavigator
   }
 });

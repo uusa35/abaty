@@ -7,7 +7,7 @@ import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import React from 'react';
 
-export const AbatiClassifiedStack = createStackNavigator(
+export const ClassifiedStack = createStackNavigator(
   {
     HomeKey: {
       screen: HomeKeyScreen,

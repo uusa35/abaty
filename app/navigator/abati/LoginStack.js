@@ -14,7 +14,7 @@ import UserEditScreen from '../../screens/UserEditScreen';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 
-export const AbatiLoginStack = createStackNavigator(
+export const LoginStack = createStackNavigator(
   {
     Login: {
       screen: LoginScreen,
@@ -56,7 +56,7 @@ export const AbatiLoginStack = createStackNavigator(
   }
 );
 
-AbatiLoginStack.navigationOptions = ({navigation}) => {
+LoginStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

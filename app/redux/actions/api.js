@@ -382,6 +382,8 @@ export async function storeClassified(elements) {
     user_id,
     description,
     area_id,
+    longitude,
+    latitude,
     country_id,
     category_id,
     price,
@@ -418,6 +420,12 @@ export async function storeClassified(elements) {
   form.append('only_whatsapp', only_whatsapp);
   if (area_id) {
     form.append('area_id', area_id);
+  }
+  if (longitude) {
+    form.append('longitude', longitude);
+  }
+  if (latitude) {
+    form.append('latitude', latitude);
   }
   form.append('mobile', mobile);
   form.append('description_ar', description);

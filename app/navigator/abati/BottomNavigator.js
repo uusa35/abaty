@@ -5,17 +5,17 @@ import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants';
-import {AbatiHomeStack} from './AbatiHomeStack';
-import {AbatiVideoStack} from './AbatiVideoStack';
-import {AbatiSettingStack} from './AbatiSettingStack';
-import {AbatiSearchStack} from './AbatiSearchStack';
-import {AbatiProductStack} from './AbatiProductStack';
-import {AbatiServiceStack} from './AbatiServiceStack';
+import {HomeStack} from './HomeStack';
+import {VideoStack} from './VideoStack';
+import {SettingStack} from './SettingStack';
+import {SearchStack} from './SearchStack';
+import {ProductStack} from './ProductStack';
+import {ServiceStack} from './ServiceStack';
 
-export const AbatiBottomTabsStack = createBottomTabNavigator(
+export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
-      screen: AbatiHomeStack,
+      screen: HomeStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="home" type="octicon" color={tintColor} />
@@ -35,7 +35,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
     //   })
     // },
     VideoIndexAll: {
-      screen: AbatiVideoStack,
+      screen: VideoStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
@@ -49,7 +49,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
       })
     },
     Setting: {
-      screen: AbatiSettingStack,
+      screen: SettingStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="ios-person" type="ionicon" color={tintColor} />
@@ -61,7 +61,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
       })
     },
     Search: {
-      screen: AbatiSearchStack,
+      screen: SearchStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
@@ -70,7 +70,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
       })
     },
     ProductIndexAll: {
-      screen: AbatiProductStack,
+      screen: ProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
@@ -84,7 +84,7 @@ export const AbatiBottomTabsStack = createBottomTabNavigator(
       })
     },
     ServiceIndexAll: {
-      screen: AbatiServiceStack,
+      screen: ServiceStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
