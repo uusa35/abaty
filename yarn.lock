@@ -935,6 +935,11 @@
     eslint-plugin-react-native "3.6.0"
     prettier "1.16.4"
 
+"@react-native-community/geolocation@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/geolocation/-/geolocation-2.0.2.tgz#ba8b40f560ead8d014740d1cdea970b33f19312e"
+  integrity sha512-tTNXRCgnhJBu79mulQwzabXRpDqfh/uaDqfHVpvF0nX4NTpolpy6mvTRiFg7eWFPGRArsnZz1EYp6rHfJWGgEA==
+
 "@react-native-community/netinfo@^4.1.2", "@react-native-community/netinfo@react-native-community/react-native-netinfo":
   version "4.1.5"
   resolved "https://codeload.github.com/react-native-community/react-native-netinfo/tar.gz/ed4a2cf7c7a1bf8fae9f9a543f59658b4f55031f"

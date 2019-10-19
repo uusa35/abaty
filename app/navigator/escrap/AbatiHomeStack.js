@@ -33,15 +33,15 @@ import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import ContactusScreen from '../../screens/ContactusScreen';
 import TermAndConditionScreen from '../../screens/TermAndConditionScreen';
 import BrandIndexScreen from '../../screens/BrandIndexScreen';
-import BrandShowScreen from '../../screens/BrandShowScreen';
-import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import BrandShowScreen from '../../screens/brand/BrandShowScreen';
+import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyScreen from '../../screens/HomeKeyScreen';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
-import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
-import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
-import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
+import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
+import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
 import React from 'react';
 
 export const AbatiHomeStack = createStackNavigator(

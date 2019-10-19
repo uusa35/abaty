@@ -41,6 +41,7 @@ import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen'
 import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
+import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -109,7 +110,7 @@ export const HomeStack = createStackNavigator(
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -117,7 +118,7 @@ export const HomeStack = createStackNavigator(
       screen: DesignerIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -125,7 +126,7 @@ export const HomeStack = createStackNavigator(
       screen: CompanyIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -133,7 +134,7 @@ export const HomeStack = createStackNavigator(
       screen: CelebrityIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -168,7 +169,7 @@ export const HomeStack = createStackNavigator(
       screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null
       })
@@ -205,7 +206,7 @@ export const HomeStack = createStackNavigator(
       screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight displayShare={true} display={true} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       }),
       path: `product/:id`
@@ -306,7 +307,7 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight displayShare={true} display={true} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
         //   headerTransparent: true,
         // headerStyle: {
@@ -321,7 +322,7 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedStoreScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -329,7 +330,7 @@ export const HomeStack = createStackNavigator(
       screen: ChooseCategoryScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },
@@ -337,7 +338,15 @@ export const HomeStack = createStackNavigator(
       screen: CategoryGroupsScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null
+      })
+    },
+    ChooseAddress: {
+      screen: ChooseAddressScreen,
+      navigationOptions: () => ({
+        headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null
       })
     },

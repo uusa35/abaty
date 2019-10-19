@@ -23,7 +23,10 @@ import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
 import {addToProperties} from '../../redux/actions';
-import {SHOW_PROPERTIES_MODAL} from '../../redux/actions/types';
+import {
+  HIDE_PROPERTIES_MODAL,
+  SHOW_PROPERTIES_MODAL
+} from '../../redux/actions/types';
 
 const CategoryGroupsScreen = ({
   category,
@@ -71,8 +74,6 @@ const CategoryGroupsScreen = ({
       remainingGroups,
       (g, i) => g.id !== currentCategoryGroup.id
     );
-    console.log('the rest', rest);
-    console.log('ramingGroups', remainingGroups);
     if (!validate.isEmpty(rest)) {
       setCurrentCategoryGroup(first(rest));
       setRemainingGroups(rest);
@@ -83,8 +84,12 @@ const CategoryGroupsScreen = ({
 
   const doneWithProperties = useCallback(() => {
     setCategoryGroupVisible(false);
-    dispatch({type: SHOW_PROPERTIES_MODAL});
-    dispatch(navigation.navigate('ClassifiedStore'));
+    dispatch({type: HIDE_PROPERTIES_MODAL});
+    if (category.is_real_estate) {
+      return dispatch(navigation.navigate('ChooseAddress'));
+    } else {
+      return dispatch(navigation.navigate('ClassifiedStore'));
+    }
   });
 
   useMemo(() => {
@@ -96,7 +101,6 @@ const CategoryGroupsScreen = ({
     }
   }, [selectedProperties]);
 
-  console.log('remainingGroups', remainingGroups);
   return (
     <Fragment>
       {propertiesModal ? (

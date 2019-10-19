@@ -35,6 +35,7 @@ const ClassifiedStoreScreen = ({
     !validate.isEmpty(auth) ? auth.mobile : null
   );
   const [price, setPrice] = useState('10');
+  console.log('navigation', navigation.state.params);
   const [address, setAddress] = useState(
     !validate.isEmpty(auth) ? auth.email : null
   );
@@ -174,8 +175,8 @@ const ClassifiedStoreScreen = ({
           keyboardType="default"
           defaultValue={name}
           onChangeText={text => setName(text)}
-          placeholder={I18n.t('title')}
-          label={I18n.t('title')}
+          placeholder={I18n.t('classified_title')}
+          label={I18n.t('classified_title')}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
