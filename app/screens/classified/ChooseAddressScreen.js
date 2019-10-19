@@ -129,7 +129,9 @@ const ChooseAddressScreen = () => {
             }}
           />
           <Button
-            onPress={() => navigate('ClassifiedStore', {address})}
+            onPress={() =>
+              navigate('ClassifiedStore', {address, longitude, latitude})
+            }
             disabled={address.length < 5}
             raised
             containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}

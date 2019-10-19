@@ -36,8 +36,15 @@ const ClassifiedStoreScreen = ({
   );
   const [price, setPrice] = useState('10');
   console.log('navigation', navigation.state.params);
+  const {params} = navigation.state;
   const [address, setAddress] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
+    !validate.isEmpty(params) ? params.address : ''
+  );
+  const [longitude, setLongitude] = useState(
+    !validate.isEmpty(params) ? params.longitude : ''
+  );
+  const [latitude, setLatitude] = useState(
+    !validate.isEmpty(params) ? params.latitude : ''
   );
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null
@@ -177,6 +184,32 @@ const ClassifiedStoreScreen = ({
           onChangeText={text => setName(text)}
           placeholder={I18n.t('classified_title')}
           label={I18n.t('classified_title')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font,
+            textAlign: 'left'
+          }}
+        />
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 10,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: 20
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left'
+          }}
+          shake={true}
+          keyboardType="default"
+          defaultValue={address}
+          onChangeText={text => setAddress(text)}
+          placeholder={I18n.t('address')}
+          label={I18n.t('address')}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -365,6 +398,8 @@ const ClassifiedStoreScreen = ({
               api_token: auth.api_token,
               name,
               address,
+              longitude,
+              latitude,
               description,
               mobile,
               price,

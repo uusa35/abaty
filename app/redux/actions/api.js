@@ -378,10 +378,10 @@ export async function storeClassified(elements) {
     name,
     api_token,
     mobile,
-    address,
     user_id,
     description,
     area_id,
+    address,
     longitude,
     latitude,
     country_id,
@@ -414,18 +414,14 @@ export async function storeClassified(elements) {
   form.append('name_en', name);
   form.append('mobile', mobile);
   form.append('address', address);
+  form.append('longitude', longitude);
+  form.append('latitude', latitude);
   form.append('user_id', user_id);
   form.append('country_id', country_id);
   form.append('category_id', category_id);
   form.append('only_whatsapp', only_whatsapp);
   if (area_id) {
     form.append('area_id', area_id);
-  }
-  if (longitude) {
-    form.append('longitude', longitude);
-  }
-  if (latitude) {
-    form.append('latitude', latitude);
   }
   form.append('mobile', mobile);
   form.append('description_ar', description);
