@@ -34,7 +34,7 @@ import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
-const ClassifiedShowScreen = ({
+const NormalClassifiedShowScreen = ({
   element,
   classifieds,
   commentModal,
@@ -64,29 +64,8 @@ const ClassifiedShowScreen = ({
   console.log('items', element);
   return (
     <Fragment>
-      <HeaderImageScrollView
+      <ScrollView
         horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        maxHeight={550}
-        minHeight={90}
-        style={{width}}
-        scrollViewBackgroundColor="transparent"
-        overlayColor="white"
-        renderForeground={() => (
-          <ImagesWidget
-            colors={colors}
-            resizeMode="cover"
-            elements={element.images
-              .concat({id: element.id, large: element.large})
-              .reverse()}
-            width={width}
-            height={550}
-            name={element.name}
-            isFeatured={element.is_featured}
-          />
-        )}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
@@ -97,7 +76,18 @@ const ClassifiedShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        <View style={{flex: 1, borderWidth: 5, padding: '5%'}}>
+        <ImagesWidget
+          colors={colors}
+          resizeMode="cover"
+          elements={element.images
+            .concat({id: element.id, large: element.large})
+            .reverse()}
+          width={width}
+          height={550}
+          name={element.name}
+          isFeatured={element.is_featured}
+        />
+        <View style={{flex: 1, padding: '5%'}}>
           <ClassifiedInfoWidgetMainTitle element={element} />
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />
@@ -211,7 +201,7 @@ const ClassifiedShowScreen = ({
             searchElements={{classified_category_id: element.category_id}}
           />
         ) : null}
-      </HeaderImageScrollView>
+      </ScrollView>
       <QuickCallActionBtnWidget colors={colors} mobile={element.mobile} />
       <CommentScreenModal
         commentModal={commentModal}
@@ -235,16 +225,16 @@ function mapStateToProps(state) {
   };
 }
 
-ClassifiedShowScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+NormalClassifiedShowScreen.navigationOptions = ({navigation}) => ({
+  // headerTransparent: navigation.state.params.headerBg,
+  // headerStyle: {
+  //   backgroundColor: navigation.state.params.headerBgColor
+  // }
 });
 
-export default connect(mapStateToProps)(ClassifiedShowScreen);
+export default connect(mapStateToProps)(NormalClassifiedShowScreen);
 
-ClassifiedShowScreen.propTypes = {
+NormalClassifiedShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   classifieds: PropTypes.array.isRequired,
   token: PropTypes.string

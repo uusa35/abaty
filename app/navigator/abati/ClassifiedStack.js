@@ -6,6 +6,7 @@ import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import React from 'react';
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -21,21 +22,21 @@ export const ClassifiedStack = createStackNavigator(
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight showFilter={true} showCountry={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
         headerBackTitle: null
       })
     },
     Classified: {
-      screen: ClassifiedShowScreen,
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
-            display={true}
+            showCountry={true}
           />
         ),
         headerBackTitle: null,

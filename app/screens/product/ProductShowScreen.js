@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -36,10 +36,15 @@ const ProductShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
+  const handleRefresh = useCallback(() => {
+    setRefresh(false);
+    dispatch(getProduct({id: product.id, api_token: token ? token : null}));
+  }, [refresh]);
+
   return (
     <Fragment>
       <HeaderImageScrollView
-        horizontal={false}
+        vertical={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
@@ -66,10 +71,7 @@ const ProductShowScreen = ({
           <RefreshControl
             refreshing={refresh}
             onRefresh={() => {
-              setRefresh(false);
-              dispatch(
-                getProduct({id: product.id, api_token: token ? token : null})
-              );
+              handleRefresh();
             }}
           />
         }

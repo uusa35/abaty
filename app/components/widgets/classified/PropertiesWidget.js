@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text} from 'react-native';
 import {map, filter} from 'lodash';
 import {Icon} from 'react-native-elements';
 import {text} from './../../../constants';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const PropertiesWidget = ({elements, colors}) => {
+const PropertiesWidget = ({elements}) => {
+  const {colors} = useContext(GlobalValuesContext);
+  console.log('items', elements);
   return (
     <View
       style={{
@@ -17,11 +20,15 @@ const PropertiesWidget = ({elements, colors}) => {
         alignItems: 'center',
         borderWidth: 0.5
       }}>
-      {map(filter(elements, e => (e.on_home ? e : null)), (item, i) => {
+      {map(elements, (item, i) => {
         return (
           <View
             key={i}
             style={{
+              borderLeftWidth: 0.5,
+              borderColor: 'lightgrey',
+              justifyContent: 'center',
+              flex: 1,
               justifyContent: 'space-between',
               alignItems: 'center',
               alignSelf: 'center',

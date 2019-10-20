@@ -42,6 +42,7 @@ import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
 import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -299,15 +300,16 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight showFilter={true} />,
+        headerRight: <HeaderRight showFilter={true} showCountry={true} />,
         headerBackTitle: null
       })
     },
     Classified: {
-      screen: ClassifiedShowScreen,
+      // screen: ClassifiedShowScreen,
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight />,
+        headerRight: <HeaderRight showCountry={true} displayShare={true} />,
         headerBackTitle: null
         //   headerTransparent: true,
         // headerStyle: {

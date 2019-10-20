@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -7,7 +7,12 @@ import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidge
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';
 import {first} from 'lodash';
-import {getDesigner, getProduct, getSearchProducts} from '../../redux/actions';
+import {
+  getClassified,
+  getDesigner,
+  getProduct,
+  getSearchProducts
+} from '../../redux/actions';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
@@ -37,9 +42,25 @@ const NormalProductShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
+  const handleRefresh = useCallback(() => {
+    setRefresh(false);
+    dispatch(getProduct({id: product.id, api_token: token ? token : null}));
+  }, [refresh]);
+
   return (
     <Fragment>
-      <ScrollView horizontal={false}>
+      <ScrollView
+        horizontal={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        automaticallyAdjustContentInsets={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentInset={{bottom: 50}}>
         <ImagesWidget
           colors={colors}
           elements={product.images

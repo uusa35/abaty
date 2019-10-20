@@ -16,9 +16,7 @@ import {getProductConvertedFinalPrice} from '../../helpers';
 import {round, map} from 'lodash';
 
 const MapViewWidget = ({
-  longitude,
-  latitude,
-  height,
+  height = 350,
   customWidth,
   showTitle = false,
   showCallOut = true,
@@ -27,7 +25,10 @@ const MapViewWidget = ({
   description = null,
   isMulti = false,
   price = '',
-  elements = []
+  elements = [],
+  element,
+  longitude,
+  latitude
 }) => {
   const {colors, exchange_rate} = useContext(GlobalValuesContext);
   return (
@@ -81,6 +82,7 @@ const MapViewWidget = ({
             }}>
             {showCallOut && image ? (
               <CallOutView
+                element={element}
                 image={image}
                 description={description}
                 title={title}
@@ -97,12 +99,14 @@ const MapViewWidget = ({
               scrollEnabled={false}
               image={images.pin}
               opacity={1}
+              element={element}
               coordinate={{
                 latitude: element.latitude,
                 longitude: element.longitude
               }}>
               {showCallOut ? (
                 <CallOutView
+                  element={element}
                   title={element.name}
                   description={element.description}
                   image={element.thumb}

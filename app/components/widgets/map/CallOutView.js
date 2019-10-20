@@ -4,6 +4,8 @@ import {links, text} from '../../../constants';
 import FastImage from 'react-native-fast-image';
 import {Callout} from 'react-native-maps';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import PropertiesWidget from '../classified/PropertiesWidget';
+import validate from 'validate.js';
 
 const CallOutView = ({
   latitude,
@@ -11,7 +13,8 @@ const CallOutView = ({
   image,
   title,
   price,
-  description
+  description,
+  element
 }) => {
   const {currency_symbol} = useContext(GlobalValuesContext);
   return (
@@ -22,35 +25,47 @@ const CallOutView = ({
       style={{
         width: 250,
         borderWidth: 0.5,
+        padding: 10,
         borderRadius: 10,
         borderColor: 'lightgrey',
-        minHeight: 100,
+        minHeight: 120,
         justifyContent: 'flex-start',
         alignItems: 'flex-start'
       }}>
-      <TouchableOpacity style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row'}}>
         <FastImage
           style={styles.image}
           source={{uri: image}}
           resizeMode="contain"
         />
-        <View>
+        <View
+          style={{flexWrap: 'nowrap', flexDirection: 'column', padding: 10}}>
           <View
             style={{
-              width: 170,
-              flexDirection: 'row',
-              justifyContent: 'space-between'
+              flex: 1,
+              flexDirection: 'column',
+              alignItems: 'baseline',
+              justifyContent: 'flex-start'
             }}>
-            {title ? <Text style={styles.title}>{title}</Text> : null}
+            {title ? (
+              <Text style={styles.title}>{title.substring(0, 50)}</Text>
+            ) : null}
             {price ? (
               <Text style={styles.title}>
                 {price} {currency_symbol}
               </Text>
             ) : null}
+            {description ? (
+              <Text style={styles.title}>{description.substring(0, 50)}</Text>
+            ) : null}
           </View>
-          {description ? <Text style={styles.title}>{description}</Text> : null}
         </View>
-      </TouchableOpacity>
+      </View>
+      <View>
+        {!validate.isEmpty(element.items) ? (
+          <PropertiesWidget elements={element.items} />
+        ) : null}
+      </View>
     </Callout>
   );
 };
@@ -61,7 +76,7 @@ const styles = StyleSheet.create({
   title: {
     color: 'black',
     fontFamily: text.font,
-    fontSize: text.medium,
+    fontSize: text.small,
     textAlign: 'left',
     margin: 5
   },
