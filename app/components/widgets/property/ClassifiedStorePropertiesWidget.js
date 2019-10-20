@@ -21,13 +21,13 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
       {map(elements, (p, i) => {
         return (
           <View style={styles.propertiesWrapper} key={i}>
-            {p.property.icon ? (
-              <Icon type="font-awesome" name={p.property.icon} />
-            ) : (
+            {p.property.thumb ? (
               <FastImage
                 source={{uri: p.property.thumb}}
                 style={{width: 30, height: 30}}
               />
+            ) : (
+              <Icon type="font-awesome" name={p.property.icon} />
             )}
             <View style={styles.infoWrapper}>
               <Text style={styles.title}>{p.cateogry_group.name}</Text>
@@ -52,12 +52,13 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingTop: '5%',
     paddingBottom: 20,
-    width: '100%'
+    width: '100%',
+    alignItems: 'baseline'
   },
   propertiesWrapper: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'baseline',
+    alignItems: 'center',
     height: 50,
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,
@@ -76,6 +77,7 @@ const styles = StyleSheet.create({
   infoWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'baseline',
     flex: 1
   }
 });

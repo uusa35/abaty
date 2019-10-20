@@ -10,7 +10,8 @@ import {
   ScrollView,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
@@ -148,7 +149,11 @@ const CategoryGroupsScreen = ({
                       width: 120,
                       justifyContent: 'space-between'
                     }}>
-                    <Icon type="font-awesome" name={group.icon} />
+                    <Image
+                      source={{uri: group.thumb}}
+                      style={{width: 25, height: 25}}
+                    />
+                    {/*<Icon type="font-awesome" name={group.icon} />*/}
                     <Text
                       style={{
                         textAlign: 'center',
@@ -176,18 +181,20 @@ const CategoryGroupsScreen = ({
                   }}>
                   <View>
                     {map(group.properties, (property, i) => {
+                      console.log('prop', property);
                       return (
                         <TouchableOpacity
                           style={styles.propertiesWrapper}
                           onPress={() => handleClick(property)}
                           key={i}>
-                          {property.icon ? (
-                            <Icon type="font-awesome" name={property.icon} />
-                          ) : (
+                          {property.thumb ? (
                             <FastImage
                               source={{uri: property.thumb}}
                               style={{width: 30, height: 30}}
+                              resizeMode="contain"
                             />
+                          ) : (
+                            <Icon type="font-awesome" name={property.icon} />
                           )}
                           <Text style={styles.title}>{property.name}</Text>
                         </TouchableOpacity>
@@ -237,7 +244,7 @@ const styles = StyleSheet.create({
   propertiesWrapper: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'baseline',
+    alignItems: 'center',
     height: 50,
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,

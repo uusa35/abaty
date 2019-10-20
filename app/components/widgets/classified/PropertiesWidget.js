@@ -1,13 +1,11 @@
 import React, {useContext} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {map, filter} from 'lodash';
 import {Icon} from 'react-native-elements';
 import {text} from './../../../constants';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const PropertiesWidget = ({elements}) => {
-  const {colors} = useContext(GlobalValuesContext);
-  console.log('items', elements);
   return (
     <View
       style={{
@@ -27,7 +25,6 @@ const PropertiesWidget = ({elements}) => {
             style={{
               borderLeftWidth: 0.5,
               borderColor: 'lightgrey',
-              justifyContent: 'center',
               flex: 1,
               justifyContent: 'space-between',
               alignItems: 'center',
@@ -36,12 +33,16 @@ const PropertiesWidget = ({elements}) => {
               width: '25%',
               minHeight: 85
             }}>
-            <Icon
-              name={item.categoryGroup.icon}
-              type="font-awesome"
-              size={25}
-              color={colors.icon_theme_color}
+            <Image
+              source={{uri: item.categoryGroup.thumb}}
+              style={{width: 40, height: 40, marginBottom: 5}}
             />
+            {/*<Icon*/}
+            {/*  name={item.categoryGroup.icon}*/}
+            {/*  type="font-awesome"*/}
+            {/*  size={25}*/}
+            {/*  color={colors.icon_theme_color}*/}
+            {/*/>*/}
             <Text
               style={{
                 textAlign: 'center',
