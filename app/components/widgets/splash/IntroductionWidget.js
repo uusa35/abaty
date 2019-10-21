@@ -6,10 +6,13 @@ import SplashWidget from './SplashWidget';
 import {height, text} from './../../../constants';
 import I18n from './../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
-const IntroductionWidget = ({elements, showIntroduction, dispatch}) => {
-  const {colors} = useContext(GlobalValuesContext);
+const IntroductionWidget = ({elements, showIntroduction}) => {
   [visible, setVisible] = useState(showIntroduction);
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+
   const handleClick = useCallback(() => {
     setVisible(false);
     dispatch({type: 'HIDE_INTRODUCTION'});

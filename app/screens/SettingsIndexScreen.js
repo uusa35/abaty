@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -12,19 +12,16 @@ import PropTypes from 'prop-types';
 import {text} from '../constants';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../I18n';
-import {changeLang, getUsers} from '../redux/actions';
+import {changeLang} from '../redux/actions';
 import {HOMEKEY} from './../../app';
 import {appUrlIos} from '../env';
 import PagesList from '../components/widgets/page/PagesList';
+import {DispatchContext} from '../redux/DispatchContext';
+import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
-const SettingsIndexScreen = ({
-  guest,
-  navigation,
-  dispatch,
-  lang,
-  colors,
-  pages
-}) => {
+const SettingsIndexScreen = ({guest, lang, pages}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <ScrollView
       style={{flex: 1, paddingTop: 20}}

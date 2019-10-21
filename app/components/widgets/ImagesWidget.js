@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   I18nManager,
   StyleSheet,
@@ -27,9 +27,9 @@ const ImagesWidget = ({
   showTitle = false,
   height = 200,
   width = 200,
-  resizeMode = 'cover',
-  colors
+  resizeMode = 'cover'
 }) => {
+  const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   return (
     <View style={{flex: 1}}>

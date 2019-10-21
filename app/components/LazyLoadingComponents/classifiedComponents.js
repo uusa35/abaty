@@ -13,3 +13,7 @@ export const ClassifiedListHorizontal = lazy(() =>
 export const HomeKeySearchTab = lazy(() =>
   import('../../components/widgets/search/HomeKeySearchTab')
 );
+
+export const ServiceList = lazy(() =>
+  import('../../components/widgets/service/ServiceList')
+);

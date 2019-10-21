@@ -1,31 +1,22 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   StyleSheet,
-  RefreshControl,
   View,
   Text,
-  KeyboardAvoidingView,
-  FlatList,
   TouchableOpacity,
   ScrollView
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
 import {text, width} from '../../../constants';
-import {Button, Icon, Input} from 'react-native-elements';
-import {filter, uniqBy, map} from 'lodash';
+import {Button, Icon} from 'react-native-elements';
+import {map} from 'lodash';
 import validate from 'validate.js';
-import {
-  getClassifieds,
-  getSearchClassifieds,
-  getSearchProducts,
-  getUsers
-} from '../../../redux/actions';
-import ClassifiedWidget from './ClassifiedWidget';
+import {getSearchClassifieds} from '../../../redux/actions';
 import widgetStyles from '../widgetStyles';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
-import {useNavigation} from 'react-navigation-hooks';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ClassifiedListHorizontal = ({
   classifieds,
@@ -36,9 +27,7 @@ const ClassifiedListHorizontal = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements,
-  colors,
-  dispatch
+  searchElements
 }) => {
   [items, setItems] = useState(classifieds);
   [elements, setElements] = useState(classifieds);
@@ -48,6 +37,9 @@ const ClassifiedListHorizontal = ({
   [items, setItems] = useState(elements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
@@ -112,9 +104,7 @@ export default ClassifiedListHorizontal;
 ClassifiedListHorizontal.propTypes = {
   classifieds: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
-  colors: PropTypes.object
+  showName: PropTypes.bool
 };
 
 const styles = StyleSheet.create({});

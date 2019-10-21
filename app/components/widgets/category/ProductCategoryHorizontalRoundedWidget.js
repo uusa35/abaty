@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -16,15 +16,16 @@ import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
-  title,
-  dispatch,
-  colors
+  title
 }) => {
   const {navigate} = useNavigation();
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   const handleClick = useCallback(c => {
     return dispatch(
       getSearchProducts({

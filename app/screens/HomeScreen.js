@@ -1,10 +1,4 @@
-import React, {
-  Component,
-  useState,
-  useMemo,
-  useEffect,
-  useCallback
-} from 'react';
+import React, {useState, useMemo, useEffect, useCallback} from 'react';
 import {
   BackHandler,
   Linking,
@@ -12,9 +6,7 @@ import {
   ScrollView,
   View,
   AppState,
-  StyleSheet,
-  TouchableOpacity,
-  Text
+  StyleSheet
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -37,24 +29,17 @@ import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
 import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
-import FastImage from 'react-native-fast-image';
-import {has} from 'lodash';
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
 import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
 import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 
 const HomeScreen = ({
-  network,
   homeCategories,
   commercials,
   slides,
@@ -154,7 +139,6 @@ const HomeScreen = ({
         <IntroductionWidget
           elements={splashes}
           showIntroduction={showIntroduction}
-          dispatch={dispatch}
         />
       ) : null}
       <ScrollView
@@ -182,8 +166,6 @@ const HomeScreen = ({
             name="designers"
             title="designers"
             searchElements={{is_designer: true}}
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {MALLR ? (
@@ -193,8 +175,6 @@ const HomeScreen = ({
             name="companies"
             title="companies"
             searchElements={{is_company: true}}
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(homeCategories) &&
@@ -204,9 +184,6 @@ const HomeScreen = ({
             elements={homeCategories}
             showName={true}
             title="categories"
-            dispatch={dispatch}
-            colors={colors}
-            navigation={navigation}
             type="products"
           />
         ) : null}
@@ -219,8 +196,6 @@ const HomeScreen = ({
             name="celebrities"
             title="celebrities"
             searchElements={{is_celebrity: true}}
-            colors={colors}
-            dispatch={dispatch}
           />
         ) : null}
         {!validate.isEmpty(homeProducts) && (ABATI || MALLR) ? (
@@ -228,8 +203,6 @@ const HomeScreen = ({
             elements={homeProducts}
             showName={true}
             title="featured_products"
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(brands) &&
@@ -246,17 +219,13 @@ const HomeScreen = ({
             elements={services}
             showName={true}
             title="our_services"
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(homeCollections) && MALLR ? (
           <CollectionHorizontalWidget
-            colors={colors}
             elements={homeCollections}
             showName={true}
             title="our_collections"
-            dispatch={dispatch}
           />
         ) : null}
       </ScrollView>

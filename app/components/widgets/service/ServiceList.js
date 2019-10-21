@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useContext} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -16,6 +16,9 @@ import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
 import {getSearchServices} from '../../../redux/actions';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import SimpleSpinner from '../../SimpleSpinner';
 
 const ServiceList = ({
   services,
@@ -25,9 +28,7 @@ const ServiceList = ({
   showTitle = false,
   showMore = true,
   title,
-  searchElements,
-  colors,
-  dispatch
+  searchElements
 }) => {
   [items, setItems] = useState(services);
   [elements, setElements] = useState(services);
@@ -37,6 +38,8 @@ const ServiceList = ({
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -199,12 +202,9 @@ const ServiceList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ServiceWidget
-              element={item}
-              showName={showName}
-              colors={colors}
-              dispatch={dispatch}
-            />
+            <React.Suspense fallback={<SimpleSpinner />}>
+              <ServiceWidget element={item} showName={showName} />
+            </React.Suspense>
           )}
         />
       ) : (

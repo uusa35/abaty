@@ -8,19 +8,18 @@ import {
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getService} from '../../../redux/actions';
-import {
-  getConvertedFinalPrice,
-  getProductConvertedFinalPrice
-} from '../../../helpers';
+import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ServiceWidget = ({element, showName = false, dispatch, colors}) => {
-  const {currency_symbol, exchange_rate, token} = useContext(
+const ServiceWidget = ({element, showName = false}) => {
+  const {colors, currency_symbol, exchange_rate, token} = useContext(
     GlobalValuesContext
   );
+  const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
       key={element.id}
@@ -102,8 +101,7 @@ ServiceWidget.propTypes = {
   element: PropTypes.object.isRequired,
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
-  showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  showName: PropTypes.bool
 };
 
 const styles = StyleSheet.create({

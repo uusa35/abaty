@@ -43,3 +43,13 @@ export const ServiceStack = createStackNavigator(
     headerMode: 'float'
   }
 );
+
+ServiceStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible
+  };
+};

@@ -17,6 +17,7 @@ import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductList = ({
   products,
@@ -27,8 +28,7 @@ const ProductList = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements,
-  dispatch
+  searchElements
 }) => {
   [items, setItems] = useState(products);
   [elements, setElements] = useState(products);
@@ -40,6 +40,7 @@ const ProductList = ({
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
   const {colors} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
 
   const loadMore = useCallback(() => {
     setShowMore(true);

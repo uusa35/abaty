@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
@@ -7,15 +7,17 @@ import {getSearchProducts} from '../../../redux/actions';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductHorizontalWidget = ({
   elements,
   showName,
   title,
-  dispatch,
-  showLink = true,
-  colors
+  showLink = true
 }) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity

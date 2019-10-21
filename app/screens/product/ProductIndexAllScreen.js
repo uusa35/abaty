@@ -1,24 +1,26 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../../components/widgets/product/ProductList';
+import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions';
 import {productsSelector} from '../../redux/selectors/collections';
 import {colorsSelector} from '../../redux/selectors/collection';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
-class ProductIndexAllScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
+const ProductIndexAllScreen = ({dispatch, products, colors}) => {
+  const [currentProducts, setCurrentProducts] = useState([]);
 
-  componentWillMount(): void {
-    this.props.dispatch(getAllProducts());
-  }
+  useEffect(() => {
+    if (products !== currentProducts) {
+      dispatch(getAllProducts());
+      setCurrentProducts(products);
+    }
+    console.log('firing useEffect ProductIndexAll');
+  }, [currentProducts]);
 
-  render() {
-    const {products, colors, dispatch} = this.props;
-    return (
+  return (
+    <React.Suspense fallback={<SimpleSpinner />}>
       <ProductList
         colors={colors}
         dispatch={dispatch}
@@ -29,9 +31,9 @@ class ProductIndexAllScreen extends Component {
         showFooter={true}
         showRefresh={true}
       />
-    );
-  }
-}
+    </React.Suspense>
+  );
+};
 
 function mapStateToProps(state) {
   return {

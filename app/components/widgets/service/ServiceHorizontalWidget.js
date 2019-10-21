@@ -11,13 +11,9 @@ import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
 
-const ServiceHorizontalWidget = ({
-  elements,
-  showName,
-  title,
-  dispatch,
-  colors
-}) => {
+const ServiceHorizontalWidget = ({elements, showName, title}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity

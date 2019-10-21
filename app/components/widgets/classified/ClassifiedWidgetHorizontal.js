@@ -13,18 +13,18 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
 import {getConvertedFinalPrice} from '../../../helpers';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ClassifiedWidgetHorizontal = ({
   element,
   showName = false,
-  dispatch,
-  colors,
   widthVal = '100%',
   heightVal = '100%'
 }) => {
-  const {currency_symbol, token, exchange_rate} = useContext(
+  const {currency_symbol, token, exchange_rate, colors} = useContext(
     GlobalValuesContext
   );
+  const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
       key={element.id}

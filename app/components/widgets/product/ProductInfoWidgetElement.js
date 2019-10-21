@@ -12,9 +12,9 @@ const ProductInfoWidgetElement = ({
   elementName,
   name,
   iconName = null,
-  showIcon = true,
-  colors
+  showIcon = true
 }) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
       style={{

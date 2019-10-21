@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useContext} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -15,17 +15,14 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {
-  getClassifieds,
-  getSearchClassifieds,
-  getSearchProducts
-} from '../../../redux/actions';
+import {getSearchClassifieds} from '../../../redux/actions';
 import ClassifiedWidget from './ClassifiedWidget';
 import widgetStyles from '../widgetStyles';
-import ClassifiedSearchForm from '../search/ClassifiedSearchForm';
 import SearchSort from '../search/SearchSort';
 import {orderBy} from 'lodash';
 import ClassifiedsMapView from '../map/ClassifiedsMapView';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ClassifiedList = ({
   classifieds,
@@ -36,9 +33,7 @@ const ClassifiedList = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements,
-  colors,
-  dispatch
+  searchElements
 }) => {
   [items, setItems] = useState(classifieds);
   [elements, setElements] = useState(classifieds);
@@ -55,6 +50,8 @@ const ClassifiedList = ({
   [sort, setSort] = useState('');
   [sortModal, setSortModal] = useState(false);
   [mapModal, setMapModal] = useState(false);
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -270,9 +267,7 @@ export default ClassifiedList;
 ClassifiedList.propTypes = {
   classifieds: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
-  colors: PropTypes.object
+  showName: PropTypes.bool
 };
 
 const styles = StyleSheet.create({});

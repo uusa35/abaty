@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
@@ -8,14 +8,12 @@ import widgetStyles from './../widgetStyles';
 import CollectionWidget from './CollectionWidget';
 import CollectionInfoWidget from './CollectionInfoWidget';
 import {useNavigation} from 'react-navigation-hooks';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const CollectionHorizontalWidget = ({
-  elements,
-  showName,
-  title,
-  dispatch,
-  colors
-}) => {
+const CollectionHorizontalWidget = ({elements, showName, title}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>
       <TouchableOpacity

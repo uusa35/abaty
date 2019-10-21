@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {map} from 'lodash';
@@ -14,17 +14,19 @@ import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const DesignerHorizontalWidget = ({
   elements,
   showName,
   title,
   name,
-  dispatch,
-  colors,
   searchElements
 }) => {
   const [params, setParams] = useState(searchElements);
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity

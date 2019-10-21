@@ -3,15 +3,17 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import CompaniesList from '../../components/Lists/CompaniesList';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
-const CompanyIndexScreen = ({companies, searchParams, dispatch}) => {
+const CompanyIndexScreen = ({companies, searchParams}) => {
   return (
-    <CompaniesList
-      elements={companies}
-      searchElements={searchParams}
-      dispatch={dispatch}
-      showMore={true}
-    />
+    <React.Suspense fallback={<SimpleSpinner />}>
+      <CompaniesList
+        elements={companies}
+        searchElements={searchParams}
+        showMore={true}
+      />
+    </React.Suspense>
   );
 };
 

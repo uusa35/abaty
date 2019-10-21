@@ -4,9 +4,14 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import VideoList from '../../components/Lists/VideoList';
 import {videosSelector} from '../../redux/selectors/collections';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
 const VideoIndexScreen = ({videos}) => {
-  return <VideoList elements={videos} />;
+  return (
+    <React.Suspense fallback={<SimpleSpinner />}>
+      <VideoList elements={videos} />
+    </React.Suspense>
+  );
 };
 
 function mapStateToProps(state) {

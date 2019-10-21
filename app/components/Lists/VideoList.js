@@ -9,6 +9,7 @@ import VideoWidget from '../widgets/video/VideoWidget';
 import {first} from 'lodash';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {refetchHomeElements} from '../../redux/actions';
+import SimpleSpinner from '../SimpleSpinner';
 
 const VideoList = ({
   elements,
@@ -75,13 +76,14 @@ const VideoList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <VideoWidget
-              dispatch={dispatch}
-              element={item}
-              showName={true}
-              width={width}
-              showImage={true}
-            />
+            <React.Suspense fallback={<SimpleSpinner />}>
+              <VideoWidget
+                element={item}
+                showName={true}
+                width={width}
+                showImage={true}
+              />
+            </React.Suspense>
           )}
         />
       ) : (

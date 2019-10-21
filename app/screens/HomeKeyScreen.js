@@ -184,11 +184,8 @@ const HomeKeyHomeScreen = ({
           validate.isArray(homeCategories) ? (
             <ClassifiedCategoryHorizontalRoundedWidget
               elements={homeCategories}
-              colors={colors}
               showName={true}
               title={I18n.t('categories')}
-              dispatch={dispatch}
-              navigation={navigation}
             />
           ) : null}
         </React.Suspense>
@@ -201,12 +198,17 @@ const HomeKeyHomeScreen = ({
               showSearch={false}
               showTitle={true}
               title="featured_classifieds"
-              dispatch={dispatch}
-              colors={colors}
               searchElements={{on_home: true}}
             />
           ) : null}
         </React.Suspense>
+        <CompanyHorizontalWidget
+          elements={homeCompanies}
+          showName={true}
+          name="companies"
+          title="companies"
+          searchElements={{is_company: true}}
+        />
         <TouchableOpacity
           onPress={() =>
             !guest

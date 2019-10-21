@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../../constants';
 import {appUrlIos} from '../../../env';
@@ -8,8 +8,10 @@ import {WebView} from 'react-native-webview';
 import I18n from '../../../I18n';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const VideosHorizontalWidget = ({videos, colors}) => {
+const VideosHorizontalWidget = ({videos}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (

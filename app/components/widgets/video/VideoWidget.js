@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {text, width} from '../../../constants';
+import {text} from '../../../constants';
 import {appUrlIos} from '../../../env';
 import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';
 import FastImage from 'react-native-fast-image';
 import {GET_VIDEO} from '../../../redux/actions/types';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const VideoWidget = ({
   element,
-  dispatch,
   height = 120,
   width = 180,
   showImage = false
@@ -17,7 +17,7 @@ const VideoWidget = ({
   [isReady, setIsReady] = useState(false);
   [status, setStatus] = useState(false);
   [quality, setQuality] = useState('');
-  console.log('element', element.video);
+  const {dispatch} = useContext(DispatchContext);
   return (
     <View
       style={{

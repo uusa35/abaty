@@ -3,29 +3,24 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
-const ClassifiedIndexScreen = ({
-  classifieds,
-  searchParams,
-  dispatch,
-  colors
-}) => {
+const ClassifiedIndexScreen = ({classifieds, searchParams}) => {
   return (
-    <ClassifiedList
-      classifieds={classifieds}
-      dispatch={dispatch}
-      colors={colors}
-      showName={true}
-      searchElements={searchParams}
-    />
+    <React.Suspense fallback={<SimpleSpinner />}>
+      <ClassifiedList
+        classifieds={classifieds}
+        showName={true}
+        searchElements={searchParams}
+      />
+    </React.Suspense>
   );
 };
 
 function mapStateToProps(state) {
   return {
     classifieds: state.classifieds,
-    searchParams: state.searchParams,
-    colors: state.settings.colors
+    searchParams: state.searchParams
   };
 }
 

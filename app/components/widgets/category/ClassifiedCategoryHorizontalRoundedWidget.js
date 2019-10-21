@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -14,16 +14,19 @@ import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
 const ClassifiedCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
-  dispatch,
-  colors,
-  showTitle = true,
-  navigation
+  showTitle = true
 }) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+  const {navigate} = useNavigation();
   const handleClick = useCallback(c => {
     return dispatch(
       getSearchClassifieds({
@@ -39,7 +42,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
       {showTitle ? (
         <TouchableOpacity
           style={widgetStyles.titleContainer}
-          onPress={() => navigation.navigate('CategoryIndex')}>
+          onPress={() => navigate('CategoryIndex')}>
           <View style={widgetStyles.titleWrapper}>
             <Text
               style={[

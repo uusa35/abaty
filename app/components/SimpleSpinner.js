@@ -6,8 +6,7 @@ const SimpleSpinner = ({color = 'black'}) => {
   return (
     <View
       style={{
-        width: '100%',
-        borderWidth: 10,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
       }}>

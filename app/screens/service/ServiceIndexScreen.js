@@ -3,17 +3,18 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {has} from 'lodash';
-import ServiceList from '../../components/widgets/service/ServiceList';
+import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
 const ServiceIndexScreen = ({services, searchParams, colors, dispatch}) => {
   return (
-    <ServiceList
-      services={services}
-      searchElements={searchParams}
-      showName={true}
-      colors={colors}
-      dispatch={dispatch}
-    />
+    <React.Suspense fallback={<SimpleSpinner />}>
+      <ServiceList
+        services={services}
+        searchElements={searchParams}
+        showName={true}
+      />
+    </React.Suspense>
   );
 };
 

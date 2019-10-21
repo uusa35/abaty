@@ -13,11 +13,14 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, text} from '../../../constants';
 import TagWidget from './../TagWidget';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductWidget = ({element, showName = false, dispatch, colors}) => {
-  const {currency_symbol, exchange_rate, token} = useContext(
+const ProductWidget = ({element, showName = false}) => {
+  const {currency_symbol, exchange_rate, token, colors} = useContext(
     GlobalValuesContext
   );
+  const {dispatch} = useContext(DispatchContext);
+
   return (
     <TouchableOpacity
       key={element.id}
