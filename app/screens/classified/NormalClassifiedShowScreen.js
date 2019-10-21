@@ -17,7 +17,11 @@ import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, images} from './../../constants';
 import I18n from './../../I18n';
-import {getClassified, getClassifieds} from '../../redux/actions';
+import {
+  getClassified,
+  getClassifieds,
+  getSearchClassifieds
+} from '../../redux/actions';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
@@ -142,11 +146,14 @@ const NormalClassifiedShowScreen = ({
               elementName="categories"
               colors={colors}
               name={element.category.name}
-              link={
-                () => console.log('here')
-                // dispatch(
-                //   getClassifieds({searchParams : {classified_category_id: element.id}, redirect : true , name : element.category.name})
-                // )
+              link={() =>
+                dispatch(
+                  getSearchClassifieds({
+                    name: element.name,
+                    searchParams: {classified_category_id: element.category.id},
+                    redirect: true
+                  })
+                )
               }
             />
             {element.only_whatsapp ? (

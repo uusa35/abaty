@@ -58,11 +58,11 @@ import I18n from '../I18n';
 // import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import widgetStyles from '../components/widgets/widgetStyles';
 import {Icon} from 'react-native-elements';
-import HomeKeySearchTab from '../components/widgets/search/HomeKeySearchTab';
 import SimpleSpinner from '../components/SimpleSpinner';
 import {
   ClassifiedCategoryHorizontalRoundedWidget,
-  ClassifiedListHorizontal
+  ClassifiedListHorizontal,
+  HomeKeySearchTab
 } from '../components/LazyLoadingComponents/classifiedComponents';
 
 const HomeKeyHomeScreen = ({
