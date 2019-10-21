@@ -205,7 +205,7 @@ const HomeKeyHomeScreen = ({
         <CompanyHorizontalWidget
           elements={homeCompanies}
           showName={true}
-          name="companies"
+          name={I18n.t('companies')}
           title="companies"
           searchElements={{is_company: true}}
         />

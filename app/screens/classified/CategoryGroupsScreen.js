@@ -181,7 +181,6 @@ const CategoryGroupsScreen = ({
                   }}>
                   <View>
                     {map(group.properties, (property, i) => {
-                      console.log('prop', property);
                       return (
                         <TouchableOpacity
                           style={styles.propertiesWrapper}

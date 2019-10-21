@@ -15,7 +15,7 @@ const HomeKeySearchTab = ({elements}) => {
   const parentCategories = map(take(elements, 3), (e, i) => {
     return {
       key: i,
-      title: e.name,
+      title: e.name.substring(0, 15),
       category: e
     };
   });
@@ -33,7 +33,7 @@ const HomeKeySearchTab = ({elements}) => {
           alignSelf: 'center'
         }}>
         <Text style={{fontFamily: text.font, textAlign: 'left'}}>
-          {I18n.t('search')} {element.category.name}
+          {I18n.t('search')} {element.category.name.substring(0, 100)}
         </Text>
       </TouchableOpacity>
     );

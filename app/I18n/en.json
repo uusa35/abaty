@@ -526,5 +526,6 @@
   "choose_address_from_map_or_you_can_write_your_map" : "You Can either choose your address from Map or write your own address.",
   "get_your_address_from_map" : "Get your address from map",
   "save_address_and_continue" : "Save address and continue",
-  "classified_title" : "Classified title"
+  "classified_title" : "Classified title",
+  "add_your_address" : "Add your address"
 }

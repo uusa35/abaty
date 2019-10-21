@@ -48,7 +48,7 @@
   "paymentMethodFinish": "السداد - إنهاء",
   "video_content": "فيديوء",
   "lang" : "اللغة",
-  "search" : "بحث ..",
+  "search" : "بحث",
   "recent_products" : "أحدث المنتجات",
   "most_ordered" : "الأكثر طلبا",
   "our_shop" : "أوتليت عباتي",
@@ -560,5 +560,6 @@
   "choose_address_from_map_or_you_can_write_your_map" : "يمكنك اختيار عنوان إعلانك من الخريطة أو كتابة عنوانك",
   "get_your_address_from_map" : "ابحث عن عنوانك من الخريطة",
   "save_address_and_continue" : "حفظ العنوان والاستمرار",
-  "classified_title" : "عنوان الإعلان"
+  "classified_title" : "عنوان الإعلان",
+  "add_your_address" : "اختر عنوانك"
 }

@@ -2,18 +2,15 @@ import React, {
   useMemo,
   useState,
   useCallback,
-  useEffect,
   useContext
 } from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View,Text} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import MapView, {Marker} from 'react-native-maps';
-import validate from 'validate.js';
 import I18n, {isRTL} from '../../I18n';
-import {text, width} from '../../constants';
+import {text, width, images} from '../../constants';
 import {Button, Input} from 'react-native-elements';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import Geolocation from '@react-native-community/geolocation';
 import {axiosInstance} from '../../redux/actions/api';
 import {useNavigation} from 'react-navigation-hooks';
 
@@ -60,14 +57,14 @@ const ChooseAddressScreen = () => {
         <MapView
           style={{
             width,
-            height: 300
+            height: '100%'
           }}
           title={I18n.t('google_map')}
           zoomEnabled={true}
           initialRegion={{
             latitude: parseFloat(latitude),
             longitude: parseFloat(longitude),
-            latitudeDelta: 0.9922,
+            latitudeDelta: 0.6922,
             longitudeDelta: 0.0421
           }}>
           <Marker
@@ -76,9 +73,26 @@ const ChooseAddressScreen = () => {
               latitude: parseFloat(latitude),
               longitude: parseFloat(longitude)
             }}
-            onDragEnd={e => setLocation(e)}
-            title={I18n.t('choose_your_location')}
-          />
+            image={images.pin}
+            onDragEnd={e => setLocation(e)}>
+            <View
+              style={{
+                alignSelf: 'center',
+                position: 'relative',
+                left: 30,
+                marginTop: 50,
+                minWidth: 100
+              }}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontFamily: text.font,
+                  fontSize: text.small
+                }}>
+                {I18n.t('choose_your_location')}
+              </Text>
+            </View>
+          </Marker>
         </MapView>
         <View
           style={{alignItems: 'center', justifyContent: 'center', padding: 20}}>
