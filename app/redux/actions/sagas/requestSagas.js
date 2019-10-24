@@ -204,7 +204,7 @@ export function* startRefetchHomeElementsScenario() {
       call(getPages),
       call(startReAuthenticateScenario),
       call(startGetHomeCategoriesScenario),
-      put({type: actions.GET_CATEGORIES}),
+      call(startGetParentCategoriesScenario),
       put({
         type: actions.GET_HOME_COMPANIES,
         payload: {searchParams: {on_home: 1, is_company: 1}}

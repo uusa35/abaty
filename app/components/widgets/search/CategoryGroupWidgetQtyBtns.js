@@ -11,8 +11,7 @@ const CategoryGroupWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1
+        alignItems: 'center'
       }}>
       <Button
         onPress={() =>

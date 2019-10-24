@@ -70,11 +70,34 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
             </View>
             <View
               style={{
-                flex: 1,
+                borderBottomWidth: 0.5,
+                borderColor: 'lightgrey',
+                width: '100%',
+                marginBottom: 20
+              }}>
+              <Text
+                style={{
+                  width: '100%',
+                  fontFamily: text.font,
+                  fontSize: text.large,
+                  textAlign: 'center',
+                  marginTop: 10,
+                  marginBottom: 10,
+                  color: colors.main_theme_color
+                }}>
+                {category.name}
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '100%',
                 alignItems: 'flex-start',
                 justifyContent: 'flex-start',
                 padding: 20,
-                marginTop: 10
+                marginTop: 5,
+                borderWidth: 0.5,
+                borderRadius: 10,
+                borderColor: 'lightgrey'
               }}>
               <Text
                 style={{
@@ -99,7 +122,7 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                   max={1000}
                   step={10}
                   values={priceRange}
-                  sliderLength={width - 50}
+                  sliderLength={width - 100}
                   onValuesChangeStart={() => console.log('started')}
                   onValuesChange={e => setPriceRange(e)}
                   onValuesChangeFinish={() => console.log('end')}
@@ -141,25 +164,15 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                 justifyContent: 'flex-start',
                 paddingTop: 15
               }}>
-              <Text
-                style={{
-                  width: '100%',
-                  fontFamily: text.font,
-                  fontSize: text.large,
-                  textAlign: 'center',
-                  marginTop: 10,
-                  marginBottom: 10,
-                  color: colors.main_theme_color
-                }}>
-                {category.name}
-              </Text>
               {map(category.categoryGroups, (g, i) => (
                 <View
                   key={i}
                   style={{
                     flex: 1,
                     flexDirection: 'row',
-                    borderWidth: 1
+                    borderTopWidth: 0.5,
+                    borderBottomWidth: 0.5,
+                    borderColor: 'lightgrey'
                   }}>
                   <View
                     style={{
@@ -173,9 +186,9 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                       style={{
                         width: 50,
                         height: 50,
-                        borderWidth: 1,
                         marginLeft: 10,
-                        marginRight: 10
+                        marginRight: 10,
+                        borderRadius: 5
                       }}
                     />
                     <Text
