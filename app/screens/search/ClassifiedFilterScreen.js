@@ -1,8 +1,15 @@
-import React, {useState, useMemo} from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useState, useMemo, useCallback} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Modal,
+  TouchableOpacity,
+  ScrollView,
+  StyleSheet
+} from 'react-native';
 import {connect} from 'react-redux';
-import {Modal, ScrollView} from 'react-native';
-import {Button, Icon, Slider} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
@@ -10,15 +17,17 @@ import {SafeAreaView} from 'react-navigation';
 import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {width, text} from './../../constants';
-import {map} from 'lodash';
-import CategoryGroupWidgetQtyBtns from '../../components/widgets/search/CategoryGroupWidgetQtyBtns';
-import {addToCart} from '../../redux/actions';
+import {map, first, shuffle, uniqBy} from 'lodash';
+import FastImage from 'react-native-fast-image';
+import validate from 'validate.js';
 
 const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
   const [visible, setVisible] = useState(searchModal);
-  const [requestQty, setRequestQty] = useState(0);
   const [price, setPrice] = useState(0);
   const [priceRange, setPriceRange] = useState([100, 1000]);
+  const [selectedGroup, setSelectedGroup] = useState({});
+  const [propsModalVisible, setPropsModalVisible] = useState(false);
+  const [items, setItems] = useState([]);
   const {goBack} = useNavigation();
 
   useMemo(() => {
@@ -26,6 +35,11 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
       dispatch({type: HIDE_SEARCH_MODAL});
     }
   }, [visible]);
+
+  const showPropsModal = useCallback(g => {
+    setPropsModalVisible(!propsModalVisible);
+    setSelectedGroup(g);
+  });
 
   return (
     <SafeAreaView>
@@ -171,13 +185,16 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                     flex: 1,
                     flexDirection: 'row',
                     borderTopWidth: 0.5,
-                    borderBottomWidth: 0.5,
+                    // borderBottomWidth: 0.5,
                     borderColor: 'lightgrey'
                   }}>
-                  <View
+                  <TouchableOpacity
+                    hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                    onPress={() => showPropsModal(g)}
                     style={{
                       flex: 1,
                       flexDirection: 'row',
+                      justifyContent: 'space-between',
                       alignItems: 'center',
                       margin: 10
                     }}>
@@ -199,16 +216,127 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                       }}>
                       {g.name}
                     </Text>
-                  </View>
-                  <CategoryGroupWidgetQtyBtns
-                    qty={10}
-                    requestQty={requestQty}
-                    setRequestQty={setRequestQty}
-                  />
+                    <Button
+                      hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                      onPress={() => showPropsModal(g)}
+                      raised
+                      containerStyle={{width: 80, alignSelf: 'center'}}
+                      buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+                      icon={
+                        <Icon
+                          name={
+                            !isRTL ? 'chevron-thin-right' : 'chevron-thin-left'
+                          }
+                          type="entypo"
+                          size={15}
+                          color="white"
+                        />
+                      }
+                    />
+                  </TouchableOpacity>
                 </View>
               ))}
             </View>
           </View>
+          <Modal
+            transparent={false}
+            animationType={first(shuffle(['slide', 'fade']))}
+            presentationStyle="fullScreen"
+            onRequestClose={() => console.log('close')}
+            visible={propsModalVisible}>
+            <View
+              style={{
+                width: '100%',
+                minHeight: 50,
+                justifyContent: 'center',
+                marginTop: '10%',
+                alignSelf: 'center',
+                alignItems: 'center',
+                flexDirection: 'row-reverse'
+              }}>
+              <Icon
+                containerStyle={{position: 'absolute', left: 0}}
+                name="close"
+                type="evil-icons"
+                size={25}
+                style={{zIndex: 999}}
+                onPress={() => setPropsModalVisible(false)}
+                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              />
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'baseline',
+                  width: 120,
+                  justifyContent: 'space-between'
+                }}>
+                <Image
+                  source={{uri: selectedGroup.thumb}}
+                  style={{width: 25, height: 25}}
+                />
+                {/*<Icon type="font-awesome" name={selectedGroup.icon} />*/}
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    fontFamily: text.font,
+                    fontSize: text.large
+                  }}>
+                  {selectedGroup.name}
+                </Text>
+              </View>
+              <Icon
+                containerStyle={{position: 'absolute', right: 0}}
+                name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+                type="entypo"
+                size={25}
+                style={{zIndex: 999}}
+                onPress={() => setPropsModalVisible(false)}
+                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              />
+            </View>
+            <ScrollView
+              contentContainerStyle={{
+                flex: 0.9,
+                paddingTop: 10,
+                width: '100%'
+              }}>
+              {!validate.isEmpty(selectedGroup) ? (
+                <View>
+                  {map(selectedGroup.properties, (p, i) => {
+                    return (
+                      <TouchableOpacity
+                        style={styles.propertiesWrapper}
+                        onPress={() =>
+                          setItems(
+                            uniqBy(
+                              items.concat({
+                                group: selectedGroup,
+                                property: p,
+                                category_group_id: selectedGroup.id,
+                                property_id: p.id
+                              })
+                            ),
+                            'category_group_id'
+                          )
+                        }
+                        key={i}>
+                        {p.thumb ? (
+                          <FastImage
+                            source={{uri: p.thumb}}
+                            style={{width: 30, height: 30}}
+                            resizeMode="contain"
+                          />
+                        ) : (
+                          <Icon type="font-awesome" name={p.icon} />
+                        )}
+                        <Text style={styles.title}>{p.name}</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              ) : null}
+            </ScrollView>
+          </Modal>
         </ScrollView>
         <View
           style={{
@@ -243,3 +371,32 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(ClassifiedFilterScreen);
+
+const styles = StyleSheet.create({
+  iconModalWrapper: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 80,
+    borderWidth: 4,
+    borderColor: 'green',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    zIndex: 999
+  },
+  propertiesWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: 50,
+    borderBottomWidth: 0.5,
+    borderTopWidth: 0.5,
+    borderColor: 'lightgrey',
+    padding: 10
+  },
+  title: {
+    fontFamily: text.font,
+    fontSize: text.medium,
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+});
