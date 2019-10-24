@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,26 +9,41 @@ import {
   StyleSheet
 } from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Icon} from 'react-native-elements';
+import {Button, Icon, ButtonGroup} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 import {SafeAreaView} from 'react-navigation';
-import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
+import {HIDE_SEARCH_MODAL, SET_CATEGORY} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {width, text} from './../../constants';
-import {map, first, shuffle, uniqBy} from 'lodash';
+import {map, first, shuffle, uniqBy, take} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 
-const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
+const ClassifiedFilterScreen = ({
+  category,
+  dispatch,
+  searchModal,
+  colors,
+  categories
+}) => {
   const [visible, setVisible] = useState(searchModal);
   const [price, setPrice] = useState(0);
   const [priceRange, setPriceRange] = useState([100, 1000]);
   const [selectedGroup, setSelectedGroup] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState({});
   const [propsModalVisible, setPropsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const {goBack} = useNavigation();
+  const [parentCategories, setParentCategories] = useState([]);
+
+  useMemo(() => {
+    if (validate.isEmpty(parentCategories)) {
+      const parents = take(map(categories, c => (c.isParent ? c : null)), 3);
+      setParentCategories(parents);
+    }
+  }, [parentCategories]);
 
   useMemo(() => {
     if (!visible) {
@@ -40,6 +55,18 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
     setPropsModalVisible(!propsModalVisible);
     setSelectedGroup(g);
   });
+
+  useMemo(() => {
+    if (!validate.isEmpty(selectedCategory)) {
+      dispatch({type: SET_CATEGORY, payload: selectedCategory});
+    } else {
+      if (map(parentCategories, c => c.id === category.id)) {
+        setSelectedCategory(category);
+      } else {
+        setSelectedCategory(parentCategories.map);
+      }
+    }
+  }, [category, selectedCategory]);
 
   return (
     <SafeAreaView>
@@ -82,26 +109,40 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
               />
               <ClassifiedSearchForm />
             </View>
-            <View
-              style={{
-                borderBottomWidth: 0.5,
-                borderColor: 'lightgrey',
-                width: '100%',
-                marginBottom: 20
-              }}>
-              <Text
+            {parentCategories ? (
+              <View
                 style={{
                   width: '100%',
-                  fontFamily: text.font,
-                  fontSize: text.large,
-                  textAlign: 'center',
-                  marginTop: 10,
-                  marginBottom: 10,
-                  color: colors.main_theme_color
+                  marginBottom: 20,
+                  marginTop: 30,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly'
                 }}>
-                {category.name}
-              </Text>
-            </View>
+                {map(parentCategories, (c, i) => (
+                  <Button
+                    key={i}
+                    onPress={() => setSelectedCategory(c)}
+                    raised
+                    containerStyle={{width: '32%', alignSelf: 'center'}}
+                    buttonStyle={{
+                      backgroundColor: colors.btn_bg_theme_color,
+                      opacity:
+                        selectedCategory && selectedCategory.id === c.id
+                          ? 1
+                          : 0.6,
+                      height: 40
+                    }}
+                    title={c.name.substring(0, 20)}
+                    titleStyle={{
+                      fontFamily: text.font,
+                      color: colors.btn_text_theme_color
+                    }}
+                  />
+                ))}
+              </View>
+            ) : null}
+
             <View
               style={{
                 width: '100%',
@@ -171,72 +212,78 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
                 {I18n.t('price')} : {priceRange[0]} - {priceRange[1]}
               </Text>
             </View>
-            <View
-              style={{
-                flex: 1,
-                alignItems: 'flex-start',
-                justifyContent: 'flex-start',
-                paddingTop: 15
-              }}>
-              {map(category.categoryGroups, (g, i) => (
-                <View
-                  key={i}
-                  style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    borderTopWidth: 0.5,
-                    // borderBottomWidth: 0.5,
-                    borderColor: 'lightgrey'
-                  }}>
-                  <TouchableOpacity
-                    hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-                    onPress={() => showPropsModal(g)}
+            {!validate.isEmpty(category) ? (
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  paddingTop: 15
+                }}>
+                {map(category.categoryGroups, (g, i) => (
+                  <View
+                    key={i}
                     style={{
                       flex: 1,
                       flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      margin: 10
+                      borderTopWidth: 0.5,
+                      // borderBottomWidth: 0.5,
+                      borderColor: 'lightgrey'
                     }}>
-                    <Image
-                      source={{uri: g.thumb}}
-                      style={{
-                        width: 50,
-                        height: 50,
-                        marginLeft: 10,
-                        marginRight: 10,
-                        borderRadius: 5
-                      }}
-                    />
-                    <Text
-                      style={{
-                        fontFamily: text.font,
-                        fontSize: text.medium,
-                        color: colors.main_theme_color
-                      }}>
-                      {g.name}
-                    </Text>
-                    <Button
+                    <TouchableOpacity
                       hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
                       onPress={() => showPropsModal(g)}
-                      raised
-                      containerStyle={{width: 80, alignSelf: 'center'}}
-                      buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-                      icon={
-                        <Icon
-                          name={
-                            !isRTL ? 'chevron-thin-right' : 'chevron-thin-left'
-                          }
-                          type="entypo"
-                          size={15}
-                          color="white"
-                        />
-                      }
-                    />
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
+                      style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        margin: 10
+                      }}>
+                      <Image
+                        source={{uri: g.thumb}}
+                        style={{
+                          width: 50,
+                          height: 50,
+                          marginLeft: 10,
+                          marginRight: 10,
+                          borderRadius: 5
+                        }}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: text.font,
+                          fontSize: text.medium,
+                          color: colors.main_theme_color
+                        }}>
+                        {g.name}
+                      </Text>
+                      <Button
+                        hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                        onPress={() => showPropsModal(g)}
+                        raised
+                        containerStyle={{width: 80, alignSelf: 'center'}}
+                        buttonStyle={{
+                          backgroundColor: colors.btn_bg_theme_color
+                        }}
+                        icon={
+                          <Icon
+                            name={
+                              !isRTL
+                                ? 'chevron-thin-right'
+                                : 'chevron-thin-left'
+                            }
+                            type="entypo"
+                            size={15}
+                            color="white"
+                          />
+                        }
+                      />
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </View>
+            ) : null}
           </View>
           <Modal
             transparent={false}
@@ -365,6 +412,7 @@ const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
 function mapStateToProps(state) {
   return {
     category: state.category,
+    categories: state.categories,
     searchModal: state.searchModal,
     colors: state.settings.colors
   };

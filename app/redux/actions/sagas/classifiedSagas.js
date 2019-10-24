@@ -196,9 +196,7 @@ export function* getHomeClassifieds() {
 }
 
 export function* startClassifiedSearchingScenario(action) {
-  console.log('action', action);
   const element = action.payload;
-  console.log('element', element);
   yield all([
     put({type: SET_CATEGORY, payload: element}),
     put({type: SHOW_SEARCH_MODAL}),

@@ -13,11 +13,13 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
   const {colors} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
   const parentCategories = map(take(elements, 3), (e, i) => {
-    return {
-      key: i,
-      title: e.name.substring(0, 15),
-      category: e
-    };
+    if (e.isParent) {
+      return {
+        key: i,
+        title: e.name.substring(0, 15),
+        category: e
+      };
+    }
   });
   const [routes, setRoutes] = useState(parentCategories);
 
