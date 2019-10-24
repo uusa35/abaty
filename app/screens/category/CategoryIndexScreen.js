@@ -4,6 +4,7 @@ import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
+import SimpleSpinner from '../../components/SimpleSpinner';
 
 const CategoryIndexScreen = ({
   homeCategories,
@@ -11,7 +12,7 @@ const CategoryIndexScreen = ({
   show_commercials
 }) => {
   return (
-    <View style={{flex: 1}}>
+    <React.Suspense fallback={<SimpleSpinner />}>
       <View
         animation="bounceIn"
         easing="ease-out"
@@ -23,7 +24,7 @@ const CategoryIndexScreen = ({
           <CommercialSliderWidget commercials={commercials} />
         </View>
       ) : null}
-    </View>
+    </React.Suspense>
   );
 };
 

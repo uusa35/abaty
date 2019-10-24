@@ -1,5 +1,6 @@
 import {MALLR, ABATI, ENV, PORT} from '../app';
 
+export const isLocal = ENV === 'local';
 if (ENV === 'local') {
   console.log('the env testing>>>>', ENV);
   module.exports = {

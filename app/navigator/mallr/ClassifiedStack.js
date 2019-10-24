@@ -2,12 +2,12 @@ import {createStackNavigator} from 'react-navigation';
 import HomeKeyScreen from '../../screens/HomeKeyScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import React from 'react';
 
-export const MallrClassifiedStack = createStackNavigator(
+export const ClassifiedStack = createStackNavigator(
   {
     HomeKey: {
       screen: HomeKeyScreen,

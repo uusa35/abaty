@@ -1,23 +1,24 @@
 import React, {useState, useMemo} from 'react';
-import {View} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {connect} from 'react-redux';
 import {Modal, ScrollView} from 'react-native';
-import {Icon} from 'react-native-elements';
-import {isRTL} from '../../I18n';
+import {Button, Icon, Slider} from 'react-native-elements';
+import I18n, {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 import {SafeAreaView} from 'react-navigation';
 import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
-import ProductWidgetQtyBtns from '../../components/widgets/product/ProductWidgetQtyBtns';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import {width, text} from './../../constants';
+import {map} from 'lodash';
+import CategoryGroupWidgetQtyBtns from '../../components/widgets/search/CategoryGroupWidgetQtyBtns';
+import {addToCart} from '../../redux/actions';
 
-const ClassifiedFilterScreen = ({
-  category,
-  dispatch,
-  searchModal,
-  categories
-}) => {
+const ClassifiedFilterScreen = ({category, dispatch, searchModal, colors}) => {
   const [visible, setVisible] = useState(searchModal);
   const [requestQty, setRequestQty] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [priceRange, setPriceRange] = useState([100, 1000]);
   const {goBack} = useNavigation();
 
   useMemo(() => {
@@ -26,7 +27,6 @@ const ClassifiedFilterScreen = ({
     }
   }, [visible]);
 
-  console.log('category props', category);
   return (
     <SafeAreaView>
       <Modal
@@ -51,7 +51,6 @@ const ClassifiedFilterScreen = ({
           <View style={{flex: 1}}>
             <View
               style={{
-                borderWidth: 5,
                 flexDirection: 'row',
                 alignItems: 'baseline'
               }}>
@@ -69,13 +68,154 @@ const ClassifiedFilterScreen = ({
               />
               <ClassifiedSearchForm />
             </View>
-            <ProductWidgetQtyBtns
-              qty={10}
-              requestQty={requestQty}
-              setRequestQty={setRequestQty}
-            />
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                padding: 20,
+                marginTop: 10
+              }}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.main_theme_color
+                }}>
+                {I18n.t('choose_price_range')}
+              </Text>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  paddingTop: 10,
+                  width: '100%'
+                }}>
+                <MultiSlider
+                  allowOverlap
+                  snapped
+                  min={100}
+                  max={1000}
+                  step={10}
+                  values={priceRange}
+                  sliderLength={width - 50}
+                  onValuesChangeStart={() => console.log('started')}
+                  onValuesChange={e => setPriceRange(e)}
+                  onValuesChangeFinish={() => console.log('end')}
+                  style={{alignSelf: 'center'}}
+                  selectedStyle={{
+                    backgroundColor: colors.btn_bg_theme_color
+                  }}
+                  unselectedStyle={{
+                    backgroundColor: 'silver'
+                  }}
+                  containerStyle={{
+                    height: 40
+                  }}
+                  trackStyle={{
+                    height: 10,
+                    backgroundColor: 'red'
+                  }}
+                  touchDimensions={{
+                    height: 40,
+                    width: 40,
+                    borderRadius: 20,
+                    slipDisplacement: 40
+                  }}
+                />
+              </View>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.main_theme_color
+                }}>
+                {I18n.t('price')} : {priceRange[0]} - {priceRange[1]}
+              </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                paddingTop: 15
+              }}>
+              <Text
+                style={{
+                  width: '100%',
+                  fontFamily: text.font,
+                  fontSize: text.large,
+                  textAlign: 'center',
+                  marginTop: 10,
+                  marginBottom: 10,
+                  color: colors.main_theme_color
+                }}>
+                {category.name}
+              </Text>
+              {map(category.categoryGroups, (g, i) => (
+                <View
+                  key={i}
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    borderWidth: 1
+                  }}>
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      margin: 10
+                    }}>
+                    <Image
+                      source={{uri: g.thumb}}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderWidth: 1,
+                        marginLeft: 10,
+                        marginRight: 10
+                      }}
+                    />
+                    <Text
+                      style={{
+                        fontFamily: text.font,
+                        fontSize: text.medium,
+                        color: colors.main_theme_color
+                      }}>
+                      {g.name}
+                    </Text>
+                  </View>
+                  <CategoryGroupWidgetQtyBtns
+                    qty={10}
+                    requestQty={requestQty}
+                    setRequestQty={setRequestQty}
+                  />
+                </View>
+              ))}
+            </View>
           </View>
         </ScrollView>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'flex-end',
+            justifyContent: 'flex-end',
+            marginBottom: '2.5%'
+          }}>
+          <Button
+            onPress={() => console.log('filter')}
+            raised
+            containerStyle={{width: '95%', alignSelf: 'center'}}
+            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+            title={I18n.t('apply_filter')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color
+            }}
+          />
+        </View>
       </Modal>
     </SafeAreaView>
   );
@@ -84,8 +224,8 @@ const ClassifiedFilterScreen = ({
 function mapStateToProps(state) {
   return {
     category: state.category,
-    categories: state.categories,
-    searchModal: state.searchModal
+    searchModal: state.searchModal,
+    colors: state.settings.colors
   };
 }
 

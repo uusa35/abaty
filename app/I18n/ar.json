@@ -561,5 +561,7 @@
   "get_your_address_from_map" : "ابحث عن عنوانك من الخريطة",
   "save_address_and_continue" : "حفظ العنوان والاستمرار",
   "classified_title" : "عنوان الإعلان",
-  "add_your_address" : "اختر عنوانك"
+  "add_your_address" : "اختر عنوانك",
+  "choose_price_range" : "اختر أقل وأعلى سعر مطلوب",
+  "apply_filter" : "تطبيق معايير البحث"
 }

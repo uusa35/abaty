@@ -1,13 +1,13 @@
+import React from 'react';
 import {createDrawerNavigator} from 'react-navigation';
 import SideMenu from '../../components/SideMenu';
 import {isRTL} from '../../I18n';
-import React from 'react';
-import {MallrBottomTabsStack} from './MallrBottomNavigator';
+import {BottomTabsStack} from './BottomNavigator';
 
-export const MallrDrawerNavigator = createDrawerNavigator(
+export const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
-      screen: MallrBottomTabsStack
+      screen: BottomTabsStack
     }
   },
   {

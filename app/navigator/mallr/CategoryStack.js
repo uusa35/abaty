@@ -1,15 +1,15 @@
 import {createStackNavigator} from 'react-navigation';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import validate from 'validate.js';
 import I18n from '../../I18n';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import ProductShowScreen from '../../screens/ProductShowScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
+import ProductShowScreen from '../../screens/product/ProductShowScreen';
+import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import React from 'react';
 
-export const MallrCategoryStack = createStackNavigator(
+export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
       screen: CategoryIndexScreen,
@@ -73,7 +73,7 @@ export const MallrCategoryStack = createStackNavigator(
   }
 );
 
-MallrCategoryStack.navigationOptions = ({navigation}) => {
+CategoryStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

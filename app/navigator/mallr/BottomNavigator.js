@@ -6,18 +6,17 @@ import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants';
-import {MallrHomeStack} from './MallrHomeStack';
-import {MallrCategoryStack} from './MallrCategoryStack';
-import {MallrVideoStack} from './MallrVideoStack';
-import {MallrSettingStack} from './MallrSettingStack';
-import {MallrSearchStack} from './MallrSearchStack';
-import {MallrProductStack} from './MallrProductStack';
-import {MallrServiceStack} from './MallrServiceStack';
+import {HomeStack} from './HomeStack';
+import {CategoryStack} from './CategoryStack';
+import {VideoStack} from './VideoStack';
+import {SettingStack} from './SettingStack';
+import {SearchStack} from './SearchStack';
+import {ProductStack} from './ProductStack';
 
-export const MallrBottomTabsStack = createBottomTabNavigator(
+export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
-      screen: MallrHomeStack,
+      screen: HomeStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="home" type="octicon" color={tintColor} />
@@ -26,7 +25,7 @@ export const MallrBottomTabsStack = createBottomTabNavigator(
       })
     },
     CategoryIndexScreen: {
-      screen: MallrCategoryStack,
+      screen: CategoryStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="layers" type="simplelineicons" color={tintColor} />
@@ -35,7 +34,7 @@ export const MallrBottomTabsStack = createBottomTabNavigator(
       })
     },
     VideoIndexAll: {
-      screen: MallrVideoStack,
+      screen: VideoStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
@@ -49,7 +48,7 @@ export const MallrBottomTabsStack = createBottomTabNavigator(
       })
     },
     Setting: {
-      screen: MallrSettingStack,
+      screen: SettingStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -62,7 +61,7 @@ export const MallrBottomTabsStack = createBottomTabNavigator(
       })
     },
     Search: {
-      screen: MallrSearchStack,
+      screen: SearchStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
@@ -71,7 +70,7 @@ export const MallrBottomTabsStack = createBottomTabNavigator(
       })
     },
     ProductIndexAll: {
-      screen: MallrProductStack,
+      screen: ProductStack,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />

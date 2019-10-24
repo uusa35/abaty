@@ -38,6 +38,7 @@ import {
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 import {isArray} from 'lodash';
+import {getHomeCategories} from '../api';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -202,8 +203,8 @@ export function* startRefetchHomeElementsScenario() {
       call(getVideos),
       call(getPages),
       call(startReAuthenticateScenario),
+      call(startGetHomeCategoriesScenario),
       put({type: actions.GET_CATEGORIES}),
-      put({type: actions.GET_HOME_CATEGORIES}),
       put({
         type: actions.GET_HOME_COMPANIES,
         payload: {searchParams: {on_home: 1, is_company: 1}}

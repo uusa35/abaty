@@ -1,10 +1,5 @@
-import React, {
-  useMemo,
-  useState,
-  useCallback,
-  useContext
-} from 'react';
-import {View,Text} from 'react-native';
+import React, {useMemo, useState, useCallback, useContext} from 'react';
+import {View, Text} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import MapView, {Marker} from 'react-native-maps';
 import I18n, {isRTL} from '../../I18n';

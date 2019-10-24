@@ -1,13 +1,13 @@
 import {createStackNavigator} from 'react-navigation';
-import ServiceIndexAllScreen from '../../screens/ServiceIndexAllScreen';
+import ServiceIndexAllScreen from '../../screens/service/ServiceIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import React from 'react';
 
-export const MallrServiceStack = createStackNavigator(
+export const ServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
       screen: ServiceIndexAllScreen,

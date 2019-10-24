@@ -56,16 +56,16 @@ PODS:
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.2.1):
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleToolboxForMac/Defines (2.2.1)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
-    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
-  - GTMSessionFetcher/Core (1.2.2)
-  - JWT (3.0.0-beta.11):
+  - GoogleToolboxForMac/DebugUtils (2.2.2):
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - GoogleToolboxForMac/Defines (2.2.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.2)
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.2)"
+  - GTMSessionFetcher/Core (1.3.0)
+  - JWT (3.0.0-beta.12):
     - Base64 (~> 1.1.2)
   - libwebp (1.0.3):
     - libwebp/demux (= 1.0.3)
@@ -218,7 +218,12 @@ PODS:
     - RSKImageCropper
   - RNReanimated (1.2.0):
     - React
+  - RNSentry (1.0.9):
+    - React
+    - Sentry (~> 4.4.0)
   - RNShare (1.2.1):
+    - React
+  - RNSnackbar (2.0.3):
     - React
   - RNSVG (9.7.1):
     - React
@@ -231,6 +236,11 @@ PODS:
   - SDWebImageWebPCoder (0.2.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
+  - Sentry (4.4.0):
+    - Sentry/Core (= 4.4.0)
+  - Sentry/Core (4.4.0)
+  - SRSRadialGradient (1.0.0):
+    - React
   - SSZipArchive (2.2.2)
   - yoga (0.60.0.React)
 
@@ -282,9 +292,12 @@ DEPENDENCIES:
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNShare (from `../node_modules/react-native-share`)
+  - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - SRSRadialGradient (from `../node_modules/react-native-radial-gradient/ios`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -306,6 +319,7 @@ SPEC REPOS:
     - RSKImageCropper
     - SDWebImage
     - SDWebImageWebPCoder
+    - Sentry
     - SSZipArchive
 
 EXTERNAL SOURCES:
@@ -399,12 +413,18 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNShare:
     :path: "../node_modules/react-native-share"
+  RNSnackbar:
+    :path: "../node_modules/react-native-snackbar"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  SRSRadialGradient:
+    :path: "../node_modules/react-native-radial-gradient/ios"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -421,9 +441,9 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
+  GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
+  GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
+  JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   lottie-ios: 6037add6441183d4ffd100d2ac78724aa8d919d4
   lottie-react-native: 86aeee2caa9250e4c8027ac75711a59c6679e532
@@ -468,12 +488,16 @@ SPEC CHECKSUMS:
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: 0a731d984e64ee4c28bddaa7ce52262e4b80979f
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
+  RNSentry: 2803ba8c8129dcf26b79e9b4d8c80168be6e4390
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
+  RNSnackbar: 5ce7c6c100fde59068e9135397760d7cee299c2a
   RNSVG: aac12785382e8fd4f28d072fe640612e34914631
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
+  Sentry: 26650184fe71eb7476dfd2737acb5ea6cc64b4b1
+  SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   yoga: 616fde658be980aa60a2158835170f3f9c2d04b4
 

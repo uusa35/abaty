@@ -527,5 +527,7 @@
   "get_your_address_from_map" : "Get your address from map",
   "save_address_and_continue" : "Save address and continue",
   "classified_title" : "Classified title",
-  "add_your_address" : "Add your address"
+  "add_your_address" : "Add your address",
+  "choose_price_range" : "Choose Price Range",
+  "apply_filter" : "Apply Filter"
 }

@@ -1,15 +1,15 @@
 import {createStackNavigator} from 'react-navigation';
-import SearchScreen from '../../screens/SearchScreen';
+import SearchScreen from '../../screens/search/SearchScreen';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
-import ProductShowScreen from '../../screens/ProductShowScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import ProductShowScreen from '../../screens/product/ProductShowScreen';
 
-export const MallrSearchStack = createStackNavigator(
+export const SearchStack = createStackNavigator(
   {
     SearchIndex: {
       screen: SearchScreen,

@@ -6,7 +6,7 @@ import {
   createReduxContainer
 } from 'react-navigation-redux-helpers';
 import RootNavigator from './navigator/abati/RootNavigator';
-// import {MallrRootNavigator as RootNavigator} from './navigator/mallr/MallrRootNavigator';
+// import RootNavigator from './navigator/mallr/RootNavigator';
 // import {RootNavigator} from './navigator/homekey/RootNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);

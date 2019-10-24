@@ -8,7 +8,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 import {take, first, map, filter} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions';
 
-const HomeKeySearchTab = ({elements}) => {
+const HomeKeySearchTab = ({elements, main_bg}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
@@ -52,10 +52,7 @@ const HomeKeySearchTab = ({elements}) => {
 
   return (
     <ImageBackground
-      source={{
-        uri:
-          'https://the2d3dfloorplancompany.com/wp-content/uploads/2017/11/Real-Estate-Image-Enhancement-Sample.png'
-      }}
+      source={{uri: main_bg}}
       style={{width, alignSelf: 'center', height: 320}}
       resizeMode="cover">
       <TabView

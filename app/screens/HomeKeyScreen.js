@@ -77,6 +77,7 @@ const HomeKeyHomeScreen = ({
   dispatch,
   navigation,
   homeClassifieds,
+  main_bg,
   guest
 }) => {
   [refresh, setRefresh] = useState(false);
@@ -177,9 +178,7 @@ const HomeKeyHomeScreen = ({
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-        </React.Suspense>
-        <React.Suspense fallback={<SimpleSpinner />}>
-          <HomeKeySearchTab elements={categories} />
+          <HomeKeySearchTab elements={categories} main_bg={main_bg} />
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <ClassifiedCategoryHorizontalRoundedWidget
@@ -188,8 +187,6 @@ const HomeKeyHomeScreen = ({
               title={I18n.t('categories')}
             />
           ) : null}
-        </React.Suspense>
-        <React.Suspense fallback={<SimpleSpinner />}>
           {!validate.isEmpty(homeClassifieds) &&
           validate.isArray(homeClassifieds) ? (
             <ClassifiedListHorizontal
@@ -201,41 +198,41 @@ const HomeKeyHomeScreen = ({
               searchElements={{on_home: true}}
             />
           ) : null}
+          <CompanyHorizontalWidget
+            elements={homeCompanies}
+            showName={true}
+            name={I18n.t('companies')}
+            title="companies"
+            searchElements={{is_company: true}}
+          />
+          <TouchableOpacity
+            onPress={() =>
+              !guest
+                ? navigation.navigate('ChooseCategory')
+                : navigation.navigate('Login')
+            }
+            style={[
+              widgetStyles.newClassifiedBtnWrapper,
+              {backgroundColor: colors.btn_bg_theme_color}
+            ]}>
+            <View style={[widgetStyles.newClassifiedWrapper]}>
+              <Text
+                style={[
+                  widgetStyles.newClassifiedTitle,
+                  {color: colors.btn_text_theme_color}
+                ]}>
+                {I18n.t('new_classified')}
+              </Text>
+              <Icon
+                name="home"
+                type="material-icon"
+                size={120}
+                color={colors.btn_text_theme_color}
+                containerStyle={{opacity: 0.8}}
+              />
+            </View>
+          </TouchableOpacity>
         </React.Suspense>
-        <CompanyHorizontalWidget
-          elements={homeCompanies}
-          showName={true}
-          name={I18n.t('companies')}
-          title="companies"
-          searchElements={{is_company: true}}
-        />
-        <TouchableOpacity
-          onPress={() =>
-            !guest
-              ? navigation.navigate('ChooseCategory')
-              : navigation.navigate('Login')
-          }
-          style={[
-            widgetStyles.newClassifiedBtnWrapper,
-            {backgroundColor: colors.btn_bg_theme_color}
-          ]}>
-          <View style={[widgetStyles.newClassifiedWrapper]}>
-            <Text
-              style={[
-                widgetStyles.newClassifiedTitle,
-                {color: colors.btn_text_theme_color}
-              ]}>
-              {I18n.t('new_classified')}
-            </Text>
-            <Icon
-              name="home"
-              type="material-icon"
-              size={120}
-              color={colors.btn_text_theme_color}
-              containerStyle={{opacity: 0.8}}
-            />
-          </View>
-        </TouchableOpacity>
       </ScrollView>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
@@ -256,6 +253,7 @@ function mapStateToProps(state) {
     commercials: state.commercials,
     splashes: state.splashes,
     logo: state.settings.logo,
+    main_bg: state.settings.main_bg,
     show_commercials: state.settings.show_commercials,
     colors: state.settings.colors,
     lang: state.lang,

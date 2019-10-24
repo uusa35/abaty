@@ -8,49 +8,47 @@ import {text, width} from '../../constants';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
-import CartIndexScreen from '../../screens/CartIndexScreen';
-import CartConfirmationScreen from '../../screens/CartConfirmationScreen';
+import CartIndexScreen from '../../screens/cart/CartIndexScreen';
+import CartConfirmationScreen from '../../screens/cart/CartConfirmationScreen';
 import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
-import LoginScreen from '../../screens/LoginScreen';
-import RegisterScreen from '../../screens/RegisterScreen';
-import UserEditScreen from '../../screens/UserEditScreen';
-import DesignerIndexScreen from '../../screens/DesignerIndexScreen';
-import CompanyIndexScreen from '../../screens/CompanyIndexScreen';
-import CelebrityIndexScreen from '../../screens/CelebrityIndexScreen';
-import CompanyShowScreen from '../../screens/CompanyShowScreen';
+import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
+import LoginScreen from '../../screens/auth/LoginScreen';
+import RegisterScreen from '../../screens/auth/RegisterScreen';
+import UserEditScreen from '../../screens/auth/UserEditScreen';
+import DesignerIndexScreen from '../../screens/designer/DesignerIndexScreen';
+import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
+import CelebrityIndexScreen from '../../screens/celebrity/CelebrityIndexScreen';
+import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
-import DesignerShowScreen from '../../screens/DesignerShowScreen';
-import CelebrityShowScreen from '../../screens/CelebrityShowScreen';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
-import ServiceIndexScreen from '../../screens/ServiceIndexScreen';
-import CollectionIndexScreen from '../../screens/CollectionIndexScreen';
-import ProductShowScreen from '../../screens/ProductShowScreen';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
-import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
-import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
+import DesignerShowScreen from '../../screens/designer/DesignerShowScreen';
+import CelebrityShowScreen from '../../screens/celebrity/CelebrityShowScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import ServiceIndexScreen from '../../screens/service/ServiceIndexScreen';
+import CollectionIndexScreen from '../../screens/collection/CollectionIndexScreen';
+import ProductShowScreen from '../../screens/product/ProductShowScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import ContactusScreen from '../../screens/ContactusScreen';
 import TermAndConditionScreen from '../../screens/TermAndConditionScreen';
-import BrandIndexScreen from '../../screens/BrandIndexScreen';
-import BrandShowScreen from '../../screens/BrandShowScreen';
-import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
+import BrandShowScreen from '../../screens/brand/BrandShowScreen';
+import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyScreen from '../../screens/HomeKeyScreen';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
-import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
-import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
-import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
+import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
+import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
 import React from 'react';
 import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
-import {MallrCategoryStack} from './MallrCategoryStack';
-import {MallrProductStack} from './MallrProductStack';
-import ShopperShowScreen from '../../screens/ShopperShowScreen';
-import MallrSettingsIndexScreen from '../../screens/mallr/MallrSettingsIndexScreen';
+import ShopperShowScreen from '../../screens/designer/ShopperShowScreen';
 import {Icon} from 'react-native-elements';
+import MallrSettingsIndexScreen from './../../screens/mallr/MallrSettingsIndexScreen';
 
-export const MallrHomeStack = createStackNavigator(
+export const HomeStack = createStackNavigator(
   {
     // Introduction: {
     //   screen: IntroductionScreen,
@@ -481,7 +479,7 @@ export const MallrHomeStack = createStackNavigator(
   }
 );
 
-MallrHomeStack.navigationOptions = ({navigation}) => {
+HomeStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

@@ -7,13 +7,13 @@ import I18n from '../../I18n';
 import React from 'react';
 import MallrSettingsIndexScreen from '../../screens/mallr/MallrSettingsIndexScreen';
 import MallrAccountScreen from '../../screens/mallr/MallrAccountScreen';
-import LoginScreen from '../../screens/LoginScreen';
-import RegisterScreen from '../../screens/RegisterScreen';
-import UserEditScreen from '../../screens/UserEditScreen';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
-import ProductShowScreen from '../../screens/ProductShowScreen';
+import LoginScreen from '../../screens/auth/LoginScreen';
+import RegisterScreen from '../../screens/auth/RegisterScreen';
+import UserEditScreen from '../../screens/auth/UserEditScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import ProductShowScreen from '../../screens/product/ProductShowScreen';
 
-export const MallrSettingStack = createStackNavigator(
+export const SettingStack = createStackNavigator(
   {
     Account: {
       screen: MallrAccountScreen,
