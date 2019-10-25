@@ -3,12 +3,12 @@ import {Button} from 'react-native-elements';
 import I18n from '../../../I18n';
 import React, {useContext} from 'react';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {NavContext} from '../../../redux/NavContext';
 import {View} from 'react-native-animatable';
+import {useNavigation} from 'react-navigation-hooks';
 
 const UserProfileBtns = () => {
   const {colors} = useContext(GlobalValuesContext);
-  const {navigation} = useContext(NavContext);
+  const {navigate} = useNavigation();
   return (
     <View
       animation="fadeInUpBig"
@@ -19,7 +19,7 @@ const UserProfileBtns = () => {
         alignSelf: 'center'
       }}>
       <Button
-        onPress={() => navigation.navigate('UserEdit')}
+        onPress={() => navigate('UserEdit')}
         title={I18n.t('edit_profile')}
         raised
         containerStyle={{marginBottom: 10, width: '100%'}}
@@ -33,7 +33,7 @@ const UserProfileBtns = () => {
         }}
       />
       <Button
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => navigate('Home')}
         raised
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {images, isIOS, text, width} from '../../../constants';
 import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserProfileInformationWidget = ({auth, colors}) => {
+  const {logo} = useContext(GlobalValuesContext);
   return (
     <View animation="bounceInLeft" easing="ease-out">
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>

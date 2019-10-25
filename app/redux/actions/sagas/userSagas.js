@@ -320,7 +320,11 @@ export function* startReAuthenticateScenario() {
   try {
     const {token, loginModal} = yield select();
     const element = yield call(api.reAuthenticate, token);
-    if (!validate.isEmpty(element) && validate.isObject(element)) {
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      validate.isEmpty(element.token)
+    ) {
       yield all([
         put({type: actions.SET_TOKEN, payload: element.api_token}),
         put({type: actions.SET_AUTH, payload: element}),

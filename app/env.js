@@ -1,7 +1,8 @@
 import {MALLR, ABATI, ENV, PORT} from '../app';
 
 export const isLocal = ENV === 'local';
-if (ENV === 'local') {
+__DEV__ ? console.log('___DEV___', __DEV__) : null;
+if (ENV === 'local' && __DEV__) {
   console.log('the env testing>>>>', ENV);
   module.exports = {
     // appUrlIos: `http://192.168.43.102:8000/`,

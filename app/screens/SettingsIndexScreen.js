@@ -16,12 +16,15 @@ import {changeLang} from '../redux/actions';
 import {HOMEKEY} from './../../app';
 import {appUrlIos} from '../env';
 import PagesList from '../components/widgets/page/PagesList';
-import {DispatchContext} from '../redux/DispatchContext';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
-const SettingsIndexScreen = ({guest, lang, pages}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+const SettingsIndexScreen = ({
+  guest,
+  lang,
+  pages,
+  dispatch,
+  colors,
+  navigation
+}) => {
   return (
     <ScrollView
       style={{flex: 1, paddingTop: 20}}
