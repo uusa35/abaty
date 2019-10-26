@@ -103,7 +103,7 @@ export const HomeStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
-        headerTransparent: true
+        headerTransparent: false
       }),
       path: 'category/:id'
     },

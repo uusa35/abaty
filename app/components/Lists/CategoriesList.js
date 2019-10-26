@@ -37,10 +37,7 @@ const CategoriesList = ({elements, columns}) => {
         />
       }>
       <View
-        style={[
-          styles.wrapper,
-          {flexDirection: columns ? 'column' : 'column'}
-        ]}>
+        style={[styles.wrapper, {flexDirection: columns ? 'row' : 'column'}]}>
         {!validate.isEmpty(elements) ? (
           map(elements, (c, i) => (
             <CategoryWidget
@@ -77,9 +74,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   wrapper: {
-    flexWrap: 'nowrap',
+    flexWrap: 'wrap',
+    flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center',
-    width: '100%'
+    alignItems: 'center'
+    // width: '100%'
   }
 });

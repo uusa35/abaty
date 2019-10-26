@@ -17,7 +17,7 @@ const CategoryIndexScreen = ({
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={homeCategories} columns={1} />
+        <CategoriesList elements={homeCategories} columns={2} />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>

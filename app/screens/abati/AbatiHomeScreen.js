@@ -177,7 +177,7 @@ const AbatiHomeScreen = ({
           <ProductCategoryHorizontalRoundedWidget
             elements={homeCategories}
             showName={true}
-            title="categories"
+            title={I18n.t('categories')}
             dispatch={dispatch}
             colors={colors}
             navigation={navigation}

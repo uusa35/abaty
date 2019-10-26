@@ -28,7 +28,7 @@ const ClassifiedFilterScreen = ({
   colors,
   categories
 }) => {
-  const [visible, setVisible] = useState(searchModal);
+  const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [price, setPrice] = useState(0);
   const [priceRange, setPriceRange] = useState([100, 1000]);
   const [selectedGroup, setSelectedGroup] = useState({});
@@ -44,12 +44,6 @@ const ClassifiedFilterScreen = ({
       setParentCategories(parents);
     }
   }, [parentCategories]);
-
-  useMemo(() => {
-    if (!visible) {
-      dispatch({type: HIDE_SEARCH_MODAL});
-    }
-  }, [visible]);
 
   const showPropsModal = useCallback(g => {
     setPropsModalVisible(!propsModalVisible);
@@ -68,13 +62,43 @@ const ClassifiedFilterScreen = ({
     }
   }, [category, selectedCategory]);
 
+  const handleSetItems = useCallback(p => {
+    console.log('the p selected', p);
+    setPropsModalVisible(false);
+    // setItems(
+    //   uniqBy(
+    //     items.concat({
+    //       group: selectedGroup,
+    //       property: p,
+    //       category_group_id: selectedGroup.id,
+    //       property_id: p.id
+    //     })
+    //   ),
+    //   'category_group_id'
+    // );
+  });
+
+  const handleShowSearchModal = useCallback(() => {
+    setSearchModalVisible(false);
+    setPropsModalVisible(false);
+    dispatch({type: HIDE_SEARCH_MODAL});
+    dispatch(goBack());
+  });
+
+  useEffect(() => {
+    if (!searchModal) {
+      setSearchModalVisible(searchModal);
+      setPropsModalVisible(searchModal);
+      dispatch(goBack());
+    }
+  }, [searchModal]);
+
   return (
     <SafeAreaView>
       <Modal
         transparent={false}
-        visible={visible}
-        animationType={'slide'}
-        onRequestClose={() => dispatch({type: HIDE_SEARCH_MODAL})}>
+        visible={searchModalVisible}
+        animationType={'slide'}>
         <ScrollView
           keyboardShouldPersistTaps="always"
           keyboardDismissMode="none"
@@ -101,10 +125,7 @@ const ClassifiedFilterScreen = ({
                 size={25}
                 containerStyle={{padding: 0, margin: 0}}
                 style={{zIndex: 999}}
-                onPress={() => {
-                  setVisible(false);
-                  return goBack();
-                }}
+                onPress={() => handleShowSearchModal()}
                 hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
               />
               <ClassifiedSearchForm />
@@ -353,19 +374,7 @@ const ClassifiedFilterScreen = ({
                     return (
                       <TouchableOpacity
                         style={styles.propertiesWrapper}
-                        onPress={() =>
-                          setItems(
-                            uniqBy(
-                              items.concat({
-                                group: selectedGroup,
-                                property: p,
-                                category_group_id: selectedGroup.id,
-                                property_id: p.id
-                              })
-                            ),
-                            'category_group_id'
-                          )
-                        }
+                        onPress={() => handleSetItems(p)}
                         key={i}>
                         {p.thumb ? (
                           <FastImage
@@ -385,6 +394,27 @@ const ClassifiedFilterScreen = ({
             </ScrollView>
           </Modal>
         </ScrollView>
+        <View>
+          <Text>{I18n.t('search_parameters_selected')}</Text>
+          <View>
+            <Text>
+              {I18n.t('category_selected')} {category.name}
+            </Text>
+          </View>
+          <View>
+            <Text>{I18n.t('properties_selected')}</Text>
+            <View>
+              {map(items, (item, i) => (
+                <View key={i}>
+                  <Text>{item.category_group.name}</Text>
+                  <Text>
+                    {item.property.name} {item.property.value}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
         <View
           style={{
             flex: 1,

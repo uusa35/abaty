@@ -24,7 +24,8 @@ const persistConfig = {
     'isLoadingProfile',
     'isLoadingContent',
     'isLoading',
-    'propertiesModal'
+    'propertiesModal',
+    'searchModal'
     // 'newClassified'
     // 'showIntroduction'
   ] // navigation will not be persisted
