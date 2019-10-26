@@ -3,11 +3,16 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
-import SimpleSpinner from '../../components/SimpleSpinner';
+import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
-const ClassifiedIndexScreen = ({classifieds, searchParams}) => {
+const ClassifiedIndexScreen = ({
+  classifieds,
+  searchParams,
+  isLoadingContent
+}) => {
   return (
-    <React.Suspense fallback={<SimpleSpinner />}>
+    <React.Suspense
+      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ClassifiedList
         classifieds={classifieds}
         showName={true}
@@ -20,7 +25,8 @@ const ClassifiedIndexScreen = ({classifieds, searchParams}) => {
 function mapStateToProps(state) {
   return {
     classifieds: state.classifieds,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
+    isLoadingContent: state.isLoadingContent
   };
 }
 

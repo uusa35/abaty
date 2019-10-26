@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import {has} from 'lodash';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import SimpleSpinner from '../../components/SimpleSpinner';
+import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
-const ServiceIndexScreen = ({services, searchParams, colors, dispatch}) => {
+const ServiceIndexScreen = ({services, searchParams, isLoadingContent}) => {
   return (
-    <React.Suspense fallback={<SimpleSpinner />}>
+    <React.Suspense
+      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ServiceList
         services={services}
         searchElements={searchParams}
@@ -22,7 +24,7 @@ function mapStateToProps(state) {
   return {
     services: state.services,
     searchParams: state.searchParams,
-    colors: state.settings.colors
+    isLoadingContent: state.isLoadingContent
   };
 }
 

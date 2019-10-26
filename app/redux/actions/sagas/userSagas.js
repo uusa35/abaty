@@ -483,8 +483,8 @@ export function* startAuthenticatedScenario() {
   try {
     const {token} = yield select();
     if (!validate.isEmpty(token)) {
-      const element = yield call(api.authenticated, token); // get the auth user according to auth stored in storage
-      if (!validate.isEmpty(element) && !validate.isEmpty(token)) {
+      const element = yield call(api.reAuthenticate, token); // get the auth user according to auth stored in storage
+      if (!validate.isEmpty(element) && !validate.isEmpty(element.token)) {
         yield all([
           put({type: actions.SET_AUTH, payload: element}),
           put({type: actions.SET_TOKEN, payload: element.token}),

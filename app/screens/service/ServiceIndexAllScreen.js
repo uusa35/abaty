@@ -3,11 +3,17 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
-import SimpleSpinner from '../../components/SimpleSpinner';
+import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
-const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
+const ServiceIndexAllScreen = ({
+  services,
+  colors,
+  dispatch,
+  isLoadingContent
+}) => {
   return (
-    <React.Suspense fallback={<SimpleSpinner />}>
+    <React.Suspense
+      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ServiceList
         services={services}
         searchElements={{}}
@@ -22,7 +28,8 @@ const ServiceIndexAllScreen = ({services, colors, dispatch}) => {
 function mapStateToProps(state) {
   return {
     services: state.services,
-    colors: state.settings.colors
+    colors: state.settings.colors,
+    isLoadingContent: state.isLoadingContent
   };
 }
 

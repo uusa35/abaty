@@ -108,8 +108,7 @@ export default ImagesWidget;
 ImagesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  colors: PropTypes.object.isRequired
+  width: PropTypes.number.isRequired
 };
 
 const styles = StyleSheet.create({

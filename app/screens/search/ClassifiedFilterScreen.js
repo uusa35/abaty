@@ -240,7 +240,7 @@ const ClassifiedFilterScreen = ({
                         alignItems: 'center',
                         margin: 10
                       }}>
-                      <Image
+                      <FastImage
                         source={{uri: g.thumb}}
                         style={{
                           width: 50,
@@ -317,9 +317,9 @@ const ClassifiedFilterScreen = ({
                   width: 120,
                   justifyContent: 'space-between'
                 }}>
-                <Image
+                <FastImage
                   source={{uri: selectedGroup.thumb}}
-                  style={{width: 25, height: 25}}
+                  style={{width: 30, height: 30}}
                 />
                 {/*<Icon type="font-awesome" name={selectedGroup.icon} />*/}
                 <Text

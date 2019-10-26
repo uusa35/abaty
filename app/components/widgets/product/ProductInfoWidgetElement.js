@@ -73,8 +73,7 @@ ProductInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,
   // name : PropTypes.string,
   link: PropTypes.func,
-  showArrow: PropTypes.bool,
-  colors: PropTypes.object.isRequired
+  showArrow: PropTypes.bool
 };
 
 const styles = StyleSheet.create({

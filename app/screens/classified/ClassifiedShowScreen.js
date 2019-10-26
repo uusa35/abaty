@@ -33,6 +33,7 @@ import {getProductConvertedFinalPrice} from '../../helpers';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
+import LoadingContentView from '../../components/Loading/LoadingContentView';
 
 const ClassifiedShowScreen = ({
   element,
@@ -41,7 +42,8 @@ const ClassifiedShowScreen = ({
   dispatch,
   token,
   colors,
-  navigation
+  navigation,
+  isLoadingContent
 }) => {
   const {exchange_rate} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
@@ -61,7 +63,6 @@ const ClassifiedShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
-  console.log('items', element);
   return (
     <Fragment>
       <HeaderImageScrollView
@@ -231,7 +232,8 @@ function mapStateToProps(state) {
     token: state.token,
     cart: state.cart,
     colors: state.settings.colors,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
+    isLoadingContent: state.isLoadingContent
   };
 }
 

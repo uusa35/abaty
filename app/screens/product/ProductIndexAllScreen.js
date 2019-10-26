@@ -7,8 +7,14 @@ import {getAllProducts} from '../../redux/actions';
 import {productsSelector} from '../../redux/selectors/collections';
 import {colorsSelector} from '../../redux/selectors/collection';
 import SimpleSpinner from '../../components/SimpleSpinner';
+import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
-const ProductIndexAllScreen = ({dispatch, products, colors}) => {
+const ProductIndexAllScreen = ({
+  dispatch,
+  products,
+  colors,
+  isLoadingContent
+}) => {
   const [currentProducts, setCurrentProducts] = useState([]);
 
   useEffect(() => {
@@ -20,7 +26,8 @@ const ProductIndexAllScreen = ({dispatch, products, colors}) => {
   }, [currentProducts]);
 
   return (
-    <React.Suspense fallback={<SimpleSpinner />}>
+    <React.Suspense
+      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ProductList
         colors={colors}
         dispatch={dispatch}
@@ -38,7 +45,8 @@ const ProductIndexAllScreen = ({dispatch, products, colors}) => {
 function mapStateToProps(state) {
   return {
     products: productsSelector(state),
-    colors: colorsSelector(state)
+    colors: colorsSelector(state),
+    isLoadingContent: state.isLoadingContent
   };
 }
 
