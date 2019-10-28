@@ -1,4 +1,10 @@
-import React, {useState, useMemo, useCallback, useEffect} from 'react';
+import React, {
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+  Fragment
+} from 'react';
 import {
   View,
   Text,
@@ -16,10 +22,11 @@ import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSear
 import {SafeAreaView} from 'react-navigation';
 import {HIDE_SEARCH_MODAL, SET_CATEGORY} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import {width, text} from './../../constants';
-import {map, first, shuffle, uniqBy, take} from 'lodash';
+import {width, height, text} from './../../constants';
+import {map, first, shuffle, uniqBy, take, remove, filter} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
+import {getSearchClassifieds} from '../../redux/actions';
 
 const ClassifiedFilterScreen = ({
   category,
@@ -29,7 +36,7 @@ const ClassifiedFilterScreen = ({
   categories
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState();
   const [priceRange, setPriceRange] = useState([100, 1000]);
   const [selectedGroup, setSelectedGroup] = useState({});
   const [selectedCategory, setSelectedCategory] = useState({});
@@ -48,6 +55,8 @@ const ClassifiedFilterScreen = ({
   const showPropsModal = useCallback(g => {
     setPropsModalVisible(!propsModalVisible);
     setSelectedGroup(g);
+    const currentItems = filter(items, i => i.category_group_id !== g.id);
+    setItems(currentItems);
   });
 
   useMemo(() => {
@@ -56,26 +65,22 @@ const ClassifiedFilterScreen = ({
     } else {
       if (map(parentCategories, c => c.id === category.id)) {
         setSelectedCategory(category);
-      } else {
-        setSelectedCategory(parentCategories.map);
       }
     }
+    setItems([]);
   }, [category, selectedCategory]);
 
   const handleSetItems = useCallback(p => {
-    console.log('the p selected', p);
     setPropsModalVisible(false);
-    // setItems(
-    //   uniqBy(
-    //     items.concat({
-    //       group: selectedGroup,
-    //       property: p,
-    //       category_group_id: selectedGroup.id,
-    //       property_id: p.id
-    //     })
-    //   ),
-    //   'category_group_id'
-    // );
+    const currentItems = items.concat({
+      category_group: selectedGroup,
+      property: p,
+      category_group_id: selectedGroup.id,
+      property_id: p.id,
+      property_value: p.value,
+      id: selectedGroup.id + '-' + p.id
+    });
+    setItems(currentItems);
   });
 
   const handleShowSearchModal = useCallback(() => {
@@ -92,6 +97,23 @@ const ClassifiedFilterScreen = ({
       dispatch(goBack());
     }
   }, [searchModal]);
+
+  const handleSubmitFilter = useCallback(() => {
+    dispatch(
+      getSearchClassifieds({
+        searchParams: {
+          search,
+          classified_category_id: selectedCategory.id,
+          items,
+          price
+        },
+        redirect: true,
+        name: selectedCategory
+          ? selectedCategory.name
+          : I18n.t('search_results')
+      })
+    );
+  });
 
   return (
     <SafeAreaView>
@@ -113,7 +135,13 @@ const ClassifiedFilterScreen = ({
             width: '100%',
             padding: 10
           }}>
-          <View style={{flex: 1}}>
+          <View
+            style={{
+              flex: 1,
+              minHeight: height - 100,
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
             <View
               style={{
                 flexDirection: 'row',
@@ -173,7 +201,8 @@ const ClassifiedFilterScreen = ({
                 marginTop: 5,
                 borderWidth: 0.5,
                 borderRadius: 10,
-                borderColor: 'lightgrey'
+                borderColor: 'lightgrey',
+                alignSelf: 'center'
               }}>
               <Text
                 style={{
@@ -198,7 +227,7 @@ const ClassifiedFilterScreen = ({
                   max={1000}
                   step={10}
                   values={priceRange}
-                  sliderLength={width - 100}
+                  sliderLength={width - 90}
                   onValuesChangeStart={() => console.log('started')}
                   onValuesChange={e => setPriceRange(e)}
                   onValuesChangeFinish={() => console.log('end')}
@@ -249,7 +278,8 @@ const ClassifiedFilterScreen = ({
                       flexDirection: 'row',
                       borderTopWidth: 0.5,
                       // borderBottomWidth: 0.5,
-                      borderColor: 'lightgrey'
+                      borderColor: 'lightgrey',
+                      maxHeight: 60
                     }}>
                     <TouchableOpacity
                       hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
@@ -305,135 +335,173 @@ const ClassifiedFilterScreen = ({
                 ))}
               </View>
             ) : null}
-          </View>
-          <Modal
-            transparent={false}
-            animationType={first(shuffle(['slide', 'fade']))}
-            presentationStyle="fullScreen"
-            onRequestClose={() => console.log('close')}
-            visible={propsModalVisible}>
             <View
               style={{
-                width: '100%',
-                minHeight: 50,
-                justifyContent: 'center',
-                marginTop: '10%',
-                alignSelf: 'center',
-                alignItems: 'center',
-                flexDirection: 'row-reverse'
+                margin: 10,
+                borderWidth: 0.5,
+                borderRadius: 10,
+                borderColor: 'lightgrey'
               }}>
-              <Icon
-                containerStyle={{position: 'absolute', left: 0}}
-                name="close"
-                type="evil-icons"
-                size={25}
-                style={{zIndex: 999}}
-                onPress={() => setPropsModalVisible(false)}
-                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-              />
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'baseline',
-                  width: 120,
-                  justifyContent: 'space-between'
-                }}>
-                <FastImage
-                  source={{uri: selectedGroup.thumb}}
-                  style={{width: 30, height: 30}}
-                />
-                {/*<Icon type="font-awesome" name={selectedGroup.icon} />*/}
-                <Text
-                  style={{
-                    textAlign: 'center',
-                    fontFamily: text.font,
-                    fontSize: text.large
-                  }}>
-                  {selectedGroup.name}
-                </Text>
+              <Text style={[styles.title, {textAlign: 'center', margin: 15}]}>
+                {I18n.t('search_parameters_selected')}
+              </Text>
+              <View>
+                {selectedCategory ? (
+                  <View>
+                    <Text style={styles.title}>
+                      {I18n.t('category_selected')} {category.name}
+                    </Text>
+                    <Text style={styles.title}>
+                      {I18n.t('properties_selected')}
+                    </Text>
+                  </View>
+                ) : null}
+                {price ? (
+                  <View>
+                    <Text style={styles.title}>{I18n.t('price')}</Text>
+                    <Text style={styles.title}>{price}</Text>
+                  </View>
+                ) : null}
               </View>
-              <Icon
-                containerStyle={{position: 'absolute', right: 0}}
-                name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
-                type="entypo"
-                size={25}
-                style={{zIndex: 999}}
-                onPress={() => setPropsModalVisible(false)}
-                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              {!validate.isEmpty(items) ? (
+                <Fragment>
+                  {map(items, (item, i) => (
+                    <View key={i} style={{flexDirection: 'row'}}>
+                      <Text style={styles.subTitle}>
+                        {item.category_group.name}
+                      </Text>
+                      <Text style={styles.subTitle}>
+                        {item.property.name} {item.property.value}
+                      </Text>
+                    </View>
+                  ))}
+                </Fragment>
+              ) : null}
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: 'flex-end',
+                justifyContent: 'flex-end',
+                marginBottom: '2.5%'
+              }}>
+              <Button
+                onPress={() => setItems([])}
+                raised
+                containerStyle={{
+                  width: '95%',
+                  alignSelf: 'center',
+                  marginBottom: 10,
+                  marginTop: 10
+                }}
+                buttonStyle={{backgroundColor: 'red'}}
+                title={I18n.t('remove_filter')}
+                titleStyle={{
+                  fontFamily: text.font,
+                  color: colors.btn_text_theme_color
+                }}
+              />
+              <Button
+                onPress={() => handleSubmitFilter()}
+                raised
+                containerStyle={{width: '95%', alignSelf: 'center'}}
+                buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+                title={I18n.t('apply_filter')}
+                titleStyle={{
+                  fontFamily: text.font,
+                  color: colors.btn_text_theme_color
+                }}
               />
             </View>
-            <ScrollView
-              contentContainerStyle={{
-                flex: 0.9,
-                paddingTop: 10,
-                width: '100%'
-              }}>
-              {!validate.isEmpty(selectedGroup) ? (
-                <View>
-                  {map(selectedGroup.properties, (p, i) => {
-                    return (
-                      <TouchableOpacity
-                        style={styles.propertiesWrapper}
-                        onPress={() => handleSetItems(p)}
-                        key={i}>
-                        {p.thumb ? (
-                          <FastImage
-                            source={{uri: p.thumb}}
-                            style={{width: 30, height: 30}}
-                            resizeMode="contain"
-                          />
-                        ) : (
-                          <Icon type="font-awesome" name={p.icon} />
-                        )}
-                        <Text style={styles.title}>{p.name}</Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </View>
-              ) : null}
-            </ScrollView>
-          </Modal>
+          </View>
         </ScrollView>
-        <View>
-          <Text>{I18n.t('search_parameters_selected')}</Text>
-          <View>
-            <Text>
-              {I18n.t('category_selected')} {category.name}
-            </Text>
-          </View>
-          <View>
-            <Text>{I18n.t('properties_selected')}</Text>
-            <View>
-              {map(items, (item, i) => (
-                <View key={i}>
-                  <Text>{item.category_group.name}</Text>
-                  <Text>
-                    {item.property.name} {item.property.value}
-                  </Text>
-                </View>
-              ))}
+        <Modal
+          transparent={false}
+          animationType={first(shuffle(['slide', 'fade']))}
+          presentationStyle="fullScreen"
+          onRequestClose={() => console.log('close')}
+          visible={propsModalVisible}>
+          <View
+            style={{
+              width: '95%',
+              minHeight: 50,
+              justifyContent: 'center',
+              marginTop: '10%',
+              alignSelf: 'center',
+              alignItems: 'center',
+              flexDirection: 'row-reverse'
+            }}>
+            <Icon
+              containerStyle={{position: 'absolute', left: 0}}
+              name="close"
+              type="evil-icons"
+              size={25}
+              style={{zIndex: 999}}
+              onPress={() => setPropsModalVisible(false)}
+              hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+            />
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'baseline',
+                width: 120,
+                justifyContent: 'space-between'
+              }}>
+              <FastImage
+                source={{uri: selectedGroup.thumb}}
+                style={{width: 30, height: 30}}
+              />
+              {/*<Icon type="font-awesome" name={selectedGroup.icon} />*/}
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontFamily: text.font,
+                  fontSize: text.large
+                }}>
+                {selectedGroup.name}
+              </Text>
             </View>
+            <Icon
+              containerStyle={{position: 'absolute', right: 0}}
+              name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+              type="entypo"
+              size={25}
+              style={{zIndex: 999}}
+              onPress={() => setPropsModalVisible(false)}
+              hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+            />
           </View>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'flex-end',
-            justifyContent: 'flex-end',
-            marginBottom: '2.5%'
-          }}>
-          <Button
-            onPress={() => console.log('filter')}
-            raised
-            containerStyle={{width: '95%', alignSelf: 'center'}}
-            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={I18n.t('apply_filter')}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color
-            }}
-          />
-        </View>
+          <ScrollView
+            contentContainerStyle={{
+              flex: 0.9,
+              paddingTop: 10,
+              width: '100%'
+            }}>
+            {!validate.isEmpty(selectedGroup) ? (
+              <View>
+                {map(selectedGroup.properties, (p, i) => {
+                  return (
+                    <TouchableOpacity
+                      style={styles.propertiesWrapper}
+                      onPress={() => handleSetItems(p)}
+                      key={i}>
+                      {p.thumb ? (
+                        <FastImage
+                          source={{uri: p.thumb}}
+                          style={{width: 30, height: 30}}
+                          resizeMode="contain"
+                        />
+                      ) : (
+                        <Icon type="font-awesome" name={p.icon} />
+                      )}
+                      <Text style={styles.title}>{p.name}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            ) : null}
+          </ScrollView>
+        </Modal>
       </Modal>
     </SafeAreaView>
   );
@@ -474,6 +542,16 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: text.font,
     fontSize: text.medium,
+    textAlign: 'left',
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20
+  },
+  subTitle: {
+    fontFamily: text.font,
+    fontSize: text.small,
+    padding: 5,
+    textAlign: 'left',
     paddingLeft: 20,
     paddingRight: 20
   }

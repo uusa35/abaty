@@ -4,6 +4,7 @@ import {Icon} from 'react-native-elements';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
+import {Text} from 'react-native';
 import {text} from '../../constants';
 import {HomeStack} from './HomeStack';
 import {VideoStack} from './VideoStack';
@@ -11,6 +12,7 @@ import {SettingStack} from './SettingStack';
 import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
 import {ServiceStack} from './ServiceStack';
+import I18n from '../../I18n';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -19,8 +21,8 @@ export const BottomTabsStack = createBottomTabNavigator(
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="home" type="octicon" color={tintColor} />
-        )
-        // title: I18n.t('home')
+        ),
+        title: I18n.t('home')
       })
     },
     // CategoryIndexScreen: {
@@ -44,8 +46,8 @@ export const BottomTabsStack = createBottomTabNavigator(
             size={30}
             color={tintColor}
           />
-        )
-        // title: I18n.t('videos'),
+        ),
+        title: I18n.t('videos')
       })
     },
     Setting: {
@@ -54,7 +56,7 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="ios-person" type="ionicon" color={tintColor} />
         ),
-        // title: I18n.t('me'),
+        title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
@@ -65,8 +67,8 @@ export const BottomTabsStack = createBottomTabNavigator(
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
-        )
-        // title: I18n.t('search'),
+        ),
+        title: I18n.t('search')
       })
     },
     ProductIndexAll: {
@@ -79,8 +81,8 @@ export const BottomTabsStack = createBottomTabNavigator(
             type="material-icon"
             color={tintColor}
           />
-        )
-        // title: I18n.t('all_products'),
+        ),
+        title: I18n.t('all_products')
       })
     },
     ServiceIndexAll: {
@@ -93,8 +95,8 @@ export const BottomTabsStack = createBottomTabNavigator(
             size={30}
             color={tintColor}
           />
-        )
-        // title: I18n.t('services'),
+        ),
+        title: I18n.t('services')
       })
     }
   },
@@ -102,14 +104,13 @@ export const BottomTabsStack = createBottomTabNavigator(
     tabBarOptions: {
       lazy: false,
       showIcon: true,
-      showLabel: false,
+      showLabel: true,
       scrollEnabled: true,
       allowFontScaling: true,
       activeTintColor: '#ddca21',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
       animationEnabled: true,
-
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white'
@@ -121,9 +122,9 @@ export const BottomTabsStack = createBottomTabNavigator(
     initialRouteName: 'Home',
     order: [
       // 'CategoryIndexScreen',
+      'Home',
       'ProductIndexAll',
       'VideoIndexAll',
-      'Home',
       'ServiceIndexAll',
       'Setting'
     ]

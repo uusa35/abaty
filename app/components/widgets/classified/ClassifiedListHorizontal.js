@@ -47,7 +47,7 @@ const ClassifiedListHorizontal = ({
         onPress={() => {
           dispatch(
             getSearchClassifieds({
-              searchParams: {},
+              searchParams: {on_home: 1},
               redirect: true,
               name: I18n.t('related_classifieds')
             })

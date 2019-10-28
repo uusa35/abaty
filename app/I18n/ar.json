@@ -200,7 +200,7 @@
   "category" : "القطاع",
   "most_visited_keywords" : "أشهر كلمات البحث",
   "search_message" : "البحث بأي كلمة",
-  "services" : "الخدمات المقدمة",
+  "services" : "الخدمات",
   "services_ar" : "الخدمات المقدمة بالعربية",
   "services_en" : "الخدمات المقدمة بالإنجليزية",
   "location" : "الموقع الجغرافي",
@@ -562,5 +562,9 @@
   "classified_title" : "عنوان الإعلان",
   "add_your_address" : "اختر عنوانك",
   "choose_price_range" : "اختر أقل وأعلى سعر مطلوب",
-  "apply_filter" : "تطبيق معايير البحث"
+  "apply_filter" : "تطبيق معايير البحث",
+  "remove_filter" : "الغاء معايير البحث",
+  "search_parameters_selected" : "معاير البحث المختارة",
+  "category_selected" : "تصنيف البحث المختار :",
+  "properties_selected" : "معايير البحث :"
 }

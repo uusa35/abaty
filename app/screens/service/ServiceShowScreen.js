@@ -15,6 +15,7 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
+import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 
 const ServiceShowScreen = ({
   service,
@@ -43,7 +44,7 @@ const ServiceShowScreen = ({
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        maxHeight={550}
+        maxHeight={400}
         minHeight={90}
         style={{width}}
         scrollViewBackgroundColor="transparent"
@@ -54,7 +55,7 @@ const ServiceShowScreen = ({
               .concat({id: service.id, large: service.large})
               .reverse()}
             width={width}
-            height={550}
+            height={400}
             name={service.name}
             exclusive={service.exclusive}
             isOnSale={service.isOnSale}
@@ -156,7 +157,7 @@ const ServiceShowScreen = ({
         </View>
         {validate.isObject(service.videoGroup) &&
         !validate.isEmpty(service.videoGroup) ? (
-          <VideosHorizontalWidget videos={service.videoGroup} />
+          <VideosVerticalWidget videos={service.videoGroup} />
         ) : null}
         {validate.isArray(services) && !validate.isEmpty(services) ? (
           <ServiceHorizontalWidget

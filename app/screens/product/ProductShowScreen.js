@@ -169,7 +169,7 @@ const ProductShowScreen = ({
         </View>
         {validate.isObject(product.videoGroup) &&
         !validate.isEmpty(product.videoGroup) ? (
-          <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={product.videoGroup} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget

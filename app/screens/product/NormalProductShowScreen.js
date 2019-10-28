@@ -20,6 +20,7 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import {SafeAreaView, ScrollView} from 'react-navigation';
+import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 
 const NormalProductShowScreen = ({
   product,
@@ -163,7 +164,7 @@ const NormalProductShowScreen = ({
         </View>
         {validate.isObject(product.videoGroup) &&
         !validate.isEmpty(product.videoGroup) ? (
-          <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
+          <VideosVerticalWidget videos={product.videoGroup} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget

@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions';
 import {productsSelector} from '../../redux/selectors/collections';
 import {colorsSelector} from '../../redux/selectors/collection';
-import SimpleSpinner from '../../components/SimpleSpinner';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
 const ProductIndexAllScreen = ({
@@ -22,7 +21,6 @@ const ProductIndexAllScreen = ({
       dispatch(getAllProducts());
       setCurrentProducts(products);
     }
-    console.log('firing useEffect ProductIndexAll');
   }, [currentProducts]);
 
   return (
