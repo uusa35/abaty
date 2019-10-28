@@ -139,6 +139,25 @@ const SideMeu = ({
                 </Text>
               </TouchableOpacity>
             ) : null}
+            {!guest ? (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('SettingIndex')}
+                style={styles.menuBtn}>
+                <Icon
+                  name="ios-settings"
+                  type="ionicon"
+                  size={25}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color},
+                  ]}>
+                  {I18n.t('settings')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
             {guest ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}
@@ -178,25 +197,6 @@ const SideMeu = ({
                 </TouchableOpacity>
               </View>
             )}
-            {!guest ? (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('SettingIndex')}
-                style={styles.menuBtn}>
-                <Icon
-                  name="ios-settings"
-                  type="ionicon"
-                  size={25}
-                  color={colors.icon_theme_color}
-                />
-                <Text
-                  style={[
-                    styles.titleStyle,
-                    {color: colors.header_one_theme_color},
-                  ]}>
-                  {I18n.t('settings')}
-                </Text>
-              </TouchableOpacity>
-            ) : null}
             <TouchableOpacity
               onPress={() => navigation.navigate('Contactus')}
               style={styles.menuBtn}>

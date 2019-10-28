@@ -61,7 +61,7 @@ const ColorsModal = ({
                   setColorVisible(false);
                 }}
                 style={styles.wrapper}>
-                <Text style={[styles.phoneNo, {color: a ? a.code : null}]}>
+                <Text style={[styles.phoneNo, {color: a ? 'black' : null}]}>
                   {a.name}
                 </Text>
               </TouchableOpacity>
