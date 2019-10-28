@@ -37,6 +37,8 @@ const ClassifiedFilterScreen = ({
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [price, setPrice] = useState();
+  const [min, setMin] = useState();
+  const [max, setMax] = useState();
   const [priceRange, setPriceRange] = useState([100, 1000]);
   const [selectedGroup, setSelectedGroup] = useState({});
   const [selectedCategory, setSelectedCategory] = useState({});
@@ -58,6 +60,12 @@ const ClassifiedFilterScreen = ({
     const currentItems = filter(items, i => i.category_group_id !== g.id);
     setItems(currentItems);
   });
+
+  useMemo(() => {
+    setPrice(priceRange[0]);
+    setMin(priceRange[0]);
+    setMax(priceRange[1]);
+  }, [priceRange]);
 
   useMemo(() => {
     if (!validate.isEmpty(selectedCategory)) {
@@ -99,15 +107,18 @@ const ClassifiedFilterScreen = ({
   }, [searchModal]);
 
   const handleSubmitFilter = useCallback(() => {
+    console.log('the selected  categ', selectedCategory);
     dispatch(
       getSearchClassifieds({
         searchParams: {
           search,
           classified_category_id: selectedCategory.id,
+          children: selectedCategory.children,
           items,
-          price
+          min,
+          max
         },
-        redirect: true,
+        redirect: false,
         name: selectedCategory
           ? selectedCategory.name
           : I18n.t('search_results')
@@ -265,7 +276,6 @@ const ClassifiedFilterScreen = ({
             {!validate.isEmpty(category) ? (
               <View
                 style={{
-                  flex: 1,
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
                   paddingTop: 15
@@ -274,12 +284,9 @@ const ClassifiedFilterScreen = ({
                   <View
                     key={i}
                     style={{
-                      flex: 1,
                       flexDirection: 'row',
                       borderTopWidth: 0.5,
-                      // borderBottomWidth: 0.5,
-                      borderColor: 'lightgrey',
-                      maxHeight: 60
+                      borderColor: 'lightgrey'
                     }}>
                     <TouchableOpacity
                       hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
@@ -358,8 +365,9 @@ const ClassifiedFilterScreen = ({
                 ) : null}
                 {price ? (
                   <View>
-                    <Text style={styles.title}>{I18n.t('price')}</Text>
-                    <Text style={styles.title}>{price}</Text>
+                    <Text style={styles.title}>
+                      {I18n.t('price')} : {price}
+                    </Text>
                   </View>
                 ) : null}
               </View>
