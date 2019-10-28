@@ -107,7 +107,6 @@ const ClassifiedFilterScreen = ({
   }, [searchModal]);
 
   const handleSubmitFilter = useCallback(() => {
-    console.log('the selected  categ', selectedCategory);
     dispatch(
       getSearchClassifieds({
         searchParams: {

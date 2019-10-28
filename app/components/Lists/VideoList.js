@@ -87,7 +87,7 @@ const VideoList = ({
           )}
         />
       ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
+        <View style={{flex : 1 , marginTop: 300, width: width - 50, alignSelf: 'center'}}>
           <Button
             raised
             title={I18n.t('no_videos')}

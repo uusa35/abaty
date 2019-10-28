@@ -529,5 +529,9 @@
   "classified_title" : "Classified title",
   "add_your_address" : "Add your address",
   "choose_price_range" : "Choose Price Range",
-  "apply_filter" : "Apply Filter"
+  "apply_filter" : "Apply Filter",
+  "remove_filter" : "Remove Filter",
+  "search_parameters_selected" : "Search Parameters",
+  "category_selected" : "Selected Category :",
+  "properties_selected" : "Search Parameters :"
 }
