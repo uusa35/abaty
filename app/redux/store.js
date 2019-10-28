@@ -25,10 +25,10 @@ const persistConfig = {
     'isLoadingContent',
     'isLoading',
     'propertiesModal',
-    'searchModal'
+    'searchModal',
     // 'newClassified'
     // 'showIntroduction'
-  ] // navigation will not be persisted
+  ], // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
 };
 let Store;
@@ -40,11 +40,11 @@ if (__DEV__) {
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
   const networkMiddleware = createNetworkMiddleware({
-    queueReleaseThrottle: 200
+    queueReleaseThrottle: 200,
   });
   const appLogger = createLogger({
     collapsed: true,
-    duration: true
+    duration: true,
   });
   // const composeEnhancers =
   //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -56,9 +56,9 @@ if (__DEV__) {
         networkMiddleware,
         appLogger,
         sagaMiddleware,
-        navMiddleware
-      )
-    )
+        navMiddleware,
+      ),
+    ),
   );
   PersistStore = persistStore(Store);
   // Only in case you want to empty the store !!!
@@ -69,11 +69,11 @@ if (__DEV__) {
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
   const networkMiddleware = createNetworkMiddleware({
-    queueReleaseThrottle: 200
+    queueReleaseThrottle: 200,
   });
   Store = createStore(
     persistedReducer,
-    applyMiddleware(networkMiddleware, sagaMiddleware, navMiddleware)
+    applyMiddleware(networkMiddleware, sagaMiddleware, navMiddleware),
   );
   PersistStore = persistStore(Store);
   sagaMiddleware.run(rootSaga);

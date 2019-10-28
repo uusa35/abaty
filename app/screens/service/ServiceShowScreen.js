@@ -25,7 +25,7 @@ const ServiceShowScreen = ({
   dispatch,
   token,
   colors,
-  navigation
+  navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
@@ -68,7 +68,7 @@ const ServiceShowScreen = ({
             onRefresh={() => {
               setRefresh(false);
               dispatch(
-                getService({id: service.id, api_token: token ? token : null})
+                getService({id: service.id, api_token: token ? token : null}),
               );
             }}
           />
@@ -89,7 +89,7 @@ const ServiceShowScreen = ({
                     textAlign: 'left',
                     fontSize: 20,
                     fontFamily: text.font,
-                    paddingBottom: 0
+                    paddingBottom: 0,
                   }}>
                   {I18n.t('description')}
                 </Text>
@@ -98,7 +98,7 @@ const ServiceShowScreen = ({
                     textAlign: 'left',
                     fontSize: 17,
                     fontFamily: text.font,
-                    padding: 10
+                    padding: 10,
                   }}>
                   {service.description}
                 </Text>
@@ -113,8 +113,8 @@ const ServiceShowScreen = ({
                     getDesigner({
                       id: service.user_id,
                       searchParams: {user_id: service.user_id},
-                      redirect: true
-                    })
+                      redirect: true,
+                    }),
                   )
                 }
               />
@@ -127,10 +127,10 @@ const ServiceShowScreen = ({
                   getSearchServices({
                     element: first(service.categories),
                     searchElements: {
-                      service_category_id: first(service.categories).id
+                      service_category_id: first(service.categories).id,
                     },
-                    redirect: true
-                  })
+                    redirect: true,
+                  }),
                 )
               }
             />
@@ -179,7 +179,7 @@ function mapStateToProps(state) {
     phone: state.settings.phone,
     mobile: state.settings.mobile,
     token: state.token,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
@@ -195,7 +195,7 @@ export default connect(mapStateToProps)(ServiceShowScreen);
 ServiceShowScreen.propTypes = {
   services: PropTypes.array.isRequired,
   service: PropTypes.object.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const styles = StyleSheet.create({});

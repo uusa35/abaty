@@ -5,7 +5,7 @@ import {
   View,
   Text,
   KeyboardAvoidingView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import ProductWidget from './ProductWidget';
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ const ProductList = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements
+  searchElements,
 }) => {
   [items, setItems] = useState(products);
   [elements, setElements] = useState(products);
@@ -54,7 +54,7 @@ const ProductList = ({
       setRefresh(false);
       setShowMore(false);
       return axiosInstance(`search/product?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           if (!validate.isEmpty(items) || !validate.isEmpty(r.data)) {
@@ -81,7 +81,7 @@ const ProductList = ({
     setRefresh(false);
     if (search.length > 0) {
       let filtered = filter(elements, i =>
-        i.name.includes(search) ? i : null
+        i.name.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
@@ -118,14 +118,14 @@ const ProductList = ({
           contentContainerStyle={{
             minHeight: '100%',
             marginBottom: 15,
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
           columnWrapperStyle={{
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           ListHeaderComponentStyle={{
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View style={{paddingTop: 10, paddingBottom: 10}}>
@@ -134,7 +134,7 @@ const ProductList = ({
                   placeholder={I18n.t('search')}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
+                    textAlign: isRTL ? 'right' : 'left',
                   }}
                   inputContainerStyle={{
                     backgroundColor: '#E4E4E5',
@@ -142,7 +142,7 @@ const ProductList = ({
                     paddingRight: 15,
                     paddingLeft: 15,
                     marginTop: 10,
-                    borderColor: '#E4E4E5'
+                    borderColor: '#E4E4E5',
                   }}
                   rightIcon={
                     <Icon
@@ -174,11 +174,11 @@ const ProductList = ({
                       shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
-                        height: 1
+                        height: 1,
                       },
                       shadowOpacity: 0.18,
                       shadowRadius: 1.0,
-                      elevation: 1
+                      elevation: 1,
                     }}>
                     {title ? title : I18n.t('related_product_group')}
                   </Text>
@@ -230,7 +230,7 @@ ProductList.propTypes = {
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
-  colors: PropTypes.object
+  colors: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

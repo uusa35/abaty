@@ -11,7 +11,7 @@ const ClassifiedInfoWidget = ({
   element,
   colors,
   exchange_rate,
-  currency_symbol
+  currency_symbol,
 }) => {
   return (
     <View
@@ -21,7 +21,7 @@ const ClassifiedInfoWidget = ({
         flex: 1,
         justifyContent: 'space-between',
         position: 'absolute',
-        bottom: -5
+        bottom: -5,
       }}>
       <Fragment>
         <View
@@ -31,7 +31,7 @@ const ClassifiedInfoWidget = ({
             opacity: 0.7,
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: 15
+            padding: 15,
           }}>
           <View>
             <Text
@@ -39,7 +39,7 @@ const ClassifiedInfoWidget = ({
                 textAlign: 'left',
                 fontSize: text.large,
                 paddingBottom: 10,
-                color: colors.header_tow_theme_color
+                color: colors.header_tow_theme_color,
               }}>
               {element.name.substring(0, 20)}
             </Text>
@@ -47,7 +47,7 @@ const ClassifiedInfoWidget = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.small,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {I18n.t('added_from')} {element.created_at}
             </Text>
@@ -61,8 +61,8 @@ const ClassifiedInfoWidget = ({
                     textAlign: 'center',
                     fontSize: text.medium,
                     paddingRight: 5,
-                    paddingLeft: 5
-                  }
+                    paddingLeft: 5,
+                  },
                 ]}>
                 {getConvertedFinalPrice(element.price, exchange_rate)}
               </Text>

@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -26,15 +26,15 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
   colors,
   navigation,
   showName = true,
-  showImage = true
+  showImage = true,
 }) => {
   const handleClick = useCallback(c => {
     return dispatch(
       getSearchClassifieds({
         name: c.name,
         searchParams: {classified_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -42,7 +42,7 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
     <View
       style={[
         widgetStyles.container,
-        {backgroundColor: 'transparent', alignSelf: 'center'}
+        {backgroundColor: 'transparent', alignSelf: 'center'},
       ]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
@@ -51,7 +51,7 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {title}
           </Text>
@@ -75,15 +75,15 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
               {
                 borderWidth: 0.5,
                 borderColor: colors.btn_bg_theme_color,
-                padding: 10
-              }
+                padding: 10,
+              },
             ]}
             onPress={() => handleClick(c)}>
             {showImage ? (
               <FastImage
                 source={{
                   uri: c.thumb,
-                  priority: FastImage.priority.normal
+                  priority: FastImage.priority.normal,
                 }}
                 loadingIndicatorSource={images.logo}
                 style={styles.image}
@@ -94,7 +94,7 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -111,12 +111,12 @@ export default ClassifiedCategoryHorizontalBtnsWidget;
 ClassifiedCategoryHorizontalBtnsWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 400,
-    height: 400
-  }
+    height: 400,
+  },
 });

@@ -21,8 +21,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="home" type="octicon" color={tintColor} />
         ),
-        title: I18n.t('home')
-      })
+        title: I18n.t('home'),
+      }),
     },
     CategoryIndexScreen: {
       screen: CategoryStack,
@@ -30,8 +30,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="layers" type="simplelineicons" color={tintColor} />
         ),
-        title: I18n.t('categories')
-      })
+        title: I18n.t('categories'),
+      }),
     },
     VideoIndexAll: {
       screen: VideoStack,
@@ -44,8 +44,8 @@ export const BottomTabsStack = createBottomTabNavigator(
             color={tintColor}
           />
         ),
-        title: I18n.t('videos')
-      })
+        title: I18n.t('videos'),
+      }),
     },
     Setting: {
       screen: SettingStack,
@@ -57,8 +57,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Search: {
       screen: SearchStack,
@@ -66,8 +66,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('search')
-      })
+        title: I18n.t('search'),
+      }),
     },
     ProductIndexAll: {
       screen: ProductStack,
@@ -75,9 +75,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
         ),
-        title: I18n.t('all_products')
-      })
-    }
+        title: I18n.t('all_products'),
+      }),
+    },
   },
   {
     tabBarOptions: {
@@ -92,13 +92,13 @@ export const BottomTabsStack = createBottomTabNavigator(
       animationEnabled: true,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
-        backgroundColor: 'white'
-      }
+        backgroundColor: 'white',
+      },
     },
     navigationOptions: {
-      tabBarVisible: true
+      tabBarVisible: true,
     },
     initialRouteName: 'Home',
-    order: ['Home', 'CategoryIndexScreen', 'Search', 'Setting']
-  }
+    order: ['Home', 'CategoryIndexScreen', 'Search', 'Setting'],
+  },
 );

@@ -18,7 +18,7 @@ const MallrAccountScreen = ({
   colors,
   pages,
   element,
-  logo
+  logo,
 }) => {
   return (
     <ScrollView
@@ -29,7 +29,7 @@ const MallrAccountScreen = ({
         padding: 20,
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}>
       {!validate.isEmpty(element) ? (
         <ShopperImageProfile
@@ -58,12 +58,12 @@ const MallrAccountScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('login')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => navigation.navigate('Login')}
           />
@@ -72,12 +72,12 @@ const MallrAccountScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('new_user')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => navigation.navigate('Register')}
           />
@@ -86,12 +86,12 @@ const MallrAccountScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('forget_password')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
           />
@@ -113,14 +113,14 @@ function mapStateToProps(state) {
     colors: state.settings.colors,
     pages: state.pages,
     element: state.auth,
-    logo: state.settings.logo
+    logo: state.settings.logo,
   };
 }
 
 export default connect(mapStateToProps)(MallrAccountScreen);
 
 MallrAccountScreen.propTypes = {
-  guest: PropTypes.bool.isRequired
+  guest: PropTypes.bool.isRequired,
 };
 const styles = StyleSheet.create({
   container: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15
+    padding: 15,
   },
   btnWrapper: {
     borderWidth: 1,
@@ -139,10 +139,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   btnTitle: {
     fontFamily: text.font,
-    fontSize: text.medium
-  }
+    fontSize: text.medium,
+  },
 });

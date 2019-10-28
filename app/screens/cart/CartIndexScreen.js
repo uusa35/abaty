@@ -17,7 +17,7 @@ const CartIndexScreen = ({
   coupon,
   colors,
   grossTotal,
-  area
+  area,
 }) => {
   return (
     <View
@@ -25,14 +25,14 @@ const CartIndexScreen = ({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '5%'
+        marginTop: '5%',
       }}>
       <ScrollView
         style={{width: '95%'}}
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 10
+          padding: 10,
         }}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
@@ -56,7 +56,7 @@ const CartIndexScreen = ({
             style={{
               marginTop: 300,
               width: width - 50,
-              alignSelf: 'center'
+              alignSelf: 'center',
             }}>
             <Button
               raised
@@ -73,7 +73,7 @@ const CartIndexScreen = ({
               containerStyle={{marginBottom: 20}}
               titleStyle={{
                 fontFamily: text.font,
-                color: colors.main_text_theme_color
+                color: colors.main_text_theme_color,
               }}
             />
           </View>
@@ -94,7 +94,7 @@ function mapStateToProps(state) {
     country: state.country,
     area: state.area,
     guest: state.guest,
-    coupon: state.coupon
+    coupon: state.coupon,
   };
 }
 
@@ -108,7 +108,7 @@ CartIndexScreen.propTypes = {
   country: PropTypes.object,
   auth: PropTypes.object,
   guest: PropTypes.bool,
-  coupon: PropTypes.object
+  coupon: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

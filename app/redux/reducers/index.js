@@ -163,7 +163,7 @@ let reducers = combineReducers({
   hotDealsProducts,
   bestSaleProducts,
   video,
-  searchModal
+  searchModal,
 });
 
 export default reducers;

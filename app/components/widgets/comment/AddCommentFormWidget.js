@@ -17,7 +17,7 @@ const AddCommentFormWidget = ({model, id}) => {
         width: width - 20,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 10,
       }}>
       <Input
         placeholder={I18n.t('title') + '*'}
@@ -27,11 +27,11 @@ const AddCommentFormWidget = ({model, id}) => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20
+          marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         shake={true}
         keyboardType="default"
@@ -48,11 +48,11 @@ const AddCommentFormWidget = ({model, id}) => {
           paddingLeft: 15,
           paddingRight: 15,
           marginBottom: 20,
-          height: 70
+          height: 70,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         value={content}
         shake={true}
@@ -77,7 +77,7 @@ const AddCommentFormWidget = ({model, id}) => {
 
 AddCommentFormWidget.propTypes = {
   model: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
 };
 
 export default AddCommentFormWidget;

@@ -5,14 +5,14 @@ import {LoginStack} from './LoginStack';
 
 const RootNavigator = createSwitchNavigator({
   HomeStack: {
-    screen: HomeStack
+    screen: HomeStack,
   },
   Login: {
-    screen: LoginStack
+    screen: LoginStack,
   },
   DrawerStack: {
-    screen: DrawerNavigator
-  }
+    screen: DrawerNavigator,
+  },
 });
 
 export default RootNavigator;

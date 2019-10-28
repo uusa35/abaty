@@ -13,7 +13,7 @@ const FavoriteProductIndexScreen = ({
   searchParams,
   dispatch,
   colors,
-  navigation
+  navigation,
 }) => {
   return (
     <View>
@@ -35,7 +35,7 @@ const FavoriteProductIndexScreen = ({
           style={{
             marginTop: 300,
             width: width - 50,
-            alignSelf: 'center'
+            alignSelf: 'center',
           }}>
           <Button
             raised
@@ -52,7 +52,7 @@ const FavoriteProductIndexScreen = ({
             containerStyle={{marginBottom: 20}}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.main_text_theme_color
+              color: colors.main_text_theme_color,
             }}
             col
           />
@@ -66,14 +66,14 @@ function mapStateToProps(state) {
   return {
     productFavorites: state.productFavorites,
     searchParams: state.searchParams,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 export default connect(mapStateToProps)(FavoriteProductIndexScreen);
 
 FavoriteProductIndexScreen.propTypes = {
-  productFavorites: PropTypes.array.isRequired
+  productFavorites: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

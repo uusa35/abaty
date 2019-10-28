@@ -31,7 +31,7 @@ export default React.memo(LoginScreenModal);
 LoginScreenModal.propTypes = {
   token: PropTypes.string,
   colors: PropTypes.object,
-  logo: PropTypes.string
+  logo: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   formContainer: {
     flex: 0.9,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -50
-  }
+    marginTop: -50,
+  },
 });

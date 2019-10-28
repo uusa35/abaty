@@ -14,7 +14,7 @@ const CallOutView = ({
   title,
   price,
   description,
-  element
+  element,
 }) => {
   const {currency_symbol} = useContext(GlobalValuesContext);
   return (
@@ -30,7 +30,7 @@ const CallOutView = ({
         borderColor: 'lightgrey',
         minHeight: 120,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
       }}>
       <View style={{flexDirection: 'row'}}>
         <FastImage
@@ -45,7 +45,7 @@ const CallOutView = ({
               flex: 1,
               flexDirection: 'column',
               alignItems: 'baseline',
-              justifyContent: 'flex-start'
+              justifyContent: 'flex-start',
             }}>
             {title ? (
               <Text style={styles.title}>{title.substring(0, 50)}</Text>
@@ -78,14 +78,14 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.small,
     textAlign: 'left',
-    margin: 5
+    margin: 5,
   },
   logo: {
     width: 30,
-    height: 30
+    height: 30,
   },
   image: {
     width: 80,
-    height: 100
-  }
+    height: 100,
+  },
 });

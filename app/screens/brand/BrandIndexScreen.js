@@ -10,13 +10,13 @@ const BrandIndexScreen = ({brands}) => {
 
 function mapStateToProps(state) {
   return {
-    brands: state.brands
+    brands: state.brands,
   };
 }
 
 export default connect(mapStateToProps)(BrandIndexScreen);
 
 BrandIndexScreen.propTypes = {
-  brands: PropTypes.array.isRequired
+  brands: PropTypes.array.isRequired,
 };
 const styles = StyleSheet.create({});

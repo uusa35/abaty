@@ -20,7 +20,7 @@ const ImageZoomWidget = props => {
               key={i}
               source={{
                 uri: c.large,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={{width: '100%', height: '100%'}}
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width,
     height: height,
-    backgroundColor: 'black'
-  }
+    backgroundColor: 'black',
+  },
 });

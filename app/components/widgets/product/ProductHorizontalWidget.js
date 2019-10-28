@@ -14,7 +14,7 @@ const ProductHorizontalWidget = ({
   elements,
   showName,
   title,
-  showLink = true
+  showLink = true,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
@@ -27,8 +27,8 @@ const ProductHorizontalWidget = ({
             ? dispatch(
                 getSearchProducts({
                   searchParams: {on_home: true},
-                  redirect: true
-                })
+                  redirect: true,
+                }),
               )
             : null
         }>
@@ -36,7 +36,7 @@ const ProductHorizontalWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -73,5 +73,5 @@ export default ProductHorizontalWidget;
 ProductHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };

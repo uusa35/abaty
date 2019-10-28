@@ -3,41 +3,41 @@ import I18n from './../../I18n';
 
 export function appBootstrap() {
   return {
-    type: actions.START_BOOTSTRAP
+    type: actions.START_BOOTSTRAP,
   };
 }
 
 export function linkNotification(notification) {
   return {
     type: actions.LINK_NOTIFICATION,
-    payload: notification
+    payload: notification,
   };
 }
 
 export function toggleBootstrapped(bootstrapped) {
   return {
     type: actions.TOGGLE_BOOTSTRAPPED,
-    payload: bootstrapped
+    payload: bootstrapped,
   };
 }
 
 export function logout() {
   return {
-    type: actions.REMOVE_AUTH
+    type: actions.REMOVE_AUTH,
   };
 }
 
 export function submitAuth(payload) {
   return {
     type: actions.SUBMIT_AUTH,
-    payload
+    payload,
   };
 }
 
 export function updateUser(payload) {
   return {
     type: actions.UPDATE_USER,
-    payload
+    payload,
   };
 }
 
@@ -45,7 +45,7 @@ export function enableMessage(
   content,
   status = 'info',
   title = I18n.t('asad'),
-  color = 'orange'
+  color = 'orange',
 ) {
   return {
     type: actions.ENABLE_MESSAGE,
@@ -54,8 +54,8 @@ export function enableMessage(
       content,
       title,
       visible: true,
-      color
-    }
+      color,
+    },
   };
 }
 
@@ -67,8 +67,8 @@ export function enableSuccessMessage(content, title = I18n.t('asad')) {
       color: 'green',
       visible: true,
       content,
-      title
-    }
+      title,
+    },
   };
 }
 
@@ -80,8 +80,8 @@ export function enableErrorMessage(content, title = I18n.t('asad')) {
       visible: true,
       color: 'red',
       content,
-      title
-    }
+      title,
+    },
   };
 }
 
@@ -93,536 +93,536 @@ export function enableWarningMessage(content, title = I18n.t('asad')) {
       visible: true,
       color: 'orange',
       content,
-      title
-    }
+      title,
+    },
   };
 }
 
 export function disableMessage() {
   return {
-    type: actions.DISABLE_MESSAGE
+    type: actions.DISABLE_MESSAGE,
   };
 }
 export function changeLang(payload) {
   return {
     type: actions.CHANGE_LANG,
-    payload
+    payload,
   };
 }
 
 export function setLang(lang) {
   return {
     type: actions.SET_LANG,
-    payload: lang
+    payload: lang,
   };
 }
 export function toggleGuest(guest) {
   return {
     type: actions.TOGGLE_GUEST,
-    payload: guest
+    payload: guest,
   };
 }
 
 export function setHomeSliders(sliders) {
   return {
     type: actions.SET_HOME_SLIDERS,
-    payload: sliders
+    payload: sliders,
   };
 }
 
 export function setHomeProducts(products) {
   return {
     type: actions.SET_HOME_PRODUCTS,
-    payload: products
+    payload: products,
   };
 }
 
 export function getRoles(roles) {
   return {
     type: actions.GET_ROLES,
-    payload: roles
+    payload: roles,
   };
 }
 
 export function setGalleries(galleries) {
   return {
     type: actions.SET_GALLERIES,
-    payload: galleries
+    payload: galleries,
   };
 }
 
 export function setSettings(settings) {
   return {
     type: actions.SET_SETTINGS,
-    payload: settings
+    payload: settings,
   };
 }
 
 export function submitRegisterRequest(payload) {
   return {
     type: actions.SUBMIT_REGISTER_REQUEST,
-    payload
+    payload,
   };
 }
 
 export function refetchHomeCategories(payload) {
   return {
-    type: actions.REFETCH_HOME_CATEGORIES
+    type: actions.REFETCH_HOME_CATEGORIES,
   };
 }
 
 export function submitForgetPassword(payload) {
   return {
     type: actions.SUBMIT_FORGET_PASSWORD,
-    payload
+    payload,
   };
 }
 
 export function getNotifications() {
   return {
-    type: actions.GET_NOTIFICATIONS
+    type: actions.GET_NOTIFICATIONS,
   };
 }
 
 export function setNotifications(payload) {
   return {
     type: actions.SET_NOTIFICATIONS,
-    payload
+    payload,
   };
 }
 
 export function setCategories(payload) {
   return {
     type: actions.SET_CATEGORIES,
-    payload
+    payload,
   };
 }
 
 export function setBrands(payload) {
   return {
     type: actions.SET_BRANDS,
-    payload
+    payload,
   };
 }
 
 export function setBrand(payload) {
   return {
     type: actions.SET_BRAND,
-    payload
+    payload,
   };
 }
 
 export function setCompanies(payload) {
   return {
     type: actions.SET_COMPANIES,
-    payload
+    payload,
   };
 }
 
 export function setCompany(payload) {
   return {
     type: actions.SET_COMPANY,
-    payload
+    payload,
   };
 }
 
 export function getDesigner(payload) {
   return {
     type: actions.GET_DESIGNER,
-    payload
+    payload,
   };
 }
 
 export function getShopper(payload) {
   return {
     type: actions.GET_SHOPPER,
-    payload
+    payload,
   };
 }
 
 export function getCelebrity(payload) {
   return {
     type: actions.GET_CELEBRITY,
-    payload
+    payload,
   };
 }
 
 export function getCompany(payload) {
   return {
     type: actions.GET_COMPANY,
-    payload
+    payload,
   };
 }
 
 export function setDesigner(payload) {
   return {
     type: actions.SET_DESIGNER,
-    payload
+    payload,
   };
 }
 
 export function getProduct(payload) {
   return {
     type: actions.GET_PRODUCT,
-    payload
+    payload,
   };
 }
 
 export function getService(payload) {
   return {
     type: actions.GET_SERVICE,
-    payload
+    payload,
   };
 }
 
 export function getSearchProducts(payload) {
   return {
     type: actions.GET_SEARCH_PRODUCTS,
-    payload
+    payload,
   };
 }
 
 export function getSearchServices(payload) {
   return {
     type: actions.GET_SEARCH_SERVICES,
-    payload
+    payload,
   };
 }
 
 export function getAllProducts(payload) {
   return {
-    type: actions.GET_ALL_PRODUCTS
+    type: actions.GET_ALL_PRODUCTS,
   };
 }
 
 export function toggleProductFavorite(payload) {
   return {
     type: actions.TOGGLE_PRODUCT_FAVORITE,
-    payload
+    payload,
   };
 }
 
 export function toggleClassifiedFavorite(payload) {
   return {
     type: actions.TOGGLE_CLASSIFIED_FAVORITE,
-    payload
+    payload,
   };
 }
 
 export function getBrand(payload) {
   return {
     type: actions.GET_BRAND,
-    payload
+    payload,
   };
 }
 
 export function setPlayerId(payload) {
   return {
     type: actions.SET_PLAYER_ID,
-    payload
+    payload,
   };
 }
 
 export function goBackBtn(payload) {
   return {
     type: actions.GO_BACK,
-    payload
+    payload,
   };
 }
 
 export function setDeviceId(payload) {
   return {
     type: actions.SET_DEVICE_ID,
-    payload
+    payload,
   };
 }
 export function getCategoryElements(payload) {
   return {
     type: actions.GET_CATEGORY_ELEMENTS,
-    payload
+    payload,
   };
 }
 
 export function setUsers(payload) {
   return {
     type: actions.SET_USERS,
-    payload
+    payload,
   };
 }
 
 export function getUser(payload) {
   return {
     type: actions.GET_USER,
-    payload
+    payload,
   };
 }
 
 export function getUsers(payload) {
   return {
     type: actions.GET_USERS,
-    payload
+    payload,
   };
 }
 
 export function getSearchCelebrities(payload) {
   return {
     type: actions.GET_CELEBRITIES,
-    payload
+    payload,
   };
 }
 
 export function getSearchDesigners(payload) {
   return {
     type: actions.GET_DESIGNERS,
-    payload
+    payload,
   };
 }
 
 export function getSearchCompanies(payload) {
   return {
     type: actions.GET_COMPANIES,
-    payload
+    payload,
   };
 }
 
 export function setCountry(payload) {
   return {
     type: actions.SET_COUNTRY,
-    payload
+    payload,
   };
 }
 
 export function setArea(payload) {
   return {
     type: actions.SET_AREA,
-    payload
+    payload,
   };
 }
 
 export function setCurrency(payload) {
   return {
     type: actions.SET_CURRENCY,
-    payload
+    payload,
   };
 }
 export function refetchUsers(payload) {
   return {
     type: actions.REFETCH_USERS,
-    payload
+    payload,
   };
 }
 
 export function showCountryModal() {
   return {
-    type: actions.SHOW_COUNTRY_MODAL
+    type: actions.SHOW_COUNTRY_MODAL,
   };
 }
 
 export function hideCountryModal() {
   return {
-    type: actions.HIDE_COUNTRY_MODAL
+    type: actions.HIDE_COUNTRY_MODAL,
   };
 }
 
 export function showAreaModal() {
   return {
-    type: actions.SHOW_AREA_MODAL
+    type: actions.SHOW_AREA_MODAL,
   };
 }
 
 export function hideAreaModal() {
   return {
-    type: actions.HIDE_AREA_MODAL
+    type: actions.HIDE_AREA_MODAL,
   };
 }
 
 export function goDeepLinking(payload) {
   return {
     type: actions.GO_DEEP_LINKING,
-    payload
+    payload,
   };
 }
 
 export function addToCart(payload) {
   return {
     type: actions.ADD_TO_CART,
-    payload
+    payload,
   };
 }
 
 export function submitCart(payload) {
   return {
     type: actions.SUBMIT_CART,
-    payload
+    payload,
   };
 }
 export function filterCart(payload) {
   return {
     type: actions.FILTER_CART,
-    payload
+    payload,
   };
 }
 
 export function clearCart() {
   return {
-    type: actions.DO_CLEAR_CART_PROCESS
+    type: actions.DO_CLEAR_CART_PROCESS,
   };
 }
 
 export function setItem(payload) {
   return {
     type: actions.SET_ITEM,
-    payload
+    payload,
   };
 }
 
 export function removeItem(payload) {
   return {
     type: actions.REMOVE_FROM_CART,
-    payload
+    payload,
   };
 }
 
 export function refetchHomeElements() {
   return {
-    type: actions.REFETCH_HOME_ELEMENTS
+    type: actions.REFETCH_HOME_ELEMENTS,
   };
 }
 
 export function getCoupon(payload) {
   return {
     type: actions.GET_COUPON,
-    payload
+    payload,
   };
 }
 
 export function removeCoupon() {
   return {
-    type: actions.REMOVE_COUPON
+    type: actions.REMOVE_COUPON,
   };
 }
 
 export function register(payload) {
   return {
     type: actions.REGISTER,
-    payload
+    payload,
   };
 }
 
 export function setSearchParams(payload) {
   return {
     type: actions.SET_SEARCH_PARAMS,
-    payload
+    payload,
   };
 }
 
 export function resetStore() {
   return {
-    type: actions.RESET_STORE
+    type: actions.RESET_STORE,
   };
 }
 
 export function rateUser(payload) {
   return {
     type: actions.RATE_USER,
-    payload
+    payload,
   };
 }
 
 export function becomeFan(payload) {
   return {
     type: actions.BECOME_FAN,
-    payload
+    payload,
   };
 }
 
 export function showLoginModal() {
   return {
-    type: actions.SHOW_LOGIN_MODAL
+    type: actions.SHOW_LOGIN_MODAL,
   };
 }
 
 export function hideLoginModal() {
   return {
-    type: actions.HIDE_LOGIN_MODAL
+    type: actions.HIDE_LOGIN_MODAL,
   };
 }
 
 export function showCommentModal() {
   return {
-    type: actions.SHOW_COMMENT_MODAL
+    type: actions.SHOW_COMMENT_MODAL,
   };
 }
 
 export function hideCommentModal() {
   return {
-    type: actions.HIDE_COMMENT_MODAL
+    type: actions.HIDE_COMMENT_MODAL,
   };
 }
 
 export function addComment(payload) {
   return {
     type: actions.ADD_COMMENT,
-    payload
+    payload,
   };
 }
 
 export function reAuthenticate() {
   return {
-    type: actions.REAUTHENTICATE
+    type: actions.REAUTHENTICATE,
   };
 }
 
 export function googleLogin() {
   return {
-    type: actions.GOOGLE_LOGIN
+    type: actions.GOOGLE_LOGIN,
   };
 }
 
 export function googleRegister() {
   return {
-    type: actions.GOOGLE_REGISTER
+    type: actions.GOOGLE_REGISTER,
   };
 }
 
 export function getSearchClassifieds(payload) {
   return {
     type: actions.GET_CLASSIFIEDS,
-    payload
+    payload,
   };
 }
 
 export function getClassified(payload) {
   return {
     type: actions.GET_CLASSIFIED,
-    payload
+    payload,
   };
 }
 
 export function storeClassified(payload) {
   return {
     type: actions.STORE_CLASSIFIED,
-    payload
+    payload,
   };
 }
 
 export function setProperties(payload) {
   return {
     type: actions.SET_PROPERTIES,
-    payload
+    payload,
   };
 }
 
 export function addToProperties(payload) {
   return {
     type: actions.ADD_TO_PROPERTIES,
-    payload
+    payload,
   };
 }
 
 export function startClassifiedSearching(payload) {
   return {
     type: actions.START_CLASSIFIED_SEARCHING,
-    payload
+    payload,
   };
 }

@@ -9,7 +9,7 @@ import SimpleSpinner from '../../components/SimpleSpinner';
 const CategoryIndexScreen = ({
   homeCategories,
   commercials,
-  show_commercials
+  show_commercials,
 }) => {
   return (
     <React.Suspense fallback={<SimpleSpinner />}>
@@ -32,7 +32,7 @@ function mapStateToProps(state) {
   return {
     homeCategories: state.homeCategories,
     commercials: state.commercials,
-    show_commercials: state.settings.show_commercials
+    show_commercials: state.settings.show_commercials,
   };
 }
 
@@ -41,5 +41,5 @@ export default connect(mapStateToProps)(CategoryIndexScreen);
 CategoryIndexScreen.propTypes = {
   categories: PropTypes.array,
   commercials: PropTypes.array,
-  show_commercials: PropTypes.bool
+  show_commercials: PropTypes.bool,
 };

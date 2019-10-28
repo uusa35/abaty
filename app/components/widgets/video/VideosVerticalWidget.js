@@ -34,12 +34,12 @@ const VideosVerticalWidget = ({videos}) => {
                 style={{
                   height: 200,
                   width: width,
-                  margin: 5
+                  margin: 5,
                 }}
                 javaScriptEnabled={true}
                 source={{uri: `${appUrlIos}webview?url=${v}`}}
               />
-            ) : null
+            ) : null,
           )
         ) : (
           <View style={styles.noVideosContainer}>
@@ -60,20 +60,20 @@ const VideosVerticalWidget = ({videos}) => {
 export default VideosVerticalWidget;
 
 VideosVerticalWidget.propTypes = {
-  videos: PropTypes.object.isRequired
+  videos: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
   container: {
     width: '90%',
     alignSelf: 'center',
-    marginTop: 30
+    marginTop: 30,
   },
   noVideosContainer: {
     marginTop: 300,
     flex: 1,
     borderWidth: 1,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   title: {
     fontFamily: text.font,
@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
-    elevation: 1
-  }
+    elevation: 1,
+  },
 });

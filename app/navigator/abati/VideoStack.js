@@ -14,22 +14,22 @@ export const VideoStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     VideoShow: {
       screen: VideoShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'card',
-    headerMode: 'float'
-  }
+    headerMode: 'float',
+  },
 );
 
 VideoStack.navigationOptions = ({navigation}) => {
@@ -38,6 +38,6 @@ VideoStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

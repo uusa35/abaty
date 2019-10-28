@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
-  TriggeringView
+  TriggeringView,
 } from 'react-native-image-header-scroll-view';
 import MapViewWidget from '../components/widgets/MapViewWidget';
 import {text, links} from '../constants';
@@ -30,7 +30,7 @@ class UserShowScreen extends Component {
         <View
           style={[
             styles.wrapper,
-            {backgroundColor: colors.main_theme_bg_color}
+            {backgroundColor: colors.main_theme_bg_color},
           ]}>
           <TriggeringView onHide={() => console.log('text hidden')}>
             <View
@@ -76,7 +76,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     colors: state.settings.colors,
-    logo: state.settings.logo
+    logo: state.settings.logo,
   };
 }
 
@@ -85,35 +85,35 @@ export default connect(mapStateToProps)(UserShowScreen);
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
-    fontSize: text.large
+    fontSize: text.large,
   },
   subTitle: {
     fontFamily: text.font,
-    fontSize: text.medium
+    fontSize: text.medium,
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
-  }
+    alignItems: 'baseline',
+  },
 });

@@ -11,7 +11,7 @@ const BrandWidget = ({
   element,
   showName = false,
   currentWidth = 100,
-  currentMarginBottom = 0
+  currentMarginBottom = 0,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   return (
@@ -26,8 +26,8 @@ const BrandWidget = ({
           marginBottom: currentMarginBottom,
           borderWidth: 0.5,
           borderRadius: 20,
-          borderColor: 'lightgrey'
-        }
+          borderColor: 'lightgrey',
+        },
       ]}
       onPress={() => {
         dispatch({type: 'SET_BRAND', payload: element});
@@ -35,14 +35,14 @@ const BrandWidget = ({
           getSearchProducts({
             name: element.name,
             searchParams: {brand_id: element.id},
-            redirect: true
-          })
+            redirect: true,
+          }),
         );
       }}>
       <FastImage
         source={{
           uri: element.thumb,
-          priority: FastImage.priority.normal
+          priority: FastImage.priority.normal,
         }}
         loadingIndicatorSource={images.logo}
         style={styles.image}
@@ -58,13 +58,13 @@ const BrandWidget = ({
 export default BrandWidget;
 
 BrandWidget.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: 15
-  }
+    borderRadius: 15,
+  },
 });

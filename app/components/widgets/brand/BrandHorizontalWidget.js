@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {Icon} from 'react-native-elements';
 import {map} from 'lodash';
@@ -27,7 +27,7 @@ const BrandHorizontalWidget = ({elements, title}) => {
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -55,7 +55,7 @@ export default BrandHorizontalWidget;
 
 BrandHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({});

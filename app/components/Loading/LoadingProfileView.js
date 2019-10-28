@@ -23,7 +23,7 @@ const LoadingProfileView = ({isLoadingContent}) => {
         justifyContent: 'center',
         textAlign: 'left',
         margin: '10%',
-        padding: 0
+        padding: 0,
       }}>
       <SvgAnimatedLinearGradient
         height={250}
@@ -149,7 +149,7 @@ export default LoadingProfileView;
 LoadingProfileView.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired,
   logo: PropTypes.string,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -158,12 +158,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    opacity: 1
+    opacity: 1,
   },
   loadingText: {
     fontFamily: text.font,
     fontSize: 15,
     color: 'black',
-    marginBottom: isIOS ? 35 : 50
-  }
+    marginBottom: isIOS ? 35 : 50,
+  },
 });

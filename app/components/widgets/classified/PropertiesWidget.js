@@ -16,7 +16,7 @@ const PropertiesWidget = ({elements}) => {
         borderColor: 'lightgrey',
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 0.5
+        borderWidth: 0.5,
       }}>
       {map(elements, (item, i) => {
         return (
@@ -31,7 +31,7 @@ const PropertiesWidget = ({elements}) => {
               alignSelf: 'center',
               padding: 10,
               width: '25%',
-              minHeight: 85
+              minHeight: 85,
             }}>
             <Image
               source={{uri: item.categoryGroup.thumb}}
@@ -47,7 +47,7 @@ const PropertiesWidget = ({elements}) => {
               style={{
                 textAlign: 'center',
                 fontFamily: text.font,
-                fontSize: text.small
+                fontSize: text.small,
               }}>
               {item.categoryGroup.name}
             </Text>
@@ -55,7 +55,7 @@ const PropertiesWidget = ({elements}) => {
               style={{
                 textAlign: 'center',
                 fontFamily: text.font,
-                fontSize: text.small
+                fontSize: text.small,
               }}>
               {item.property.value}
             </Text>

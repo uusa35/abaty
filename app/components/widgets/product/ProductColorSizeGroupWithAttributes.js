@@ -50,7 +50,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     if (!isNull(sizeItem)) {
       return axiosInstance
         .get('color/list', {
-          params: {product_id: element.id, size_id: sizeItem.id}
+          params: {product_id: element.id, size_id: sizeItem.id},
         })
         .then(r => setColorItems(r.data))
         .catch(e => e);
@@ -68,8 +68,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           params: {
             product_id: element.id,
             size_id: sizeItem.id,
-            color_id: colorItem.id
-          }
+            color_id: colorItem.id,
+          },
         })
         .then(r => setProductAttribute(r.data))
         .catch(e => console.log(e));
@@ -80,14 +80,14 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     <View
       style={{
         justifyContent: 'space-around',
-        width: '100%'
+        width: '100%',
       }}>
       <View>
         <View
           style={{
             flexDirection: 'row',
             width: '100%',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
           }}>
           <Button
             onPress={() => setSizeVisible(true)}
@@ -96,7 +96,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
               backgroundColor: 'white',
               borderRadius: 10,
               borderWidth: 0.5,
-              borderColor: 'black'
+              borderColor: 'black',
             }}
             title={isNull(sizeItem) ? I18n.t('choose_size') : sizeItem.name}
             titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -119,7 +119,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
               borderRadius: 10,
               borderWidth: 0.5,
               borderColor: 'black',
-              justifyContent: 'space-around'
+              justifyContent: 'space-around',
             }}
             title={
               isNull(colorName) ? I18n.t('choose_color_or_height') : colorName
@@ -160,11 +160,11 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             paddingLeft: 15,
             paddingRight: 15,
             marginTop: 5,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           editable={!productAttribute || requestQty <= 0 ? false : true}
           shake={true}
@@ -185,8 +185,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 qty: requestQty,
                 type: 'product',
                 element,
-                notes
-              })
+                notes,
+              }),
             )
           }
           disabled={!productAttribute || requestQty <= 0 ? true : false}
@@ -196,7 +196,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           title={I18n.t('add_to_cart')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
         />
       ) : null}
@@ -207,7 +207,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
 export default ProductColorSizeGroupWithAttributes;
 
 ProductColorSizeGroupWithAttributes.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

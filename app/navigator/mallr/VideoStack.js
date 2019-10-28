@@ -12,14 +12,14 @@ export const VideoStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'card',
-    headerMode: 'float'
-  }
+    headerMode: 'float',
+  },
 );
 
 VideoStack.navigationOptions = ({navigation}) => {
@@ -28,6 +28,6 @@ VideoStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

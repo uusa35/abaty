@@ -65,19 +65,19 @@ export default CategoriesList;
 
 CategoriesList.propTypes = {
   elements: PropTypes.array.isRequired,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   wrapper: {
     flexWrap: 'wrap',
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center'
+    alignItems: 'center',
     // width: '100%'
-  }
+  },
 });

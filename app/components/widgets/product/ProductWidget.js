@@ -4,7 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
+  Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getProduct} from '../../../redux/actions';
@@ -17,7 +17,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductWidget = ({element, showName = false}) => {
   const {currency_symbol, exchange_rate, token, colors} = useContext(
-    GlobalValuesContext
+    GlobalValuesContext,
   );
   const {dispatch} = useContext(DispatchContext);
 
@@ -35,15 +35,15 @@ const ProductWidget = ({element, showName = false}) => {
           marginTop: 5,
           marginBottom: 5,
           height: 285,
-          justifyContent: 'space-evenly'
-        }
+          justifyContent: 'space-evenly',
+        },
       ]}
       onPress={() =>
         dispatch(getProduct({id: element.id, api_token: token ? token : null}))
       }>
       <ImageBackground
         source={{
-          uri: element.thumb
+          uri: element.thumb,
         }}
         loadingIndicatorSource={images.logo}
         style={styles.image}
@@ -64,8 +64,8 @@ const ProductWidget = ({element, showName = false}) => {
               {
                 textAlign: 'center',
                 fontSize: text.medium,
-                color: colors.header_tow_theme_color
-              }
+                color: colors.header_tow_theme_color,
+              },
             ]}>
             {element.name.substring(0, 20)}
           </Text>
@@ -73,7 +73,7 @@ const ProductWidget = ({element, showName = false}) => {
             style={{
               flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <Text
               style={[
@@ -82,8 +82,8 @@ const ProductWidget = ({element, showName = false}) => {
                   textAlign: 'center',
                   fontSize: text.medium,
                   paddingRight: 5,
-                  paddingLeft: 5
-                }
+                  paddingLeft: 5,
+                },
               ]}>
               {getConvertedFinalPrice(element.finalPrice, exchange_rate)}
             </Text>
@@ -102,12 +102,12 @@ ProductWidget.propTypes = {
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 175,
-    height: 240
-  }
+    height: 240,
+  },
 });

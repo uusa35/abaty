@@ -15,7 +15,7 @@ const LoadingView = ({
   isLoading,
   color,
   mainBg,
-  type = 'ThreeBounce'
+  type = 'ThreeBounce',
 }) => {
   const [fill, setFill] = useState(0);
   const [moveRand, setMoveRand] = useState([
@@ -32,7 +32,7 @@ const LoadingView = ({
     'FadingCircle',
     'FadingCircleAlt',
     'Arc',
-    'ArcAlt'
+    'ArcAlt',
   ]);
 
   return (
@@ -54,7 +54,7 @@ export default LoadingView;
 LoadingView.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   logo: PropTypes.string,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    opacity: 1
+    opacity: 1,
   },
   loadingText: {
     fontFamily: text.font,
     fontSize: 15,
     color: 'black',
-    marginBottom: isIOS ? 35 : 50
-  }
+    marginBottom: isIOS ? 35 : 50,
+  },
 });

@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Linking,
   View,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -27,7 +27,7 @@ const CommercialSliderWidget = ({commercials}) => {
             <FastImage
               source={{
                 uri: c.thumb,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={{width: width - 5, height: '100%'}}
@@ -44,9 +44,9 @@ export default CommercialSliderWidget;
 
 const styles = StyleSheet.create({
   container: {
-    height: '20%'
+    height: '20%',
   },
   wrapper: {
-    flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'
-  }
+    flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+  },
 });

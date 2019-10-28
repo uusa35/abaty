@@ -35,7 +35,7 @@ const CommercialCarouselWidget = ({elements}) => {
 export default CommercialCarouselWidget;
 
 CommercialCarouselWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

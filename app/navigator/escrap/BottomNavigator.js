@@ -22,8 +22,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="home" type="octicon" color={tintColor} />
         ),
-        title: I18n.t('home')
-      })
+        title: I18n.t('home'),
+      }),
     },
     CategoryIndexScreen: {
       screen: AbatiCategoryStack,
@@ -31,8 +31,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="layers" type="simplelineicons" color={tintColor} />
         ),
-        title: I18n.t('categories')
-      })
+        title: I18n.t('categories'),
+      }),
     },
     VideoIndexAll: {
       screen: AbatiVideoStack,
@@ -45,8 +45,8 @@ export const BottomTabsStack = createBottomTabNavigator(
             color={tintColor}
           />
         ),
-        title: I18n.t('videos')
-      })
+        title: I18n.t('videos'),
+      }),
     },
     Setting: {
       screen: AbatiSettingStack,
@@ -58,8 +58,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Search: {
       screen: AbatiSearchStack,
@@ -67,8 +67,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('search')
-      })
+        title: I18n.t('search'),
+      }),
     },
     ProductIndexAll: {
       screen: AbatiProductStack,
@@ -76,8 +76,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
         ),
-        title: I18n.t('all_products')
-      })
+        title: I18n.t('all_products'),
+      }),
     },
     ServiceIndexAll: {
       screen: AbatiServiceStack,
@@ -90,9 +90,9 @@ export const BottomTabsStack = createBottomTabNavigator(
             color={tintColor}
           />
         ),
-        title: I18n.t('services')
-      })
-    }
+        title: I18n.t('services'),
+      }),
+    },
   },
   {
     tabBarOptions: {
@@ -107,11 +107,11 @@ export const BottomTabsStack = createBottomTabNavigator(
       animationEnabled: true,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
-        backgroundColor: 'white'
-      }
+        backgroundColor: 'white',
+      },
     },
     navigationOptions: {
-      tabBarVisible: true
+      tabBarVisible: true,
     },
     initialRouteName: 'Home',
     order: [
@@ -120,7 +120,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       'Search',
       'Setting',
       'ProductIndexAll',
-      'VideoIndexAll'
-    ]
-  }
+      'VideoIndexAll',
+    ],
+  },
 );

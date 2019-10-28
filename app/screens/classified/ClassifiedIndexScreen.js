@@ -8,7 +8,7 @@ import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView'
 const ClassifiedIndexScreen = ({
   classifieds,
   searchParams,
-  isLoadingContent
+  isLoadingContent,
 }) => {
   return (
     <React.Suspense
@@ -26,7 +26,7 @@ function mapStateToProps(state) {
   return {
     classifieds: state.classifieds,
     searchParams: state.searchParams,
-    isLoadingContent: state.isLoadingContent
+    isLoadingContent: state.isLoadingContent,
   };
 }
 
@@ -34,7 +34,7 @@ export default connect(mapStateToProps)(ClassifiedIndexScreen);
 
 ClassifiedIndexScreen.propTypes = {
   classifieds: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

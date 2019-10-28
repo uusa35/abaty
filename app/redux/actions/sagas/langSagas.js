@@ -51,7 +51,7 @@ export function* defaultLang() {
       yield all([
         put({type: actions.SET_LANG, payload: lang}),
         call(setDirection, lang),
-        call(helpers.setLang, lang)
+        call(helpers.setLang, lang),
       ]);
     }
   } catch (e) {

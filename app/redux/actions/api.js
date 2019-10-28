@@ -6,12 +6,12 @@ import {
   checkImage,
   getImageExtension,
   getImageName,
-  getImagePath
+  getImagePath,
 } from '../../helpers';
 import {map, filter} from 'lodash';
 
 export const axiosInstance = axios.create({
-  baseURL: links.apiUrl
+  baseURL: links.apiUrl,
 });
 
 __DEV__ ? console.log('link', links.apiUrl) : null;
@@ -241,7 +241,7 @@ export const networkTransform = createTransform(
       if (typeof action === 'function') {
         actionQueue.push({
           function: action.meta.name,
-          args: action.meta.args
+          args: action.meta.args,
         });
       } else if (typeof action === 'object') {
         actionQueue.push(action);
@@ -250,7 +250,7 @@ export const networkTransform = createTransform(
 
     return {
       ...inboundState,
-      actionQueue
+      actionQueue,
     };
   },
   (outboundState, key) => {
@@ -269,7 +269,7 @@ export const networkTransform = createTransform(
   },
   // The 'network' key may change depending on what you
   // named your network reducer.
-  {whitelist: ['network']}
+  {whitelist: ['network']},
 );
 
 export async function authenticated(api_token) {
@@ -292,7 +292,7 @@ export async function authenticate(elements) {
     .post('authenticate', {
       email,
       password,
-      player_id
+      player_id,
     })
     .then(r => r.data)
     .catch(e => e.response.data.message);
@@ -346,14 +346,14 @@ export async function updateUser(params) {
     address,
     description,
     notes,
-    country_id
+    country_id,
   } = params;
   const form = new FormData();
   if (checkImage(image)) {
     form.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
-      type: getImageExtension(image)
+      type: getImageExtension(image),
     });
   }
   form.append('name', name);
@@ -390,14 +390,14 @@ export async function storeClassified(elements) {
     image,
     images,
     only_whatsapp,
-    classifiedProps
+    classifiedProps,
   } = elements;
   const form = new FormData();
   if (checkImage(image)) {
     form.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
-      type: getImageExtension(image)
+      type: getImageExtension(image),
     });
   }
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
@@ -406,7 +406,7 @@ export async function storeClassified(elements) {
       form.append(`images[${i}]`, {
         uri: getImagePath(img),
         name: getImageName(img),
-        type: getImageExtension(img)
+        type: getImageExtension(img),
       });
     }
   });

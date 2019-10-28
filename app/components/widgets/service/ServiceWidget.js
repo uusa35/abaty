@@ -4,7 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
+  Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getService} from '../../../redux/actions';
@@ -17,7 +17,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ServiceWidget = ({element, showName = false}) => {
   const {colors, currency_symbol, exchange_rate, token} = useContext(
-    GlobalValuesContext
+    GlobalValuesContext,
   );
   const {dispatch} = useContext(DispatchContext);
   return (
@@ -34,15 +34,15 @@ const ServiceWidget = ({element, showName = false}) => {
           marginTop: 5,
           marginBottom: 5,
           height: 285,
-          justifyContent: 'space-evenly'
-        }
+          justifyContent: 'space-evenly',
+        },
       ]}
       onPress={() =>
         dispatch(getService({id: element.id, api_token: token ? token : null}))
       }>
       <ImageBackground
         source={{
-          uri: element.thumb
+          uri: element.thumb,
         }}
         loadingIndicatorSource={images.logo}
         imageStyle={styles.imageStyling}
@@ -64,8 +64,8 @@ const ServiceWidget = ({element, showName = false}) => {
               {
                 textAlign: 'center',
                 fontSize: text.medium,
-                color: colors.header_tow_theme_color
-              }
+                color: colors.header_tow_theme_color,
+              },
             ]}>
             {element.name.substring(0, 20)}
           </Text>
@@ -73,7 +73,7 @@ const ServiceWidget = ({element, showName = false}) => {
             style={{
               flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <Text
               style={[
@@ -82,8 +82,8 @@ const ServiceWidget = ({element, showName = false}) => {
                   textAlign: 'center',
                   fontSize: text.medium,
                   paddingRight: 5,
-                  paddingLeft: 5
-                }
+                  paddingLeft: 5,
+                },
               ]}>
               {getConvertedFinalPrice(element.finalPrice, exchange_rate)}
             </Text>
@@ -101,12 +101,12 @@ ServiceWidget.propTypes = {
   element: PropTypes.object.isRequired,
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 173,
-    height: 230
-  }
+    height: 230,
+  },
 });

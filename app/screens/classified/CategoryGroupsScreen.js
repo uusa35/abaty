@@ -3,7 +3,7 @@ import React, {
   useState,
   useCallback,
   useMemo,
-  useEffect
+  useEffect,
 } from 'react';
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
+  Image,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
@@ -26,7 +26,7 @@ import ClassifiedStorePropertiesWidget from '../../components/widgets/property/C
 import {addToProperties} from '../../redux/actions';
 import {
   HIDE_PROPERTIES_MODAL,
-  SHOW_PROPERTIES_MODAL
+  SHOW_PROPERTIES_MODAL,
 } from '../../redux/actions/types';
 
 const CategoryGroupsScreen = ({
@@ -34,10 +34,10 @@ const CategoryGroupsScreen = ({
   dispatch,
   classifiedProps,
   propertiesModal,
-  navigation
+  navigation,
 }) => {
   const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
-    !validate.isEmpty(category) ? first(category.categoryGroups) : null
+    !validate.isEmpty(category) ? first(category.categoryGroups) : null,
   );
   const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
@@ -56,24 +56,24 @@ const CategoryGroupsScreen = ({
       {
         cateogry_group: currentCategoryGroup,
         property: property,
-        category_group_property: property.id + currentCategoryGroup.id
+        category_group_property: property.id + currentCategoryGroup.id,
         // value: property.value,
         // name: property.name,
         // icon: property.icon,
         // thumb: property.thumb
       },
-      ...selectedProperties
+      ...selectedProperties,
     ]);
     dispatch(
       addToProperties({
         cateogry_group: currentCategoryGroup,
         property: property,
-        category_group_property: property.id + currentCategoryGroup.id
-      })
+        category_group_property: property.id + currentCategoryGroup.id,
+      }),
     );
     const rest = filter(
       remainingGroups,
-      (g, i) => g.id !== currentCategoryGroup.id
+      (g, i) => g.id !== currentCategoryGroup.id,
     );
     if (!validate.isEmpty(rest)) {
       setCurrentCategoryGroup(first(rest));
@@ -128,7 +128,7 @@ const CategoryGroupsScreen = ({
                     marginTop: '10%',
                     alignSelf: 'center',
                     alignItems: 'center',
-                    flexDirection: 'row-reverse'
+                    flexDirection: 'row-reverse',
                   }}>
                   <Icon
                     containerStyle={{position: 'absolute', left: 0}}
@@ -147,7 +147,7 @@ const CategoryGroupsScreen = ({
                       flexDirection: 'row',
                       alignItems: 'baseline',
                       width: 120,
-                      justifyContent: 'space-between'
+                      justifyContent: 'space-between',
                     }}>
                     <Image
                       source={{uri: group.thumb}}
@@ -158,7 +158,7 @@ const CategoryGroupsScreen = ({
                       style={{
                         textAlign: 'center',
                         fontFamily: text.font,
-                        fontSize: text.large
+                        fontSize: text.large,
                       }}>
                       {group.name}
                     </Text>
@@ -177,7 +177,7 @@ const CategoryGroupsScreen = ({
                   contentContainerStyle={{
                     flex: 0.9,
                     paddingTop: 10,
-                    width: '100%'
+                    width: '100%',
                   }}>
                   <View>
                     {map(group.properties, (property, i) => {
@@ -220,14 +220,14 @@ function mapStateToProps(state) {
   return {
     category: state.category,
     classifiedProps: state.classifiedProps,
-    propertiesModal: state.propertiesModal
+    propertiesModal: state.propertiesModal,
   };
 }
 
 export default connect(mapStateToProps)(CategoryGroupsScreen);
 
 CategoryGroupsScreen.propTypes = {
-  category: PropTypes.object.isRequired
+  category: PropTypes.object.isRequired,
 };
 const styles = StyleSheet.create({
   iconModalWrapper: {
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    zIndex: 999
+    zIndex: 999,
   },
   propertiesWrapper: {
     flexDirection: 'row',
@@ -248,12 +248,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,
     borderColor: 'lightgrey',
-    padding: 10
+    padding: 10,
   },
   title: {
     fontFamily: text.font,
     fontSize: text.medium,
     paddingLeft: 20,
-    paddingRight: 20
-  }
+    paddingRight: 20,
+  },
 });

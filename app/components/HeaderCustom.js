@@ -16,7 +16,7 @@ const HeaderCustom = ({navigation}) => {
       url: link,
       type: 'url',
       message: I18n.t('share_file'),
-      subject: I18n.t('share_file')
+      subject: I18n.t('share_file'),
     })
       .then(res => {
         __DEV__ ? console.log(res) : null;
@@ -32,7 +32,7 @@ const HeaderCustom = ({navigation}) => {
           shareLink(
             `${navigation.state.params.product ? productPrefix : userPrefix}${
               navigation.state.params.id
-            }`
+            }`,
           )
         }
         name="share"
@@ -49,6 +49,6 @@ export default React.memo(HeaderCustom);
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
-  }
+    padding: 10,
+  },
 });

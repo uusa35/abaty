@@ -3,7 +3,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions';
@@ -15,7 +15,7 @@ import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 
 const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
   const {currency_symbol, exchange_rate, token} = useContext(
-    GlobalValuesContext
+    GlobalValuesContext,
   );
   return (
     <TouchableOpacity
@@ -32,23 +32,23 @@ const ClassifiedWidget = ({element, showName = false, dispatch, colors}) => {
           // marginBottom: 5,
           justifyContent: 'flex-start',
           alignItems: 'center',
-          alignSelf: 'center'
-        }
+          alignSelf: 'center',
+        },
       ]}
       onPress={() =>
         dispatch(
-          getClassified({id: element.id, api_token: token ? token : null})
+          getClassified({id: element.id, api_token: token ? token : null}),
         )
       }>
       <ImageBackground
         source={{
-          uri: element.thumb
+          uri: element.thumb,
         }}
         loadingIndicatorSource={images.logo}
         style={styles.image}
         imageStyle={{
           width,
-          height: 400
+          height: 400,
           // borderRadius: 20
         }}
         resizeMode="cover">
@@ -75,12 +75,12 @@ ClassifiedWidget.propTypes = {
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 230
-  }
+    height: 230,
+  },
 });

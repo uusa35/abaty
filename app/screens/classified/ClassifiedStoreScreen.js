@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
@@ -28,25 +28,25 @@ const ClassifiedStoreScreen = ({
   area,
   dispatch,
   classifiedProps,
-  navigation
+  navigation,
 }) => {
   const [name, setName] = useState('testing');
   const [mobile, setMobile] = useState(
-    !validate.isEmpty(auth) ? auth.mobile : null
+    !validate.isEmpty(auth) ? auth.mobile : null,
   );
   const [price, setPrice] = useState('10');
   const {params} = navigation.state;
   const [address, setAddress] = useState(
-    !validate.isEmpty(params) ? params.address : ''
+    !validate.isEmpty(params) ? params.address : '',
   );
   const [longitude, setLongitude] = useState(
-    !validate.isEmpty(params) ? params.longitude : ''
+    !validate.isEmpty(params) ? params.longitude : '',
   );
   const [latitude, setLatitude] = useState(
-    !validate.isEmpty(params) ? params.latitude : ''
+    !validate.isEmpty(params) ? params.latitude : '',
   );
   const [description, setDescription] = useState(
-    !validate.isEmpty(auth) ? auth.description : null
+    !validate.isEmpty(auth) ? auth.description : null,
   );
   const [images, setImages] = useState('');
   const [image, setImage] = useState('');
@@ -63,7 +63,7 @@ const ClassifiedStoreScreen = ({
       includeExif: true,
       maxFiles: 5,
       minFiles: 2,
-      compressImageQuality: 0.5
+      compressImageQuality: 0.5,
     }).then(images => {
       setImage(first(images));
       setImages(images);
@@ -92,7 +92,7 @@ const ClassifiedStoreScreen = ({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
       }}>
       <TouchableOpacity
         onPress={() => openPicker()}
@@ -111,7 +111,7 @@ const ClassifiedStoreScreen = ({
             borderColor: 'lightgrey',
             borderWidth: 1,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         />
         <Text style={{fontFamily: text.font, fontSize: text.medium}}>
@@ -126,11 +126,11 @@ const ClassifiedStoreScreen = ({
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            padding: 10
+            padding: 10,
           }}
           style={[
             widgetStyles.wrapper,
-            {borderWidth: 1, borderColor: 'lightgrey', minHeight: 120}
+            {borderWidth: 1, borderColor: 'lightgrey', minHeight: 120},
           ]}>
           {map(images, (img, i) => (
             <ImageBackground
@@ -143,7 +143,7 @@ const ClassifiedStoreScreen = ({
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   backgroundColor: 'white',
-                  opacity: 0.7
+                  opacity: 0.7,
                 }}>
                 <Icon
                   size={40}
@@ -171,11 +171,11 @@ const ClassifiedStoreScreen = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -187,7 +187,7 @@ const ClassifiedStoreScreen = ({
             paddingBottom: 10,
             paddingTop: 10,
             fontFamily: text.font,
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         />
         <Input
@@ -197,11 +197,11 @@ const ClassifiedStoreScreen = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -213,7 +213,7 @@ const ClassifiedStoreScreen = ({
             paddingBottom: 10,
             paddingTop: 10,
             fontFamily: text.font,
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         />
         <Input
@@ -224,12 +224,12 @@ const ClassifiedStoreScreen = ({
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
             fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           numberOfLines={3}
           shake={true}
@@ -242,7 +242,7 @@ const ClassifiedStoreScreen = ({
             paddingBottom: 10,
             paddingTop: 10,
             fontFamily: text.font,
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         />
         <Input
@@ -252,11 +252,11 @@ const ClassifiedStoreScreen = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="number-pad"
@@ -268,7 +268,7 @@ const ClassifiedStoreScreen = ({
             paddingBottom: 10,
             paddingTop: 10,
             fontFamily: text.font,
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         />
         <Input
@@ -278,11 +278,11 @@ const ClassifiedStoreScreen = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="number-pad"
@@ -294,7 +294,7 @@ const ClassifiedStoreScreen = ({
             paddingBottom: 10,
             paddingTop: 10,
             fontFamily: text.font,
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         />
         <View
@@ -304,7 +304,7 @@ const ClassifiedStoreScreen = ({
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <CheckBox
             containerStyle={{width: '90%'}}
@@ -332,14 +332,14 @@ const ClassifiedStoreScreen = ({
             width: '95%',
             alignSelf: 'center',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.large,
               textAlign: isRTL ? 'right' : 'left',
-              color: colors.main_theme_color
+              color: colors.main_theme_color,
             }}>
             {country.slug}
           </Text>
@@ -358,14 +358,14 @@ const ClassifiedStoreScreen = ({
               width: '95%',
               alignSelf: 'center',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.large,
                 textAlign: isRTL ? 'right' : 'left',
-                color: colors.main_theme_color
+                color: colors.main_theme_color,
               }}>
               {I18n.t('area')} {area ? area.slug : I18n.t('choose_area')}
             </Text>
@@ -383,11 +383,11 @@ const ClassifiedStoreScreen = ({
         containerStyle={{marginBottom: 10, marginTop: 10, width: '90%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         title={I18n.t('save_classified')}
         onPress={() =>
@@ -408,8 +408,8 @@ const ClassifiedStoreScreen = ({
               images,
               classifiedProps,
               category_id: category.id,
-              only_whatsapp: onlyWhatsapp ? 1 : 0
-            })
+              only_whatsapp: onlyWhatsapp ? 1 : 0,
+            }),
           )
         }
       />
@@ -426,7 +426,7 @@ function mapStateToProps(state) {
     colors: state.settings.colors,
     newClassified: state.newClassified,
     classifiedProps: state.classifiedProps,
-    categoryName: state.category.name
+    categoryName: state.category.name,
   };
 }
 
@@ -437,7 +437,7 @@ ClassifiedStoreScreen.propTypes = {
   country: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,
   category: PropTypes.object.isRequired,
-  classifiedProps: PropTypes.array.isRequired
+  classifiedProps: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

@@ -35,7 +35,7 @@ const CategoryCarouselWidget = ({elements, dispatch}) => {
 export default CategoryCarouselWidget;
 
 CategoryCarouselWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

@@ -18,7 +18,7 @@ const UserWidgetVertical = ({user}) => {
       chevronColor="white"
       chevron={{
         type: 'octicon',
-        name: isRTL ? 'chevron-left' : 'chevron-right'
+        name: isRTL ? 'chevron-left' : 'chevron-right',
       }}
       contentContainerStyle={{alignItems: 'baseline'}}
       titleStyle={{fontFamily: text.font}}
@@ -30,5 +30,5 @@ const UserWidgetVertical = ({user}) => {
 export default UserWidgetVertical;
 
 UserWidgetVertical.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
 };

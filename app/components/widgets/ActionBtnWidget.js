@@ -19,7 +19,7 @@ const ActionBtnWidget = ({visible = false, colors}) => {
         bottom: '1%',
         backgroundColor: 'transparent',
         height: 100,
-        zIndex: 99
+        zIndex: 99,
       }}>
       <ActionButton
         style={{opacity: 0.6}}
@@ -60,16 +60,16 @@ const ActionBtnWidget = ({visible = false, colors}) => {
 export default ActionBtnWidget;
 
 ActionBtnWidget.propTypes = {
-  colors: PropTypes.object.isRequired
+  colors: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
   actionButtonIcon: {
     fontSize: 20,
-    height: 22
+    height: 22,
   },
   title: {
     fontFamily: text.font,
-    fontSize: text.medium
-  }
+    fontSize: text.medium,
+  },
 });

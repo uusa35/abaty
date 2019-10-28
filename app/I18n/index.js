@@ -7,7 +7,7 @@ I18n.defaultLocale = 'en';
 I18n.locale = I18nManager.isRTL ? 'ar' : 'en';
 I18n.translations = {
   en,
-  ar
+  ar,
 };
 export const isRTL = I18nManager.isRTL;
 I18nManager.allowRTL(isRTL);

@@ -15,7 +15,7 @@ const PageOneScreen = ({
   dispatch,
   colors,
   showRefresh = true,
-  navigation
+  navigation,
 }) => {
   [title, setTitle] = useState('');
   [refresh, setRefresh] = useState(false);
@@ -67,14 +67,14 @@ function mapStateToProps(state) {
     categories: state.categories,
     commercials: state.commercials,
     show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 PageOneScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
-  title: I18n.t('mallr.sections')
+  title: I18n.t('mallr.sections'),
 });
 
 export default connect(mapStateToProps)(PageOneScreen);
@@ -82,5 +82,5 @@ export default connect(mapStateToProps)(PageOneScreen);
 PageOneScreen.propTypes = {
   categories: PropTypes.array,
   commercials: PropTypes.array,
-  show_commercials: PropTypes.bool
+  show_commercials: PropTypes.bool,
 };

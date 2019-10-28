@@ -19,7 +19,7 @@ export const HeaderMiddle = ({title, showLogo = false}) => {
           style={{
             width: '100%',
             height: 35,
-            maxWidth: 100
+            maxWidth: 100,
           }}
         />
       ) : (
@@ -28,7 +28,7 @@ export const HeaderMiddle = ({title, showLogo = false}) => {
             fontFamily: text.font,
             fontSize: text.medium,
             textAlign: 'center',
-            color: colors.header_one_theme_color
+            color: colors.header_one_theme_color,
           }}>
           {title ? title.substring(0, 20) : null}
         </Text>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
     // alignSelf: 'center'
-  }
+  },
 });

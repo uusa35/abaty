@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {createAppContainer} from 'react-navigation';
 import {
   createReactNavigationReduxMiddleware,
-  createReduxContainer
+  createReduxContainer,
 } from 'react-navigation-redux-helpers';
 import RootNavigator from './navigator/abati/RootNavigator';
 // import RootNavigator from './navigator/mallr/RootNavigator';
@@ -13,11 +13,11 @@ const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
 const AppWithNavigationState = createReduxContainer(RootNavigator);
 const mapStateToProps = state => ({
   state: state.nav,
-  network: state.network
+  network: state.network,
 });
 
 const AppNavigator = connect(mapStateToProps)(
-  createAppContainer(AppWithNavigationState)
+  createAppContainer(AppWithNavigationState),
 );
 
 export {RootNavigator, AppNavigator, navMiddleware};

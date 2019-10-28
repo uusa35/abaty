@@ -50,7 +50,7 @@ export function getCart() {
 
 export function showAlert(title, message) {
   return Alert.alert(title, message, [
-    {text: I18n.t('ok'), style: I18n.t('cancel')}
+    {text: I18n.t('ok'), style: I18n.t('cancel')},
   ]);
 }
 
@@ -99,7 +99,7 @@ export function calculateDistance(
   currentLat,
   currentLong,
   latitude,
-  longitude
+  longitude,
 ) {
   let currentLongA = !validate.isEmpty(currentLong) ? currentLong : null;
   let currentLatA = !validate.isEmpty(currentLat) ? currentLat : null;
@@ -113,7 +113,7 @@ export function calculateDistance(
   ) {
     return getDistance(
       {latitude: parseFloat(currentLatA), longitude: currentLongA},
-      {latitude: parseFloat(latitudeA), longitude: longitudeA}
+      {latitude: parseFloat(latitudeA), longitude: longitudeA},
     );
   } else {
     return null;
@@ -130,7 +130,7 @@ export const getHeader = title => {
         fontSize: 20,
         borderWidth: 5,
         width: width - 110,
-        alignSelf: 'center'
+        alignSelf: 'center',
       }}>
       {title}
     </Text>
@@ -145,7 +145,7 @@ export function getTabTitle(title) {
         color: 'black',
         textAlign: 'center',
         marginTop: isIOS ? 10 : 3,
-        fontSize: isIOS ? 12 : 10
+        fontSize: isIOS ? 12 : 10,
       }}>
       {title}
     </Text>

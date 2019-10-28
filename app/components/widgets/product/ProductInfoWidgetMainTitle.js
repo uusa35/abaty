@@ -13,7 +13,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 const ProductInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, token, guest, exchange_rate, currency_symbol} = useContext(
-    GlobalValuesContext
+    GlobalValuesContext,
   );
   const [favorite, setFavorite] = useState(element.isFavorite);
 
@@ -26,7 +26,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
       <FastImage
         source={{uri: element.user.thumb}}
@@ -37,11 +37,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
-            height: 1
+            height: 1,
           },
           shadowOpacity: 0.2,
           shadowRadius: 1.41,
-          elevation: 2
+          elevation: 2,
         }}
         loadingIndicatorSource={images.logo}
       />
@@ -57,11 +57,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             shadowColor: '#000',
             shadowOffset: {
               width: 0,
-              height: 1
+              height: 1,
             },
             shadowOpacity: 0.2,
             shadowRadius: 1.41,
-            elevation: 2
+            elevation: 2,
           }}>
           {element.name}
         </Text>
@@ -73,7 +73,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             fontSize: 10,
             color: colors.header_one_theme_color,
             textAlign: 'left',
-            fontFamily: text.font
+            fontFamily: text.font,
           }}>
           {element.user.slug}
         </Text>
@@ -81,7 +81,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            minWidth: '60%'
+            minWidth: '60%',
           }}>
           <View style={{flexDirection: 'row'}}>
             <Text
@@ -89,12 +89,12 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 styles.productTitle,
                 {
                   color: element.isOnSale ? 'grey' : 'black',
-                  textDecorationLine: element.isOnSale ? 'line-through' : null
-                }
+                  textDecorationLine: element.isOnSale ? 'line-through' : null,
+                },
               ]}>
               {round(
                 getProductConvertedFinalPrice(element.price, exchange_rate),
-                2
+                2,
               )}
             </Text>
             <Text
@@ -102,8 +102,8 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 styles.productTitle,
                 {
                   color: element.isOnSale ? 'grey' : 'black',
-                  textDecorationLine: element.isOnSale ? 'line-through' : null
-                }
+                  textDecorationLine: element.isOnSale ? 'line-through' : null,
+                },
               ]}>
               {currency_symbol}
             </Text>
@@ -114,9 +114,9 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 {round(
                   getProductConvertedFinalPrice(
                     element.sale_price,
-                    exchange_rate
+                    exchange_rate,
                   ),
-                  2
+                  2,
                 )}
               </Text>
               <Text style={styles.productTitle}>{currency_symbol}</Text>
@@ -132,8 +132,8 @@ const ProductInfoWidgetMainTitle = ({element}) => {
               dispatch(
                 toggleProductFavorite({
                   api_token: token,
-                  product_id: element.id
-                })
+                  product_id: element.id,
+                }),
               );
             }}
             name={favorite ? 'heart' : 'heart'}
@@ -152,7 +152,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
 export default ProductInfoWidgetMainTitle;
 
 ProductInfoWidgetMainTitle.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -162,6 +162,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     textAlign: 'left',
-    fontFamily: text.font
-  }
+    fontFamily: text.font,
+  },
 });

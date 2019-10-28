@@ -42,7 +42,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
             width: '50%',
             marginTop: -30,
             marginBottom: -10,
-            padding: 0
+            padding: 0,
           }}
           itemStyle={{fontFamily: text.font, fontSize: text.medium}}
           onValueChange={(itemValue, itemIndex) => setDay(itemValue)}>
@@ -69,7 +69,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
             width: '50%',
             marginTop: -30,
             marginBottom: -10,
-            padding: 0
+            padding: 0,
           }}
           itemStyle={{fontFamily: text.font, fontSize: text.medium}}
           onValueChange={(itemValue, itemIndex) => {
@@ -94,11 +94,11 @@ const ServiceInfoWidgetBtns = ({element}) => {
           paddingLeft: 15,
           paddingRight: 15,
           marginTop: 5,
-          height: 80
+          height: 80,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         editable={selectedTiming ? true : false}
         shake={true}
@@ -119,8 +119,8 @@ const ServiceInfoWidgetBtns = ({element}) => {
                 qty: 1,
                 element,
                 timeData,
-                notes
-              })
+                notes,
+              }),
             )
           }
           disabled={!selectedTiming ? true : false}
@@ -130,7 +130,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           title={I18n.t('add_to_cart')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
         />
       ) : null}

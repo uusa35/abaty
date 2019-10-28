@@ -18,13 +18,13 @@ export const AbatiSettingStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'modal',
     headerMode: 'screen',
-    swipeEnabled: false
-  }
+    swipeEnabled: false,
+  },
 );

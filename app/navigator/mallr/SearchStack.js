@@ -20,8 +20,8 @@ export const SearchStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('search')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: ProductShowScreen,
@@ -34,9 +34,9 @@ export const SearchStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     Service: {
       screen: ServiceShowScreen,
@@ -53,14 +53,14 @@ export const SearchStack = createStackNavigator(
         headerStyle: {
           // backgroundColor: 'white',
           // zIndex: 100
-        }
+        },
       }),
-      path: `service/:id`
-    }
+      path: `service/:id`,
+    },
   },
   {
     mode: 'modal',
     headerMode: 'screen',
-    swipeEnabled: true
-  }
+    swipeEnabled: true,
+  },
 );

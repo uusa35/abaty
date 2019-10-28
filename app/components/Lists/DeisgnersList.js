@@ -3,7 +3,7 @@ import {
   View,
   FlatList,
   RefreshControl,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import {getSearchDesigners, getUsers} from '../../redux/actions';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
       setRefresh(false);
       setShowMore(false);
       return axiosInstance(`user?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           const userGroup = uniqBy(items.concat(r.data), 'id');
@@ -62,7 +62,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
       setRefresh(false);
       setShowMore(false);
       let filtered = filter(elements, i =>
-        i.slug.includes(search) ? i : null
+        i.slug.includes(search) ? i : null,
       );
       if (filtered.length > 0 || search.length > 0) {
         setItems(filtered);
@@ -79,7 +79,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        width: width
+        width: width,
       }}
       behavior="padding"
       enabled>
@@ -105,11 +105,11 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
             />
           }
           contentContainerStyle={{
-            width: width - 20
+            width: width - 20,
           }}
           columnWrapperStyle={{
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           renderItem={({item}) => (
             <UserWidgetHorizontal
@@ -132,7 +132,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View>
@@ -140,7 +140,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
                 placeholder={I18n.t('search')}
                 inputStyle={{
                   fontFamily: text.font,
-                  textAlign: isRTL ? 'right' : 'left'
+                  textAlign: isRTL ? 'right' : 'left',
                 }}
                 inputContainerStyle={{
                   backgroundColor: '#E4E4E5',
@@ -148,7 +148,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
                   paddingRight: 15,
                   paddingLeft: 15,
                   marginTop: 20,
-                  borderColor: '#E4E4E5'
+                  borderColor: '#E4E4E5',
                 }}
                 rightIcon={
                   <Icon
@@ -187,5 +187,5 @@ DesignersList.propTypes = {
   elements: PropTypes.array.isRequired,
   category: PropTypes.object,
   searchParams: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };

@@ -40,7 +40,7 @@ class App extends Component<Props> {
       ? currency
       : 'KWD';
     axiosInstance.defaults.headers.common['currency'] = !validate.isEmpty(
-      currency
+      currency,
     )
       ? currency
       : 'KWD';
@@ -86,7 +86,7 @@ class App extends Component<Props> {
       network,
       loginModal,
       main_bg,
-      searchModal
+      searchModal,
     } = this.props;
     const cartLength = cart.length;
     if (!bootStrapped || isLoading) {
@@ -144,7 +144,7 @@ class App extends Component<Props> {
                   logo,
                   app_logo,
                   guest,
-                  searchModal
+                  searchModal,
                 }}>
                 <AppNavigator uriPrefix={prefix} />
                 {validate.isBoolean(loginModal) ? (
@@ -217,7 +217,7 @@ function mapStateToProps(state) {
     token: state.token,
     guest: state.guest,
     loginModal: state.loginModal,
-    searchModal: state.searchModal
+    searchModal: state.searchModal,
   };
 }
 
@@ -240,7 +240,7 @@ App.propTypes = {
   total: PropTypes.number.isRequired,
   lang: PropTypes.string.isRequired,
   token: PropTypes.string,
-  guest: PropTypes.bool
+  guest: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(codePush(App));

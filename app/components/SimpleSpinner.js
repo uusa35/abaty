@@ -8,7 +8,7 @@ const SimpleSpinner = ({color = 'black'}) => {
       style={{
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}>
       <Spinner type="Circle" color={color} size={40} />
     </View>

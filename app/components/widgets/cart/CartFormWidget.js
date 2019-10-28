@@ -13,7 +13,7 @@ const CartFormWidget = ({
   auth,
   colors,
   grossTotal,
-  shipment_notes
+  shipment_notes,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   [email, setEmail] = useState(auth.email);
@@ -32,11 +32,11 @@ const CartFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -51,11 +51,11 @@ const CartFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="email-address"
@@ -70,11 +70,11 @@ const CartFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="number-pad"
@@ -95,14 +95,14 @@ const CartFormWidget = ({
             width: '95%',
             alignSelf: 'center',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.large,
               textAlign: isRTL ? 'right' : 'left',
-              color: colors.main_theme_color
+              color: colors.main_theme_color,
             }}>
             {shipmentCountry.slug}
           </Text>
@@ -117,12 +117,12 @@ const CartFormWidget = ({
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
             fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           numberOfLines={3}
           shake={true}
@@ -134,7 +134,7 @@ const CartFormWidget = ({
             fontFamily: text.font,
             fontSize: text.small,
             textAlign: 'center',
-            paddingBottom: 10
+            paddingBottom: 10,
           }}>
           {shipment_notes}
         </Text>
@@ -147,11 +147,11 @@ const CartFormWidget = ({
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -166,14 +166,14 @@ const CartFormWidget = ({
             borderColor: 'lightgrey',
             width: '100%',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
               textAlign: 'center',
-              paddingBottom: 10
+              paddingBottom: 10,
             }}>
             {I18n.t('have_coupon')}
           </Text>
@@ -185,11 +185,11 @@ const CartFormWidget = ({
               borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
-              marginBottom: 20
+              marginBottom: 20,
             }}
             inputStyle={{
               fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left'
+              textAlign: isRTL ? 'right' : 'left',
             }}
             shake={true}
             keyboardType="default"
@@ -200,12 +200,12 @@ const CartFormWidget = ({
             containerStyle={{marginBottom: 10, width: '90%%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('add_coupon')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => dispatch(getCoupon(code))}
           />
@@ -216,12 +216,12 @@ const CartFormWidget = ({
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         title={I18n.t('confirm_information')}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         onPress={() => console.log('confirm information')}
       />

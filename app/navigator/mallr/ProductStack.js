@@ -17,8 +17,8 @@ export const ProductStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: ProductShowScreen,
@@ -31,9 +31,9 @@ export const ProductStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     Home: {
       screen: MallrHomeScreen,
@@ -47,14 +47,14 @@ export const ProductStack = createStackNavigator(
           />
         ),
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'card',
-    headerMode: 'screen'
-  }
+    headerMode: 'screen',
+  },
 );
 
 ProductStack.navigationOptions = ({navigation}) => {
@@ -63,6 +63,6 @@ ProductStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

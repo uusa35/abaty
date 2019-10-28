@@ -6,7 +6,7 @@ import validate from 'validate.js';
 
 const AlertMessage = ({message, dispatch}) => {
   const [alertMessageVisible, setAlertMessageVisible] = useState(
-    message.visible
+    message.visible,
   );
   const styles = {
     container: {
@@ -18,15 +18,15 @@ const AlertMessage = ({message, dispatch}) => {
       paddingTop: '10%',
       paddingRight: 15,
       paddingBottom: 15,
-      paddingLeft: 15
+      paddingLeft: 15,
     },
     text: {
       color: 'white',
       fontFamily: text.font,
       fontSize: text.medium,
       fontWeight: 'bold',
-      textAlign: 'left'
-    }
+      textAlign: 'left',
+    },
   };
 
   useMemo(() => {
@@ -42,7 +42,7 @@ const AlertMessage = ({message, dispatch}) => {
           !validate.isEmpty(message) && validate.isString(message.content)
             ? message.content
             : null,
-        styles
+        styles,
       }}
       style={styles.content}
       onHide={() => setAlertMessageVisible(false)}
@@ -53,5 +53,5 @@ const AlertMessage = ({message, dispatch}) => {
 export default AlertMessage;
 
 AlertMessage.propTypes = {
-  message: PropTypes.object.isRequired
+  message: PropTypes.object.isRequired,
 };

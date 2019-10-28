@@ -3,7 +3,7 @@ import React, {
   useMemo,
   useCallback,
   useEffect,
-  Fragment
+  Fragment,
 } from 'react';
 import {
   View,
@@ -12,7 +12,7 @@ import {
   Modal,
   TouchableOpacity,
   ScrollView,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {Button, Icon, ButtonGroup} from 'react-native-elements';
@@ -33,7 +33,7 @@ const ClassifiedFilterScreen = ({
   dispatch,
   searchModal,
   colors,
-  categories
+  categories,
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [price, setPrice] = useState();
@@ -86,7 +86,7 @@ const ClassifiedFilterScreen = ({
       category_group_id: selectedGroup.id,
       property_id: p.id,
       property_value: p.value,
-      id: selectedGroup.id + '-' + p.id
+      id: selectedGroup.id + '-' + p.id,
     });
     setItems(currentItems);
   });
@@ -115,13 +115,13 @@ const ClassifiedFilterScreen = ({
           children: selectedCategory.children,
           items,
           min,
-          max
+          max,
         },
         redirect: false,
         name: selectedCategory
           ? selectedCategory.name
-          : I18n.t('search_results')
-      })
+          : I18n.t('search_results'),
+      }),
     );
   });
 
@@ -143,19 +143,19 @@ const ClassifiedFilterScreen = ({
             marginTop: 40,
             flexDirection: 'row',
             width: '100%',
-            padding: 10
+            padding: 10,
           }}>
           <View
             style={{
               flex: 1,
               minHeight: height - 100,
               justifyContent: 'space-between',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <View
               style={{
                 flexDirection: 'row',
-                alignItems: 'baseline'
+                alignItems: 'baseline',
               }}>
               <Icon
                 name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
@@ -176,7 +176,7 @@ const ClassifiedFilterScreen = ({
                   marginTop: 30,
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'space-evenly'
+                  justifyContent: 'space-evenly',
                 }}>
                 {map(parentCategories, (c, i) => (
                   <Button
@@ -190,12 +190,12 @@ const ClassifiedFilterScreen = ({
                         selectedCategory && selectedCategory.id === c.id
                           ? 1
                           : 0.6,
-                      height: 40
+                      height: 40,
                     }}
                     title={c.name.substring(0, 20)}
                     titleStyle={{
                       fontFamily: text.font,
-                      color: colors.btn_text_theme_color
+                      color: colors.btn_text_theme_color,
                     }}
                   />
                 ))}
@@ -212,13 +212,13 @@ const ClassifiedFilterScreen = ({
                 borderWidth: 0.5,
                 borderRadius: 10,
                 borderColor: 'lightgrey',
-                alignSelf: 'center'
+                alignSelf: 'center',
               }}>
               <Text
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: colors.main_theme_color
+                  color: colors.main_theme_color,
                 }}>
                 {I18n.t('choose_price_range')}
               </Text>
@@ -228,7 +228,7 @@ const ClassifiedFilterScreen = ({
                   alignItems: 'center',
                   justifyContent: 'center',
                   paddingTop: 10,
-                  width: '100%'
+                  width: '100%',
                 }}>
                 <MultiSlider
                   allowOverlap
@@ -243,23 +243,23 @@ const ClassifiedFilterScreen = ({
                   onValuesChangeFinish={() => console.log('end')}
                   style={{alignSelf: 'center'}}
                   selectedStyle={{
-                    backgroundColor: colors.btn_bg_theme_color
+                    backgroundColor: colors.btn_bg_theme_color,
                   }}
                   unselectedStyle={{
-                    backgroundColor: 'silver'
+                    backgroundColor: 'silver',
                   }}
                   containerStyle={{
-                    height: 40
+                    height: 40,
                   }}
                   trackStyle={{
                     height: 10,
-                    backgroundColor: 'red'
+                    backgroundColor: 'red',
                   }}
                   touchDimensions={{
                     height: 40,
                     width: 40,
                     borderRadius: 20,
-                    slipDisplacement: 40
+                    slipDisplacement: 40,
                   }}
                 />
               </View>
@@ -267,7 +267,7 @@ const ClassifiedFilterScreen = ({
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: colors.main_theme_color
+                  color: colors.main_theme_color,
                 }}>
                 {I18n.t('price')} : {priceRange[0]} - {priceRange[1]}
               </Text>
@@ -277,7 +277,7 @@ const ClassifiedFilterScreen = ({
                 style={{
                   alignItems: 'flex-start',
                   justifyContent: 'flex-start',
-                  paddingTop: 15
+                  paddingTop: 15,
                 }}>
                 {map(category.categoryGroups, (g, i) => (
                   <View
@@ -285,7 +285,7 @@ const ClassifiedFilterScreen = ({
                     style={{
                       flexDirection: 'row',
                       borderTopWidth: 0.5,
-                      borderColor: 'lightgrey'
+                      borderColor: 'lightgrey',
                     }}>
                     <TouchableOpacity
                       hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
@@ -295,7 +295,7 @@ const ClassifiedFilterScreen = ({
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        margin: 10
+                        margin: 10,
                       }}>
                       <FastImage
                         source={{uri: g.thumb}}
@@ -304,14 +304,14 @@ const ClassifiedFilterScreen = ({
                           height: 50,
                           marginLeft: 10,
                           marginRight: 10,
-                          borderRadius: 5
+                          borderRadius: 5,
                         }}
                       />
                       <Text
                         style={{
                           fontFamily: text.font,
                           fontSize: text.medium,
-                          color: colors.main_theme_color
+                          color: colors.main_theme_color,
                         }}>
                         {g.name}
                       </Text>
@@ -321,7 +321,7 @@ const ClassifiedFilterScreen = ({
                         raised
                         containerStyle={{width: 80, alignSelf: 'center'}}
                         buttonStyle={{
-                          backgroundColor: colors.btn_bg_theme_color
+                          backgroundColor: colors.btn_bg_theme_color,
                         }}
                         icon={
                           <Icon
@@ -346,7 +346,7 @@ const ClassifiedFilterScreen = ({
                 margin: 10,
                 borderWidth: 0.5,
                 borderRadius: 10,
-                borderColor: 'lightgrey'
+                borderColor: 'lightgrey',
               }}>
               <Text style={[styles.title, {textAlign: 'center', margin: 15}]}>
                 {I18n.t('search_parameters_selected')}
@@ -390,7 +390,7 @@ const ClassifiedFilterScreen = ({
                 flex: 1,
                 alignItems: 'flex-end',
                 justifyContent: 'flex-end',
-                marginBottom: '2.5%'
+                marginBottom: '2.5%',
               }}>
               <Button
                 onPress={() => setItems([])}
@@ -399,13 +399,13 @@ const ClassifiedFilterScreen = ({
                   width: '95%',
                   alignSelf: 'center',
                   marginBottom: 10,
-                  marginTop: 10
+                  marginTop: 10,
                 }}
                 buttonStyle={{backgroundColor: 'red'}}
                 title={I18n.t('remove_filter')}
                 titleStyle={{
                   fontFamily: text.font,
-                  color: colors.btn_text_theme_color
+                  color: colors.btn_text_theme_color,
                 }}
               />
               <Button
@@ -416,7 +416,7 @@ const ClassifiedFilterScreen = ({
                 title={I18n.t('apply_filter')}
                 titleStyle={{
                   fontFamily: text.font,
-                  color: colors.btn_text_theme_color
+                  color: colors.btn_text_theme_color,
                 }}
               />
             </View>
@@ -436,7 +436,7 @@ const ClassifiedFilterScreen = ({
               marginTop: '10%',
               alignSelf: 'center',
               alignItems: 'center',
-              flexDirection: 'row-reverse'
+              flexDirection: 'row-reverse',
             }}>
             <Icon
               containerStyle={{position: 'absolute', left: 0}}
@@ -452,7 +452,7 @@ const ClassifiedFilterScreen = ({
                 flexDirection: 'row',
                 alignItems: 'baseline',
                 width: 120,
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
               }}>
               <FastImage
                 source={{uri: selectedGroup.thumb}}
@@ -463,7 +463,7 @@ const ClassifiedFilterScreen = ({
                 style={{
                   textAlign: 'center',
                   fontFamily: text.font,
-                  fontSize: text.large
+                  fontSize: text.large,
                 }}>
                 {selectedGroup.name}
               </Text>
@@ -482,7 +482,7 @@ const ClassifiedFilterScreen = ({
             contentContainerStyle={{
               flex: 0.9,
               paddingTop: 10,
-              width: '100%'
+              width: '100%',
             }}>
             {!validate.isEmpty(selectedGroup) ? (
               <View>
@@ -519,7 +519,7 @@ function mapStateToProps(state) {
     category: state.category,
     categories: state.categories,
     searchModal: state.searchModal,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
@@ -534,7 +534,7 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    zIndex: 999
+    zIndex: 999,
   },
   propertiesWrapper: {
     flexDirection: 'row',
@@ -544,7 +544,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,
     borderColor: 'lightgrey',
-    padding: 10
+    padding: 10,
   },
   title: {
     fontFamily: text.font,
@@ -552,7 +552,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     padding: 10,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   subTitle: {
     fontFamily: text.font,
@@ -560,6 +560,6 @@ const styles = StyleSheet.create({
     padding: 5,
     textAlign: 'left',
     paddingLeft: 20,
-    paddingRight: 20
-  }
+    paddingRight: 20,
+  },
 });

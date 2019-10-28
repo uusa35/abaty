@@ -12,7 +12,7 @@ const ClassifiedCategoryWidget = ({
   columns,
   showBtn = false,
   dispatch,
-  colors
+  colors,
 }) => {
   return (
     <View>
@@ -24,8 +24,8 @@ const ClassifiedCategoryWidget = ({
             getSearchClassifieds({
               name: element.name,
               searchParams: {classified_category_id: element.id},
-              redirect: true
-            })
+              redirect: true,
+            }),
           )
         }>
         <FastImage
@@ -41,8 +41,8 @@ const ClassifiedCategoryWidget = ({
                 getSearchClassifieds({
                   name: element.name,
                   searchElements: {classified_category_id: element.id},
-                  redirect: true
-                })
+                  redirect: true,
+                }),
               )
             }
             raised
@@ -51,7 +51,7 @@ const ClassifiedCategoryWidget = ({
             title={element.name}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
           />
         ) : null}
@@ -64,21 +64,21 @@ export default ClassifiedCategoryWidget;
 
 ClassifiedCategoryWidget.propTypes = {
   element: PropTypes.object,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   mainCategoryBg: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   categoryName: {
     fontFamily: text.font,
     fontSize: text.small,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

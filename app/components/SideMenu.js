@@ -10,7 +10,7 @@ import {
   Text,
   TouchableOpacity,
   Linking,
-  ImageBackground
+  ImageBackground,
 } from 'react-native';
 import I18n from './../I18n';
 import {connect} from 'react-redux';
@@ -35,12 +35,12 @@ const SideMeu = ({
   navigation,
   name,
   dispatch,
-  showLogo = true
+  showLogo = true,
 }) => {
   return (
     <ImageBackground
       source={{
-        uri: menuBg
+        uri: menuBg,
       }}
       loadingIndicatorSource={{uri: logo}}
       style={{width: '100%', flex: 1, opacity: 1}}
@@ -67,14 +67,14 @@ const SideMeu = ({
           <Text
             style={[
               styles.mainMenuText,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t('menu')}
           </Text>
           <Text
             style={[
               styles.mainMenuText,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {company}
           </Text>
@@ -92,7 +92,7 @@ const SideMeu = ({
               <Text
                 style={[
                   styles.titleStyle,
-                  {color: colors.header_one_theme_color}
+                  {color: colors.header_one_theme_color},
                 ]}>
                 {I18n.t('home')}
               </Text>
@@ -110,7 +110,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('home_key')}
                 </Text>
@@ -133,7 +133,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('new_classified')}
                 </Text>
@@ -152,7 +152,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('login')}
                 </Text>
@@ -171,7 +171,7 @@ const SideMeu = ({
                   <Text
                     style={[
                       styles.titleStyle,
-                      {color: colors.header_one_theme_color}
+                      {color: colors.header_one_theme_color},
                     ]}>
                     {I18n.t('logout')}
                   </Text>
@@ -191,7 +191,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('settings')}
                 </Text>
@@ -209,7 +209,7 @@ const SideMeu = ({
               <Text
                 style={[
                   styles.titleStyle,
-                  {color: colors.header_one_theme_color}
+                  {color: colors.header_one_theme_color},
                 ]}>
                 {I18n.t('contactus')}
               </Text>
@@ -226,7 +226,7 @@ const SideMeu = ({
               <Text
                 style={[
                   styles.titleStyle,
-                  {color: colors.header_one_theme_color}
+                  {color: colors.header_one_theme_color},
                 ]}>
                 {I18n.t('terms_and_conditions')}
               </Text>
@@ -237,7 +237,7 @@ const SideMeu = ({
                   navigation.navigate('ImageZoom', {
                     images: images,
                     name: company,
-                    index: 0
+                    index: 0,
                   })
                 }
                 style={styles.menuBtn}>
@@ -250,7 +250,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('our_gallery', {name: company})}
                 </Text>
@@ -269,7 +269,7 @@ const SideMeu = ({
                 <Text
                   style={[
                     styles.titleStyle,
-                    {color: colors.header_one_theme_color}
+                    {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('our_youtube_channel')}
                 </Text>
@@ -287,7 +287,7 @@ const SideMeu = ({
               <Text
                 style={[
                   styles.titleStyle,
-                  {color: colors.header_one_theme_color}
+                  {color: colors.header_one_theme_color},
                 ]}>
                 {I18n.t('lang')}
               </Text>
@@ -309,7 +309,7 @@ function mapStateToProps(state) {
     colors: state.settings.colors,
     guest: state.guest,
     lang: state.lang,
-    name: state.auth.name
+    name: state.auth.name,
   };
 }
 
@@ -323,13 +323,13 @@ SideMeu.propTypes = {
   youtube: PropTypes.string,
   colors: PropTypes.object.isRequired,
   guest: PropTypes.bool,
-  lang: PropTypes.string
+  lang: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   titleStyle: {
     color: 'black',
@@ -337,11 +337,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'left',
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
   },
   logo: {
     width: 120,
-    height: 120
+    height: 120,
   },
   menuBtn: {
     flexDirection: 'row',
@@ -351,13 +351,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     padding: 10,
     minHeight: 50,
-    borderBottomColor: 'lightgrey'
+    borderBottomColor: 'lightgrey',
   },
   mainMenuText: {
     color: 'black',
     fontFamily: text.font,
     fontSize: 15,
     textAlign: 'center',
-    marginTop: 8
-  }
+    marginTop: 8,
+  },
 });

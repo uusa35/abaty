@@ -13,25 +13,25 @@ export const LoginStack = createStackNavigator(
       screen: LoginScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />
-      })
+        headerRight: <HeaderRight display={false} />,
+      }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
+      }),
     },
     UserEdit: {
       screen: UserEditScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
-    }
+      }),
+    },
   },
   {
     mode: 'modal',
@@ -44,9 +44,9 @@ export const LoginStack = createStackNavigator(
       mass: 3,
       overshootClamping: true,
       restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01
-    }
-  }
+      restSpeedThreshold: 0.01,
+    },
+  },
 );
 
 LoginStack.navigationOptions = ({navigation}) => {
@@ -55,6 +55,6 @@ LoginStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible: false
+    tabBarVisible: false,
   };
 };

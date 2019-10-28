@@ -8,25 +8,25 @@ const widgetStyles = StyleSheet.create({
     width: width,
     padding: 5,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   wrapper: {
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     margin: 5,
     width: '100%',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   titleContainer: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleWrapper: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 20,
-    margin: 10
+    margin: 10,
   },
   title: {
     fontFamily: text.font,
@@ -34,24 +34,24 @@ const widgetStyles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
     elevation: 1,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   elementName: {
     textAlign: 'center',
     paddingTop: 5,
     fontSize: text.small,
-    fontFamily: text.font
+    fontFamily: text.font,
   },
   btnStyle: {
     marginLeft: 3,
     marginRight: 3,
     alignItems: 'center',
-    shadowColor: '#000'
+    shadowColor: '#000',
   },
   safeContainer: {
     paddingRight: 5,
@@ -60,7 +60,7 @@ const widgetStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: 80,
-    height: '100%'
+    height: '100%',
   },
   newClassifiedBtnWrapper: {
     width: '90%',
@@ -72,11 +72,11 @@ const widgetStyles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.38,
     shadowRadius: 5.0,
-    elevation: 1
+    elevation: 1,
   },
   newClassifiedWrapper: {
     flexDirection: 'row',
@@ -84,14 +84,14 @@ const widgetStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    padding: 5
+    padding: 5,
   },
   newClassifiedTitle: {
     fontFamily: text.font,
     fontSize: text.large,
     paddingRight: 20,
-    paddingLeft: 20
-  }
+    paddingLeft: 20,
+  },
 });
 
 export default widgetStyles;

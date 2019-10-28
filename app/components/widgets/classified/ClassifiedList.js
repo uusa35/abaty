@@ -6,7 +6,7 @@ import {
   Text,
   KeyboardAvoidingView,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
@@ -33,12 +33,12 @@ const ClassifiedList = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements
+  searchElements,
 }) => {
   [items, setItems] = useState(classifieds);
   [elements, setElements] = useState(classifieds);
   [elementsWithMap, setElementsWithMap] = useState(
-    filter(elements, (e, i) => (e.has_map ? e : null))
+    filter(elements, (e, i) => (e.has_map ? e : null)),
   );
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
@@ -92,7 +92,7 @@ const ClassifiedList = ({
       setRefresh(false);
       setShowMore(false);
       return axiosInstance(`search/classified?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           setIsLoading(false);
@@ -121,7 +121,7 @@ const ClassifiedList = ({
       setIsLoading(false);
       setRefresh(false);
       let filtered = filter(elements, i =>
-        i.name.includes(search) ? i : null
+        i.name.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
@@ -137,7 +137,7 @@ const ClassifiedList = ({
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        width: width
+        width: width,
       }}
       behavior="padding"
       enabled>
@@ -167,7 +167,7 @@ const ClassifiedList = ({
             minHeight: '100%',
             width,
             marginBottom: 15,
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
           // columnWrapperStyle={{
           //   justifyContent: 'space-around',
@@ -176,7 +176,7 @@ const ClassifiedList = ({
           ListHeaderComponentStyle={{
             // width: '100%',
             // padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View style={{padding: 5, backgroundColor: '#f2f2f2'}}>
@@ -186,7 +186,7 @@ const ClassifiedList = ({
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    backgroundColor: 'white'
+                    backgroundColor: 'white',
                   }}>
                   <SearchSort
                     sort={sort}
@@ -211,7 +211,7 @@ const ClassifiedList = ({
                     <Text
                       style={[
                         widgetStyles.title,
-                        {color: colors.header_one_theme_color}
+                        {color: colors.header_one_theme_color},
                       ]}>
                       {I18n.t(title)}
                     </Text>
@@ -267,7 +267,7 @@ export default ClassifiedList;
 ClassifiedList.propTypes = {
   classifieds: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({});

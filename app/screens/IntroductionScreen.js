@@ -21,14 +21,14 @@ const IntroductionScreen = ({splashes}) => {
 
 function mapStateToProps(state) {
   return {
-    splashes: state.splashes
+    splashes: state.splashes,
   };
 }
 
 export default connect(mapStateToProps)(React.memo(IntroductionScreen));
 
 IntroductionScreen.propTypes = {
-  splashes: PropTypes.array.isRequired
+  splashes: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

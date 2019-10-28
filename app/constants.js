@@ -13,7 +13,7 @@ export const coreState = {
     title: '',
     content: '',
     icon: 'exclamation-triangle',
-    color: '#fac811'
+    color: '#fac811',
   },
   auth: {},
   guest: true,
@@ -46,7 +46,7 @@ export const coreState = {
   playerId: '',
   countryModal: false,
   linking: {},
-  classifiedProps: []
+  classifiedProps: [],
 };
 
 export const links = {
@@ -68,7 +68,7 @@ export const links = {
   twitter: 'http://twitter.com/',
   instagram: 'http//instagram.com/',
   snapchat: 'http://snapchat.com/',
-  whatsapp: 'https://api.whatsapp.com/send?text=Asad Group&phone='
+  whatsapp: 'https://api.whatsapp.com/send?text=Asad Group&phone=',
 };
 
 export const images = {
@@ -76,14 +76,14 @@ export const images = {
   mallr: require('./../assets/images/mallr.png'),
   escrap: require('./../assets/images/escrap.png'),
   homekey: require('./../assets/images/homekey.png'),
-  pin: require('./../assets/images/pin.png')
+  pin: require('./../assets/images/pin.png'),
 };
 
 export const icons = {
   user: require('./../assets/icons/user.png'),
   info: require('./../assets/icons/info.png'),
   home: require('./../assets/icons/home.png'),
-  brands: require('./../assets/icons/brands.png')
+  brands: require('./../assets/icons/brands.png'),
 };
 
 export const animations = {
@@ -106,15 +106,15 @@ export const animations = {
     'bounceInDown',
     'bounceInUp',
     'bounceInLeft',
-    'bounceInRight'
+    'bounceInRight',
   ],
-  animationSingleElement: ['bounceInLeft', 'bounceInRight']
+  animationSingleElement: ['bounceInLeft', 'bounceInRight'],
 };
 export const colors = {
   main: 'white',
   danger: 'red',
   warning: 'yellow',
-  success: 'green'
+  success: 'green',
 };
 
 export const text = {
@@ -122,7 +122,7 @@ export const text = {
   medium: 16,
   large: 20,
   xlarge: 25,
-  font: isRTL ? 'Tajawal-Medium' : 'Tajawal-Medium'
+  font: isRTL ? 'Tajawal-Medium' : 'Tajawal-Medium',
 };
 
 export const prefix = `${appUrlIos}element/linking`;
@@ -134,23 +134,23 @@ export const submitLogin = {
     email: true,
     length: {
       minimum: 2,
-      message: 'must be at least 2 characters.'
-    }
+      message: 'must be at least 2 characters.',
+    },
   },
   password: {
     presence: true,
     length: {
       minimum: 6,
-      message: 'must be at least 6 characters.'
-    }
-  }
+      message: 'must be at least 6 characters.',
+    },
+  },
 };
 
 export const registerConstrains = {
   name: {length: {minimum: 3}, presence: true},
   email: {email: true, presence: true},
   mobile: {length: {minimum: 6}, presence: true},
-  address: {length: {minimum: 3}, presence: true}
+  address: {length: {minimum: 3}, presence: true},
 };
 
 export const storeClassifiedConstrains = {
@@ -159,10 +159,10 @@ export const storeClassifiedConstrains = {
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
   image: {presence: {allowEmpty: false}},
-  images: {presence: {allowEmpty: false}}
+  images: {presence: {allowEmpty: false}},
 };
 
 export const commentStoreConstrains = {
   title: {length: {minimum: 3}, presence: true},
-  content: {length: {minimum: 6}, presence: true}
+  content: {length: {minimum: 6}, presence: true},
 };

@@ -57,7 +57,7 @@ const SocialRowWidget = ({settings}) => {
             color="#25d366"
             onPress={() =>
               Linking.openURL(
-                `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Shared by Escrap App`
+                `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Shared by Escrap App`,
               )
             }
           />
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     width: '80%',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   rowWrapper: {
     flexDirection: 'row',
@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     margin: 5,
-    marginBottom: 20
-  }
+    marginBottom: 20,
+  },
 });

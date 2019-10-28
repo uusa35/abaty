@@ -59,7 +59,7 @@ export function* setDeviceId() {
 
 export function* enableSuccessMessage(
   content = '',
-  title = I18n.t(displayName)
+  title = I18n.t(displayName),
 ) {
   yield put({
     type: actions.ENABLE_MESSAGE,
@@ -68,8 +68,8 @@ export function* enableSuccessMessage(
       title,
       icon: 'exclamation-triangle',
       color: 'green',
-      visible: true
-    }
+      visible: true,
+    },
   });
 }
 
@@ -81,14 +81,14 @@ export function* enableErrorMessage(content = '', title = I18n.t(displayName)) {
       title,
       icon: 'exclamation-triangle',
       visible: true,
-      color: 'red'
-    }
+      color: 'red',
+    },
   });
 }
 
 export function* enableWarningMessage(
   content = '',
-  title = I18n.t(displayName)
+  title = I18n.t(displayName),
 ) {
   yield put({
     type: actions.ENABLE_MESSAGE,
@@ -97,7 +97,7 @@ export function* enableWarningMessage(
       title,
       icon: 'exclamation-triangle',
       visible: true,
-      color: 'orange'
-    }
+      color: 'orange',
+    },
   });
 }

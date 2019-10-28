@@ -24,31 +24,31 @@ export const SettingStack = createStackNavigator(
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Login: {
       screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />
-      })
+        headerRight: <HeaderRight display={false} />,
+      }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
+      }),
     },
     UserEdit: {
       screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
+      }),
     },
     ProductIndex: {
       screen: ProductIndexScreen,
@@ -56,22 +56,22 @@ export const SettingStack = createStackNavigator(
         // headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} display={true} />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
-    }
+      path: `product/:id`,
+    },
   },
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false
-  }
+    swipeEnabled: false,
+  },
 );

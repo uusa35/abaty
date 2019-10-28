@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   View,
-  Text
+  Text,
 } from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ const ImagesWidget = ({
   showTitle = false,
   height = 200,
   width = 200,
-  resizeMode = 'cover'
+  resizeMode = 'cover',
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
@@ -45,11 +45,11 @@ const ImagesWidget = ({
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
-                height: 1
+                height: 1,
               },
               shadowOpacity: 0.18,
               shadowRadius: 1.0,
-              elevation: 1
+              elevation: 1,
             }}>
             {I18n.t('user_gallery')}
           </Text>
@@ -69,12 +69,12 @@ const ImagesWidget = ({
               navigate('ImageZoom', {
                 images: elements,
                 name,
-                index: i
+                index: i,
               })
             }>
             <ImageBackground
               source={{
-                uri: c.large
+                uri: c.large,
               }}
               loadingIndicatorSource={images.logo}
               style={{width, height}}
@@ -85,7 +85,7 @@ const ImagesWidget = ({
                     flex: 1,
                     padding: 20,
                     justifyContent: 'flex-end',
-                    alignItems: 'flex-end'
+                    alignItems: 'flex-end',
                   }}>
                   {isFeatured ? <TagWidget tagName="featured" /> : null}
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
@@ -108,16 +108,16 @@ export default ImagesWidget;
 ImagesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 180
+    height: 180,
   },
   imageStyling: {
     // borderTopRightRadius: 10,
     // borderTopLeftRadius: 10
-  }
+  },
 });

@@ -20,14 +20,14 @@ const ProductColorSizeGroup = ({element}) => {
     <View
       style={{
         justifyContent: 'space-around',
-        width: '100%'
+        width: '100%',
       }}>
       {element.show_attribute ? (
         <View
           style={{
             flexDirection: 'row',
             width: '100%',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
           }}>
           {!validate.isEmpty(size) && show_attribute ? (
             <Button
@@ -37,7 +37,7 @@ const ProductColorSizeGroup = ({element}) => {
                 backgroundColor: 'white',
                 borderRadius: 10,
                 borderWidth: 0.5,
-                borderColor: 'black'
+                borderColor: 'black',
               }}
               title={size ? size.name : I18n.t('choose_size')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -61,7 +61,7 @@ const ProductColorSizeGroup = ({element}) => {
                 borderRadius: 10,
                 borderWidth: 0.5,
                 borderColor: 'black',
-                justifyContent: 'space-around'
+                justifyContent: 'space-around',
               }}
               title={color ? color.name : I18n.t('height')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -88,11 +88,11 @@ const ProductColorSizeGroup = ({element}) => {
             paddingLeft: 15,
             paddingRight: 15,
             marginTop: 5,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           disabled={!qty || requestQty <= 0 ? false : true}
           shake={true}
@@ -113,8 +113,8 @@ const ProductColorSizeGroup = ({element}) => {
                 qty: requestQty,
                 element,
                 type: 'product',
-                notes
-              })
+                notes,
+              }),
             )
           }
           disabled={!qty || requestQty <= 0 ? true : false}
@@ -124,7 +124,7 @@ const ProductColorSizeGroup = ({element}) => {
           title={I18n.t('add_to_cart')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
         />
       ) : null}
@@ -136,7 +136,7 @@ export default ProductColorSizeGroup;
 
 ProductColorSizeGroup.propTypes = {
   size: PropTypes.object,
-  color: PropTypes.object
+  color: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

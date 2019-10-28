@@ -16,7 +16,7 @@ const OrderWidget = ({element, colors, logo}) => {
         borderRadius: 10,
         marginBottom: 10,
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
       }}>
       <View style={{flexDirection: 'row'}}>
         <FastImage
@@ -106,11 +106,11 @@ const OrderWidget = ({element, colors, logo}) => {
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
       />
     </View>
@@ -122,23 +122,23 @@ export default OrderWidget;
 const styles = StyleSheet.create({
   title: {
     fontFamily: text.font,
-    fontSize: text.medium
+    fontSize: text.medium,
   },
   normalText: {
     fontFamily: text.font,
-    fontSize: text.medium
+    fontSize: text.medium,
   },
   smText: {
     fontFamily: text.font,
-    fontSize: 10
+    fontSize: 10,
   },
   itemWrapper: {
     flexDirection: 'row',
     paddingBottom: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   iconElement: {
     paddingLeft: 10,
-    paddingRight: 10
-  }
+    paddingRight: 10,
+  },
 });

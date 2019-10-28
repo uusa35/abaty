@@ -19,9 +19,9 @@ export const BottomTabsStack = createBottomTabNavigator(
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="home" type="octicon" color={tintColor} />
-        )
+        ),
         // title: I18n.t('home')
-      })
+      }),
     },
     // CategoryIndexScreen: {
     //   screen: CategoryStack,
@@ -44,9 +44,9 @@ export const BottomTabsStack = createBottomTabNavigator(
             size={30}
             color={tintColor}
           />
-        )
+        ),
         // title: I18n.t('videos'),
-      })
+      }),
     },
     Setting: {
       screen: SettingStack,
@@ -56,18 +56,18 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
         // title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />
+        headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-      })
+      }),
     },
     Search: {
       screen: SearchStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
-        )
+        ),
         // title: I18n.t('search'),
-      })
+      }),
     },
     ProductIndexAll: {
       screen: ProductStack,
@@ -79,9 +79,9 @@ export const BottomTabsStack = createBottomTabNavigator(
             type="material-icon"
             color={tintColor}
           />
-        )
+        ),
         // title: I18n.t('all_products'),
-      })
+      }),
     },
     ServiceIndexAll: {
       screen: ServiceStack,
@@ -93,10 +93,10 @@ export const BottomTabsStack = createBottomTabNavigator(
             size={30}
             color={tintColor}
           />
-        )
+        ),
         // title: I18n.t('services'),
-      })
-    }
+      }),
+    },
   },
   {
     tabBarOptions: {
@@ -112,11 +112,11 @@ export const BottomTabsStack = createBottomTabNavigator(
       animationEnabled: true,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
-        backgroundColor: 'white'
-      }
+        backgroundColor: 'white',
+      },
     },
     navigationOptions: {
-      tabBarVisible: true
+      tabBarVisible: true,
     },
     initialRouteName: 'Home',
     order: [
@@ -125,7 +125,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       'VideoIndexAll',
       'Home',
       'ServiceIndexAll',
-      'Setting'
-    ]
-  }
+      'Setting',
+    ],
+  },
 );

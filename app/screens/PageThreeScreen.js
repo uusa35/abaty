@@ -24,19 +24,19 @@ const PageThreeScreen = ({companies, dispatch, navigation}) => {
 
 function mapStateToProps(state) {
   return {
-    companies: state.companies
+    companies: state.companies,
   };
 }
 
 PageThreeScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
-  title: I18n.t('companies')
+  title: I18n.t('companies'),
 });
 
 export default connect(mapStateToProps)(PageThreeScreen);
 
 PageThreeScreen.propTypes = {
-  companies: PropTypes.array.isRequired
+  companies: PropTypes.array.isRequired,
 };
 const styles = StyleSheet.create({});

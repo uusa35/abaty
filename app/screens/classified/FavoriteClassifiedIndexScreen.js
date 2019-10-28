@@ -13,7 +13,7 @@ const FavoriteClassifiedIndexScreen = ({
   searchParams,
   dispatch,
   colors,
-  navigation
+  navigation,
 }) => {
   return (
     <View>
@@ -35,7 +35,7 @@ const FavoriteClassifiedIndexScreen = ({
           style={{
             marginTop: 300,
             width: width - 50,
-            alignSelf: 'center'
+            alignSelf: 'center',
           }}>
           <Button
             raised
@@ -52,7 +52,7 @@ const FavoriteClassifiedIndexScreen = ({
             containerStyle={{marginBottom: 20}}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.main_text_theme_color
+              color: colors.main_text_theme_color,
             }}
             col
           />
@@ -66,14 +66,14 @@ function mapStateToProps(state) {
   return {
     classifiedFavorites: state.classifiedFavorites,
     searchParams: state.searchParams,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 export default connect(mapStateToProps)(FavoriteClassifiedIndexScreen);
 
 FavoriteClassifiedIndexScreen.propTypes = {
-  classifiedFavorites: PropTypes.array.isRequired
+  classifiedFavorites: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

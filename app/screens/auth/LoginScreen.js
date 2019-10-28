@@ -37,7 +37,7 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 LoginScreen.propTypes = {
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'flex-start'
-  }
+    alignItems: 'flex-start',
+  },
 });

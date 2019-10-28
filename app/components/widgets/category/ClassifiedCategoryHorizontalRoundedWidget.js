@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -22,7 +22,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
-  showTitle = true
+  showTitle = true,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
@@ -32,8 +32,8 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
       getSearchClassifieds({
         name: c.name,
         searchParams: {classified_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -47,7 +47,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
             <Text
               style={[
                 widgetStyles.title,
-                {color: colors.header_one_theme_color}
+                {color: colors.header_one_theme_color},
               ]}>
               {title}
             </Text>
@@ -72,7 +72,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
             <FastImage
               source={{
                 uri: c.thumb,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={styles.image}
@@ -82,7 +82,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -98,13 +98,13 @@ export default ClassifiedCategoryHorizontalRoundedWidget;
 
 ClassifiedCategoryHorizontalRoundedWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 90,
     height: 90,
-    borderRadius: 20
-  }
+    borderRadius: 20,
+  },
 });

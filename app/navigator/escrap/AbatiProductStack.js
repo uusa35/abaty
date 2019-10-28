@@ -15,8 +15,8 @@ export const AbatiProductStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: ProductShowScreen,
@@ -29,15 +29,15 @@ export const AbatiProductStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
-    }
+      path: `product/:id`,
+    },
   },
   {
     mode: 'card',
-    headerMode: 'float'
-  }
+    headerMode: 'float',
+  },
 );
 
 AbatiProductStack.navigationOptions = ({navigation}) => {
@@ -46,6 +46,6 @@ AbatiProductStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

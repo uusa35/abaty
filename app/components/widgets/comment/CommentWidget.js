@@ -17,7 +17,7 @@ const CommentWidget = ({element}) => {
         width: '90%',
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        padding: 2
+        padding: 2,
       }}>
       <ListItem
         key={element.id}
@@ -30,7 +30,7 @@ const CommentWidget = ({element}) => {
                 fontFamily: text.font,
                 fontSize: text.small,
                 marginBottom: 10,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {element.created_at}
             </Text>
@@ -38,7 +38,7 @@ const CommentWidget = ({element}) => {
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {element.content}
             </Text>
@@ -47,7 +47,7 @@ const CommentWidget = ({element}) => {
         titleStyle={{
           fontWeight: 'bold',
           fontFamily: text.font,
-          textAlign: 'left'
+          textAlign: 'left',
         }}
         style={{width: '100%'}}
       />
@@ -59,18 +59,18 @@ export default CommentWidget;
 
 CommentWidget.propTypes = {
   element: PropTypes.object,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   elementName: {
     fontFamily: text.font,
     fontSize: text.small,
     textAlign: 'left',
-    paddingTop: 10
-  }
+    paddingTop: 10,
+  },
 });

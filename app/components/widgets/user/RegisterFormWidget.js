@@ -29,7 +29,7 @@ const RegisterFormWidget = ({player_id}) => {
         width: '100%',
         padding: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
       <FastImage
         source={{uri: logo}}
@@ -45,11 +45,11 @@ const RegisterFormWidget = ({player_id}) => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20
+          marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         shake={true}
         keyboardType="default"
@@ -64,11 +64,11 @@ const RegisterFormWidget = ({player_id}) => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20
+          marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         shake={true}
         keyboardType="default"
@@ -82,11 +82,11 @@ const RegisterFormWidget = ({player_id}) => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20
+          marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         shake={true}
         keyboardType="email-address"
@@ -100,11 +100,11 @@ const RegisterFormWidget = ({player_id}) => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20
+          marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         shake={true}
         keyboardType="number-pad"
@@ -125,14 +125,14 @@ const RegisterFormWidget = ({player_id}) => {
           width: '95%',
           alignSelf: 'center',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <Text
           style={{
             fontFamily: text.font,
             fontSize: text.large,
             textAlign: isRTL ? 'right' : 'left',
-            color: colors.main_theme_color
+            color: colors.main_theme_color,
           }}>
           {country.slug}
         </Text>
@@ -146,12 +146,12 @@ const RegisterFormWidget = ({player_id}) => {
           paddingLeft: 15,
           paddingRight: 15,
           marginBottom: 20,
-          height: 80
+          height: 80,
         }}
         inputStyle={{
           fontFamily: text.font,
           fontSize: 14,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         numberOfLines={3}
         shake={true}
@@ -167,12 +167,12 @@ const RegisterFormWidget = ({player_id}) => {
           paddingLeft: 15,
           paddingRight: 15,
           marginBottom: 20,
-          height: 80
+          height: 80,
         }}
         inputStyle={{
           fontFamily: text.font,
           fontSize: 14,
-          textAlign: isRTL ? 'right' : 'left'
+          textAlign: isRTL ? 'right' : 'left',
         }}
         numberOfLines={3}
         shake={true}
@@ -184,12 +184,12 @@ const RegisterFormWidget = ({player_id}) => {
         containerStyle={{marginBottom: 10, width: '90%', alignSelf: 'center'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         title={I18n.t('register')}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         onPress={() =>
           dispatch(
@@ -201,8 +201,8 @@ const RegisterFormWidget = ({player_id}) => {
               country_id: country.id,
               address,
               player_id,
-              description
-            })
+              description,
+            }),
           )
         }
       />

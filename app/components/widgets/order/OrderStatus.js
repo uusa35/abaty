@@ -9,42 +9,42 @@ const OrderStatus = ({element}) => {
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.success ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.success ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('success')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.under_process ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.under_process ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('under_process')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.received ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.received ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('received')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.shipped ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.shipped ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('shipped')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.delivered ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.delivered ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('delivered')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.completed ? '#bced8b' : '#d6d6d6'}
+          {backgroundColor: element.completed ? '#bced8b' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('completed')}</Text>
       </View>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   statusWrapper: {
     alignItems: 'center',
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     width: '17%',
     height: 40,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'white',
   },
   smText: {
     fontFamily: text.font,
     fontSize: 10,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

@@ -20,14 +20,14 @@ const CompanyIndexScreen = ({companies, searchParams}) => {
 function mapStateToProps(state) {
   return {
     companies: state.companies,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
   };
 }
 
 export default connect(mapStateToProps)(CompanyIndexScreen);
 
 CompanyIndexScreen.propTypes = {
-  companies: PropTypes.array.isRequired
+  companies: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

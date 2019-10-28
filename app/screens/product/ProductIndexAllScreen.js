@@ -12,7 +12,7 @@ const ProductIndexAllScreen = ({
   dispatch,
   products,
   colors,
-  isLoadingContent
+  isLoadingContent,
 }) => {
   const [currentProducts, setCurrentProducts] = useState([]);
 
@@ -44,14 +44,14 @@ function mapStateToProps(state) {
   return {
     products: productsSelector(state),
     colors: colorsSelector(state),
-    isLoadingContent: state.isLoadingContent
+    isLoadingContent: state.isLoadingContent,
   };
 }
 
 export default connect(mapStateToProps)(ProductIndexAllScreen);
 
 ProductIndexAllScreen.propTypes = {
-  products: PropTypes.array.isRequired
+  products: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

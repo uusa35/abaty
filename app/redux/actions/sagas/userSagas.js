@@ -6,7 +6,7 @@ import {
   enableLoading,
   enableLoadingProfile,
   enableSuccessMessage,
-  enableWarningMessage
+  enableWarningMessage,
 } from './settingSagas';
 import * as api from '../api';
 import {setClassifiedFavorites} from './classifiedSagas';
@@ -26,7 +26,7 @@ export function* startGetDesignerScenario(action) {
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_DESIGNER, payload: element}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(element.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: element.comments});
@@ -37,8 +37,8 @@ export function* startGetDesignerScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'DesignerShow',
-            params: {name: element.slug, id: element.id, product: false}
-          })
+            params: {name: element.slug, id: element.id, product: false},
+          }),
         );
       }
       yield call(disableLoadingProfile);
@@ -50,7 +50,7 @@ export function* startGetDesignerScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_designer'))
+      call(enableWarningMessage, I18n.t('no_designer')),
     ]);
   }
 }
@@ -65,7 +65,7 @@ export function* startGetShopperScenario(action) {
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_DESIGNER, payload: element}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(element.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: element.comments});
@@ -79,9 +79,9 @@ export function* startGetShopperScenario(action) {
             params: {
               name: element ? element.slug : I18n.t('shopper'),
               id: element.id,
-              product: false
-            }
-          })
+              product: false,
+            },
+          }),
         );
       }
       yield call(disableLoadingProfile);
@@ -93,7 +93,7 @@ export function* startGetShopperScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_designer'))
+      call(enableWarningMessage, I18n.t('no_designer')),
     ]);
   }
 }
@@ -106,7 +106,7 @@ export function* startGetCompanyScenario(action) {
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_COMPANY, payload: element}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(element.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: element.comments});
@@ -117,8 +117,8 @@ export function* startGetCompanyScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'CompanyShow',
-            params: {name: element.slug, id: element.id, product: false}
-          })
+            params: {name: element.slug, id: element.id, product: false},
+          }),
         );
       }
       yield call(disableLoadingProfile);
@@ -130,7 +130,7 @@ export function* startGetCompanyScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_company'))
+      call(enableWarningMessage, I18n.t('no_company')),
     ]);
   }
 }
@@ -143,7 +143,7 @@ export function* startGetCelebrityScenario(action) {
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_CELEBRITY, payload: element}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(element.comments)) {
         yield put({type: actions.SET_COMMENTS, payload: element.comments});
@@ -154,8 +154,8 @@ export function* startGetCelebrityScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'CelebrityShow',
-            params: {name: element.slug, id: element.id, product: false}
-          })
+            params: {name: element.slug, id: element.id, product: false},
+          }),
         );
       }
       yield call(disableLoadingProfile);
@@ -167,7 +167,7 @@ export function* startGetCelebrityScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_celebrity'))
+      call(enableWarningMessage, I18n.t('no_celebrity')),
     ]);
   }
 }
@@ -180,8 +180,8 @@ export function* startGetUserScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
-          params: {name: element.slug, id: element.id, model: 'user'}
-        })
+          params: {name: element.slug, id: element.id, model: 'user'},
+        }),
       );
     }
   } catch (e) {
@@ -197,8 +197,8 @@ export function* startGetVideoScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'VideoShow',
-          params: {name: element.name}
-        })
+          params: {name: element.name},
+        }),
       );
     }
   } catch (e) {
@@ -223,7 +223,7 @@ export function* setHomeBrands() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_brands'))
+      call(enableErrorMessage, I18n.t('no_brands')),
     ]);
   }
 }
@@ -240,7 +240,7 @@ export function* startGetHomeCelebrities(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_celebrities'))
+      call(enableWarningMessage, I18n.t('no_celebrities')),
     ]);
   }
 }
@@ -257,7 +257,7 @@ export function* startGetHomeDesigners(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_celebrities'))
+      call(enableWarningMessage, I18n.t('no_celebrities')),
     ]);
   }
 }
@@ -267,12 +267,12 @@ export function* startLogoutScenario() {
     yield all([
       put({type: actions.REMOVE_TOKEN, payload: ''}),
       put({type: actions.TOGGLE_GUEST, payload: true}),
-      put({type: actions.SET_ORDERS, payload: []})
+      put({type: actions.SET_ORDERS, payload: []}),
     ]);
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('logout_error'))
+      call(enableErrorMessage, I18n.t('logout_error')),
     ]);
   }
 }
@@ -284,9 +284,9 @@ export function* startSubmitAuthScenario(action) {
     const result = validate(
       {
         email,
-        password
+        password,
       },
-      submitLogin
+      submitLogin,
     );
     if (!validate.isEmpty(result)) {
       throw I18n.t('invalid_email_or_password');
@@ -300,7 +300,7 @@ export function* startSubmitAuthScenario(action) {
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(setProductFavorites, element.product_favorites),
         call(setClassifiedFavorites, element.classified_favorites),
-        call(enableSuccessMessage, I18n.t('login_success'))
+        call(enableSuccessMessage, I18n.t('login_success')),
       ]);
       if (loginModal) {
         yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
@@ -331,7 +331,7 @@ export function* startReAuthenticateScenario() {
         put({type: actions.SET_ORDERS, payload: element.orders}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(setProductFavorites, element.product_favorites),
-        call(setClassifiedFavorites, element.classified_favorites)
+        call(setClassifiedFavorites, element.classified_favorites),
       ]);
     } else {
       throw user;
@@ -353,7 +353,7 @@ export function* startUpdateUserScenario(action) {
           put({type: actions.SET_AUTH, payload: element}),
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
-          put(NavigationActions.back())
+          put(NavigationActions.back()),
         ]);
       } else {
         throw user;
@@ -373,16 +373,16 @@ export function* startGetSearchCompaniesScenario(action) {
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
         put({type: actions.SET_COMPANIES, payload: elements}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'CompanyIndex',
             params: {
-              name: action.payload.name
-            }
-          })
+              name: action.payload.name,
+            },
+          }),
         );
       }
     } else {
@@ -402,16 +402,16 @@ export function* startGetCelebritiesScenario(action) {
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
         put({type: actions.SET_CELEBRITIES, payload: elements}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'CelebrityIndex',
             params: {
-              name: action.payload.name
-            }
-          })
+              name: action.payload.name,
+            },
+          }),
         );
       }
     } else {
@@ -432,16 +432,16 @@ export function* startGetDesignersScenario(action) {
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
         put({type: actions.SET_DESIGNERS, payload: elements}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'DesignerIndex',
             params: {
-              name: action.payload.name
-            }
-          })
+              name: action.payload.name,
+            },
+          }),
         );
       }
     } else {
@@ -465,9 +465,9 @@ export function* startGetHomeCompaniesScenario(action) {
           NavigationActions.navigate({
             routeName: 'CompanyIndex',
             params: {
-              name: I18n.t('companies')
-            }
-          })
+              name: I18n.t('companies'),
+            },
+          }),
         );
       }
     } else {
@@ -488,14 +488,14 @@ export function* startAuthenticatedScenario() {
         yield all([
           put({type: actions.SET_AUTH, payload: element}),
           put({type: actions.SET_TOKEN, payload: element.token}),
-          put({type: actions.TOGGLE_GUEST, payload: false})
+          put({type: actions.TOGGLE_GUEST, payload: false}),
         ]);
       }
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('authenticated_error'))
+      call(enableErrorMessage, I18n.t('authenticated_error')),
     ]);
   }
 }
@@ -513,9 +513,9 @@ export function* startRegisterScenario(action) {
           call(enableSuccessMessage, I18n.t('register_success')),
           put(
             NavigationActions.navigate({
-              routeName: 'Home'
-            })
-          )
+              routeName: 'Home',
+            }),
+          ),
         ]);
       } else {
         throw element;

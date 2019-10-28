@@ -6,14 +6,14 @@ import {
   ScrollView,
   View,
   AppState,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
-  setPlayerId
+  setPlayerId,
 } from '../redux/actions';
 import {isIOS, width} from '../constants';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ import {
   ABATI,
   MALLR,
   HOMEKEY,
-  ESCRAP
+  ESCRAP,
 } from './../../app.json';
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
@@ -56,7 +56,7 @@ const HomeScreen = ({
   showIntroduction,
   homeCompanies,
   dispatch,
-  navigation
+  navigation,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -89,7 +89,7 @@ const HomeScreen = ({
       }
       setAppState(nextAppState);
     },
-    [appState]
+    [appState],
   );
 
   const handleBackPress = useCallback(() => {
@@ -116,7 +116,7 @@ const HomeScreen = ({
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const {path, params} = getPathForDeepLinking(
-      openResult.notification.payload.additionalData.url
+      openResult.notification.payload.additionalData.url,
     );
     dispatch(goDeepLinking(path, params));
   });
@@ -128,7 +128,7 @@ const HomeScreen = ({
         dispatch(setPlayerId(device.userId));
       }
     },
-    [deviceId]
+    [deviceId],
   );
 
   useMemo(() => {}, [deviceId]);
@@ -259,7 +259,7 @@ function mapStateToProps(state) {
     services: state.services,
     homeCollections: state.homeCollections,
     showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies
+    homeCompanies: state.homeCompanies,
   };
 }
 
@@ -275,7 +275,7 @@ HomeScreen.propTypes = {
   slides: PropTypes.array,
   splashes: PropTypes.array,
   show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool
+  splash_on: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -284,6 +284,6 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

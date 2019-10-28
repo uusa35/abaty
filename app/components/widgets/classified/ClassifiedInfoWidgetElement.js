@@ -13,7 +13,7 @@ const ClassifiedInfoWidgetElement = ({
   showIcon = true,
   translate = true,
   iconName = null,
-  colors
+  colors,
 }) => {
   return (
     <TouchableOpacity
@@ -22,7 +22,7 @@ const ClassifiedInfoWidgetElement = ({
         justifyContent: 'space-between',
         alignItems: 'baseline',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
       }}
       onPress={link}>
       <Text
@@ -30,7 +30,7 @@ const ClassifiedInfoWidgetElement = ({
           textAlign: 'left',
           fontSize: 20,
           fontFamily: text.font,
-          color: colors.header_one_theme_color
+          color: colors.header_one_theme_color,
         }}>
         {translate ? I18n.t(elementName) : elementName}
       </Text>
@@ -41,7 +41,7 @@ const ClassifiedInfoWidgetElement = ({
             fontSize: 15,
             fontFamily: text.font,
             paddingLeft: 10,
-            paddingRight: 10
+            paddingRight: 10,
           }}>
           {name}
         </Text>
@@ -74,13 +74,13 @@ ClassifiedInfoWidgetElement.propTypes = {
   // name : PropTypes.string,
   link: PropTypes.func,
   showArrow: PropTypes.bool,
-  colors: PropTypes.object.isRequired
+  colors: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
     fontSize: text.large,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 });

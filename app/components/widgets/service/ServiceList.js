@@ -5,7 +5,7 @@ import {
   View,
   Text,
   KeyboardAvoidingView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import ServiceWidget from './ServiceWidget';
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ const ServiceList = ({
   showTitle = false,
   showMore = true,
   title,
-  searchElements
+  searchElements,
 }) => {
   [items, setItems] = useState(services);
   [elements, setElements] = useState(services);
@@ -53,7 +53,7 @@ const ServiceList = ({
     setShowMore(false);
     if (showMore) {
       return axiosInstance(`search/service?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           const serviceGroup = uniqBy(items.concat(r.data), 'id');
@@ -78,7 +78,7 @@ const ServiceList = ({
     setShowMore(false);
     if (search.length > 0) {
       let filtered = filter(elements, i =>
-        i.name.includes(search) ? i : null
+        i.name.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
@@ -93,7 +93,7 @@ const ServiceList = ({
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        width: width
+        width: width,
       }}
       behavior="padding"
       enabled>
@@ -120,16 +120,16 @@ const ServiceList = ({
           onEndReached={() => loadMore()}
           contentContainerStyle={{
             width: width - 20,
-            minHeight: '100%'
+            minHeight: '100%',
           }}
           columnWrapperStyle={{
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View>
@@ -138,7 +138,7 @@ const ServiceList = ({
                   placeholder={I18n.t('search')}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
+                    textAlign: isRTL ? 'right' : 'left',
                   }}
                   inputContainerStyle={{
                     backgroundColor: '#E4E4E5',
@@ -146,7 +146,7 @@ const ServiceList = ({
                     paddingRight: 15,
                     paddingLeft: 15,
                     marginTop: 10,
-                    borderColor: '#E4E4E5'
+                    borderColor: '#E4E4E5',
                   }}
                   rightIcon={
                     <Icon
@@ -176,11 +176,11 @@ const ServiceList = ({
                       shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
-                        height: 1
+                        height: 1,
                       },
                       shadowOpacity: 0.18,
                       shadowRadius: 1.0,
-                      elevation: 1
+                      elevation: 1,
                     }}>
                     {title ? title : I18n.t('related_service_group')}
                   </Text>
@@ -226,7 +226,7 @@ export default ServiceList;
 ServiceList.propTypes = {
   services: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({});

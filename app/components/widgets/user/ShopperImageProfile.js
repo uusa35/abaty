@@ -26,7 +26,7 @@ const ShopperImageProfile = ({
   views,
   commentsCount,
   showComments = true,
-  showLike = true
+  showLike = true,
 }) => {
   const {colors, guest} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
@@ -40,7 +40,7 @@ const ShopperImageProfile = ({
         return dispatch(rateUser({value: rating, member_id}));
       }
     },
-    [rating]
+    [rating],
   );
 
   const handleFan = useCallback(
@@ -49,7 +49,7 @@ const ShopperImageProfile = ({
       setFanMe(fanMe);
       return dispatch(becomeFan({id: member_id, fanMe}));
     },
-    [fanMe]
+    [fanMe],
   );
 
   return (
@@ -62,18 +62,22 @@ const ShopperImageProfile = ({
           paddingRight: 10,
           paddingLeft: 10,
           marginTop: 10,
-          width: '72%'
+          width: '72%',
         }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            width: '100%'
+            width: '100%',
           }}>
           <Text
             style={[
               styles.mainTitle,
-              {color: colors.header_tow_theme_color, fontSize: 20, marginTop: 8}
+              {
+                color: colors.header_tow_theme_color,
+                fontSize: 20,
+                marginTop: 8,
+              },
             ]}>
             {slug.substring(0, 25)}
           </Text>
@@ -91,7 +95,7 @@ const ShopperImageProfile = ({
           <Text
             style={[
               styles.mainTitle,
-              {fontSize: text.small, color: colors.header_tow_theme_color}
+              {fontSize: text.small, color: colors.header_tow_theme_color},
             ]}>
             {type}
           </Text>
@@ -100,7 +104,7 @@ const ShopperImageProfile = ({
           <Text
             style={[
               styles.mainTitle,
-              {fontSize: text.small, color: colors.header_tow_theme_color}
+              {fontSize: text.small, color: colors.header_tow_theme_color},
             ]}>
             {fans} {I18n.t('followers')}
           </Text>
@@ -109,7 +113,7 @@ const ShopperImageProfile = ({
           <Text
             style={[
               styles.mainTitle,
-              {fontSize: text.small, color: colors.header_tow_theme_color}
+              {fontSize: text.small, color: colors.header_tow_theme_color},
             ]}>
             {views} {I18n.t('views')}
           </Text>
@@ -118,7 +122,7 @@ const ShopperImageProfile = ({
           style={{
             width: '100%',
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
           }}>
           {showRating ? (
             <Rating
@@ -161,7 +165,7 @@ ShopperImageProfile.propTypes = {
   logo: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   showFans: PropTypes.bool.isRequired,
-  showRating: PropTypes.bool.isRequired
+  showRating: PropTypes.bool.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -174,13 +178,13 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
     elevation: 1,
     borderWidth: 0.5,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   mainTitle: {
     fontFamily: text.font,
@@ -190,17 +194,17 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
-    elevation: 1
+    elevation: 1,
   },
   elementRow: {
     paddingTop: 5,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 5
-  }
+    paddingBottom: 5,
+  },
 });

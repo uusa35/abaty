@@ -5,7 +5,7 @@ import {
   Modal,
   StyleSheet,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import {map} from 'lodash';
 import {text} from './../../../constants';
@@ -19,7 +19,7 @@ const ColorsModal = ({
   colorItems,
   setColorItem,
   setColorName,
-  colorItem
+  colorItem,
 }) => {
   return (
     <Modal
@@ -37,7 +37,7 @@ const ColorsModal = ({
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'baseline',
-              padding: 15
+              padding: 15,
             }}>
             <Text style={styles.phoneNo}>
               {I18n.t('choose_color_or_height')}
@@ -80,7 +80,7 @@ ColorsModal.propTypes = {
   setColorVisible: PropTypes.func,
   colorItems: PropTypes.array,
   setColorItem: PropTypes.func,
-  colorItem: PropTypes.object
+  colorItem: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     width: '70%',
     backgroundColor: 'white',
     padding: 10,
-    paddingTop: 15
+    paddingTop: 15,
   },
   wrapper: {
     flexDirection: 'row',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     backgroundColor: 'white',
     paddingTop: 15,
-    height: 50
+    height: 50,
   },
   phoneNo: {
     fontFamily: text.font,
@@ -107,11 +107,11 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 0,
     padding: 0,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   countryFlag: {
     width: 45,
     height: 25,
-    marginLeft: 10
-  }
+    marginLeft: 10,
+  },
 });

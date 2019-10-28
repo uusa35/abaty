@@ -9,7 +9,7 @@ import {
   enableErrorMessage,
   enableLoadingBoxedList,
   enableLoadingContent,
-  enableWarningMessage
+  enableWarningMessage,
 } from './settingSagas';
 import I18n from '../../../I18n';
 import {NavigationActions} from 'react-navigation';
@@ -38,7 +38,7 @@ export function* getOnSaleProducts() {
   } catch (e) {
     yield all([
       disableLoading,
-      enableErrorMessage(I18n.t('no_on_sale_products'))
+      enableErrorMessage(I18n.t('no_on_sale_products')),
     ]);
   }
 }
@@ -54,7 +54,7 @@ export function* getBestSaleProducts() {
   } catch (e) {
     yield all([
       disableLoading,
-      enableErrorMessage(I18n.t('no_best_sale_products'))
+      enableErrorMessage(I18n.t('no_best_sale_products')),
     ]);
   }
 }
@@ -70,7 +70,7 @@ export function* getLatestProducts() {
   } catch (e) {
     yield all([
       disableLoading,
-      enableErrorMessage(I18n.t('no_latest_products'))
+      enableErrorMessage(I18n.t('no_latest_products')),
     ]);
   }
 }
@@ -92,7 +92,7 @@ export function* getHomeCollectionsScenario() {
     const collections = yield call(api.getHomeCollections);
     if (!validate.isEmpty(collections) && validate.isArray(collections)) {
       yield all([
-        put({type: actions.SET_HOME_COLLECTIONS, payload: collections})
+        put({type: actions.SET_HOME_COLLECTIONS, payload: collections}),
       ]);
     }
   } catch (e) {
@@ -112,10 +112,10 @@ export function* startGetCollectionsScenario() {
             routeName: 'CollectionIndex',
             params: {
               name: I18n.t('collections'),
-              searchElements: {}
-            }
-          })
-        )
+              searchElements: {},
+            },
+          }),
+        ),
       ]);
     }
   } catch (e) {
@@ -155,16 +155,16 @@ export function* startGetProductScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'Product',
-            params: {name: element.name, id: element.id, model: 'product'}
-          })
+            params: {name: element.name, id: element.id, model: 'product'},
+          }),
         ),
-        call(disableLoadingContent)
+        call(disableLoadingContent),
       ]);
     }
   } catch (e) {
     yield all([
       call(disableLoadingContent),
-      call(enableWarningMessage, I18n.t('error_while_loading_product'))
+      call(enableWarningMessage, I18n.t('error_while_loading_product')),
     ]);
   }
 }
@@ -177,17 +177,17 @@ export function* startGetSearchProductsScenario(action) {
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield all([
           put(
             NavigationActions.navigate({
               routeName: 'ProductIndex',
-              params: {name: name ? name : I18n.t('products')}
-            })
+              params: {name: name ? name : I18n.t('products')},
+            }),
           ),
-          call(disableLoadingBoxedList)
+          call(disableLoadingBoxedList),
         ]);
       }
     } else {
@@ -197,7 +197,7 @@ export function* startGetSearchProductsScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoadingBoxedList),
-      call(enableWarningMessage, I18n.t('no_products'))
+      call(enableWarningMessage, I18n.t('no_products')),
     ]);
   }
 }
@@ -208,13 +208,13 @@ export function* startGetAllProductsScenario(action) {
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: {}})
+        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
       ]);
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_products'))
+      call(enableWarningMessage, I18n.t('no_products')),
     ]);
   }
 }
@@ -226,7 +226,7 @@ export function* setProductFavorites(productFavorites) {
   ) {
     yield put({
       type: actions.SET_PRODUCT_FAVORITES,
-      payload: productFavorites
+      payload: productFavorites,
     });
   } else {
     yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
@@ -239,7 +239,7 @@ export function* startToggleProductFavoriteScenario(action) {
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCT_FAVORITES, payload: products}),
-        call(enableWarningMessage, I18n.t('favorite_success'))
+        call(enableWarningMessage, I18n.t('favorite_success')),
       ]);
     } else {
       yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
@@ -261,7 +261,7 @@ export function* getAllProducts() {
 export function* toggleProductFavorite() {
   yield takeLatest(
     actions.TOGGLE_PRODUCT_FAVORITE,
-    startToggleProductFavoriteScenario
+    startToggleProductFavoriteScenario,
   );
 }
 export function* getSearchProducts() {

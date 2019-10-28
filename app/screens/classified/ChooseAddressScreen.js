@@ -46,13 +46,13 @@ const ChooseAddressScreen = () => {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        alignSelf: 'center'
+        alignSelf: 'center',
       }}>
       <View style={{width: '100%'}}>
         <MapView
           style={{
             width,
-            height: '100%'
+            height: '100%',
           }}
           title={I18n.t('google_map')}
           zoomEnabled={true}
@@ -60,13 +60,13 @@ const ChooseAddressScreen = () => {
             latitude: parseFloat(latitude),
             longitude: parseFloat(longitude),
             latitudeDelta: 0.6922,
-            longitudeDelta: 0.0421
+            longitudeDelta: 0.0421,
           }}>
           <Marker
             draggable
             coordinate={{
               latitude: parseFloat(latitude),
-              longitude: parseFloat(longitude)
+              longitude: parseFloat(longitude),
             }}
             image={images.pin}
             onDragEnd={e => setLocation(e)}>
@@ -76,13 +76,13 @@ const ChooseAddressScreen = () => {
                 position: 'relative',
                 left: 30,
                 marginTop: 50,
-                minWidth: 100
+                minWidth: 100,
               }}>
               <Text
                 style={{
                   textAlign: 'center',
                   fontFamily: text.font,
-                  fontSize: text.small
+                  fontSize: text.small,
                 }}>
                 {I18n.t('choose_your_location')}
               </Text>
@@ -99,7 +99,7 @@ const ChooseAddressScreen = () => {
             title={I18n.t('get_your_address_from_map')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
           />
           <Text
@@ -107,7 +107,7 @@ const ChooseAddressScreen = () => {
               fontFamily: text.font,
               fontSize: text.large,
               textAlign: 'center',
-              marginTop: 10
+              marginTop: 10,
             }}>
             {I18n.t('choose_address_from_map_or_you_can_write_your_map')}
           </Text>
@@ -118,11 +118,11 @@ const ChooseAddressScreen = () => {
               borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
-              marginBottom: 20
+              marginBottom: 20,
             }}
             inputStyle={{
               fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left'
+              textAlign: isRTL ? 'right' : 'left',
             }}
             shake={true}
             keyboardType="default"
@@ -134,7 +134,7 @@ const ChooseAddressScreen = () => {
               paddingBottom: 10,
               paddingTop: 10,
               fontFamily: text.font,
-              textAlign: 'left'
+              textAlign: 'left',
             }}
           />
           <Button
@@ -148,7 +148,7 @@ const ChooseAddressScreen = () => {
             title={I18n.t('save_address_and_continue')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
           />
         </View>

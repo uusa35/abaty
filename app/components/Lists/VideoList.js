@@ -16,7 +16,7 @@ const VideoList = ({
   showSearch = false,
   showTitle = true,
   showFooter = false,
-  title = ''
+  title = '',
 }) => {
   const [search, setSearch] = useState('');
   const [refresh, setRefresh] = useState(false);
@@ -60,7 +60,7 @@ const VideoList = ({
             setEndList(false);
           }}
           contentContainerStyle={{
-            width: width - 20
+            width: width - 20,
           }}
           ListFooterComponent={() =>
             showFooter ? (
@@ -87,7 +87,13 @@ const VideoList = ({
           )}
         />
       ) : (
-        <View style={{flex : 1 , marginTop: 300, width: width - 50, alignSelf: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            marginTop: 300,
+            width: width - 50,
+            alignSelf: 'center',
+          }}>
           <Button
             raised
             title={I18n.t('no_videos')}
@@ -106,7 +112,7 @@ VideoList.propTypes = {
   elements: PropTypes.array.isRequired,
   showName: PropTypes.bool,
   showFooter: PropTypes.bool,
-  showTitle: PropTypes.bool
+  showTitle: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({});

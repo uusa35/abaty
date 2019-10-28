@@ -3,7 +3,7 @@ import {
   View,
   FlatList,
   RefreshControl,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import {getSearchCompanies} from '../../redux/actions';
 import PropTypes from 'prop-types';
@@ -40,7 +40,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
       setRefresh(false);
       setShowMore(false);
       return axiosInstance(`user?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           const userGroup = uniqBy(items.concat(r.data), 'id');
@@ -66,7 +66,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
       setRefresh(false);
       setShowMore(false);
       let filtered = filter(elements, i =>
-        i.slug.includes(search) ? i : null
+        i.slug.includes(search) ? i : null,
       );
       if (filtered.length > 0 || search.length > 0) {
         setItems(filtered);
@@ -83,7 +83,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        width: width
+        width: width,
       }}
       behavior="padding"
       enabled>
@@ -109,11 +109,11 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
             />
           }
           contentContainerStyle={{
-            width: width - 20
+            width: width - 20,
           }}
           columnWrapperStyle={{
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           renderItem={({item}) => (
             <React.Suspense fallback={<SimpleSpinner />}>
@@ -134,7 +134,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View>
@@ -142,7 +142,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
                 placeholder={I18n.t('search')}
                 inputStyle={{
                   fontFamily: text.font,
-                  textAlign: isRTL ? 'right' : 'left'
+                  textAlign: isRTL ? 'right' : 'left',
                 }}
                 inputContainerStyle={{
                   backgroundColor: '#E4E4E5',
@@ -150,7 +150,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
                   paddingRight: 15,
                   paddingLeft: 15,
                   marginTop: 20,
-                  borderColor: '#E4E4E5'
+                  borderColor: '#E4E4E5',
                 }}
                 rightIcon={
                   <Icon
@@ -188,5 +188,5 @@ export default CompaniesList;
 CompaniesList.propTypes = {
   elements: PropTypes.array.isRequired,
   category: PropTypes.object,
-  searchParams: PropTypes.object
+  searchParams: PropTypes.object,
 };

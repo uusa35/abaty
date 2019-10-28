@@ -14,7 +14,7 @@ import {
   enableLoadingProfile,
   enableSuccessMessage,
   enableWarningMessage,
-  getCategories
+  getCategories,
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
@@ -25,7 +25,7 @@ import {
   getSearchCompanies,
   setHomeBrands,
   startAuthenticatedScenario,
-  startReAuthenticateScenario
+  startReAuthenticateScenario,
 } from './userSagas';
 import {
   getBestSaleProducts,
@@ -33,7 +33,7 @@ import {
   getLatestProducts,
   getOnSaleProducts,
   getProductIndex,
-  setHomeProducts
+  setHomeProducts,
 } from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetHomeClassifiedsScenario} from './classifiedSagas';
@@ -157,7 +157,7 @@ export function* startSetCountryScenario(action) {
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
         put({type: actions.SET_AREAS, payload: country.areas}),
         put({type: actions.HIDE_COUNTRY_MODAL}),
-        call(setGrossTotalCartValue, {total, coupon, country})
+        call(setGrossTotalCartValue, {total, coupon, country}),
       ]);
     }
   } catch (e) {
@@ -178,7 +178,7 @@ export function* startDeepLinkingScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_deep_product'))
+      call(enableErrorMessage, I18n.t('no_deep_product')),
     ]);
   }
 }
@@ -207,26 +207,26 @@ export function* startRefetchHomeElementsScenario() {
       call(startGetParentCategoriesScenario),
       put({
         type: actions.GET_HOME_COMPANIES,
-        payload: {searchParams: {on_home: 1, is_company: 1}}
+        payload: {searchParams: {on_home: 1, is_company: 1}},
       }),
       put({
         type: actions.GET_HOME_DESIGNERS,
-        payload: {searchParams: {on_home: 1, is_designer: 1}}
+        payload: {searchParams: {on_home: 1, is_designer: 1}},
       }),
       put({
         type: actions.GET_HOME_CELEBRITIES,
-        payload: {searchParams: {on_home: 1, is_celebrity: 1}}
+        payload: {searchParams: {on_home: 1, is_celebrity: 1}},
       }),
       put({
         type: actions.GET_HOME_CLASSIFIEDS,
-        payload: {searchParams: {on_home: 1}}
-      })
+        payload: {searchParams: {on_home: 1}},
+      }),
     ]);
   } catch (e) {
     console.log('the ee', e);
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('refetch_home_error'))
+      call(enableErrorMessage, I18n.t('refetch_home_error')),
     ]);
   }
 }
@@ -242,7 +242,7 @@ export function* setHomeSplashes() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_splashes'))
+      call(enableErrorMessage, I18n.t('no_splashes')),
     ]);
   }
 }
@@ -252,18 +252,18 @@ export function* startAddToCartScenario(action) {
     const {cart, country} = yield select();
     if (!country.is_local && action.payload.type === 'service') {
       throw I18n.t(
-        'orders_that_include_services_are_not_accepted_out_side_kuwait'
+        'orders_that_include_services_are_not_accepted_out_side_kuwait',
       );
     } else {
       const filteredCart = yield call(filterCartAnItems, [cart, action]);
       yield all([
         call(
           enableSuccessMessage,
-          I18n.t(`${action.payload.type}_added_to_cart_successfully`)
+          I18n.t(`${action.payload.type}_added_to_cart_successfully`),
         ),
         put({type: actions.FILTER_CART, payload: filteredCart}),
         put({type: actions.SET_COUPON, payload: {}}),
-        call(setTotalCartValue, filteredCart)
+        call(setTotalCartValue, filteredCart),
       ]);
     }
   } catch (e) {
@@ -278,7 +278,7 @@ export function* setTotalCartValue(cart) {
       const {coupon, country} = yield select();
       yield all([
         put({type: actions.SET_TOTAL_CART, payload: total}),
-        call(setGrossTotalCartValue, {total, coupon, country})
+        call(setGrossTotalCartValue, {total, coupon, country}),
       ]);
     } else {
       throw 'Cart is Empty';
@@ -286,7 +286,7 @@ export function* setTotalCartValue(cart) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('cart_is_empty'))
+      call(enableErrorMessage, I18n.t('cart_is_empty')),
     ]);
   }
 }
@@ -303,7 +303,7 @@ export function* setGrossTotalCartValue(values) {
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
       const grossTotal = parseFloat(
-        total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0)
+        total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0),
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
       yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
@@ -312,7 +312,7 @@ export function* setGrossTotalCartValue(values) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'))
+      call(enableErrorMessage, I18n.t('cart_is_empty_gross_total')),
     ]);
   }
 }
@@ -323,16 +323,16 @@ export function* startRemoveFromCartScenario(action) {
     const filteredCart = remove(cart, item =>
       item.type === 'product'
         ? item.product_id !== action.payload
-        : item.service_id !== action.payload
+        : item.service_id !== action.payload,
     );
     if (!validate.isEmpty(filteredCart) && cart.length > 0) {
       yield all([
         call(setTotalCartValue, filteredCart),
         call(
           enableSuccessMessage,
-          I18n.t('product_removed_to_cart_successfully')
+          I18n.t('product_removed_to_cart_successfully'),
         ),
-        put({type: actions.FILTER_CART, payload: filteredCart})
+        put({type: actions.FILTER_CART, payload: filteredCart}),
       ]);
     } else {
       yield all([
@@ -340,15 +340,15 @@ export function* startRemoveFromCartScenario(action) {
         call(enableWarningMessage, I18n.t('cart_cleared')),
         put(
           NavigationActions.navigate({
-            routeName: 'Home'
-          })
-        )
+            routeName: 'Home',
+          }),
+        ),
       ]);
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('error_removing_product_from_cart'))
+      call(enableErrorMessage, I18n.t('error_removing_product_from_cart')),
     ]);
   }
 }
@@ -372,7 +372,7 @@ export function* filterCartAnItems([cart, action]) {
     cart.length > 0
       ? uniqBy(
           cleanCart,
-          isNull(action.payload.cart_id) ? 'product_id' : 'cart_id'
+          isNull(action.payload.cart_id) ? 'product_id' : 'cart_id',
         )
       : [action.payload];
   return filteredCart;
@@ -384,12 +384,12 @@ export function* startClearCartScenario() {
       put({type: actions.CLEAR_CART, payload: []}),
       put({type: actions.REMOVE_COUPON}),
       put({type: actions.SET_TOTAL_CART, payload: 0}),
-      put({type: actions.SET_GROSS_TOTAL_CART, payload: 0})
+      put({type: actions.SET_GROSS_TOTAL_CART, payload: 0}),
     ]);
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('authenticated_error'))
+      call(enableErrorMessage, I18n.t('authenticated_error')),
     ]);
   }
 }
@@ -408,9 +408,9 @@ export function* startSubmitCartScenario(action) {
             cMobile: mobile,
             cAddress: address,
             country_id,
-            cNotes: notes
-          }
-        })
+            cNotes: notes,
+          },
+        }),
       );
     } else {
       throw result['name']
@@ -439,7 +439,7 @@ export function* startGetCouponScenario(action) {
       yield all([
         put({type: actions.SET_COUPON, payload: coupon}),
         call(setGrossTotalCartValue, {total, coupon, country}),
-        call(enableSuccessMessage, I18n.t('coupon_is_added_and_applied'))
+        call(enableSuccessMessage, I18n.t('coupon_is_added_and_applied')),
       ]);
     } else {
       yield put({type: actions.SET_COUPON, payload: {}});
@@ -464,9 +464,9 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
           NavigationActions.navigate({
             routeName: 'PaymentIndex',
             params: {
-              paymentUrl: url.paymentUrl
-            }
-          })
+              paymentUrl: url.paymentUrl,
+            },
+          }),
         );
       } else {
         throw url;
@@ -490,9 +490,9 @@ export function* startCreateTapPaymentUrlScenario(action) {
         NavigationActions.navigate({
           routeName: 'PaymentIndex',
           params: {
-            paymentUrl: url.paymentUrl
-          }
-        })
+            paymentUrl: url.paymentUrl,
+          },
+        }),
       );
     } else {
       throw url;
@@ -514,7 +514,7 @@ export function* startBecomeFanScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('fan_error'))
+      call(enableErrorMessage, I18n.t('fan_error')),
     ]);
   }
 }
@@ -557,9 +557,9 @@ export function* startGoogleLoginScenario() {
             call(enableSuccessMessage, I18n.t('register_success')),
             put(
               NavigationActions.navigate({
-                routeName: 'Home'
-              })
-            )
+                routeName: 'Home',
+              }),
+            ),
           ]);
         } else {
           throw user;
@@ -583,7 +583,7 @@ export function* getPages() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_pages'))
+      call(enableErrorMessage, I18n.t('no_pages')),
     ]);
   }
 }
@@ -599,7 +599,7 @@ export function* getTags() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_tags'))
+      call(enableErrorMessage, I18n.t('no_tags')),
     ]);
   }
 }

@@ -24,7 +24,7 @@ function mapStateToProps(state) {
   return {
     services: state.services,
     searchParams: state.searchParams,
-    isLoadingContent: state.isLoadingContent
+    isLoadingContent: state.isLoadingContent,
   };
 }
 
@@ -32,7 +32,7 @@ export default connect(mapStateToProps)(ServiceIndexScreen);
 
 ServiceIndexScreen.propTypes = {
   services: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

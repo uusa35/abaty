@@ -14,7 +14,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{
-            uri: auth.thumb ? auth.thumb : logo
+            uri: auth.thumb ? auth.thumb : logo,
           }}
           style={{width: 120, height: 120, margin: 20, borderRadius: 120 / 2}}
           resizeMode="cover"
@@ -28,7 +28,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -37,7 +37,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('name')} : </Text>
@@ -51,7 +51,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -60,7 +60,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('email')} : </Text>
@@ -74,7 +74,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -83,7 +83,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('mobile')} : </Text>
@@ -97,7 +97,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -106,7 +106,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('country')} : </Text>
@@ -120,7 +120,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -129,7 +129,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('address')} : </Text>
@@ -144,7 +144,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             flexDirection: 'row',
             alignItems: 'baseline',
             paddingRight: 20,
-            paddingLeft: 20
+            paddingLeft: 20,
           }}>
           <Text style={styles.subTitle}>{auth.address}</Text>
         </View>
@@ -156,7 +156,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'baseline'
+            alignItems: 'baseline',
           }}>
           <Icon
             type="entypo"
@@ -165,7 +165,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             color={colors.header_one_theme_color}
             iconStyle={{
               paddingRight: 10,
-              paddingLeft: 10
+              paddingLeft: 10,
             }}
           />
           <Text style={styles.subTitle}>{I18n.t('description')} :</Text>
@@ -180,7 +180,7 @@ const UserProfileInformationWidget = ({auth, colors}) => {
             flexDirection: 'row',
             alignItems: 'baseline',
             paddingRight: 20,
-            paddingLeft: 20
+            paddingLeft: 20,
           }}>
           <Text style={styles.subTitle}>{auth.description}</Text>
         </View>
@@ -197,37 +197,37 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
     fontSize: text.large,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   subTitle: {
     color: 'black',
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left'
+    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -236,17 +236,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });

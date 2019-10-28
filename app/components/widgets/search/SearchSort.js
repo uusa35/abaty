@@ -10,7 +10,7 @@ const SearchSort = ({
   showPrice = true,
   showAlpha = true,
   sortModal,
-  setSortModal
+  setSortModal,
 }) => {
   const handleClick = useCallback(e => {
     setSort(e);
@@ -25,7 +25,7 @@ const SearchSort = ({
           minHeight: 50,
           borderColor: 'lightgrey',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
         onPress={() => setSortModal(true)}>
         <Icon typ="material-icon" name="sort" size={30} />
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     width: '70%',
     backgroundColor: 'white',
     padding: 10,
-    paddingTop: 15
+    paddingTop: 15,
   },
   wrapper: {
     flexDirection: 'row',
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     backgroundColor: 'white',
     paddingTop: 15,
-    height: 50
+    height: 50,
   },
   phoneNo: {
     fontFamily: text.font,
@@ -125,17 +125,17 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 0,
     padding: 0,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   countryFlag: {
     width: 45,
     height: 25,
-    marginLeft: 10
+    marginLeft: 10,
   },
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    padding: 15
-  }
+    padding: 15,
+  },
 });

@@ -3,7 +3,7 @@ import React, {
   useState,
   useMemo,
   useCallback,
-  useContext
+  useContext,
 } from 'react';
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   Text,
   Linking,
   RefreshControl,
-  View
+  View,
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -43,7 +43,7 @@ const ClassifiedShowScreen = ({
   token,
   colors,
   navigation,
-  isLoadingContent
+  isLoadingContent,
 }) => {
   const {exchange_rate} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
@@ -54,8 +54,8 @@ const ClassifiedShowScreen = ({
     return dispatch(
       getClassified({
         id: element.id,
-        api_token: token ? token : null
-      })
+        api_token: token ? token : null,
+      }),
     );
   }, [refresh]);
 
@@ -168,7 +168,7 @@ const ClassifiedShowScreen = ({
                 name={element.mobile}
                 link={() =>
                   Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`
+                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`,
                   )
                 }
               />
@@ -192,7 +192,7 @@ const ClassifiedShowScreen = ({
                 description={element.description}
                 price={round(
                   getProductConvertedFinalPrice(element.price, exchange_rate),
-                  2
+                  2,
                 )}
               />
             ) : null}
@@ -233,15 +233,15 @@ function mapStateToProps(state) {
     cart: state.cart,
     colors: state.settings.colors,
     searchParams: state.searchParams,
-    isLoadingContent: state.isLoadingContent
+    isLoadingContent: state.isLoadingContent,
   };
 }
 
 ClassifiedShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+    backgroundColor: navigation.state.params.headerBgColor,
+  },
 });
 
 export default connect(mapStateToProps)(ClassifiedShowScreen);
@@ -249,25 +249,25 @@ export default connect(mapStateToProps)(ClassifiedShowScreen);
 ClassifiedShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   classifieds: PropTypes.array.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   container: {},
   contentContainer: {
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: text.font,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   normalText: {
     textAlign: 'left',
     fontSize: 17,
     fontFamily: text.font,
-    padding: 10
-  }
+    padding: 10,
+  },
 });

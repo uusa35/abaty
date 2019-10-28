@@ -12,7 +12,7 @@ const UserInfoWidgetElement = ({
   elementName,
   iconName,
   type,
-  showArrow = false
+  showArrow = false,
 }) => {
   return (
     <View key={element.length}>
@@ -28,7 +28,7 @@ const UserInfoWidgetElement = ({
               size={20}
               iconStyle={{
                 paddingRight: 10,
-                paddingLeft: 10
+                paddingLeft: 10,
               }}
             />
             <Text style={styles.subTitle}>{I18n.t(elementName)}</Text>
@@ -41,7 +41,7 @@ const UserInfoWidgetElement = ({
               size={15}
               iconStyle={{
                 paddingRight: isIOS ? 10 : 0,
-                paddingLeft: isIOS ? 0 : 10
+                paddingLeft: isIOS ? 0 : 10,
               }}
             />
           ) : null}
@@ -55,14 +55,14 @@ const UserInfoWidgetElement = ({
             alignItems: 'baseline',
             marginLeft: isRTL ? 40 : 0,
             marginRight: isRTL ? 40 : 0,
-            minHeight: 50
+            minHeight: 50,
           }}>
           <View>
             <Text
               style={{
                 textAlign: 'left',
                 fontFamily: text.font,
-                fontSize: text.medium
+                fontSize: text.medium,
               }}>
               {element}
             </Text>
@@ -78,7 +78,7 @@ export default UserInfoWidgetElement;
 UserInfoWidgetElement.propTypes = {
   element: PropTypes.string.isRequired,
   elementName: PropTypes.string.isRequired,
-  iconName: PropTypes.string
+  iconName: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -89,20 +89,20 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   subTitle: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left'
-  }
+    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left',
+  },
 });

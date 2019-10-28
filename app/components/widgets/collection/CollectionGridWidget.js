@@ -19,7 +19,7 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t('selected_collections')}
           </Text>
@@ -31,7 +31,7 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
           flexWrap: 'wrap',
           alignSelf: 'center',
           alignItems: 'center',
-          justifyContent: 'space-evenly'
+          justifyContent: 'space-evenly',
         }}>
         {map(elements, (e, i) => (
           <TouchableOpacity
@@ -40,8 +40,8 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
                 getSearchProducts({
                   name: e.slug,
                   searchParams: {collection_id: e.id},
-                  redirect: true
-                })
+                  redirect: true,
+                }),
               )
             }
             key={i}>
@@ -59,5 +59,5 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
 export default CollectionGridWidget;
 
 CollectionGridWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
 };

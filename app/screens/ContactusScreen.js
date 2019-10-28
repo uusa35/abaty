@@ -28,7 +28,7 @@ const ContactusScreen = ({settings}) => {
 
 function mapStateToProps(state) {
   return {
-    settings: settingsSelector(state)
+    settings: settingsSelector(state),
   };
 }
 

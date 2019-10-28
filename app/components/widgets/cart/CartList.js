@@ -8,7 +8,7 @@ import {
   getCoupon,
   showCountryModal,
   showLoginModal,
-  submitCart
+  submitCart,
 } from '../../../redux/actions';
 import {Button, Input, CheckBox, Icon} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -28,26 +28,26 @@ const CartList = ({
   guest,
   editModeDefault = true,
   coupon,
-  selectedArea
+  selectedArea,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total, grossTotal} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
+    !validate.isEmpty(auth) ? auth.email : null,
   );
   const [mobile, setMobile] = useState(
-    !validate.isEmpty(auth) ? auth.mobile : null
+    !validate.isEmpty(auth) ? auth.mobile : null,
   );
   const [address, setAddress] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
+    !validate.isEmpty(auth) ? auth.email : null,
   );
   const [notes, setNotes] = useState(
-    !validate.isEmpty(auth) ? auth.description : null
+    !validate.isEmpty(auth) ? auth.description : null,
   );
   const [code, setCode] = useState(
-    !validate.isEmpty(coupon) ? coupon.code : ''
+    !validate.isEmpty(coupon) ? coupon.code : '',
   );
   const [editMode, setEditMode] = useState(editModeDefault);
   const [checked, setChecked] = useState(false);
@@ -67,7 +67,7 @@ const CartList = ({
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        width: '100%'
+        width: '100%',
       }}>
       <View
         animation="bounceInLeft"
@@ -93,13 +93,13 @@ const CartList = ({
             paddingBottom: 20,
             paddingTop: 20,
             borderTopWidth: 0.5,
-            borderTopColor: 'lightgrey'
+            borderTopColor: 'lightgrey',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('total')}
           </Text>
@@ -108,7 +108,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(total, 2)}
             </Text>
@@ -116,7 +116,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -129,13 +129,13 @@ const CartList = ({
             alignText: 'center',
             marginTop: 10,
 
-            paddingBottom: 20
+            paddingBottom: 20,
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('shipment_fees_per_piece')}
           </Text>
@@ -144,7 +144,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(shipmentCountry.fixed_shipment_charge, 2)}
             </Text>
@@ -152,7 +152,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -166,13 +166,13 @@ const CartList = ({
               alignText: 'center',
               marginTop: 10,
 
-              paddingBottom: 20
+              paddingBottom: 20,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('discount')}
             </Text>
@@ -181,7 +181,7 @@ const CartList = ({
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: 'red'
+                  color: 'red',
                 }}>
                 {round(coupon.value, 2)}
               </Text>
@@ -189,7 +189,7 @@ const CartList = ({
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: 'red'
+                  color: 'red',
                 }}>
                 {I18n.t('kwd')}
               </Text>
@@ -205,13 +205,13 @@ const CartList = ({
             paddingTop: 20,
             paddingBottom: 20,
             borderTopWidth: 0.5,
-            borderTopColor: 'lightgrey'
+            borderTopColor: 'lightgrey',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('grossTotal')}
           </Text>
@@ -220,7 +220,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(grossTotal, 2)}
             </Text>
@@ -228,7 +228,7 @@ const CartList = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -240,7 +240,7 @@ const CartList = ({
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              width: '100%'
+              width: '100%',
             }}>
             <Button
               // onPress={() => dispatch(showLoginModal())}
@@ -251,7 +251,7 @@ const CartList = ({
                 backgroundColor: 'white',
                 borderRadius: 10,
                 borderWidth: 0.5,
-                borderColor: 'black'
+                borderColor: 'black',
               }}
               title={I18n.t('login')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -264,7 +264,7 @@ const CartList = ({
                 backgroundColor: 'white',
                 borderRadius: 10,
                 borderWidth: 0.5,
-                borderColor: 'black'
+                borderColor: 'black',
               }}
               title={I18n.t('register')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -279,7 +279,7 @@ const CartList = ({
             containerStyle={{marginBottom: 20}}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}
           />
           <View style={{paddingTop: 20, paddingBottom: 20}}>
@@ -293,18 +293,18 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               label={I18n.t('name')}
               labelStyle={{
                 paddingBottom: 10,
 
                 fontFamily: text.font,
-                textAlign: 'left'
+                textAlign: 'left',
               }}
               shake={true}
               keyboardType="default"
@@ -320,18 +320,18 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               label={I18n.t('email')}
               labelStyle={{
                 paddingBottom: 10,
 
                 fontFamily: text.font,
-                textAlign: 'left'
+                textAlign: 'left',
               }}
               shake={true}
               keyboardType="email-address"
@@ -348,18 +348,18 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               label={I18n.t('mobile')}
               labelStyle={{
                 paddingBottom: 10,
 
                 fontFamily: text.font,
-                textAlign: 'left'
+                textAlign: 'left',
               }}
               shake={true}
               keyboardType="number-pad"
@@ -380,14 +380,14 @@ const CartList = ({
                 width: '95%',
                 alignSelf: 'center',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}>
               <Text
                 style={{
                   fontFamily: text.font,
                   fontSize: text.large,
                   textAlign: isRTL ? 'right' : 'left',
-                  color: colors.main_theme_color
+                  color: colors.main_theme_color,
                 }}>
                 {shipmentCountry.slug}
               </Text>
@@ -406,14 +406,14 @@ const CartList = ({
                   width: '95%',
                   alignSelf: 'center',
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
                 }}>
                 <Text
                   style={{
                     fontFamily: text.font,
                     fontSize: text.large,
                     textAlign: isRTL ? 'right' : 'left',
-                    color: colors.main_theme_color
+                    color: colors.main_theme_color,
                   }}>
                   {I18n.t('area')}{' '}
                   {selectedArea ? selectedArea.slug : I18n.t('choose_area')}
@@ -431,19 +431,19 @@ const CartList = ({
                 paddingLeft: 15,
                 paddingRight: 15,
                 marginBottom: 20,
-                height: 80
+                height: 80,
               }}
               inputStyle={{
                 fontFamily: text.font,
                 fontSize: 14,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               label={I18n.t('address')}
               labelStyle={{
                 paddingBottom: 10,
 
                 fontFamily: text.font,
-                textAlign: 'left'
+                textAlign: 'left',
               }}
               numberOfLines={3}
               shake={true}
@@ -462,18 +462,18 @@ const CartList = ({
                 paddingLeft: 15,
                 paddingRight: 15,
                 marginBottom: 20,
-                height: 80
+                height: 80,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               label={I18n.t('additional_information')}
               labelStyle={{
                 paddingBottom: 10,
 
                 fontFamily: text.font,
-                textAlign: 'left'
+                textAlign: 'left',
               }}
               shake={true}
               keyboardType="default"
@@ -489,14 +489,14 @@ const CartList = ({
                   borderColor: 'lightgrey',
                   width: '100%',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}>
                 <Text
                   style={{
                     fontFamily: text.font,
                     fontSize: text.medium,
                     textAlign: 'center',
-                    paddingBottom: 10
+                    paddingBottom: 10,
                   }}>
                   {I18n.t('have_coupon')}
                 </Text>
@@ -509,11 +509,11 @@ const CartList = ({
                     borderRadius: 10,
                     paddingLeft: 15,
                     paddingRight: 15,
-                    marginBottom: 20
+                    marginBottom: 20,
                   }}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
+                    textAlign: isRTL ? 'right' : 'left',
                   }}
                   shake={true}
                   keyboardType="default"
@@ -524,12 +524,12 @@ const CartList = ({
                   containerStyle={{marginBottom: 10, width: '90%%'}}
                   buttonStyle={{
                     backgroundColor: colors.btn_bg_theme_color,
-                    borderRadius: 0
+                    borderRadius: 0,
                   }}
                   title={I18n.t('add_coupon')}
                   titleStyle={{
                     fontFamily: text.font,
-                    color: colors.btn_text_theme_color
+                    color: colors.btn_text_theme_color,
                   }}
                   onPress={() => dispatch(getCoupon(code))}
                 />
@@ -543,7 +543,7 @@ const CartList = ({
               width: '100%',
               flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}>
             <CheckBox
               containerStyle={{width: '90%'}}
@@ -569,12 +569,12 @@ const CartList = ({
               containerStyle={{marginBottom: 10, width: '100%'}}
               buttonStyle={{
                 backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0
+                borderRadius: 0,
               }}
               title={I18n.t('confirm_information')}
               titleStyle={{
                 fontFamily: text.font,
-                color: colors.btn_text_theme_color
+                color: colors.btn_text_theme_color,
               }}
               onPress={() =>
                 dispatch(
@@ -585,8 +585,8 @@ const CartList = ({
                     address,
                     country_id: shipmentCountry.id,
                     notes,
-                    area: selectedArea.slug
-                  })
+                    area: selectedArea.slug,
+                  }),
                 )
               }
             />
@@ -597,12 +597,12 @@ const CartList = ({
                 containerStyle={{marginBottom: 10, width: '100%'}}
                 buttonStyle={{
                   backgroundColor: colors.btn_bg_theme_color,
-                  borderRadius: 0
+                  borderRadius: 0,
                 }}
                 title={I18n.t('go_to_payment_my_fatoorah')}
                 titleStyle={{
                   fontFamily: text.font,
-                  color: colors.btn_text_theme_color
+                  color: colors.btn_text_theme_color,
                 }}
                 onPress={() =>
                   dispatch({
@@ -621,8 +621,8 @@ const CartList = ({
                       discount,
                       payment_method: isIOS
                         ? 'IOS - My Fatoorah'
-                        : 'Android - My Fatoorah'
-                    }
+                        : 'Android - My Fatoorah',
+                    },
                   })
                 }
               />
@@ -631,12 +631,12 @@ const CartList = ({
                 containerStyle={{marginBottom: 10, width: '100%'}}
                 buttonStyle={{
                   backgroundColor: colors.btn_bg_theme_color,
-                  borderRadius: 0
+                  borderRadius: 0,
                 }}
                 title={I18n.t('go_to_payment_tap')}
                 titleStyle={{
                   fontFamily: text.font,
-                  color: colors.btn_text_theme_color
+                  color: colors.btn_text_theme_color,
                 }}
                 onPress={() =>
                   dispatch({
@@ -655,8 +655,8 @@ const CartList = ({
                       discount,
                       payment_method: isIOS
                         ? 'IOS - My Fatoorah'
-                        : 'Android - My Fatoorah'
-                    }
+                        : 'Android - My Fatoorah',
+                    },
                   })
                 }
               />
@@ -669,12 +669,12 @@ const CartList = ({
         containerStyle={{marginBottom: 10}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         title={I18n.t('clear_cart')}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         onPress={() => dispatch(clearCart())}
       />
@@ -691,7 +691,7 @@ CartList.propTypes = {
   grossTotal: PropTypes.number.isRequired,
   shipment_notes: PropTypes.string.isRequired,
   shipmentCountry: PropTypes.object.isRequired,
-  editModeDefault: PropTypes.bool.isRequired
+  editModeDefault: PropTypes.bool.isRequired,
 };
 
 const styles = StyleSheet.create({});

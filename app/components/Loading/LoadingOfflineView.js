@@ -16,7 +16,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg}) => {
         CodePush.restartApp();
       }
     },
-    [connected]
+    [connected],
   );
 
   return (
@@ -26,7 +26,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg}) => {
         width: '100%',
         alignSelf: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
       source={{uri: mainBg}}
       resizeMode="cover">
@@ -45,7 +45,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg}) => {
         titleStyle={{
           fontFamily: text.font,
           fontSize: text.medium,
-          color: colors.main_text_theme_color
+          color: colors.main_text_theme_color,
         }}
       />
       <Button
@@ -60,7 +60,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg}) => {
           paddingLeft: 10,
           fontFamily: text.font,
           fontSize: text.medium,
-          color: colors.main_text_theme_color
+          color: colors.main_text_theme_color,
         }}
       />
     </ImageBackground>
@@ -71,7 +71,7 @@ export default LoadingOfflineView;
 
 LoadingOfflineView.propTypes = {
   mainBg: PropTypes.string,
-  isConnected: PropTypes.bool
+  isConnected: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -79,19 +79,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   loadingMessage: {
     fontFamily: text.font,
     color: 'black',
-    fontSize: 15
+    fontSize: 15,
   },
   retryBtnTitle: {
     fontFamily: 'cairo',
     color: 'black',
-    fontSize: 15
+    fontSize: 15,
   },
   menuBtn: {
-    backgroundColor: colors.main
-  }
+    backgroundColor: colors.main,
+  },
 });

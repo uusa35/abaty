@@ -11,7 +11,7 @@ const ServiceCategoryWidget = ({
   columns,
   showBtn = false,
   dispatch,
-  colors
+  colors,
 }) => {
   return (
     <View>
@@ -23,8 +23,8 @@ const ServiceCategoryWidget = ({
             getSearchServices({
               name: element.name,
               searchParams: {service_category_id: element.id},
-              redirect: true
-            })
+              redirect: true,
+            }),
           )
         }>
         <FastImage
@@ -40,8 +40,8 @@ const ServiceCategoryWidget = ({
                 getSearchServices({
                   name: element.name,
                   searchElements: {service_category_id: element.id},
-                  redirect: true
-                })
+                  redirect: true,
+                }),
               )
             }
             raised
@@ -50,7 +50,7 @@ const ServiceCategoryWidget = ({
             title={element.name}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
           />
         ) : null}
@@ -63,21 +63,21 @@ export default ServiceCategoryWidget;
 
 ServiceCategoryWidget.propTypes = {
   element: PropTypes.object,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   mainCategoryBg: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   categoryName: {
     fontFamily: text.font,
     fontSize: text.small,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

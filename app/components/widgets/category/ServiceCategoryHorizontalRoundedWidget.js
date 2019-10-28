@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import {
   getClassifieds,
   getSearchProducts,
-  getSearchServices
+  getSearchServices,
 } from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
@@ -27,15 +27,15 @@ const ServiceCategoryHorizontalRoundedWidget = ({
   title,
   dispatch,
   colors,
-  navigation
+  navigation,
 }) => {
   const handleClick = useCallback(c => {
     return dispatch(
       getSearchServices({
         name: c.name,
         searchParams: {service_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -48,7 +48,7 @@ const ServiceCategoryHorizontalRoundedWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -72,7 +72,7 @@ const ServiceCategoryHorizontalRoundedWidget = ({
             <FastImage
               source={{
                 uri: c.thumb,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={styles.image}
@@ -82,7 +82,7 @@ const ServiceCategoryHorizontalRoundedWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -98,13 +98,13 @@ export default ServiceCategoryHorizontalRoundedWidget;
 
 ServiceCategoryHorizontalRoundedWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 90,
     height: 90,
-    borderRadius: 20
-  }
+    borderRadius: 20,
+  },
 });

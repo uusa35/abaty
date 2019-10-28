@@ -8,7 +8,7 @@ const CollectionInfoWidget = ({element}) => {
       contentContainerStyle={{
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        marginTop: 10
+        marginTop: 10,
       }}></ScrollView>
   );
 };
@@ -16,7 +16,7 @@ const CollectionInfoWidget = ({element}) => {
 export default CollectionInfoWidget;
 
 CollectionInfoWidget.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

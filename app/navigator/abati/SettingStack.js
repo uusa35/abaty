@@ -27,49 +27,49 @@ export const SettingStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Login: {
       screen: LoginScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />
-      })
+        headerRight: <HeaderRight display={false} />,
+      }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
+      }),
     },
     UserEdit: {
       screen: UserEditScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
+      }),
     },
     ProfileIndex: {
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: null,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     OrderIndex: {
       screen: OrderIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,
@@ -79,8 +79,8 @@ export const SettingStack = createStackNavigator(
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: NormalProductShow,
@@ -93,9 +93,9 @@ export const SettingStack = createStackNavigator(
             showCountry={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     Classified: {
       screen: ClassifiedShowScreen,
@@ -108,7 +108,7 @@ export const SettingStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -116,7 +116,7 @@ export const SettingStack = createStackNavigator(
         // zIndex: 100
         // }
       }),
-      path: `classified/:id`
+      path: `classified/:id`,
     },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
@@ -126,9 +126,9 @@ export const SettingStack = createStackNavigator(
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'card',
@@ -141,9 +141,9 @@ export const SettingStack = createStackNavigator(
       mass: 3,
       overshootClamping: true,
       restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01
-    }
-  }
+      restSpeedThreshold: 0.01,
+    },
+  },
 );
 
 SettingStack.navigationOptions = ({navigation}) => {
@@ -152,6 +152,6 @@ SettingStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

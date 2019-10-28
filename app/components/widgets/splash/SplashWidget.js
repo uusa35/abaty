@@ -17,7 +17,7 @@ const SplashWidget = ({elements, handleClick}) => {
             width: width,
             height: height,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           loadingIndicatorSource={images.logo}
           resizeMode="stretch">
@@ -30,7 +30,7 @@ const SplashWidget = ({elements, handleClick}) => {
                 position: 'absolute',
                 top: 50,
                 alignSelf: 'flex-end',
-                padding: 30
+                padding: 30,
               }}
               onPress={() => handleClick()}
               hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -41,7 +41,7 @@ const SplashWidget = ({elements, handleClick}) => {
               // marginTop: '80%',
               color: 'white',
               fontSize: 30,
-              fontFamily: text.font
+              fontFamily: text.font,
             }}>
             {s.title}
           </Text>
@@ -54,7 +54,7 @@ const SplashWidget = ({elements, handleClick}) => {
 export default React.memo(SplashWidget);
 
 SplashWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

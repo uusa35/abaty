@@ -10,7 +10,7 @@ const ServiceInfoWidget = ({element}) => {
       contentContainerStyle={{
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        marginTop: 10
+        marginTop: 10,
       }}>
       <ServiceInfoWidgetMainTitle element={element} />
       <ServiceInfoWidgetBtns element={element} />
@@ -21,7 +21,7 @@ const ServiceInfoWidget = ({element}) => {
 export default ServiceInfoWidget;
 
 ServiceInfoWidget.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

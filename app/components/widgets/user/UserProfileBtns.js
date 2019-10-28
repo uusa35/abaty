@@ -16,7 +16,7 @@ const UserProfileBtns = () => {
       style={{
         marginTop: 50,
         width: width - 50,
-        alignSelf: 'center'
+        alignSelf: 'center',
       }}>
       <Button
         onPress={() => navigate('UserEdit')}
@@ -25,11 +25,11 @@ const UserProfileBtns = () => {
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
       />
       <Button
@@ -38,11 +38,11 @@ const UserProfileBtns = () => {
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         title={I18n.t('home')}
       />

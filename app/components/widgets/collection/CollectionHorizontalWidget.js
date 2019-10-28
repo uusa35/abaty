@@ -23,7 +23,7 @@ const CollectionHorizontalWidget = ({elements, showName, title}) => {
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -59,5 +59,5 @@ CollectionInfoWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   colors: PropTypes.object.isRequired,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };

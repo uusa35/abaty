@@ -5,7 +5,7 @@ import {
   Modal,
   StyleSheet,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import {hideAreaModal, setArea} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
@@ -73,14 +73,14 @@ export default React.memo(AreasList);
 AreasList.propTypes = {
   area: PropTypes.object.isRequired,
   areas: PropTypes.array.isRequired,
-  areaModal: PropTypes.bool.isRequired
+  areaModal: PropTypes.bool.isRequired,
 };
 const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
     marginTop: '12%',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   wrapper: {
     flexDirection: 'row',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     backgroundColor: 'white',
     padding: 15,
-    height: 50
+    height: 50,
   },
   phoneNo: {
     fontFamily: text.font,
@@ -98,17 +98,17 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     margin: 0,
     padding: 0,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   areaFlag: {
     width: 45,
     height: 25,
-    marginLeft: 10
+    marginLeft: 10,
   },
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    padding: 15
-  }
+    padding: 15,
+  },
 });

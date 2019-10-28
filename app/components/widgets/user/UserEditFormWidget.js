@@ -17,20 +17,20 @@ const UserEditFormWidget = ({
   colors,
   token,
   country,
-  dispatch
+  dispatch,
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
+    !validate.isEmpty(auth) ? auth.email : null,
   );
   const [mobile, setMobile] = useState(
-    !validate.isEmpty(auth) ? auth.mobile : null
+    !validate.isEmpty(auth) ? auth.mobile : null,
   );
   const [address, setAddress] = useState(
-    !validate.isEmpty(auth) ? auth.email : null
+    !validate.isEmpty(auth) ? auth.email : null,
   );
   const [description, setDescription] = useState(
-    !validate.isEmpty(auth) ? auth.description : null
+    !validate.isEmpty(auth) ? auth.description : null,
   );
   const [image, setImage] = useState('');
   const [sampleLogo, setSampleLogo] = useState('');
@@ -42,7 +42,7 @@ const UserEditFormWidget = ({
       multiple: false,
       cropping: true,
       includeBase64: true,
-      includeExif: true
+      includeExif: true,
     }).then(image => {
       setImage(image);
       setSampleLogo(image.sourceURL);
@@ -61,14 +61,14 @@ const UserEditFormWidget = ({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        flex: 1
+        flex: 1,
       }}>
       <TouchableOpacity
         onPress={() => openPicker()}
         style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{
-            uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo
+            uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo,
           }}
           style={{
             width: 120,
@@ -76,7 +76,7 @@ const UserEditFormWidget = ({
             margin: 20,
             borderWidth: 1,
             borderColor: 'lightgrey',
-            borderRadius: 120 / 2
+            borderRadius: 120 / 2,
           }}
           resizeMode="cover"
           loadingIndicatorSource={images.logo}
@@ -90,11 +90,11 @@ const UserEditFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -108,11 +108,11 @@ const UserEditFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="email-address"
@@ -126,11 +126,11 @@ const UserEditFormWidget = ({
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="number-pad"
@@ -152,14 +152,14 @@ const UserEditFormWidget = ({
             width: '95%',
             alignSelf: 'center',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.large,
               textAlign: isRTL ? 'right' : 'left',
-              color: colors.main_theme_color
+              color: colors.main_theme_color,
             }}>
             {country.slug}
           </Text>
@@ -172,12 +172,12 @@ const UserEditFormWidget = ({
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
             fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           numberOfLines={3}
           shake={true}
@@ -193,12 +193,12 @@ const UserEditFormWidget = ({
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
-            height: 80
+            height: 80,
           }}
           inputStyle={{
             fontFamily: text.font,
             fontSize: 14,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           numberOfLines={3}
           shake={true}
@@ -211,11 +211,11 @@ const UserEditFormWidget = ({
           containerStyle={{marginBottom: 10, width: '90%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
+            borderRadius: 0,
           }}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
           title={I18n.t('update_information')}
           onPress={() =>
@@ -230,8 +230,8 @@ const UserEditFormWidget = ({
                 address,
                 player_id,
                 description,
-                image
-              })
+                image,
+              }),
             )
           }
         />
@@ -243,7 +243,7 @@ const UserEditFormWidget = ({
 export default UserEditFormWidget;
 
 UserEditFormWidget.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

@@ -23,7 +23,7 @@ const LoadingBoxedListView = ({isLoadingContent}) => {
         justifyContent: 'center',
         textAlign: 'left',
         margin: 20,
-        padding: 0
+        padding: 0,
       }}>
       <SvgAnimatedLinearGradient
         height={150}
@@ -141,7 +141,7 @@ export default LoadingBoxedListView;
 LoadingBoxedListView.propTypes = {
   isLoadingContent: PropTypes.bool.isRequired,
   logo: PropTypes.string,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -150,12 +150,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    opacity: 1
+    opacity: 1,
   },
   loadingText: {
     fontFamily: text.font,
     fontSize: 15,
     color: 'black',
-    marginBottom: isIOS ? 35 : 50
-  }
+    marginBottom: isIOS ? 35 : 50,
+  },
 });

@@ -45,7 +45,7 @@ export default ClassifiedStorePropertiesWidget;
 
 ClassifiedStorePropertiesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
     paddingBottom: 20,
     width: '100%',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   propertiesWrapper: {
     flexDirection: 'row',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderTopWidth: 0.5,
     borderColor: 'lightgrey',
-    padding: 10
+    padding: 10,
   },
   title: {
     fontFamily: text.font,
@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 20,
     paddingLeft: 20,
-    paddingRight: 20
+    paddingRight: 20,
   },
   infoWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    flex: 1
-  }
+    flex: 1,
+  },
 });

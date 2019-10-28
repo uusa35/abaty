@@ -20,7 +20,7 @@ const DesignerSearchForm = () => {
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
           onPress={() =>
             dispatch(
-              getSearchProducts({searchParams: {search}, redirect: true})
+              getSearchProducts({searchParams: {search}, redirect: true}),
             )
           }
         />
@@ -31,7 +31,7 @@ const DesignerSearchForm = () => {
         borderRadius: 30,
         paddingRight: 15,
         paddingLeft: 15,
-        borderColor: '#E4E4E5'
+        borderColor: '#E4E4E5',
       }}
       inputStyle={{fontFamily: text.font, textAlign: isRTL ? 'right' : 'left'}}
       onChangeText={text => setSearch(text)}

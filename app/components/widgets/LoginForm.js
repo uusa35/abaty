@@ -29,7 +29,7 @@ const LoginForm = ({showBtns = false}) => {
     forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
     accountName: '', // [Android] specifies an account name on the device that should be used
     iosClientId:
-      '138610078320-tiktp898sbsjsjgossmpv093d6i9k60h.apps.googleusercontent.com' // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+      '138610078320-tiktp898sbsjsjgossmpv093d6i9k60h.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
 
   return (
@@ -43,14 +43,14 @@ const LoginForm = ({showBtns = false}) => {
         width: '100%',
         padding: 15,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
       <View
         style={{
           width: '100%',
           marginTop: 0,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <FastImage
           source={{uri: logo}}
@@ -66,11 +66,11 @@ const LoginForm = ({showBtns = false}) => {
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="email-address"
@@ -85,11 +85,11 @@ const LoginForm = ({showBtns = false}) => {
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20
+            marginBottom: 20,
           }}
           inputStyle={{
             fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left'
+            textAlign: isRTL ? 'right' : 'left',
           }}
           shake={true}
           keyboardType="default"
@@ -100,12 +100,12 @@ const LoginForm = ({showBtns = false}) => {
           containerStyle={{marginBottom: 10, width: '100%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
+            borderRadius: 0,
           }}
           title={I18n.t('login')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
           onPress={() => dispatch(submitAuth({email, password}))}
         />
@@ -115,12 +115,12 @@ const LoginForm = ({showBtns = false}) => {
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('new_user')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => navigate('Register')}
           />
@@ -131,12 +131,12 @@ const LoginForm = ({showBtns = false}) => {
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('forget_password')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
           />

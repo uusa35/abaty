@@ -6,7 +6,7 @@ import MapView, {
   Marker,
   PROVIDER_GOOGLE,
   Callout,
-  CalloutSubview
+  CalloutSubview,
 } from 'react-native-maps';
 import {width, text, links, images} from '../../constants';
 import I18n from '../../I18n';
@@ -28,7 +28,7 @@ const MapViewWidget = ({
   elements = [],
   element,
   longitude,
-  latitude
+  latitude,
 }) => {
   const {colors, exchange_rate} = useContext(GlobalValuesContext);
   return (
@@ -44,11 +44,11 @@ const MapViewWidget = ({
             shadowColor: '#000',
             shadowOffset: {
               width: 0,
-              height: 1
+              height: 1,
             },
             shadowOpacity: 0.18,
             shadowRadius: 1.0,
-            elevation: 1
+            elevation: 1,
           }}>
           {I18n.t('location')}
         </Text>
@@ -57,7 +57,7 @@ const MapViewWidget = ({
         style={{
           width: width ? width : customWidth,
           alignSelf: 'center',
-          height: height ? height : '25%'
+          height: height ? height : '25%',
         }}
         title={title}
         zoomEnabled={true}
@@ -67,7 +67,7 @@ const MapViewWidget = ({
           latitude: parseFloat(latitude),
           longitude: parseFloat(longitude),
           latitudeDelta: 0.5,
-          longitudeDelta: 0.5
+          longitudeDelta: 0.5,
         }}>
         {!isMulti ? (
           <Marker
@@ -78,7 +78,7 @@ const MapViewWidget = ({
             opacity={1}
             coordinate={{
               latitude: latitude,
-              longitude: longitude
+              longitude: longitude,
             }}>
             {showCallOut && image ? (
               <CallOutView
@@ -102,7 +102,7 @@ const MapViewWidget = ({
               element={element}
               coordinate={{
                 latitude: element.latitude,
-                longitude: element.longitude
+                longitude: element.longitude,
               }}>
               {showCallOut ? (
                 <CallOutView
@@ -112,7 +112,7 @@ const MapViewWidget = ({
                   image={element.thumb}
                   price={round(
                     getProductConvertedFinalPrice(element.price, exchange_rate),
-                    2
+                    2,
                   )}
                 />
               ) : null}
@@ -132,7 +132,7 @@ MapViewWidget.propTypes = {
   title: PropTypes.string.isRequired,
   logo: PropTypes.string,
   height: PropTypes.number,
-  width: PropTypes.number
+  width: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
@@ -141,14 +141,14 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.medium,
     textAlign: 'left',
-    margin: 5
+    margin: 5,
   },
   logo: {
     width: 30,
-    height: 30
+    height: 30,
   },
   image: {
     width: 80,
-    height: 100
-  }
+    height: 100,
+  },
 });

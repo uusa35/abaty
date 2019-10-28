@@ -11,7 +11,7 @@ const ProductCategoryWidget = ({
   columns,
   showBtn = false,
   dispatch,
-  colors
+  colors,
 }) => {
   return (
     <View>
@@ -23,8 +23,8 @@ const ProductCategoryWidget = ({
             getSearchProducts({
               name: element.name,
               searchParams: {product_category_id: element.id},
-              redirect: true
-            })
+              redirect: true,
+            }),
           )
         }>
         <FastImage
@@ -39,8 +39,8 @@ const ProductCategoryWidget = ({
               dispatch(
                 getSearchProducts({
                   name: element.name,
-                  searchElements: {product_category_id: element.id}
-                })
+                  searchElements: {product_category_id: element.id},
+                }),
               )
             }
             raised
@@ -49,7 +49,7 @@ const ProductCategoryWidget = ({
             title={element.name}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
           />
         ) : null}
@@ -62,21 +62,21 @@ export default ProductCategoryWidget;
 
 ProductCategoryWidget.propTypes = {
   element: PropTypes.object,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   mainCategoryBg: {
     width: '100%',
-    height: '100%'
+    height: '100%',
   },
   categoryName: {
     fontFamily: text.font,
     fontSize: text.small,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

@@ -4,7 +4,7 @@ import {
   disableLoadingContent,
   enableErrorMessage,
   enableLoadingContent,
-  enableWarningMessage
+  enableWarningMessage,
 } from './settingSagas';
 import * as api from '../api';
 import validate from 'validate.js';
@@ -22,16 +22,16 @@ export function* startGetServiceScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'Service',
-            params: {name: service.name, id: service.id, model: 'service'}
-          })
+            params: {name: service.name, id: service.id, model: 'service'},
+          }),
         ),
-        call(disableLoadingContent)
+        call(disableLoadingContent),
       ]);
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('error_while_loading_service'))
+      call(enableWarningMessage, I18n.t('error_while_loading_service')),
     ]);
   }
 }
@@ -43,21 +43,21 @@ export function* startGetSearchServicesScenario(action) {
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'ServiceIndex',
-            params: {name: element ? element.name : I18n.t('services')}
-          })
+            params: {name: element ? element.name : I18n.t('services')},
+          }),
         );
       }
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_services'))
+      call(enableWarningMessage, I18n.t('no_services')),
     ]);
   }
 }
@@ -71,7 +71,7 @@ export function* getServiceIndex() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_services'))
+      call(enableErrorMessage, I18n.t('no_services')),
     ]);
   }
 }
@@ -87,7 +87,7 @@ export function* getHomeServicesScenario() {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_services'))
+      call(enableErrorMessage, I18n.t('no_services')),
     ]);
   }
 }
@@ -98,7 +98,7 @@ export function* startToggleClassifiedFavoriteScenario(action) {
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
         put({type: actions.SET_CLASSIFIED_FAVORITES, payload: classifieds}),
-        call(enableWarningMessage, I18n.t('favorite_success'))
+        call(enableWarningMessage, I18n.t('favorite_success')),
       ]);
     } else {
       yield put({type: actions.SET_CLASSIFIED_FAVORITES, payload: []});

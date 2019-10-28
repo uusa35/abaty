@@ -4,7 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
+  Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions';
@@ -19,10 +19,10 @@ const ClassifiedWidgetHorizontal = ({
   element,
   showName = false,
   widthVal = '100%',
-  heightVal = '100%'
+  heightVal = '100%',
 }) => {
   const {currency_symbol, token, exchange_rate, colors} = useContext(
-    GlobalValuesContext
+    GlobalValuesContext,
   );
   const {dispatch} = useContext(DispatchContext);
   return (
@@ -37,17 +37,17 @@ const ClassifiedWidgetHorizontal = ({
           borderRadius: 15,
           justifyContent: 'flex-start',
           alignItems: 'center',
-          alignSelf: 'center'
-        }
+          alignSelf: 'center',
+        },
       ]}
       onPress={() =>
         dispatch(
-          getClassified({id: element.id, api_token: token ? token : null})
+          getClassified({id: element.id, api_token: token ? token : null}),
         )
       }>
       <ImageBackground
         source={{
-          uri: element.thumb
+          uri: element.thumb,
         }}
         loadingIndicatorSource={images.logo}
         style={{height: heightVal, width: widthVal}}
@@ -56,7 +56,7 @@ const ClassifiedWidgetHorizontal = ({
           height: heightVal,
           borderRadius: 15,
           borderWidth: 0.5,
-          borderColor: 'lightgrey'
+          borderColor: 'lightgrey',
         }}
         resizeMode="stretch">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
@@ -71,7 +71,7 @@ const ClassifiedWidgetHorizontal = ({
             backgroundColor: 'white',
             opacity: 0.7,
             borderBottomLeftRadius: 15,
-            borderBottomRightRadius: 15
+            borderBottomRightRadius: 15,
           }}>
           <Text style={{textAlign: 'left', fontFamily: text.font}}>
             {element.name}
@@ -93,12 +93,12 @@ ClassifiedWidgetHorizontal.propTypes = {
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: '100%',
-    height: 230
-  }
+    height: 230,
+  },
 });

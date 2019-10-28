@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Linking
+  Linking,
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,7 +23,7 @@ const SettingsIndexScreen = ({
   pages,
   dispatch,
   colors,
-  navigation
+  navigation,
 }) => {
   return (
     <ScrollView
@@ -33,7 +33,7 @@ const SettingsIndexScreen = ({
         padding: 20,
         alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
         // flex: 1
       }}>
       <View style={styles.container}>
@@ -87,12 +87,12 @@ const SettingsIndexScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('login')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => navigation.navigate('Login')}
           />
@@ -101,12 +101,12 @@ const SettingsIndexScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('new_user')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => navigation.navigate('Register')}
           />
@@ -115,12 +115,12 @@ const SettingsIndexScreen = ({
             containerStyle={{marginBottom: 10, width: '100%'}}
             buttonStyle={{
               backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0
+              borderRadius: 0,
             }}
             title={I18n.t('forget_password')}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_text_theme_color
+              color: colors.btn_text_theme_color,
             }}
             onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
           />
@@ -141,14 +141,14 @@ function mapStateToProps(state) {
     guest: state.guest,
     lang: state.lang,
     colors: state.settings.colors,
-    pages: state.pages
+    pages: state.pages,
   };
 }
 
 export default connect(mapStateToProps)(SettingsIndexScreen);
 
 SettingsIndexScreen.propTypes = {
-  guest: PropTypes.bool.isRequired
+  guest: PropTypes.bool.isRequired,
 };
 const styles = StyleSheet.create({
   container: {
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15
+    padding: 15,
   },
   btnWrapper: {
     borderWidth: 1,
@@ -167,10 +167,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   btnTitle: {
     fontFamily: text.font,
-    fontSize: text.medium
-  }
+    fontSize: text.medium,
+  },
 });

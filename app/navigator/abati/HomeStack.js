@@ -61,8 +61,8 @@ export const HomeStack = createStackNavigator(
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CartIndex: {
       screen: CartIndexScreen,
@@ -70,23 +70,23 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         // HeaderRight: <HeaderRight  />,
         headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CartConfirmation: {
       screen: CartConfirmationScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     PaymentIndex: {
       screen: PaymentIndexScreen,
       navigationOptions: () => ({
         HeaderRight: <HeaderLeft />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CategoryIndex: {
       screen: CategoryIndexScreen,
@@ -103,68 +103,68 @@ export const HomeStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
-        headerTransparent: false
+        headerTransparent: false,
       }),
-      path: 'category/:id'
+      path: 'category/:id',
     },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     DesignerIndex: {
       screen: DesignerIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CompanyIndex: {
       screen: CompanyIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CelebrityIndex: {
       screen: CelebrityIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CompanyShow: {
       screen: CompanyShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `user/:id`
+      path: `user/:id`,
     },
     DesignerShow: {
       screen: DesignerShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `user/:id`
+      path: `user/:id`,
     },
     CelebrityShow: {
       screen: CelebrityShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `user/:id`
+      path: `user/:id`,
     },
     ProductIndex: {
       screen: ProductIndexScreen,
@@ -172,8 +172,8 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ServiceIndex: {
       screen: ServiceIndexScreen,
@@ -181,8 +181,8 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     CollectionIndex: {
       screen: CollectionIndexScreen,
@@ -190,8 +190,8 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
 
     Product: {
@@ -199,18 +199,18 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     Service: {
       screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,
@@ -218,8 +218,8 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
@@ -227,61 +227,61 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ImageZoom: {
       screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Contactus: {
       screen: ContactusScreen,
       navigationOptions: () => ({
-        headerTitle: <HeaderMiddle title={I18n.t('contactus')} />
+        headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
       }),
-      path: 'contactus'
+      path: 'contactus',
     },
     TermAndCondition: {
       screen: TermAndConditionScreen,
       navigationOptions: () => ({
-        headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />
-      })
+        headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
+      }),
     },
     BrandIndex: {
       screen: BrandIndexScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     BrandShow: {
       screen: BrandShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ProfileIndex: {
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: null,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     OrderIndex: {
       screen: OrderIndexScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
+      path: `product/:id`,
     },
     HomeKey: {
       screen: HomeKeyScreen,
@@ -292,8 +292,8 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
         ),
         headerBackTitle: null,
-        headerTransparent: true
-      })
+        headerTransparent: true,
+      }),
     },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
@@ -301,8 +301,8 @@ export const HomeStack = createStackNavigator(
         // headerLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Classified: {
       // screen: ClassifiedShowScreen,
@@ -310,7 +310,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showCountry={true} displayShare={true} />,
-        headerBackTitle: null
+        headerBackTitle: null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -318,67 +318,67 @@ export const HomeStack = createStackNavigator(
         // zIndex: 100
         // }
       }),
-      path: `classified/:id`
+      path: `classified/:id`,
     },
     ClassifiedStore: {
       screen: ClassifiedStoreScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ChooseCategoryGroups: {
       screen: CategoryGroupsScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ChooseAddress: {
       screen: ChooseAddressScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
         headerRight: <HeaderRight />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ClassifiedFilter: {
       screen: ClassifiedFilterScreen,
       navigationOptions: () => ({
-        header: null
-      })
+        header: null,
+      }),
     },
     Login: {
       screen: LoginScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />
-      })
+        headerRight: <HeaderRight display={false} />,
+      }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />
+        headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
-      })
-    }
+      }),
+    },
   },
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false
-  }
+    swipeEnabled: false,
+  },
 );
 
 HomeStack.navigationOptions = ({navigation}) => {
@@ -387,6 +387,6 @@ HomeStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

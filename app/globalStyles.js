@@ -2,6 +2,6 @@ import {text} from './constants';
 
 export const navLabelStyle = {
   fontSize: text.small,
-  fontWeight: 'bold'
+  fontWeight: 'bold',
   // color: 'black'
 };

@@ -47,14 +47,14 @@ function mapStateToProps(state) {
   return {
     homeCategories: state.homeCategories,
     tags: state.tags,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 SearchScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : navigation.state.params.title
-  title: I18n.t('search')
+  title: I18n.t('search'),
 });
 
 export default connect(mapStateToProps)(SearchScreen);
@@ -62,5 +62,5 @@ export default connect(mapStateToProps)(SearchScreen);
 SearchScreen.propTypes = {
   categories: PropTypes.array,
   commercials: PropTypes.array,
-  show_commercials: PropTypes.bool
+  show_commercials: PropTypes.bool,
 };

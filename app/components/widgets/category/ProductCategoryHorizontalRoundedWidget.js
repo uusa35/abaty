@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -21,7 +21,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
-  title
+  title,
 }) => {
   const {navigate} = useNavigation();
   const {dispatch} = useContext(DispatchContext);
@@ -31,8 +31,8 @@ const ProductCategoryHorizontalRoundedWidget = ({
       getSearchProducts({
         name: c.name,
         searchParams: {product_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -45,7 +45,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {title}
           </Text>
@@ -69,7 +69,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
             <FastImage
               source={{
                 uri: c.thumb,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={styles.image}
@@ -79,7 +79,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -95,13 +95,13 @@ export default ProductCategoryHorizontalRoundedWidget;
 
 ProductCategoryHorizontalRoundedWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 90,
-    height: 90
+    height: 90,
     // borderRadius: 20
-  }
+  },
 });

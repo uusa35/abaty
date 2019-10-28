@@ -26,101 +26,101 @@ const userWidget = state => state.designers;
 
 export const tokenSelector = createSelector(
   token,
-  token => token
+  token => token,
 );
 
 export const colorsSelector = createSelector(
   colors,
-  colors => colors
+  colors => colors,
 );
 
 export const logoSelector = createSelector(
   logo,
-  logo => logo
+  logo => logo,
 );
 
 export const countrySelector = createSelector(
   country,
-  country => country
+  country => country,
 );
 
 export const currencySelector = createSelector(
   currency,
-  currency => currency
+  currency => currency,
 );
 
 export const playerIdSelector = createSelector(
   playerId,
-  playerId => playerId
+  playerId => playerId,
 );
 
 export const authSelector = createSelector(
   auth,
-  auth => auth
+  auth => auth,
 );
 
 export const settingsSelector = createSelector(
   settings,
-  settings => settings
+  settings => settings,
 );
 
 export const menuBgSelector = createSelector(
   menuBg,
-  menuBg => menuBg
+  menuBg => menuBg,
 );
 
 export const companyNameSelector = createSelector(
   companyName,
-  companyName => companyName
+  companyName => companyName,
 );
 export const settingImagesSelector = createSelector(
   settingImages,
-  settingImages => settingImages
+  settingImages => settingImages,
 );
 export const youtubeSelector = createSelector(
   youtube,
-  youtube => youtube
+  youtube => youtube,
 );
 export const guestSelector = createSelector(
   guest,
-  guest => guest
+  guest => guest,
 );
 export const langSelector = createSelector(
   lang,
-  lang => lang
+  lang => lang,
 );
 export const phoneSelector = createSelector(
   phone,
-  phone => phone
+  phone => phone,
 );
 export const mobileSelector = createSelector(
   mobile,
-  mobile => mobile
+  mobile => mobile,
 );
 export const authNameSelector = createSelector(
   authName,
-  authName => authName
+  authName => authName,
 );
 export const serviceSelector = createSelector(
   service,
-  service => service
+  service => service,
 );
 export const productSelector = createSelector(
   product,
-  product => product
+  product => product,
 );
 
 export const loginModalSelector = createSelector(
   loginModal,
-  loginModal => loginModal
+  loginModal => loginModal,
 );
 
 export const commentModalSelector = createSelector(
   commentModal,
-  commentModal => commentModal
+  commentModal => commentModal,
 );
 
 export const designerSelector = createSelector(
   designer,
-  designer => designer
+  designer => designer,
 );

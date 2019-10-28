@@ -20,7 +20,7 @@ function mapStateToProps(state) {
   return {
     products: state.products,
     searchParams: state.searchParams,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
@@ -28,7 +28,7 @@ export default connect(mapStateToProps)(ProductIndexScreen);
 
 ProductIndexScreen.propTypes = {
   products: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

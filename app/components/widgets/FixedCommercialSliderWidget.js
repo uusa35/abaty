@@ -15,7 +15,7 @@ const FixedCommercialSliderWidget = ({sliders}) => {
         justifyContent: 'flex-start',
         height: !validate.isEmpty(sliders) ? 125 : 0,
         position: 'absolute',
-        bottom: 0
+        bottom: 0,
       }}>
       {!validate.isEmpty(sliders) ? (
         <Swiper
@@ -35,5 +35,5 @@ const FixedCommercialSliderWidget = ({sliders}) => {
 export default FixedCommercialSliderWidget;
 
 FixedCommercialSliderWidget.propTypes = {
-  sliders: PropTypes.array
+  sliders: PropTypes.array,
 };

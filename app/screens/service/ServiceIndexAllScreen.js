@@ -17,7 +17,7 @@ const ServiceIndexAllScreen = ({services, isLoadingContent}) => {
 function mapStateToProps(state) {
   return {
     services: state.services,
-    isLoadingContent: state.isLoadingContent
+    isLoadingContent: state.isLoadingContent,
   };
 }
 
@@ -25,7 +25,7 @@ export default connect(mapStateToProps)(ServiceIndexAllScreen);
 
 ServiceIndexAllScreen.propTypes = {
   services: PropTypes.array.isRequired,
-  colors: PropTypes.object
+  colors: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

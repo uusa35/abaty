@@ -20,7 +20,7 @@ const UserTabViewWidget = ({user}) => {
     {key: 'products', title: I18n.t('products')},
     {key: 'categories', title: I18n.t('categories')},
     {key: 'info', title: I18n.t('information').substring(0, 10)},
-    {key: 'videos', title: I18n.t('videos')}
+    {key: 'videos', title: I18n.t('videos')},
   ]);
   return (
     <TabView
@@ -32,20 +32,20 @@ const UserTabViewWidget = ({user}) => {
           // indicatorContainerStyle={{backgroundColor: 'white'}}
           // contentContainerStyle={{backgroundColor: 'white'}}
           indicatorStyle={{
-            backgroundColor: colors.btn_bg_theme_color
+            backgroundColor: colors.btn_bg_theme_color,
           }}
           activeColor={colors.header_one_theme_color}
           inactiveColor={colors.header_tow_theme_color}
           style={{backgroundColor: 'white'}}
           labelStyle={{
             fontFamily: text.font,
-            fontSize: text.small
+            fontSize: text.small,
           }}
         />
       )}
       navigationState={{
         index,
-        routes
+        routes,
       }}
       renderScene={SceneMap({
         products: () => (
@@ -82,7 +82,7 @@ const UserTabViewWidget = ({user}) => {
             thumb={user.thumb}
           />
         ),
-        videos: () => <VideosWidget videos={user.videoGroup} />
+        videos: () => <VideosWidget videos={user.videoGroup} />,
       })}
       style={{marginTop: 10, backgroundColor: 'white'}}
       onIndexChange={index => setIndex(index)}
@@ -96,33 +96,33 @@ export default React.memo(UserTabViewWidget);
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
-    fontSize: text.large
+    fontSize: text.large,
   },
   subTitle: {
     fontFamily: text.font,
-    fontSize: text.medium
+    fontSize: text.medium,
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     flex: 1,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   scene: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

@@ -28,7 +28,7 @@ class AppPDFViewerScreen extends Component {
 }
 
 AppPDFViewerScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -42,11 +42,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   pdf: {
     flex: 1,
     width: width,
-    backgroundColor: 'white'
-  }
+    backgroundColor: 'white',
+  },
 });

@@ -29,7 +29,7 @@ const IntroductionWidget = ({elements, showIntroduction}) => {
           backgroundColor: colors.btn_bg_theme_color,
           borderRadius: 10,
           alignContent: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
         keyExtractor={(elements, index) => index.toString()}
         showSkipButton={true}
@@ -41,7 +41,7 @@ const IntroductionWidget = ({elements, showIntroduction}) => {
         prevLabel={I18n.t('back')}
         buttonTextStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         renderItem={() => (
           <SplashWidget elements={elements} handleClick={handleClick} />
@@ -56,12 +56,12 @@ const IntroductionWidget = ({elements, showIntroduction}) => {
 export default IntroductionWidget;
 
 IntroductionWidget.propTypes = {
-  elements: PropTypes.array.isRequired
+  elements: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: height
-  }
+    height: height,
+  },
 });

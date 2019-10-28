@@ -21,7 +21,7 @@ function mapStateToProps(state) {
   return {
     collections: state.homeCollections,
     searchParams: state.searchParams,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
@@ -30,7 +30,7 @@ export default connect(mapStateToProps)(CollectionIndexScreen);
 CollectionIndexScreen.propTypes = {
   collections: PropTypes.array.isRequired,
   searchParams: PropTypes.object.isRequired,
-  colors: PropTypes.object.isRequired
+  colors: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

@@ -15,8 +15,8 @@ export const ServiceStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Service: {
       screen: ServiceShowScreen,
@@ -33,15 +33,15 @@ export const ServiceStack = createStackNavigator(
         headerStyle: {
           // backgroundColor: 'white',
           // zIndex: 100
-        }
+        },
       }),
-      path: `service/:id`
-    }
+      path: `service/:id`,
+    },
   },
   {
     mode: 'card',
-    headerMode: 'float'
-  }
+    headerMode: 'float',
+  },
 );
 
 ServiceStack.navigationOptions = ({navigation}) => {
@@ -50,6 +50,6 @@ ServiceStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };

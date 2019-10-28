@@ -4,7 +4,7 @@ import {
   FlatList,
   RefreshControl,
   StyleSheet,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import ProductWidget from '../product/ProductWidget';
 import PropTypes from 'prop-types';
@@ -40,7 +40,7 @@ export default BrandList;
 
 BrandList.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'center',
-    margin: 10
-  }
+    margin: 10,
+  },
 });

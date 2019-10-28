@@ -11,7 +11,7 @@ const TermAndConditionScreen = ({settings}) => {
   return (
     <ImageBackground
       source={{
-        uri: main_bg
+        uri: main_bg,
       }}
       loadingIndicatorSource={images.logo}
       style={{width, height}}
@@ -27,13 +27,13 @@ const TermAndConditionScreen = ({settings}) => {
             flex: 1,
             padding: 15,
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: 25,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('terms')}
           </Text>
@@ -45,13 +45,13 @@ const TermAndConditionScreen = ({settings}) => {
               borderColor: 'lightgrey',
               width: '100%',
               paddingLeft: 10,
-              paddingRight: 10
+              paddingRight: 10,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {terms}
             </Text>
@@ -61,7 +61,7 @@ const TermAndConditionScreen = ({settings}) => {
           style={{
             backgroundColor: colors.header_one_theme_bg,
             marginTop: 10,
-            marginBottom: 10
+            marginBottom: 10,
           }}
         />
         <View
@@ -69,13 +69,13 @@ const TermAndConditionScreen = ({settings}) => {
             flex: 1,
             padding: 15,
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: 25,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('policies')}
           </Text>
@@ -87,13 +87,13 @@ const TermAndConditionScreen = ({settings}) => {
               borderColor: 'lightgrey',
               width: '100%',
               paddingLeft: 10,
-              paddingRight: 10
+              paddingRight: 10,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {policy}
             </Text>
@@ -106,7 +106,7 @@ const TermAndConditionScreen = ({settings}) => {
 
 function mapStateToProps(state) {
   return {
-    settings: settingsSelector(state)
+    settings: settingsSelector(state),
   };
 }
 

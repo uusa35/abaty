@@ -7,8 +7,8 @@ import {BottomTabsStack} from './BottomNavigator';
 export const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
-      screen: BottomTabsStack
-    }
+      screen: BottomTabsStack,
+    },
   },
   {
     contentComponent: ({navigation}) => <SideMenu navigation={navigation} />,
@@ -18,11 +18,11 @@ export const DrawerNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: 'black',
       itemsContainerStyle: {
-        marginVertical: 0
+        marginVertical: 0,
       },
       iconContainerStyle: {
-        opacity: 1
-      }
-    }
-  }
+        opacity: 1,
+      },
+    },
+  },
 );

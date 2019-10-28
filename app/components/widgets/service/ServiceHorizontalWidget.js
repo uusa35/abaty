@@ -20,14 +20,17 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
         style={widgetStyles.titleContainer}
         onPress={() =>
           dispatch(
-            getSearchServices({searchElements: {on_home: true}, redirect: true})
+            getSearchServices({
+              searchElements: {on_home: true},
+              redirect: true,
+            }),
           )
         }>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -61,5 +64,5 @@ export default ServiceHorizontalWidget;
 
 ServiceHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };

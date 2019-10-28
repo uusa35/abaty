@@ -11,7 +11,7 @@ if (ENV === 'local' && __DEV__) {
     appUrlIos: `http://mallr.test/`,
     // no other configs (leave locahost in emulator empty + serve the 8000 port then add the following)
     appUrlAndroid: 'http://10.0.2.2:8000/',
-    port: PORT
+    port: PORT,
   };
 } else if (ENV === 'production') {
   module.exports = {
@@ -26,6 +26,6 @@ if (ENV === 'local' && __DEV__) {
       : MALLR
       ? 'http://mallr.net/'
       : 'http://hkey.ideasowners.net/',
-    port: PORT
+    port: PORT,
   };
 }

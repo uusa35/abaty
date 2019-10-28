@@ -12,7 +12,7 @@ const VideoWidget = ({
   element,
   height = 120,
   width = 180,
-  showImage = false
+  showImage = false,
 }) => {
   [isReady, setIsReady] = useState(false);
   [status, setStatus] = useState(false);
@@ -25,7 +25,7 @@ const VideoWidget = ({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        marginBottom: 5
+        marginBottom: 5,
       }}>
       {showImage ? (
         <TouchableOpacity
@@ -52,7 +52,7 @@ const VideoWidget = ({
           key={element.id}
           style={{
             height,
-            width: width
+            width: width,
           }}
           javaScriptEnabled={true}
           source={{uri: `${appUrlIos}webview?url=${element.url}`}}
@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   caption: {
     paddingTop: 10,
     fontFamily: text.font,
     fontSize: text.small,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 });

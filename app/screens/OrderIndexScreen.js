@@ -25,7 +25,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
             alignItems: 'center',
             justifyContent: 'center',
             width: '95%',
-            marginTop: 10
+            marginTop: 10,
           }}
           style={{alignSelf: 'center'}}
           keyboardShouldPersistTaps="always"
@@ -55,12 +55,12 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
           containerStyle={{marginBottom: 10, width: '90%'}}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0
+            borderRadius: 0,
           }}
           title={I18n.t('no_orders')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color
+            color: colors.btn_text_theme_color,
           }}
         />
       )}
@@ -72,51 +72,51 @@ function mapStateToProps(state) {
   return {
     orders: ordersSelector(state),
     logo: logoSelector(state),
-    colors: colorsSelector(state)
+    colors: colorsSelector(state),
   };
 }
 
 export default connect(mapStateToProps)(OrderIndexScreen);
 
 OrderIndexScreen.propTypes = {
-  orders: PropTypes.array
+  orders: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
     fontSize: text.large,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   subTitle: {
     color: 'black',
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left'
+    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -125,17 +125,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });

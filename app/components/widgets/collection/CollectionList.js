@@ -5,7 +5,7 @@ import {
   View,
   Text,
   KeyboardAvoidingView,
-  FlatList
+  FlatList,
 } from 'react-native';
 import CollectionWidget from './CollectionWidget';
 import PropTypes from 'prop-types';
@@ -28,7 +28,7 @@ const CollectionList = ({
   title,
   searchElements,
   colors,
-  dispatch
+  dispatch,
 }) => {
   [elements, setElements] = useState(collections);
   [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ const CollectionList = ({
   useMemo(() => {
     if (isLoading && showMore) {
       return axiosInstance(`search/product?page=${page}`, {
-        params
+        params,
       })
         .then(r => {
           setIsLoading(false);
@@ -76,7 +76,7 @@ const CollectionList = ({
       setIsLoading(false);
       setRefresh(false);
       let filtered = filter(elements, i =>
-        i.slug.includes(search) ? i : null
+        i.slug.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
@@ -89,7 +89,7 @@ const CollectionList = ({
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        width: width
+        width: width,
       }}
       behavior="padding"
       enabled>
@@ -121,16 +121,16 @@ const CollectionList = ({
           }}
           contentContainerStyle={{
             width: width - 20,
-            minHeight: '100%'
+            minHeight: '100%',
           }}
           columnWrapperStyle={{
             justifyContent: 'space-around',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
-            backgroundColor: 'white'
+            backgroundColor: 'white',
           }}
           ListHeaderComponent={
             <View>
@@ -139,7 +139,7 @@ const CollectionList = ({
                   placeholder={I18n.t('search')}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
+                    textAlign: isRTL ? 'right' : 'left',
                   }}
                   inputContainerStyle={{
                     backgroundColor: '#E4E4E5',
@@ -147,7 +147,7 @@ const CollectionList = ({
                     paddingRight: 15,
                     paddingLeft: 15,
                     marginTop: 10,
-                    borderColor: '#E4E4E5'
+                    borderColor: '#E4E4E5',
                   }}
                   rightIcon={
                     <Icon
@@ -177,11 +177,11 @@ const CollectionList = ({
                       shadowColor: '#000',
                       shadowOffset: {
                         width: 0,
-                        height: 1
+                        height: 1,
                       },
                       shadowOpacity: 0.18,
                       shadowRadius: 1.0,
-                      elevation: 1
+                      elevation: 1,
                     }}>
                     {title ? title : I18n.t('related_product_group')}
                   </Text>
@@ -233,7 +233,7 @@ CollectionList.propTypes = {
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
-  colors: PropTypes.object
+  colors: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

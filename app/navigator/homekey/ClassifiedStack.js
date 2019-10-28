@@ -15,8 +15,8 @@ export const ClassifiedStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
@@ -24,8 +24,8 @@ export const ClassifiedStack = createStackNavigator(
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Classified: {
       screen: ClassifiedShowScreen,
@@ -42,15 +42,15 @@ export const ClassifiedStack = createStackNavigator(
         headerStyle: {
           backgroundColor: 'white',
           borderColor: 'transparent',
-          zIndex: 100
-        }
+          zIndex: 100,
+        },
       }),
-      path: `classified/:id`
-    }
+      path: `classified/:id`,
+    },
   },
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false
-  }
+    swipeEnabled: false,
+  },
 );

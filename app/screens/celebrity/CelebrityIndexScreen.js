@@ -18,14 +18,14 @@ const CelebrityIndexScreen = ({celebrities, searchParams, dispatch}) => {
 function mapStateToProps(state) {
   return {
     celebrities: state.celebrities,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
   };
 }
 
 export default connect(mapStateToProps)(CelebrityIndexScreen);
 
 CelebrityIndexScreen.propTypes = {
-  users: PropTypes.array
+  users: PropTypes.array,
 };
 
 const styles = StyleSheet.create({});

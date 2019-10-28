@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -23,15 +23,15 @@ const CategoryHorizontalRoundedWidget = ({
   title,
   dispatch,
   colors,
-  navigation
+  navigation,
 }) => {
   const handleClassifiedClick = useCallback(c => {
     return dispatch(
       getClassifieds({
         name: c.name,
         searchParams: {classified_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -44,7 +44,7 @@ const CategoryHorizontalRoundedWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -68,7 +68,7 @@ const CategoryHorizontalRoundedWidget = ({
             <FastImage
               source={{
                 uri: c.thumb,
-                priority: FastImage.priority.normal
+                priority: FastImage.priority.normal,
               }}
               loadingIndicatorSource={images.logo}
               style={styles.image}
@@ -78,7 +78,7 @@ const CategoryHorizontalRoundedWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -94,13 +94,13 @@ export default CategoryHorizontalRoundedWidget;
 
 CategoryHorizontalRoundedWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 90,
     height: 90,
-    borderRadius: 20
-  }
+    borderRadius: 20,
+  },
 });

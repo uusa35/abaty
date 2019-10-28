@@ -10,7 +10,7 @@ import {
   enableLoading,
   enableLoadingContent,
   enableSuccessMessage,
-  enableWarningMessage
+  enableWarningMessage,
 } from './settingSagas';
 import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
@@ -26,16 +26,16 @@ export function* startGetClassifiedsScenario(action) {
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
         put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams})
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'ClassifiedIndex',
             params: {
-              name: name ? name : I18n.t('classifieds')
-            }
-          })
+              name: name ? name : I18n.t('classifieds'),
+            },
+          }),
         );
       }
     } else {
@@ -44,7 +44,7 @@ export function* startGetClassifiedsScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_classifieds'))
+      call(enableWarningMessage, I18n.t('no_classifieds')),
     ]);
   }
 }
@@ -60,9 +60,9 @@ export function* startGetHomeClassifiedsScenario(action) {
           NavigationActions.navigate({
             routeName: 'ClassifiedIndex',
             params: {
-              name: name ? name : I18n.t('classifieds')
-            }
-          })
+              name: name ? name : I18n.t('classifieds'),
+            },
+          }),
         );
       }
     } else {
@@ -71,7 +71,7 @@ export function* startGetHomeClassifiedsScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_classifieds'))
+      call(enableWarningMessage, I18n.t('no_classifieds')),
     ]);
   }
 }
@@ -89,11 +89,11 @@ export function* startGetClassifiedScenario(action) {
             params: {
               name: classified.name,
               id: classified.id,
-              model: 'classified'
-            }
-          })
+              model: 'classified',
+            },
+          }),
         ),
-        call(disableLoadingContent)
+        call(disableLoadingContent),
       ]);
     }
   } catch (e) {
@@ -108,7 +108,7 @@ export function* setClassifiedFavorites(classifiedFavorites) {
   ) {
     yield put({
       type: actions.SET_CLASSIFIED_FAVORITES,
-      payload: classifiedFavorites
+      payload: classifiedFavorites,
     });
   } else {
     yield put({type: actions.SET_CLASSIFIED_FAVORITES, payload: []});
@@ -121,7 +121,7 @@ export function* startStoreClassifiedScenario(action) {
     const {name, mobile, description, images, image, price} = action.payload;
     const result = validate(
       {name, mobile, images, image, description, price},
-      storeClassifiedConstrains
+      storeClassifiedConstrains,
     );
     if (validate.isEmpty(result)) {
       yield call(enableLoading);
@@ -131,7 +131,7 @@ export function* startStoreClassifiedScenario(action) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
-          put(NavigationActions.navigate({routeName: 'HomeKey'}))
+          put(NavigationActions.navigate({routeName: 'HomeKey'})),
         ]);
       } else {
         throw classified;
@@ -164,15 +164,15 @@ export function* startNewClassifiedScenario(action) {
   if (category.has_categoryGroups) {
     yield put(
       NavigationActions.navigate({
-        routeName: 'ChooseCategoryGroups'
-      })
+        routeName: 'ChooseCategoryGroups',
+      }),
     );
   } else {
     yield put({type: actions.HIDE_PROPERTIES_MODAL});
     yield put(
       NavigationActions.navigate({
-        routeName: 'ClassifiedStore'
-      })
+        routeName: 'ClassifiedStore',
+      }),
     );
   }
 }
@@ -184,14 +184,14 @@ export function* getSearchClassifieds() {
 export function* triggerStartClassifiedSearching() {
   yield takeLatest(
     actions.START_CLASSIFIED_SEARCHING,
-    startClassifiedSearchingScenario
+    startClassifiedSearchingScenario,
   );
 }
 
 export function* getHomeClassifieds() {
   yield takeLatest(
     actions.GET_HOME_CLASSIFIEDS,
-    startGetHomeClassifiedsScenario
+    startGetHomeClassifiedsScenario,
   );
 }
 
@@ -200,6 +200,6 @@ export function* startClassifiedSearchingScenario(action) {
   yield all([
     put({type: SET_CATEGORY, payload: element}),
     put({type: SHOW_SEARCH_MODAL}),
-    put(NavigationActions.navigate({routeName: 'ClassifiedFilter'}))
+    put(NavigationActions.navigate({routeName: 'ClassifiedFilter'})),
   ]);
 }

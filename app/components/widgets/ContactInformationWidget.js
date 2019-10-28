@@ -44,7 +44,7 @@ const ContactInformationWidget = props => {
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           onPress={() =>
             Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Escrap Support`
+              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Escrap Support`,
             )
           }
           style={styles.container}>
@@ -74,7 +74,7 @@ const ContactInformationWidget = props => {
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
             Linking.openURL(
-              `${links.googleMapUrl}${settings.latitude},${settings.longitude}`
+              `${links.googleMapUrl}${settings.latitude},${settings.longitude}`,
             )
           }
           style={styles.container}>
@@ -118,22 +118,22 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   wrapper: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   phoneNo: {
     fontFamily: text.font,
     fontSize: text.small,
     paddingLeft: 15,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   logo: {
     height: '12%',
     width: '80%',
     alignSelf: 'center',
-    marginBottom: 10
-  }
+    marginBottom: 10,
+  },
 });

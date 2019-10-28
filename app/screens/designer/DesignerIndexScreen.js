@@ -18,14 +18,14 @@ const DesignerIndexScreen = ({designers, searchParams, dispatch}) => {
 function mapStateToProps(state) {
   return {
     designers: state.designers,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
   };
 }
 
 export default connect(mapStateToProps)(DesignerIndexScreen);
 
 DesignerIndexScreen.propTypes = {
-  users: PropTypes.array
+  users: PropTypes.array,
 };
 
 const styles = StyleSheet.create({});

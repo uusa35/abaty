@@ -25,88 +25,88 @@ const homeCollections = state => state.homeCollections;
 
 export const brandsSelector = createSelector(
   brands,
-  brands => brands
+  brands => brands,
 );
 export const commercialsSelector = createSelector(
   commercials,
-  commercials => commercials
+  commercials => commercials,
 );
 export const slidesSelector = createSelector(
   slides,
-  slides => slides
+  slides => slides,
 );
 export const productsSelector = createSelector(
   products,
-  products => products
+  products => products,
 );
 export const servicesSelector = createSelector(
   services,
-  services => services
+  services => services,
 );
 export const homeProductsSelector = createSelector(
   homeProducts,
-  homeProducts => homeProducts
+  homeProducts => homeProducts,
 );
 export const productFavoritesSelector = createSelector(
   productFavorites,
-  productFavorites => productFavorites
+  productFavorites => productFavorites,
 );
 export const videosSelector = createSelector(
   videos,
-  videos => videos
+  videos => videos,
 );
 export const usersSelector = createSelector(
   users,
-  users => users
+  users => users,
 );
 export const categoriesSelector = createSelector(
   categories,
-  categories => categories
+  categories => categories,
 );
 export const companiesSelector = createSelector(
   companies,
-  companies => companies
+  companies => companies,
 );
 export const splashesSelector = createSelector(
   splashes,
-  splashes => splashes
+  splashes => splashes,
 );
 export const galleriesSelector = createSelector(
   galleries,
 
-  galleries => galleries
+  galleries => galleries,
 );
 export const cartSelector = createSelector(
   cart,
-  cart => cart
+  cart => cart,
 );
 export const designersSelector = createSelector(
   designers,
-  designers => designers
+  designers => designers,
 );
 
 export const celebritiesSelector = createSelector(
   celebrities,
-  celebrities => celebrities
+  celebrities => celebrities,
 );
 export const commentsSelector = createSelector(
   comments,
-  comments => comments
+  comments => comments,
 );
 
 export const ordersSelector = createSelector(
   orders,
-  orders => orders
+  orders => orders,
 );
 
 export const countriesSelector = createSelector(
   countries,
-  countries => countries
+  countries => countries,
 );
 
 export const searchParamsSelector = createSelector(
   searchParams,
-  searchParams => searchParams
+  searchParams => searchParams,
 );
 
 export const usersWidgetSelector = elements => {

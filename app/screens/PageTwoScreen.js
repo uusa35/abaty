@@ -30,21 +30,21 @@ const PageTwoScreen = ({products, colors, dispatch, navigation}) => {
 function mapStateToProps(state) {
   return {
     products: state.products,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 PageTwoScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
-  title: I18n.t('products')
+  title: I18n.t('products'),
 });
 
 export default connect(mapStateToProps)(PageTwoScreen);
 
 PageTwoScreen.propTypes = {
   products: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({});

@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import I18n, {isRTL} from './../../../I18n';
@@ -27,7 +27,7 @@ const ClassifiedListHorizontal = ({
   showMore = true,
   showRefresh = true,
   title,
-  searchElements
+  searchElements,
 }) => {
   [items, setItems] = useState(classifieds);
   [elements, setElements] = useState(classifieds);
@@ -49,15 +49,15 @@ const ClassifiedListHorizontal = ({
             getSearchClassifieds({
               searchParams: {on_home: 1},
               redirect: true,
-              name: I18n.t('related_classifieds')
-            })
+              name: I18n.t('related_classifieds'),
+            }),
           );
         }}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -104,7 +104,7 @@ export default ClassifiedListHorizontal;
 ClassifiedListHorizontal.propTypes = {
   classifieds: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({});

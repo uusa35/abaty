@@ -22,7 +22,7 @@ const UserEditScreen = ({auth, playerId, country}) => {
           zIndex: 99,
           position: 'absolute',
           top: 50,
-          left: 50
+          left: 50,
         }}
         hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
         onPress={() => {
@@ -49,7 +49,7 @@ function mapStateToProps(state) {
   return {
     auth: state.auth,
     country: state.country,
-    playerId: state.playerId
+    playerId: state.playerId,
   };
 }
 
@@ -58,7 +58,7 @@ export default connect(mapStateToProps)(UserEditScreen);
 UserEditScreen.propTypes = {
   country: PropTypes.object,
   playerId: PropTypes.string,
-  auth: PropTypes.object
+  auth: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

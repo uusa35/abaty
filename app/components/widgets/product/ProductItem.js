@@ -21,7 +21,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
         borderTopWidth: 1,
         borderTopColor: 'lightgrey',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
       }}>
       <FastImage
         source={{uri: element.thumb ? element.thumb : logo}}
@@ -35,7 +35,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
           paddingLeft: 5,
           paddingRight: 5,
           borderRight: 10.5,
-          borderColor: 'grey'
+          borderColor: 'grey',
         }}>
         <Text style={styles.mainTitle}>{element.name}</Text>
         {!validate.isEmpty(timeData) ? (
@@ -50,7 +50,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {timeData.date} - {timeData.start}
             </Text>
@@ -68,7 +68,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {element.user.slug}
             </Text>
@@ -86,7 +86,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {element.sku} - {element.id}
             </Text>
@@ -104,7 +104,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {element.size.name}
             </Text>
@@ -122,7 +122,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {element.color.name}
             </Text>
@@ -140,7 +140,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: 13,
                 textAlign: 'left',
                 paddingLeft: 10,
-                paddingRight: 10
+                paddingRight: 10,
               }}>
               {qty}
             </Text>
@@ -154,13 +154,13 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
             flex: 0.2,
             height: '100%',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
           <View
             style={{
               flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'flex-start'
+              alignItems: 'flex-start',
             }}>
             <Text
               style={{
@@ -168,7 +168,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 fontSize: text.medium,
                 textAlign: 'left',
                 paddingLeft: 2,
-                paddingRight: 2
+                paddingRight: 2,
               }}>
               {element.finalPrice}
             </Text>
@@ -176,7 +176,7 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
               style={{
                 fontFamily: text.font,
                 fontSize: text.small,
-                textAlign: 'left'
+                textAlign: 'left',
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -191,18 +191,18 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
-                height: 1
+                height: 1,
               },
               shadowOpacity: 0.2,
               shadowRadius: 1.41,
 
-              elevation: 2
+              elevation: 2,
             }}>
             <Text
               style={{
                 color: 'white',
                 fontFamily: text.font,
-                fontSize: text.medium
+                fontSize: text.medium,
               }}>
               {I18n.t('remove')}
             </Text>
@@ -217,7 +217,7 @@ export default ProductItem;
 
 ProductItem.propTypes = {
   element: PropTypes.object.isRequired,
-  logo: PropTypes.string
+  logo: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -228,28 +228,28 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
 
-    elevation: 5
+    elevation: 5,
   },
   mainTitle: {
     fontFamily: text.font,
     fontSize: 15,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   productItemTitle: {
     width: 90,
     fontFamily: text.font,
     fontSize: 13,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 });

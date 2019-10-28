@@ -11,7 +11,7 @@ const MainSliderWidget = ({slides}) => {
   return (
     <View
       style={{
-        height: !validate.isEmpty(slides) ? 200 : 0
+        height: !validate.isEmpty(slides) ? 200 : 0,
       }}>
       {!validate.isEmpty(slides) ? (
         <Swiper
@@ -32,5 +32,5 @@ const MainSliderWidget = ({slides}) => {
 export default React.memo(MainSliderWidget);
 
 MainSliderWidget.propTypes = {
-  slides: PropTypes.array.isRequired
+  slides: PropTypes.array.isRequired,
 };

@@ -4,7 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-  Text
+  Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getSearchProducts} from '../../../redux/actions';
@@ -26,8 +26,8 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
           marginTop: 5,
           marginBottom: 5,
           height: 285,
-          justifyContent: 'space-between'
-        }
+          justifyContent: 'space-between',
+        },
       ]}
       onPress={() => {
         dispatch({type: 'SET_COLLECTION', payload: element});
@@ -35,13 +35,13 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
           getSearchProducts({
             name: element.slug,
             searchParams: {collection_id: element.id},
-            redirect: true
-          })
+            redirect: true,
+          }),
         );
       }}>
       <ImageBackground
         source={{
-          uri: element.thumb
+          uri: element.thumb,
         }}
         loadingIndicatorSource={images.logo}
         style={styles.image}
@@ -55,8 +55,8 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
                 textAlign: 'center',
                 fontSize: text.medium,
                 paddingBottom: 20,
-                color: colors.header_tow_theme_color
-              }
+                color: colors.header_tow_theme_color,
+              },
             ]}>
             {element.slug.substring(0, 20)}
           </Text>
@@ -72,12 +72,12 @@ CollectionWidget.propTypes = {
   element: PropTypes.object.isRequired,
   colors: PropTypes.object,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 175,
-    height: 230
-  }
+    height: 230,
+  },
 });

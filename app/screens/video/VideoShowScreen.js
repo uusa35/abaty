@@ -24,13 +24,13 @@ const VideoShowScreen = ({video, dispatch}) => {
 
 function mapStateToProps(state) {
   return {
-    video: state.video
+    video: state.video,
   };
 }
 
 export default connect(mapStateToProps)(VideoShowScreen);
 
 VideoShowScreen.propTypes = {
-  video: PropTypes.object.isRequired
+  video: PropTypes.object.isRequired,
 };
 const styles = StyleSheet.create({});

@@ -4,7 +4,7 @@ import {
   TabView,
   SceneMap,
   NavigationState,
-  SceneRendererProps
+  SceneRendererProps,
 } from 'react-native-tab-view';
 import UserInfoWidget from './UserInfoWidget';
 import VideosWidget from '../VideosWidget';
@@ -16,8 +16,8 @@ const UserShowInformationTabBarWidget = ({element}) => {
   const [routes, setRoutes] = useState({
     routes: [
       {key: 'first', title: I18n.t('information')},
-      {key: 'second', title: I18n.t('videos')}
-    ]
+      {key: 'second', title: I18n.t('videos')},
+    ],
   });
 
   function _renderTabBar(props) {
@@ -31,12 +31,12 @@ const UserShowInformationTabBarWidget = ({element}) => {
               Animated.interpolate(props.position, {
                 inputRange,
                 outputRange: inputRange.map(inputIndex =>
-                  inputIndex === i ? 255 : 0
-                )
-              })
+                  inputIndex === i ? 255 : 0,
+                ),
+              }),
             ),
             0,
-            0
+            0,
           );
 
           return (
@@ -54,7 +54,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
   _renderScene =>
     SceneMap({
       first: <UserInfoWidget user={element} />,
-      second: <VideosWidget videos={element.videos} />
+      second: <VideosWidget videos={element.videos} />,
     });
 
   return (
@@ -70,7 +70,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
 export default UserShowInformationTabBarWidget;
 
 UserShowInformationTabBarWidget.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

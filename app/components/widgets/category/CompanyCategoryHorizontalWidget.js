@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import {
   getSearchProducts,
   getClassifieds,
-  getUsers
+  getUsers,
 } from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
@@ -29,15 +29,15 @@ const CompanyCategoryHorizontalWidget = ({
   colors,
   navigation,
   showName = true,
-  showImage = true
+  showImage = true,
 }) => {
   const handleClick = useCallback(c => {
     return dispatch(
       getUsers({
         name: c.name,
         searchParams: {user_category_id: c.id},
-        redirect: true
-      })
+        redirect: true,
+      }),
     );
   });
 
@@ -45,7 +45,7 @@ const CompanyCategoryHorizontalWidget = ({
     <View
       style={[
         widgetStyles.container,
-        {backgroundColor: 'transparent', alignSelf: 'center'}
+        {backgroundColor: 'transparent', alignSelf: 'center'},
       ]}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
@@ -54,7 +54,7 @@ const CompanyCategoryHorizontalWidget = ({
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -79,7 +79,7 @@ const CompanyCategoryHorizontalWidget = ({
               <FastImage
                 source={{
                   uri: c.thumb,
-                  priority: FastImage.priority.normal
+                  priority: FastImage.priority.normal,
                 }}
                 loadingIndicatorSource={images.logo}
                 style={styles.image}
@@ -90,7 +90,7 @@ const CompanyCategoryHorizontalWidget = ({
               <Text
                 style={[
                   widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color}
+                  {color: colors.header_tow_theme_color},
                 ]}>
                 {c.name}
               </Text>
@@ -107,12 +107,12 @@ export default CompanyCategoryHorizontalWidget;
 CompanyCategoryHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  showName: PropTypes.bool
+  showName: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 400,
-    height: 400
-  }
+    height: 400,
+  },
 });

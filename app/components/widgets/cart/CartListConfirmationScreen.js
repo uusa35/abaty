@@ -24,7 +24,7 @@ const CartListConfirmationScreen = ({
   discount = 0,
   editModeDefault = true,
   coupon = {},
-  navigation
+  navigation,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total} = useContext(GlobalValuesContext);
@@ -60,13 +60,13 @@ const CartListConfirmationScreen = ({
             paddingTop: 10,
             paddingBottom: 20,
             borderTopWidth: 0.5,
-            borderTopColor: 'lightgrey'
+            borderTopColor: 'lightgrey',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('total')}
           </Text>
@@ -75,7 +75,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(total, 2)}
             </Text>
@@ -83,7 +83,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -96,13 +96,13 @@ const CartListConfirmationScreen = ({
             alignText: 'center',
             marginTop: 10,
             paddingTop: 10,
-            paddingBottom: 20
+            paddingBottom: 20,
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('shipment_fees')}
           </Text>
@@ -111,7 +111,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(shipmentCountry.fixed_shipment_charge, 2)}
             </Text>
@@ -119,7 +119,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -133,13 +133,13 @@ const CartListConfirmationScreen = ({
               alignText: 'center',
               marginTop: 10,
               paddingTop: 10,
-              paddingBottom: 20
+              paddingBottom: 20,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('discount')}
             </Text>
@@ -148,7 +148,7 @@ const CartListConfirmationScreen = ({
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: 'red'
+                  color: 'red',
                 }}>
                 {round(discount, 2)}
               </Text>
@@ -156,7 +156,7 @@ const CartListConfirmationScreen = ({
                 style={{
                   fontFamily: text.font,
                   fontSize: text.medium,
-                  color: 'red'
+                  color: 'red',
                 }}>
                 {I18n.t('kwd')}
               </Text>
@@ -172,13 +172,13 @@ const CartListConfirmationScreen = ({
             paddingTop: 10,
             paddingBottom: 20,
             borderTopWidth: 0.5,
-            borderTopColor: 'lightgrey'
+            borderTopColor: 'lightgrey',
           }}>
           <Text
             style={{
               fontFamily: text.font,
               fontSize: text.medium,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}>
             {I18n.t('grossTotal')}
           </Text>
@@ -187,7 +187,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {round(grossTotal, 2)}
             </Text>
@@ -195,7 +195,7 @@ const CartListConfirmationScreen = ({
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
-                color: colors.header_one_theme_color
+                color: colors.header_one_theme_color,
               }}>
               {I18n.t('kwd')}
             </Text>
@@ -207,7 +207,7 @@ const CartListConfirmationScreen = ({
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              width: '100%'
+              width: '100%',
             }}>
             <Button
               onPress={() => navigation.navigate('Login')}
@@ -217,7 +217,7 @@ const CartListConfirmationScreen = ({
                 backgroundColor: 'white',
                 borderRadius: 10,
                 borderWidth: 0.5,
-                borderColor: 'black'
+                borderColor: 'black',
               }}
               title={I18n.t('login')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -230,7 +230,7 @@ const CartListConfirmationScreen = ({
                 backgroundColor: 'white',
                 borderRadius: 10,
                 borderWidth: 0.5,
-                borderColor: 'black'
+                borderColor: 'black',
               }}
               title={I18n.t('register')}
               titleStyle={{fontFamily: text.font, color: 'black'}}
@@ -245,7 +245,7 @@ const CartListConfirmationScreen = ({
             containerStyle={{marginBottom: 20}}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.header_one_theme_color
+              color: colors.header_one_theme_color,
             }}
           />
           <View style={{paddingTop: 20, paddingBottom: 20}}>
@@ -259,11 +259,11 @@ const CartListConfirmationScreen = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               shake={true}
               keyboardType="default"
@@ -279,11 +279,11 @@ const CartListConfirmationScreen = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               shake={true}
               keyboardType="email-address"
@@ -300,11 +300,11 @@ const CartListConfirmationScreen = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20
+                marginBottom: 20,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               shake={true}
               keyboardType="number-pad"
@@ -325,14 +325,14 @@ const CartListConfirmationScreen = ({
                 width: '95%',
                 alignSelf: 'center',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
               }}>
               <Text
                 style={{
                   fontFamily: text.font,
                   fontSize: text.large,
                   textAlign: isRTL ? 'right' : 'left',
-                  color: colors.main_theme_color
+                  color: colors.main_theme_color,
                 }}>
                 {shipmentCountry.slug}
               </Text>
@@ -348,12 +348,12 @@ const CartListConfirmationScreen = ({
                 paddingLeft: 15,
                 paddingRight: 15,
                 marginBottom: 20,
-                height: 80
+                height: 80,
               }}
               inputStyle={{
                 fontFamily: text.font,
                 fontSize: 14,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               numberOfLines={3}
               shake={true}
@@ -372,11 +372,11 @@ const CartListConfirmationScreen = ({
                 paddingLeft: 15,
                 paddingRight: 15,
                 marginBottom: 20,
-                height: 80
+                height: 80,
               }}
               inputStyle={{
                 fontFamily: text.font,
-                textAlign: isRTL ? 'right' : 'left'
+                textAlign: isRTL ? 'right' : 'left',
               }}
               shake={true}
               keyboardType="default"
@@ -392,14 +392,14 @@ const CartListConfirmationScreen = ({
                   borderColor: 'lightgrey',
                   width: '100%',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
                 }}>
                 <Text
                   style={{
                     fontFamily: text.font,
                     fontSize: text.medium,
                     textAlign: 'center',
-                    paddingBottom: 10
+                    paddingBottom: 10,
                   }}>
                   {I18n.t('have_coupon')}
                 </Text>
@@ -412,11 +412,11 @@ const CartListConfirmationScreen = ({
                     borderRadius: 10,
                     paddingLeft: 15,
                     paddingRight: 15,
-                    marginBottom: 20
+                    marginBottom: 20,
                   }}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left'
+                    textAlign: isRTL ? 'right' : 'left',
                   }}
                   shake={true}
                   keyboardType="default"
@@ -427,12 +427,12 @@ const CartListConfirmationScreen = ({
                   containerStyle={{marginBottom: 10, width: '90%%'}}
                   buttonStyle={{
                     backgroundColor: colors.btn_bg_theme_color,
-                    borderRadius: 0
+                    borderRadius: 0,
                   }}
                   title={I18n.t('add_coupon')}
                   titleStyle={{
                     fontFamily: text.font,
-                    color: colors.btn_text_theme_color
+                    color: colors.btn_text_theme_color,
                   }}
                   onPress={() => dispatch(getCoupon(code))}
                 />
@@ -445,12 +445,12 @@ const CartListConfirmationScreen = ({
               containerStyle={{marginBottom: 10, width: '100%'}}
               buttonStyle={{
                 backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0
+                borderRadius: 0,
               }}
               title={I18n.t('confirm_information')}
               titleStyle={{
                 fontFamily: text.font,
-                color: colors.btn_text_theme_color
+                color: colors.btn_text_theme_color,
               }}
               onPress={() =>
                 navigation.navigate('CartConfirmation', {
@@ -459,7 +459,7 @@ const CartListConfirmationScreen = ({
                   mobile,
                   address,
                   country_id: shipmentCountry.id,
-                  notes
+                  notes,
                 })
               }
             />
@@ -471,12 +471,12 @@ const CartListConfirmationScreen = ({
                   containerStyle={{marginBottom: 10, width: '100%'}}
                   buttonStyle={{
                     backgroundColor: colors.btn_bg_theme_color,
-                    borderRadius: 0
+                    borderRadius: 0,
                   }}
                   title={I18n.t('go_to_payment_my_fatoorah')}
                   titleStyle={{
                     fontFamily: text.font,
-                    color: colors.btn_text_theme_color
+                    color: colors.btn_text_theme_color,
                   }}
                   onPress={() =>
                     dispatch({
@@ -495,8 +495,8 @@ const CartListConfirmationScreen = ({
                         discount,
                         payment_method: isIOS
                           ? 'IOS - My Fatoorah'
-                          : 'Android - My Fatoorah'
-                      }
+                          : 'Android - My Fatoorah',
+                      },
                     })
                   }
                 />
@@ -506,12 +506,12 @@ const CartListConfirmationScreen = ({
                 containerStyle={{marginBottom: 10, width: '100%'}}
                 buttonStyle={{
                   backgroundColor: colors.btn_bg_theme_color,
-                  borderRadius: 0
+                  borderRadius: 0,
                 }}
                 title={I18n.t('go_to_payment_tap')}
                 titleStyle={{
                   fontFamily: text.font,
-                  color: colors.btn_text_theme_color
+                  color: colors.btn_text_theme_color,
                 }}
                 onPress={() =>
                   dispatch({
@@ -530,8 +530,8 @@ const CartListConfirmationScreen = ({
                       discount,
                       payment_method: isIOS
                         ? 'Iphone - Tap Payment'
-                        : 'Android - Tap Payment'
-                    }
+                        : 'Android - Tap Payment',
+                    },
                   })
                 }
               />
@@ -544,12 +544,12 @@ const CartListConfirmationScreen = ({
         containerStyle={{marginBottom: 10, width: '100%'}}
         buttonStyle={{
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0
+          borderRadius: 0,
         }}
         title={I18n.t('clear_cart')}
         titleStyle={{
           fontFamily: text.font,
-          color: colors.btn_text_theme_color
+          color: colors.btn_text_theme_color,
         }}
         onPress={() => dispatch(clearCart())}
       />
@@ -567,7 +567,7 @@ CartListConfirmationScreen.propTypes = {
   shipment_notes: PropTypes.string.isRequired,
   shipmentCountry: PropTypes.object.isRequired,
   editModeDefault: PropTypes.bool.isRequired,
-  shipmentFees: PropTypes.number.isRequired
+  shipmentFees: PropTypes.number.isRequired,
 };
 
 const styles = StyleSheet.create({});

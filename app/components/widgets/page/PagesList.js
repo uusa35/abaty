@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   View,
-  Linking
+  Linking,
 } from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -20,7 +20,7 @@ const PagesList = ({
   showTitle = true,
   showArrow = true,
   colors,
-  title
+  title,
 }) => {
   return (
     <ScrollView
@@ -45,11 +45,11 @@ const PagesList = ({
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
-                  height: 1
+                  height: 1,
                 },
                 shadowOpacity: 0.18,
                 shadowRadius: 1.0,
-                elevation: 1
+                elevation: 1,
               }}>
               {title}
             </Text>
@@ -65,7 +65,7 @@ const PagesList = ({
                   <View
                     style={{
                       flexDirection: 'row',
-                      alignItems: 'baseline'
+                      alignItems: 'baseline',
                     }}>
                     <Icon
                       type="entypo"
@@ -74,7 +74,7 @@ const PagesList = ({
                       size={20}
                       iconStyle={{
                         paddingRight: 10,
-                        paddingLeft: 10
+                        paddingLeft: 10,
                       }}
                     />
                     <Text style={styles.subTitle}>{c.title}</Text>
@@ -87,7 +87,7 @@ const PagesList = ({
                       size={15}
                       iconStyle={{
                         paddingRight: isIOS ? 10 : 0,
-                        paddingLeft: isIOS ? 0 : 10
+                        paddingLeft: isIOS ? 0 : 10,
                       }}
                     />
                   ) : null}
@@ -106,44 +106,44 @@ export default PagesList;
 PagesList.propTypes = {
   elements: PropTypes.array.isRequired,
   colors: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
     fontSize: text.large,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   subTitle: {
     color: 'black',
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left'
+    textAlign: isIOS ? 'left' : isRTL ? 'right' : 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     // flex: 1,
     paddingRight: 20,
     paddingLeft: 20,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -152,17 +152,17 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   backgroundVideo: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
-    right: 0
-  }
+    right: 0,
+  },
 });

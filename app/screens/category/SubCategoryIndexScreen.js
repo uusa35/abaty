@@ -16,7 +16,7 @@ const SubCategoryIndexScreen = ({category, navigation, commercials}) => {
 
 function mapStateToProps(state) {
   return {
-    commercials: state.commercials
+    commercials: state.commercials,
   };
 }
 

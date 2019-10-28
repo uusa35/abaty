@@ -1,6 +1,6 @@
 import {
   SET_CLASSIFIED_FAVORITES,
-  GET_CLASSIFIED_FAVORITES
+  GET_CLASSIFIED_FAVORITES,
 } from '../actions/types';
 
 export default function(classifiedFavorites = [], action) {

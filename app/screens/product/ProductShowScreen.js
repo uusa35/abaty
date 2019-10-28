@@ -26,7 +26,7 @@ const ProductShowScreen = ({
   homeProducts,
   token,
   colors,
-  navigation
+  navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
@@ -97,8 +97,8 @@ const ProductShowScreen = ({
                   getDesigner({
                     id: product.user_id,
                     searchParams: {user_id: product.user_id},
-                    redirect: true
-                  })
+                    redirect: true,
+                  }),
                 )
               }
             />
@@ -112,10 +112,10 @@ const ProductShowScreen = ({
                     element: first(product.categories),
                     category: first(product.categories),
                     searchParams: {
-                      product_category_id: first(product.categories).id
+                      product_category_id: first(product.categories).id,
                     },
-                    redirect: true
-                  })
+                    redirect: true,
+                  }),
                 )
               }
             />
@@ -147,7 +147,7 @@ const ProductShowScreen = ({
                   navigation.navigate('ImageZoom', {
                     images: [{id: product.id, large: shipment_prices}],
                     name: product.name,
-                    index: 0
+                    index: 0,
                   })
                 }
               />
@@ -160,7 +160,7 @@ const ProductShowScreen = ({
                   navigation.navigate('ImageZoom', {
                     images: [{id: product.id, large: size_chart}],
                     name: product.name,
-                    index: 0
+                    index: 0,
                   })
                 }
               />
@@ -197,15 +197,15 @@ function mapStateToProps(state) {
     homeProducts: state.homeProducts,
     token: state.token,
     cart: state.cart,
-    colors: state.settings.colors
+    colors: state.settings.colors,
   };
 }
 
 ProductShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+    backgroundColor: navigation.state.params.headerBgColor,
+  },
 });
 
 export default connect(mapStateToProps)(ProductShowScreen);
@@ -213,25 +213,25 @@ export default connect(mapStateToProps)(ProductShowScreen);
 ProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,
   homeProducts: PropTypes.array.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   container: {},
   contentContainer: {
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: text.font,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   normalText: {
     textAlign: 'left',
     fontSize: 17,
     fontFamily: text.font,
-    padding: 10
-  }
+    padding: 10,
+  },
 });

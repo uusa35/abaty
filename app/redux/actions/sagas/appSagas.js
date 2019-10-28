@@ -28,7 +28,7 @@ import {
   getTags,
   startGetHomeCategoriesScenario,
   startGetCategoriesScenario,
-  startGetParentCategoriesScenario
+  startGetParentCategoriesScenario,
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -39,12 +39,12 @@ import DeviceInfo from 'react-native-device-info';
 import {
   getHomeServicesScenario,
   getServiceIndex,
-  startToggleClassifiedFavoriteScenario
+  startToggleClassifiedFavoriteScenario,
 } from './serviceSagas';
 import {
   setHomeBrands,
   startAuthenticatedScenario,
-  startStorePlayerIdScenario
+  startStorePlayerIdScenario,
 } from './userSagas';
 import {
   getBestSaleProducts,
@@ -53,7 +53,7 @@ import {
   getLatestProducts,
   getOnSaleProducts,
   getProductIndex,
-  setHomeProducts
+  setHomeProducts,
 } from './productSagas';
 
 function* startAppBootStrap() {
@@ -64,7 +64,7 @@ function* startAppBootStrap() {
       if (version !== DeviceInfo.getVersion()) {
         yield put({
           type: actions.SET_VERSION,
-          payload: DeviceInfo.getVersion()
+          payload: DeviceInfo.getVersion(),
         });
         yield call(startResetStoreScenario);
       }
@@ -75,7 +75,7 @@ function* startAppBootStrap() {
       yield all([
         put({
           type: offlineActionTypes.CONNECTION_CHANGE,
-          payload: network.isConnected
+          payload: network.isConnected,
         }),
         call(getCountry),
         call(setSettings),
@@ -102,20 +102,20 @@ function* startAppBootStrap() {
         put({type: actions.GET_HOME_CATEGORIES}),
         put({
           type: actions.GET_HOME_COMPANIES,
-          payload: {searchParams: {on_home: 1, is_company: 1}}
+          payload: {searchParams: {on_home: 1, is_company: 1}},
         }),
         put({
           type: actions.GET_HOME_DESIGNERS,
-          payload: {searchParams: {on_home: 1, is_designer: 1}}
+          payload: {searchParams: {on_home: 1, is_designer: 1}},
         }),
         put({
           type: actions.GET_HOME_CELEBRITIES,
-          payload: {searchParams: {on_home: 1, is_celebrity: 1}}
+          payload: {searchParams: {on_home: 1, is_celebrity: 1}},
         }),
         put({
           type: actions.GET_HOME_CLASSIFIEDS,
-          payload: {searchParams: {on_home: 1}}
-        })
+          payload: {searchParams: {on_home: 1}},
+        }),
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);
@@ -125,7 +125,7 @@ function* startAppBootStrap() {
     debugger;
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('app_general_error'))
+      call(enableErrorMessage, I18n.t('app_general_error')),
     ]);
   }
 }
@@ -141,12 +141,12 @@ export function* goBackBtnScenario(action) {
     Alert.alert(I18n.t('do_you_want_to_exit_the_app'), '', [
       {
         text: I18n.t('confirm'),
-        onPress: () => BackHandler.exitApp()
+        onPress: () => BackHandler.exitApp(),
       },
       {
         text: I18n.t('cancel'),
-        onPress: () => false
-      }
+        onPress: () => false,
+      },
     ]);
   }
 }
@@ -162,7 +162,7 @@ export function* refetchHomeCategories() {
 export function* toggleClassifiedFavorite() {
   yield takeLatest(
     actions.TOGGLE_CLASSIFIED_FAVORITE,
-    startToggleClassifiedFavoriteScenario
+    startToggleClassifiedFavoriteScenario,
   );
 }
 
@@ -181,7 +181,7 @@ export function* setPlayerId() {
 export function* refetchHomeElements() {
   yield takeLatest(
     actions.REFETCH_HOME_ELEMENTS,
-    startRefetchHomeElementsScenario
+    startRefetchHomeElementsScenario,
   );
 }
 
@@ -208,14 +208,14 @@ export function* getCoupon() {
 export function* createMyFatoorahPaymentUrl() {
   yield takeLatest(
     actions.CREATE_MYFATOORAH_PAYMENT_URL,
-    startCreateMyFatorrahPaymentUrlScenario
+    startCreateMyFatorrahPaymentUrlScenario,
   );
 }
 
 export function* createTapPaymentUrl() {
   yield takeLatest(
     actions.CREATE_TAP_PAYMENT_URL,
-    startCreateTapPaymentUrlScenario
+    startCreateTapPaymentUrlScenario,
   );
 }
 

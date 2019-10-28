@@ -11,7 +11,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       }}>
       <Button
         onPress={() =>
@@ -27,7 +27,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
           borderWidth: 0.5,
           borderColor: 'black',
           justifyContent: 'space-around',
-          height: 40
+          height: 40,
         }}
       />
       <View
@@ -37,7 +37,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
           borderRadius: 10,
           height: 40,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}>
         <Text style={{fontSize: 17}}>{requestQty}</Text>
       </View>
@@ -51,7 +51,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
           borderWidth: 0.5,
           borderColor: 'black',
           justifyContent: 'space-around',
-          height: 40
+          height: 40,
         }}
       />
     </View>
@@ -63,7 +63,7 @@ export default ProductWidgetQtyBtns;
 ProductWidgetQtyBtns.propTypes = {
   qty: PropTypes.number.isRequired,
   requestQty: PropTypes.number.isRequired,
-  setRequestQty: PropTypes.func.isRequired
+  setRequestQty: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({});

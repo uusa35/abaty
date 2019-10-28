@@ -18,7 +18,7 @@ const CartConfirmationScreen = ({
   coupon,
   colors,
   grossTotal,
-  country
+  country,
 }) => {
   return (
     <View
@@ -26,14 +26,14 @@ const CartConfirmationScreen = ({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '5%'
+        marginTop: '5%',
       }}>
       <ScrollView
         style={{width: '95%'}}
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 10
+          padding: 10,
         }}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
@@ -58,7 +58,7 @@ const CartConfirmationScreen = ({
             style={{
               marginTop: 300,
               width: width - 50,
-              alignSelf: 'center'
+              alignSelf: 'center',
             }}>
             <Button
               raised
@@ -75,7 +75,7 @@ const CartConfirmationScreen = ({
               containerStyle={{marginBottom: 20}}
               titleStyle={{
                 fontFamily: text.font,
-                color: colors.main_text_theme_color
+                color: colors.main_text_theme_color,
               }}
             />
           </View>
@@ -96,7 +96,7 @@ function mapStateToProps(state) {
     guest: state.guest,
     coupon: state.coupon,
     grossTotal: state.grossTotal,
-    shipmentFees: state.shipmentFees
+    shipmentFees: state.shipmentFees,
   };
 }
 
@@ -111,7 +111,7 @@ CartConfirmationScreen.propTypes = {
   auth: PropTypes.object,
   guest: PropTypes.bool,
   coupon: PropTypes.object,
-  shipmentFees: PropTypes.number
+  shipmentFees: PropTypes.number,
 };
 
 const styles = StyleSheet.create({});

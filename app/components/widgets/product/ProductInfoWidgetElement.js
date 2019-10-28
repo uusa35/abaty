@@ -12,7 +12,7 @@ const ProductInfoWidgetElement = ({
   elementName,
   name,
   iconName = null,
-  showIcon = true
+  showIcon = true,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
@@ -22,7 +22,7 @@ const ProductInfoWidgetElement = ({
         justifyContent: 'space-between',
         alignItems: 'baseline',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
       }}
       onPress={link}>
       <Text
@@ -30,7 +30,7 @@ const ProductInfoWidgetElement = ({
           textAlign: 'left',
           fontSize: 20,
           fontFamily: text.font,
-          color: colors.header_one_theme_color
+          color: colors.header_one_theme_color,
         }}>
         {I18n.t(elementName)}
       </Text>
@@ -41,7 +41,7 @@ const ProductInfoWidgetElement = ({
             fontSize: 15,
             fontFamily: text.font,
             paddingLeft: 10,
-            paddingRight: 10
+            paddingRight: 10,
           }}>
           {name}
         </Text>
@@ -73,13 +73,13 @@ ProductInfoWidgetElement.propTypes = {
   elementName: PropTypes.string.isRequired,
   // name : PropTypes.string,
   link: PropTypes.func,
-  showArrow: PropTypes.bool
+  showArrow: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
     fontSize: text.large,
-    textAlign: 'left'
-  }
+    textAlign: 'left',
+  },
 });

@@ -10,7 +10,7 @@ const ProductInfoWidget = ({element}) => {
       contentContainerStyle={{
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        marginTop: 10
+        marginTop: 10,
       }}>
       <ProductInfoWidgetMainTitle element={element} />
       <ProductInfoWidgetBtns element={element} />
@@ -21,7 +21,7 @@ const ProductInfoWidget = ({element}) => {
 export default ProductInfoWidget;
 
 ProductInfoWidget.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.object.isRequired,
 };
 
 const styles = StyleSheet.create({});

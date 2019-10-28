@@ -28,7 +28,7 @@ export default class NotAvailableElement extends Component {
             height: 45,
             borderColor: 'transparent',
             borderWidth: 0,
-            borderRadius: 5
+            borderRadius: 5,
           }}
           titleStyle={{fontFamily: 'cairo', fontWeight: '700'}}
           icon={

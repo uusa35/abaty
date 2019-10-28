@@ -31,7 +31,7 @@ const CommentsList = ({elements, model, id}) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%'
+        height: '100%',
       }}>
       <View>
         {!guest ? <AddCommentFormWidget model={model} id={id} /> : null}
@@ -81,7 +81,7 @@ const CommentsList = ({elements, model, id}) => {
           contentContainerStyle={{
             width,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
           renderItem={({item}) => <CommentWidget element={item} />}
         />
@@ -94,18 +94,18 @@ export default CommentsList;
 
 CommentsList.propTypes = {
   elements: PropTypes.array.isRequired,
-  columns: PropTypes.number
+  columns: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   wrapper: {
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%'
-  }
+    width: '100%',
+  },
 });

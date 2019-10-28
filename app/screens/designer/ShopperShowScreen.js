@@ -2,7 +2,7 @@ import React, {useState, useCallback, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
-  TriggeringView
+  TriggeringView,
 } from 'react-native-image-header-scroll-view';
 import {text, width} from '../../constants';
 import validate from 'validate.js';
@@ -31,13 +31,13 @@ const ShopperShowScreen = ({
   searchParams,
   navigation,
   showSlider = false,
-  showTabs = false
+  showTabs = false,
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
     {key: 'info', title: I18n.t('information').substring(0, 10)},
-    {key: 'videos', title: I18n.t('videos')}
+    {key: 'videos', title: I18n.t('videos')},
   ]);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
@@ -49,13 +49,13 @@ const ShopperShowScreen = ({
   useMemo(() => {
     if (!validate.isEmpty(element.products)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productCategories)
+        collectedCategories.concat(element.productCategories),
       );
       setProducts(products.concat(element.products));
     }
     if (!validate.isEmpty(element.productGroup)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productGroupCategories)
+        collectedCategories.concat(element.productGroupCategories),
       );
       setProducts(products.concat(element.productGroup));
     }
@@ -69,8 +69,8 @@ const ShopperShowScreen = ({
     return dispatch(
       getCompany({
         id: element.id,
-        searchParams: {user_id: element.id}
-      })
+        searchParams: {user_id: element.id},
+      }),
     );
   }, [refresh]);
 
@@ -85,7 +85,7 @@ const ShopperShowScreen = ({
       containerStyle={{flex: 1}}
       overlayColor="white"
       headerImage={{
-        uri: element.banner ? element.banner : logo
+        uri: element.banner ? element.banner : logo,
       }}
       refreshControl={
         <RefreshControl
@@ -139,20 +139,20 @@ const ShopperShowScreen = ({
                 // indicatorContainerStyle={{backgroundColor: 'white'}}
                 // contentContainerStyle={{backgroundColor: 'white'}}
                 indicatorStyle={{
-                  backgroundColor: colors.btn_bg_theme_color
+                  backgroundColor: colors.btn_bg_theme_color,
                 }}
                 activeColor={colors.header_one_theme_color}
                 inactiveColor={colors.header_tow_theme_color}
                 style={{backgroundColor: 'white'}}
                 labelStyle={{
                   fontFamily: text.font,
-                  fontSize: text.small
+                  fontSize: text.small,
                 }}
               />
             )}
             navigationState={{
               index,
-              routes
+              routes,
             }}
             renderScene={SceneMap({
               info: () => (
@@ -184,7 +184,7 @@ const ShopperShowScreen = ({
                   videos={element.videoGroup}
                   colors={colors}
                 />
-              )
+              ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
             onIndexChange={i => setIndex(i)}
@@ -210,15 +210,15 @@ function mapStateToProps(state) {
     searchParams: state.searchParams,
     colors: state.settings.colors,
     logo: state.settings.logo,
-    guest: state.guest
+    guest: state.guest,
   };
 }
 
 ShopperShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+    backgroundColor: navigation.state.params.headerBgColor,
+  },
 });
 
 export default connect(mapStateToProps)(ShopperShowScreen);
@@ -226,39 +226,39 @@ export default connect(mapStateToProps)(ShopperShowScreen);
 ShopperShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
-  commentModal: PropTypes.bool.isRequired
+  commentModal: PropTypes.bool.isRequired,
 };
 
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
-    fontSize: text.large
+    fontSize: text.large,
   },
   subTitle: {
     fontFamily: text.font,
-    fontSize: text.medium
+    fontSize: text.medium,
   },
   description: {
     fontFamily: text.font,
     fontSize: text.medium,
-    textAlign: 'left'
+    textAlign: 'left',
   },
   elementRow: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   wrapper: {
     flex: 1,
     borderTopWidth: 1,
-    borderColor: 'lightgrey'
+    borderColor: 'lightgrey',
   },
   logo: {
     width: 80,
     height: 80,
     marginRight: 5,
-    marginLeft: 5
+    marginLeft: 5,
   },
   itemRow: {
     borderTopWidth: 0.5,
@@ -267,13 +267,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   infoRow: {
     flexDirection: 'row',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
   },
   scene: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

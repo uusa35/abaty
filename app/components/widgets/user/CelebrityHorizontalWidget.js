@@ -10,7 +10,7 @@ import {
   getSearchCelebrities,
   getSearchCompanies,
   getSearchDesigners,
-  getUsers
+  getUsers,
 } from '../../../redux/actions';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
@@ -24,7 +24,7 @@ const CelebrityHorizontalWidget = ({
   name,
   dispatch,
   colors,
-  searchElements
+  searchElements,
 }) => {
   const [params, setParams] = useState(searchElements);
   return (
@@ -36,15 +36,15 @@ const CelebrityHorizontalWidget = ({
             getSearchCelebrities({
               searchParams: {is_celebrity: 1},
               name,
-              redirect: true
-            })
+              redirect: true,
+            }),
           )
         }>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
               widgetStyles.title,
-              {color: colors.header_one_theme_color}
+              {color: colors.header_one_theme_color},
             ]}>
             {I18n.t(title)}
           </Text>
@@ -70,14 +70,14 @@ const CelebrityHorizontalWidget = ({
                   getCelebrity({
                     id: c.id,
                     searchParams: {user_id: c.id},
-                    redirect: true
-                  })
+                    redirect: true,
+                  }),
                 )
               }>
               <FastImage
                 source={{
                   uri: c.thumb,
-                  priority: FastImage.priority.normal
+                  priority: FastImage.priority.normal,
                 }}
                 loadingIndicatorSource={images.logo}
                 style={styles.image}
@@ -87,7 +87,7 @@ const CelebrityHorizontalWidget = ({
                 <Text
                   style={[
                     widgetStyles.elementName,
-                    {color: colors.header_tow_theme_color}
+                    {color: colors.header_tow_theme_color},
                   ]}>
                   {c.slug}
                 </Text>
@@ -107,13 +107,13 @@ CelebrityHorizontalWidget.propTypes = {
   searchElements: PropTypes.object.isRequired,
   colors: PropTypes.object,
   showName: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: 200 / 2
-  }
+    borderRadius: 200 / 2,
+  },
 });

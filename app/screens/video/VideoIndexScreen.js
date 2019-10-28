@@ -16,14 +16,14 @@ const VideoIndexScreen = ({videos}) => {
 
 function mapStateToProps(state) {
   return {
-    videos: videosSelector(state)
+    videos: videosSelector(state),
   };
 }
 
 export default connect(mapStateToProps)(VideoIndexScreen);
 
 VideoIndexScreen.propTypes = {
-  videos: PropTypes.array.isRequired
+  videos: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

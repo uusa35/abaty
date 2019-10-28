@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {
   Collapse,
   CollapseBody,
-  CollapseHeader
+  CollapseHeader,
 } from 'accordion-collapse-react-native';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {map} from 'lodash';
@@ -37,7 +37,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                           <View
                             style={[
                               styles.categoryItemWrapper,
-                              {height: 50, paddingLeft: 80}
+                              {height: 50, paddingLeft: 80},
                             ]}>
                             <FastImage
                               style={{width: 50, height: 50}}
@@ -58,12 +58,12 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                                   <TouchableOpacity
                                     style={[
                                       styles.categoryItemWrapper,
-                                      {height: 50, paddingLeft: 130}
+                                      {height: 50, paddingLeft: 130},
                                     ]}
                                     onPress={() =>
                                       dispatch({
                                         type: 'START_NEW_CLASSIFIED',
-                                        payload: sub
+                                        payload: sub,
                                       })
                                     }
                                     key={sub.id}>
@@ -83,12 +83,12 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                             <TouchableOpacity
                               style={[
                                 styles.categoryItemWrapper,
-                                {height: 50, paddingLeft: 80}
+                                {height: 50, paddingLeft: 80},
                               ]}
                               onPress={() =>
                                 dispatch({
                                   type: 'START_NEW_CLASSIFIED',
-                                  payload: child
+                                  payload: child,
                                 })
                               }>
                               <FastImage
@@ -107,12 +107,12 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                       <TouchableOpacity
                         style={[
                           styles.categoryItemWrapper,
-                          {height: 50, paddingLeft: 80}
+                          {height: 50, paddingLeft: 80},
                         ]}
                         onPress={() =>
                           dispatch({
                             type: 'START_NEW_CLASSIFIED',
-                            payload: child
+                            payload: child,
                           })
                         }>
                         <FastImage
@@ -151,7 +151,7 @@ export default ChooseCategoryItem;
 
 ChooseCategoryItem.propTypes = {
   category: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -163,13 +163,13 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   categoryTitle: {
     paddingRight: 20,
     paddingLeft: 20,
     fontFamily: text.font,
     textAlign: 'left',
-    fontSize: text.large
-  }
+    fontSize: text.large,
+  },
 });

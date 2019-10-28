@@ -18,13 +18,13 @@ export const AbatiSearchStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('search')} />,
-        headerBackTitle: null
-      })
-    }
+        headerBackTitle: null,
+      }),
+    },
   },
   {
     mode: 'modal',
     headerMode: 'screen',
-    swipeEnabled: true
-  }
+    swipeEnabled: true,
+  },
 );

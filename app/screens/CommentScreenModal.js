@@ -38,7 +38,7 @@ export default CommentScreenModal;
 
 CommentScreenModal.propTypes = {
   elements: PropTypes.array.isRequired,
-  commentModal: PropTypes.bool.isRequired
+  commentModal: PropTypes.bool.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -50,6 +50,6 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
-    zIndex: 999
-  }
+    zIndex: 999,
+  },
 });

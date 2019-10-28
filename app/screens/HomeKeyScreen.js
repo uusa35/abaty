@@ -4,7 +4,7 @@ import React, {
   useMemo,
   useEffect,
   useCallback,
-  Fragment
+  Fragment,
 } from 'react';
 import {
   BackHandler,
@@ -15,14 +15,14 @@ import {
   AppState,
   StyleSheet,
   TouchableOpacity,
-  Text
+  Text,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
-  setPlayerId
+  setPlayerId,
 } from '../redux/actions';
 import {isIOS, width} from '../constants';
 import PropTypes from 'prop-types';
@@ -32,7 +32,7 @@ import {
   ABATI,
   MALLR,
   HOMEKEY,
-  ESCRAP
+  ESCRAP,
 } from './../../app.json';
 import {getPathForDeepLinking} from '../helpers';
 import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
@@ -62,7 +62,7 @@ import SimpleSpinner from '../components/SimpleSpinner';
 import {
   ClassifiedCategoryHorizontalRoundedWidget,
   ClassifiedListHorizontal,
-  HomeKeySearchTab
+  HomeKeySearchTab,
 } from '../components/LazyLoadingComponents/classifiedComponents';
 
 const HomeKeyHomeScreen = ({
@@ -78,7 +78,7 @@ const HomeKeyHomeScreen = ({
   navigation,
   homeClassifieds,
   main_bg,
-  guest
+  guest,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -115,7 +115,7 @@ const HomeKeyHomeScreen = ({
       }
       setAppState(nextAppState);
     },
-    [appState]
+    [appState],
   );
 
   const handleBackPress = useCallback(() => {
@@ -142,7 +142,7 @@ const HomeKeyHomeScreen = ({
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const {path, params} = getPathForDeepLinking(
-      openResult.notification.payload.additionalData.url
+      openResult.notification.payload.additionalData.url,
     );
     dispatch(goDeepLinking(path, params));
   });
@@ -154,14 +154,14 @@ const HomeKeyHomeScreen = ({
         dispatch(setPlayerId(device.userId));
       }
     },
-    [deviceId]
+    [deviceId],
   );
 
   return (
     <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
       <ScrollView
         contentContainerStyle={{
-          backgroundColor: colors.main_theme_bg_color
+          backgroundColor: colors.main_theme_bg_color,
         }}
         contentInset={{bottom: 50}}
         refreshControl={
@@ -213,13 +213,13 @@ const HomeKeyHomeScreen = ({
             }
             style={[
               widgetStyles.newClassifiedBtnWrapper,
-              {backgroundColor: colors.btn_bg_theme_color}
+              {backgroundColor: colors.btn_bg_theme_color},
             ]}>
             <View style={[widgetStyles.newClassifiedWrapper]}>
               <Text
                 style={[
                   widgetStyles.newClassifiedTitle,
-                  {color: colors.btn_text_theme_color}
+                  {color: colors.btn_text_theme_color},
                 ]}>
                 {I18n.t('new_classified')}
               </Text>
@@ -259,7 +259,7 @@ function mapStateToProps(state) {
     lang: state.lang,
     showIntroduction: state.showIntroduction,
     homeCompanies: state.homeCompanies,
-    guest: state.guest
+    guest: state.guest,
   };
 }
 
@@ -275,7 +275,7 @@ HomeKeyHomeScreen.propTypes = {
   slides: PropTypes.array,
   splashes: PropTypes.array,
   show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool
+  splash_on: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -284,13 +284,13 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });
 
 HomeKeyHomeScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor
-  }
+    backgroundColor: navigation.state.params.headerBgColor,
+  },
 });

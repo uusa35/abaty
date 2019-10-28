@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
 import {
   playerIdSelector,
-  tokenSelector
+  tokenSelector,
 } from '../../redux/selectors/collection';
 import {useNavigation} from 'react-navigation-hooks';
 
@@ -41,14 +41,14 @@ const RegisterScreen = ({playerId}) => {
 function mapStateToProps(state) {
   return {
     token: tokenSelector(state),
-    playerId: playerIdSelector(state)
+    playerId: playerIdSelector(state),
   };
 }
 
 export default connect(mapStateToProps)(React.memo(RegisterScreen));
 
 RegisterScreen.propTypes = {
-  playerId: PropTypes.string
+  playerId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 20,
     justifyContent: 'center',
-    alignItems: 'flex-start'
-  }
+    alignItems: 'flex-start',
+  },
 });

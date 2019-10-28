@@ -3,7 +3,7 @@ import React, {
   useState,
   useMemo,
   useCallback,
-  useContext
+  useContext,
 } from 'react';
 import {
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   Text,
   Linking,
   RefreshControl,
-  View
+  View,
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -20,7 +20,7 @@ import I18n from './../../I18n';
 import {
   getClassified,
   getClassifieds,
-  getSearchClassifieds
+  getSearchClassifieds,
 } from '../../redux/actions';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
@@ -45,7 +45,7 @@ const NormalClassifiedShowScreen = ({
   dispatch,
   token,
   colors,
-  navigation
+  navigation,
 }) => {
   const {exchange_rate} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
@@ -56,8 +56,8 @@ const NormalClassifiedShowScreen = ({
     return dispatch(
       getClassified({
         id: element.id,
-        api_token: token ? token : null
-      })
+        api_token: token ? token : null,
+      }),
     );
   }, [refresh]);
 
@@ -151,8 +151,8 @@ const NormalClassifiedShowScreen = ({
                   getSearchClassifieds({
                     name: element.name,
                     searchParams: {classified_category_id: element.category.id},
-                    redirect: true
-                  })
+                    redirect: true,
+                  }),
                 )
               }
             />
@@ -163,7 +163,7 @@ const NormalClassifiedShowScreen = ({
                 name={element.mobile}
                 link={() =>
                   Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`
+                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`,
                   )
                 }
               />
@@ -187,7 +187,7 @@ const NormalClassifiedShowScreen = ({
                 description={element.description}
                 price={round(
                   getProductConvertedFinalPrice(element.price, exchange_rate),
-                  2
+                  2,
                 )}
               />
             ) : null}
@@ -227,7 +227,7 @@ function mapStateToProps(state) {
     token: state.token,
     cart: state.cart,
     colors: state.settings.colors,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
   };
 }
 
@@ -243,25 +243,25 @@ export default connect(mapStateToProps)(NormalClassifiedShowScreen);
 NormalClassifiedShowScreen.propTypes = {
   element: PropTypes.object.isRequired,
   classifieds: PropTypes.array.isRequired,
-  token: PropTypes.string
+  token: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   container: {},
   contentContainer: {
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     textAlign: 'left',
     fontSize: 20,
     fontFamily: text.font,
-    paddingBottom: 0
+    paddingBottom: 0,
   },
   normalText: {
     textAlign: 'left',
     fontSize: 17,
     fontFamily: text.font,
-    padding: 10
-  }
+    padding: 10,
+  },
 });

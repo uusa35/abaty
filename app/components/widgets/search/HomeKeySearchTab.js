@@ -17,7 +17,7 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
       return {
         key: i,
         title: e.name.substring(0, 15),
-        category: e
+        category: e,
       };
     }
   });
@@ -32,7 +32,7 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
           backgroundColor: 'white',
           opacity: 0.8,
           width: '90%',
-          alignSelf: 'center'
+          alignSelf: 'center',
         }}>
         <Text style={{fontFamily: text.font, textAlign: 'left'}}>
           {I18n.t('search')} {element.category.name.substring(0, 100)}
@@ -66,7 +66,7 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
             indicatorContainerStyle={{backgroundColor: 'transparent'}}
             contentContainerStyle={{backgroundColor: 'transparent'}}
             indicatorStyle={{
-              backgroundColor: colors.btn_bg_theme_color
+              backgroundColor: colors.btn_bg_theme_color,
             }}
             activeColor={colors.header_one_theme_color}
             inactiveColor={colors.header_tow_theme_color}
@@ -75,18 +75,18 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
               opacity: 0.8,
               width: '90%',
               alignSelf: 'center',
-              marginTop: '25%'
+              marginTop: '25%',
             }}
             labelStyle={{
               fontFamily: text.font,
               fontSize: text.small,
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
             }}
           />
         )}
         navigationState={{
           index,
-          routes
+          routes,
         }}
         renderScene={renderScene}
         style={{backgroundColor: 'transparent'}}

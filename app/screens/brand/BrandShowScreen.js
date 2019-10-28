@@ -18,7 +18,7 @@ const BrandShowScreen = ({brand, searchParams, dispatch}) => {
 function mapStateToProps(state) {
   return {
     brand: state.brand,
-    searchParams: state.searchParams
+    searchParams: state.searchParams,
   };
 }
 
@@ -26,6 +26,6 @@ export default connect(mapStateToProps)(BrandShowScreen);
 
 BrandShowScreen.propTypes = {
   brand: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired
+  searchParams: PropTypes.object.isRequired,
 };
 const styles = StyleSheet.create({});

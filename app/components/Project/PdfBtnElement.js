@@ -32,7 +32,7 @@ export default class PdfBtnElement extends Component {
             handleNav(routeName, {
               pdfLink: element.path,
               title: element.name,
-              element
+              element,
             })
           }>
           <View>
@@ -54,7 +54,7 @@ export default class PdfBtnElement extends Component {
 PdfBtnElement.propTypes = {
   element: PropTypes.object.isRequired,
   iconName: PropTypes.string.isRequired,
-  routeName: PropTypes.string.isRequired
+  routeName: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -70,25 +70,25 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOffset: {width: 1, height: 1},
     shadowRadius: 2,
-    shadowOpacity: 0.2
+    shadowOpacity: 0.2,
   },
   elementIcon: {
     width: 50,
     height: 60,
     margin: 5,
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   elementWrapper: {
     width: '100%',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   elementTextWrapper: {
     width: 100,
     height: 30,
     backgroundColor: '#333333',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   elementText: {
     paddingRight: 5,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontFamily: 'cairo',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   iconWrapper: {
     width: '120%',
@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 30
-  }
+    height: 30,
+  },
 });

@@ -8,7 +8,7 @@ const LoadingViewModal = () => {
         marginTop: 200,
         borderWidth: 10,
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       }}>
       <Modal visible={true} transparent={true}>
         <View style={{marginTop: 200}}>

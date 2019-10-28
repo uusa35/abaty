@@ -18,7 +18,7 @@ import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 export const HeaderRight = ({
   showCountry = false,
   displayShare = false,
-  showFilter = false
+  showFilter = false,
 }) => {
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
@@ -30,7 +30,7 @@ export const HeaderRight = ({
       url: link,
       type: 'url',
       message: I18n.t('share_file', {name: I18n.t('appName')}),
-      subject: I18n.t('share_file', {name: I18n.t('appName')})
+      subject: I18n.t('share_file', {name: I18n.t('appName')}),
     })
       .then(res => {
         __DEV__ ? console.log(res) : null;
@@ -56,7 +56,7 @@ export const HeaderRight = ({
         <Icon
           onPress={() =>
             shareLink(
-              `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`
+              `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`,
             )
           }
           name="share"
@@ -91,6 +91,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 80
-  }
+    width: 80,
+  },
 });

@@ -22,7 +22,7 @@ const ClassifiedSearchForm = () => {
           onPress={() => {
             dispatch({type: HIDE_SEARCH_MODAL});
             dispatch(
-              getSearchClassifieds({searchParams: {search}, redirect: true})
+              getSearchClassifieds({searchParams: {search}, redirect: true}),
             );
           }}
         />
@@ -33,7 +33,7 @@ const ClassifiedSearchForm = () => {
         borderRadius: 30,
         paddingRight: 15,
         paddingLeft: 15,
-        borderColor: '#E4E4E5'
+        borderColor: '#E4E4E5',
       }}
       inputStyle={{fontFamily: text.font, textAlign: isRTL ? 'right' : 'left'}}
       onChangeText={text => setSearch(text)}

@@ -17,16 +17,16 @@ export const AbatiBrandStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     BrandShow: {
       screen: BrandShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     ProductIndex: {
       screen: ProductIndexScreen,
@@ -34,8 +34,8 @@ export const AbatiBrandStack = createStackNavigator(
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerBackTitle: null
-      })
+        headerBackTitle: null,
+      }),
     },
     Product: {
       screen: ProductShowScreen,
@@ -48,15 +48,15 @@ export const AbatiBrandStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null
+        headerBackTitle: null,
       }),
-      path: `product/:id`
-    }
+      path: `product/:id`,
+    },
   },
   {
     mode: 'card',
-    headerMode: 'float'
-  }
+    headerMode: 'float',
+  },
 );
 
 AbatiBrandStack.navigationOptions = ({navigation}) => {
@@ -65,6 +65,6 @@ AbatiBrandStack.navigationOptions = ({navigation}) => {
     tabBarVisible = false;
   }
   return {
-    tabBarVisible
+    tabBarVisible,
   };
 };
