@@ -5,22 +5,11 @@ import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 
-const ServiceIndexAllScreen = ({
-  services,
-  colors,
-  dispatch,
-  isLoadingContent
-}) => {
+const ServiceIndexAllScreen = ({services, isLoadingContent}) => {
   return (
     <React.Suspense
       fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
-      <ServiceList
-        services={services}
-        searchElements={{}}
-        showName={true}
-        colors={colors}
-        dispatch={dispatch}
-      />
+      <ServiceList services={services} searchElements={{}} showName={true} />
     </React.Suspense>
   );
 };
@@ -28,7 +17,6 @@ const ServiceIndexAllScreen = ({
 function mapStateToProps(state) {
   return {
     services: state.services,
-    colors: state.settings.colors,
     isLoadingContent: state.isLoadingContent
   };
 }
