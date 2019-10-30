@@ -31,7 +31,8 @@ import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
 import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import HomeKeyScreen from '../../screens/HomeKeyScreen';
+import HomeKeyScreen from '../../screens/home/HomeKeyScreen';
+import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
@@ -40,7 +41,7 @@ import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen'
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
 import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
-import AbatiHomeScreen from '../../screens/abati/AbatiHomeScreen';
+import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 
@@ -291,6 +292,16 @@ export const HomeStack = createStackNavigator(
         headerTitle: (
           <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
         ),
+        headerBackTitle: null,
+        headerTransparent: true,
+      }),
+    },
+    Scrap: {
+      screen: ScrapHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft showCart={false} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
+        headerTitle: <HeaderMiddle title={I18n.t('scrap')} showLogo={false} />,
         headerBackTitle: null,
         headerTransparent: true,
       }),

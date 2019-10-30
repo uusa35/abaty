@@ -1,6 +1,6 @@
 import React from 'react';
 import {Platform, Dimensions} from 'react-native';
-import {appUrlIos, appUrlAndroid} from './env';
+import {appUrlIos} from './env';
 import {isRTL} from './I18n';
 export const {height, width} = Dimensions.get('window');
 export const isIOS = Platform.OS === 'ios' ? true : false;

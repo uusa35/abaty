@@ -97,13 +97,13 @@ const SideMeu = ({
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
-            {HOMEKEY || ESCRAP ? (
+            {HOMEKEY ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('HomeKey')}
                 style={styles.menuBtn}>
                 <Icon
-                  name="home"
-                  type="antdesign"
+                  name="building"
+                  type="font-awesome"
                   size={20}
                   color={colors.icon_theme_color}
                 />
@@ -113,6 +113,25 @@ const SideMeu = ({
                     {color: colors.header_one_theme_color},
                   ]}>
                   {I18n.t('home_key')}
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+            {ESCRAP ? (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Scrap')}
+                style={styles.menuBtn}>
+                <Icon
+                  name="car"
+                  type="antdesign"
+                  size={20}
+                  color={colors.icon_theme_color}
+                />
+                <Text
+                  style={[
+                    styles.titleStyle,
+                    {color: colors.header_one_theme_color},
+                  ]}>
+                  {I18n.t('scrap')}
                 </Text>
               </TouchableOpacity>
             ) : null}

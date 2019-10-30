@@ -533,5 +533,6 @@
   "remove_filter" : "Remove Filter",
   "search_parameters_selected" : "Search Parameters",
   "category_selected" : "Selected Category :",
-  "properties_selected" : "Search Parameters :"
+  "properties_selected" : "Search Parameters :",
+  "scrap" : "Scrap"
 }

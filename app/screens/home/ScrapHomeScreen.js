@@ -1,11 +1,4 @@
-import React, {
-  Component,
-  useState,
-  useMemo,
-  useEffect,
-  useCallback,
-  Fragment,
-} from 'react';
+import React, {useState, useMemo, useEffect, useCallback} from 'react';
 import {
   BackHandler,
   Linking,
@@ -23,49 +16,49 @@ import {
   goDeepLinking,
   refetchHomeElements,
   setPlayerId,
-} from '../redux/actions';
-import {isIOS, width} from '../constants';
+} from '../../redux/actions';
+import {isIOS, width} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
+import {Icon} from 'react-native-elements';
 import {
   ONE_SIGNAL_APP_ID,
   ABATI,
   MALLR,
   HOMEKEY,
   ESCRAP,
-} from './../../app.json';
-import {getPathForDeepLinking} from '../helpers';
-import FixedCommercialSliderWidget from '../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../components/widgets/MainSliderWidget';
+} from './../../../app.json';
+import {getPathForDeepLinking} from '../../helpers';
+import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
+import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../components/widgets/user/UserHorizontalWidget';
-import BrandHorizontalWidget from '../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../components/widgets/search/ProductSearchForm';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
+import UserHorizontalWidget from '../../components/widgets/user/UserHorizontalWidget';
+import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
+import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import FastImage from 'react-native-fast-image';
 import {has} from 'lodash';
-import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
-import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
-import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../components/widgets/category/ProductCategoryHorizontalWidget';
-import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
-import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
-import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
-import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
-import I18n from '../I18n';
+import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
+import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
+import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
+import ProductCategoryHorizontalWidget from '../../components/widgets/category/ProductCategoryHorizontalWidget';
+import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
+import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
+import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
+import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
+import I18n from '../../I18n';
 // import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
 // import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
-import widgetStyles from '../components/widgets/widgetStyles';
-import {Icon} from 'react-native-elements';
-import SimpleSpinner from '../components/SimpleSpinner';
+import widgetStyles from '../../components/widgets/widgetStyles';
+import SimpleSpinner from '../../components/SimpleSpinner';
 import {
   ClassifiedCategoryHorizontalRoundedWidget,
   ClassifiedListHorizontal,
   HomeKeySearchTab,
-} from '../components/LazyLoadingComponents/classifiedComponents';
+} from '../../components/LazyLoadingComponents/classifiedComponents';
 
-const HomeKeyHomeScreen = ({
+const EscrapHomeScreen = ({
   homeCategories,
   categories,
   commercials,
@@ -263,9 +256,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(HomeKeyHomeScreen);
+export default connect(mapStateToProps)(EscrapHomeScreen);
 
-HomeKeyHomeScreen.propTypes = {
+EscrapHomeScreen.propTypes = {
   categories: PropTypes.array,
   homeCategories: PropTypes.array,
   brands: PropTypes.array,
@@ -288,7 +281,7 @@ const styles = StyleSheet.create({
   },
 });
 
-HomeKeyHomeScreen.navigationOptions = ({navigation}) => ({
+EscrapHomeScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
     backgroundColor: navigation.state.params.headerBgColor,

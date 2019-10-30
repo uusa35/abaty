@@ -17,6 +17,7 @@ import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import CompanyWidget from './CompanyWidget';
 
 const CompanyHorizontalWidget = ({
   elements,
@@ -62,39 +63,7 @@ const CompanyHorizontalWidget = ({
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <View animation="pulse" easing="ease-out" key={c.id}>
-            <TouchableOpacity
-              key={i}
-              style={widgetStyles.btnStyle}
-              onPress={() =>
-                dispatch(
-                  getCompany({
-                    id: c.id,
-                    searchParams: {user_id: c.id},
-                    redirect: true,
-                  }),
-                )
-              }>
-              <FastImage
-                source={{
-                  uri: c.thumb,
-                  priority: FastImage.priority.normal,
-                }}
-                loadingIndicatorSource={images.logo}
-                style={styles.image}
-                resizeMode="contain"
-              />
-              {showName ? (
-                <Text
-                  style={[
-                    widgetStyles.elementName,
-                    {color: colors.header_tow_theme_color},
-                  ]}>
-                  {c.slug}
-                </Text>
-              ) : null}
-            </TouchableOpacity>
-          </View>
+          <CompanyWidget element={c} key={i} />
         ))}
       </ScrollView>
     </View>

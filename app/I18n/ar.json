@@ -566,5 +566,6 @@
   "remove_filter" : "الغاء معايير البحث",
   "search_parameters_selected" : "معاير البحث المختارة",
   "category_selected" : "تصنيف البحث المختار :",
-  "properties_selected" : "معايير البحث :"
+  "properties_selected" : "معايير البحث :",
+  "scrap" : "سكراب"
 }

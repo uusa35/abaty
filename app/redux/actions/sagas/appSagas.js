@@ -122,7 +122,6 @@ function* startAppBootStrap() {
     }
   } catch (e) {
     console.log('appSaga', e);
-    debugger;
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('app_general_error')),

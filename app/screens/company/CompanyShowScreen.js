@@ -152,8 +152,6 @@ const CompanyShowScreen = ({
             renderScene={SceneMap({
               products: () => (
                 <ProductList
-                  colors={colors}
-                  dispatch={dispatch}
                   products={products}
                   showSearch={false}
                   showTitle={true}
