@@ -86,7 +86,7 @@ const NormalClassifiedShowScreen = ({
             .concat({id: element.id, large: element.large})
             .reverse()}
           width={width}
-          height={550}
+          height={400}
           name={element.name}
           isFeatured={element.is_featured}
         />

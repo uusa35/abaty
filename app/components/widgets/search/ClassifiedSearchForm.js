@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import {View} from 'react-native';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants';
@@ -27,7 +28,10 @@ const ClassifiedSearchForm = () => {
           }}
         />
       }
-      containerStyle={{marginTop: 5, marginBottom: 5, flex: 1}}
+      containerStyle={{
+        alignSelf: 'flex-end',
+        width: '95%',
+      }}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
         borderRadius: 30,
@@ -35,7 +39,10 @@ const ClassifiedSearchForm = () => {
         paddingLeft: 15,
         borderColor: '#E4E4E5',
       }}
-      inputStyle={{fontFamily: text.font, textAlign: isRTL ? 'right' : 'left'}}
+      inputStyle={{
+        fontFamily: text.font,
+        textAlign: isRTL ? 'right' : 'left',
+      }}
       onChangeText={text => setSearch(text)}
     />
   );

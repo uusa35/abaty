@@ -22,13 +22,14 @@ export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
   try {
     const classifieds = yield call(api.getSearchClassifieds, searchParams);
-    yield put({type: HIDE_SEARCH_MODAL});
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
+        put({type: HIDE_SEARCH_MODAL}),
         put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
+        console.log('redirect', redirect);
         yield put(
           NavigationActions.navigate({
             routeName: 'ClassifiedIndex',
@@ -39,6 +40,7 @@ export function* startGetClassifiedsScenario(action) {
         );
       }
     } else {
+      console.log('the else', classifieds);
       throw classifieds;
     }
   } catch (e) {

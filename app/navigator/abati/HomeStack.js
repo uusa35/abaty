@@ -356,6 +356,7 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedFilterScreen,
       navigationOptions: () => ({
         header: null,
+        headerBackTitle: null,
       }),
     },
     Login: {
@@ -377,7 +378,7 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
   },
 );
 

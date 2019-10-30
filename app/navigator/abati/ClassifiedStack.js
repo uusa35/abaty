@@ -24,7 +24,6 @@ export const ClassifiedStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
         headerBackTitle: null,
       }),
     },
@@ -52,6 +51,6 @@ export const ClassifiedStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
   },
 );
