@@ -378,7 +378,7 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: true,
+    swipeEnabled: false,
   },
 );
 

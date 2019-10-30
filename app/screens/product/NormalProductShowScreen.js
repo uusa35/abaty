@@ -68,7 +68,7 @@ const NormalProductShowScreen = ({
             .concat({id: product.id, large: product.large})
             .reverse()}
           width={width}
-          height={550}
+          height={450}
           name={product.name}
           exclusive={product.exclusive}
           isOnSale={product.isOnSale}
