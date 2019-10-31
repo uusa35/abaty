@@ -44,6 +44,7 @@ import validate from 'validate.js';
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
+import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -142,6 +143,15 @@ export const HomeStack = createStackNavigator(
     },
     CompanyShow: {
       screen: CompanyShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderCustom />,
+        headerBackTitle: null,
+      }),
+      path: `user/:id`,
+    },
+    CompanyClassifiedShow: {
+      screen: CompanyClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -367,8 +377,8 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedFilterScreen,
       navigationOptions: () => ({
         // header: null,
-          headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
-          headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerBackTitle: null,
       }),
     },

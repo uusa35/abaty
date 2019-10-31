@@ -12,11 +12,13 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, width} from '../../../constants';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
-import {DispatchContext} from "../../../redux/DispatchContext";
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ClassifiedWidget = ({element, showName = false}) => {
-  const {currency_symbol, exchange_rate, token, colors } = useContext(GlobalValuesContext);
-  const { dispatch } = useContext(DispatchContext);
+  const {currency_symbol, exchange_rate, token, colors} = useContext(
+    GlobalValuesContext,
+  );
+  const {dispatch} = useContext(DispatchContext);
 
   return (
     <TouchableOpacity

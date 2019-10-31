@@ -35,8 +35,8 @@ const ClassifiedFilterScreen = ({
   searchModal,
   colors,
   categories,
-    country,
-    area,
+  country,
+  area,
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [price, setPrice] = useState();
@@ -50,7 +50,7 @@ const ClassifiedFilterScreen = ({
   const [props, setProps] = useState([]);
   const {goBack} = useNavigation();
   const [parentCategories, setParentCategories] = useState([]);
-  const [currentArea,setCurrentArea] = useState(area);
+  const [currentArea, setCurrentArea] = useState(area);
 
   useMemo(() => {
     if (validate.isEmpty(parentCategories)) {
@@ -127,8 +127,8 @@ const ClassifiedFilterScreen = ({
           props,
           min,
           max,
-            country_id : country.id,
-            area_id : currentArea.id
+          country_id: country.id,
+          area_id: currentArea.id,
         },
         redirect: true,
         name: selectedCategory
@@ -141,13 +141,13 @@ const ClassifiedFilterScreen = ({
   const handleClearFilter = useCallback(() => {
     setItems([]);
     setProps([]);
-    setCurrentArea({})
+    setCurrentArea({});
   });
 
   useEffect(() => {
-      console.log('area changed');
-      setCurrentArea(area)
-  },[area]);
+    console.log('area changed');
+    setCurrentArea(area);
+  }, [area]);
 
   return (
     <SafeAreaView>
@@ -169,14 +169,6 @@ const ClassifiedFilterScreen = ({
             flexDirection: 'row',
             justifyContent: 'flex-start',
           }}>
-          <Icon
-            name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
-            type="entypo"
-            size={25}
-            containerStyle={{position: 'absolute', top: 8}}
-            onPress={() => handleShowSearchModal()}
-            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
-          />
           <ClassifiedSearchForm />
         </View>
         {parentCategories ? (
@@ -538,8 +530,8 @@ function mapStateToProps(state) {
     categories: state.categories,
     searchModal: state.searchModal,
     colors: state.settings.colors,
-      country : state.country,
-      area : state.area
+    country: state.country,
+    area: state.area,
   };
 }
 

@@ -77,7 +77,7 @@ const ClassifiedWidgetHorizontal = ({
             {element.name}
           </Text>
           <Text style={{textAlign: 'left', fontFamily: text.font}}>
-            {getConvertedFinalPrice(element.price, exchange_rate)}{' '}
+            {getConvertedFinalPrice(element.price, exchange_rate)}
             {currency_symbol}
           </Text>
         </View>
@@ -93,7 +93,6 @@ ClassifiedWidgetHorizontal.propTypes = {
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

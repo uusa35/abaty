@@ -9,16 +9,18 @@ import {getSearchClassifieds} from '../../../redux/actions';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 import ClassifiedCategoryHorizontalRoundedWidget from './ClassifiedCategoryHorizontalRoundedWidget';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ClassifiedCategoryVerticalWidget = ({
   elements,
   showTitle = true,
   showArrow = true,
   showChildren = true,
-  colors,
   title,
-  dispatch,
 }) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <Fragment>
       {!validate.isEmpty(elements) ? (

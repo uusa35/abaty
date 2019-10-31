@@ -23,8 +23,9 @@ import {orderBy} from 'lodash';
 import ClassifiedsMapView from '../map/ClassifiedsMapView';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
 
-const ClassifiedList = ({
+const ClassifiedDoubleList = ({
   classifieds,
   showName = true,
   showSearch = true,
@@ -150,7 +151,7 @@ const ClassifiedList = ({
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
           contentInset={{bottom: 150}}
-          numColumns={1}
+          numColumns={2}
           data={items}
           refreshing={refresh}
           refreshControl={
@@ -236,9 +237,7 @@ const ClassifiedList = ({
               </View>
             ) : null
           }
-          renderItem={({item}) => (
-            <ClassifiedWidget element={item} showName={showName} />
-          )}
+          renderItem={({item}) => <ClassifiedWidgetHorizontal element={item} />}
         />
       ) : (
         <View style={{marginTop: '20%', width: width - 50}}>
@@ -254,9 +253,9 @@ const ClassifiedList = ({
   );
 };
 
-export default ClassifiedList;
+export default ClassifiedDoubleList;
 
-ClassifiedList.propTypes = {
+ClassifiedDoubleList.propTypes = {
   classifieds: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,

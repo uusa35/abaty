@@ -229,8 +229,6 @@ ProductList.propTypes = {
   products: PropTypes.array.isRequired,
   searchElements: PropTypes.object.isRequired,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
-  colors: PropTypes.object,
 };
 
 const styles = StyleSheet.create({});

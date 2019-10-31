@@ -17,6 +17,7 @@ import I18n from '../../../I18n';
 import {registerConstrains, submitLogin} from '../../../constants';
 import validate from 'validate.js';
 import {startBecomeFanScenario, startGoogleLoginScenario} from './requestSagas';
+import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';
 
 export function* startGetDesignerScenario(action) {
   try {
@@ -114,12 +115,21 @@ export function* startGetCompanyScenario(action) {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
       if (!validate.isEmpty(redirect) && redirect) {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'CompanyShow',
-            params: {name: element.slug, id: element.id, product: false},
-          }),
-        );
+        if (HOMEKEY) {
+          yield put(
+            NavigationActions.navigate({
+              routeName: 'CompanyClassifiedShow',
+              params: {name: element.slug, id: element.id, product: false},
+            }),
+          );
+        } else {
+          yield put(
+            NavigationActions.navigate({
+              routeName: 'CompanyShow',
+              params: {name: element.slug, id: element.id, product: false},
+            }),
+          );
+        }
       }
       yield call(disableLoadingProfile);
     } else {
