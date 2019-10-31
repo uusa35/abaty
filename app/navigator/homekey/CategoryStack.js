@@ -1,13 +1,13 @@
+import React from 'react';
 import {createStackNavigator} from 'react-navigation';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import validate from 'validate.js';
 import I18n from '../../I18n';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import NormalProductShowScreen from '../../screens/NormalProductShowScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
-import React from 'react';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
+import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 
 export const CategoryStack = createStackNavigator(
   {

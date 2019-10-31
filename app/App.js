@@ -126,6 +126,7 @@ class App extends Component<Props> {
         />
       );
     }
+    console.log('the bootstrap', bootStrapped);
     return (
       <DispatchContext.Provider value={{dispatch}}>
         {network.isConnected && bootStrapped ? (

@@ -26,6 +26,8 @@ const persistConfig = {
     'isLoading',
     'propertiesModal',
     'searchModal',
+    // 'country',
+    // 'bootStrapped',
     // 'newClassified'
     // 'showIntroduction'
   ], // navigation will not be persisted

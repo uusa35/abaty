@@ -1,10 +1,10 @@
 import {createStackNavigator} from 'react-navigation';
-import ProductIndexAllScreen from '../../screens/ProductIndexAllScreen';
+import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import NormalProductShowScreen from '../../screens/NormalProductShowScreen';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
 
 export const ProductStack = createStackNavigator(

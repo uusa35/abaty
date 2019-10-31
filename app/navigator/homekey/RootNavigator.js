@@ -3,7 +3,7 @@ import {HomeStack} from './HomeStack';
 import {LoginStack} from './LoginStack';
 import {DrawerNavigator} from './DrawerNavigator';
 
-export const RootNavigator = createSwitchNavigator({
+const RootNavigator = createSwitchNavigator({
   HomeStack: {
     screen: HomeStack,
   },
@@ -14,3 +14,5 @@ export const RootNavigator = createSwitchNavigator({
     screen: DrawerNavigator,
   },
 });
+
+export default RootNavigator;

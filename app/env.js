@@ -41,6 +41,8 @@ const appUrl = () => {
       return 'http://abati.ideasowners.net/';
     case 'mallr':
       return 'http://mallr.net/';
+    case 'homekey':
+      return 'http://hkey.ideasowners.net/';
     default:
       return 'http://mallr.test';
   }

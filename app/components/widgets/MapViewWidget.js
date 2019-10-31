@@ -37,7 +37,7 @@ const MapViewWidget = ({
         <Text
           style={{
             fontFamily: text.font,
-            fontSize: text.large,
+            fontSize: text.medium,
             marginBottom: 10,
             textAlign: 'left',
             color: colors.header_one_theme_color,

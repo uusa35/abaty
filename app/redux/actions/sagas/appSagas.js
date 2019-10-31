@@ -55,6 +55,7 @@ import {
   getProductIndex,
   setHomeProducts,
 } from './productSagas';
+import {getClassifiedIndex} from './classifiedSagas';
 
 function* startAppBootStrap() {
   try {
@@ -95,6 +96,7 @@ function* startAppBootStrap() {
         call(getTags),
         call(getVideos),
         call(getProductIndex),
+        call(getClassifiedIndex),
         call(getServiceIndex),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),

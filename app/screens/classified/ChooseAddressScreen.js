@@ -41,14 +41,14 @@ const ChooseAddressScreen = () => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 150}}
+      contentInset={{bottom: 200}}
       contentContainerStyle={{
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
       }}>
-      <View style={{width: '100%'}}>
+      <View style={{width: '100%', flex: 1}}>
         <MapView
           style={{
             width,
@@ -105,7 +105,7 @@ const ChooseAddressScreen = () => {
           <Text
             style={{
               fontFamily: text.font,
-              fontSize: text.large,
+              fontSize: text.medium,
               textAlign: 'center',
               marginTop: 10,
             }}>
@@ -123,6 +123,7 @@ const ChooseAddressScreen = () => {
             inputStyle={{
               fontFamily: text.font,
               textAlign: isRTL ? 'right' : 'left',
+              fontSize: text.medium,
             }}
             shake={true}
             keyboardType="default"
@@ -134,6 +135,7 @@ const ChooseAddressScreen = () => {
               paddingBottom: 10,
               paddingTop: 10,
               fontFamily: text.font,
+              fontSize: text.medium,
               textAlign: 'left',
             }}
           />
@@ -149,6 +151,7 @@ const ChooseAddressScreen = () => {
             titleStyle={{
               fontFamily: text.font,
               color: colors.btn_text_theme_color,
+              fontSize: text.medium,
             }}
           />
         </View>

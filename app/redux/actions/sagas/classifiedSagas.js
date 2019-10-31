@@ -205,3 +205,14 @@ export function* startClassifiedSearchingScenario(action) {
     put(NavigationActions.navigate({routeName: 'ClassifiedFilter'})),
   ]);
 }
+
+export function* getClassifiedIndex() {
+  try {
+    const elements = yield call(api.getSearchClassifieds);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
+      yield all([put({type: actions.SET_CLASSIFIEDS, payload: elements})]);
+    }
+  } catch (e) {
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
+  }
+}

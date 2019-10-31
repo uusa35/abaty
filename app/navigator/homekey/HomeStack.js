@@ -1,52 +1,50 @@
+import React from 'react';
 import {createStackNavigator} from 'react-navigation';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import HomeScreen from '../../screens/HomeScreen';
 import I18n from '../../I18n';
-import PageOneScreen from '../../screens/PageOneScreen';
-import PageTwoScreen from '../../screens/PageTwoScreen';
-import {text} from '../../constants';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
-import CartIndexScreen from '../../screens/CartIndexScreen';
-import CartConfirmationScreen from '../../screens/CartConfirmationScreen';
+import CartIndexScreen from '../../screens/cart/CartIndexScreen';
+import CartConfirmationScreen from '../../screens/cart/CartConfirmationScreen';
 import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
-import LoginScreen from '../../screens/LoginScreen';
-import RegisterScreen from '../../screens/RegisterScreen';
-import UserEditScreen from '../../screens/UserEditScreen';
-import DesignerIndexScreen from '../../screens/DesignerIndexScreen';
-import CompanyIndexScreen from '../../screens/CompanyIndexScreen';
-import CelebrityIndexScreen from '../../screens/CelebrityIndexScreen';
-import CompanyShowScreen from '../../screens/CompanyShowScreen';
+import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
+import LoginScreen from '../../screens/auth/LoginScreen';
+import RegisterScreen from '../../screens/auth/RegisterScreen';
+import DesignerIndexScreen from '../../screens/designer/DesignerIndexScreen';
+import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
+import CelebrityIndexScreen from '../../screens/celebrity/CelebrityIndexScreen';
+import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
-import DesignerShowScreen from '../../screens/DesignerShowScreen';
-import CelebrityShowScreen from '../../screens/CelebrityShowScreen';
-import NormalProductShow from '../../screens/NormalProductShowScreen';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
-import ServiceIndexScreen from '../../screens/ServiceIndexScreen';
-import CollectionIndexScreen from '../../screens/CollectionIndexScreen';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
-import FavoriteProductIndexScreen from '../../screens/FavoriteProductIndexScreen';
-import FavoriteClassifiedIndexScreen from '../../screens/FavoriteClassifiedIndexScreen';
+import DesignerShowScreen from '../../screens/designer/DesignerShowScreen';
+import CelebrityShowScreen from '../../screens/celebrity/CelebrityShowScreen';
+import NormalProductShow from '../../screens/product/NormalProductShowScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import ServiceIndexScreen from '../../screens/service/ServiceIndexScreen';
+import CollectionIndexScreen from '../../screens/collection/CollectionIndexScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductIndexScreen';
+import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import ContactusScreen from '../../screens/ContactusScreen';
 import TermAndConditionScreen from '../../screens/TermAndConditionScreen';
-import BrandIndexScreen from '../../screens/BrandIndexScreen';
-import BrandShowScreen from '../../screens/BrandShowScreen';
-import ProfileIndexScreen from '../../screens/ProfileIndexScreen';
+import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
+import BrandShowScreen from '../../screens/brand/BrandShowScreen';
+import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyScreen from '../../screens/home/HomeKeyScreen';
 import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
-import ClassifiedStoreScreen from '../../screens/ClassifiedStoreScreen';
-import ChooseCategoryScreen from '../../screens/ChooseCategoryScreen';
-import CategoryGroupsScreen from '../../screens/CategoryGroupsScreen';
-import React from 'react';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
+import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
+import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
+import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
+import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
+import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -62,10 +60,13 @@ export const HomeStack = createStackNavigator(
     Home: {
       screen: HomeKeyScreen,
       navigationOptions: () => ({
-        headerLeft: <HeaderLeft />,
-        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerLeft: <HeaderLeft showCart={false} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
+        headerTitle: (
+          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
+        ),
         headerBackTitle: null,
+        headerTransparent: true,
       }),
     },
     CartIndex: {
@@ -107,7 +108,7 @@ export const HomeStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
-        headerTransparent: true,
+        headerTransparent: false,
       }),
       path: 'category/:id',
     },
@@ -115,7 +116,7 @@ export const HomeStack = createStackNavigator(
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -123,7 +124,7 @@ export const HomeStack = createStackNavigator(
       screen: DesignerIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -131,7 +132,7 @@ export const HomeStack = createStackNavigator(
       screen: CompanyIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -139,12 +140,21 @@ export const HomeStack = createStackNavigator(
       screen: CelebrityIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
     CompanyShow: {
       screen: CompanyShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderCustom />,
+        headerBackTitle: null,
+      }),
+      path: `user/:id`,
+    },
+    CompanyClassifiedShow: {
+      screen: CompanyClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -174,7 +184,7 @@ export const HomeStack = createStackNavigator(
       screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
@@ -211,7 +221,7 @@ export const HomeStack = createStackNavigator(
       screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight displayShare={true} display={true} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
@@ -299,20 +309,31 @@ export const HomeStack = createStackNavigator(
         headerTransparent: true,
       }),
     },
+    Scrap: {
+      screen: ScrapHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft showCart={false} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
+        headerTitle: <HeaderMiddle title={I18n.t('scrap')} showLogo={false} />,
+        headerBackTitle: null,
+        headerTransparent: true,
+      }),
+    },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight showFilter={true} />,
+        headerRight: <HeaderRight showFilter={true} showCountry={true} />,
         headerBackTitle: null,
       }),
     },
     Classified: {
-      screen: ClassifiedShowScreen,
+      // screen: ClassifiedShowScreen,
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight displayShare={true} display={true} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={true} />,
         headerBackTitle: null,
         //   headerTransparent: true,
         // headerStyle: {
@@ -327,7 +348,7 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedStoreScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -335,7 +356,7 @@ export const HomeStack = createStackNavigator(
       screen: ChooseCategoryScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -343,7 +364,15 @@ export const HomeStack = createStackNavigator(
       screen: CategoryGroupsScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
-        headerRight: <HeaderRight displayShare={false} display={false} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
+    },
+    ChooseAddress: {
+      screen: ChooseAddressScreen,
+      navigationOptions: () => ({
+        headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -351,8 +380,8 @@ export const HomeStack = createStackNavigator(
       screen: ClassifiedFilterScreen,
       navigationOptions: () => ({
         // header: null,
-        headerTitle: <HeaderMiddle title={I18n.t('search_classified')} />,
-        headerRight: <HeaderRight displayShare={false} showCountry={false} />,
+        headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerBackTitle: null,
       }),
     },
@@ -375,7 +404,7 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
   },
 );
 

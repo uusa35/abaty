@@ -28,7 +28,7 @@ const ClassifiedInfoWidgetElement = ({
       <Text
         style={{
           textAlign: 'left',
-          fontSize: 20,
+          fontSize: text.medium,
           fontFamily: text.font,
           color: colors.header_one_theme_color,
         }}>
@@ -80,7 +80,7 @@ ClassifiedInfoWidgetElement.propTypes = {
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,
-    fontSize: text.large,
+    fontSize: text.medium,
     textAlign: 'left',
   },
 });
