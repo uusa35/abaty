@@ -350,7 +350,10 @@ export const HomeStack = createStackNavigator(
     ClassifiedFilter: {
       screen: ClassifiedFilterScreen,
       navigationOptions: () => ({
-        header: null,
+        // header: null,
+          headerTitle: <HeaderMiddle title={I18n.t('search_classified')} />,
+          headerRight: <HeaderRight displayShare={false} showCountry={false} />,
+          headerBackTitle: null,
       }),
     },
     Login: {

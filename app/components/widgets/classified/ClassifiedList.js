@@ -62,28 +62,25 @@ const ClassifiedList = ({
     switch (sort) {
       case 1:
         setItems(orderBy(items, ['id'], ['asc']));
-        setSortModal(false);
         break;
       case 2:
         setItems(orderBy(items, ['id'], ['desc']));
-        setSortModal(false);
         break;
       case 3:
+        console.log('heigest');
         setItems(orderBy(items, ['price'], ['asc']));
-        setSortModal(false);
         break;
       case 4:
-        console.log('case 4');
+        console.log('lowest')
         setItems(orderBy(items, ['price'], ['desc']));
-        setSortModal(false);
         break;
       case 5:
         setItems(orderBy(items, ['name'], ['desc']));
-        setSortModal(false);
         break;
       default:
         items;
     }
+    setSortModal(false);
   }, [sort]);
   useMemo(() => {
     if (showMore) {
@@ -243,8 +240,6 @@ const ClassifiedList = ({
             <ClassifiedWidget
               element={item}
               showName={showName}
-              dispatch={dispatch}
-              colors={colors}
             />
           )}
         />

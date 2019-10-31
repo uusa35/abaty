@@ -35,6 +35,8 @@ const ClassifiedFilterScreen = ({
   searchModal,
   colors,
   categories,
+    country,
+    area,
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [price, setPrice] = useState();
@@ -48,6 +50,7 @@ const ClassifiedFilterScreen = ({
   const [props, setProps] = useState([]);
   const {goBack} = useNavigation();
   const [parentCategories, setParentCategories] = useState([]);
+  const [currentArea,setCurrentArea] = useState(area);
 
   useMemo(() => {
     if (validate.isEmpty(parentCategories)) {
@@ -124,6 +127,8 @@ const ClassifiedFilterScreen = ({
           props,
           min,
           max,
+            country_id : country.id,
+            area_id : currentArea.id
         },
         redirect: true,
         name: selectedCategory
@@ -136,7 +141,13 @@ const ClassifiedFilterScreen = ({
   const handleClearFilter = useCallback(() => {
     setItems([]);
     setProps([]);
+    setCurrentArea({})
   });
+
+  useEffect(() => {
+      console.log('area changed');
+      setCurrentArea(area)
+  },[area]);
 
   return (
     <SafeAreaView>
@@ -365,6 +376,20 @@ const ClassifiedFilterScreen = ({
                 </Text>
               </View>
             ) : null}
+            {country ? (
+              <View>
+                <Text style={styles.title}>
+                  {I18n.t('country')} : {country.slug}
+                </Text>
+              </View>
+            ) : null}
+            {currentArea ? (
+              <View>
+                <Text style={styles.title}>
+                  {I18n.t('area')} : {currentArea.slug}
+                </Text>
+              </View>
+            ) : null}
           </View>
           {!validate.isEmpty(items) ? (
             <Fragment>
@@ -513,6 +538,8 @@ function mapStateToProps(state) {
     categories: state.categories,
     searchModal: state.searchModal,
     colors: state.settings.colors,
+      country : state.country,
+      area : state.area
   };
 }
 

@@ -57,14 +57,14 @@ const SearchSort = ({
                 hitSlop={{left: 15, right: 15}}
                 onPress={() => handleClick(3)}
                 style={styles.wrapper}>
-                <Text style={styles.phoneNo}>{I18n.t('low_high')}</Text>
+                <Text style={styles.phoneNo}>{I18n.t('high_low')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={1}
                 hitSlop={{left: 15, right: 15}}
                 onPress={() => handleClick(4)}
                 style={styles.wrapper}>
-                <Text style={styles.phoneNo}>{I18n.t('high_low')}</Text>
+                <Text style={styles.phoneNo}>{I18n.t('low_high')}</Text>
               </TouchableOpacity>
             </Fragment>
           ) : null}
