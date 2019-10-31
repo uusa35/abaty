@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -31,7 +31,7 @@ const ClassifiedCategoryVerticalWidget = ({
             <Text
               style={{
                 fontFamily: text.font,
-                fontSize: text.large,
+                fontSize: text.medium,
                 marginBottom: 10,
                 textAlign: 'left',
                 color: colors.header_one_theme_color,
@@ -206,8 +206,6 @@ export default ClassifiedCategoryVerticalWidget;
 
 ClassifiedCategoryVerticalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

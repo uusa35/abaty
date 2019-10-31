@@ -79,7 +79,6 @@ const ClassifiedListHorizontal = ({
               widthVal={width / 2}
               heightVal={280}
               key={i}
-              dispatch={dispatch}
               element={c}
             />
           ))}

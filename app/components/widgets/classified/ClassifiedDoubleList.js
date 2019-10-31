@@ -167,17 +167,17 @@ const ClassifiedDoubleList = ({
             marginBottom: 15,
             justifyContent: 'flex-start',
           }}
-          // columnWrapperStyle={{
-          //   justifyContent: 'space-around',
-          //   alignItems: 'center'
-          // }}
+          columnWrapperStyle={{
+            justifyContent: 'space-around',
+            alignItems: 'center',
+          }}
           ListHeaderComponentStyle={{
             // width: '100%',
             // padding: 10,
             backgroundColor: 'white',
           }}
           ListHeaderComponent={
-            <View style={{padding: 5, backgroundColor: '#f2f2f2'}}>
+            <View style={{padding: 5, backgroundColor: 'white'}}>
               {showSearch ? (
                 <View
                   style={{
@@ -237,7 +237,14 @@ const ClassifiedDoubleList = ({
               </View>
             ) : null
           }
-          renderItem={({item}) => <ClassifiedWidgetHorizontal element={item} />}
+          renderItem={({item}) => (
+            <ClassifiedWidgetHorizontal
+              widthVal={width / 2 - 10}
+              heightVal={280}
+              element={item}
+              key={item.id}
+            />
+          )}
         />
       ) : (
         <View style={{marginTop: '20%', width: width - 50}}>

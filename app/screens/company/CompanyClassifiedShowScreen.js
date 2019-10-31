@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -17,10 +17,11 @@ import ProductList from '../../components/widgets/product/ProductList';
 import UserInfoWidget from '../../components/widgets/user/UserInfoWidget';
 import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
-import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
+import {filter, uniqBy} from 'lodash';
+import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 
 const CompanyClassifiedShowScreen = ({
   element,
@@ -47,7 +48,10 @@ const CompanyClassifiedShowScreen = ({
 
   useMemo(() => {
     if (!validate.isEmpty(element.classifieds)) {
-      const categories = filter(element.classifieds, c => c.category);
+      const categories = uniqBy(
+        filter(element.classifieds, c => c.category),
+        'id',
+      );
       setCollectedCategories(categories);
     }
   }, [element]);
@@ -142,11 +146,11 @@ const CompanyClassifiedShowScreen = ({
               routes,
             }}
             renderScene={SceneMap({
-              products: () => (
+              classifieds: () => (
                 <ClassifiedDoubleList
-                  classifieds={classifieds}
+                  classifieds={element.classifieds}
                   showSearch={false}
-                  showTitle={true}
+                  showTitle={false}
                   showFooter={false}
                   showMore={false}
                   searchElements={searchParams}
@@ -154,8 +158,6 @@ const CompanyClassifiedShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  dispatch={dispatch}
-                  colors={colors}
                   has_map={element.has_map}
                   mobile={element.mobile}
                   phone={element.phone}
