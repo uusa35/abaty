@@ -15,9 +15,9 @@ import {
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {map, first, filter, shuffle} from 'lodash';
+import {map, first, filter, shuffle, uniqBy} from 'lodash';
 import {text} from './../../constants';
-import {Button, Icon} from 'react-native-elements';
+import {Button, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
@@ -53,9 +53,9 @@ const CategoryGroupsScreen = ({
     }
   }, [currentCategoryGroup, remainingGroups]);
 
-  const handleClick = useCallback((property, skipNext) => {
+  const handleClick = useCallback(property => {
     console.log('here fired');
-    setSelectedProperties([
+    const propsNow = [
       {
         cateogry_group: currentCategoryGroup,
         property: property,
@@ -66,7 +66,9 @@ const CategoryGroupsScreen = ({
         // thumb: property.thumb
       },
       ...selectedProperties,
-    ]);
+    ];
+    const filteredProps = uniqBy(propsNow, 'category_group_property');
+    setSelectedProperties(filteredProps);
     dispatch(
       addToProperties({
         cateogry_group: currentCategoryGroup,
@@ -74,10 +76,9 @@ const CategoryGroupsScreen = ({
         category_group_property: property.id + currentCategoryGroup.id,
       }),
     );
-    console.log('currentCategoryGroup', currentCategoryGroup);
-    // if(!currentCategoryGroup.is_multi || skipNext) {
-    goToNextGroup();
-    // }
+    if (!currentCategoryGroup.is_multi) {
+      goToNextGroup();
+    }
   });
 
   const goToNextGroup = useCallback(() => {
@@ -209,28 +210,33 @@ const CategoryGroupsScreen = ({
                           ) : (
                             <Icon type="font-awesome" name={property.icon} />
                           )}
+                          <CheckBox checked={true} />
                           <Text style={styles.title}>{property.name}</Text>
                         </TouchableOpacity>
                       );
                     })}
                   </View>
                   <View>
-                    <Button
-                      onPress={() => setSkipNext(!skipNext)}
-                      raised
-                      containerStyle={{
-                        width: '100%',
-                        marginBottom: 10,
-                        marginTop: 10,
-                      }}
-                      buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-                      title={I18n.t('skip_next')}
-                      titleStyle={{
-                        fontFamily: text.font,
-                        color: colors.btn_text_theme_color,
-                        fontSize: text.medium,
-                      }}
-                    />
+                    {currentCategoryGroup.is_multi ? (
+                      <Button
+                        onPress={() => goToNextGroup()}
+                        raised
+                        containerStyle={{
+                          width: '100%',
+                          marginBottom: 10,
+                          marginTop: 10,
+                        }}
+                        buttonStyle={{
+                          backgroundColor: colors.btn_bg_theme_color,
+                        }}
+                        title={I18n.t('skip_next')}
+                        titleStyle={{
+                          fontFamily: text.font,
+                          color: colors.btn_text_theme_color,
+                          fontSize: text.medium,
+                        }}
+                      />
+                    ) : null}
                   </View>
                 </ScrollView>
               </Modal>
