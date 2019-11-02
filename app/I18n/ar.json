@@ -568,5 +568,6 @@
   "category_selected" : "تصنيف البحث المختار :",
   "properties_selected" : "معايير البحث :",
   "scrap" : "سكراب",
-  "search_classifieds" : "بحث الإعلانات"
+  "search_classifieds" : "بحث الإعلانات",
+  "shipment_copied" : "تم نسخ رقم الشحنة"
 }

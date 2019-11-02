@@ -118,9 +118,8 @@ const DesignerShowScreen = ({
           {!validate.isEmpty(collectedCategories) ? (
             <ProductCategoryVerticalWidget
               elements={collectedCategories}
+              user_id={element.id}
               showImage={false}
-              colors={colors}
-              dispatch={dispatch}
               title={I18n.t('categories')}
             />
           ) : null}

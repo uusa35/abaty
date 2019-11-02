@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -8,6 +8,8 @@ import {map, isNull} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductCategoryVerticalWidget = ({
   elements,
@@ -15,10 +17,10 @@ const ProductCategoryVerticalWidget = ({
   showTitle = true,
   showArrow = true,
   showChildren = true,
-  colors,
   title,
-  dispatch,
 }) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <Fragment>
       {!validate.isEmpty(elements) ? (
@@ -181,8 +183,6 @@ export default ProductCategoryVerticalWidget;
 
 ProductCategoryVerticalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

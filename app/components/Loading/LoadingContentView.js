@@ -40,11 +40,11 @@ const LoadingContentView = ({isLoadingContent}) => {
       {isRTL ? (
         <SvgAnimatedLinearGradient
           height={150}
-          width={width - 50}
+          width={width - 25}
           style={{marginBottom: 5, alignSelf: 'center'}}>
           <Circle cx="320" cy="30" r="30" />
-          <Rect x="0" y="17" rx="4" ry="4" width="280" height="13" />
-          <Rect x="0" y="40" rx="3" ry="3" width="280" height="10" />
+          <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
+          <Rect x="20" y="40" rx="3" ry="3" width="250" height="10" />
           <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
           <Rect x="0" y="100" rx="3" ry="3" width="800" height="10" />
           <Rect x="0" y="120" rx="3" ry="3" width="800" height="10" />
@@ -69,11 +69,11 @@ const LoadingContentView = ({isLoadingContent}) => {
       {isRTL ? (
         <SvgAnimatedLinearGradient
           height={150}
-          width={width - 50}
+          width="98%"
           style={{marginBottom: 5, alignSelf: 'center'}}>
           <Circle cx="320" cy="30" r="30" />
-          <Rect x="0" y="17" rx="4" ry="4" width="280" height="13" />
-          <Rect x="0" y="40" rx="3" ry="3" width="280" height="10" />
+          <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
+          <Rect x="20" y="40" rx="3" ry="3" width="250" height="10" />
           <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
           <Rect x="0" y="100" rx="3" ry="3" width="800" height="10" />
           <Rect x="0" y="120" rx="3" ry="3" width="800" height="10" />

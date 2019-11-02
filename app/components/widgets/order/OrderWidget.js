@@ -1,13 +1,28 @@
-import React from 'react';
-import {View, Linking, Text, StyleSheet} from 'react-native';
+import React, {useContext, useCallback} from 'react';
+import {
+  View,
+  Linking,
+  Text,
+  StyleSheet,
+  Clipboard,
+  TouchableOpacity,
+} from 'react-native';
 import {appUrlIos} from '../../../env';
 import {images, text} from '../../../constants';
 import {Button, Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const OrderWidget = ({element, colors, logo}) => {
+const OrderWidget = ({element, logo}) => {
+  const {colors} = useContext(GlobalValuesContext);
+
+  const writeToClipboard = useCallback(text => {
+    Clipboard.setString(text);
+    alert(I18n.t('shipment_copied'));
+  });
+
   return (
     <View
       style={{
@@ -78,9 +93,13 @@ const OrderWidget = ({element, colors, logo}) => {
                   size={20}
                 />
                 <Text style={styles.title}>{I18n.t('shipment_reference')}</Text>
-                <Text style={styles.normalText}>
-                  {element.shipment_reference}
-                </Text>
+                <TouchableOpacity
+                  style={styles.normalText}
+                  onPress={() => writeToClipboard(element.shipment_reference)}>
+                  <Text style={styles.normalText}>
+                    {element.shipment_reference}
+                  </Text>
+                </TouchableOpacity>
               </View>
               <Button
                 onPress={() => Linking.openURL(`http://dhl.com`)}

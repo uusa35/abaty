@@ -173,10 +173,12 @@ export function* startGetSearchProductsScenario(action) {
   try {
     yield call(enableLoadingBoxedList);
     const {name, searchParams, redirect} = action.payload;
-    const products = yield call(api.getSearchProducts, searchParams);
-    if (!validate.isEmpty(products) && validate.isArray(products)) {
+    console.log('searchParams', searchParams);
+    const elements = yield call(api.getSearchProducts, searchParams);
+    console.log('elements', elements);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
-        put({type: actions.SET_PRODUCTS, payload: products}),
+        put({type: actions.SET_PRODUCTS, payload: elements}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
@@ -184,7 +186,7 @@ export function* startGetSearchProductsScenario(action) {
           put(
             NavigationActions.navigate({
               routeName: 'ProductIndex',
-              params: {name: name ? name : I18n.t('products')},
+              params: {name: name ? name : I18n.t('elements')},
             }),
           ),
           call(disableLoadingBoxedList),

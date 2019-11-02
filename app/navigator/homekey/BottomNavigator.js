@@ -118,7 +118,7 @@ export const BottomTabsStack = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      lazy: false,
+      lazy: true,
       showIcon: true,
       showLabel: false,
       scrollEnabled: true,

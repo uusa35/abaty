@@ -16,6 +16,7 @@ import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import SimpleSpinner from '../SimpleSpinner';
 import {DispatchContext} from '../../redux/DispatchContext';
+import CompanyWidgetHorizontal from '../widgets/user/CompanyWidgetHorizontal';
 
 const CompaniesList = ({elements, searchParams, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
@@ -117,7 +118,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
           }}
           renderItem={({item}) => (
             <React.Suspense fallback={<SimpleSpinner />}>
-              <UserWidgetHorizontal user={item} showName={true} />
+              <CompanyWidgetHorizontal user={item} showName={true} />
             </React.Suspense>
           )}
           ListFooterComponent={

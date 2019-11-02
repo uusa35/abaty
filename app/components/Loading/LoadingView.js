@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, ImageBackground} from 'react-native';
-import {isIOS, images, text, animations} from './../../constants';
+import {isIOS, images, text, animations, width} from './../../constants';
 import FastImage from 'react-native-fast-image';
 import LottieView from 'lottie-react-native';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
@@ -8,16 +8,9 @@ import PropTypes from 'prop-types';
 import Spinner from 'react-native-spinkit';
 import {first, shuffle} from 'lodash';
 import {ABATI, MALLR} from './../../../app';
+import RadialGradient from 'react-native-radial-gradient';
 
-const LoadingView = ({
-  logo,
-  loadingText,
-  isLoading,
-  color,
-  mainBg,
-  type = 'ThreeBounce',
-}) => {
-  const [fill, setFill] = useState(0);
+const LoadingView = ({logo, loadingText, color, type = 'ThreeBounce'}) => {
   const [moveRand, setMoveRand] = useState([
     'CircleFlip',
     'Bounce',
@@ -36,7 +29,11 @@ const LoadingView = ({
   ]);
 
   return (
-    <ImageBackground style={styles.activityContainer} source={{uri: mainBg}}>
+    <RadialGradient
+      style={styles.itemContainerStyle}
+      colors={['grey', 'lightgrey', 'white']}
+      center={[width / 2, 0]}
+      radius={width}>
       <Spinner type={first(shuffle(moveRand))} color={color} size={40} />
       <FastImage
         source={{uri: logo}}
@@ -45,7 +42,7 @@ const LoadingView = ({
         loadingIndicatorSource={{uri: logo}}
       />
       <Text style={styles.loadingText}>{loadingText}</Text>
-    </ImageBackground>
+    </RadialGradient>
   );
 };
 
@@ -70,5 +67,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     marginBottom: isIOS ? 35 : 50,
+  },
+  itemContainerStyle: {
+    flex: 1,
+    width,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#0A3D62',
+    overflow: 'hidden',
   },
 });
