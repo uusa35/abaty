@@ -225,10 +225,11 @@ const CategoryGroupsScreen = ({
                           <View
                             style={{
                               flex: 1,
-                              flexDirection: 'row-reverse',
+                              flexDirection: 'row',
                               alignItems: 'baseline',
                               justifyContent: 'space-between',
                             }}>
+                            <Text style={styles.title}>{property.name}</Text>
                             {currentCategoryGroup.is_multi ? (
                               !validate.isEmpty(
                                 filter(
@@ -249,8 +250,6 @@ const CategoryGroupsScreen = ({
                                 />
                               )
                             ) : null}
-
-                            <Text style={styles.title}>{property.name}</Text>
                           </View>
                         </TouchableOpacity>
                       );
