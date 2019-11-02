@@ -196,6 +196,7 @@ const ClassifiedFilterScreen = ({
                 title={c.name.substring(0, 20)}
                 titleStyle={{
                   fontFamily: text.font,
+                  fontSize: text.medium,
                   color: colors.btn_text_theme_color,
                 }}
               />

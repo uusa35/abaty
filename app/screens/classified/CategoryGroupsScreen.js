@@ -3,7 +3,7 @@ import React, {
   useState,
   useCallback,
   useMemo,
-  useEffect,
+  useContext,
 } from 'react';
 import {
   StyleSheet,
@@ -11,15 +11,14 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter, shuffle} from 'lodash';
 import {text} from './../../constants';
-import {Icon} from 'react-native-elements';
-import {isRTL} from '../../I18n';
+import {Button, Icon} from 'react-native-elements';
+import I18n, {isRTL} from '../../I18n';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
@@ -28,6 +27,7 @@ import {
   HIDE_PROPERTIES_MODAL,
   SHOW_PROPERTIES_MODAL,
 } from '../../redux/actions/types';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const CategoryGroupsScreen = ({
   category,
@@ -36,12 +36,14 @@ const CategoryGroupsScreen = ({
   propertiesModal,
   navigation,
 }) => {
+  const {colors} = useContext(GlobalValuesContext);
   const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
     !validate.isEmpty(category) ? first(category.categoryGroups) : null,
   );
   const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
   [remainingGroups, setRemainingGroups] = useState(category.categoryGroups);
+  const [skipNext, setSkipNext] = useState(false);
 
   useMemo(() => {
     if (validate.isEmpty(remainingGroups)) {
@@ -51,7 +53,8 @@ const CategoryGroupsScreen = ({
     }
   }, [currentCategoryGroup, remainingGroups]);
 
-  const handleClick = useCallback(property => {
+  const handleClick = useCallback((property, skipNext) => {
+    console.log('here fired');
     setSelectedProperties([
       {
         cateogry_group: currentCategoryGroup,
@@ -71,6 +74,13 @@ const CategoryGroupsScreen = ({
         category_group_property: property.id + currentCategoryGroup.id,
       }),
     );
+    console.log('currentCategoryGroup', currentCategoryGroup);
+    // if(!currentCategoryGroup.is_multi || skipNext) {
+    goToNextGroup();
+    // }
+  });
+
+  const goToNextGroup = useCallback(() => {
     const rest = filter(
       remainingGroups,
       (g, i) => g.id !== currentCategoryGroup.id,
@@ -125,8 +135,7 @@ const CategoryGroupsScreen = ({
                     width: '100%',
                     minHeight: 50,
                     justifyContent: 'center',
-                    marginTop: '10%',
-                    alignSelf: 'center',
+                    marginTop: '15%',
                     alignItems: 'center',
                     flexDirection: 'row-reverse',
                   }}>
@@ -145,13 +154,17 @@ const CategoryGroupsScreen = ({
                   <View
                     style={{
                       flexDirection: 'row',
-                      alignItems: 'baseline',
-                      width: 120,
-                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      // justifyContent: 'center',
                     }}>
-                    <Image
+                    <FastImage
                       source={{uri: group.thumb}}
-                      style={{width: 25, height: 25}}
+                      style={{
+                        width: 35,
+                        height: 35,
+                        marginRight: 3,
+                        marginLeft: 3,
+                      }}
                     />
                     {/*<Icon type="font-awesome" name={group.icon} />*/}
                     <Text
@@ -175,9 +188,10 @@ const CategoryGroupsScreen = ({
                 </View>
                 <ScrollView
                   contentContainerStyle={{
-                    flex: 0.9,
+                    flex: 1,
                     paddingTop: 10,
                     width: '100%',
+                    justifyContent: 'space-between',
                   }}>
                   <View>
                     {map(group.properties, (property, i) => {
@@ -199,6 +213,24 @@ const CategoryGroupsScreen = ({
                         </TouchableOpacity>
                       );
                     })}
+                  </View>
+                  <View>
+                    <Button
+                      onPress={() => setSkipNext(!skipNext)}
+                      raised
+                      containerStyle={{
+                        width: '100%',
+                        marginBottom: 10,
+                        marginTop: 10,
+                      }}
+                      buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+                      title={I18n.t('skip_next')}
+                      titleStyle={{
+                        fontFamily: text.font,
+                        color: colors.btn_text_theme_color,
+                        fontSize: text.medium,
+                      }}
+                    />
                   </View>
                 </ScrollView>
               </Modal>

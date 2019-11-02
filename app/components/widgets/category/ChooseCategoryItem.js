@@ -10,6 +10,7 @@ import {text} from '../../../constants';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
+import {startNewClassified} from '../../../redux/actions';
 
 const ChooseCategoryItem = ({category, dispatch}) => {
   return (
@@ -61,10 +62,7 @@ const ChooseCategoryItem = ({category, dispatch}) => {
                                       {height: 50, paddingLeft: 130},
                                     ]}
                                     onPress={() =>
-                                      dispatch({
-                                        type: 'START_NEW_CLASSIFIED',
-                                        payload: sub,
-                                      })
+                                      dispatch(startNewClassified(sub))
                                     }
                                     key={sub.id}>
                                     <FastImage
@@ -131,12 +129,12 @@ const ChooseCategoryItem = ({category, dispatch}) => {
         </Collapse>
       ) : (
         <TouchableOpacity
-          style={[styles.categoryItemWrapper, {height: 50}]}
+          style={[styles.categoryItemWrapper, {height: 80}]}
           onPress={() =>
             dispatch({type: 'START_NEW_CLASSIFIED', payload: category})
           }>
           <FastImage
-            style={{width: 50, height: 50}}
+            style={{width: 80, height: 80}}
             source={{uri: category.thumb}}
             resizeMode="cover"
           />
@@ -170,6 +168,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     fontFamily: text.font,
     textAlign: 'left',
-    fontSize: text.large,
+    fontSize: text.medium,
   },
 });

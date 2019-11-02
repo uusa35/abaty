@@ -28,7 +28,7 @@ const ProductInfoWidgetElement = ({
       <Text
         style={{
           textAlign: 'left',
-          fontSize: 20,
+          fontSize: text.medium,
           fontFamily: text.font,
           color: colors.header_one_theme_color,
         }}>
@@ -38,7 +38,7 @@ const ProductInfoWidgetElement = ({
         <Text
           style={{
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: text.medium,
             fontFamily: text.font,
             paddingLeft: 10,
             paddingRight: 10,

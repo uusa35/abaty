@@ -390,6 +390,7 @@
   "product_weight" : "الوزن (بالكيلو جرام)",
   "error_while_loading_product" : "حدث خطأ اثناء تحميل المنتج .. يرجى المحاولة لاحقا",
   "no_more_products" : "لا يوجد مزيد من المنتجات وفقا للعملية البحث",
+  "no_more_elements" : "لا يوجد مزيد وفقا للعملية البحث",
   "refetch_home_error" : "تعذر تحميل بعض البيانات ..",
   "skip" : "الغاء",
   "next" : "التالي",
@@ -569,5 +570,6 @@
   "properties_selected" : "معايير البحث :",
   "scrap" : "سكراب",
   "search_classifieds" : "بحث الإعلانات",
-  "shipment_copied" : "تم نسخ رقم الشحنة"
+  "shipment_copied" : "تم نسخ رقم الشحنة",
+  "skip_next" : "الاستمرار"
 }

@@ -626,3 +626,10 @@ export function startClassifiedSearching(payload) {
     payload,
   };
 }
+
+export function startNewClassified(payload) {
+  return {
+    type: actions.START_NEW_CLASSIFIED,
+    payload,
+  };
+}
