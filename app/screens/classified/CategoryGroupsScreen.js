@@ -43,7 +43,6 @@ const CategoryGroupsScreen = ({
   const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
   [remainingGroups, setRemainingGroups] = useState(category.categoryGroups);
-  const [skipNext, setSkipNext] = useState(false);
 
   useMemo(() => {
     if (validate.isEmpty(remainingGroups)) {
@@ -210,8 +209,34 @@ const CategoryGroupsScreen = ({
                           ) : (
                             <Icon type="font-awesome" name={property.icon} />
                           )}
-                          <CheckBox checked={true} />
-                          <Text style={styles.title}>{property.name}</Text>
+                          <View
+                            style={{
+                              flex: 1,
+                              flexDirection: 'row-reverse',
+                              alignItems: 'baseline',
+                              justifyContent: 'space-between',
+                            }}>
+                            {currentCategoryGroup.is_multi ? (
+                              filter(
+                                selectedProperties,
+                                p => p.property.id === property.id,
+                              ) ? (
+                                <Icon
+                                  type="antdesign"
+                                  name="checkcircleo"
+                                  color="green"
+                                />
+                              ) : (
+                                <Icon
+                                  type="antdesign"
+                                  name="minuscircleo"
+                                  color="grey"
+                                />
+                              )
+                            ) : null}
+
+                            <Text style={styles.title}>{property.name}</Text>
+                          </View>
                         </TouchableOpacity>
                       );
                     })}
