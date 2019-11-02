@@ -15,7 +15,7 @@ import {
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {map, first, filter, shuffle, uniqBy} from 'lodash';
+import {map, first, filter, shuffle, uniqBy, remove} from 'lodash';
 import {text} from './../../constants';
 import {Button, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
@@ -54,29 +54,42 @@ const CategoryGroupsScreen = ({
 
   const handleClick = useCallback(property => {
     console.log('here fired');
-    const propsNow = [
-      {
-        cateogry_group: currentCategoryGroup,
-        property: property,
-        category_group_property: property.id + currentCategoryGroup.id,
-        // value: property.value,
-        // name: property.name,
-        // icon: property.icon,
-        // thumb: property.thumb
-      },
-      ...selectedProperties,
-    ];
-    const filteredProps = uniqBy(propsNow, 'category_group_property');
-    setSelectedProperties(filteredProps);
-    dispatch(
-      addToProperties({
-        cateogry_group: currentCategoryGroup,
-        property: property,
-        category_group_property: property.id + currentCategoryGroup.id,
-      }),
+    const filterSwitchProps = filter(
+      selectedProperties,
+      p => p.property.id === property.id,
     );
-    if (!currentCategoryGroup.is_multi) {
-      goToNextGroup();
+    console.log('filterSwitchProps', filterSwitchProps);
+    if (!validate.isEmpty(filterSwitchProps)) {
+      const removeProp = filter(
+        selectedProperties,
+        p => p.property.id !== property.id,
+      );
+      setSelectedProperties(removeProp);
+    } else {
+      const propsNow = [
+        {
+          cateogry_group: currentCategoryGroup,
+          property: property,
+          category_group_property: property.id + currentCategoryGroup.id,
+          // value: property.value,
+          // name: property.name,
+          // icon: property.icon,
+          // thumb: property.thumb
+        },
+        ...selectedProperties,
+      ];
+      const filteredProps = uniqBy(propsNow, 'category_group_property');
+      setSelectedProperties(filteredProps);
+      dispatch(
+        addToProperties({
+          cateogry_group: currentCategoryGroup,
+          property: property,
+          category_group_property: property.id + currentCategoryGroup.id,
+        }),
+      );
+      if (!currentCategoryGroup.is_multi) {
+        goToNextGroup();
+      }
     }
   });
 
@@ -217,9 +230,11 @@ const CategoryGroupsScreen = ({
                               justifyContent: 'space-between',
                             }}>
                             {currentCategoryGroup.is_multi ? (
-                              filter(
-                                selectedProperties,
-                                p => p.property.id === property.id,
+                              !validate.isEmpty(
+                                filter(
+                                  selectedProperties,
+                                  p => p.property.id === property.id,
+                                ),
                               ) ? (
                                 <Icon
                                   type="antdesign"
