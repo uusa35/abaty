@@ -345,7 +345,7 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.4.1):
+  - RNGestureHandler (1.5.0):
     - React
   - RNGoogleSignin (2.1.0):
     - GoogleSignIn (~> 5.0.0)
@@ -357,7 +357,7 @@ PODS:
     - React-Core
     - React-RCTImage
     - RSKImageCropper
-  - RNReanimated (1.3.0):
+  - RNReanimated (1.4.0):
     - React
   - RNSentry (1.0.9):
     - React
@@ -645,11 +645,11 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 60a80e72d95bf02a01cace55d3697d9724f0d77f
   RNDeviceInfo: 17e34f6dd902f08d88cbe2c0b7a01be948d43641
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
+  RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
   RNGoogleSignin: bb1393dec8541d997fd12b7b8f43481868a34e93
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: e1d8c3381e5b05a1bdcd13ea57a4f1c020a09cef
-  RNReanimated: 6abbbae2e5e72609d85aabd92a982a94566885f1
+  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSentry: 2803ba8c8129dcf26b79e9b4d8c80168be6e4390
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
   RNSnackbar: 5ce7c6c100fde59068e9135397760d7cee299c2a
@@ -664,6 +664,6 @@ SPEC CHECKSUMS:
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
   YoutubePlayer-in-WKWebView: 7694e858c5c3472ed067d6fe34eb9b944845e63c
 
-PODFILE CHECKSUM: 6712d19bef37dc8476b0c497547ffdd590a11d3b
+PODFILE CHECKSUM: f80a5983a5e7d5e31afc43cf3f1e28952f7d90ba
 
-COCOAPODS: 1.8.0.beta.2
+COCOAPODS: 1.8.4

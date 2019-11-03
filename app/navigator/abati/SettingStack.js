@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import SettingsIndexScreen from '../../screens/SettingsIndexScreen';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from '../../components/HeaderLeft';
@@ -134,15 +134,6 @@ export const SettingStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: false,
-    animation: 'spring',
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
   },
 );
 

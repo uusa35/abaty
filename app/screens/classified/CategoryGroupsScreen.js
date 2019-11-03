@@ -11,8 +11,8 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
-import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter, shuffle, uniqBy, remove} from 'lodash';
@@ -104,6 +104,7 @@ const CategoryGroupsScreen = ({
     } else {
       setRemainingGroups(null);
     }
+    setSelectedProperties([]);
   });
 
   const doneWithProperties = useCallback(() => {

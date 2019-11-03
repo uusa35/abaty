@@ -1,13 +1,11 @@
-/**
- * @format
- */
-
+import "react-native-gesture-handler";
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {AppRegistry} from 'react-native';
 import {Abaty} from './app/Root';
 import {name as appName} from './app.json';
-console.disableYellowBox = true;
 import * as Sentry from '@sentry/react-native';
 import {isLocal} from "./app/env";
+console.disableYellowBox = true;
 
 if(!isLocal && !__DEV__) {
     console.log('from inside Sentary');
@@ -19,4 +17,6 @@ if(!isLocal && !__DEV__) {
     // Sentry.addBreadcrumb({ message: "test" });
     // Sentry.captureMessage("Hello Sentry!");
 }
-AppRegistry.registerComponent(appName, () => Abaty);
+AppRegistry.registerComponent(appName, () => gestureHandlerRootHOC(Abaty));
+
+

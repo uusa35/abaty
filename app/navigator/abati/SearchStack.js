@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import SearchScreen from '../../screens/search/SearchScreen';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from '../../components/HeaderLeft';
@@ -25,6 +25,6 @@ export const SearchStack = createStackNavigator(
   {
     mode: 'modal',
     headerMode: 'screen',
-    swipeEnabled: true,
+    swipeEnabled: false,
   },
 );

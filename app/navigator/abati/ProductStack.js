@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
@@ -36,7 +36,8 @@ export const ProductStack = createStackNavigator(
   },
   {
     mode: 'card',
-    headerMode: 'float',
+    headerMode: 'screen',
+    swipeEnabled: false,
   },
 );
 

@@ -121,6 +121,7 @@
 		508D81E122D24DF80057D75A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		508D81E222D24DF80057D75A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		508D81FB22D24E290057D75A /* abaty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = abaty.entitlements; path = abaty/abaty.entitlements; sourceTree = "<group>"; };
+		50B8EF83236E16B4006F2B67 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D8144F2316968B00B621A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50D87F182317BB75007D2A14 /* libBase64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBase64.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D87F1A2317BD14007D2A14 /* abaty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "abaty-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -220,6 +221,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50B8EF83236E16B4006F2B67 /* libRNGestureHandler.a */,
 				5071553D2366FCF7001BC93D /* libRNImageCropPicker.a */,
 				5071553B2366FCE8001BC93D /* libRSKImageCropper.a */,
 				50D87F182317BB75007D2A14 /* libBase64.a */,
@@ -1008,7 +1010,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 				);
-				MARKETING_VERSION = 5.1;
+				MARKETING_VERSION = 5.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1147,7 +1149,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/yoga\"",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 				);
-				MARKETING_VERSION = 5.1;
+				MARKETING_VERSION = 5.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

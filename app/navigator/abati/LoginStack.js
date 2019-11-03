@@ -1,27 +1,29 @@
-import {createStackNavigator} from 'react-navigation';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import {HeaderRight} from '../../components/HeaderRight';
-import React from 'react';
 import LoginScreen from '../../screens/auth/LoginScreen';
 import RegisterScreen from '../../screens/auth/RegisterScreen';
 import UserEditScreen from '../../screens/auth/UserEditScreen';
+import {first} from 'lodash';
 
 export const LoginStack = createStackNavigator(
   {
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
-      }),
+        headerBackTitle: null,
+      },
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
     UserEdit: {
@@ -29,7 +31,7 @@ export const LoginStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
   },
@@ -37,7 +39,7 @@ export const LoginStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'none',
     swipeEnabled: false,
-    animation: 'spring',
+    animation: first(['spring', 'timing']),
     config: {
       stiffness: 1000,
       damping: 500,

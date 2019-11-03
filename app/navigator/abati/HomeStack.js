@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import I18n from '../../I18n';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
@@ -252,6 +252,7 @@ export const HomeStack = createStackNavigator(
       screen: ContactusScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
+        headerBackTitle: null,
       }),
       path: 'contactus',
     },
@@ -259,6 +260,7 @@ export const HomeStack = createStackNavigator(
       screen: TermAndConditionScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
+        headerBackTitle: null,
       }),
     },
     BrandIndex: {
@@ -387,6 +389,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null,
       }),
     },
     Register: {
@@ -394,7 +397,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
   },

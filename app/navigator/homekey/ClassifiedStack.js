@@ -52,7 +52,7 @@ export const ClassifiedStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: true,
+    swipeEnabled: false,
   },
 );
 ClassifiedStack.navigationOptions = ({navigation}) => {

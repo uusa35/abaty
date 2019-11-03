@@ -40,7 +40,8 @@ export const ServiceStack = createStackNavigator(
   },
   {
     mode: 'card',
-    headerMode: 'float',
+    headerMode: 'screen',
+    swipeEnabled: false,
   },
 );
 
