@@ -571,5 +571,6 @@
   "scrap" : "سكراب",
   "search_classifieds" : "بحث الإعلانات",
   "shipment_copied" : "تم نسخ رقم الشحنة",
-  "skip_next" : "الاستمرار"
+  "skip_next" : "الاستمرار",
+  "can_not_find_address_please_write_ur_address" : "لم نتمكن من تحديد موقع العنوان المختار بدقة .. يرجى كتابة عنوانك"
 }

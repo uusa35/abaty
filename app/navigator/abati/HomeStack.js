@@ -345,60 +345,59 @@ export const HomeStack = createStackNavigator(
     },
     ClassifiedStore: {
       screen: ClassifiedStoreScreen,
-      navigationOptions: () => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      }),
+      },
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: () => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      }),
+      },
     },
     ChooseCategoryGroups: {
       screen: CategoryGroupsScreen,
-      navigationOptions: () => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      }),
+      },
     },
     ChooseAddress: {
       screen: ChooseAddressScreen,
-      navigationOptions: () => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      }),
+      },
     },
     ClassifiedFilter: {
       screen: ClassifiedFilterScreen,
-      navigationOptions: () => ({
-        // header: null,
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
         headerRight: <HeaderRight showCountry={true} />,
         headerBackTitle: null,
-      }),
+      },
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
-      }),
+      },
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: {
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
-      }),
+      },
     },
   },
   {

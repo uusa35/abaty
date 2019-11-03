@@ -205,6 +205,7 @@ const CategoryGroupsScreen = ({
                     flex: 1,
                     paddingTop: 10,
                     width: '100%',
+                    padding: '5%',
                     justifyContent: 'space-between',
                   }}>
                   <View>
@@ -214,7 +215,7 @@ const CategoryGroupsScreen = ({
                           style={styles.propertiesWrapper}
                           onPress={() => handleClick(property)}
                           key={i}>
-                          {property.thumb ? (
+                          {!validate.isEmpty(property.thumb) ? (
                             <FastImage
                               source={{uri: property.thumb}}
                               style={{width: 30, height: 30}}

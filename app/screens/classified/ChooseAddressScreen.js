@@ -8,6 +8,8 @@ import {Button, Input} from 'react-native-elements';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {axiosInstance} from '../../redux/actions/api';
 import {useNavigation} from 'react-navigation-hooks';
+import {enableErrorMessage} from '../../redux/actions';
+import {DispatchContext} from '../../redux/DispatchContext';
 
 const ChooseAddressScreen = () => {
   const [longitude, setLongitude] = useState(47.9323259);
@@ -15,6 +17,7 @@ const ChooseAddressScreen = () => {
   const [address, setAddress] = useState('');
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
+  const {dispatch} = useContext(DispatchContext);
 
   useMemo(() => {
     // Geolocation.getCurrentPosition(info => {
@@ -32,7 +35,13 @@ const ChooseAddressScreen = () => {
     axiosInstance
       .get('location/address', {params: {latitude, longitude}})
       .then(r => setAddress(r.data.address))
-      .catch(e => console.log(e));
+      .catch(e =>
+        dispatch(
+          enableErrorMessage(
+            I18n.t('can_not_find_address_please_write_ur_address'),
+          ),
+        ),
+      );
   });
 
   return (
