@@ -19,7 +19,12 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="home" type="octicon" color={tintColor} />
+          <Icon
+            size={text.xlarge}
+            name="home"
+            type="octicon"
+            color={tintColor}
+          />
         ),
         title: I18n.t('home'),
       }),
@@ -29,7 +34,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     //   navigationOptions: ({navigation}) => ({
     //     tabBarIcon: ({tintColor}) => (
     //       <Icon
-    //           size={30}
+    //           size={text.xlarge}
     //           name="layers" type="simplelineicons" color={tintColor} />
     //     ),
     //     // title: I18n.t('categories')
@@ -42,7 +47,7 @@ export const BottomTabsStack = createBottomTabNavigator(
           <Icon
             name="play-video"
             type="foundation"
-            size={30}
+            size={text.xlarge}
             color={tintColor}
           />
         ),
@@ -53,7 +58,12 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="ios-person" type="ionicon" color={tintColor} />
+          <Icon
+            size={text.xlarge}
+            name="ios-person"
+            type="ionicon"
+            color={tintColor}
+          />
         ),
         title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
@@ -65,7 +75,12 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SearchStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
+          <Icon
+            size={text.xlarge}
+            name="ios-search"
+            type="ionicon"
+            color={tintColor}
+          />
         ),
         title: I18n.t('search'),
       }),
@@ -75,7 +90,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon
-            size={30}
+            size={text.xlarge}
             name="sort-by-alpha"
             type="material-icon"
             color={tintColor}
@@ -91,7 +106,7 @@ export const BottomTabsStack = createBottomTabNavigator(
           <Icon
             name="customerservice"
             type="antdesign"
-            size={30}
+            size={text.xlarge}
             color={tintColor}
           />
         ),
