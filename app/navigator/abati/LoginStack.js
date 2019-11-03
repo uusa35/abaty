@@ -39,7 +39,7 @@ export const LoginStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'none',
     swipeEnabled: false,
-    animation: first(['spring', 'timing']),
+    animation: first(['spring','timing']),
     config: {
       stiffness: 1000,
       damping: 500,
