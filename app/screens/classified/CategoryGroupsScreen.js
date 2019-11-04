@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {map, first, filter, shuffle, uniqBy, remove} from 'lodash';
+import {map, first, filter, shuffle, uniqBy, remove, concat} from 'lodash';
 import {text} from './../../constants';
 import {Button, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
@@ -38,7 +38,7 @@ const CategoryGroupsScreen = ({
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
-    !validate.isEmpty(category) ? first(category.categoryGroups) : null,
+    !validate.isEmpty(category) ? first(category.categoryGroups) : [],
   );
   const [categoryGroupVisible, setCategoryGroupVisible] = useState(false);
   [selectedProperties, setSelectedProperties] = useState([]);
@@ -53,12 +53,14 @@ const CategoryGroupsScreen = ({
   }, [currentCategoryGroup, remainingGroups]);
 
   const handleClick = useCallback(property => {
-    console.log('here fired');
+    console.log('the prop', property.id);
+    console.log('the group', currentCategoryGroup.id);
     const filterSwitchProps = filter(
       selectedProperties,
-      p => p.property.id === property.id,
+      p =>
+        p.category_group_property ===
+        `${currentCategoryGroup.id}${property.id}`,
     );
-    console.log('filterSwitchProps', filterSwitchProps);
     if (!validate.isEmpty(filterSwitchProps)) {
       const removeProp = filter(
         selectedProperties,
@@ -70,23 +72,22 @@ const CategoryGroupsScreen = ({
         {
           cateogry_group: currentCategoryGroup,
           property: property,
-          category_group_property: property.id + currentCategoryGroup.id,
-          // value: property.value,
-          // name: property.name,
-          // icon: property.icon,
-          // thumb: property.thumb
+          category_group_property: `${currentCategoryGroup.id}${property.id}`,
         },
         ...selectedProperties,
       ];
       const filteredProps = uniqBy(propsNow, 'category_group_property');
-      setSelectedProperties(filteredProps);
-      dispatch(
-        addToProperties({
-          cateogry_group: currentCategoryGroup,
-          property: property,
-          category_group_property: property.id + currentCategoryGroup.id,
-        }),
-      );
+      if (!validate.isEmpty(filteredProps)) {
+        console.log('fieltered props', filteredProps);
+        setSelectedProperties(filteredProps);
+        dispatch(
+          addToProperties({
+            cateogry_group: currentCategoryGroup,
+            property: property,
+            category_group_property: `${currentCategoryGroup.id}${property.id}`,
+          }),
+        );
+      }
       if (!currentCategoryGroup.is_multi) {
         goToNextGroup();
       }
@@ -102,7 +103,7 @@ const CategoryGroupsScreen = ({
       setCurrentCategoryGroup(first(rest));
       setRemainingGroups(rest);
     } else {
-      setRemainingGroups(null);
+      setRemainingGroups([]);
     }
     setSelectedProperties([]);
   });
@@ -111,9 +112,9 @@ const CategoryGroupsScreen = ({
     setCategoryGroupVisible(false);
     dispatch({type: HIDE_PROPERTIES_MODAL});
     if (category.is_real_estate) {
-      return dispatch(navigation.navigate('ChooseAddress'));
+      dispatch(navigation.navigate('ChooseAddress'));
     } else {
-      return dispatch(navigation.navigate('ClassifiedStore'));
+      dispatch(navigation.navigate('ClassifiedStore'));
     }
   });
 
@@ -146,12 +147,15 @@ const CategoryGroupsScreen = ({
                 }>
                 <View
                   style={{
-                    width: '100%',
+                    width: '95%',
+                    alignSelf: 'center',
                     minHeight: 50,
-                    justifyContent: 'center',
                     marginTop: '15%',
+                    justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'row-reverse',
+                    // paddingRight : 25, paddingLeft : 20 ,
+                    // borderWidth : 10
                   }}>
                   <Icon
                     containerStyle={{position: 'absolute', left: 0}}
@@ -171,15 +175,17 @@ const CategoryGroupsScreen = ({
                       alignItems: 'center',
                       // justifyContent: 'center',
                     }}>
-                    <FastImage
-                      source={{uri: group.thumb}}
-                      style={{
-                        width: 35,
-                        height: 35,
-                        marginRight: 3,
-                        marginLeft: 3,
-                      }}
-                    />
+                    {group.thumb ? (
+                      <FastImage
+                        source={{uri: group.thumb}}
+                        style={{
+                          width: 35,
+                          height: 35,
+                          marginRight: 3,
+                          marginLeft: 3,
+                        }}
+                      />
+                    ) : null}
                     {/*<Icon type="font-awesome" name={group.icon} />*/}
                     <Text
                       style={{

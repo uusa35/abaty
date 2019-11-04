@@ -136,7 +136,6 @@ const AbatiHomeScreen = ({
     [deviceId],
   );
 
-  console.log('homeCategories', homeCategories);
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
