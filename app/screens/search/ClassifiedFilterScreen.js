@@ -158,7 +158,7 @@ const ClassifiedFilterScreen = ({
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[0]}
+        // stickyHeaderIndices={[0]}
         onEndReachedThreshold={1}
         contentInset={{bottom: 100}}
         contentContainerStyle={{
@@ -168,6 +168,8 @@ const ClassifiedFilterScreen = ({
           style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
+            width: '100%',
+            backgroundColor: 'white',
           }}>
           <ClassifiedSearchForm />
         </View>
@@ -406,6 +408,17 @@ const ClassifiedFilterScreen = ({
             justifyContent: 'flex-end',
           }}>
           <Button
+            onPress={() => handleSubmitFilter()}
+            raised
+            containerStyle={{width: '95%', alignSelf: 'center'}}
+            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+            title={I18n.t('apply_filter')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color,
+            }}
+          />
+          <Button
             onPress={() => handleClearFilter()}
             raised
             containerStyle={{
@@ -416,17 +429,6 @@ const ClassifiedFilterScreen = ({
             }}
             buttonStyle={{backgroundColor: 'red'}}
             title={I18n.t('remove_filter')}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color,
-            }}
-          />
-          <Button
-            onPress={() => handleSubmitFilter()}
-            raised
-            containerStyle={{width: '95%', alignSelf: 'center'}}
-            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={I18n.t('apply_filter')}
             titleStyle={{
               fontFamily: text.font,
               color: colors.btn_text_theme_color,

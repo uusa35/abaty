@@ -78,7 +78,6 @@ const CategoryGroupsScreen = ({
       ];
       const filteredProps = uniqBy(propsNow, 'category_group_property');
       if (!validate.isEmpty(filteredProps)) {
-        console.log('fieltered props', filteredProps);
         setSelectedProperties(filteredProps);
         dispatch(
           addToProperties({
@@ -254,7 +253,7 @@ const CategoryGroupsScreen = ({
                                 <Icon
                                   type="antdesign"
                                   name="minuscircleo"
-                                  color="grey"
+                                  color="lightgrey"
                                 />
                               )
                             ) : null}
