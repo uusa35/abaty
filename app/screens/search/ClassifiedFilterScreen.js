@@ -128,7 +128,6 @@ const ClassifiedFilterScreen = ({
     if (!searchModal) {
       setSearchModalVisible(searchModal);
       setPropsModalVisible(searchModal);
-      // dispatch(goBack());
     }
   }, [searchModal]);
 
