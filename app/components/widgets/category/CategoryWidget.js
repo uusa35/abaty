@@ -7,6 +7,7 @@ import {
   getSearchClassifieds,
   getSearchCompanies,
   getSearchProducts,
+  setCategoryAndGoToNavChildren,
 } from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -30,13 +31,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
               }),
             );
           case 'company':
-            return dispatch(
-              getSearchCompanies({
-                searchParams: {is_company: 1, user_category_id: element.id},
-                name: element.name,
-                redirect: true,
-              }),
-            );
+            return dispatch(setCategoryAndGoToNavChildren(element));
           case 'classified':
             return dispatch(
               getSearchClassifieds({

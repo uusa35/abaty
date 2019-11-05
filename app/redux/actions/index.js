@@ -158,14 +158,7 @@ export function setSettings(settings) {
   };
 }
 
-export function submitRegisterRequest(payload) {
-  return {
-    type: actions.SUBMIT_REGISTER_REQUEST,
-    payload,
-  };
-}
-
-export function refetchHomeCategories(payload) {
+export function refetchHomeCategories() {
   return {
     type: actions.REFETCH_HOME_CATEGORIES,
   };
@@ -201,6 +194,13 @@ export function setCategories(payload) {
 export function setCategory(payload) {
   return {
     type: actions.SET_CATEGORY,
+    payload,
+  };
+}
+
+export function setCategoryAndGoToNavChildren(payload) {
+  return {
+    type: actions.SET_CATEGORY_AND_GO_TO_NAV_CHILDREN,
     payload,
   };
 }

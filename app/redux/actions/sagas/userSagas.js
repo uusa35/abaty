@@ -613,10 +613,6 @@ export function* getSearchDesigners() {
   yield takeLatest(actions.GET_DESIGNERS, startGetDesignersScenario);
 }
 
-export function* getSearchShoppers() {
-  yield takeLatest(actions.GET_SHOPPERS, startGetShoppersScenario);
-}
-
 export function* getSearchCelebrities() {
   yield takeLatest(actions.GET_CELEBRITIES, startGetCelebritiesScenario);
 }

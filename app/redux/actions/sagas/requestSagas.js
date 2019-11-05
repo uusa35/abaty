@@ -39,6 +39,7 @@ import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetHomeClassifiedsScenario} from './classifiedSagas';
 import {isArray} from 'lodash';
 import {getHomeCategories} from '../api';
+import {GET_COMPANIES} from '../types';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -600,6 +601,44 @@ export function* getTags() {
     yield all([
       call(disableLoading),
       call(enableErrorMessage, I18n.t('no_tags')),
+    ]);
+  }
+}
+
+export function* startGetCategoryAndGoToNavChildren(action) {
+  try {
+    const element = action.payload;
+    if (element.children && !validate.isEmpty(element.children)) {
+      if (element.isParent) {
+        yield put({type: actions.SET_CATEGORY, payload: element});
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'SubCategoryIndex',
+            params: {name: element.name},
+          }),
+        );
+      } else {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'ChildrenCategoryIndex',
+            params: {name: element.name, element},
+          }),
+        );
+      }
+    } else {
+      yield put({
+        type: GET_COMPANIES,
+        payload: {
+          searchParams: {is_company: 1, user_category_id: element.id},
+          name: element.name,
+          redirect: true,
+        },
+      });
+    }
+  } catch (e) {
+    yield all([
+      call(disableLoading),
+      call(enableErrorMessage, I18n.t('no_items')),
     ]);
   }
 }

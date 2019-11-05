@@ -2,7 +2,7 @@
   "name": "abaty",
   "ABATI" : true,
   "MALLR" : false,
-  "HOMEKEY" : false,
+  "HOMEKEY" : true,
   "ESCRAP" : true,
   "displayName": "abati",
   "APP_CASE" : "abati",

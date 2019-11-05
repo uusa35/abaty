@@ -29,6 +29,7 @@ import {
   startGetHomeCategoriesScenario,
   startGetCategoriesScenario,
   startGetParentCategoriesScenario,
+  startGetCategoryAndGoToNavChildren,
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -241,4 +242,11 @@ export function* triggerGetHomeCategories() {
 
 export function* triggerGetParentCategories() {
   yield takeLatest(actions.GET_CATEGORIES, startGetParentCategoriesScenario);
+}
+
+export function* triggerGetCategoryAndGoToNavChildren() {
+  yield takeLatest(
+    actions.SET_CATEGORY_AND_GO_TO_NAV_CHILDREN,
+    startGetCategoryAndGoToNavChildren,
+  );
 }

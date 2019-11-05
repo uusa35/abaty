@@ -45,6 +45,7 @@ import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
+import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -111,6 +112,14 @@ export const HomeStack = createStackNavigator(
     },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
+    },
+    ChildrenCategoryIndex: {
+      screen: ChildrenCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,

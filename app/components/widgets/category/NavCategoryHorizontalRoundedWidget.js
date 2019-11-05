@@ -13,6 +13,7 @@ import {
   enableErrorMessage,
   getSearchClassifieds,
   setCategory,
+  setCategoryAndGoToNavChildren,
 } from '../../../redux/actions';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
@@ -32,11 +33,7 @@ const NavCategoryHorizontalRoundedWidget = ({
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const handleClick = useCallback(c => {
-    if (c.children) {
-      dispatch(setCategory(c));
-      return navigate({routeName: 'SubCategoryIndex', params: {name: c.name}});
-    }
-    return enableErrorMessage(I18n.t('no_children'));
+    return dispatch(setCategoryAndGoToNavChildren(c));
   });
 
   return (

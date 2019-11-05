@@ -4,19 +4,20 @@ import {
   FlatList,
   RefreshControl,
   KeyboardAvoidingView,
+  ScrollView,
 } from 'react-native';
 import {getSearchCompanies} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
-import {text, width} from './../../constants';
+import {text, width, height} from './../../constants';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
-import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import SimpleSpinner from '../SimpleSpinner';
 import {DispatchContext} from '../../redux/DispatchContext';
 import CompanyWidgetHorizontal from '../widgets/user/CompanyWidgetHorizontal';
+import {useNavigation} from 'react-navigation-hooks';
 
 const CompaniesList = ({elements, searchParams, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
@@ -28,6 +29,7 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
   const {dispatch} = useContext(DispatchContext);
+  const {goBack} = useNavigation();
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -81,10 +83,11 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
 
   return (
     <KeyboardAvoidingView
+      endFillColor="white"
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: width,
+        width: '100%',
       }}
       behavior="padding"
       enabled>
@@ -109,36 +112,36 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
               onRefresh={() => handleRefresh()}
             />
           }
-          contentContainerStyle={{
-            width: width - 20,
-          }}
+          contentContainerStyle={
+            {
+              // width : '100%'
+            }
+          }
           columnWrapperStyle={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'flex-start',
+            alignSelf: 'center',
           }}
           renderItem={({item}) => (
-            <React.Suspense fallback={<SimpleSpinner />}>
-              <CompanyWidgetHorizontal user={item} showName={true} />
-            </React.Suspense>
+            <CompanyWidgetHorizontal user={item} showName={true} />
           )}
           ListFooterComponent={
-            <View style={{width: '100%', minHeight: 100}}>
-              <Button
-                loading={isLoading}
-                raised
-                title={I18n.t('no_more_companies')}
-                type="outline"
-                titleStyle={{fontFamily: text.font}}
-              />
-            </View>
+            <Button
+              loading={isLoading}
+              raised
+              title={I18n.t('no_more_companies')}
+              type="outline"
+              titleStyle={{fontFamily: text.font}}
+              onPress={() => goBack()}
+            />
           }
           ListHeaderComponentStyle={{
             width: '100%',
             padding: 10,
             backgroundColor: 'white',
           }}
+          ListFooterComponentStyle={{}}
           ListHeaderComponent={
-            <View>
+            <View style={{backgroundColor: 'white'}}>
               <Input
                 placeholder={I18n.t('search')}
                 inputStyle={{
@@ -171,14 +174,20 @@ const CompaniesList = ({elements, searchParams, showMore}) => {
           }
         />
       ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
-          <Button
-            raised
-            title={I18n.t('no_companies')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
-          />
-        </View>
+        <Button
+          onPress={() => goBack()}
+          raised
+          title={I18n.t('no_companies')}
+          type="outline"
+          titleStyle={{fontFamily: text.font}}
+          containerStyle={{
+            borderWidth: 10,
+            marginTop: 300,
+            alignSelf: 'center',
+            position: 'absolute',
+            bottom: 10,
+          }}
+        />
       )}
     </KeyboardAvoidingView>
   );

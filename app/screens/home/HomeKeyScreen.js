@@ -164,8 +164,8 @@ const HomeKeyHomeScreen = ({
             onRefresh={() => handleRefresh()}
           />
         }
-        showsHorizontalScrollIndicator={false}
         endFillColor="white"
+        showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
         <React.Suspense fallback={<SimpleSpinner />}>
@@ -181,7 +181,6 @@ const HomeKeyHomeScreen = ({
               title={I18n.t('categories')}
             />
           ) : null}
-
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <NavCategoryHorizontalRoundedWidget
