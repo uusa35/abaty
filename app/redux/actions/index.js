@@ -198,6 +198,13 @@ export function setCategories(payload) {
   };
 }
 
+export function setCategory(payload) {
+  return {
+    type: actions.SET_CATEGORY,
+    payload,
+  };
+}
+
 export function setBrands(payload) {
   return {
     type: actions.SET_BRANDS,

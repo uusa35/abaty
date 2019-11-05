@@ -57,6 +57,7 @@ import {
   ClassifiedListHorizontal,
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
+import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -121,9 +122,9 @@ const HomeKeyHomeScreen = ({
     return this.props.dispatch(goDeepLinking({type, id}));
   });
 
-  // const onReceived = useCallback((notification) => {
-  //   __DEV__ ? console.log('Notification received: ', notification) : null;
-  // },[notification]);
+  const onReceived = useCallback(notification => {
+    __DEV__ ? console.log('Notification received: ', notification) : null;
+  });
 
   const onOpened = useCallback(openResult => {
     console.log('Notification Case');
@@ -175,6 +176,15 @@ const HomeKeyHomeScreen = ({
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <ClassifiedCategoryHorizontalRoundedWidget
+              elements={homeCategories}
+              showName={true}
+              title={I18n.t('categories')}
+            />
+          ) : null}
+
+          {!validate.isEmpty(homeCategories) &&
+          validate.isArray(homeCategories) ? (
+            <NavCategoryHorizontalRoundedWidget
               elements={homeCategories}
               showName={true}
               title={I18n.t('categories')}

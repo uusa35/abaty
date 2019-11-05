@@ -1,31 +1,52 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import React, {useContext} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
-import {getSearchProducts} from '../../../redux/actions';
+import {
+  getSearchClassifieds,
+  getSearchCompanies,
+  getSearchProducts,
+} from '../../../redux/actions';
 import PropTypes from 'prop-types';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const CategoryWidget = ({
-  element,
-  columns,
-  showBtn = false,
-  dispatch,
-  colors,
-}) => {
+const CategoryWidget = ({element, columns, showBtn = false, type}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
       key={element.id}
       style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}
-      onPress={() =>
-        dispatch(
-          getSearchProducts({
-            name: element.name,
-            searchParams: {product_category_id: element.id},
-            redirect: true,
-          }),
-        )
-      }>
+      onPress={() => {
+        switch (type) {
+          case 'product':
+            return dispatch(
+              getSearchProducts({
+                name: element.name,
+                searchParams: {product_category_id: element.id},
+                redirect: true,
+              }),
+            );
+          case 'company':
+            return dispatch(
+              getSearchCompanies({
+                searchParams: {is_company: 1, user_category_id: element.id},
+                name: element.name,
+                redirect: true,
+              }),
+            );
+          case 'classified':
+            return dispatch(
+              getSearchClassifieds({
+                name: element.name,
+                searchParams: {classified_category_id: element.id},
+                redirect: true,
+              }),
+            );
+        }
+      }}>
       <FastImage
         style={{width: columns ? width / 2 : width, height: width / 2}}
         resizeMode="cover"
@@ -61,6 +82,7 @@ export default CategoryWidget;
 CategoryWidget.propTypes = {
   element: PropTypes.object,
   columns: PropTypes.number,
+  type: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({

@@ -12,19 +12,19 @@ const CategoryIndexScreen = ({
   show_commercials,
 }) => {
   return (
-    <React.Suspense fallback={<SimpleSpinner />}>
+    <View style={{flex: 1}}>
       <View
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={homeCategories} columns={2} />
+        <CategoriesList elements={homeCategories} columns={2} type="product" />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
           <CommercialSliderWidget commercials={commercials} />
         </View>
       ) : null}
-    </React.Suspense>
+    </View>
   );
 };
 

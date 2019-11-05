@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const CategoriesList = ({elements, columns}) => {
+const CategoriesList = ({elements, columns, type, showBtn = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
@@ -44,8 +44,8 @@ const CategoriesList = ({elements, columns}) => {
               element={c}
               key={i}
               columns={columns}
-              dispatch={dispatch}
-              colors={colors}
+              type={type}
+              showBtn={showBtn}
             />
           ))
         ) : (
@@ -65,6 +65,7 @@ export default CategoriesList;
 
 CategoriesList.propTypes = {
   elements: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
   columns: PropTypes.number,
 };
 
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flexWrap: 'wrap',
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     // width: '100%'
   },

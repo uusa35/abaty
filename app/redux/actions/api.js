@@ -63,7 +63,7 @@ export async function getHomeCelebrities() {
 
 export async function getUsers(params) {
   return await axiosInstance
-    .get(`search/user`, {params: params})
+    .get(`search/user`, {params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

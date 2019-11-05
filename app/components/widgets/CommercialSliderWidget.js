@@ -45,6 +45,7 @@ export default CommercialSliderWidget;
 const styles = StyleSheet.create({
   container: {
     height: '20%',
+    borderWidth: 10,
   },
   wrapper: {
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',

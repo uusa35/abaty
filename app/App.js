@@ -21,6 +21,7 @@ import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
 import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
 import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../app';
+import SimpleSpinner from './components/SimpleSpinner';
 
 const App = ({
   isLoading,
@@ -143,7 +144,9 @@ const App = ({
                 guest,
                 searchModal,
               }}>
-              <AppNavigator uriPrefix={prefix} />
+              <React.Suspense fallback={<SimpleSpinner />}>
+                <AppNavigator uriPrefix={prefix} />
+              </React.Suspense>
               {validate.isBoolean(loginModal) ? (
                 <LoginScreenModal
                   colors={colors}
