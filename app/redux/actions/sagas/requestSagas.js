@@ -618,10 +618,11 @@ export function* startGetCategoryAndGoToNavChildren(action) {
           }),
         );
       } else {
+        yield put({type: actions.SET_SUB_CATEGORY, payload: element});
         yield put(
           NavigationActions.navigate({
             routeName: 'ChildrenCategoryIndex',
-            params: {name: element.name, element},
+            params: {name: element.name},
           }),
         );
       }

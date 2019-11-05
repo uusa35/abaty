@@ -57,6 +57,7 @@ import {
   ClassifiedListHorizontal,
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
+import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -174,7 +175,7 @@ const EscrapHomeScreen = ({
           <HomeKeySearchTab elements={categories} main_bg={main_bg} />
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
-            <ClassifiedCategoryHorizontalRoundedWidget
+            <NavCategoryHorizontalRoundedWidget
               elements={homeCategories}
               showName={true}
               title={I18n.t('categories')}

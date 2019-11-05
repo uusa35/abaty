@@ -398,7 +398,7 @@ export function* startGetSearchCompaniesScenario(action) {
     } else {
       yield put({type: actions.SET_COMPANIES, payload: []});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
-      throw I18n.t(elements);
+      throw elements;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableWarningMessage, e)]);

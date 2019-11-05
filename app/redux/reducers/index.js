@@ -13,6 +13,7 @@ import user from './user';
 import categories from './categories';
 import homeCategories from './homeCategories';
 import category from './category';
+import subCategory from './subCategory';
 import brands from './brands';
 import brand from './brand';
 import designers from './designers';
@@ -79,7 +80,6 @@ import hotDealsProducts from './hotDealsProducts';
 import bestSaleProducts from './bestSaleProducts';
 import searchModal from './searchModal';
 import video from './video';
-
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -113,6 +113,7 @@ let reducers = combineReducers({
   categories,
   homeCategories,
   category,
+  subCategory,
   brand,
   brands,
   company,

@@ -181,14 +181,6 @@ const HomeKeyHomeScreen = ({
               title={I18n.t('categories')}
             />
           ) : null}
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
-            <NavCategoryHorizontalRoundedWidget
-              elements={homeCategories}
-              showName={true}
-              title={I18n.t('categories')}
-            />
-          ) : null}
           {!validate.isEmpty(homeClassifieds) &&
           validate.isArray(homeClassifieds) ? (
             <ClassifiedListHorizontal

@@ -27,10 +27,15 @@ import {width, height, text} from './../../constants';
 import {map, first, shuffle, uniqBy, take, remove, filter} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
-import {getSearchClassifieds} from '../../redux/actions';
+import {
+  getSearchClassifieds,
+  setCategory,
+  setSubCategory,
+} from '../../redux/actions';
 
 const ClassifiedFilterScreen = ({
   category,
+  subCategory,
   dispatch,
   searchModal,
   colors,
@@ -44,7 +49,8 @@ const ClassifiedFilterScreen = ({
   const [max, setMax] = useState();
   const [priceRange, setPriceRange] = useState([10, 1000]);
   const [selectedGroup, setSelectedGroup] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState(category);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(subCategory);
   const [propsModalVisible, setPropsModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [props, setProps] = useState([]);
@@ -74,10 +80,18 @@ const ClassifiedFilterScreen = ({
 
   useMemo(() => {
     if (!validate.isEmpty(selectedCategory)) {
-      dispatch({type: SET_CATEGORY, payload: selectedCategory});
+      dispatch(setCategory(selectedCategory));
+      if (!validate.isEmpty(selectedCategory.children)) {
+        setSubCategory(first(selectedCategory.children));
+        dispatch(setSubCategory(first(selectedCategory.children)));
+      }
     } else {
       if (map(parentCategories, c => c.id === category.id)) {
         setSelectedCategory(category);
+        if (!validate.isEmpty(category.children)) {
+          setSubCategory(first(category.children));
+          dispatch(setSubCategory(first(category.children)));
+        }
       }
     }
     setItems([]);
@@ -145,9 +159,19 @@ const ClassifiedFilterScreen = ({
   });
 
   useEffect(() => {
-    console.log('area changed');
     setCurrentArea(area);
   }, [area]);
+
+  const handleParent = useCallback(p => {
+    setSelectedCategory(p);
+    if (!validate.isEmpty(p.children)) {
+      setSelectedSubCategory(first(p.children));
+    }
+  });
+
+  useMemo(() => {
+    dispatch(setSubCategory(selectedSubCategory));
+  }, [selectedSubCategory]);
 
   return (
     <SafeAreaView>
@@ -186,7 +210,7 @@ const ClassifiedFilterScreen = ({
             {map(parentCategories, (c, i) => (
               <Button
                 key={i}
-                onPress={() => setSelectedCategory(c)}
+                onPress={() => handleParent(c)}
                 raised
                 containerStyle={{width: '32%', alignSelf: 'center'}}
                 buttonStyle={{
@@ -204,6 +228,41 @@ const ClassifiedFilterScreen = ({
               />
             ))}
           </View>
+        ) : null}
+        {selectedCategory.children ? (
+          <ScrollView
+            horizontal={true}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}>
+            {map(selectedCategory.children, (sub, i) => (
+              <Button
+                key={i}
+                onPress={() => setSelectedSubCategory(sub)}
+                raised
+                containerStyle={{
+                  width: '32%',
+                  alignSelf: 'center',
+                  marginRight: 10,
+                  marginLeft: 10,
+                }}
+                buttonStyle={{
+                  backgroundColor: colors.btn_bg_theme_color,
+                  opacity:
+                    selectedSubCategory && selectedSubCategory.id === sub.id
+                      ? 1
+                      : 0.6,
+                  height: 40,
+                  minWidth: 100,
+                }}
+                title={sub.name.substring(0, 20)}
+                titleStyle={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.btn_text_theme_color,
+                }}
+              />
+            ))}
+          </ScrollView>
         ) : null}
 
         <View
@@ -530,6 +589,7 @@ const ClassifiedFilterScreen = ({
 function mapStateToProps(state) {
   return {
     category: state.category,
+    subCategory: state.subCategory,
     categories: state.categories,
     searchModal: state.searchModal,
     colors: state.settings.colors,

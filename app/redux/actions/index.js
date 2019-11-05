@@ -198,6 +198,13 @@ export function setCategory(payload) {
   };
 }
 
+export function setSubCategory(payload) {
+  return {
+    type: actions.SET_SUB_CATEGORY,
+    payload,
+  };
+}
+
 export function setCategoryAndGoToNavChildren(payload) {
   return {
     type: actions.SET_CATEGORY_AND_GO_TO_NAV_CHILDREN,
