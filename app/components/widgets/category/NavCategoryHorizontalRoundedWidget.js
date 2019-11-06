@@ -41,7 +41,7 @@ const NavCategoryHorizontalRoundedWidget = ({
       {showTitle ? (
         <TouchableOpacity
           style={widgetStyles.titleContainer}
-          onPress={() => navigate('CategoryIndex')}>
+          onPress={() => navigate('ParentCategoryIndex')}>
           <View style={widgetStyles.titleWrapper}>
             <Text
               style={[

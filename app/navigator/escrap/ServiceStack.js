@@ -1,25 +1,25 @@
-import {createStackNavigator} from 'react-navigation';
-import ProductIndexAllScreen from '../../screens/ProductIndexAllScreen';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import ServiceIndexAllScreen from '../../screens/service/ServiceIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import ProductShowScreen from '../../screens/ProductShowScreen';
-import React from 'react';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 
-export const AbatiProductStack = createStackNavigator(
+export const ServiceStack = createStackNavigator(
   {
-    ProductIndexAll: {
-      screen: ProductIndexAllScreen,
+    ServiceIndexAll: {
+      screen: ServiceIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
+        headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null,
       }),
     },
-    Product: {
-      screen: ProductShowScreen,
+    Service: {
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -30,17 +30,22 @@ export const AbatiProductStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
+        headerStyle: {
+          // backgroundColor: 'white',
+          // zIndex: 100
+        },
       }),
-      path: `product/:id`,
+      path: `service/:id`,
     },
   },
   {
     mode: 'card',
-    headerMode: 'float',
+    headerMode: 'screen',
+    swipeEnabled: false,
   },
 );
 
-AbatiProductStack.navigationOptions = ({navigation}) => {
+ServiceStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

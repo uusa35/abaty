@@ -1,25 +1,25 @@
-import {createStackNavigator} from 'react-navigation';
-import ServiceIndexAllScreen from '../../screens/ServiceIndexAllScreen';
+import {createStackNavigator} from 'react-navigation-stack';
+import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
-import ServiceShowScreen from '../../screens/ServiceShowScreen';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
 
-export const AbatiServiceStack = createStackNavigator(
+export const ProductStack = createStackNavigator(
   {
-    ServiceIndexAll: {
-      screen: ServiceIndexAllScreen,
+    ProductIndexAll: {
+      screen: ProductIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('services')} />,
+        headerTitle: <HeaderMiddle title={I18n.t('products')} />,
         headerBackTitle: null,
       }),
     },
-    Service: {
-      screen: ServiceShowScreen,
+    Product: {
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -30,12 +30,8 @@ export const AbatiServiceStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
-        headerStyle: {
-          // backgroundColor: 'white',
-          // zIndex: 100
-        },
       }),
-      path: `service/:id`,
+      path: `product/:id`,
     },
   },
   {
@@ -43,3 +39,13 @@ export const AbatiServiceStack = createStackNavigator(
     headerMode: 'float',
   },
 );
+
+ProductStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};

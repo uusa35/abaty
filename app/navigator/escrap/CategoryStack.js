@@ -1,15 +1,15 @@
-import {createStackNavigator} from 'react-navigation';
-import CategoryIndexScreen from '../../screens/CategoryIndexScreen';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
+import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import validate from 'validate.js';
 import I18n from '../../I18n';
-import ProductIndexScreen from '../../screens/ProductIndexScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import ProductShowScreen from '../../screens/ProductShowScreen';
-import SubCategoryIndexScreen from '../../screens/SubCategoryIndexScreen';
-import React from 'react';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
+import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 
-export const AbatiCategoryStack = createStackNavigator(
+export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
       screen: CategoryIndexScreen,
@@ -25,7 +25,7 @@ export const AbatiCategoryStack = createStackNavigator(
           />
         ),
         headerBackTitle: null,
-        headerTransparent: true,
+        headerTransparent: false,
       }),
       params: {
         category: null,
@@ -43,7 +43,7 @@ export const AbatiCategoryStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -73,7 +73,7 @@ export const AbatiCategoryStack = createStackNavigator(
   },
 );
 
-AbatiCategoryStack.navigationOptions = ({navigation}) => {
+CategoryStack.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;

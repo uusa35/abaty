@@ -112,7 +112,7 @@ const SideMeu = ({
                     styles.titleStyle,
                     {color: colors.header_one_theme_color},
                   ]}>
-                  {I18n.t('home_key')}
+                  {I18n.t('homekey')}
                 </Text>
               </TouchableOpacity>
             ) : null}

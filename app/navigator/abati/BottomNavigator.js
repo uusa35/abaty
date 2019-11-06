@@ -12,19 +12,15 @@ import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
 import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
+import IconTabBar from '../../components/IconTabBar';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            size={text.xlarge}
-            name="home"
-            type="octicon"
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="home" type="octicon" />
         ),
         title: I18n.t('home'),
       }),
@@ -43,13 +39,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     VideoIndexAll: {
       screen: VideoStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="play-video"
-            type="foundation"
-            size={text.xlarge}
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="play-video" type="foundation" />
         ),
         title: I18n.t('videos'),
       }),
@@ -57,13 +48,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     Setting: {
       screen: SettingStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            size={text.xlarge}
-            name="ios-person"
-            type="ionicon"
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-person" type="ionicon" />
         ),
         title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
@@ -74,13 +60,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     Search: {
       screen: SearchStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            size={text.xlarge}
-            name="ios-search"
-            type="ionicon"
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
         title: I18n.t('search'),
       }),
@@ -88,12 +69,11 @@ export const BottomTabsStack = createBottomTabNavigator(
     ProductIndexAll: {
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            size={text.xlarge}
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
             name="sort-by-alpha"
             type="material-icon"
-            color={tintColor}
           />
         ),
         title: I18n.t('all_products'),
@@ -102,12 +82,11 @@ export const BottomTabsStack = createBottomTabNavigator(
     ServiceIndexAll: {
       screen: ServiceStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
             name="customerservice"
             type="antdesign"
-            size={text.xlarge}
-            color={tintColor}
           />
         ),
         title: I18n.t('services'),

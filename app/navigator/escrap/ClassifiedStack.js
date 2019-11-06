@@ -1,16 +1,25 @@
-import {createStackNavigator} from 'react-navigation';
-import HomeKeyScreen from '../../screens/HomeKeyScreen';
+import React from 'react';
+import {createStackNavigator} from 'react-navigation-stack';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
-import ClassifiedIndexScreen from '../../screens/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/ClassifiedShowScreen';
+import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
-import React from 'react';
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
+import I18n from '../../I18n';
+import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 
-export const AbatiClassifiedStack = createStackNavigator(
+export const ClassifiedStack = createStackNavigator(
   {
+    ClassifiedIndex: {
+      screen: ClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
+        headerRight: <HeaderRight showFilter={true} showCountry={true} />,
+        headerBackTitle: null,
+      }),
+    },
     HomeKey: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -18,24 +27,15 @@ export const AbatiClassifiedStack = createStackNavigator(
         headerBackTitle: null,
       }),
     },
-    ClassifiedIndex: {
-      screen: ClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null,
-      }),
-    },
     Classified: {
-      screen: ClassifiedShowScreen,
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
-            display={true}
+            showCountry={true}
           />
         ),
         headerBackTitle: null,
@@ -54,3 +54,12 @@ export const AbatiClassifiedStack = createStackNavigator(
     swipeEnabled: false,
   },
 );
+ClassifiedStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+  return {
+    tabBarVisible,
+  };
+};

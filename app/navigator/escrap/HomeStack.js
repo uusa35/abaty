@@ -41,11 +41,12 @@ import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen'
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
 import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
-import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
+import {APP_CASE} from '../../../app';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
+import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -59,12 +60,13 @@ export const HomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: AbatiHomeScreen,
+      screen: ScrapHomeScreen,
       navigationOptions: () => ({
-        headerLeft: <HeaderLeft />,
-        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerLeft: <HeaderLeft showCart={false} showSideMenu={true} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
+        headerTitle: <HeaderMiddle title={I18n.t(APP_CASE)} showLogo={true} />,
         headerBackTitle: null,
+        headerTransparent: true,
       }),
     },
     CartIndex: {
@@ -109,6 +111,14 @@ export const HomeStack = createStackNavigator(
         headerTransparent: false,
       }),
       path: 'category/:id',
+    },
+    ParentCategoryIndex: {
+      screen: ParentCategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('categories')} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
     },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
@@ -261,7 +271,6 @@ export const HomeStack = createStackNavigator(
       screen: ContactusScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
-        headerBackTitle: null,
       }),
       path: 'contactus',
     },
@@ -269,7 +278,6 @@ export const HomeStack = createStackNavigator(
       screen: TermAndConditionScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
-        headerBackTitle: null,
       }),
     },
     BrandIndex: {
@@ -354,65 +362,65 @@ export const HomeStack = createStackNavigator(
     },
     ClassifiedStore: {
       screen: ClassifiedStoreScreen,
-      navigationOptions: {
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      },
+      }),
     },
     ChooseCategory: {
       screen: ChooseCategoryScreen,
-      navigationOptions: {
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      },
+      }),
     },
     ChooseCategoryGroups: {
       screen: CategoryGroupsScreen,
-      navigationOptions: {
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      },
+      }),
     },
     ChooseAddress: {
       screen: ChooseAddressScreen,
-      navigationOptions: {
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
-      },
+      }),
     },
     ClassifiedFilter: {
       screen: ClassifiedFilterScreen,
-      navigationOptions: {
+      navigationOptions: () => ({
+        // header: null,
         headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
         headerRight: <HeaderRight showCountry={true} />,
         headerBackTitle: null,
-      },
+      }),
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null,
-      },
+      }),
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: {
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
-        headerBackTitle: null,
-      },
+        // headerBackTitle: null
+      }),
     },
   },
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
   },
 );
 

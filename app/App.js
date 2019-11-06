@@ -93,6 +93,7 @@ const App = ({
         loadingText={I18n.t('loading')}
         isLoading={isLoading}
         logo={logo}
+        color={colors ? colors.btn_bg_theme_color : 'black'}
         mainBg={main_bg}
       />
     );

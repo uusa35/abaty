@@ -211,7 +211,12 @@ const ClassifiedFilterScreen = ({
                 key={i}
                 onPress={() => handleParent(c)}
                 raised
-                containerStyle={{width: '32%', alignSelf: 'center'}}
+                containerStyle={{
+                  width: '50%',
+                  alignSelf: 'center',
+                  marginRight: 5,
+                  marginLeft: 5,
+                }}
                 buttonStyle={{
                   backgroundColor: colors.btn_bg_theme_color,
                   opacity:
@@ -239,7 +244,7 @@ const ClassifiedFilterScreen = ({
                 onPress={() => setSelectedSubCategory(sub)}
                 raised
                 containerStyle={{
-                  width: '32%',
+                  minWidth: 100,
                   alignSelf: 'center',
                   marginRight: 10,
                   marginLeft: 10,
@@ -253,7 +258,7 @@ const ClassifiedFilterScreen = ({
                   height: 40,
                   minWidth: 100,
                 }}
-                title={sub.name.substring(0, 20)}
+                title={sub.name.substring(0, 30)}
                 titleStyle={{
                   fontFamily: text.font,
                   fontSize: text.medium,
@@ -295,8 +300,8 @@ const ClassifiedFilterScreen = ({
             <MultiSlider
               allowOverlap
               snapped
-              min={100}
-              max={1000}
+              min={category.min}
+              max={category.max}
               step={10}
               values={priceRange}
               sliderLength={width - 90}

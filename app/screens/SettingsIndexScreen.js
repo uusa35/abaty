@@ -13,7 +13,7 @@ import {text} from '../constants';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../I18n';
 import {changeLang} from '../redux/actions';
-import {HOMEKEY} from './../../app';
+import {HOMEKEY, MALLR, ABATI, ESCRAP} from './../../app';
 import {appUrlIos} from '../env';
 import PagesList from '../components/widgets/page/PagesList';
 
@@ -37,7 +37,7 @@ const SettingsIndexScreen = ({
         // flex: 1
       }}>
       <View style={styles.container}>
-        {!guest ? (
+        {!guest && (MALLR || ABATI) ? (
           <TouchableOpacity
             onPress={() => navigation.navigate('FavoriteProductIndex')}
             style={styles.btnWrapper}>
@@ -45,7 +45,7 @@ const SettingsIndexScreen = ({
             <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
           </TouchableOpacity>
         ) : null}
-        {!guest && HOMEKEY ? (
+        {!guest && (HOMEKEY || ESCRAP) ? (
           <TouchableOpacity
             onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
             style={styles.btnWrapper}>

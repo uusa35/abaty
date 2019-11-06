@@ -45,6 +45,8 @@ import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import {APP_CASE} from '../../../app';
+import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
+import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -110,8 +112,24 @@ export const HomeStack = createStackNavigator(
       }),
       path: 'category/:id',
     },
+    ParentCategoryIndex: {
+      screen: ParentCategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('categories')} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
+    },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
+    },
+    ChildrenCategoryIndex: {
+      screen: ChildrenCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,

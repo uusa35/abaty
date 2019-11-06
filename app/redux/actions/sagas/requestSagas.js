@@ -610,6 +610,7 @@ export function* startGetCategoryAndGoToNavChildren(action) {
     const element = action.payload;
     if (element.children && !validate.isEmpty(element.children)) {
       if (element.isParent) {
+        console.log('if parent');
         yield put({type: actions.SET_CATEGORY, payload: element});
         yield put(
           NavigationActions.navigate({
@@ -618,6 +619,7 @@ export function* startGetCategoryAndGoToNavChildren(action) {
           }),
         );
       } else {
+        console.log('elese');
         yield put({type: actions.SET_SUB_CATEGORY, payload: element});
         yield put(
           NavigationActions.navigate({

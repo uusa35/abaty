@@ -1,96 +1,104 @@
 import React from 'react';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Icon} from 'react-native-elements';
-import I18n from '../../I18n';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants';
-import {AbatiHomeStack} from './AbatiHomeStack';
-import {AbatiCategoryStack} from './AbatiCategoryStack';
-import {AbatiVideoStack} from './AbatiVideoStack';
-import {AbatiSettingStack} from './AbatiSettingStack';
-import {AbatiSearchStack} from './AbatiSearchStack';
-import {AbatiProductStack} from './AbatiProductStack';
-import {AbatiServiceStack} from './AbatiServiceStack';
+import {HomeStack} from './HomeStack';
+import {VideoStack} from './VideoStack';
+import {SettingStack} from './SettingStack';
+import {SearchStack} from './SearchStack';
+import {ProductStack} from './ProductStack';
+import {ServiceStack} from './ServiceStack';
+import I18n from '../../I18n';
+import {ClassifiedStack} from './ClassifiedStack';
+import {CategoryStack} from './CategoryStack';
+import IconTabBar from '../../components/IconTabBar';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
-      screen: AbatiHomeStack,
+      screen: HomeStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="home" type="octicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="home" type="octicon" />
         ),
         title: I18n.t('home'),
       }),
     },
     CategoryIndexScreen: {
-      screen: AbatiCategoryStack,
+      screen: CategoryStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="layers" type="simplelineicons" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="layers" type="simplelineicons" />
         ),
         title: I18n.t('categories'),
       }),
     },
     VideoIndexAll: {
-      screen: AbatiVideoStack,
+      screen: VideoStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="play-video"
-            type="foundation"
-            size={30}
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="play-video" type="foundation" />
         ),
         title: I18n.t('videos'),
       }),
     },
     Setting: {
-      screen: AbatiSettingStack,
+      screen: SettingStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-person" type="ionicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-person" type="ionicon" />
         ),
         title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null,
       }),
     },
     Search: {
-      screen: AbatiSearchStack,
+      screen: SearchStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-search" type="ionicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
         title: I18n.t('search'),
       }),
     },
     ProductIndexAll: {
-      screen: AbatiProductStack,
+      screen: ProductStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
+            name="sort-by-alpha"
+            type="material-icon"
+          />
         ),
         title: I18n.t('all_products'),
       }),
     },
     ServiceIndexAll: {
-      screen: AbatiServiceStack,
+      screen: ServiceStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
             name="customerservice"
             type="antdesign"
-            size={18}
-            color={tintColor}
           />
         ),
         title: I18n.t('services'),
+      }),
+    },
+    ClassifiedIndexAll: {
+      screen: ClassifiedStack,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="news" type="entypo" />
+        ),
+        title: I18n.t('classifieds'),
       }),
     },
   },
@@ -98,10 +106,10 @@ export const BottomTabsStack = createBottomTabNavigator(
     tabBarOptions: {
       lazy: true,
       showIcon: true,
+      showLabel: false,
       scrollEnabled: true,
       allowFontScaling: true,
-      activeTintColor: 'black',
-      // activeTintColor: '#ddca21',
+      activeTintColor: '#DD0900',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
       animationEnabled: true,
@@ -117,10 +125,12 @@ export const BottomTabsStack = createBottomTabNavigator(
     order: [
       'Home',
       'CategoryIndexScreen',
+      // 'ProductIndexAll',
+      // 'VideoIndexAll',
+      // 'ServiceIndexAll',
       'Search',
+      'ClassifiedIndexAll',
       'Setting',
-      'ProductIndexAll',
-      'VideoIndexAll',
     ],
   },
 );
