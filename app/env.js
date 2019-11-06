@@ -43,6 +43,8 @@ const appUrl = () => {
       return 'http://mallr.net/';
     case 'homekey':
       return 'http://hkey.ideasowners.net/';
+    case 'escrap':
+      return 'http://escrapco.com/';
     default:
       return 'http://mallr.test';
   }

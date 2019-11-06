@@ -1,11 +1,11 @@
 {
   "name": "abaty",
-  "ABATI" : true,
+  "ABATI" : false,
   "MALLR" : false,
   "HOMEKEY" : true,
   "ESCRAP" : true,
   "displayName": "abati",
-  "APP_CASE" : "abati",
+  "APP_CASE" : "escrap",
   "apiUrl" : "http://mallr.test/api/",
   "ENV" : "production",
   "PORT" : 4000,

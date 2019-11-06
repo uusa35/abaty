@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {Text, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {text} from '../../../constants';
@@ -6,13 +6,10 @@ import {getConvertedFinalPrice} from '../../../helpers';
 import validate from 'validate.js';
 import PropertiesWidget from './PropertiesWidget';
 import I18n from './../../../I18n';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ClassifiedInfoWidget = ({
-  element,
-  colors,
-  exchange_rate,
-  currency_symbol,
-}) => {
+const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View
       onPress={() => console.log('clicked')}
@@ -39,6 +36,7 @@ const ClassifiedInfoWidget = ({
                 textAlign: 'left',
                 fontSize: text.large,
                 paddingBottom: 10,
+                fontFamily: text.font,
                 color: colors.header_tow_theme_color,
               }}>
               {element.name.substring(0, 20)}

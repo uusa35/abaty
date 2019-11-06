@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import BrandIndexScreen from '../../screens/BrandIndexScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderMiddle} from '../../components/HeaderMiddle';

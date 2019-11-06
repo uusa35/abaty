@@ -62,7 +62,6 @@ const ClassifiedWidget = ({element, showName = false}) => {
       {showName ? (
         <ClassifiedInfoWidget
           element={element}
-          colors={colors}
           exchange_rate={exchange_rate}
           currency_symbol={currency_symbol}
         />

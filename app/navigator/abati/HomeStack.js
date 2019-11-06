@@ -31,7 +31,7 @@ import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
 import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import HomeKeyScreen from '../../screens/home/HomeKeyScreen';
+import HomeKeyHomeScreen from '../../screens/home/HomeKeyScreen';
 import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
@@ -306,7 +306,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     HomeKey: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,

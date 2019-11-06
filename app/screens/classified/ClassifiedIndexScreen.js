@@ -10,7 +10,6 @@ const ClassifiedIndexScreen = ({
   searchParams,
   isLoadingContent,
 }) => {
-  console.log('classifieds', classifieds);
   return (
     <React.Suspense
       fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>

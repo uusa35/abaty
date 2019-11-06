@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import I18n from '../../I18n';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
@@ -31,7 +31,7 @@ import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
 import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import HomeKeyScreen from '../../screens/home/HomeKeyScreen';
+import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
@@ -41,10 +41,10 @@ import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen'
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
 import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
-import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
+import {APP_CASE} from '../../../app';
 
 export const HomeStack = createStackNavigator(
   {
@@ -58,13 +58,11 @@ export const HomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: () => ({
-        headerLeft: <HeaderLeft showCart={false} />,
+        headerLeft: <HeaderLeft showCart={false} showSideMenu={true} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
-        headerTitle: (
-          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
-        ),
+        headerTitle: <HeaderMiddle title={I18n.t(APP_CASE)} showLogo={true} />,
         headerBackTitle: null,
         headerTransparent: true,
       }),
@@ -298,7 +296,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     HomeKey: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,

@@ -1,13 +1,12 @@
 import React from 'react';
-import {createStackNavigator} from 'react-navigation';
-import HomeKeyScreen from '../../screens/home/HomeKeyScreen';
+import {createStackNavigator} from 'react-navigation-stack';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import I18n from '../../I18n';
-import {HomeStack} from './HomeStack';
+import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -20,7 +19,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     HomeKey: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,

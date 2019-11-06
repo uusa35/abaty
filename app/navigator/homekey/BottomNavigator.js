@@ -1,10 +1,9 @@
 import React from 'react';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
-import {Text} from 'react-native';
 import {text} from '../../constants';
 import {HomeStack} from './HomeStack';
 import {VideoStack} from './VideoStack';
@@ -13,41 +12,35 @@ import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
 import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
-import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import {ClassifiedStack} from './ClassifiedStack';
+import {CategoryStack} from './CategoryStack';
+import IconTabBar from '../../components/IconTabBar';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="home" type="octicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="home" type="octicon" />
         ),
         title: I18n.t('home'),
       }),
     },
-    // CategoryIndexScreen: {
-    //   screen: CategoryStack,
-    //   navigationOptions: ({navigation}) => ({
-    //     tabBarIcon: ({tintColor}) => (
-    //       <Icon
-    //           size={30}
-    //           name="layers" type="simplelineicons" color={tintColor} />
-    //     ),
-    // title: I18n.t('categories')
-    //   })
-    // },
+    CategoryIndexScreen: {
+      screen: CategoryStack,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="layers" type="simplelineicons" />
+        ),
+        title: I18n.t('categories'),
+      }),
+    },
     VideoIndexAll: {
       screen: VideoStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="play-video"
-            type="foundation"
-            size={30}
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="play-video" type="foundation" />
         ),
         title: I18n.t('videos'),
       }),
@@ -55,8 +48,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     Setting: {
       screen: SettingStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="ios-person" type="ionicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-person" type="ionicon" />
         ),
         title: I18n.t('me'),
         headerLeft: <HeaderLeft {...navigation} />,
@@ -67,8 +60,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     Search: {
       screen: SearchStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon size={30} name="ios-search" type="ionicon" color={tintColor} />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
         title: I18n.t('search'),
       }),
@@ -76,12 +69,11 @@ export const BottomTabsStack = createBottomTabNavigator(
     ProductIndexAll: {
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            size={30}
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
             name="sort-by-alpha"
             type="material-icon"
-            color={tintColor}
           />
         ),
         title: I18n.t('all_products'),
@@ -90,12 +82,11 @@ export const BottomTabsStack = createBottomTabNavigator(
     ServiceIndexAll: {
       screen: ServiceStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
+        tabBarIcon: ({focused}) => (
+          <IconTabBar
+            focused={focused}
             name="customerservice"
             type="antdesign"
-            size={30}
-            color={tintColor}
           />
         ),
         title: I18n.t('services'),
@@ -104,13 +95,8 @@ export const BottomTabsStack = createBottomTabNavigator(
     ClassifiedIndexAll: {
       screen: ClassifiedStack,
       navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <Icon
-            name="customerservice"
-            type="antdesign"
-            size={30}
-            color={tintColor}
-          />
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="news" type="entypo" />
         ),
         title: I18n.t('classifieds'),
       }),
@@ -138,7 +124,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     initialRouteName: 'Home',
     order: [
       'Home',
-      // 'CategoryIndexScreen',
+      'CategoryIndexScreen',
       // 'ProductIndexAll',
       // 'VideoIndexAll',
       // 'ServiceIndexAll',

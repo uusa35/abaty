@@ -8,20 +8,22 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 
-export const HeaderLeft = ({showCart = true}) => {
+export const HeaderLeft = ({showCart = true, showSideMenu = true}) => {
   const {navigate, openDrawer} = useNavigation();
   const {cartLength, colors} = useContext(GlobalValuesContext);
   return (
     <View style={widgetStyles.safeContainer}>
-      <Icon
-        name="ios-menu"
-        type="ionicon"
-        size={32}
-        onPress={() => openDrawer()}
-        underlayColor="transparent"
-        hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-        color="black"
-      />
+      {showSideMenu ? (
+        <Icon
+          name="ios-menu"
+          type="ionicon"
+          size={32}
+          onPress={() => openDrawer()}
+          underlayColor="transparent"
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          color="black"
+        />
+      ) : null}
       {showCart ? (
         <View>
           <Icon

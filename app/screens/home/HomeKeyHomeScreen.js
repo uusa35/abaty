@@ -48,8 +48,6 @@ import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHo
 import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
-// import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
-// import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import SimpleSpinner from '../../components/SimpleSpinner';
 import {
@@ -168,65 +166,65 @@ const HomeKeyHomeScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
-        <React.Suspense fallback={<SimpleSpinner />}>
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
-          ) : null}
+        {!validate.isEmpty(slides) ? (
+          <MainSliderWidget slides={slides} />
+        ) : null}
+        {!validate.isEmpty(categories) && validate.isArray(categories) ? (
           <HomeKeySearchTab elements={categories} main_bg={main_bg} />
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
-            <ClassifiedCategoryHorizontalRoundedWidget
-              elements={homeCategories}
-              showName={true}
-              title={I18n.t('categories')}
-            />
-          ) : null}
-          {!validate.isEmpty(homeClassifieds) &&
-          validate.isArray(homeClassifieds) ? (
-            <ClassifiedListHorizontal
-              classifieds={homeClassifieds}
-              showName={true}
-              showSearch={false}
-              showTitle={true}
-              title="featured_classifieds"
-              searchElements={{on_home: true}}
-            />
-          ) : null}
-          <CompanyHorizontalWidget
-            elements={homeCompanies}
+        ) : null}
+        {!validate.isEmpty(homeCategories) &&
+        validate.isArray(homeCategories) ? (
+          <ClassifiedCategoryHorizontalRoundedWidget
+            elements={homeCategories}
             showName={true}
-            name={I18n.t('companies')}
-            title="companies"
-            searchElements={{is_company: true}}
+            title={I18n.t('categories')}
           />
-          <TouchableOpacity
-            onPress={() =>
-              !guest
-                ? navigation.navigate('ChooseCategory')
-                : navigation.navigate('Login')
-            }
-            style={[
-              widgetStyles.newClassifiedBtnWrapper,
-              {backgroundColor: colors.btn_bg_theme_color},
-            ]}>
-            <View style={[widgetStyles.newClassifiedWrapper]}>
-              <Text
-                style={[
-                  widgetStyles.newClassifiedTitle,
-                  {color: colors.btn_text_theme_color},
-                ]}>
-                {I18n.t('new_classified')}
-              </Text>
-              <Icon
-                name="home"
-                type="material-icon"
-                size={120}
-                color={colors.btn_text_theme_color}
-                containerStyle={{opacity: 0.8}}
-              />
-            </View>
-          </TouchableOpacity>
-        </React.Suspense>
+        ) : null}
+        {!validate.isEmpty(homeClassifieds) &&
+        validate.isArray(homeClassifieds) ? (
+          <ClassifiedListHorizontal
+            classifieds={homeClassifieds}
+            showName={true}
+            showSearch={false}
+            showTitle={true}
+            title="featured_classifieds"
+            searchElements={{on_home: true}}
+          />
+        ) : null}
+        <CompanyHorizontalWidget
+          elements={homeCompanies}
+          showName={true}
+          name={I18n.t('companies')}
+          title="companies"
+          searchElements={{is_company: true}}
+        />
+        <TouchableOpacity
+          onPress={() =>
+            !guest
+              ? navigation.navigate('ChooseCategory')
+              : navigation.navigate('Login')
+          }
+          style={[
+            widgetStyles.newClassifiedBtnWrapper,
+            {backgroundColor: colors.btn_bg_theme_color},
+          ]}>
+          <View style={[widgetStyles.newClassifiedWrapper]}>
+            <Text
+              style={[
+                widgetStyles.newClassifiedTitle,
+                {color: colors.btn_text_theme_color},
+              ]}>
+              {I18n.t('new_classified')}
+            </Text>
+            <Icon
+              name="home"
+              type="material-icon"
+              size={120}
+              color={colors.btn_text_theme_color}
+              containerStyle={{opacity: 0.8}}
+            />
+          </View>
+        </TouchableOpacity>
       </ScrollView>
       {show_commercials ? (
         <View style={{flex: 0.2}}>

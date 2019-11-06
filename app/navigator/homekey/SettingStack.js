@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import SettingsIndexScreen from '../../screens/SettingsIndexScreen';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from '../../components/HeaderLeft';
@@ -20,26 +20,26 @@ export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
       screen: SettingsIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
+        headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null,
       }),
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
       }),
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
@@ -47,7 +47,7 @@ export const SettingStack = createStackNavigator(
     },
     UserEdit: {
       screen: UserEditScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
         // headerBackTitle: null
@@ -55,7 +55,7 @@ export const SettingStack = createStackNavigator(
     },
     ProfileIndex: {
       screen: ProfileIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: null,
         headerBackTitle: null,
@@ -64,7 +64,7 @@ export const SettingStack = createStackNavigator(
     },
     OrderIndex: {
       screen: OrderIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
         headerBackTitle: null,
@@ -73,41 +73,27 @@ export const SettingStack = createStackNavigator(
     },
     FavoriteProductIndex: {
       screen: FavoriteProductIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),
     },
     Product: {
       screen: NormalProductShow,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            showCountry={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} showCountry={true} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
     },
     Classified: {
       screen: ClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null,
         //   headerTransparent: true,
         // headerStyle: {
@@ -120,11 +106,9 @@ export const SettingStack = createStackNavigator(
     },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
-        ),
+      navigationOptions: () => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),
@@ -133,7 +117,7 @@ export const SettingStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
     animation: 'spring',
     config: {
       stiffness: 1000,

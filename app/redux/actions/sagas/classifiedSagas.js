@@ -16,7 +16,6 @@ import {storeClassifiedConstrains} from '../../../constants';
 import validate from 'validate.js';
 import {HIDE_SEARCH_MODAL, SHOW_SEARCH_MODAL, SET_CATEGORY} from '../types';
 import {first, values} from 'lodash';
-import {startGetHomeCompaniesScenario} from './userSagas';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -29,7 +28,6 @@ export function* startGetClassifiedsScenario(action) {
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
-        console.log('redirect', redirect);
         yield put(
           NavigationActions.navigate({
             routeName: 'ClassifiedIndex',
@@ -40,7 +38,6 @@ export function* startGetClassifiedsScenario(action) {
         );
       }
     } else {
-      console.log('the else', classifieds);
       throw classifieds;
     }
   } catch (e) {
@@ -119,7 +116,6 @@ export function* setClassifiedFavorites(classifiedFavorites) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
-    console.log('fired');
     const {name, mobile, description, images, image, price} = action.payload;
     const result = validate(
       {name, mobile, images, image, description, price},
@@ -213,6 +209,6 @@ export function* getClassifiedIndex() {
       yield all([put({type: actions.SET_CLASSIFIEDS, payload: elements})]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
   }
 }

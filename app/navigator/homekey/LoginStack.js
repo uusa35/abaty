@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import {HeaderRight} from '../../components/HeaderRight';
