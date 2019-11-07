@@ -345,7 +345,6 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Classified: {
-      // screen: ClassifiedShowScreen,
       screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,

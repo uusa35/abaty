@@ -2,7 +2,7 @@
  * Created by usamaahmed on 9/28/17.
  */
 import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity, View, Text} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
 import {showCountryModal} from '../redux/actions';
@@ -14,6 +14,7 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
+import {APP_CASE} from '../../app';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -23,14 +24,15 @@ export const HeaderRight = ({
   const {country} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const navigation = useNavigation();
+  const {params} = navigation.state;
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;
     return Share.open({
-      title: I18n.t('share_file', {name: I18n.t('appName')}),
+      title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: I18n.t('share_file', {name: I18n.t('appName')}),
-      subject: I18n.t('share_file', {name: I18n.t('appName')}),
+      message: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
+      subject: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
     })
       .then(res => {
         __DEV__ ? console.log(res) : null;
@@ -55,9 +57,7 @@ export const HeaderRight = ({
       {displayShare ? (
         <Icon
           onPress={() =>
-            shareLink(
-              `${linkingPrefix}model=${navigation.state.params.model}&id=${navigation.state.params.id}`,
-            )
+            shareLink(`${linkingPrefix}${params.model}&id=${params.id}`)
           }
           name="share"
           size={25}

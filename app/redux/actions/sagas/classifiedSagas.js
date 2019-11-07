@@ -159,12 +159,21 @@ export function* startNewClassifiedScenario(action) {
   yield put({type: actions.CLEAR_PROPERTIES});
   yield put({type: actions.SHOW_PROPERTIES_MODAL});
   yield put({type: actions.SET_CATEGORY, payload: category});
-  if (category.has_categoryGroups) {
-    yield put(
-      NavigationActions.navigate({
-        routeName: 'ChooseCategoryGroups',
-      }),
-    );
+  console.log('category', category);
+  if (category.is_real_estate) {
+    if (category.has_categoryGroups) {
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'ChooseCategoryGroups',
+        }),
+      );
+    } else {
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'ChooseCategoryGroups',
+        }),
+      );
+    }
   } else {
     yield put({type: actions.HIDE_PROPERTIES_MODAL});
     yield put(

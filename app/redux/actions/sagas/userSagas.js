@@ -119,14 +119,14 @@ export function* startGetCompanyScenario(action) {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyClassifiedShow',
-              params: {name: element.slug, id: element.id, product: false},
+              params: {name: element.slug, id: element.id, model: 'user'},
             }),
           );
         } else {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyShow',
-              params: {name: element.slug, id: element.id, product: false},
+              params: {name: element.slug, id: element.id, model: 'user'},
             }),
           );
         }

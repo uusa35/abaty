@@ -5,18 +5,23 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
-import {userPrefix, productPrefix} from './../constants';
+import {linkingPrefix} from './../constants';
 import I18n from './../I18n';
+import {useNavigation} from 'react-navigation-hooks';
+import {APP_CASE} from '../../app';
 
-const HeaderCustom = ({navigation}) => {
+const HeaderCustom = () => {
+  const navigation = useNavigation();
+  console.log('navigation', navigation.state.params);
+  const {params} = navigation.state;
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;
     return Share.open({
-      title: I18n.t('share_file'),
+      title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: I18n.t('share_file'),
-      subject: I18n.t('share_file'),
+      message: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
+      subject: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
     })
       .then(res => {
         __DEV__ ? console.log(res) : null;
@@ -29,11 +34,7 @@ const HeaderCustom = ({navigation}) => {
     <View style={styles.container}>
       <Icon
         onPress={() =>
-          shareLink(
-            `${navigation.state.params.product ? productPrefix : userPrefix}${
-              navigation.state.params.id
-            }`,
-          )
+          shareLink(`${linkingPrefix}${params.model}&id=${params.id}`)
         }
         name="share"
         size={25}

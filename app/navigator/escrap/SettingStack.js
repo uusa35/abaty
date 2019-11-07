@@ -55,7 +55,7 @@ export const SettingStack = createStackNavigator(
     },
     ProfileIndex: {
       screen: ProfileIndexScreen,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: null,
         headerBackTitle: null,
@@ -82,7 +82,7 @@ export const SettingStack = createStackNavigator(
     },
     Product: {
       screen: NormalProductShow,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
         headerBackTitle: null,
@@ -91,7 +91,7 @@ export const SettingStack = createStackNavigator(
     },
     Classified: {
       screen: ClassifiedShowScreen,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null,
