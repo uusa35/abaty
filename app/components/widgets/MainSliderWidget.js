@@ -1,8 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {map, random} from 'lodash';
-import FastImage from 'react-native-fast-image';
+import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import SlideWidget from './slide/SlideWidget';

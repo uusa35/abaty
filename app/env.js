@@ -50,6 +50,7 @@ const appUrl = () => {
   }
 };
 const appUrlIos = isLocal ? 'http://mallr.test' : appUrl();
+const appUrlAndroid = isLocal ? 'http://mallr.test' : appUrl();
 console.log('the Link Now', appUrlIos);
 console.log('the isLocal now', isLocal);
-export {appUrlIos, isLocal};
+export {appUrlIos, appUrlAndroid, isLocal};

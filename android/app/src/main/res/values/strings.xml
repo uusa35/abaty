@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">abaty</string>
     <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">N_taLc-A443NvPdG33rapbAzdAC20b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
+    <string name="facebook_app_id">2486060231717303</string>
 </resources>

@@ -37,6 +37,7 @@ const VideoWidget = ({
         </TouchableOpacity>
       ) : element.video_id ? (
         <YouTube
+          apiKey="AIzaSyBAcgq9IHsBSRTTDroMKhHErr6Hya6qFvU"
           videoId={`${element.url}`} // The YouTube video ID
           play={false} // control playback of video with true/false
           fullscreen // control whether the video should play in fullscreen or inline

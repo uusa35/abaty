@@ -12,6 +12,7 @@ import {VideoStack} from './VideoStack';
 import {SettingStack} from './SettingStack';
 import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
+import TextTabBar from '../../components/TextTabBar';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -21,7 +22,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="home" type="octicon" color={tintColor} />
         ),
-        title: I18n.t('home'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('home')} focused={focused} />
+        ),
       }),
     },
     CategoryIndexScreen: {
@@ -30,7 +33,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="layers" type="simplelineicons" color={tintColor} />
         ),
-        title: I18n.t('categories'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('categories')} focused={focused} />
+        ),
       }),
     },
     VideoIndexAll: {
@@ -53,7 +58,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('me'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('me')} focused={focused} />
+        ),
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
@@ -75,7 +82,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="sort-by-alpha" type="material-icon" color={tintColor} />
         ),
-        title: I18n.t('all_products'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('all_products')} focused={focused} />
+        ),
       }),
     },
   },

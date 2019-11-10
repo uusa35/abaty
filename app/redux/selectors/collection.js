@@ -24,50 +24,23 @@ const loginModal = state => state.loginModal;
 const commentModal = state => state.commentModal;
 const userWidget = state => state.designers;
 
-export const tokenSelector = createSelector(
-  token,
-  token => token,
-);
+export const tokenSelector = createSelector(token, token => token);
 
-export const colorsSelector = createSelector(
-  colors,
-  colors => colors,
-);
+export const colorsSelector = createSelector(colors, colors => colors);
 
-export const logoSelector = createSelector(
-  logo,
-  logo => logo,
-);
+export const logoSelector = createSelector(logo, logo => logo);
 
-export const countrySelector = createSelector(
-  country,
-  country => country,
-);
+export const countrySelector = createSelector(country, country => country);
 
-export const currencySelector = createSelector(
-  currency,
-  currency => currency,
-);
+export const currencySelector = createSelector(currency, currency => currency);
 
-export const playerIdSelector = createSelector(
-  playerId,
-  playerId => playerId,
-);
+export const playerIdSelector = createSelector(playerId, playerId => playerId);
 
-export const authSelector = createSelector(
-  auth,
-  auth => auth,
-);
+export const authSelector = createSelector(auth, auth => auth);
 
-export const settingsSelector = createSelector(
-  settings,
-  settings => settings,
-);
+export const settingsSelector = createSelector(settings, settings => settings);
 
-export const menuBgSelector = createSelector(
-  menuBg,
-  menuBg => menuBg,
-);
+export const menuBgSelector = createSelector(menuBg, menuBg => menuBg);
 
 export const companyNameSelector = createSelector(
   companyName,
@@ -77,38 +50,14 @@ export const settingImagesSelector = createSelector(
   settingImages,
   settingImages => settingImages,
 );
-export const youtubeSelector = createSelector(
-  youtube,
-  youtube => youtube,
-);
-export const guestSelector = createSelector(
-  guest,
-  guest => guest,
-);
-export const langSelector = createSelector(
-  lang,
-  lang => lang,
-);
-export const phoneSelector = createSelector(
-  phone,
-  phone => phone,
-);
-export const mobileSelector = createSelector(
-  mobile,
-  mobile => mobile,
-);
-export const authNameSelector = createSelector(
-  authName,
-  authName => authName,
-);
-export const serviceSelector = createSelector(
-  service,
-  service => service,
-);
-export const productSelector = createSelector(
-  product,
-  product => product,
-);
+export const youtubeSelector = createSelector(youtube, youtube => youtube);
+export const guestSelector = createSelector(guest, guest => guest);
+export const langSelector = createSelector(lang, lang => lang);
+export const phoneSelector = createSelector(phone, phone => phone);
+export const mobileSelector = createSelector(mobile, mobile => mobile);
+export const authNameSelector = createSelector(authName, authName => authName);
+export const serviceSelector = createSelector(service, service => service);
+export const productSelector = createSelector(product, product => product);
 
 export const loginModalSelector = createSelector(
   loginModal,
@@ -120,7 +69,4 @@ export const commentModalSelector = createSelector(
   commentModal => commentModal,
 );
 
-export const designerSelector = createSelector(
-  designer,
-  designer => designer,
-);
+export const designerSelector = createSelector(designer, designer => designer);

@@ -186,7 +186,7 @@ export function* startGetSearchProductsScenario(action) {
           put(
             NavigationActions.navigate({
               routeName: 'ProductIndex',
-              params: {name: name ? name : I18n.t('elements')},
+              params: {name: name ? name : I18n.t('products')},
             }),
           ),
           call(disableLoadingBoxedList),

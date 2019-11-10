@@ -82,7 +82,6 @@ project.ext.react = [
 
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -219,21 +218,22 @@ dependencies {
          implementation project(':react-native-i18n')
          implementation project(':react-native-fast-image')
          implementation project(':react-native-device-info')
-         implementation project(':react-native-code-push')
          implementation  project(':react-native-share')
          implementation project(':react-native-video')
          implementation project(':@react-native-community_async-storage')
          implementation project(':react-native-reanimated')
          implementation project(':lottie-react-native')
-         // implementation project(':rn-fetch-blob')
+         implementation project(':rn-fetch-blob')
          implementation  project(':react-native-image-crop-picker')
          implementation project(':react-native-gesture-handler')
          implementation(project(':react-native-maps')){
          exclude group: 'com.google.android.gms', module: 'play-services-base'
          exclude group: 'com.google.android.gms', module: 'play-services-maps'
          }
+         implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
 
-         implementation 'com.android.support:appcompat-v7:27.1.0'
+
+         //implementation 'com.android.support:appcompat-v7:27.1.0'
          implementation 'com.android.support:design:27.1.0'
          implementation 'com.android.support:support-v4:27.1.0'
 
@@ -241,11 +241,15 @@ dependencies {
         implementation  'com.google.android.gms:play-services-base:+'
         implementation  'com.google.android.gms:play-services-maps:+'
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+        //for react-navigation
+        implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+        implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+        //fetch blob
+        implementation 'com.squareup.okhttp3:okhttp:3.4.1'
 
-
-
+        // react native
+        implementation fileTree(dir: "libs", include: ["*.jar"])
+        implementation "com.facebook.react:react-native:+"  // From node_modules
         if (enableHermes) {
           def hermesPath = "../../node_modules/hermesvm/android/";
           debugImplementation files(hermesPath + "hermes-debug.aar")

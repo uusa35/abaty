@@ -60,7 +60,10 @@ const ClassifiedFilterScreen = ({
 
   useMemo(() => {
     if (validate.isEmpty(parentCategories)) {
-      const parents = take(map(categories, c => (c.isParent ? c : null)), 3);
+      const parents = take(
+        map(categories, c => (c.isParent ? c : null)),
+        3,
+      );
       setParentCategories(parents);
     }
   }, [parentCategories]);

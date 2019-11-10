@@ -77,8 +77,8 @@ const AbatiHomeScreen = ({
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
-    // OneSignal.addEventListener('received', onReceived);
-    // OneSignal.addEventListener('opened', onOpened);
+    OneSignal.addEventListener('received', onReceived);
+    OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
@@ -107,9 +107,9 @@ const AbatiHomeScreen = ({
     return this.props.dispatch(goDeepLinking({type, id}));
   });
 
-  // const onReceived = useCallback((notification) => {
-  //   __DEV__ ? console.log('Notification received: ', notification) : null;
-  // },[notification]);
+  const onReceived = useCallback(notification => {
+    __DEV__ ? console.log('Notification received: ', notification) : null;
+  });
 
   const onOpened = useCallback(openResult => {
     console.log('Notification Case');

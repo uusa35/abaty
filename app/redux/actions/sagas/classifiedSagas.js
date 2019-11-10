@@ -159,7 +159,6 @@ export function* startNewClassifiedScenario(action) {
   yield put({type: actions.CLEAR_PROPERTIES});
   yield put({type: actions.SHOW_PROPERTIES_MODAL});
   yield put({type: actions.SET_CATEGORY, payload: category});
-  console.log('category', category);
   if (category.is_real_estate) {
     if (category.has_categoryGroups) {
       yield put(

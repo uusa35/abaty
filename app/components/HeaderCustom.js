@@ -12,7 +12,6 @@ import {APP_CASE} from '../../app';
 
 const HeaderCustom = () => {
   const navigation = useNavigation();
-  console.log('navigation', navigation.state.params);
   const {params} = navigation.state;
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;

@@ -1,6 +1,5 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {Icon} from 'react-native-elements';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
@@ -13,6 +12,7 @@ import {ProductStack} from './ProductStack';
 import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
 import IconTabBar from '../../components/IconTabBar';
+import TextTabBar from '../../components/TextTabBar';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -22,7 +22,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="home" type="octicon" />
         ),
-        title: I18n.t('home'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('home')} focused={focused} />
+        ),
       }),
     },
     // CategoryIndexScreen: {
@@ -42,7 +44,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="play-video" type="foundation" />
         ),
-        title: I18n.t('videos'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('videos')} focused={focused} />
+        ),
       }),
     },
     Setting: {
@@ -51,7 +55,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-person" type="ionicon" />
         ),
-        title: I18n.t('me'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('me')} focused={focused} />
+        ),
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
@@ -63,7 +69,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
-        title: I18n.t('search'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('search')} focused={focused} />
+        ),
       }),
     },
     ProductIndexAll: {
@@ -76,7 +84,9 @@ export const BottomTabsStack = createBottomTabNavigator(
             type="material-icon"
           />
         ),
-        title: I18n.t('all_products'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('all_products')} focused={focused} />
+        ),
       }),
     },
     ServiceIndexAll: {
@@ -89,7 +99,9 @@ export const BottomTabsStack = createBottomTabNavigator(
             type="antdesign"
           />
         ),
-        title: I18n.t('services'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('services')} focused={focused} />
+        ),
       }),
     },
   },

@@ -23,26 +23,14 @@ const orders = state => state.auth.orders;
 const countries = state => state.countries;
 const homeCollections = state => state.homeCollections;
 
-export const brandsSelector = createSelector(
-  brands,
-  brands => brands,
-);
+export const brandsSelector = createSelector(brands, brands => brands);
 export const commercialsSelector = createSelector(
   commercials,
   commercials => commercials,
 );
-export const slidesSelector = createSelector(
-  slides,
-  slides => slides,
-);
-export const productsSelector = createSelector(
-  products,
-  products => products,
-);
-export const servicesSelector = createSelector(
-  services,
-  services => services,
-);
+export const slidesSelector = createSelector(slides, slides => slides);
+export const productsSelector = createSelector(products, products => products);
+export const servicesSelector = createSelector(services, services => services);
 export const homeProductsSelector = createSelector(
   homeProducts,
   homeProducts => homeProducts,
@@ -51,14 +39,8 @@ export const productFavoritesSelector = createSelector(
   productFavorites,
   productFavorites => productFavorites,
 );
-export const videosSelector = createSelector(
-  videos,
-  videos => videos,
-);
-export const usersSelector = createSelector(
-  users,
-  users => users,
-);
+export const videosSelector = createSelector(videos, videos => videos);
+export const usersSelector = createSelector(users, users => users);
 export const categoriesSelector = createSelector(
   categories,
   categories => categories,
@@ -67,19 +49,13 @@ export const companiesSelector = createSelector(
   companies,
   companies => companies,
 );
-export const splashesSelector = createSelector(
-  splashes,
-  splashes => splashes,
-);
+export const splashesSelector = createSelector(splashes, splashes => splashes);
 export const galleriesSelector = createSelector(
   galleries,
 
   galleries => galleries,
 );
-export const cartSelector = createSelector(
-  cart,
-  cart => cart,
-);
+export const cartSelector = createSelector(cart, cart => cart);
 export const designersSelector = createSelector(
   designers,
   designers => designers,
@@ -89,15 +65,9 @@ export const celebritiesSelector = createSelector(
   celebrities,
   celebrities => celebrities,
 );
-export const commentsSelector = createSelector(
-  comments,
-  comments => comments,
-);
+export const commentsSelector = createSelector(comments, comments => comments);
 
-export const ordersSelector = createSelector(
-  orders,
-  orders => orders,
-);
+export const ordersSelector = createSelector(orders, orders => orders);
 
 export const countriesSelector = createSelector(
   countries,
