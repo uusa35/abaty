@@ -1,6 +1,6 @@
 {
     assets : [
-        "./assets/Fonts",
+        "./assets/fonts",
         "./assets/images",
         "./assets/icons",
         "./assets/animations"

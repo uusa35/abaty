@@ -98,6 +98,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rn-fetch-blob": "^0.10.16",
+    "rnpm": "^1.9.0",
     "tslib": "^1.10.0",
     "validate.js": "^0.13.1"
   },
@@ -113,5 +114,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "assets/fonts"
+    ]
   }
 }

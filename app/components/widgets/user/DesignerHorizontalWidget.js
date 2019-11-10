@@ -59,7 +59,7 @@ const DesignerHorizontalWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        style={widgetStyles.wrapper}>
+        contentContainerStyle={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <View animation="pulse" easing="ease-out" key={c.id}>
             <TouchableOpacity

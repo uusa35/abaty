@@ -3,18 +3,17 @@ import {text, width} from '../../constants';
 
 const widgetStyles = StyleSheet.create({
   container: {
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    // justifyContent: 'flex-start',
+    // alignItems: 'flex-start',
     width: width,
     padding: 5,
     marginTop: 10,
     marginBottom: 10,
   },
   wrapper: {
-    flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+    flexDirection: 'row',
     margin: 5,
     width: '100%',
-    alignSelf: 'center',
   },
   titleContainer: {
     flexDirection: 'row',
