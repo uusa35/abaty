@@ -7,8 +7,6 @@ import {
   View,
   AppState,
   StyleSheet,
-  TouchableOpacity,
-  Text,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -20,7 +18,6 @@ import {
 import {isIOS, width} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {Icon} from 'react-native-elements';
 import {
   ONE_SIGNAL_APP_ID,
   ABATI,
@@ -32,32 +29,15 @@ import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../../components/widgets/user/UserHorizontalWidget';
-import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
-import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
-import FastImage from 'react-native-fast-image';
-import {has} from 'lodash';
-import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
-import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
-import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../../components/widgets/category/ProductCategoryHorizontalWidget';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
-import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
-import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
-// import ClassifiedCategoryHorizontalRoundedWidget from '../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
-// import ClassifiedListHorizontal from '../components/widgets/classified/ClassifiedListHorizontal';
-import widgetStyles from '../../components/widgets/widgetStyles';
 import SimpleSpinner from '../../components/SimpleSpinner';
 import {
-  ClassifiedCategoryHorizontalRoundedWidget,
   ClassifiedListHorizontal,
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
+import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -92,14 +72,19 @@ const EscrapHomeScreen = ({
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     OneSignal.init(ONE_SIGNAL_APP_ID);
-    // OneSignal.addEventListener('received', onReceived);
-    // OneSignal.addEventListener('opened', onOpened);
+    OneSignal.addEventListener('received', onReceived);
+    OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
+      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
       : null;
+  });
+
+  const handleBackPress = useCallback(() => {
+    return dispatch(goBackBtn(navigation.isFocused()));
+    return true;
   });
 
   const handleAppStateChange = useCallback(
@@ -112,19 +97,14 @@ const EscrapHomeScreen = ({
     [appState],
   );
 
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
-
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return this.props.dispatch(goDeepLinking({type, id}));
+    return dispatch(goDeepLinking({type, id}));
   });
 
-  // const onReceived = useCallback((notification) => {
-  //   __DEV__ ? console.log('Notification received: ', notification) : null;
-  // },[notification]);
+  const onReceived = useCallback(notification => {
+    __DEV__ ? console.log('Notification received: ', notification) : null;
+  });
 
   const onOpened = useCallback(openResult => {
     console.log('Notification Case');
@@ -178,6 +158,7 @@ const EscrapHomeScreen = ({
             <NavCategoryHorizontalRoundedWidget
               elements={homeCategories}
               showName={true}
+              showTitle={true}
               title={I18n.t('categories')}
             />
           ) : null}
@@ -199,33 +180,7 @@ const EscrapHomeScreen = ({
             title="companies"
             searchElements={{is_company: true}}
           />
-          <TouchableOpacity
-            onPress={() =>
-              !guest
-                ? navigation.navigate('ChooseCategory')
-                : navigation.navigate('Login')
-            }
-            style={[
-              widgetStyles.newClassifiedBtnWrapper,
-              {backgroundColor: colors.btn_bg_theme_color},
-            ]}>
-            <View style={[widgetStyles.newClassifiedWrapper]}>
-              <Text
-                style={[
-                  widgetStyles.newClassifiedTitle,
-                  {color: colors.btn_text_theme_color},
-                ]}>
-                {I18n.t('new_classified')}
-              </Text>
-              <Icon
-                name="home"
-                type="material-icon"
-                size={120}
-                color={colors.btn_text_theme_color}
-                containerStyle={{opacity: 0.8}}
-              />
-            </View>
-          </TouchableOpacity>
+          <NewClassifiedHomeBtn />
         </React.Suspense>
       </ScrollView>
       {show_commercials ? (

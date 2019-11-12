@@ -15,7 +15,7 @@ import {
   refetchHomeElements,
   setPlayerId,
 } from '../../redux/actions';
-import {isIOS, width} from '../../constants';
+import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
@@ -29,20 +29,12 @@ import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
-import FastImage from 'react-native-fast-image';
-import {has} from 'lodash';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
-import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../../components/widgets/category/ProductCategoryHorizontalWidget';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
-import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
 import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
 
@@ -83,9 +75,14 @@ const AbatiHomeScreen = ({
     OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
+      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
       : null;
   }, [bootStrapped]);
+
+  const handleBackPress = useCallback(() => {
+    return dispatch(goBackBtn(navigation.isFocused()));
+    return true;
+  });
 
   const handleAppStateChange = useCallback(
     nextAppState => {
@@ -97,14 +94,9 @@ const AbatiHomeScreen = ({
     [appState],
   );
 
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
-
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return this.props.dispatch(goDeepLinking({type, id}));
+    return dispatch(goDeepLinking({type, id}));
   });
 
   const onReceived = useCallback(notification => {

@@ -102,7 +102,6 @@ ProductWidget.propTypes = {
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

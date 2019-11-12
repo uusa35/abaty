@@ -25,7 +25,7 @@ import {useNavigation} from 'react-navigation-hooks';
 
 const NavCategoryHorizontalRoundedWidget = ({
   elements,
-  showName,
+  showName = false,
   title,
   showTitle = true,
 }) => {

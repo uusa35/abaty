@@ -10,7 +10,7 @@ import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
-import {getDesigner} from '../../redux/actions';
+import {enableWarningMessage, getDesigner} from '../../redux/actions';
 import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../../components/widgets/product/ProductList';
@@ -44,17 +44,22 @@ const DesignerShowScreen = ({
   const [products, setProducts] = useState([]);
 
   useMemo(() => {
-    if (!validate.isEmpty(element.products)) {
-      setCollectedCategories(
-        collectedCategories.concat(element.productCategories),
-      );
-      setProducts(products.concat(element.products));
-    }
-    if (!validate.isEmpty(element.productGroup)) {
-      setCollectedCategories(
-        collectedCategories.concat(element.productGroupCategories),
-      );
-      setProducts(products.concat(element.productGroup));
+    if (element) {
+      if (!validate.isEmpty(element.products)) {
+        setCollectedCategories(
+          collectedCategories.concat(element.productCategories),
+        );
+        setProducts(products.concat(element.products));
+      }
+      if (!validate.isEmpty(element.productGroup)) {
+        setCollectedCategories(
+          collectedCategories.concat(element.productGroupCategories),
+        );
+        setProducts(products.concat(element.productGroup));
+      }
+    } else {
+      dispatch(enableWarningMessage(I18n.t('element_does_not_exist')));
+      return dispatch(navigation.goBack());
     }
   }, [element]);
 

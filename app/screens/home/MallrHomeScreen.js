@@ -98,8 +98,13 @@ const MallrHomeScreen = ({
     Linking.addEventListener('url', handleOpenURL);
 
     !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', this.handleBackPress)
+      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
       : null;
+  });
+
+  const handleBackPress = useCallback(() => {
+    return dispatch(goBackBtn(navigation.isFocused()));
+    return true;
   });
 
   const handleAppStateChange = useCallback(
@@ -111,11 +116,6 @@ const MallrHomeScreen = ({
     },
     [appState],
   );
-
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);

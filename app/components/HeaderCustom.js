@@ -33,7 +33,9 @@ const HeaderCustom = () => {
     <View style={styles.container}>
       <Icon
         onPress={() =>
-          shareLink(`${linkingPrefix}${params.model}&id=${params.id}`)
+          shareLink(
+            `${linkingPrefix}${params.model}&id=${params.id}&type=${params.type}`,
+          )
         }
         name="share"
         size={25}

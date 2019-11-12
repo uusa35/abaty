@@ -55,13 +55,7 @@ const ProductHorizontalWidget = ({
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ProductWidget
-            element={c}
-            showName={showName}
-            key={i}
-            dispatch={dispatch}
-            colors={colors}
-          />
+          <ProductWidget element={c} showName={showName} key={i} />
         ))}
       </ScrollView>
     </View>

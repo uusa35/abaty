@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useCallback} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
@@ -16,31 +16,36 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 const CategoryWidget = ({element, columns, showBtn = false, type}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
+
+  const handleClick = useCallback(() => {
+    switch (type) {
+      case 'product':
+        return dispatch(
+          getSearchProducts({
+            name: element.name,
+            searchParams: {product_category_id: element.id},
+            redirect: true,
+          }),
+        );
+      case 'company':
+        return dispatch(setCategoryAndGoToNavChildren(element));
+      case 'classified':
+        return dispatch(
+          getSearchClassifieds({
+            name: element.name,
+            searchParams: {classified_category_id: element.id},
+            redirect: true,
+          }),
+        );
+    }
+  });
+
   return (
     <TouchableOpacity
       key={element.id}
       style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}
       onPress={() => {
-        switch (type) {
-          case 'product':
-            return dispatch(
-              getSearchProducts({
-                name: element.name,
-                searchParams: {product_category_id: element.id},
-                redirect: true,
-              }),
-            );
-          case 'company':
-            return dispatch(setCategoryAndGoToNavChildren(element));
-          case 'classified':
-            return dispatch(
-              getSearchClassifieds({
-                name: element.name,
-                searchParams: {classified_category_id: element.id},
-                redirect: true,
-              }),
-            );
-        }
+        handleClick();
       }}>
       <FastImage
         style={{width: columns ? width / 2 : width, height: width / 2}}
@@ -50,16 +55,9 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
       />
       {showBtn ? (
         <Button
-          onPress={() =>
-            dispatch(
-              getSearchProducts({
-                name: element.name,
-                searchElements: {product_category_id: element.id},
-              }),
-            )
-          }
+          onPress={() => handleClick()}
           raised
-          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
+          containerStyle={{width: '90%', marginBottom: 10, marginTop: 10}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
           title={element.name}
           titleStyle={{

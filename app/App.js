@@ -22,6 +22,7 @@ import AreasList from './components/Lists/AreasList';
 import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
 import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../app';
 import SimpleSpinner from './components/SimpleSpinner';
+import {useNavigation} from 'react-navigation-hooks';
 
 const App = ({
   isLoading,

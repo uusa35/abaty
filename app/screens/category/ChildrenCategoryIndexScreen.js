@@ -19,6 +19,7 @@ const ChildrenCategoryIndexScreen = ({
           elements={subCategory.children}
           columns={2}
           type="company"
+          showBtn={true}
         />
       </View>
       {show_commercials ? (

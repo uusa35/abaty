@@ -47,7 +47,7 @@ const ClassifiedFilterScreen = ({
   const [price, setPrice] = useState();
   const [min, setMin] = useState();
   const [max, setMax] = useState();
-  const [priceRange, setPriceRange] = useState([category.min, category.max]);
+  const [priceRange, setPriceRange] = useState([parseInt(category.min), parseInt(category.max)]);
   const [selectedGroup, setSelectedGroup] = useState({});
   const [selectedCategory, setSelectedCategory] = useState(category);
   const [selectedSubCategory, setSelectedSubCategory] = useState(subCategory);
@@ -57,6 +57,8 @@ const ClassifiedFilterScreen = ({
   const {goBack} = useNavigation();
   const [parentCategories, setParentCategories] = useState([]);
   const [currentArea, setCurrentArea] = useState(area);
+
+  console.log('category', category);
 
   useMemo(() => {
     if (validate.isEmpty(parentCategories)) {
@@ -216,6 +218,7 @@ const ClassifiedFilterScreen = ({
                 raised
                 containerStyle={{
                   width: '50%',
+                  maxWidth: 130,
                   alignSelf: 'center',
                   marginRight: 5,
                   marginLeft: 5,
@@ -247,10 +250,10 @@ const ClassifiedFilterScreen = ({
                 onPress={() => setSelectedSubCategory(sub)}
                 raised
                 containerStyle={{
-                  minWidth: 100,
+                  maxWidth: 180,
                   alignSelf: 'center',
-                  marginRight: 10,
-                  marginLeft: 10,
+                  marginRight: 5,
+                  marginLeft: 5,
                 }}
                 buttonStyle={{
                   backgroundColor: colors.btn_bg_theme_color,

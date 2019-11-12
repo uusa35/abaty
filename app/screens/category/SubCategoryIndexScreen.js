@@ -15,6 +15,7 @@ const SubCategoryIndexScreen = ({category, commercials, show_commercials}) => {
           elements={category.children}
           columns={2}
           type="company"
+          showBtn={true}
         />
       </View>
       {show_commercials ? (

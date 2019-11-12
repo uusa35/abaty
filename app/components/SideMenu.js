@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 9/27/17.
  */
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
@@ -14,14 +14,14 @@ import {
 } from 'react-native';
 import I18n from './../I18n';
 import {connect} from 'react-redux';
-import {text, height} from './../constants';
+import {text} from './../constants';
 import FastImage from 'react-native-fast-image';
 import {Icon, Divider} from 'react-native-elements';
 import {changeLang, logout} from '../redux/actions';
 import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {MALLR, ABATI, HOMEKEY, ESCRAP} from './../../app';
+import {MALLR, ABATI, HOMEKEY, ESCRAP, APP_CASE} from './../../app';
 
 const SideMeu = ({
   menuBg,
@@ -33,7 +33,6 @@ const SideMeu = ({
   guest,
   lang,
   navigation,
-  name,
   dispatch,
   showLogo = true,
 }) => {
@@ -116,7 +115,7 @@ const SideMeu = ({
                 </Text>
               </TouchableOpacity>
             ) : null}
-            {ESCRAP ? (
+            {ESCRAP && APP_CASE !== 'escrap' ? (
               <TouchableOpacity
                 onPress={() => navigation.navigate('Scrap')}
                 style={styles.menuBtn}>

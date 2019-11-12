@@ -25,6 +25,10 @@ import {
   getSearchCompanies,
   setHomeBrands,
   startAuthenticatedScenario,
+  startGetCompanyScenario,
+  startGetDesignerScenario,
+  startGetDesignersScenario,
+  startGetUserScenario,
   startReAuthenticateScenario,
 } from './userSagas';
 import {
@@ -34,9 +38,14 @@ import {
   getOnSaleProducts,
   getProductIndex,
   setHomeProducts,
+  startGetProductScenario,
 } from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
-import {startGetHomeClassifiedsScenario} from './classifiedSagas';
+import {
+  startGetClassifiedScenario,
+  startGetClassifiedsScenario,
+  startGetHomeClassifiedsScenario,
+} from './classifiedSagas';
 import {isArray} from 'lodash';
 import {getHomeCategories} from '../api';
 import {GET_COMPANIES} from '../types';
@@ -168,12 +177,23 @@ export function* startSetCountryScenario(action) {
 
 export function* startDeepLinkingScenario(action) {
   try {
+    const {bootStrapped} = yield select();
     const {type, id} = action.payload;
-    if (!isNull(type)) {
-      if (type === 'user') {
-        yield call(startGetUserScenario, {payload: id});
-      } else if (type === 'product') {
-        yield call(startGetProductScenario, {payload: {id}});
+    if (!isNull(type) && bootStrapped) {
+      switch (type) {
+        case 'designer':
+          return yield call(startGetDesignerScenario, {
+            payload: {id, redirect: true, searchParams: {user_id: id}},
+          });
+        case 'company':
+          return yield call(startGetCompanyScenario, {
+            payload: {id, redirect: true, searchParams: {user_id: id}},
+          });
+          return yield call(startGetClassifiedScenario, {
+            payload: {id, redirect: true},
+          });
+        case 'product':
+          return yield call(startGetProductScenario, {payload: {id}});
       }
     }
   } catch (e) {

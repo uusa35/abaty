@@ -15,7 +15,12 @@ const ParentCategoryIndexScreen = ({
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={categories} columns={2} type="company" />
+        <CategoriesList
+          elements={categories}
+          columns={2}
+          type="company"
+          showBtn={true}
+        />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>

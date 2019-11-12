@@ -311,7 +311,7 @@ export const HomeStack = createStackNavigator(
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
         headerTitle: (
-          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
+          <HeaderMiddle title={I18n.t('homekey')} showLogo={false} />
         ),
         headerBackTitle: null,
         headerTransparent: true,

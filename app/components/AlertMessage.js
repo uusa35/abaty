@@ -22,7 +22,7 @@ const AlertMessage = ({message, dispatch}) => {
     },
     text: {
       color: 'white',
-      fontFamily: text.font,
+      fontFamily: 'Tajawal-Medium',
       fontSize: text.medium,
       fontWeight: 'bold',
       textAlign: 'left',

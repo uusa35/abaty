@@ -155,7 +155,12 @@ export function* startGetProductScenario(action) {
         put(
           NavigationActions.navigate({
             routeName: 'Product',
-            params: {name: element.name, id: element.id, model: 'product'},
+            params: {
+              name: element.name,
+              id: element.id,
+              model: 'product',
+              type: 'product',
+            },
           }),
         ),
         call(disableLoadingContent),
@@ -173,9 +178,7 @@ export function* startGetSearchProductsScenario(action) {
   try {
     yield call(enableLoadingBoxedList);
     const {name, searchParams, redirect} = action.payload;
-    console.log('searchParams', searchParams);
     const elements = yield call(api.getSearchProducts, searchParams);
-    console.log('elements', elements);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: elements}),

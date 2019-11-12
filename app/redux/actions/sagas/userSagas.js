@@ -24,7 +24,9 @@ export function* startGetDesignerScenario(action) {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const element = yield call(api.getUser, id);
+    console.log('the element', element);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
+      console.log('inside if');
       yield all([
         put({type: actions.SET_DESIGNER, payload: element}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
@@ -38,7 +40,12 @@ export function* startGetDesignerScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'DesignerShow',
-            params: {name: element.slug, id: element.id, product: false},
+            params: {
+              name: element.slug,
+              id: element.id,
+              model: 'user',
+              type: 'designer',
+            },
           }),
         );
       }
@@ -80,7 +87,7 @@ export function* startGetShopperScenario(action) {
             params: {
               name: element ? element.slug : I18n.t('shopper'),
               id: element.id,
-              product: false,
+              mode: 'user',
             },
           }),
         );
@@ -103,6 +110,7 @@ export function* startGetCompanyScenario(action) {
   try {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
+    console.log('the company', id);
     const element = yield call(api.getUser, id);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
@@ -119,14 +127,24 @@ export function* startGetCompanyScenario(action) {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyClassifiedShow',
-              params: {name: element.slug, id: element.id, model: 'user'},
+              params: {
+                name: element.slug,
+                id: element.id,
+                model: 'user',
+                type: 'company',
+              },
             }),
           );
         } else {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyShow',
-              params: {name: element.slug, id: element.id, model: 'user'},
+              params: {
+                name: element.slug,
+                id: element.id,
+                model: 'user',
+                type: 'company',
+              },
             }),
           );
         }
@@ -164,7 +182,12 @@ export function* startGetCelebrityScenario(action) {
         yield put(
           NavigationActions.navigate({
             routeName: 'CelebrityShow',
-            params: {name: element.slug, id: element.id, product: false},
+            params: {
+              name: element.slug,
+              id: element.id,
+              type: 'designer',
+              model: 'user',
+            },
           }),
         );
       }
@@ -190,7 +213,12 @@ export function* startGetUserScenario(action) {
       yield put(
         NavigationActions.navigate({
           routeName: 'DesignerShow',
-          params: {name: element.slug, id: element.id, model: 'user'},
+          params: {
+            name: element.slug,
+            id: element.id,
+            model: 'user',
+            type: 'user',
+          },
         }),
       );
     }
@@ -438,7 +466,6 @@ export function* startGetDesignersScenario(action) {
   try {
     const {searchParams, redirect} = action.payload;
     const elements = yield call(api.getUsers, searchParams);
-    console.log('elements', searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
         put({type: actions.SET_DESIGNERS, payload: elements}),
