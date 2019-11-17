@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Button, Input} from 'react-native-elements';
+import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {images, text, width} from '../../../constants';
 import {showCountryModal, updateUser} from '../../../redux/actions';
@@ -9,6 +9,7 @@ import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
+import {useNavigation} from 'react-navigation-hooks';
 
 const UserEditFormWidget = ({
   auth,
@@ -18,6 +19,7 @@ const UserEditFormWidget = ({
   token,
   country,
   dispatch,
+  showIcon = true,
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -32,8 +34,10 @@ const UserEditFormWidget = ({
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null,
   );
-  const [image, setImage] = useState('');
-  const [sampleLogo, setSampleLogo] = useState('');
+  const [image, setImage] = useState(null);
+  const [sampleLogo, setSampleLogo] = useState(null);
+  const {goBack, navigate, dangerouslyGetParent} = useNavigation();
+  const parent = dangerouslyGetParent();
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({
@@ -63,12 +67,30 @@ const UserEditFormWidget = ({
         alignSelf: 'center',
         flex: 1,
       }}>
+      {showIcon ? (
+        <Icon
+          name="close"
+          size={25}
+          containerStyle={{
+            zIndex: 99,
+            position: 'absolute',
+            top: 50,
+            left: 50,
+          }}
+          hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}
+          onPress={() => {
+            return parent.state.index && parent.state.index > 0
+              ? goBack()
+              : navigate('Home');
+          }}
+        />
+      ) : null}
       <TouchableOpacity
         onPress={() => openPicker()}
         style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{
-            uri: auth.thumb ? (image ? sampleLogo : auth.thumb) : logo,
+            uri: !validate.isEmpty(sampleLogo) ? sampleLogo : auth.thumb,
           }}
           style={{
             width: 120,
