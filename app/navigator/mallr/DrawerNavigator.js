@@ -1,5 +1,5 @@
 import React from 'react';
-import {createDrawerNavigator} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 import SideMenu from '../../components/SideMenu';
 import {isRTL} from '../../I18n';
 import {BottomTabsStack} from './BottomNavigator';

@@ -5,12 +5,10 @@ import {
   createReactNavigationReduxMiddleware,
   createReduxContainer,
 } from 'react-navigation-redux-helpers';
-// import RootNavigator from './navigator/abati/RootNavigator';
-// import RootNavigator from './navigator/mallr/RootNavigator';
-// import RootNavigator from './navigator/homekey/RootNavigator';
-import RootNavigator from './navigator/escrap/RootNavigator';
+import RootNavigator from './navigator/RootNavigator';
 
 const navMiddleware = createReactNavigationReduxMiddleware(state => state.nav);
+
 const AppWithNavigationState = createReduxContainer(RootNavigator);
 const mapStateToProps = state => ({
   state: state.nav,

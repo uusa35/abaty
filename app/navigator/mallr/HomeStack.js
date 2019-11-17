@@ -1,6 +1,5 @@
-import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import HomeScreen from '../../screens/HomeScreen';
 import I18n from '../../I18n';
 import PageOneScreen from '../../screens/PageOneScreen';
 import PageTwoScreen from '../../screens/PageTwoScreen';
@@ -36,17 +35,17 @@ import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
 import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import HomeKeyScreen from '../../screens/HomeKeyScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
 import React from 'react';
-import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
+import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import ShopperShowScreen from '../../screens/designer/ShopperShowScreen';
 import {Icon} from 'react-native-elements';
 import MallrSettingsIndexScreen from './../../screens/mallr/MallrSettingsIndexScreen';
+import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -379,7 +378,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     HomeKey: {
-      screen: HomeKeyScreen,
+      screen: HomeKeyHomeScreen,
       navigationOptions: () => ({
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight display={true} />,

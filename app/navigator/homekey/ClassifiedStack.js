@@ -18,7 +18,7 @@ export const ClassifiedStack = createStackNavigator(
         headerBackTitle: null,
       }),
     },
-    HomeKey: {
+    Home: {
       screen: HomeKeyHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,

@@ -22,6 +22,7 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
   );
   const [favorite, setFavorite] = useState(element.isFavorite);
 
+  console.log('isFavorites', element.isFavorite);
   return (
     <View
       style={{

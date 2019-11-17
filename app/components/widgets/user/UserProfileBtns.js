@@ -32,20 +32,6 @@ const UserProfileBtns = () => {
           color: colors.btn_text_theme_color,
         }}
       />
-      <Button
-        onPress={() => navigate('Home')}
-        raised
-        containerStyle={{marginBottom: 10, width: '100%'}}
-        buttonStyle={{
-          backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0,
-        }}
-        titleStyle={{
-          fontFamily: text.font,
-          color: colors.btn_text_theme_color,
-        }}
-        title={I18n.t('home')}
-      />
     </View>
   );
 };

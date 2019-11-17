@@ -313,18 +313,6 @@ export const HomeStack = createStackNavigator(
       }),
       path: `product/:id`,
     },
-    HomeKey: {
-      screen: HomeKeyHomeScreen,
-      navigationOptions: () => ({
-        headerLeft: <HeaderLeft showCart={false} />,
-        headerRight: <HeaderRight showCountry={true} displayShare={false} />,
-        headerTitle: (
-          <HeaderMiddle title={I18n.t('home_key')} showLogo={false} />
-        ),
-        headerBackTitle: null,
-        headerTransparent: true,
-      }),
-    },
     Scrap: {
       screen: ScrapHomeScreen,
       navigationOptions: () => ({

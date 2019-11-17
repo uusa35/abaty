@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {Icon} from 'react-native-elements';
 import I18n from '../../I18n';
 import {HeaderLeft} from './../../components/HeaderLeft';

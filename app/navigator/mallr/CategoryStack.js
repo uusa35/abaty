@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import validate from 'validate.js';

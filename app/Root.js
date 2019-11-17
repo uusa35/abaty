@@ -6,7 +6,7 @@ import App from './App';
 import {ReduxNetworkProvider} from 'react-native-offline';
 console.disableYellowBox = true;
 
-export const Abaty = () => (
+export const Root = () => (
   <PersistGate loading={null} persistor={PersistStore}>
     <Provider store={Store}>
       <ReduxNetworkProvider>

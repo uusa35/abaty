@@ -27,7 +27,7 @@ import {isIOS, width} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
-  ONE_SIGNAL_APP_ID,
+  MALLR_ONE_SIGNAL_APP_ID,
   ABATI,
   MALLR,
   HOMEKEY,
@@ -37,33 +37,22 @@ import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
-import UserHorizontalWidget from '../../components/widgets/user/UserHorizontalWidget';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
-import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
-import FastImage from 'react-native-fast-image';
-import {has} from 'lodash';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
-import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
-import ProductCategoryHorizontalWidget from '../../components/widgets/category/ProductCategoryHorizontalWidget';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
-import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
-import ProductCategoryHorizontalBtnsWidget from '../../components/widgets/category/ProductCategoryHorizontalBtnsWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
 
 const MallrHomeScreen = ({
-  network,
   homeCategories,
   commercials,
   slides,
   splashes,
   brands,
   homeDesigners,
-  homeCelebrities,
   bestSaleProducts,
   latestProducts,
   hotDealsProducts,
@@ -72,7 +61,6 @@ const MallrHomeScreen = ({
   splash_on,
   show_commercials,
   colors,
-  services,
   showIntroduction,
   homeCompanies,
   dispatch,
@@ -90,7 +78,7 @@ const MallrHomeScreen = ({
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    OneSignal.init(ONE_SIGNAL_APP_ID);
+    OneSignal.init(MALLR_ONE_SIGNAL_APP_ID);
     // OneSignal.addEventListener('received', onReceived);
     // OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
@@ -119,12 +107,12 @@ const MallrHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return this.props.dispatch(goDeepLinking({type, id}));
+    return dispatch(goDeepLinking({type, id}));
   });
 
-  // const onReceived = useCallback((notification) => {
-  //   __DEV__ ? console.log('Notification received: ', notification) : null;
-  // },[notification]);
+  const onReceived = useCallback(notification => {
+    __DEV__ ? console.log('Notification received: ', notification) : null;
+  });
 
   const onOpened = useCallback(openResult => {
     console.log('Notification Case');

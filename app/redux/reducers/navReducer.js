@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 10/5/17.
  */
-import {RootNavigator} from './../../AppNavigator';
+import RootNavigator from './../../navigator/RootNavigator';
 
 const initialState = RootNavigator.router.getStateForAction(
   RootNavigator.router.getActionForPathAndParams('DrawerStack'),

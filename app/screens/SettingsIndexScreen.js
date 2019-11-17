@@ -34,7 +34,6 @@ const SettingsIndexScreen = ({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-        // flex: 1
       }}>
       <View style={styles.container}>
         {!guest && (MALLR || ABATI) ? (
@@ -65,7 +64,7 @@ const SettingsIndexScreen = ({
             <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
           </TouchableOpacity>
         ) : null}
-        {!guest ? (
+        {!guest && !(HOMEKEY || ESCRAP) ? (
           <TouchableOpacity
             onPress={() => navigation.navigate('OrderIndex')}
             style={styles.btnWrapper}>

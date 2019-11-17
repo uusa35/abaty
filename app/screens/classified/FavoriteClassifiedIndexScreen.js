@@ -15,6 +15,7 @@ const FavoriteClassifiedIndexScreen = ({
   colors,
   navigation,
 }) => {
+  console.log('classifedFavorites', classifiedFavorites);
   return (
     <View>
       {!validate.isEmpty(classifiedFavorites) ? (

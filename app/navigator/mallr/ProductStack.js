@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
@@ -7,7 +7,7 @@ import I18n from '../../I18n';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import React from 'react';
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
-import MallrHomeScreen from '../../screens/mallr/MallrHomeScreen';
+import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 
 export const ProductStack = createStackNavigator(
   {

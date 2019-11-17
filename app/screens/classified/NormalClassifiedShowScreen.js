@@ -15,13 +15,9 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, images} from './../../constants';
+import {width, text} from './../../constants';
 import I18n from './../../I18n';
-import {
-  getClassified,
-  getClassifieds,
-  getSearchClassifieds,
-} from '../../redux/actions';
+import {getClassified, getSearchClassifieds} from '../../redux/actions';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';

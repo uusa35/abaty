@@ -24,7 +24,6 @@ export function* startGetDesignerScenario(action) {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const element = yield call(api.getUser, id);
-    console.log('the element', element);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       console.log('inside if');
       yield all([
@@ -110,7 +109,6 @@ export function* startGetCompanyScenario(action) {
   try {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
-    console.log('the company', id);
     const element = yield call(api.getUser, id);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
@@ -123,7 +121,7 @@ export function* startGetCompanyScenario(action) {
         yield put({type: actions.SET_COMMENTS, payload: []});
       }
       if (!validate.isEmpty(redirect) && redirect) {
-        if (HOMEKEY) {
+        if (HOMEKEY || ESCRAP) {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyClassifiedShow',
@@ -330,6 +328,7 @@ export function* startSubmitAuthScenario(action) {
       throw I18n.t('invalid_email_or_password');
     }
     const element = yield call(api.authenticate, {email, password, player_id});
+    console.log('the element', element);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_AUTH, payload: element}),

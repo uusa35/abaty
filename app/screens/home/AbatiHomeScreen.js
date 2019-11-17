@@ -19,7 +19,7 @@ import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
-  ONE_SIGNAL_APP_ID,
+  ABATI_ONE_SIGNAL_APP_ID,
   ABATI,
   MALLR,
   HOMEKEY,
@@ -53,7 +53,6 @@ const AbatiHomeScreen = ({
   colors,
   services,
   showIntroduction,
-  homeCompanies,
   dispatch,
   navigation,
 }) => {
@@ -68,7 +67,7 @@ const AbatiHomeScreen = ({
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    OneSignal.init(ONE_SIGNAL_APP_ID);
+    OneSignal.init(ABATI_ONE_SIGNAL_APP_ID);
     OneSignal.addEventListener('received', onReceived);
     OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);

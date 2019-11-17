@@ -16,7 +16,14 @@ const UserProfileInformationWidget = ({auth, colors}) => {
           source={{
             uri: auth.thumb ? auth.thumb : logo,
           }}
-          style={{width: 120, height: 120, margin: 20, borderRadius: 120 / 2}}
+          style={{
+            width: 120,
+            height: 120,
+            margin: 20,
+            borderRadius: 120 / 2,
+            borderWidth: 0.5,
+            borderColor: 'lightgrey',
+          }}
           resizeMode="cover"
           loadingIndicatorSource={images.logo}
         />

@@ -1,4 +1,4 @@
-import {createStackNavigator} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import {Icon} from 'react-native-elements';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';

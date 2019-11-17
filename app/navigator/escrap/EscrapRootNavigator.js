@@ -1,9 +1,9 @@
 import {createSwitchNavigator} from 'react-navigation';
-import {DrawerNavigator} from './DrawerNavigator';
 import {HomeStack} from './HomeStack';
 import {LoginStack} from './LoginStack';
+import {DrawerNavigator} from './DrawerNavigator';
 
-const RootNavigator = createSwitchNavigator({
+const EscrapRootNavigator = createSwitchNavigator({
   HomeStack: {
     screen: HomeStack,
   },
@@ -15,4 +15,4 @@ const RootNavigator = createSwitchNavigator({
   },
 });
 
-export default RootNavigator;
+export default EscrapRootNavigator;

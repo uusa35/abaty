@@ -1,13 +1,15 @@
 {
   "name": "abaty",
-  "ABATI" : false,
+  "ABATI" : true,
   "MALLR" : false,
   "HOMEKEY" : false,
-  "ESCRAP" : true,
+  "ESCRAP" : false,
   "displayName": "abati",
-  "APP_CASE" : "escrap",
+  "APP_CASE" : "abati",
   "apiUrl" : "http://mallr.test/api/",
   "ENV" : "production",
   "PORT" : 4000,
-  "ONE_SIGNAL_APP_ID" : "4e81df51-996b-4f66-93ff-e921abb51b32"
+  "ABATI_ONE_SIGNAL_APP_ID" : "4e81df51-996b-4f66-93ff-e921abb51b32",
+  "ESCRAP_ONE_SIGNAL_APP_ID" : "365c1fc9-12c5-415b-84d2-cc6fbc7e378e",
+  "MALLR_ONE_SIGNAL_APP_ID" : "4b35f94d-5887-47b0-8079-804e7be66f33"
 }

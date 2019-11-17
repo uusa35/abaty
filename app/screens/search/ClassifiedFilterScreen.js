@@ -47,7 +47,7 @@ const ClassifiedFilterScreen = ({
   const [price, setPrice] = useState();
   const [min, setMin] = useState();
   const [max, setMax] = useState();
-  const [priceRange, setPriceRange] = useState([parseInt(category.min), parseInt(category.max)]);
+  const [priceRange, setPriceRange] = useState([category.min, category.max]);
   const [selectedGroup, setSelectedGroup] = useState({});
   const [selectedCategory, setSelectedCategory] = useState(category);
   const [selectedSubCategory, setSelectedSubCategory] = useState(subCategory);
@@ -57,8 +57,6 @@ const ClassifiedFilterScreen = ({
   const {goBack} = useNavigation();
   const [parentCategories, setParentCategories] = useState([]);
   const [currentArea, setCurrentArea] = useState(area);
-
-  console.log('category', category);
 
   useMemo(() => {
     if (validate.isEmpty(parentCategories)) {

@@ -131,7 +131,7 @@ export function* startStoreClassifiedScenario(action) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
-          put(NavigationActions.navigate({routeName: 'HomeKey'})),
+          put(NavigationActions.navigate({routeName: 'Home'})),
         ]);
       } else {
         throw classified;

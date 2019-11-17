@@ -6,29 +6,19 @@ import I18n from '../../../I18n';
 import {NavigationActions} from 'react-navigation';
 import {
   disableLoading,
-  disableLoadingContent,
-  disableLoadingProfile,
   enableErrorMessage,
   enableLoading,
-  enableLoadingContent,
-  enableLoadingProfile,
   enableSuccessMessage,
   enableWarningMessage,
-  getCategories,
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
 import {commentStoreConstrains, registerConstrains} from '../../../constants';
 import {GoogleSignin} from 'react-native-google-signin';
 import {
-  getHomeCompanies,
-  getSearchCompanies,
   setHomeBrands,
-  startAuthenticatedScenario,
   startGetCompanyScenario,
   startGetDesignerScenario,
-  startGetDesignersScenario,
-  startGetUserScenario,
   startReAuthenticateScenario,
 } from './userSagas';
 import {
@@ -41,20 +31,20 @@ import {
   startGetProductScenario,
 } from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
-import {
-  startGetClassifiedScenario,
-  startGetClassifiedsScenario,
-  startGetHomeClassifiedsScenario,
-} from './classifiedSagas';
+import {startGetClassifiedScenario} from './classifiedSagas';
 import {isArray} from 'lodash';
-import {getHomeCategories} from '../api';
 import {GET_COMPANIES} from '../types';
+import {SET_CATEGORY} from '../types';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
     const elements = yield call(api.getHomeCategories);
     if (!validate.isEmpty(elements) && isArray(elements)) {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: elements});
+      const {category} = yield select();
+      if (validate.isEmpty(category)) {
+        yield put({type: SET_CATEGORY, payload: first(elements)});
+      }
     } else {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
