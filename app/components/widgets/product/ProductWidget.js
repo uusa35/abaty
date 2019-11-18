@@ -28,6 +28,7 @@ const ProductWidget = ({element, showName = false}) => {
         widgetStyles.btnStyle,
         {
           width: '48%',
+          minWidth: 175,
           maxWidth: 175,
           margin: 5,
           borderWidth: 0.25,

@@ -25,7 +25,6 @@
     "lottie-react-native": "^3.2.1",
     "moment": "^2.24.0",
     "npx": "^10.2.0",
-    "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.0",
     "react": "16.9.0",
@@ -110,7 +109,8 @@
     "jest": "^24.1.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "metro-react-native-babel-transformer": "^0.55.0",
-    "react-test-renderer": "16.8.6"
+    "react-test-renderer": "16.8.6",
+    "prettier": "^1.18.2"
   },
   "jest": {
     "preset": "react-native"
