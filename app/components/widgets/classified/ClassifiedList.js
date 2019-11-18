@@ -61,21 +61,22 @@ const ClassifiedList = ({
   useMemo(() => {
     switch (sort) {
       case 1:
-        setItems(orderBy(items, ['id'], ['asc']));
+        setItems(orderBy(items, ['name'], ['asc']));
         break;
       case 2:
-        setItems(orderBy(items, ['id'], ['desc']));
+        setItems(orderBy(items, ['name'], ['desc']));
         break;
       case 3:
-        console.log('heigest');
-        setItems(orderBy(items, ['price'], ['asc']));
-        break;
-      case 4:
-        console.log('lowest');
         setItems(orderBy(items, ['price'], ['desc']));
         break;
+      case 4:
+        setItems(orderBy(items, ['price'], ['asc']));
+        break;
       case 5:
-        setItems(orderBy(items, ['name'], ['desc']));
+        setItems(orderBy(items, ['id'], ['desc']));
+        break;
+      case 6:
+        setItems(orderBy(items, ['id'], ['asc']));
         break;
       default:
         items;

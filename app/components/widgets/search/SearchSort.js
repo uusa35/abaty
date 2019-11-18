@@ -39,14 +39,14 @@ const SearchSort = ({
           <TouchableOpacity
             activeOpacity={1}
             hitSlop={{left: 15, right: 15}}
-            onPress={() => handleClick(1)}
+            onPress={() => handleClick(5)}
             style={styles.wrapper}>
             <Text style={styles.phoneNo}>{I18n.t('latest')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={1}
             hitSlop={{left: 15, right: 15}}
-            onPress={() => handleClick(2)}
+            onPress={() => handleClick(6)}
             style={styles.wrapper}>
             <Text style={styles.phoneNo}>{I18n.t('oldest')}</Text>
           </TouchableOpacity>
@@ -73,14 +73,14 @@ const SearchSort = ({
               <TouchableOpacity
                 activeOpacity={1}
                 hitSlop={{left: 15, right: 15}}
-                onPress={() => handleClick(5)}
+                onPress={() => handleClick(1)}
                 style={styles.wrapper}>
                 <Text style={styles.phoneNo}>{I18n.t('by_alpha_asc')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={1}
                 hitSlop={{left: 15, right: 15}}
-                onPress={() => handleClick(6)}
+                onPress={() => handleClick(2)}
                 style={styles.wrapper}>
                 <Text style={styles.phoneNo}>{I18n.t('by_alpha_desc')}</Text>
               </TouchableOpacity>
