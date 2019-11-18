@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {text} from '../../../constants';
 import I18n from '../../../I18n';
@@ -6,6 +6,7 @@ import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
+import validate from 'validate.js';
 
 const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
   return (
@@ -18,25 +19,29 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
           </Text>
         </View>
       ) : null}
-      {map(elements, (p, i) => {
-        return (
-          <View style={styles.propertiesWrapper} key={i}>
-            {p.property.thumb ? (
-              <FastImage
-                source={{uri: p.property.thumb}}
-                style={{width: 30, height: 30}}
-              />
-            ) : (
-              <Icon type="font-awesome" name={p.property.icon} />
-            )}
-            <View style={styles.infoWrapper}>
-              <Text style={styles.title}>{p.cateogry_group.name}</Text>
-              {/*<Text style={styles.title}>{p.property.name}</Text>*/}
-              <Text style={styles.title}>{p.property.value}</Text>
-            </View>
-          </View>
-        );
-      })}
+      {!validate.isEmpty(elements) ? (
+        <Fragment>
+          {map(elements, (e, i) => {
+            return (
+              <View style={styles.propertiesWrapper} key={i}>
+                {!validate.isEmpty(e.category_group.thumb) ? (
+                  <FastImage
+                    source={{uri: e.category_group.thumb}}
+                    style={{width: 30, height: 30}}
+                  />
+                ) : (
+                  <Icon type="font-awesome" name={e.property.icon} />
+                )}
+                <View style={styles.infoWrapper}>
+                  <Text style={styles.title}>{e.category_group.name}</Text>
+                  {/*<Text style={styles.title}>{p.property.name}</Text>*/}
+                  <Text style={styles.title}>{e.property.value}</Text>
+                </View>
+              </View>
+            );
+          })}
+        </Fragment>
+      ) : null}
     </View>
   );
 };

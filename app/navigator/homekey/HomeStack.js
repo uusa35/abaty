@@ -403,17 +403,18 @@ export const HomeStack = createStackNavigator(
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null,
       }),
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
   },

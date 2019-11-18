@@ -15,6 +15,7 @@ import {ClassifiedStack} from './ClassifiedStack';
 import {CategoryStack} from './CategoryStack';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
+import {FavoriteStack} from './FavoriteStack';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -26,6 +27,17 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('home')} focused={focused} />
+        ),
+      }),
+    },
+    Favorite: {
+      screen: FavoriteStack,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({focused}) => (
+          <IconTabBar focused={focused} name="star" type="entypo" />
+        ),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('favorites')} focused={focused} />
         ),
       }),
     },
@@ -120,7 +132,7 @@ export const BottomTabsStack = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      lazy: true,
+      lazy: false,
       showIcon: true,
       showLabel: false,
       scrollEnabled: true,
@@ -140,11 +152,10 @@ export const BottomTabsStack = createBottomTabNavigator(
     initialRouteName: 'Home',
     order: [
       'Home',
-      'CategoryIndexScreen',
+      // 'CategoryIndexScreen',
       // 'ProductIndexAll',
       // 'VideoIndexAll',
-      // 'ServiceIndexAll',
-      'Search',
+      'Favorite',
       'ClassifiedIndexAll',
       'Setting',
     ],

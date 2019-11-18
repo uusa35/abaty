@@ -536,5 +536,6 @@
   "properties_selected" : "Search Parameters :",
   "scrap" : "Scrap",
   "search_classifieds" : "Search Classifieds",
-  "shipment_copied" : "Shipment Reference Copied."
+  "shipment_copied" : "Shipment Reference Copied.",
+  "skip_next" : "Next"
 }

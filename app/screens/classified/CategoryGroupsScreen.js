@@ -53,8 +53,6 @@ const CategoryGroupsScreen = ({
   }, [currentCategoryGroup, remainingGroups]);
 
   const handleClick = useCallback(property => {
-    console.log('the prop', property.id);
-    console.log('the group', currentCategoryGroup.id);
     const filterSwitchProps = filter(
       selectedProperties,
       p =>
@@ -81,7 +79,7 @@ const CategoryGroupsScreen = ({
         setSelectedProperties(filteredProps);
         dispatch(
           addToProperties({
-            cateogry_group: currentCategoryGroup,
+            category_group: currentCategoryGroup,
             property: property,
             category_group_property: `${currentCategoryGroup.id}${property.id}`,
           }),
