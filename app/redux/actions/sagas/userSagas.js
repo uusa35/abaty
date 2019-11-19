@@ -218,7 +218,7 @@ export function* startGetUserScenario(action) {
       );
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_user'))]);
   }
 }
 
@@ -235,7 +235,7 @@ export function* startGetVideoScenario(action) {
       );
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_users'))]);
+    yield all([disableLoading, enableErrorMessage(I18n.t('no_videos'))]);
   }
 }
 
@@ -504,7 +504,7 @@ export function* startGetHomeCompaniesScenario(action) {
       }
     } else {
       yield put({type: actions.SET_HOME_COMPANIES, payload: []});
-      throw elements;
+      // throw elements;
     }
   } catch (e) {
     yield all([call(disableLoading), call(enableWarningMessage, e)]);

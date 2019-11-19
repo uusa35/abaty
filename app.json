@@ -5,7 +5,7 @@
   "HOMEKEY" : false,
   "ESCRAP" : false,
   "displayName": "abati",
-  "APP_CASE" : "testing",
+  "APP_CASE" : "abati",
   "apiUrl" : "http://mallr.test/",
   "ENV" : "production",
   "PORT" : 4000,
