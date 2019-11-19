@@ -73,7 +73,7 @@ export const HomeStack = createStackNavigator(
       screen: CartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        // HeaderRight: <HeaderRight  />,
+        // headerRight: <HeaderRight showCountry={true} displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: null,
       }),

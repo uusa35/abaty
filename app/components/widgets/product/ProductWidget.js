@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getProduct} from '../../../redux/actions';
+import {getProduct} from '../../../redux/actions/product';
 import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';

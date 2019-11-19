@@ -2,14 +2,9 @@ import React, {useContext, useState, useEffect} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text, width} from '../../../constants';
-import {
-  clearCart,
-  getCoupon,
-  showCountryModal,
-  showLoginModal,
-  submitCart,
-} from '../../../redux/actions';
+import {isIOS, text} from '../../../constants';
+import {showCountryModal} from '../../../redux/actions';
+import {clearCart, getCoupon, submitCart} from '../../../redux/actions/cart';
 import {Button, Input, CheckBox, Icon} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';

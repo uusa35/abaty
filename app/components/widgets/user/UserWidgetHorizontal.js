@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {images, text} from './../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getDesigner} from './../../../redux/actions';
+import {getDesigner} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
 import {
   ImageBackground,

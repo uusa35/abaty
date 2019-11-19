@@ -1,10 +1,10 @@
 import React, {useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
-import {images, text, width} from '../../constants';
+import {images, text} from '../../constants';
 import {appUrlIos} from './../../env';
 import {Button, Input, SocialIcon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {googleLogin, submitAuth} from '../../redux/actions';
+import {googleLogin, submitAuth} from '../../redux/actions/user';
 import {View, Linking} from 'react-native';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';

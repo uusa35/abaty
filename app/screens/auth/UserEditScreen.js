@@ -7,8 +7,7 @@ import {DispatchContext} from '../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const UserEditScreen = ({auth, playerId, country}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors, token, logo} = useContext(GlobalValuesContext);
+  const {token, logo} = useContext(GlobalValuesContext);
   return (
     <Fragment>
       <UserEditFormWidget
@@ -17,9 +16,7 @@ const UserEditScreen = ({auth, playerId, country}) => {
         token={token}
         player_id={playerId}
         logo={logo}
-        colors={colors}
         country={country}
-        dispatch={dispatch}
       />
     </Fragment>
   );

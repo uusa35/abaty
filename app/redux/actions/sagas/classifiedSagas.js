@@ -78,7 +78,6 @@ export function* startGetHomeClassifiedsScenario(action) {
 export function* startGetClassifiedScenario(action) {
   try {
     yield call(enableLoadingContent);
-    console.log('the action payload', action.payload);
     const classified = yield call(api.getClassified, action.payload);
     if (!validate.isEmpty(classified) && validate.isObject(classified)) {
       yield put({type: actions.SET_CLASSIFIED, payload: classified});

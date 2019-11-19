@@ -1,11 +1,11 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useContext} from 'react';
 import {
   View,
   FlatList,
   RefreshControl,
   KeyboardAvoidingView,
 } from 'react-native';
-import {getSearchDesigners, getUsers} from '../../redux/actions';
+import {getSearchDesigners} from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
@@ -14,8 +14,9 @@ import {text, width} from './../../constants';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
+import {DispatchContext} from '../../redux/DispatchContext';
 
-const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
+const DesignersList = ({elements, searchParams, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
   [refresh, setRefresh] = useState(false);
   [showMore, setShowMore] = useState(showMore);
@@ -24,6 +25,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
   [params, setParams] = useState(searchParams);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
+  const {dispatch} = useContext(DispatchContext);
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -112,11 +114,7 @@ const DesignersList = ({elements, searchParams, dispatch, showMore}) => {
             alignItems: 'center',
           }}
           renderItem={({item}) => (
-            <UserWidgetHorizontal
-              dispatch={dispatch}
-              user={item}
-              showName={true}
-            />
+            <UserWidgetHorizontal user={item} showName={true} />
           )}
           ListFooterComponent={
             <View style={{width: '100%', minHeight: 100}}>

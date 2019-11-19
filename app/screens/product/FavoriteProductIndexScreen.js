@@ -11,7 +11,6 @@ import validate from 'validate.js';
 const FavoriteProductIndexScreen = ({
   productFavorites,
   searchParams,
-  dispatch,
   colors,
   navigation,
 }) => {
@@ -20,8 +19,6 @@ const FavoriteProductIndexScreen = ({
       {!validate.isEmpty(productFavorites) ? (
         <ProductList
           products={productFavorites}
-          dispatch={dispatch}
-          colors={colors}
           showName={true}
           showSearch={false}
           title={I18n.t('wishlist')}

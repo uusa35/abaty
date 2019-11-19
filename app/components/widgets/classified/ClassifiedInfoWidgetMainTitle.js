@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useMemo} from 'react';
+import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {images, text} from '../../../constants';
@@ -10,10 +10,8 @@ import {Badge, Icon} from 'react-native-elements';
 import {
   showCommentModal,
   toggleClassifiedFavorite,
-  toggleFavorite,
 } from '../../../redux/actions';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import CommentScreenModal from '../../../screens/CommentScreenModal';
 
 const ClassifiedInfoWidgetMainTitle = ({element}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -22,7 +20,6 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
   );
   const [favorite, setFavorite] = useState(element.isFavorite);
 
-  console.log('isFavorites', element.isFavorite);
   return (
     <View
       style={{

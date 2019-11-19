@@ -572,5 +572,9 @@
   "search_classifieds" : "بحث الإعلانات",
   "shipment_copied" : "تم نسخ رقم الشحنة",
   "skip_next" : "الاستمرار",
-  "can_not_find_address_please_write_ur_address" : "لم نتمكن من تحديد موقع العنوان المختار بدقة .. يرجى كتابة عنوانك"
+  "can_not_find_address_please_write_ur_address" : "لم نتمكن من تحديد موقع العنوان المختار بدقة .. يرجى كتابة عنوانك",
+  "order_confirmation" : "تأكيد الطلب",
+  "cash_on_delivery" : "الدفع عند الاستلام",
+  "confirm_cash_on_delivery" : "تأكيد عملية الدفع عند الاستلام",
+  "order_cash_on_delivery_confirmation" : "يرجى التأكد من البيانات قبل الموافقة. سيتم التواصل معكم لتأكيد طلبك عن طريق الدفع عند الاستلام وشكرا"
 }

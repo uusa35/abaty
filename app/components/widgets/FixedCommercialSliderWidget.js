@@ -1,9 +1,7 @@
-import React, {Fragment} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {width} from './../../constants';
-import {map, random} from 'lodash';
-import FastImage from 'react-native-fast-image';
+import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import CommercialWidget from './commercial/CommercialWidget';

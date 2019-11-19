@@ -537,5 +537,10 @@
   "scrap" : "Scrap",
   "search_classifieds" : "Search Classifieds",
   "shipment_copied" : "Shipment Reference Copied.",
-  "skip_next" : "Next"
+  "skip_next" : "Next",
+  "can_not_find_address_please_write_ur_address" : "We could not find your address through map. please kindly write your full address manually.",
+  "order_confirmation" : "Order Confirmation",
+  "cash_on_delivery" : "Cash On Delivery",
+  "confirm_cash_on_delivery" : "Confirm Cash On Delivery Payment.",
+  "order_cash_on_delivery_confirmation" : "Please confirm your order shall be paid by Cash On Delivery. an email will be sent to you with your order. we shall call you to confirm order before delivery process."
 }

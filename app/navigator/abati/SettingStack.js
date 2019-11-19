@@ -35,6 +35,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
+        headerBackTitle: null,
       }),
     },
     Register: {
@@ -42,7 +43,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
     UserEdit: {
@@ -50,7 +51,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
-        // headerBackTitle: null
+        headerBackTitle: null,
       }),
     },
     ProfileIndex: {

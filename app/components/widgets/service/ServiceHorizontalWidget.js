@@ -3,11 +3,10 @@ import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
-import {getSearchProducts, getSearchServices} from '../../../redux/actions';
+import {getSearchServices} from '../../../redux/actions/service';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
 

@@ -11,9 +11,9 @@ export const ServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
       screen: ServiceIndexAllScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null,
       }),

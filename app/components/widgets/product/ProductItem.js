@@ -6,7 +6,7 @@ import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 import I18n from './../../../I18n';
 import validate from 'validate.js';
-import {removeItem} from '../../../redux/actions';
+import {removeItem} from '../../../redux/actions/cart';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {

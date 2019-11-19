@@ -1,24 +1,25 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {images, text, width} from '../../../constants';
-import {showCountryModal, updateUser} from '../../../redux/actions';
+import {images, text} from '../../../constants';
+import {updateUser} from '../../../redux/actions/user';
+import {showCountryModal} from '../../../redux/actions';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useNavigation} from 'react-navigation-hooks';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserEditFormWidget = ({
   auth,
   player_id,
   logo,
-  colors,
   token,
   country,
-  dispatch,
   showIcon = true,
 }) => {
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
@@ -38,6 +39,8 @@ const UserEditFormWidget = ({
   const [sampleLogo, setSampleLogo] = useState(null);
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   const parent = dangerouslyGetParent();
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({

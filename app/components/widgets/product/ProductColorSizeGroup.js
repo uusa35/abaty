@@ -1,12 +1,12 @@
-import React, {useState, useContext, useMemo} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {useState, useContext} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {addToCart} from '../../../redux/actions';
+import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 

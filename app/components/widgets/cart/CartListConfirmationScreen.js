@@ -1,18 +1,23 @@
-import React, {useContext, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React, {useContext, useState, useCallback} from 'react';
+import {StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS, text} from '../../../constants';
-import {clearCart, getCoupon, showCountryModal} from '../../../redux/actions';
+import {
+  clearCart,
+  getCoupon,
+  showCountryModal,
+  storeOrderCashOnDelivery,
+  storeOrderMyFatoorah,
+  storeOrderTap,
+} from '../../../redux/actions';
 import {Button, Input} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {NavContext} from '../../../redux/NavContext';
 import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {displayName} from './../../../../app';
-import * as actions from '../../../redux/actions/types';
+import {MALLR, ABATI, HOMEKEY} from './../../../../app';
 
 const CartListConfirmationScreen = ({
   cart,
@@ -25,6 +30,7 @@ const CartListConfirmationScreen = ({
   editModeDefault = true,
   coupon = {},
   navigation,
+  COD,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total} = useContext(GlobalValuesContext);
@@ -35,6 +41,44 @@ const CartListConfirmationScreen = ({
   const [address, setAddress] = useState(cAddress);
   const [notes, setNotes] = useState(cNotes);
   const [editMode, setEditMode] = useState(editModeDefault);
+
+  const handleCashOnDelivery = useCallback(() => {
+    return Alert.alert(
+      I18n.t('order_confirmation'),
+      I18n.t('order_cash_on_delivery_confirmation'),
+      [
+        {
+          text: I18n.t('cancel'),
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: I18n.t('confirm_cash_on_delivery'),
+          onPress: () =>
+            dispatch(
+              storeOrderCashOnDelivery({
+                name,
+                email,
+                mobile,
+                address,
+                country_id: shipmentCountry.id,
+                coupon_id: !isNull(coupon) ? coupon.id : null,
+                cart,
+                price: total,
+                net_price: grossTotal,
+                shipment_fees: shipmentFees,
+                discount,
+                payment_method: isIOS
+                  ? 'Iphone - CASH ON DELIVERY'
+                  : 'Android - CASH ON DELIVERY',
+              }),
+            ),
+        },
+      ],
+      {cancelable: false},
+    );
+  });
+
   return (
     <View style={{width: '100%'}}>
       <View
@@ -465,7 +509,7 @@ const CartListConfirmationScreen = ({
             />
           ) : (
             <View>
-              {displayName !== 'abati' ? (
+              {MALLR || (HOMEKEY && !ABATI) ? (
                 <Button
                   raised
                   containerStyle={{marginBottom: 10, width: '100%'}}
@@ -479,9 +523,8 @@ const CartListConfirmationScreen = ({
                     color: colors.btn_text_theme_color,
                   }}
                   onPress={() =>
-                    dispatch({
-                      type: actions.CREATE_MYFATOORAH_PAYMENT_URL,
-                      payload: {
+                    dispatch(
+                      storeOrderMyFatoorah({
                         name,
                         email,
                         mobile,
@@ -496,9 +539,25 @@ const CartListConfirmationScreen = ({
                         payment_method: isIOS
                           ? 'IOS - My Fatoorah'
                           : 'Android - My Fatoorah',
-                      },
-                    })
+                      }),
+                    )
                   }
+                />
+              ) : null}
+              {COD ? (
+                <Button
+                  raised
+                  containerStyle={{marginBottom: 10, width: '100%'}}
+                  buttonStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                    borderRadius: 0,
+                  }}
+                  title={I18n.t('cash_on_delivery')}
+                  titleStyle={{
+                    fontFamily: text.font,
+                    color: colors.btn_text_theme_color,
+                  }}
+                  onPress={() => handleCashOnDelivery()}
                 />
               ) : null}
               <Button
@@ -514,9 +573,8 @@ const CartListConfirmationScreen = ({
                   color: colors.btn_text_theme_color,
                 }}
                 onPress={() =>
-                  dispatch({
-                    type: actions.CREATE_TAP_PAYMENT_URL,
-                    payload: {
+                  dispatch(
+                    storeOrderTap({
                       name,
                       email,
                       mobile,
@@ -531,8 +589,8 @@ const CartListConfirmationScreen = ({
                       payment_method: isIOS
                         ? 'Iphone - Tap Payment'
                         : 'Android - Tap Payment',
-                    },
-                  })
+                    }),
+                  )
                 }
               />
             </View>

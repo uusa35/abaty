@@ -11,9 +11,9 @@ export const ProductStack = createStackNavigator(
   {
     ProductIndexAll: {
       screen: ProductIndexAllScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
         headerBackTitle: null,
       }),
@@ -22,13 +22,7 @@ export const ProductStack = createStackNavigator(
       screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,

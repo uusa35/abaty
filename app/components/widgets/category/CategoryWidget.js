@@ -3,12 +3,9 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
-import {
-  getSearchClassifieds,
-  getSearchCompanies,
-  getSearchProducts,
-  setCategoryAndGoToNavChildren,
-} from '../../../redux/actions';
+import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
+import {getSearchProducts} from '../../../redux/actions/product';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';

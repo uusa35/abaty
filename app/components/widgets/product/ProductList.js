@@ -15,7 +15,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
@@ -200,12 +200,7 @@ const ProductList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ProductWidget
-              element={item}
-              showName={showName}
-              dispatch={dispatch}
-              colors={colors}
-            />
+            <ProductWidget element={item} showName={showName} />
           )}
         />
       ) : (

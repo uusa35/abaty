@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getClassified} from '../../../redux/actions';
+import {getClassified} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images, width} from '../../../constants';

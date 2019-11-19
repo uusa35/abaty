@@ -19,6 +19,7 @@ const CartConfirmationScreen = ({
   colors,
   grossTotal,
   country,
+  COD,
 }) => {
   return (
     <View
@@ -52,6 +53,7 @@ const CartConfirmationScreen = ({
             editModeDefault={false}
             coupon={coupon ? coupon : null}
             navigation={navigation}
+            COD={COD && country.is_local}
           />
         ) : (
           <View
@@ -97,6 +99,7 @@ function mapStateToProps(state) {
     coupon: state.coupon,
     grossTotal: state.grossTotal,
     shipmentFees: state.shipmentFees,
+    COD: state.settings.cash_on_delivery,
   };
 }
 

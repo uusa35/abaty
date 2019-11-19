@@ -10,7 +10,7 @@ import ColorsModal from './ColorsModal';
 import {isNull, first} from 'lodash';
 import {axiosInstance} from '../../../redux/actions/api';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {addToCart} from '../../../redux/actions';
+import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductColorSizeGroupWithAttributes = ({element}) => {

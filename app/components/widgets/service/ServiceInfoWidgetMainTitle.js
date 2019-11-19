@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useMemo} from 'react';
+import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, View} from 'react-native';
 import {images, text} from '../../../constants';
@@ -6,20 +6,11 @@ import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {Icon} from 'react-native-elements';
-import {toggleFavorite} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ServiceInfoWidgetMainTitle = ({element}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {
-    colors,
-    country,
-    token,
-    guest,
-    currency_symbol,
-    exchange_rate,
-  } = useContext(GlobalValuesContext);
+  const {colors, currency_symbol, exchange_rate} = useContext(
+    GlobalValuesContext,
+  );
   const [favorite, setFavorite] = useState(element.isFavorite);
 
   return (

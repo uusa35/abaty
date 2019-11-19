@@ -1,16 +1,14 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {text, width} from '../../../constants';
+import {text} from '../../../constants';
 import PropTypes from 'prop-types';
-import {Button, Icon, ButtonGroup, Divider} from 'react-native-elements';
+import {Button, Divider} from 'react-native-elements';
 import I18n from '../../../I18n';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import ProductColorSizeGroup from './ProductColorSizeGroup';
 import ProductColorSizeGroupWithAttributes from './ProductColorSizeGroupWithAttributes';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductInfoWidgetBtns = ({element}) => {
-  const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View

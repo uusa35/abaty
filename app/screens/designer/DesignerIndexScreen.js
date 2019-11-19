@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import DesignersList from '../../components/Lists/DeisgnersList';
 
-const DesignerIndexScreen = ({designers, searchParams, dispatch}) => {
+const DesignerIndexScreen = ({designers, searchParams}) => {
   return (
     <DesignersList
       elements={designers}
       searchElements={searchParams}
-      dispatch={dispatch}
       showMore={true}
     />
   );

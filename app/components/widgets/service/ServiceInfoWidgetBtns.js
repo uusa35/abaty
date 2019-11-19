@@ -1,9 +1,9 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {View, Text, Picker} from 'react-native';
+import {View, Picker} from 'react-native';
 import {text} from './../../../constants';
 import _ from 'lodash';
 import {Button, Input} from 'react-native-elements';
-import {addToCart} from '../../../redux/actions';
+import {addToCart} from '../../../redux/actions/cart';
 import I18n, {isRTL} from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';

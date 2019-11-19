@@ -21,26 +21,6 @@ export function toggleBootstrapped(bootstrapped) {
   };
 }
 
-export function logout() {
-  return {
-    type: actions.REMOVE_AUTH,
-  };
-}
-
-export function submitAuth(payload) {
-  return {
-    type: actions.SUBMIT_AUTH,
-    payload,
-  };
-}
-
-export function updateUser(payload) {
-  return {
-    type: actions.UPDATE_USER,
-    payload,
-  };
-}
-
 export function enableMessage(
   content,
   status = 'info',
@@ -130,13 +110,6 @@ export function setHomeSliders(sliders) {
   };
 }
 
-export function setHomeProducts(products) {
-  return {
-    type: actions.SET_HOME_PRODUCTS,
-    payload: products,
-  };
-}
-
 export function getRoles(roles) {
   return {
     type: actions.GET_ROLES,
@@ -184,152 +157,6 @@ export function setNotifications(payload) {
   };
 }
 
-export function setCategories(payload) {
-  return {
-    type: actions.SET_CATEGORIES,
-    payload,
-  };
-}
-
-export function setCategory(payload) {
-  return {
-    type: actions.SET_CATEGORY,
-    payload,
-  };
-}
-
-export function setSubCategory(payload) {
-  return {
-    type: actions.SET_SUB_CATEGORY,
-    payload,
-  };
-}
-
-export function setCategoryAndGoToNavChildren(payload) {
-  return {
-    type: actions.SET_CATEGORY_AND_GO_TO_NAV_CHILDREN,
-    payload,
-  };
-}
-
-export function setBrands(payload) {
-  return {
-    type: actions.SET_BRANDS,
-    payload,
-  };
-}
-
-export function setBrand(payload) {
-  return {
-    type: actions.SET_BRAND,
-    payload,
-  };
-}
-
-export function setCompanies(payload) {
-  return {
-    type: actions.SET_COMPANIES,
-    payload,
-  };
-}
-
-export function setCompany(payload) {
-  return {
-    type: actions.SET_COMPANY,
-    payload,
-  };
-}
-
-export function getDesigner(payload) {
-  return {
-    type: actions.GET_DESIGNER,
-    payload,
-  };
-}
-
-export function getShopper(payload) {
-  return {
-    type: actions.GET_SHOPPER,
-    payload,
-  };
-}
-
-export function getCelebrity(payload) {
-  return {
-    type: actions.GET_CELEBRITY,
-    payload,
-  };
-}
-
-export function getCompany(payload) {
-  return {
-    type: actions.GET_COMPANY,
-    payload,
-  };
-}
-
-export function setDesigner(payload) {
-  return {
-    type: actions.SET_DESIGNER,
-    payload,
-  };
-}
-
-export function getProduct(payload) {
-  return {
-    type: actions.GET_PRODUCT,
-    payload,
-  };
-}
-
-export function getService(payload) {
-  return {
-    type: actions.GET_SERVICE,
-    payload,
-  };
-}
-
-export function getSearchProducts(payload) {
-  return {
-    type: actions.GET_SEARCH_PRODUCTS,
-    payload,
-  };
-}
-
-export function getSearchServices(payload) {
-  return {
-    type: actions.GET_SEARCH_SERVICES,
-    payload,
-  };
-}
-
-export function getAllProducts(payload) {
-  return {
-    type: actions.GET_ALL_PRODUCTS,
-  };
-}
-
-export function toggleProductFavorite(payload) {
-  return {
-    type: actions.TOGGLE_PRODUCT_FAVORITE,
-    payload,
-  };
-}
-
-export function toggleClassifiedFavorite(payload) {
-  return {
-    type: actions.TOGGLE_CLASSIFIED_FAVORITE,
-    payload,
-  };
-}
-
-export function getBrand(payload) {
-  return {
-    type: actions.GET_BRAND,
-    payload,
-  };
-}
-
 export function setPlayerId(payload) {
   return {
     type: actions.SET_PLAYER_ID,
@@ -347,54 +174,6 @@ export function goBackBtn(payload) {
 export function setDeviceId(payload) {
   return {
     type: actions.SET_DEVICE_ID,
-    payload,
-  };
-}
-export function getCategoryElements(payload) {
-  return {
-    type: actions.GET_CATEGORY_ELEMENTS,
-    payload,
-  };
-}
-
-export function setUsers(payload) {
-  return {
-    type: actions.SET_USERS,
-    payload,
-  };
-}
-
-export function getUser(payload) {
-  return {
-    type: actions.GET_USER,
-    payload,
-  };
-}
-
-export function getUsers(payload) {
-  return {
-    type: actions.GET_USERS,
-    payload,
-  };
-}
-
-export function getSearchCelebrities(payload) {
-  return {
-    type: actions.GET_CELEBRITIES,
-    payload,
-  };
-}
-
-export function getSearchDesigners(payload) {
-  return {
-    type: actions.GET_DESIGNERS,
-    payload,
-  };
-}
-
-export function getSearchCompanies(payload) {
-  return {
-    type: actions.GET_COMPANIES,
     payload,
   };
 }
@@ -457,69 +236,9 @@ export function goDeepLinking(payload) {
   };
 }
 
-export function addToCart(payload) {
-  return {
-    type: actions.ADD_TO_CART,
-    payload,
-  };
-}
-
-export function submitCart(payload) {
-  return {
-    type: actions.SUBMIT_CART,
-    payload,
-  };
-}
-export function filterCart(payload) {
-  return {
-    type: actions.FILTER_CART,
-    payload,
-  };
-}
-
-export function clearCart() {
-  return {
-    type: actions.DO_CLEAR_CART_PROCESS,
-  };
-}
-
-export function setItem(payload) {
-  return {
-    type: actions.SET_ITEM,
-    payload,
-  };
-}
-
-export function removeItem(payload) {
-  return {
-    type: actions.REMOVE_FROM_CART,
-    payload,
-  };
-}
-
 export function refetchHomeElements() {
   return {
     type: actions.REFETCH_HOME_ELEMENTS,
-  };
-}
-
-export function getCoupon(payload) {
-  return {
-    type: actions.GET_COUPON,
-    payload,
-  };
-}
-
-export function removeCoupon() {
-  return {
-    type: actions.REMOVE_COUPON,
-  };
-}
-
-export function register(payload) {
-  return {
-    type: actions.REGISTER,
-    payload,
   };
 }
 
@@ -533,32 +252,6 @@ export function setSearchParams(payload) {
 export function resetStore() {
   return {
     type: actions.RESET_STORE,
-  };
-}
-
-export function rateUser(payload) {
-  return {
-    type: actions.RATE_USER,
-    payload,
-  };
-}
-
-export function becomeFan(payload) {
-  return {
-    type: actions.BECOME_FAN,
-    payload,
-  };
-}
-
-export function showLoginModal() {
-  return {
-    type: actions.SHOW_LOGIN_MODAL,
-  };
-}
-
-export function hideLoginModal() {
-  return {
-    type: actions.HIDE_LOGIN_MODAL,
   };
 }
 
@@ -577,73 +270,6 @@ export function hideCommentModal() {
 export function addComment(payload) {
   return {
     type: actions.ADD_COMMENT,
-    payload,
-  };
-}
-
-export function reAuthenticate() {
-  return {
-    type: actions.REAUTHENTICATE,
-  };
-}
-
-export function googleLogin() {
-  return {
-    type: actions.GOOGLE_LOGIN,
-  };
-}
-
-export function googleRegister() {
-  return {
-    type: actions.GOOGLE_REGISTER,
-  };
-}
-
-export function getSearchClassifieds(payload) {
-  return {
-    type: actions.GET_CLASSIFIEDS,
-    payload,
-  };
-}
-
-export function getClassified(payload) {
-  return {
-    type: actions.GET_CLASSIFIED,
-    payload,
-  };
-}
-
-export function storeClassified(payload) {
-  return {
-    type: actions.STORE_CLASSIFIED,
-    payload,
-  };
-}
-
-export function setProperties(payload) {
-  return {
-    type: actions.SET_PROPERTIES,
-    payload,
-  };
-}
-
-export function addToProperties(payload) {
-  return {
-    type: actions.ADD_TO_PROPERTIES,
-    payload,
-  };
-}
-
-export function startClassifiedSearching(payload) {
-  return {
-    type: actions.START_CLASSIFIED_SEARCHING,
-    payload,
-  };
-}
-
-export function startNewClassified(payload) {
-  return {
-    type: actions.START_NEW_CLASSIFIED,
     payload,
   };
 }

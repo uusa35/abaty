@@ -5,22 +5,15 @@ import React, {
   useCallback,
   useContext,
 } from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Text,
-  Linking,
-  RefreshControl,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, images} from './../../constants';
+import {width, text} from './../../constants';
 import I18n from './../../I18n';
-import {getClassified, getClassifieds} from '../../redux/actions';
+import {getClassified} from '../../redux/actions/classified';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
-import {map} from 'lodash';
+import {map, round} from 'lodash';
 import ClassifiedInfoWidgetElement from '../../components/widgets/classified/ClassifiedInfoWidgetElement';
 import ClassifiedListHorizontal from '../../components/widgets/classified/ClassifiedListHorizontal';
 import MapViewWidget from '../../components/widgets/MapViewWidget';
@@ -30,10 +23,8 @@ import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/C
 import CommentScreenModal from './../CommentScreenModal';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import {getProductConvertedFinalPrice} from '../../helpers';
-import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
-import LoadingContentView from '../../components/Loading/LoadingContentView';
 
 const ClassifiedShowScreen = ({
   element,
@@ -98,7 +89,7 @@ const ClassifiedShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        <View style={{flex: 1, borderWidth: 5, padding: '5%'}}>
+        <View style={{flex: 1, padding: '5%'}}>
           <ClassifiedInfoWidgetMainTitle element={element} />
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />

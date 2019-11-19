@@ -3,23 +3,20 @@ import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text} from './../../constants';
+import {ScrollView} from 'react-navigation';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';
 import {first} from 'lodash';
-import {
-  getClassified,
-  getDesigner,
-  getProduct,
-  getSearchProducts,
-} from '../../redux/actions';
+import {getProduct, getSearchProducts} from '../../redux/actions/product';
+import {getDesigner} from '../../redux/actions/user';
+import {getClassified} from '../../redux/actions/classified';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
-import {SafeAreaView, ScrollView} from 'react-navigation';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 
 const NormalProductShowScreen = ({
@@ -48,6 +45,7 @@ const NormalProductShowScreen = ({
     dispatch(getProduct({id: product.id, api_token: token ? token : null}));
   }, [refresh]);
 
+  console.log('element', product);
   return (
     <Fragment>
       <ScrollView

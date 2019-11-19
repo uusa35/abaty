@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
 import PropTypes from 'prop-types';
-import {getAllProducts} from '../../redux/actions';
+import {getAllProducts} from '../../redux/actions/product';
 import {productsSelector} from '../../redux/selectors/collections';
 import {colorsSelector} from '../../redux/selectors/collection';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';

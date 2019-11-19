@@ -13,9 +13,9 @@ export const ProductStack = createStackNavigator(
   {
     ProductIndexAll: {
       screen: ProductIndexAllScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('products')} />,
         headerBackTitle: null,
       }),
@@ -24,28 +24,16 @@ export const ProductStack = createStackNavigator(
       screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
     },
     Home: {
       screen: MallrHomeScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        HeaderRight: (
-          <HeaderRight
-            {...navigation}
-            showCountry={true}
-            displayShare={false}
-          />
-        ),
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        HeaderRight: <HeaderRight showCountry={true} displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null,
       }),
