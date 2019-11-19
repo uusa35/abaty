@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {images, text, width} from '../../../constants';
+import {images, text} from '../../../constants';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {register, showCountryModal} from '../../../redux/actions';
+import {showCountryModal} from '../../../redux/actions';
+import {register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';

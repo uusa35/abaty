@@ -328,6 +328,13 @@ export async function makeTapPayment(params) {
     .catch(e => e.response.data.message);
 }
 
+export async function makeCashOnDeliveryPayment(params) {
+  return await axiosInstance
+    .post(`order`, params)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function register(params) {
   return await axiosInstance
     .post(`register`, params)

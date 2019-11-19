@@ -11,7 +11,7 @@ const appUrl = () => {
     case 'escrap':
       return 'http://escrapco.com/';
     default:
-      return 'http://mallr.test';
+      return 'http://mallr.test/';
   }
 };
 const appUrlIos = isLocal ? 'http://mallr.test' : appUrl();

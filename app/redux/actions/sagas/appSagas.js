@@ -30,6 +30,7 @@ import {
   startGetCategoriesScenario,
   startGetParentCategoriesScenario,
   startGetCategoryAndGoToNavChildren,
+  startCreateCashOnDeliveryPayment,
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
@@ -219,6 +220,10 @@ export function* createTapPaymentUrl() {
     actions.CREATE_TAP_PAYMENT_URL,
     startCreateTapPaymentUrlScenario,
   );
+}
+
+export function* createCashOnDeliveryPayment() {
+  yield takeLatest(actions.CASH_ON_DELIVERY, startCreateCashOnDeliveryPayment);
 }
 
 export function* addComment() {

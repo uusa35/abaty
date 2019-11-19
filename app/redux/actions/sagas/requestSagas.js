@@ -513,6 +513,29 @@ export function* startCreateTapPaymentUrlScenario(action) {
   }
 }
 
+export function* startCreateCashOnDeliveryPayment(action) {
+  try {
+    yield call(enableLoading);
+    const element = yield call(api.makeCashOnDeliveryPayment, action.payload);
+    if (validate.isObject(element) && element.url) {
+      yield call(enableSuccessMessage, I18n.t('order_is_complete'));
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'PaymentIndex',
+          params: {
+            paymentUrl: element.url,
+          },
+        }),
+      );
+      yield call(disableLoading);
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+  }
+}
+
 export function* startBecomeFanScenario(action) {
   try {
     const {id, fanMe} = action.payload;

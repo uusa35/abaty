@@ -63,6 +63,7 @@ export default function* rootSaga() {
     fork(appSagas.getCoupon),
     fork(appSagas.createMyFatoorahPaymentUrl),
     fork(appSagas.createTapPaymentUrl),
+    fork(appSagas.createCashOnDeliveryPayment),
     fork(appSagas.goDeepLinking),
     fork(appSagas.addComment),
     fork(appSagas.resetStore),

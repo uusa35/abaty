@@ -3,14 +3,14 @@ import {StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS, text} from '../../../constants';
+import {showCountryModal} from '../../../redux/actions';
 import {
   clearCart,
   getCoupon,
-  showCountryModal,
   storeOrderCashOnDelivery,
   storeOrderMyFatoorah,
   storeOrderTap,
-} from '../../../redux/actions';
+} from '../../../redux/actions/cart';
 import {Button, Input} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
@@ -67,6 +67,7 @@ const CartListConfirmationScreen = ({
                 price: total,
                 net_price: grossTotal,
                 shipment_fees: shipmentFees,
+                cash_on_delivery: COD,
                 discount,
                 payment_method: isIOS
                   ? 'Iphone - CASH ON DELIVERY'
@@ -75,7 +76,7 @@ const CartListConfirmationScreen = ({
             ),
         },
       ],
-      {cancelable: false},
+      {cancelable: true},
     );
   });
 
@@ -535,6 +536,7 @@ const CartListConfirmationScreen = ({
                         price: total,
                         net_price: grossTotal,
                         shipment_fees: shipmentFees,
+                        cash_on_delivery: false,
                         discount,
                         payment_method: isIOS
                           ? 'IOS - My Fatoorah'
@@ -585,6 +587,7 @@ const CartListConfirmationScreen = ({
                       price: total,
                       net_price: grossTotal,
                       shipment_fees: shipmentFees,
+                      cash_on_delivery: false,
                       discount,
                       payment_method: isIOS
                         ? 'Iphone - Tap Payment'

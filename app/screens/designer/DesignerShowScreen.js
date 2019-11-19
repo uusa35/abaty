@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo, useEffect} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -155,8 +155,6 @@ const DesignerShowScreen = ({
             renderScene={SceneMap({
               products: () => (
                 <ProductList
-                  colors={colors}
-                  dispatch={dispatch}
                   products={products}
                   showSearch={false}
                   showTitle={true}
@@ -167,8 +165,6 @@ const DesignerShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  dispatch={dispatch}
-                  colors={colors}
                   has_map={element.has_map}
                   mobile={element.mobile}
                   phone={element.phone}
@@ -190,10 +186,7 @@ const DesignerShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget
-                  videos={element.videoGroup}
-                  colors={colors}
-                />
+                <VideosVerticalWidget videos={element.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
