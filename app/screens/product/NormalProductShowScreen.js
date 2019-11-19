@@ -45,7 +45,6 @@ const NormalProductShowScreen = ({
     dispatch(getProduct({id: product.id, api_token: token ? token : null}));
   }, [refresh]);
 
-  console.log('element', product);
   return (
     <Fragment>
       <ScrollView
