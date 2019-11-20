@@ -12,7 +12,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon} from 'react-native-elements';
 import {map} from 'lodash';
 import validate from 'validate.js';
-import {getSearchClassifieds} from '../../../redux/actions';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import widgetStyles from '../widgetStyles';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
 import {DispatchContext} from '../../../redux/DispatchContext';

@@ -493,7 +493,6 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
 export function* startCreateTapPaymentUrlScenario(action) {
   try {
     yield call(enableLoading);
-    console.log('the action payload', action);
     const url = yield call(api.makeTapPayment, action.payload);
     if (validate.isObject(url) && url.paymentUrl.includes('http')) {
       yield call(disableLoading);

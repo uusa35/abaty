@@ -1,28 +1,54 @@
-import React, {useContext} from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  View,
-  Linking,
-} from 'react-native';
+import React, {useContext, useCallback} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, width} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import validate from 'validate.js';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const TagsList = ({
   elements,
   showTitle = true,
   showArrow = true,
-  colors,
-  dispatch,
   title,
+  type,
 }) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+
+  const handleClick = useCallback(c => {
+    switch (type) {
+      case 'products':
+        return dispatch(
+          getSearchProducts({
+            name: c.slug,
+            searchParams: {tag_id: c.id},
+            redirect: true,
+          }),
+        );
+      case 'classifieds':
+        return dispatch(
+          getSearchClassifieds({
+            name: c.slug,
+            searchParams: {tag_id: c.id},
+            redirect: true,
+          }),
+        );
+      default:
+        return dispatch(
+          getSearchProducts({
+            name: c.slug,
+            searchParams: {tag_id: c.id},
+            redirect: true,
+          }),
+        );
+    }
+  });
   return (
     <View
       horizontal={false}
@@ -60,15 +86,7 @@ const TagsList = ({
               return (
                 <TouchableOpacity
                   key={i}
-                  onPress={() =>
-                    dispatch(
-                      getSearchProducts({
-                        name: c.slug,
-                        searchParams: {tag_id: c.id},
-                        redirect: true,
-                      }),
-                    )
-                  }
+                  onPress={() => handleClick(c)}
                   hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
                   style={styles.itemRow}>
                   <View
@@ -124,8 +142,6 @@ export default TagsList;
 
 TagsList.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

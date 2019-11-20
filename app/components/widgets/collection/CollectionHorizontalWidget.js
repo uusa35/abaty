@@ -40,13 +40,7 @@ const CollectionHorizontalWidget = ({elements, showName, title}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <CollectionWidget
-            element={c}
-            showName={showName}
-            key={i}
-            dispatch={dispatch}
-            colors={colors}
-          />
+          <CollectionWidget element={c} showName={showName} key={i} />
         ))}
       </ScrollView>
     </View>

@@ -1,12 +1,12 @@
-import React, {useState, useContext, useCallback} from 'react';
+import React, {useState, useContext} from 'react';
 import {Text, ImageBackground, TouchableOpacity} from 'react-native';
-import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+import {TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, width} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {take, first, map, filter} from 'lodash';
-import {startClassifiedSearching} from '../../../redux/actions';
+import {take, map} from 'lodash';
+import {startClassifiedSearching} from '../../../redux/actions/classified';
 
 const HomeKeySearchTab = ({elements, main_bg}) => {
   const {dispatch} = useContext(DispatchContext);

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import WebView from 'react-native-webview';
 import {DispatchContext} from '../redux/DispatchContext';
 import {useNavigation} from 'react-navigation-hooks';
@@ -6,6 +6,7 @@ import {useNavigation} from 'react-navigation-hooks';
 const PaymentIndexScreen = () => {
   const {dispatch} = useContext(DispatchContext);
   const navigation = useNavigation();
+
   return (
     <WebView
       source={{uri: navigation.state.params.paymentUrl}}

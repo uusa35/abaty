@@ -10,7 +10,7 @@ import {text} from '../../../constants';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
-import {startNewClassified} from '../../../redux/actions';
+import {startNewClassified} from '../../../redux/actions/classified';
 
 const ChooseCategoryItem = ({category, dispatch}) => {
   return (

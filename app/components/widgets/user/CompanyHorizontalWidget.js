@@ -10,7 +10,7 @@ import {
   getSearchCompanies,
   getSearchDesigners,
   getUsers,
-} from '../../../redux/actions';
+} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';

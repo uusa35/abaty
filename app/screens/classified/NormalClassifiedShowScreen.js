@@ -17,7 +17,10 @@ import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text} from './../../constants';
 import I18n from './../../I18n';
-import {getClassified, getSearchClassifieds} from '../../redux/actions';
+import {
+  getClassified,
+  getSearchClassifieds,
+} from '../../redux/actions/classified';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';

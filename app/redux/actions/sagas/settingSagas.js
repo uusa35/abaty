@@ -53,7 +53,8 @@ export function* setDeviceId() {
     __DEV__ ? console.log('device_id', deviceId) : null;
     yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_settings_from_catch'));
+    console.log('the e from device id', e);
+    // yield call(enableErrorMessage, I18n.t('no_settings_from_catch'));
   }
 }
 

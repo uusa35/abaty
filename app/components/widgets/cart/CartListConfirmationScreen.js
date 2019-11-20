@@ -17,7 +17,8 @@ import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {MALLR, ABATI, HOMEKEY} from './../../../../app';
+import {MALLR, ABATI, HOMEKEY, PAYMENT} from './../../../../app';
+import validate from 'validate.js';
 
 const CartListConfirmationScreen = ({
   cart,
@@ -510,7 +511,23 @@ const CartListConfirmationScreen = ({
             />
           ) : (
             <View>
-              {MALLR || (HOMEKEY && !ABATI) ? (
+              {COD ? (
+                <Button
+                  raised
+                  containerStyle={{marginBottom: 10, width: '100%'}}
+                  buttonStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                    borderRadius: 0,
+                  }}
+                  title={I18n.t('cash_on_delivery')}
+                  titleStyle={{
+                    fontFamily: text.font,
+                    color: colors.btn_text_theme_color,
+                  }}
+                  onPress={() => handleCashOnDelivery()}
+                />
+              ) : null}
+              {PAYMENT === 'MYFATOORAH' ? (
                 <Button
                   raised
                   containerStyle={{marginBottom: 10, width: '100%'}}
@@ -546,7 +563,7 @@ const CartListConfirmationScreen = ({
                   }
                 />
               ) : null}
-              {COD ? (
+              {PAYMENT === 'TAP' ? (
                 <Button
                   raised
                   containerStyle={{marginBottom: 10, width: '100%'}}
@@ -554,48 +571,34 @@ const CartListConfirmationScreen = ({
                     backgroundColor: colors.btn_bg_theme_color,
                     borderRadius: 0,
                   }}
-                  title={I18n.t('cash_on_delivery')}
+                  title={I18n.t('go_to_payment_tap')}
                   titleStyle={{
                     fontFamily: text.font,
                     color: colors.btn_text_theme_color,
                   }}
-                  onPress={() => handleCashOnDelivery()}
+                  onPress={() =>
+                    dispatch(
+                      storeOrderTap({
+                        name,
+                        email,
+                        mobile,
+                        address,
+                        country_id: shipmentCountry.id,
+                        coupon_id: !isNull(coupon) ? coupon.id : null,
+                        cart,
+                        price: total,
+                        net_price: grossTotal,
+                        shipment_fees: shipmentFees,
+                        cash_on_delivery: false,
+                        discount,
+                        payment_method: isIOS
+                          ? 'Iphone - Tap Payment'
+                          : 'Android - Tap Payment',
+                      }),
+                    )
+                  }
                 />
               ) : null}
-              <Button
-                raised
-                containerStyle={{marginBottom: 10, width: '100%'}}
-                buttonStyle={{
-                  backgroundColor: colors.btn_bg_theme_color,
-                  borderRadius: 0,
-                }}
-                title={I18n.t('go_to_payment_tap')}
-                titleStyle={{
-                  fontFamily: text.font,
-                  color: colors.btn_text_theme_color,
-                }}
-                onPress={() =>
-                  dispatch(
-                    storeOrderTap({
-                      name,
-                      email,
-                      mobile,
-                      address,
-                      country_id: shipmentCountry.id,
-                      coupon_id: !isNull(coupon) ? coupon.id : null,
-                      cart,
-                      price: total,
-                      net_price: grossTotal,
-                      shipment_fees: shipmentFees,
-                      cash_on_delivery: false,
-                      discount,
-                      payment_method: isIOS
-                        ? 'Iphone - Tap Payment'
-                        : 'Android - Tap Payment',
-                    }),
-                  )
-                }
-              />
             </View>
           )}
         </View>

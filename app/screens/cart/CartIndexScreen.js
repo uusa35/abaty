@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import validate from 'validate.js';

@@ -7,8 +7,6 @@ import {
   View,
   AppState,
   StyleSheet,
-  TouchableOpacity,
-  Text,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -17,10 +15,9 @@ import {
   refetchHomeElements,
   setPlayerId,
 } from '../../redux/actions';
-import {isIOS, width} from '../../constants';
+import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {Icon} from 'react-native-elements';
 import {
   ONE_SIGNAL_APP_ID,
   ABATI,

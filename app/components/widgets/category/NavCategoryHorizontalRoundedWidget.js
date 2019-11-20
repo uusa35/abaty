@@ -9,12 +9,7 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {
-  enableErrorMessage,
-  getSearchClassifieds,
-  setCategory,
-  setCategoryAndGoToNavChildren,
-} from '../../../redux/actions';
+import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';

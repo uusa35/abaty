@@ -249,11 +249,9 @@ const MallrHomeScreen = ({
         ) : null}
         {!validate.isEmpty(homeCollections) ? (
           <CollectionHorizontalWidget
-            colors={colors}
             elements={homeCollections}
             showName={true}
             title="our_collections"
-            dispatch={dispatch}
           />
         ) : null}
       </ScrollView>

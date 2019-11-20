@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getCompany} from '../../../redux/actions';
+import {getCompany} from '../../../redux/actions/user';
 import FastImage from 'react-native-fast-image';
 import {images} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';

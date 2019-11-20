@@ -26,15 +26,14 @@ const ServiceWidget = ({element, showName = false}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '48%',
-          maxWidth: 175,
+          width: 190,
           margin: 5,
-          borderWidth: 0.5,
+          borderWidth: 0.25,
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 285,
-          justifyContent: 'space-evenly',
+          height: 300,
+          justifyContent: 'flex-start',
         },
       ]}
       onPress={() =>
@@ -57,7 +56,13 @@ const ServiceWidget = ({element, showName = false}) => {
         </View>
       </ImageBackground>
       {showName ? (
-        <View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Text
             style={[
               widgetStyles.elementName,
@@ -106,7 +111,7 @@ ServiceWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 173,
-    height: 230,
+    width: 190,
+    height: 240,
   },
 });

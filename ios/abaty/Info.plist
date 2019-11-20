@@ -85,6 +85,18 @@
 	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Actor-Regular.ttf</string>
+		<string>AR-STC.otf</string>
+		<string>AR-Almarai-Font.ttf</string>
+		<string>Ar-Ith.ttf</string>
+		<string>AR-BBC-Regular.ttf</string>
+		<string>Changa-Regular.ttf</string>
+		<string>ArchivoNarrow-Regular.ttf</string>
+		<string>Varela-Regular.ttf</string>
+		<string>Almarai-Regular.ttf</string>
+		<string>Almarai-Light.ttf</string>
+		<string>Almarai-Bold.ttf</string>
+		<string>Cairo_Black.ttf</string>
 		<string>Cairo_Black.ttf</string>
 		<string>Cairo_Semi_Bold.ttf</string>
 		<string>Cairo-Light.ttf</string>

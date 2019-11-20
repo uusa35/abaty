@@ -1,10 +1,9 @@
 import React, {Fragment, useContext} from 'react';
-import {View, ScrollView, Image, TouchableOpacity, Text} from 'react-native';
+import {View, Image, TouchableOpacity, Text} from 'react-native';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {map} from 'lodash';
-import {width} from './../../../constants';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
 import widgetStyles from '../widgetStyles';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';

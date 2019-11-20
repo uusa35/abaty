@@ -1,10 +1,12 @@
 import React, {useState, useContext} from 'react';
-import {View} from 'react-native';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getSearchClassifieds, getSearchProducts} from '../../../redux/actions';
+import {
+  getSearchClassifieds,
+  getSearchProducts,
+} from '../../../redux/actions/classified';
 import {HIDE_SEARCH_MODAL} from '../../../redux/actions/types';
 
 const ClassifiedSearchForm = () => {

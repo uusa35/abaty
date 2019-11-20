@@ -7,10 +7,8 @@ import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Badge, Icon} from 'react-native-elements';
-import {
-  showCommentModal,
-  toggleClassifiedFavorite,
-} from '../../../redux/actions';
+import {showCommentModal} from '../../../redux/actions';
+import {toggleClassifiedFavorite} from '../../../redux/actions/classified';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ClassifiedInfoWidgetMainTitle = ({element}) => {

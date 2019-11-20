@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -7,26 +7,29 @@ import {
   Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
 import PropTypes from 'prop-types';
 import {images, text} from '../../../constants';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
+const CollectionWidget = ({element, showName = false}) => {
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
       key={element.id}
       style={[
         widgetStyles.btnStyle,
         {
-          width: '48%',
-          maxWidth: 175,
+          width: 190,
           margin: 5,
-          borderWidth: 0.5,
+          borderWidth: 0.25,
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 285,
-          justifyContent: 'space-between',
+          height: 300,
+          justifyContent: 'flex-start',
         },
       ]}
       onPress={() => {
@@ -47,7 +50,13 @@ const CollectionWidget = ({element, showName = false, dispatch, colors}) => {
         style={styles.image}
         resizeMode="stretch"></ImageBackground>
       {showName ? (
-        <View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Text
             style={[
               widgetStyles.elementName,
@@ -70,14 +79,12 @@ export default CollectionWidget;
 
 CollectionWidget.propTypes = {
   element: PropTypes.object.isRequired,
-  colors: PropTypes.object,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
   image: {
-    width: 175,
-    height: 230,
+    width: 190,
+    height: 240,
   },
 });

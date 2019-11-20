@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import widgetStyles from '../widgetStyles';
-import {getBrand, getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {DispatchContext} from '../../../redux/DispatchContext';

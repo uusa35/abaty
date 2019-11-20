@@ -4,39 +4,38 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
 import TagsList from '../../components/widgets/tag/TagsList';
-import {ABATI, ESCRAP, MALLR} from '../../../app';
+import {ABATI, ESCRAP, MALLR, HOMEKEY} from '../../../app';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 
-const SearchScreen = ({homeCategories, tags, dispatch, colors, navigation}) => {
+const SearchScreen = ({homeCategories, tags}) => {
   return (
     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
       <ProductSearchForm />
-      <TagsList
-        title={I18n.t('tags')}
-        elements={tags}
-        dispatch={dispatch}
-        colors={colors}
-      />
       <View>
         {ABATI || MALLR ? (
           <Fragment>
+            <TagsList title={I18n.t('tags')} elements={tags} type="products" />
             <ProductCategoryVerticalWidget
               elements={homeCategories}
-              dispatch={dispatch}
+              showChildren={true}
               title={I18n.t('categories')}
-              colors={colors}
             />
           </Fragment>
         ) : null}
-        {ESCRAP || MALLR ? (
-          <ClassifiedCategoryVerticalWidget
-            elements={homeCategories}
-            dispatch={dispatch}
-            title={I18n.t('categories')}
-            colors={colors}
-          />
+        {ESCRAP || HOMEKEY ? (
+          <Fragment>
+            <TagsList
+              title={I18n.t('tags')}
+              elements={tags}
+              type="classifieds"
+            />
+            <ClassifiedCategoryVerticalWidget
+              elements={homeCategories}
+              title={I18n.t('categories')}
+            />
+          </Fragment>
         ) : null}
       </View>
     </ScrollView>

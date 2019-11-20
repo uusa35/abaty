@@ -97,15 +97,15 @@ const ProductCategoryVerticalWidget = ({
                     ) : null}
                   </TouchableOpacity>
                   {c.has_children && showChildren
-                    ? map(c.children, (child, n) => {
+                    ? map(c.children, (c, n) => {
                         return (
                           <TouchableOpacity
                             key={n}
                             onPress={() =>
                               dispatch(
                                 getSearchProducts({
-                                  name: child.name,
-                                  searchParams: {product_category_id: child.id},
+                                  name: c.name,
+                                  searchParams: {product_category_id: c.id},
                                   redirect: true,
                                 }),
                               )
@@ -118,9 +118,9 @@ const ProductCategoryVerticalWidget = ({
                                 alignItems: 'center',
                                 flex: 1,
                               }}>
-                              {child.thumb ? (
+                              {c.thumb ? (
                                 <FastImage
-                                  source={{uri: child.thumb}}
+                                  source={{uri: c.thumb}}
                                   style={{width: 50, height: 50, margin: 5}}
                                 />
                               ) : (
@@ -137,7 +137,7 @@ const ProductCategoryVerticalWidget = ({
                                   }}
                                 />
                               )}
-                              <Text style={styles.subTitle}>{child.name}</Text>
+                              <Text style={styles.subTitle}>{c.name}</Text>
                             </View>
                             {showArrow ? (
                               <Icon

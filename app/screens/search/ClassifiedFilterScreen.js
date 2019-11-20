@@ -8,30 +8,25 @@ import React, {
 import {
   View,
   Text,
-  Image,
   Modal,
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  FlatList,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {Button, Icon, ButtonGroup} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 import {SafeAreaView} from 'react-navigation';
 import {HIDE_SEARCH_MODAL, SET_CATEGORY} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import {width, height, text} from './../../constants';
-import {map, first, shuffle, uniqBy, take, remove, filter} from 'lodash';
+import {width, text} from './../../constants';
+import {map, first, shuffle, take, filter} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
-import {
-  getSearchClassifieds,
-  setCategory,
-  setSubCategory,
-} from '../../redux/actions';
+import {getSearchClassifieds} from '../../redux/actions/classified';
+import {setCategory, setSubCategory} from '../../redux/actions/category';
 
 const ClassifiedFilterScreen = ({
   category,

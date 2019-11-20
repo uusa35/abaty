@@ -27,16 +27,17 @@ const ProductWidget = ({element, showName = false}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '48%',
-          minWidth: 175,
-          maxWidth: 175,
+          // width: '48%',
+          // minWidth: 175,
+          // maxWidth: 175,
+          width: 190,
           margin: 5,
           borderWidth: 0.25,
           borderColor: 'lightgrey',
           marginTop: 5,
           marginBottom: 5,
-          height: 285,
-          justifyContent: 'space-evenly',
+          height: 300,
+          justifyContent: 'flex-start',
         },
       ]}
       onPress={() =>
@@ -58,7 +59,13 @@ const ProductWidget = ({element, showName = false}) => {
         </View>
       </ImageBackground>
       {showName ? (
-        <View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
           <Text
             style={[
               widgetStyles.elementName,
@@ -107,7 +114,7 @@ ProductWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 175,
+    width: 190,
     height: 240,
   },
 });

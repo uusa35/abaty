@@ -102,46 +102,43 @@ const ProductShowScreen = ({
                 )
               }
             />
+            {!validate.isEmpty(product.categories) ? (
+              <ProductInfoWidgetElement
+                elementName="categories"
+                name={first(product.categories).name}
+                link={() =>
+                  dispatch(
+                    getSearchProducts({
+                      element: first(product.categories),
+                      category: first(product.categories),
+                      searchParams: {
+                        product_category_id: first(product.categories).id,
+                      },
+                      redirect: true,
+                    }),
+                  )
+                }
+              />
+            ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
-              elementName="categories"
-              name={first(product.categories).name}
-              link={() =>
-                dispatch(
-                  getSearchProducts({
-                    element: first(product.categories),
-                    category: first(product.categories),
-                    searchParams: {
-                      product_category_id: first(product.categories).id,
-                    },
-                    redirect: true,
-                  }),
-                )
-              }
-            />
-            <ProductInfoWidgetElement
-              colors={colors}
               elementName="sku"
               name={product.sku}
               showIcon={false}
             />
             {weight ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="product_weight"
                 name={weight}
                 showIcon={false}
               />
             ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="contactus_order_by_phone"
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
             />
             {shipment_prices ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="shipment_prices"
                 link={() =>
                   navigation.navigate('ImageZoom', {
@@ -154,7 +151,6 @@ const ProductShowScreen = ({
             ) : null}
             {size_chart ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="size_chart"
                 link={() =>
                   navigation.navigate('ImageZoom', {
@@ -176,7 +172,6 @@ const ProductShowScreen = ({
             elements={homeProducts}
             showName={true}
             title="related_products"
-            colors={colors}
             dispatch={dispatch}
           />
         ) : null}
