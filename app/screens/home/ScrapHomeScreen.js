@@ -75,7 +75,7 @@ const EscrapHomeScreen = ({
     OneSignal.addEventListener('received', onReceived);
     OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
-    OneSignal.configure(); // this will fire even to fetch the player_id of the device;
+    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
