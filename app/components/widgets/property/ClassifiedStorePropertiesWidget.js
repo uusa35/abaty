@@ -33,7 +33,9 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
                   <Icon type="font-awesome" name={e.property.icon} />
                 )}
                 <View style={styles.infoWrapper}>
-                  <Text style={styles.title}>{e.category_group.name}</Text>
+                  <Text style={styles.title}>
+                    {e.category_group.name.substring(0, 15)}
+                  </Text>
                   {/*<Text style={styles.title}>{p.property.name}</Text>*/}
                   <Text style={styles.title}>{e.property.value}</Text>
                 </View>

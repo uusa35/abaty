@@ -45,9 +45,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
               onRefresh={() => dispatch(reAuthenticate())}
             />
           }
-          renderItem={({item}) => (
-            <OrderWidget element={item} colors={colors} logo={logo} />
-          )}
+          renderItem={({item}) => <OrderWidget element={item} logo={logo} />}
         />
       ) : (
         <Button

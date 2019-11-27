@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text} from './../../constants';
+import {width, text, height} from './../../constants';
 import I18n from './../../I18n';
 import {
   getClassified,
@@ -79,13 +79,12 @@ const NormalClassifiedShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <ImagesWidget
-          colors={colors}
           resizeMode="cover"
           elements={element.images
             .concat({id: element.id, large: element.large})
             .reverse()}
           width={width}
-          height={400}
+          height={height / 1.5}
           name={element.name}
           isFeatured={element.is_featured}
         />
@@ -106,7 +105,6 @@ const NormalClassifiedShowScreen = ({
             ) : null}
             <ClassifiedInfoWidgetElement
               elementName="user_name"
-              colors={colors}
               name={element.user.slug}
               showIcon={false}
               // link={() =>
@@ -128,7 +126,6 @@ const NormalClassifiedShowScreen = ({
                     showIcon={false}
                     translate={false}
                     iconName={p.categoryGroup.icon}
-                    colors={colors}
                   />
                 ))}
               </Fragment>
@@ -138,12 +135,10 @@ const NormalClassifiedShowScreen = ({
                 elementName="address"
                 name={element.address}
                 showIcon={false}
-                colors={colors}
               />
             ) : null}
             <ClassifiedInfoWidgetElement
               elementName="categories"
-              colors={colors}
               name={element.category.name}
               link={() =>
                 dispatch(
@@ -158,7 +153,6 @@ const NormalClassifiedShowScreen = ({
             {element.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
-                colors={colors}
                 name={element.mobile}
                 link={() =>
                   Linking.openURL(
@@ -169,7 +163,6 @@ const NormalClassifiedShowScreen = ({
             ) : (
               <ClassifiedInfoWidgetElement
                 elementName="mobile"
-                colors={colors}
                 name={element.mobile}
                 link={() => Linking.openURL(`tel:${element.user.mobile}`)}
               />
@@ -194,20 +187,18 @@ const NormalClassifiedShowScreen = ({
         </View>
         {validate.isObject(element.videoGroup) &&
         !validate.isEmpty(element.videoGroup) ? (
-          <VideosHorizontalWidget videos={element.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={element.videoGroup} />
         ) : null}
         {!validate.isEmpty(classifieds) ? (
           <ClassifiedListHorizontal
             classifieds={classifieds}
             showName={true}
             title="related_classifieds"
-            colors={colors}
-            dispatch={dispatch}
             searchElements={{classified_category_id: element.category_id}}
           />
         ) : null}
       </ScrollView>
-      <QuickCallActionBtnWidget colors={colors} mobile={element.mobile} />
+      <QuickCallActionBtnWidget mobile={element.mobile} />
       <CommentScreenModal
         commentModal={commentModal}
         elements={element.comments}

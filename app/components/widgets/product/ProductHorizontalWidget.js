@@ -67,5 +67,4 @@ export default ProductHorizontalWidget;
 ProductHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   showName: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired,
 };

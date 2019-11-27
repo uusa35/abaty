@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
@@ -10,6 +10,8 @@ import {showCommentModal} from '../../../redux/actions';
 import {becomeFan, rateUser} from '../../../redux/actions/user';
 import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
+import {DispatchContext} from '../../../redux/DispatchContext';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const UserImageProfile = ({
   medium,
@@ -24,14 +26,15 @@ const UserImageProfile = ({
   showRating,
   guest,
   views,
-  dispatch,
-  colors,
   showComments = false,
   commentsCount,
 }) => {
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
+
+  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   const handleRating = useCallback(
     rating => {
@@ -61,7 +64,8 @@ const UserImageProfile = ({
           paddingRight: 10,
           paddingLeft: 10,
           marginTop: 10,
-          width: '72%',
+          flex: 1,
+          width: '100%',
         }}>
         <View
           style={{

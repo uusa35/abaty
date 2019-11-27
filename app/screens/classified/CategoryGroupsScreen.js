@@ -15,18 +15,15 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {map, first, filter, shuffle, uniqBy, remove, concat} from 'lodash';
+import {map, first, filter, shuffle, uniqBy} from 'lodash';
 import {text} from './../../constants';
-import {Button, Icon, CheckBox} from 'react-native-elements';
+import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
-import {addToProperties} from '../../redux/actions';
-import {
-  HIDE_PROPERTIES_MODAL,
-  SHOW_PROPERTIES_MODAL,
-} from '../../redux/actions/types';
+import {addToProperties} from '../../redux/actions/classified';
+import {HIDE_PROPERTIES_MODAL} from '../../redux/actions/types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const CategoryGroupsScreen = ({
@@ -204,6 +201,7 @@ const CategoryGroupsScreen = ({
                   />
                 </View>
                 <ScrollView
+                  contentInset={{bottom: 150}}
                   contentContainerStyle={{
                     flex: 1,
                     paddingTop: 10,

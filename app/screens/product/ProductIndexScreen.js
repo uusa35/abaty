@@ -4,12 +4,10 @@ import {connect} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 
-const ProductIndexScreen = ({products, searchParams, dispatch, colors}) => {
+const ProductIndexScreen = ({products, searchParams}) => {
   return (
     <ProductList
       products={products}
-      dispatch={dispatch}
-      colors={colors}
       showName={true}
       searchElements={searchParams}
     />

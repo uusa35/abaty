@@ -14,8 +14,6 @@ const PageTwoScreen = ({products, colors, dispatch, navigation}) => {
 
   return (
     <ProductList
-      colors={colors}
-      dispatch={dispatch}
       products={products}
       showName={true}
       searchElements={{}}

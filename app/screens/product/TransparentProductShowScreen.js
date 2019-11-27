@@ -1,24 +1,23 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {Fragment, useState, useMemo, useContext} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
-import ImagesWidget from '../components/widgets/ImagesWidget';
-import {width, text} from './../constants';
-import ProductInfoWidget from '../components/widgets/product/ProductInfoWidget';
-import ProductInfoWidgetElement from './../components/widgets/product/ProductInfoWidgetElement';
-import I18n from './../I18n';
+import ImagesWidget from '../../components/widgets/ImagesWidget';
+import {width, text} from './../../constants';
+import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
+import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
+import I18n from './../../I18n';
 import {first} from 'lodash';
-import {getDesigner, getProduct, getSearchProducts} from '../redux/actions';
+import {getProduct, getSearchProducts} from '../../redux/actions/product';
+import {getDesigner} from '../../redux/actions/user';
 import validate from 'validate.js';
-import ProductHorizontalWidget from '../components/widgets/product/ProductHorizontalWidget';
+import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
-import ActionBtnWidget from '../components/widgets/ActionBtnWidget';
+import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import VideosHorizontalWidget from '../components/widgets/video/VideosHorizontalWidget';
-import {SafeAreaView} from 'react-navigation';
+import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
 const TransparentProductShowScreen = ({
   product,
-  dispatch,
   phone,
   mobile,
   shipment_prices,
@@ -26,8 +25,8 @@ const TransparentProductShowScreen = ({
   weight,
   homeProducts,
   token,
-  colors,
   navigation,
+  colors,
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
@@ -51,7 +50,6 @@ const TransparentProductShowScreen = ({
         overlayColor="white"
         renderForeground={() => (
           <ImagesWidget
-            colors={colors}
             elements={product.images
               .concat({id: product.id, large: product.large})
               .reverse()}
@@ -88,7 +86,6 @@ const TransparentProductShowScreen = ({
               </View>
             ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="designer"
               name={product.user.slug}
               link={() =>
@@ -102,7 +99,6 @@ const TransparentProductShowScreen = ({
               }
             />
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="categories"
               name={first(product.categories).name}
               link={() =>
@@ -119,28 +115,24 @@ const TransparentProductShowScreen = ({
               }
             />
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="sku"
               name={product.sku}
               showIcon={false}
             />
             {weight ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="product_weight"
                 name={weight}
                 showIcon={false}
               />
             ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="contactus_order_by_phone"
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
             />
             {shipment_prices ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="shipment_prices"
                 link={() =>
                   navigation.navigate('ImageZoom', {
@@ -153,7 +145,6 @@ const TransparentProductShowScreen = ({
             ) : null}
             {size_chart ? (
               <ProductInfoWidgetElement
-                colors={colors}
                 elementName="size_chart"
                 link={() =>
                   navigation.navigate('ImageZoom', {
@@ -168,19 +159,17 @@ const TransparentProductShowScreen = ({
         </View>
         {validate.isObject(product.videoGroup) &&
         !validate.isEmpty(product.videoGroup) ? (
-          <VideosHorizontalWidget videos={product.videoGroup} colors={colors} />
+          <VideosHorizontalWidget videos={product.videoGroup} />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
             title="related_products"
-            colors={colors}
-            dispatch={dispatch}
           />
         ) : null}
       </HeaderImageScrollView>
-      <ActionBtnWidget colors={colors} />
+      <ActionBtnWidget />
     </Fragment>
   );
 };

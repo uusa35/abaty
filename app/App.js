@@ -151,7 +151,6 @@ const App = ({
               </React.Suspense>
               {validate.isBoolean(loginModal) ? (
                 <LoginScreenModal
-                  colors={colors}
                   logo={logo}
                   loginModal={loginModal}
                   mainBg={main_bg}

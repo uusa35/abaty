@@ -7,15 +7,10 @@ import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
 import {text} from './../../constants';
 import PropTypes from 'prop-types';
-import ClassifiedInfoWidgetElement from './classified/ClassifiedInfoWidgetElement';
 
-const QuickCallActionBtnWidget = ({
-  visible = false,
-  colors,
-  mobile,
-  whatsapp = '',
-}) => {
+const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
   const {navigate} = useNavigation();
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View
       style={{
@@ -67,9 +62,7 @@ const QuickCallActionBtnWidget = ({
 
 export default QuickCallActionBtnWidget;
 
-QuickCallActionBtnWidget.propTypes = {
-  colors: PropTypes.object.isRequired,
-};
+QuickCallActionBtnWidget.propTypes = {};
 
 const styles = StyleSheet.create({
   actionButtonIcon: {

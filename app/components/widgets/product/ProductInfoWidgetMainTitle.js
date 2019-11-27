@@ -7,7 +7,10 @@ import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Icon} from 'react-native-elements';
-import {toggleFavorite, toggleProductFavorite} from '../../../redux/actions';
+import {
+  toggleFavorite,
+  toggleProductFavorite,
+} from '../../../redux/actions/product';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
@@ -136,8 +139,8 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 }),
               );
             }}
-            name={favorite ? 'heart' : 'heart'}
-            type="antdesign"
+            name={favorite ? 'ios-heart' : 'ios-heart-empty'}
+            type="ionicon"
             size={25}
             underlayColor="transparent"
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}

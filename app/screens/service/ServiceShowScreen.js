@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 
 const ServiceShowScreen = ({
@@ -167,7 +166,7 @@ const ServiceShowScreen = ({
           />
         ) : null}
       </HeaderImageScrollView>
-      <ActionBtnWidget colors={colors} />
+      <ActionBtnWidget />
     </Fragment>
   );
 };

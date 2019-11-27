@@ -353,7 +353,6 @@ const UserInfoWidget = ({
       ) : null}
       {!validate.isEmpty(images) ? (
         <ImagesWidget
-          colors={colors}
           elements={images}
           name={slug}
           showLabels={false}

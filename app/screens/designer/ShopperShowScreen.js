@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
-import {getCompany} from '../../redux/actions';
+import {getCompany} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import UserInfoWidget from '../../components/widgets/user/UserInfoWidget';
@@ -125,8 +125,6 @@ const ShopperShowScreen = ({
               user_id={element.id}
               elements={collectedCategories}
               showImage={false}
-              colors={colors}
-              dispatch={dispatch}
               title={I18n.t('categories')}
             />
           ) : null}
@@ -157,8 +155,6 @@ const ShopperShowScreen = ({
             renderScene={SceneMap({
               info: () => (
                 <UserInfoWidget
-                  dispatch={dispatch}
-                  colors={colors}
                   has_map={element.has_map}
                   mobile={element.mobile}
                   phone={element.phone}
@@ -180,10 +176,7 @@ const ShopperShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget
-                  videos={element.videoGroup}
-                  colors={colors}
-                />
+                <VideosVerticalWidget videos={element.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}

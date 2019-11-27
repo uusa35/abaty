@@ -25,7 +25,6 @@ const ProductShowScreen = ({
   weight,
   homeProducts,
   token,
-  colors,
   navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
@@ -55,12 +54,11 @@ const ProductShowScreen = ({
         overlayColor="white"
         renderForeground={() => (
           <ImagesWidget
-            colors={colors}
             elements={product.images
               .concat({id: product.id, large: product.large})
               .reverse()}
             width={width}
-            height={550}
+            height={height / 1.5}
             name={product.name}
             exclusive={product.exclusive}
             isOnSale={product.isOnSale}
@@ -89,7 +87,6 @@ const ProductShowScreen = ({
               </View>
             ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="designer"
               name={product.user.slug}
               link={() =>
@@ -172,11 +169,10 @@ const ProductShowScreen = ({
             elements={homeProducts}
             showName={true}
             title="related_products"
-            dispatch={dispatch}
           />
         ) : null}
       </HeaderImageScrollView>
-      <ActionBtnWidget colors={colors} />
+      <ActionBtnWidget />
     </Fragment>
   );
 };
@@ -192,7 +188,6 @@ function mapStateToProps(state) {
     homeProducts: state.homeProducts,
     token: state.token,
     cart: state.cart,
-    colors: state.settings.colors,
   };
 }
 

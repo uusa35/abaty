@@ -12,16 +12,11 @@ import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, width} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
-import {getSearchProducts} from '../../../redux/actions';
 import validate from 'validate.js';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const PagesList = ({
-  elements,
-  showTitle = true,
-  showArrow = true,
-  colors,
-  title,
-}) => {
+const PagesList = ({elements, showTitle = true, showArrow = true, title}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <ScrollView
       horizontal={false}
@@ -105,8 +100,6 @@ export default PagesList;
 
 PagesList.propTypes = {
   elements: PropTypes.array.isRequired,
-  colors: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

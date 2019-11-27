@@ -24,22 +24,7 @@ const ProductWidget = ({element, showName = false}) => {
   return (
     <TouchableOpacity
       key={element.id}
-      style={[
-        widgetStyles.btnStyle,
-        {
-          // width: '48%',
-          // minWidth: 175,
-          // maxWidth: 175,
-          width: 190,
-          margin: 5,
-          borderWidth: 0.25,
-          borderColor: 'lightgrey',
-          marginTop: 5,
-          marginBottom: 5,
-          height: 300,
-          justifyContent: 'flex-start',
-        },
-      ]}
+      style={widgetStyles.productServiceWidget}
       onPress={() =>
         dispatch(getProduct({id: element.id, api_token: token ? token : null}))
       }>
@@ -114,7 +99,8 @@ ProductWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 190,
+    // width: 190,
+    width: '100%',
     height: 240,
   },
 });

@@ -71,7 +71,7 @@ const AbatiHomeScreen = ({
     OneSignal.addEventListener('received', onReceived);
     OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
-    OneSignal.configure(); // this will fire even to fetch the player_id of the device;
+    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
@@ -95,7 +95,9 @@ const AbatiHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
+    if (dispatch) {
+      return dispatch(goDeepLinking({type, id}));
+    }
   });
 
   const onReceived = useCallback(notification => {
@@ -114,7 +116,7 @@ const AbatiHomeScreen = ({
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url,
     );
-    dispatch(goDeepLinking(path, params));
+    return dispatch(goDeepLinking(path, params));
   });
 
   const onIds = useCallback(
@@ -133,7 +135,6 @@ const AbatiHomeScreen = ({
         <IntroductionWidget
           elements={splashes}
           showIntroduction={showIntroduction}
-          dispatch={dispatch}
         />
       ) : null}
       <ScrollView
@@ -159,8 +160,6 @@ const AbatiHomeScreen = ({
             name={I18n.t('designers')}
             title="designers"
             searchElements={{is_designer: true}}
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(homeCategories) &&
@@ -169,9 +168,6 @@ const AbatiHomeScreen = ({
             elements={homeCategories}
             showName={true}
             title={I18n.t('categories')}
-            dispatch={dispatch}
-            colors={colors}
-            navigation={navigation}
             type="products"
           />
         ) : null}
@@ -183,8 +179,6 @@ const AbatiHomeScreen = ({
             name="celebrities"
             title="celebrities"
             searchElements={{is_celebrity: true}}
-            colors={colors}
-            dispatch={dispatch}
           />
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
@@ -192,8 +186,6 @@ const AbatiHomeScreen = ({
             elements={homeProducts}
             showName={true}
             title="featured_products"
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(brands) && validate.isArray(brands) ? (
@@ -208,8 +200,6 @@ const AbatiHomeScreen = ({
             elements={services}
             showName={true}
             title="our_services"
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
       </ScrollView>

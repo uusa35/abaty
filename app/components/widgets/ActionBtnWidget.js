@@ -7,9 +7,9 @@ import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
 import {text} from './../../constants';
 import PropTypes from 'prop-types';
-import ClassifiedInfoWidgetElement from './classified/ClassifiedInfoWidgetElement';
 
-const ActionBtnWidget = ({visible = false, colors}) => {
+const ActionBtnWidget = ({visible = false}) => {
+  const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   return (
     <View
@@ -59,9 +59,7 @@ const ActionBtnWidget = ({visible = false, colors}) => {
 
 export default ActionBtnWidget;
 
-ActionBtnWidget.propTypes = {
-  colors: PropTypes.object.isRequired,
-};
+ActionBtnWidget.propTypes = {};
 
 const styles = StyleSheet.create({
   actionButtonIcon: {

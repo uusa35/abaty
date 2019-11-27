@@ -50,7 +50,7 @@ const ProductCategoryVerticalWidget = ({
           {map(elements, (c, i) => {
             if (!isNull(c)) {
               return (
-                <Fragment key={c.id}>
+                <Fragment key={i}>
                   <TouchableOpacity
                     key={i}
                     onPress={() =>

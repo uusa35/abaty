@@ -15,7 +15,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {getSearchServices} from '../../../redux/actions';
+import {getSearchServices} from '../../../redux/actions/service';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import SimpleSpinner from '../../SimpleSpinner';
@@ -202,9 +202,7 @@ const ServiceList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <React.Suspense fallback={<SimpleSpinner />}>
-              <ServiceWidget element={item} showName={showName} />
-            </React.Suspense>
+            <ServiceWidget element={item} showName={showName} />
           )}
         />
       ) : (

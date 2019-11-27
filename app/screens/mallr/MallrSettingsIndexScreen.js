@@ -135,12 +135,7 @@ const MallrSettingsIndexScreen = ({
           />
         </Fragment>
       ) : null}
-      <PagesList
-        dispatch={dispatch}
-        elements={pages}
-        colors={colors}
-        title={I18n.t('our_support')}
-      />
+      <PagesList elements={pages} title={I18n.t('our_support')} />
     </ScrollView>
   );
 };

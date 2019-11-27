@@ -3,7 +3,7 @@ const isLocal = ENV === 'local' && __DEV__;
 const appUrl = () => {
   switch (APP_CASE) {
     case 'abati':
-      return 'http://abati.ideasowners.net/';
+      return 'http://abatiapp.com/';
     case 'mallr':
       return 'http://mallr.net/';
     case 'homekey':

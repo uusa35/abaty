@@ -46,6 +46,7 @@ import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
+import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -64,6 +65,33 @@ export const HomeStack = createStackNavigator(
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerBackTitle: null,
+      }),
+    },
+    Mallr: {
+      screen: MallrHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerTitle: <HeaderMiddle title={'mallr'} showLogo={true} />,
+        headerBackTitle: null,
+      }),
+    },
+    Escrap: {
+      screen: ScrapHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerTitle: <HeaderMiddle title={'escrap'} showLogo={true} />,
+        headerBackTitle: null,
+      }),
+    },
+    Homekey: {
+      screen: HomeKeyHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerTitle: <HeaderMiddle title={'homekey'} showLogo={true} />,
         headerBackTitle: null,
       }),
     },

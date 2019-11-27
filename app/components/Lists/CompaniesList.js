@@ -4,17 +4,15 @@ import {
   FlatList,
   RefreshControl,
   KeyboardAvoidingView,
-  ScrollView,
 } from 'react-native';
-import {getSearchCompanies} from '../../redux/actions';
+import {getSearchCompanies} from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
-import {text, width, height} from './../../constants';
+import {text} from './../../constants';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
-import SimpleSpinner from '../SimpleSpinner';
 import {DispatchContext} from '../../redux/DispatchContext';
 import CompanyWidgetHorizontal from '../widgets/user/CompanyWidgetHorizontal';
 import {useNavigation} from 'react-navigation-hooks';

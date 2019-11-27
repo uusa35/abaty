@@ -93,7 +93,6 @@ const CelebrityShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
-            colors={colors}
             dispatch={dispatch}
             member_id={element.id}
             showFans={true}
@@ -119,8 +118,6 @@ const CelebrityShowScreen = ({
             <ProductCategoryVerticalWidget
               elements={collectedCategories}
               showImage={false}
-              colors={colors}
-              dispatch={dispatch}
               title={I18n.t('categories')}
             />
           ) : null}
@@ -151,8 +148,6 @@ const CelebrityShowScreen = ({
             renderScene={SceneMap({
               products: () => (
                 <ProductList
-                  colors={colors}
-                  dispatch={dispatch}
                   products={products}
                   showSearch={false}
                   showTitle={true}
@@ -163,8 +158,6 @@ const CelebrityShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  dispatch={dispatch}
-                  colors={colors}
                   has_map={element.has_map}
                   mobile={element.mobile}
                   phone={element.phone}
@@ -186,10 +179,7 @@ const CelebrityShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget
-                  videos={element.videoGroup}
-                  colors={colors}
-                />
+                <VideosVerticalWidget videos={element.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}

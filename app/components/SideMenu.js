@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 9/27/17.
  */
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   View,
   StyleSheet,
@@ -23,6 +23,7 @@ import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {MALLR, ABATI, HOMEKEY, ESCRAP, APP_CASE} from './../../app';
+import {isLocal} from '../env';
 
 const SideMeu = ({
   menuBg,
@@ -80,6 +81,20 @@ const SideMeu = ({
           </Text>
           <View style={{width: '100%'}}>
             <Divider style={{marginTop: 10}} />
+            {__DEV__ ? (
+              <Fragment>
+                <TouchableOpacity onPress={() => navigation.navigate('Mallr')}>
+                  <Text>Mallr</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Escrap')}>
+                  <Text>Escrap</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Homekey')}>
+                  <Text>Homekey</Text>
+                </TouchableOpacity>
+              </Fragment>
+            ) : null}
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.menuBtn}>

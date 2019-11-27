@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
@@ -14,11 +14,24 @@ const FavoriteProductIndexScreen = ({
   colors,
   navigation,
 }) => {
+  const [currentProductFavorites, setCurrentProductFavorites] = useState(
+    productFavorites,
+  );
+
+  useMemo(() => {
+    if (validate.isEmpty(currentProductFavorites)) {
+      setCurrentProductFavorites(productFavorites);
+    } else {
+      if (productFavorites.length !== currentProductFavorites.length) {
+        setCurrentProductFavorites(productFavorites);
+      }
+    }
+  }, [currentProductFavorites, productFavorites]);
   return (
     <View>
-      {!validate.isEmpty(productFavorites) ? (
+      {!validate.isEmpty(currentProductFavorites) ? (
         <ProductList
-          products={productFavorites}
+          products={currentProductFavorites}
           showName={true}
           showSearch={false}
           title={I18n.t('wishlist')}

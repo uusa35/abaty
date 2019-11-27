@@ -185,5 +185,4 @@ DesignersList.propTypes = {
   elements: PropTypes.array.isRequired,
   category: PropTypes.object,
   searchParams: PropTypes.object,
-  dispatch: PropTypes.func.isRequired,
 };

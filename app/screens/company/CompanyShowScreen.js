@@ -93,8 +93,6 @@ const CompanyShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
-            colors={colors}
-            dispatch={dispatch}
             member_id={element.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
@@ -120,8 +118,6 @@ const CompanyShowScreen = ({
               user_id={element.id}
               elements={collectedCategories}
               showImage={false}
-              colors={colors}
-              dispatch={dispatch}
               title={I18n.t('categories')}
             />
           ) : null}
@@ -162,8 +158,6 @@ const CompanyShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  dispatch={dispatch}
-                  colors={colors}
                   has_map={element.has_map}
                   mobile={element.mobile}
                   phone={element.phone}
@@ -185,10 +179,7 @@ const CompanyShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget
-                  videos={element.videoGroup}
-                  colors={colors}
-                />
+                <VideosVerticalWidget videos={element.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}

@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
-import {becomeFan, rateUser, showCommentModal} from '../../../redux/actions';
+import {showCommentModal} from '../../../redux/actions';
+import {becomeFan, rateUser} from '../../../redux/actions/user';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
@@ -84,8 +85,8 @@ const ShopperImageProfile = ({
           {!guest && showLike ? (
             <Icon
               // name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-              name={fanMe ? 'star' : 'star'}
-              type="material-community"
+              name={fanMe ? 'star' : 'star-border'}
+              type="material"
               color={colors.header_tow_theme_color}
               onPress={() => handleFan(!fanMe)}
             />

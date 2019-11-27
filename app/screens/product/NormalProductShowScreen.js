@@ -2,7 +2,7 @@ import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text} from './../../constants';
+import {width, text, height} from './../../constants';
 import {ScrollView} from 'react-navigation';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
@@ -10,13 +10,10 @@ import I18n from './../../I18n';
 import {first} from 'lodash';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
 import {getDesigner} from '../../redux/actions/user';
-import {getClassified} from '../../redux/actions/classified';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
-import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 
 const NormalProductShowScreen = ({
@@ -60,12 +57,11 @@ const NormalProductShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <ImagesWidget
-          colors={colors}
           elements={product.images
             .concat({id: product.id, large: product.large})
             .reverse()}
           width={width}
-          height={450}
+          height={height / 1.5}
           name={product.name}
           exclusive={product.exclusive}
           isOnSale={product.isOnSale}
@@ -95,7 +91,6 @@ const NormalProductShowScreen = ({
               }
             />
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="categories"
               name={first(product.categories).name}
               link={() =>
@@ -163,12 +158,10 @@ const NormalProductShowScreen = ({
             elements={homeProducts}
             showName={true}
             title="related_products"
-            colors={colors}
-            dispatch={dispatch}
           />
         ) : null}
       </ScrollView>
-      <ActionBtnWidget colors={colors} />
+      <ActionBtnWidget />
     </Fragment>
   );
 };

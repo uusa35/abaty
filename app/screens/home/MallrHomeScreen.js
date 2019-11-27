@@ -173,8 +173,6 @@ const MallrHomeScreen = ({
             name={I18n.t('mallr.designers')}
             title="mallr.designers"
             searchElements={{is_designer: true}}
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(homeCompanies) && validate.isArray(homeCompanies) ? (
@@ -184,8 +182,6 @@ const MallrHomeScreen = ({
             name="companies"
             title="mallr.our_companies"
             searchElements={{is_company: true}}
-            dispatch={dispatch}
-            colors={colors}
           />
         ) : null}
         {!validate.isEmpty(homeCategories) &&
@@ -194,9 +190,6 @@ const MallrHomeScreen = ({
             elements={homeCategories}
             showName={true}
             title="categories"
-            dispatch={dispatch}
-            colors={colors}
-            navigation={navigation}
             type="products"
           />
         ) : null}
@@ -205,8 +198,6 @@ const MallrHomeScreen = ({
             elements={latestProducts}
             showName={true}
             title="latest_products"
-            dispatch={dispatch}
-            colors={colors}
             showLink={false}
           />
         ) : null}
@@ -215,8 +206,6 @@ const MallrHomeScreen = ({
             elements={onSaleProducts}
             showName={true}
             title="on_sale_products"
-            dispatch={dispatch}
-            colors={colors}
             showLink={false}
           />
         ) : null}
@@ -225,8 +214,6 @@ const MallrHomeScreen = ({
             elements={bestSaleProducts}
             showName={true}
             title="best_sale_products"
-            dispatch={dispatch}
-            colors={colors}
             showLink={false}
           />
         ) : null}
@@ -235,8 +222,6 @@ const MallrHomeScreen = ({
             elements={hotDealsProducts}
             showName={true}
             title="hot_deals_products"
-            dispatch={dispatch}
-            colors={colors}
             showLink={false}
           />
         ) : null}

@@ -45,17 +45,13 @@ const PageOneScreen = ({
       {ABATI || MALLR ? (
         <ProductCategoryVerticalWidget
           elements={categories}
-          dispatch={dispatch}
           title={I18n.t('product_categories')}
-          colors={colors}
         />
       ) : null}
       {ESCRAP || HOMEKEY ? (
         <ClassifiedCategoryVerticalWidget
           elements={categories}
-          dispatch={dispatch}
           title={I18n.t('classified_categories')}
-          colors={colors}
         />
       ) : null}
     </ScrollView>

@@ -57,7 +57,7 @@ const ChooseAddressScreen = () => {
         justifyContent: 'center',
         alignSelf: 'center',
       }}>
-      <View style={{width: '100%', flex: 1}}>
+      <View style={{width: '100%', flex: 1, marginBottom: 100}}>
         <MapView
           style={{
             width,

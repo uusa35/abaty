@@ -10,7 +10,8 @@ import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
-import {enableWarningMessage, getDesigner} from '../../redux/actions';
+import {enableWarningMessage} from '../../redux/actions';
+import {getDesigner} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import ProductList from '../../components/widgets/product/ProductList';
@@ -98,8 +99,6 @@ const DesignerShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
-            colors={colors}
-            dispatch={dispatch}
             member_id={element.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
