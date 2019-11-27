@@ -179,7 +179,7 @@ const MallrHomeScreen = ({
             elements={homeCompanies}
             showName={true}
             name="companies"
-            title="mallr.our_companies"
+            title={I18n.t('mallr.our_companies')}
             searchElements={{is_company: true}}
           />
         ) : null}
@@ -204,7 +204,7 @@ const MallrHomeScreen = ({
           <ProductHorizontalWidget
             elements={onSaleProducts}
             showName={true}
-            title="on_sale_products"
+            title={I18n.t('on_sale_products')}
             showLink={false}
           />
         ) : null}
@@ -212,7 +212,7 @@ const MallrHomeScreen = ({
           <ProductHorizontalWidget
             elements={bestSaleProducts}
             showName={true}
-            title="best_sale_products"
+            title={I18n.t('best_sale_products')}
             showLink={false}
           />
         ) : null}
@@ -220,7 +220,7 @@ const MallrHomeScreen = ({
           <ProductHorizontalWidget
             elements={hotDealsProducts}
             showName={true}
-            title="hot_deals_products"
+            title={I18n.t('hot_deals_products')}
             showLink={false}
           />
         ) : null}
@@ -228,14 +228,14 @@ const MallrHomeScreen = ({
           <BrandHorizontalWidget
             elements={brands}
             showName={false}
-            title="brands"
+            title={I18n.t('brands')}
           />
         ) : null}
         {!validate.isEmpty(homeCollections) ? (
           <CollectionHorizontalWidget
             elements={homeCollections}
             showName={true}
-            title="our_collections"
+            title={I18n.t('our_collections')}
           />
         ) : null}
       </ScrollView>
