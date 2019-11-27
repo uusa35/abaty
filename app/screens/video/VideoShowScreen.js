@@ -10,12 +10,11 @@ const VideoShowScreen = ({video, dispatch}) => {
     <ScrollView
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}>
-      <VideoWidget element={video} showImage={false} dispatch={dispatch} />
+      <VideoWidget element={video} showImage={false} />
       <ProductList
         products={video.products}
         showName={true}
         showSearch={false}
-        dispatch={dispatch}
         searchElements={{}}
       />
     </ScrollView>

@@ -1,9 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {map, filter} from 'lodash';
-import {Icon} from 'react-native-elements';
+import {map} from 'lodash';
 import {text} from './../../../constants';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const PropertiesWidget = ({elements}) => {
   return (

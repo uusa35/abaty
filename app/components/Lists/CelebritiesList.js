@@ -112,11 +112,7 @@ const CelebritiesList = ({elements, searchParams, dispatch, showMore}) => {
             alignItems: 'center',
           }}
           renderItem={({item}) => (
-            <UserWidgetHorizontal
-              dispatch={dispatch}
-              user={item}
-              showName={true}
-            />
+            <UserWidgetHorizontal user={item} showName={true} />
           )}
           ListFooterComponent={
             <View style={{width: '100%', minHeight: 100}}>

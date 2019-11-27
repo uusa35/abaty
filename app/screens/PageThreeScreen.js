@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import I18n from '../I18n';
 import CompaniesList from '../components/Lists/CompaniesList';
 
-const PageThreeScreen = ({companies, dispatch, navigation}) => {
+const PageThreeScreen = ({companies}) => {
   [title, setTitle] = useState('');
 
   // useMemo(() => {
@@ -14,7 +14,6 @@ const PageThreeScreen = ({companies, dispatch, navigation}) => {
 
   return (
     <CompaniesList
-      dispatch={dispatch}
       elements={companies}
       showMore={true}
       searchParams={{is_company: 1}}

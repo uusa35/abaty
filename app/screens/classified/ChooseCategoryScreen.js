@@ -15,11 +15,7 @@ const ChooseCategoryScreen = ({categories, dispatch}) => {
         keyExtractor={(item, index) => index.toString()}
         data={categories}
         renderItem={({item}) => (
-          <ChooseCategoryItem
-            category={item}
-            dispatch={dispatch}
-            key={item.id}
-          />
+          <ChooseCategoryItem category={item} key={item.id} />
         )}></FlatList>
     </View>
   );

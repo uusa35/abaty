@@ -11,7 +11,6 @@ import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 const FavoriteClassifiedIndexScreen = ({
   classifiedFavorites,
   searchParams,
-  dispatch,
   colors,
   navigation,
 }) => {
@@ -20,8 +19,6 @@ const FavoriteClassifiedIndexScreen = ({
       {!validate.isEmpty(classifiedFavorites) ? (
         <ClassifiedList
           classifieds={classifiedFavorites}
-          dispatch={dispatch}
-          colors={colors}
           showName={true}
           showSearch={false}
           title={I18n.t('wishlist')}

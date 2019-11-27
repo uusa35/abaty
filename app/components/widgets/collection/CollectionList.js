@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -16,6 +16,8 @@ import {Button, Icon, Input} from 'react-native-elements';
 import {filter} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
 const CollectionList = ({
   collections,
@@ -27,8 +29,6 @@ const CollectionList = ({
   showRefresh = true,
   title,
   searchElements,
-  colors,
-  dispatch,
 }) => {
   [elements, setElements] = useState(collections);
   [isLoading, setIsLoading] = useState(false);
@@ -38,6 +38,8 @@ const CollectionList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
+  const {colors} = useContext(GlobalValuesContext);
+  const {dispatch} = useContext(DispatchContext);
 
   useMemo(() => {
     if (isLoading && showMore) {
@@ -203,12 +205,7 @@ const CollectionList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <CollectionWidget
-              element={item}
-              showName={showName}
-              dispatch={dispatch}
-              colors={colors}
-            />
+            <CollectionWidget element={item} showName={showName} />
           )}
         />
       ) : (

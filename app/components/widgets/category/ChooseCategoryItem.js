@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {
   Collapse,
   CollapseBody,
@@ -11,8 +11,10 @@ import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {startNewClassified} from '../../../redux/actions/classified';
+import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ChooseCategoryItem = ({category, dispatch}) => {
+const ChooseCategoryItem = ({category}) => {
+  const {dispatch} = useContext(DispatchContext);
   return (
     <Fragment>
       {!validate.isEmpty(category.children) && category.has_children ? (

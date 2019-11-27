@@ -93,7 +93,6 @@ const CelebrityShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
-            dispatch={dispatch}
             member_id={element.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}

@@ -5,7 +5,7 @@ import CategoryWidget from './CategoryWidget';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 
-const CategoryCarouselWidget = ({elements, dispatch}) => {
+const CategoryCarouselWidget = ({elements}) => {
   return (
     <Carousel
       layout={'tinder'}
@@ -16,7 +16,7 @@ const CategoryCarouselWidget = ({elements, dispatch}) => {
         this._carousel = c;
       }}
       data={elements}
-      renderItem={c => <CategoryWidget element={c.item} dispatch={dispatch} />}
+      renderItem={c => <CategoryWidget element={c.item} />}
       sliderWidth={width}
       itemWidth={width}
       hasParallaxImages={true}

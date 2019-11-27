@@ -72,7 +72,7 @@ const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
           </View>
         </View>
         {!validate.isEmpty(element.items) ? (
-          <PropertiesWidget elements={element.items} colors={colors} />
+          <PropertiesWidget elements={element.items} />
         ) : null}
       </Fragment>
     </View>

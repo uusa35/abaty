@@ -149,7 +149,6 @@ export function* startGetProductScenario(action) {
   try {
     yield call(enableLoadingContent);
     const element = yield call(api.getProduct, action.payload);
-    console.log('the element', element);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield put({type: actions.SET_PRODUCT, payload: element});
       yield all([

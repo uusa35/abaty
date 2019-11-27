@@ -180,7 +180,7 @@ const App = ({
           message.visible &&
           network.isConnected &&
           validate.isString(message.content) ? (
-            <AlertMessage message={message} dispatch={dispatch} />
+            <AlertMessage message={message} />
           ) : null}
         </View>
       ) : (

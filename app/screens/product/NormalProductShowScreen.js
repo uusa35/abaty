@@ -26,7 +26,6 @@ const NormalProductShowScreen = ({
   weight,
   homeProducts,
   token,
-  colors,
   navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
@@ -77,7 +76,6 @@ const NormalProductShowScreen = ({
               </View>
             ) : null}
             <ProductInfoWidgetElement
-              colors={colors}
               elementName="designer"
               name={product.user.slug}
               link={() =>
@@ -177,7 +175,6 @@ function mapStateToProps(state) {
     homeProducts: state.homeProducts,
     token: state.token,
     cart: state.cart,
-    colors: state.settings.colors,
   };
 }
 

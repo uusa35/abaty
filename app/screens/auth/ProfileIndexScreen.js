@@ -21,7 +21,7 @@ const ProfileIndexScreen = ({auth, colors}) => {
       contentInset={{bottom: 100}}>
       {!validate.isEmpty(auth) ? (
         <View style={{marginTop: '10%'}}>
-          <UserProfileInformationWidget auth={auth} colors={colors} />
+          <UserProfileInformationWidget auth={auth} />
           <UserProfileBtns />
         </View>
       ) : null}

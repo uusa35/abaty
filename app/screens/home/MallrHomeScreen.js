@@ -147,7 +147,6 @@ const MallrHomeScreen = ({
         <IntroductionWidget
           elements={splashes}
           showIntroduction={showIntroduction}
-          dispatch={dispatch}
         />
       ) : null}
       <ScrollView

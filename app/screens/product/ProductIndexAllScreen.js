@@ -27,8 +27,6 @@ const ProductIndexAllScreen = ({
     <React.Suspense
       fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ProductList
-        colors={colors}
-        dispatch={dispatch}
         products={products}
         showName={true}
         searchElements={{}}

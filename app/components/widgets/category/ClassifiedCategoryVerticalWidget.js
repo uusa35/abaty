@@ -170,9 +170,7 @@ const ClassifiedCategoryVerticalWidget = ({
                             showChildren &&
                             !validate.isEmpty(child.children) ? (
                               <ClassifiedCategoryHorizontalRoundedWidget
-                                colors={colors}
                                 title={I18n.t('sub_categories')}
-                                dispatch={dispatch}
                                 elements={child.children}
                                 key={n}
                                 showTitle={false}

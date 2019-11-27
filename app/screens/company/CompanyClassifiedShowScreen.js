@@ -91,8 +91,6 @@ const CompanyClassifiedShowScreen = ({
       <View style={styles.wrapper}>
         <TriggeringView onHide={() => console.log('text hidden')}>
           <UserImageProfile
-            colors={colors}
-            dispatch={dispatch}
             member_id={element.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
@@ -179,10 +177,7 @@ const CompanyClassifiedShowScreen = ({
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget
-                  videos={element.videoGroup}
-                  colors={colors}
-                />
+                <VideosVerticalWidget videos={element.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}

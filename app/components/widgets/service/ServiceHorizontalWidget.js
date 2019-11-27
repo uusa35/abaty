@@ -46,13 +46,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <ServiceWidget
-            element={c}
-            showName={showName}
-            key={i}
-            dispatch={dispatch}
-            colors={colors}
-          />
+          <ServiceWidget element={c} showName={showName} key={i} />
         ))}
       </ScrollView>
     </View>

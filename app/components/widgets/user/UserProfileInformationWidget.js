@@ -7,8 +7,8 @@ import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const UserProfileInformationWidget = ({auth, colors}) => {
-  const {logo} = useContext(GlobalValuesContext);
+const UserProfileInformationWidget = ({auth}) => {
+  const {logo, colors} = useContext(GlobalValuesContext);
   return (
     <View animation="bounceInLeft" easing="ease-out">
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>

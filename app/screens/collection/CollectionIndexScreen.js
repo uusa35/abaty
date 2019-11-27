@@ -4,12 +4,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import CollectionList from '../../components/widgets/collection/CollectionList';
 
-const CollectionIndexScreen = ({collections, dispatch, colors}) => {
+const CollectionIndexScreen = ({collections}) => {
   return (
     <CollectionList
       collections={collections}
-      dispatch={dispatch}
-      colors={colors}
       showMore={false}
       showLoading={false}
       searchElements={{}}
@@ -21,7 +19,6 @@ function mapStateToProps(state) {
   return {
     collections: state.homeCollections,
     searchParams: state.searchParams,
-    colors: state.settings.colors,
   };
 }
 
