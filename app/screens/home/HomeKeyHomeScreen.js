@@ -18,20 +18,13 @@ import {
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {
-  ONE_SIGNAL_APP_ID,
-  ABATI,
-  MALLR,
-  HOMEKEY,
-  ESCRAP,
-} from './../../../app.json';
+import {HOMKEY_ONE_SIGNAL_APP_ID} from './../../../app.json';
 import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
 import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
 import I18n from '../../I18n';
-import widgetStyles from '../../components/widgets/widgetStyles';
 import {
   ClassifiedCategoryHorizontalRoundedWidget,
   ClassifiedListHorizontal,
@@ -71,11 +64,11 @@ const HomeKeyHomeScreen = ({
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    OneSignal.init(ONE_SIGNAL_APP_ID);
-    // OneSignal.addEventListener('received', onReceived);
-    // OneSignal.addEventListener('opened', onOpened);
+    OneSignal.init(HOMKEY_ONE_SIGNAL_APP_ID);
+    OneSignal.addEventListener('received', onReceived);
+    OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
-    OneSignal.configure(); // this will fire even to fetch the player_id of the device;
+    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
       ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
@@ -169,7 +162,7 @@ const HomeKeyHomeScreen = ({
             showName={true}
             showSearch={false}
             showTitle={true}
-            title="featured_classifieds"
+            title={I18n.t('featured_classifieds')}
             searchElements={{on_home: true}}
           />
         ) : null}
@@ -177,7 +170,7 @@ const HomeKeyHomeScreen = ({
           elements={homeCompanies}
           showName={true}
           name={I18n.t('companies')}
-          title="companies"
+          title={I18n.t('companies')}
           searchElements={{is_company: true}}
         />
         <NewClassifiedHomeBtn />

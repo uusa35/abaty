@@ -95,9 +95,7 @@ const AbatiHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    if (dispatch) {
-      return dispatch(goDeepLinking({type, id}));
-    }
+    return dispatch(goDeepLinking({type, id}));
   });
 
   const onReceived = useCallback(notification => {
@@ -158,7 +156,7 @@ const AbatiHomeScreen = ({
             elements={homeDesigners}
             showName={true}
             name={I18n.t('designers')}
-            title="designers"
+            title={I18n.t('designers')}
             searchElements={{is_designer: true}}
           />
         ) : null}
@@ -177,7 +175,7 @@ const AbatiHomeScreen = ({
             elements={homeCelebrities}
             showName={true}
             name="celebrities"
-            title="celebrities"
+            title={I18n.t('celebrities')}
             searchElements={{is_celebrity: true}}
           />
         ) : null}
@@ -185,21 +183,21 @@ const AbatiHomeScreen = ({
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
-            title="featured_products"
+            title={I18n.t('featured_products')}
           />
         ) : null}
         {!validate.isEmpty(brands) && validate.isArray(brands) ? (
           <BrandHorizontalWidget
             elements={brands}
             showName={false}
-            title="brands"
+            title={I18n.t('brands')}
           />
         ) : null}
         {!validate.isEmpty(services) ? (
           <ServiceHorizontalWidget
             elements={services}
             showName={true}
-            title="our_services"
+            title={I18n.t('our_services')}
           />
         ) : null}
       </ScrollView>

@@ -169,7 +169,7 @@ const EscrapHomeScreen = ({
               showName={true}
               showSearch={false}
               showTitle={true}
-              title="featured_classifieds"
+              title={I18n.t('featured_classifieds')}
               searchElements={{on_home: true}}
             />
           ) : null}
@@ -177,7 +177,7 @@ const EscrapHomeScreen = ({
             elements={homeCompanies}
             showName={true}
             name={I18n.t('companies')}
-            title="companies"
+            title={I18n.t('companies')}
             searchElements={{is_company: true}}
           />
           <NewClassifiedHomeBtn />

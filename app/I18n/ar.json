@@ -539,8 +539,11 @@
   "on_sale_products" : "تنزيلات",
   "hot_deals_products" : "أفضل العروض",
   "mallr" : {
+    "designers" : "المتسوق الشخصي",
+    "shoppers" : "المتسوق الشخصي",
+    "designers" : "المتسوق الشخصي",
+    "shoppers" : "المتسوق الشخصي",
     "our_designers" : "المتسوق الشخصي",
-    "designers" : "مصممينا",
     "our_companies" : "الشركات المشاركة",
     "sections" : "التصنيفات"
   },

@@ -59,7 +59,7 @@ const ClassifiedListHorizontal = ({
               widgetStyles.title,
               {color: colors.header_one_theme_color},
             ]}>
-            {I18n.t(title)}
+            {title}
           </Text>
         </View>
         <Icon

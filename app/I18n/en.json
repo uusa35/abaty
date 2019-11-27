@@ -505,6 +505,10 @@
   "on_sale_products" : "Sale",
   "hot_deals_products" : "Hot Deals",
   "mallr" : {
+    "designers" : "Shoppers",
+    "shoppers" : "Shoppers",
+    "shopper" : "Shopper",
+    "designer" : "Shopper",
     "our_designers" : "Personal Shoppers",
     "designers" : "Personal Shoppers",
     "our_companies" : "Companies",
