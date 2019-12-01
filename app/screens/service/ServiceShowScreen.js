@@ -2,7 +2,7 @@ import React, {Fragment, useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text} from './../../constants';
+import {width, text, height} from './../../constants';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import {View} from 'react-native-animatable';
 import I18n from './../../I18n';
@@ -23,7 +23,6 @@ const ServiceShowScreen = ({
   mobile,
   dispatch,
   token,
-  colors,
   navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
@@ -43,7 +42,7 @@ const ServiceShowScreen = ({
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        maxHeight={400}
+        maxHeight={height / 1.5}
         minHeight={90}
         style={{width}}
         scrollViewBackgroundColor="transparent"
@@ -54,7 +53,7 @@ const ServiceShowScreen = ({
               .concat({id: service.id, large: service.large})
               .reverse()}
             width={width}
-            height={400}
+            maxHeight={height / 1.5}
             name={service.name}
             exclusive={service.exclusive}
             isOnSale={service.isOnSale}
@@ -161,7 +160,7 @@ const ServiceShowScreen = ({
         {validate.isArray(services) && !validate.isEmpty(services) ? (
           <ServiceHorizontalWidget
             showName={true}
-            title="our_services"
+            title={I18n.t('our_services')}
             elements={services}
           />
         ) : null}
@@ -178,7 +177,6 @@ function mapStateToProps(state) {
     phone: state.settings.phone,
     mobile: state.settings.mobile,
     token: state.token,
-    colors: state.settings.colors,
   };
 }
 

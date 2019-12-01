@@ -32,7 +32,6 @@ const ClassifiedShowScreen = ({
   commentModal,
   dispatch,
   token,
-  colors,
   navigation,
   isLoadingContent,
 }) => {
@@ -61,7 +60,7 @@ const ClassifiedShowScreen = ({
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        maxHeight={400}
+        maxHeight={height / 1.5}
         minHeight={90}
         style={{width}}
         scrollViewBackgroundColor="transparent"
@@ -190,7 +189,7 @@ const ClassifiedShowScreen = ({
           <ClassifiedListHorizontal
             classifieds={classifieds}
             showName={true}
-            title="related_classifieds"
+            title={I18n.t('related_classifieds')}
             searchElements={{classified_category_id: element.category_id}}
           />
         ) : null}
@@ -213,7 +212,6 @@ function mapStateToProps(state) {
     commentModal: state.commentModal,
     token: state.token,
     cart: state.cart,
-    colors: state.settings.colors,
     searchParams: state.searchParams,
     isLoadingContent: state.isLoadingContent,
   };

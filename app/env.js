@@ -7,7 +7,7 @@ const appUrl = () => {
     case 'mallr':
       return 'http://mallr.net/';
     case 'homekey':
-      return 'http://hkey.ideasowners.net/';
+      return 'http://homekey.site/';
     case 'escrap':
       return 'http://escrapco.com/';
     default:

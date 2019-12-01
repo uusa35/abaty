@@ -155,7 +155,7 @@ const NormalProductShowScreen = ({
           <ProductHorizontalWidget
             elements={homeProducts}
             showName={true}
-            title="related_products"
+            title={I18n.t('related_products')}
           />
         ) : null}
       </ScrollView>

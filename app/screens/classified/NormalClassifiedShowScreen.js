@@ -193,7 +193,7 @@ const NormalClassifiedShowScreen = ({
           <ClassifiedListHorizontal
             classifieds={classifieds}
             showName={true}
-            title="related_classifieds"
+            title={I18n.t('related_classifieds')}
             searchElements={{classified_category_id: element.category_id}}
           />
         ) : null}

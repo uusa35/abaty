@@ -3,9 +3,8 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
-import {getSearchProducts, getSearchServices} from '../../../redux/actions';
 import PropTypes from 'prop-types';
-import {getSearchClassifieds} from '../../../redux/actions/api';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 
 const ClassifiedCategoryWidget = ({
   element,

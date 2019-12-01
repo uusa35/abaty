@@ -1,4 +1,4 @@
-import React, {useContext, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -6,18 +6,13 @@ import {
   Text,
   View,
 } from 'react-native';
-import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchProducts, getClassifieds} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
-import {HOMEKEY, ESCRAP, MALLR, ABATI} from './../../../../app';
-import {getSearchClassifieds, getServices} from '../../../redux/actions/api';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 
 const ClassifiedCategoryHorizontalBtnsWidget = ({
   elements,

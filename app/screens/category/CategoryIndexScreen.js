@@ -4,7 +4,7 @@ import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
-import SimpleSpinner from '../../components/SimpleSpinner';
+import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../app';
 
 const CategoryIndexScreen = ({
   homeCategories,
@@ -17,7 +17,11 @@ const CategoryIndexScreen = ({
         animation="bounceIn"
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
-        <CategoriesList elements={homeCategories} columns={2} type="product" />
+        <CategoriesList
+          elements={homeCategories}
+          columns={2}
+          type={ABATI || MALLR ? 'product' : 'classified'}
+        />
       </View>
       {show_commercials ? (
         <View style={{flex: 0.2}}>

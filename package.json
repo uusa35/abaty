@@ -28,7 +28,7 @@
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.0",
     "react": "16.9.0",
-    "react-native": "0.61.4",
+    "react-native": "0.61.5",
     "react-native-action-button": "^2.8.5",
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-async-storage": "^0.0.1",

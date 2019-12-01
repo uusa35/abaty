@@ -9,7 +9,7 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchClassifieds} from '../../../redux/actions';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
