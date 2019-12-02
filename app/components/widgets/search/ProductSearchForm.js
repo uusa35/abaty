@@ -10,10 +10,6 @@ const ProductSearchForm = () => {
   const {dispatch} = useContext(DispatchContext);
   [search, setSearch] = useState('');
 
-  useEffect(() => {
-    dispatch(setSearchParams({}));
-  }, []);
-
   return (
     <Input
       placeholder={I18n.t('search')}
