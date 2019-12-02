@@ -4,9 +4,9 @@ import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import {Text, TouchableOpacity} from 'react-native';
-import {getCoupon, showCountryModal} from '../../../redux/actions';
+import {showCountryModal} from '../../../redux/actions';
+import {getCoupon} from '../../../redux/actions/cart';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const CartFormWidget = ({
   country,

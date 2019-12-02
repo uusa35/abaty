@@ -1,7 +1,7 @@
 import React, {useState, useMemo, useContext} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import CategoryWidget from '../widgets/category/CategoryWidget';
-import {refetchHomeCategories, refetchHomeElements} from '../../redux/actions';
+import {refetchHomeElements} from '../../redux/actions';
 import {map} from 'lodash';
 import {text} from './../../constants';
 import validate from 'validate.js';
@@ -9,7 +9,6 @@ import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 
 const CategoriesList = ({elements, columns, type, showBtn = false}) => {

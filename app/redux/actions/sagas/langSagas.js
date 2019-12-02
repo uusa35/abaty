@@ -7,6 +7,7 @@ import validate from 'validate.js/validate';
 import {enableErrorMessage, disableLoading} from './settingSagas';
 import * as helpers from './../../../helpers';
 import axios from 'axios';
+import {resetStore} from "./appSagas";
 
 export function* setDirection(lang) {
   try {

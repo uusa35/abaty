@@ -30,6 +30,7 @@ const ProductList = ({
   title,
   searchElements,
 }) => {
+  console.log('products from ProductList', products);
   [items, setItems] = useState(products);
   [elements, setElements] = useState(products);
   [isLoading, setIsLoading] = useState(false);

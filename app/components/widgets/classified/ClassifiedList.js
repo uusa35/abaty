@@ -15,7 +15,7 @@ import {text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
-import {getSearchClassifieds} from '../../../redux/actions';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import ClassifiedWidget from './ClassifiedWidget';
 import widgetStyles from '../widgetStyles';
 import SearchSort from '../search/SearchSort';
@@ -110,7 +110,9 @@ const ClassifiedList = ({
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchClassifieds({searchParams: params, redirect: false}));
+      return dispatch(
+        getSearchClassifieds({searchParams: params, redirect: false}),
+      );
     }
   }, [refresh]);
 

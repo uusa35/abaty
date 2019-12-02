@@ -3,7 +3,7 @@ import {ListItem} from 'react-native-elements';
 import {text} from './../../../constants';
 import {isRTL} from '../../../I18n';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getUser} from './../../../redux/actions';
+import {getUser} from './../../../redux/actions/user';
 import PropTypes from 'prop-types';
 
 const UserWidgetVertical = ({user}) => {

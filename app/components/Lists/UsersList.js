@@ -5,7 +5,7 @@ import {
   RefreshControl,
   KeyboardAvoidingView,
 } from 'react-native';
-import {getUsers} from '../../redux/actions';
+import {getUsers} from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';

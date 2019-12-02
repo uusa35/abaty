@@ -3,7 +3,7 @@ import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {getSearchProducts} from '../../../redux/actions';
+import {getSearchProducts} from '../../../redux/actions/product';
 
 const DesignerSearchForm = () => {
   const {dispatch} = useContext(DispatchContext);

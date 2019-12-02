@@ -5,6 +5,8 @@ import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 
 const ProductIndexScreen = ({products, searchParams}) => {
+  console.log('searchParams', searchParams);
+  console.log('products', products);
   return (
     <ProductList
       products={products}

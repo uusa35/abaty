@@ -7,10 +7,7 @@ import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Icon} from 'react-native-elements';
-import {
-  toggleFavorite,
-  toggleProductFavorite,
-} from '../../../redux/actions/product';
+import {toggleProductFavorite} from '../../../redux/actions/product';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ProductInfoWidgetMainTitle = ({element}) => {

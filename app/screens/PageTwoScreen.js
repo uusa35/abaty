@@ -1,16 +1,35 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useState, useMemo, useRef} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../components/widgets/product/ProductList';
 import I18n from '../I18n';
+import {getAllProducts} from '../redux/actions/product';
+import validate from 'validate.js';
+import {first} from 'lodash';
 
-const PageTwoScreen = ({products, colors, dispatch, navigation}) => {
+const PageTwoScreen = ({products, dispatch, searchParams}) => {
+  const ref = useRef();
   [title, setTitle] = useState('');
+  const [currentProducts, setCurrentProducts] = useState([]);
 
-  // useMemo(() => {
-  //   navigation.setParams({title: I18n.t('products')});
-  // }, [navigation]);
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
+
+  useEffect(() => {
+    ref.current = first(currentProducts).id;
+    if (ref.current !== first(products).id) {
+      dispatch(getAllProducts());
+      setCurrentProducts(products);
+    }
+  }, [products]);
+
+  useMemo(() => {
+    if (!validate.isEmpty(products)) {
+      setCurrentProducts(products);
+    }
+  }, [currentProducts, products]);
 
   return (
     <ProductList
@@ -29,6 +48,7 @@ function mapStateToProps(state) {
   return {
     products: state.products,
     colors: state.settings.colors,
+    searchParams: state.searchParams,
   };
 }
 

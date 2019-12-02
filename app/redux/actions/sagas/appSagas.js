@@ -49,6 +49,7 @@ import {
   startStorePlayerIdScenario,
 } from './userSagas';
 import {
+  getAllProducts,
   getBestSaleProducts,
   getHomeCollectionsScenario,
   getHotDealsProducts,

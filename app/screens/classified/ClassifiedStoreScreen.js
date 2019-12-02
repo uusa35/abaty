@@ -20,6 +20,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
+import {isLocal} from '../../env';
 
 const ClassifiedStoreScreen = ({
   auth,
@@ -31,11 +32,11 @@ const ClassifiedStoreScreen = ({
   classifiedProps,
   navigation,
 }) => {
-  const [name, setName] = useState('testing');
+  const [name, setName] = useState(isLocal ? 'testing' : '');
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null,
   );
-  const [price, setPrice] = useState('10');
+  const [price, setPrice] = useState(isLocal ? '10' : '');
   const {params} = navigation.state;
   const [address, setAddress] = useState(
     !validate.isEmpty(params) ? params.address : '',
@@ -46,9 +47,7 @@ const ClassifiedStoreScreen = ({
   const [latitude, setLatitude] = useState(
     !validate.isEmpty(params) ? params.latitude : '',
   );
-  const [description, setDescription] = useState(
-    !validate.isEmpty(auth) ? auth.description : null,
-  );
+  const [description, setDescription] = useState('');
   const [images, setImages] = useState('');
   const [image, setImage] = useState('');
   const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);

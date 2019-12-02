@@ -7,9 +7,18 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import I18n from '../../I18n';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
+import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 
 export const ClassifiedStack = createStackNavigator(
   {
+    ClassifiedIndexAll: {
+      screen: ClassifiedIndexAllScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
+        headerRight: <HeaderRight showFilter={true} showCountry={true} />,
+        headerBackTitle: null,
+      }),
+    },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({

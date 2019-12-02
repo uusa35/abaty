@@ -7,7 +7,8 @@ import ProductInfoWidgetElement from './../../components/widgets/product/Product
 import {View} from 'react-native-animatable';
 import I18n from './../../I18n';
 import {first} from 'lodash';
-import {getDesigner, getSearchServices, getService} from '../../redux/actions';
+import {getDesigner} from '../../redux/actions/user';
+import {getSearchServices, getService} from '../../redux/actions/service';
 import validate from 'validate.js';
 import ServiceInfoWidget from '../../components/widgets/service/ServiceInfoWidget';
 import PropTypes from 'prop-types';

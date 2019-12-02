@@ -4,12 +4,7 @@ import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {
-  getDesigner,
-  getSearchCompanies,
-  getSearchDesigners,
-  getUsers,
-} from '../../../redux/actions';
+import {getDesigner, getSearchDesigners} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';

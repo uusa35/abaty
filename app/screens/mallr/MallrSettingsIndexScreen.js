@@ -11,14 +11,11 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from './../../constants';
 import {Button, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
-import {changeLang, getUsers} from '../../redux/actions';
+import I18n from './../../I18n';
+import {changeLang} from '../../redux/actions';
 import {HOMEKEY} from './../../../app';
 import {appUrlIos} from '../../env';
 import PagesList from '../../components/widgets/page/PagesList';
-import validate from 'validate.js';
-import ShopperImageProfile from '../../components/widgets/user/ShopperImageProfile';
-import CollectionGridWidget from '../../components/widgets/collection/CollectionGridWidget';
 
 const MallrSettingsIndexScreen = ({
   guest,

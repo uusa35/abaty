@@ -2,11 +2,11 @@ import React, {useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
-import {text, width} from '../../../constants';
+import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 import I18n from './../../../I18n';
 import validate from 'validate.js';
-import {removeItem} from '../../../redux/actions';
+import {removeItem} from '../../../redux/actions/cart';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {

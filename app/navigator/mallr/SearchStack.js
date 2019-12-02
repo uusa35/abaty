@@ -8,6 +8,7 @@ import I18n from '../../I18n';
 import React from 'react';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -20,6 +21,15 @@ export const SearchStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('search')} />,
+        headerBackTitle: null,
+      }),
+    },
+    SearchProductIndex: {
+      screen: ProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
     },

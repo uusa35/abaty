@@ -9,14 +9,11 @@ import {
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getSearchProducts, getClassifieds} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {getSearchProducts} from '../../../redux/actions/product';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {images} from '../../../constants';
-import {HOMEKEY, ESCRAP, MALLR, ABATI} from './../../../../app';
 
 const ProductCategoryHorizontalWidget = ({
   elements,

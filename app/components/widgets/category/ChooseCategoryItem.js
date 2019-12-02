@@ -151,7 +151,6 @@ export default ChooseCategoryItem;
 
 ChooseCategoryItem.propTypes = {
   category: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({

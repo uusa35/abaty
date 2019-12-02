@@ -1,27 +1,55 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import {productsSelector} from '../../redux/selectors/collections';
-import {colorsSelector} from '../../redux/selectors/collection';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
+import validate from 'validate.js';
+import {first} from 'lodash';
 
 const ProductIndexAllScreen = ({
   dispatch,
+  searchParams,
   products,
-  colors,
   isLoadingContent,
 }) => {
+  const ref = useRef();
   const [currentProducts, setCurrentProducts] = useState([]);
 
   useEffect(() => {
-    if (products !== currentProducts) {
+    if (validate.isEmpty(searchParams)) {
       dispatch(getAllProducts());
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('fired here');
+    if (!validate.isEmpty(currentProducts)) {
+      ref.current = first(currentProducts).id;
+      if (
+        ref.current !== first(products).id &&
+        validate.isEmpty(searchParams)
+      ) {
+        dispatch(getAllProducts());
+        setCurrentProducts(products);
+      }
+    }
+  }, [products]);
+
+  useMemo(() => {
+    if (!validate.isEmpty(products)) {
       setCurrentProducts(products);
     }
-  }, [currentProducts]);
+  }, [currentProducts, products]);
+
+  // useEffect(() => {
+  //   if (products !== currentProducts) {
+  //     dispatch(getAllProducts());
+  //     setCurrentProducts(products);
+  //   }
+  // }, [currentProducts]);
 
   return (
     <React.Suspense
@@ -41,7 +69,7 @@ const ProductIndexAllScreen = ({
 function mapStateToProps(state) {
   return {
     products: productsSelector(state),
-    colors: colorsSelector(state),
+    searchParams: state.searchParams,
     isLoadingContent: state.isLoadingContent,
   };
 }

@@ -47,6 +47,7 @@ import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifie
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
+import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -215,7 +216,7 @@ export const HomeStack = createStackNavigator(
       path: `user/:id`,
     },
     ProductIndex: {
-      screen: ProductIndexScreen,
+      screen: ProductIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,
@@ -250,6 +251,15 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: null,
       }),
       path: `product/:id`,
+    },
+    SearchProductIndex: {
+      screen: ProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
     },
     Service: {
       screen: ServiceShowScreen,

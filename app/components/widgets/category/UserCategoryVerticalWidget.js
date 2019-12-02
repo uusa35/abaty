@@ -5,7 +5,7 @@ import I18n, {isRTL} from '../../../I18n';
 import {text, isIOS, width} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
-import {getSearchProducts, getUsers} from '../../../redux/actions';
+import {getUsers} from '../../../redux/actions/user';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 import {getSearchClassifieds} from '../../../redux/actions/api';

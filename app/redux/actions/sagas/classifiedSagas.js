@@ -24,8 +24,8 @@ export function* startGetClassifiedsScenario(action) {
     if (!validate.isEmpty(classifieds) && validate.isArray(classifieds)) {
       yield all([
         put({type: HIDE_SEARCH_MODAL}),
-        put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
+        put({type: actions.SET_CLASSIFIEDS, payload: classifieds}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
@@ -130,6 +130,7 @@ export function* startStoreClassifiedScenario(action) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
+          // call(getClassifiedIndex),
           put(NavigationActions.navigate({routeName: 'Home'})),
         ]);
       } else {

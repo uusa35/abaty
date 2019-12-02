@@ -68,12 +68,12 @@ export const HomeStack = createStackNavigator(
               title: I18n.t('home'),
             },
           },
-          PageOne: {
-            screen: PageOneScreen,
-            navigationOptions: {
-              headerBackTitle: null,
-            },
-          },
+          // PageOne: {
+          //   screen: PageOneScreen,
+          //   navigationOptions: {
+          //     headerBackTitle: null,
+          //   },
+          // },
           PageTwo: {
             screen: PageTwoScreen,
             navigationOptions: {
@@ -109,7 +109,8 @@ export const HomeStack = createStackNavigator(
             style: {
               backgroundColor: 'transparent',
               maxHeight: 50,
-              width: '99.5%',
+              width: '100%',
+              // flex : 1,
               alignSelf: 'flex-start',
               alignItems: 'flex-start',
               justifyContent: 'flex-start',
@@ -118,6 +119,7 @@ export const HomeStack = createStackNavigator(
             },
             tabStyle: {
               backgroundColor: 'transparent',
+              width: width / 2,
             },
             indicatorStyle: {
               backgroundColor: 'black',
@@ -135,7 +137,7 @@ export const HomeStack = createStackNavigator(
             headerBackTitle: null,
           }),
           initialRouteName: 'Main',
-          order: ['Main', 'PageOne', 'PageTwo'],
+          order: ['Main', 'PageTwo'],
         },
       ),
     },

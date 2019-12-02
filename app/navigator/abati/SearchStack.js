@@ -6,6 +6,11 @@ import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
+import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import ProductShowScreen from '../../screens/product/ProductShowScreen';
+import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
+import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -18,6 +23,58 @@ export const SearchStack = createStackNavigator(
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('search')} />,
+        headerBackTitle: null,
+      }),
+    },
+    SearchProductIndex: {
+      screen: ProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
+    Product: {
+      screen: NormalProductShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+      }),
+      path: `product/:id`,
+    },
+    Service: {
+      screen: ServiceShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: (
+          <HeaderRight
+            navigation={navigation}
+            displayShare={true}
+            display={true}
+          />
+        ),
+        headerBackTitle: null,
+        headerStyle: {
+          // backgroundColor: 'white',
+          // zIndex: 100
+        },
+      }),
+      path: `service/:id`,
+    },
+    Home: {
+      screen: AbatiHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null,
       }),
     },

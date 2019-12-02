@@ -12,7 +12,7 @@ import {ordersSelector} from '../redux/selectors/collections';
 import {map} from 'lodash';
 import OrderWidget from '../components/widgets/order/OrderWidget';
 import {colorsSelector, logoSelector} from '../redux/selectors/collection';
-import {reAuthenticate} from '../redux/actions';
+import {reAuthenticate} from '../redux/actions/user';
 
 const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
