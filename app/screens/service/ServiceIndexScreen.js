@@ -1,18 +1,25 @@
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {has} from 'lodash';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
-import SimpleSpinner from '../../components/SimpleSpinner';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
+import validate from '../product/ProductIndexScreen';
 
 const ServiceIndexScreen = ({services, searchParams, isLoadingContent}) => {
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useMemo(() => {
+    if (validate.isEmpty(currentElements)) {
+      setCurrentElements(services);
+    }
+  }, [currentElements]);
+
   return (
     <React.Suspense
       fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
       <ServiceList
-        services={services}
+        services={currentElements}
         searchElements={searchParams}
         showName={true}
       />

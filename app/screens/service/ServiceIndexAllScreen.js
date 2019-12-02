@@ -5,42 +5,32 @@ import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 import validate from 'validate.js';
+import {last} from 'lodash';
 import {getSearchServices} from '../../redux/actions/service';
-import {first} from 'lodash';
 
-const ServiceIndexAllScreen = ({
-  services,
-  isLoadingContent,
-  dispatch,
-  searchParams,
-}) => {
-  const ref = useRef();
-  const [currentServices, setCurrentServices] = useState([]);
+const ServiceIndexAllScreen = ({services, isLoadingContent, dispatch}) => {
+  const end = useRef();
+  const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    if (validate.isEmpty(searchParams)) {
-      dispatch(getSearchServices({searchParams: {}}));
-    }
+    dispatch(getSearchServices({searchParams: {}}));
   }, []);
 
   useEffect(() => {
-    if (!validate.isEmpty(currentServices)) {
-      ref.current = first(currentServices).id;
-      if (
-        ref.current !== first(services).id &&
-        validate.isEmpty(searchParams)
-      ) {
-        dispatch(getAllProducts());
-        setCurrentServices(services);
+    if (!validate.isEmpty(currentElements)) {
+      end.current = last(currentElements).id;
+      if (end.current !== last(services).id) {
+        dispatch(getSearchServices({searchParams: {}}));
+        setCurrentElements(services);
       }
     }
   }, [services]);
 
   useMemo(() => {
     if (!validate.isEmpty(services)) {
-      setCurrentServices(services);
+      setCurrentElements(services);
     }
-  }, [currentServices, services]);
+  }, [currentElements, services]);
 
   return (
     <React.Suspense

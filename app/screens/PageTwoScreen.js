@@ -6,11 +6,11 @@ import ProductList from '../components/widgets/product/ProductList';
 import I18n from '../I18n';
 import {getAllProducts} from '../redux/actions/product';
 import validate from 'validate.js';
-import {first} from 'lodash';
+import {first, last} from 'lodash';
 
-const PageTwoScreen = ({products, dispatch, searchParams}) => {
-  const ref = useRef();
+const PageTwoScreen = ({products, dispatch}) => {
   [title, setTitle] = useState('');
+  const end = useRef();
   const [currentProducts, setCurrentProducts] = useState([]);
 
   useEffect(() => {
@@ -18,8 +18,8 @@ const PageTwoScreen = ({products, dispatch, searchParams}) => {
   }, []);
 
   useEffect(() => {
-    ref.current = first(currentProducts).id;
-    if (ref.current !== first(products).id) {
+    end.current = last(currentProducts).id;
+    if (end.current !== last(products).id) {
       dispatch(getAllProducts());
       setCurrentProducts(products);
     }

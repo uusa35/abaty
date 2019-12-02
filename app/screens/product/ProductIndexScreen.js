@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
+import validate from 'validate.js';
 
 const ProductIndexScreen = ({products, searchParams}) => {
-  console.log('searchParams', searchParams);
-  console.log('products', products);
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useMemo(() => {
+    if (validate.isEmpty(currentElements)) {
+      setCurrentElements(products);
+    }
+  }, [currentElements]);
   return (
     <ProductList
-      products={products}
+      products={currentElements}
       showName={true}
       searchElements={searchParams}
     />

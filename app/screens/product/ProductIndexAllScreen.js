@@ -7,49 +7,29 @@ import {getAllProducts} from '../../redux/actions/product';
 import {productsSelector} from '../../redux/selectors/collections';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 import validate from 'validate.js';
-import {first} from 'lodash';
+import {last} from 'lodash';
 
-const ProductIndexAllScreen = ({
-  dispatch,
-  searchParams,
-  products,
-  isLoadingContent,
-}) => {
-  const ref = useRef();
-  const [currentProducts, setCurrentProducts] = useState([]);
+const ProductIndexAllScreen = ({dispatch, products, isLoadingContent}) => {
+  const end = useRef();
+  const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    if (validate.isEmpty(searchParams)) {
-      dispatch(getAllProducts());
-    }
+    dispatch(getAllProducts());
   }, []);
 
   useEffect(() => {
-    console.log('fired here');
-    if (!validate.isEmpty(currentProducts)) {
-      ref.current = first(currentProducts).id;
-      if (
-        ref.current !== first(products).id &&
-        validate.isEmpty(searchParams)
-      ) {
-        dispatch(getAllProducts());
-        setCurrentProducts(products);
-      }
+    end.current = last(currentElements).id;
+    if (end.current !== last(products).id) {
+      dispatch(getAllProducts());
+      setCurrentElements(products);
     }
   }, [products]);
 
   useMemo(() => {
     if (!validate.isEmpty(products)) {
-      setCurrentProducts(products);
+      setCurrentElements(products);
     }
-  }, [currentProducts, products]);
-
-  // useEffect(() => {
-  //   if (products !== currentProducts) {
-  //     dispatch(getAllProducts());
-  //     setCurrentProducts(products);
-  //   }
-  // }, [currentProducts]);
+  }, [currentElements, products]);
 
   return (
     <React.Suspense

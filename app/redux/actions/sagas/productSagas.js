@@ -178,7 +178,6 @@ export function* startGetSearchProductsScenario(action) {
   try {
     yield call(enableLoadingBoxedList);
     const {name, searchParams, redirect} = action.payload;
-    console.log('searchParams', searchParams);
     const elements = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
