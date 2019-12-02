@@ -37,6 +37,7 @@ import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHori
 import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 
 const AbatiHomeScreen = ({
   homeCategories,
@@ -148,6 +149,7 @@ const AbatiHomeScreen = ({
         endFillColor="white"
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
+        <ProductSearchForm />
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}

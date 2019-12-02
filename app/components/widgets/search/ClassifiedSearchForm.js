@@ -5,13 +5,12 @@ import {text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {
   getSearchClassifieds,
-  getSearchProducts,
 } from '../../../redux/actions/classified';
 import {HIDE_SEARCH_MODAL} from '../../../redux/actions/types';
 
-const ClassifiedSearchForm = () => {
+const ClassifiedSearchForm = ({ search , setSearch }) => {
   const {dispatch} = useContext(DispatchContext);
-  [search, setSearch] = useState('');
+
   return (
     <Input
       placeholder={I18n.t('search')}

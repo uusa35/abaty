@@ -219,6 +219,8 @@ export function* getClassifiedIndex() {
       yield all([put({type: actions.SET_CLASSIFIEDS, payload: elements})]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
+    yield all([disableLoading,
+      // enableErrorMessage(I18n.t('no_classifieds'))
+    ]);
   }
 }
