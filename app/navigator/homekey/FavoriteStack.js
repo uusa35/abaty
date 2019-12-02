@@ -8,6 +8,7 @@ import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifie
 import I18n from '../../I18n';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
+import {APP_CASE} from '../../../app';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -15,25 +16,16 @@ export const FavoriteStack = createStackNavigator(
       screen: FavoriteClassifiedIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        // headerRight: <HeaderRight displayShare={false} display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),
     },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
-        headerBackTitle: null,
-      }),
-    },
-    Home: {
-      screen: HomeKeyHomeScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
-        // headerTitle: <HeaderMiddle title={I18n.t('home')}/>,
         headerBackTitle: null,
       }),
     },
@@ -41,13 +33,7 @@ export const FavoriteStack = createStackNavigator(
       screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            showCountry={true}
-          />
-        ),
+        headerRight: <HeaderRight displayShare={true} showCountry={true} />,
         headerBackTitle: null,
         headerStyle: {
           backgroundColor: 'white',
@@ -61,7 +47,7 @@ export const FavoriteStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
   },
 );
 FavoriteStack.navigationOptions = ({navigation}) => {

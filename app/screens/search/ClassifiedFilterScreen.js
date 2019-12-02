@@ -39,7 +39,7 @@ const ClassifiedFilterScreen = ({
   area,
 }) => {
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
-  const[search,setSearch] = useState('');
+  const [search, setSearch] = useState('');
   const [price, setPrice] = useState();
   const [min, setMin] = useState();
   const [max, setMax] = useState();
@@ -131,7 +131,6 @@ const ClassifiedFilterScreen = ({
   }, [searchModal]);
 
   const handleSubmitFilter = useCallback(() => {
-      console.log('clicked');
     dispatch(
       getSearchClassifieds({
         searchParams: {
@@ -194,7 +193,7 @@ const ClassifiedFilterScreen = ({
             width: '100%',
             backgroundColor: 'white',
           }}>
-          <ClassifiedSearchForm search={search} setSearch={setSearch}/>
+          <ClassifiedSearchForm search={search} setSearch={setSearch} />
         </View>
         {parentCategories ? (
           <View

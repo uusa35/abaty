@@ -3,12 +3,10 @@ import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
-import {
-  getSearchClassifieds,
-} from '../../../redux/actions/classified';
+import {getSearchClassifieds} from '../../../redux/actions/classified';
 import {HIDE_SEARCH_MODAL} from '../../../redux/actions/types';
 
-const ClassifiedSearchForm = ({ search , setSearch }) => {
+const ClassifiedSearchForm = ({search, setSearch}) => {
   const {dispatch} = useContext(DispatchContext);
 
   return (

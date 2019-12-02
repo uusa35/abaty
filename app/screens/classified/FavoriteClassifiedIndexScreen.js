@@ -7,6 +7,7 @@ import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
+import {NavigationActions} from 'react-navigation';
 
 const FavoriteClassifiedIndexScreen = ({
   classifiedFavorites,
@@ -41,18 +42,18 @@ const FavoriteClassifiedIndexScreen = ({
             containerStyle={{marginBottom: 20}}
             titleStyle={{fontFamily: text.font}}
           />
-          <Button
-            onPress={() => navigation.navigate('Home')}
-            raised
-            title={I18n.t('shop_now')}
-            type="outline"
-            containerStyle={{marginBottom: 20}}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.main_text_theme_color,
-            }}
-            col
-          />
+          {/*<Button*/}
+          {/*  onPress={() => { navigation.goBack()}}*/}
+          {/*  raised*/}
+          {/*  title={I18n.t('shop_now')}*/}
+          {/*  type="outline"*/}
+          {/*  containerStyle={{marginBottom: 20}}*/}
+          {/*  titleStyle={{*/}
+          {/*    fontFamily: text.font,*/}
+          {/*    color: colors.main_text_theme_color,*/}
+          {/*  }}*/}
+          {/*  col*/}
+          {/*/>*/}
         </View>
       )}
     </View>
