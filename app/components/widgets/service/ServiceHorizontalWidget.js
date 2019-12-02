@@ -20,7 +20,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
         onPress={() =>
           dispatch(
             getSearchServices({
-              searchElements: {on_home: true},
+              searchElements: {on_home: 1},
               redirect: true,
             }),
           )

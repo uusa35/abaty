@@ -18,7 +18,6 @@ import validate from 'validate.js';
 import {getSearchServices} from '../../../redux/actions/service';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import SimpleSpinner from '../../SimpleSpinner';
 
 const ServiceList = ({
   services,
@@ -68,7 +67,7 @@ const ServiceList = ({
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      dispatch(getSearchServices({searchParams: params}));
+      dispatch(getSearchServices({searchElements: params}));
     }
   }, [refresh]);
 

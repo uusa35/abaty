@@ -20,7 +20,7 @@ const ServiceIndexAllScreen = ({services, isLoadingContent, dispatch}) => {
     if (!validate.isEmpty(currentElements)) {
       end.current = last(currentElements).id;
       if (end.current !== last(services).id) {
-        dispatch(getSearchServices({searchParams: {}}));
+        dispatch(getSearchServices({searchElements: {}}));
         setCurrentElements(services);
       }
     }

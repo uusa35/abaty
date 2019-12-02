@@ -57,7 +57,7 @@ export function* startGetSearchServicesScenario(action) {
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_services')),
+      // call(enableWarningMessage, I18n.t('no_services')),
     ]);
   }
 }

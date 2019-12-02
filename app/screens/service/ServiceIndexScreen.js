@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
-import validate from '../product/ProductIndexScreen';
+import validate from 'validate.js';
 
 const ServiceIndexScreen = ({services, searchParams, isLoadingContent}) => {
   const [currentElements, setCurrentElements] = useState([]);

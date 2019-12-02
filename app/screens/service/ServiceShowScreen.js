@@ -39,7 +39,7 @@ const ServiceShowScreen = ({
   return (
     <Fragment>
       <HeaderImageScrollView
-        horizontal={false}
+        vertical={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
@@ -54,7 +54,7 @@ const ServiceShowScreen = ({
               .concat({id: service.id, large: service.large})
               .reverse()}
             width={width}
-            maxHeight={height / 1.5}
+            height={height / 1.5}
             name={service.name}
             exclusive={service.exclusive}
             isOnSale={service.isOnSale}
