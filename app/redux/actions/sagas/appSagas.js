@@ -1,6 +1,6 @@
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import {ABATI, MALLR, HOMEKEY} from './../../../../app';
+import {ABATI, MALLR, HOMEKEY, appVersion} from './../../../../app';
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
