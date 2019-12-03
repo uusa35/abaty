@@ -108,10 +108,10 @@ const HomeKeyHomeScreen = ({
       console.log('isActive: ', openResult.notification.isAppInFocus);
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
-    const {path, params} = getPathForDeepLinking(
-      openResult.notification.payload.additionalData.url,
+    const {notification} = getPathForDeepLinking(
+      openResult.notification.payload.launchURL,
     );
-    dispatch(goDeepLinking(path, params));
+    return dispatch(goDeepLinking(notification));
   });
 
   const onIds = useCallback(

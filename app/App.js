@@ -20,9 +20,7 @@ import LoadingContentView from './components/Loading/LoadingContentView';
 import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
 import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
-import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../app';
 import SimpleSpinner from './components/SimpleSpinner';
-import {useNavigation} from 'react-navigation-hooks';
 
 const App = ({
   isLoading,
@@ -58,34 +56,19 @@ const App = ({
     dispatch(appBootstrap());
     codePush.checkForUpdate().then(update => {
       if (!update) {
+        console.debug('The app is up to date!');
       } else {
-        __DEV__
-          ? console.log('An update is available! Should we download it?')
-          : null;
-        dispatch(resetStore());
+        // console.debug('else', update);
+        // dispatch(resetStore());
       }
     });
-    axiosInstance.defaults.headers['currency'] = !validate.isEmpty(currency)
-      ? currency
-      : 'KWD';
-    axiosInstance.defaults.headers.common['currency'] = !validate.isEmpty(
-      currency,
-    )
-      ? currency
-      : 'KWD';
-    axiosInstance.defaults.headers['lang'] = !validate.isEmpty(lang)
-      ? lang
-      : isRTL
-      ? 'ar'
-      : 'en';
-    axiosInstance.defaults.headers.common['lang'] = !validate.isEmpty(lang)
-      ? lang
-      : isRTL
-      ? 'ar'
-      : 'en';
-    axiosInstance.defaults.headers['Authorization'] = !validate.isEmpty(token)
-      ? `Bearer ${token}`
-      : null;
+    axiosInstance.defaults.headers['currency'] = currency;
+    axiosInstance.defaults.headers.common['currency'] = currency;
+    axiosInstance.defaults.headers['lang'] = lang;
+    axiosInstance.defaults.headers.common['lang'] = lang;
+    if (bootStrapped && !guest) {
+      axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
+    }
   }, [lang, bootStrapped, token]);
 
   if (!bootStrapped || isLoading) {

@@ -46,13 +46,11 @@ const EscrapHomeScreen = ({
   slides,
   show_commercials,
   colors,
-  showIntroduction,
   homeCompanies,
   dispatch,
   navigation,
   homeClassifieds,
   main_bg,
-  guest,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -115,10 +113,10 @@ const EscrapHomeScreen = ({
       console.log('isActive: ', openResult.notification.isAppInFocus);
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
-    const {path, params} = getPathForDeepLinking(
-      openResult.notification.payload.additionalData.url,
+    const {notification} = getPathForDeepLinking(
+      openResult.notification.payload.launchURL,
     );
-    dispatch(goDeepLinking(path, params));
+    return dispatch(goDeepLinking(notification));
   });
 
   const onIds = useCallback(

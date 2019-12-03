@@ -19,6 +19,7 @@ import {
   setHomeBrands,
   startGetCompanyScenario,
   startGetDesignerScenario,
+  startGetShopperScenario,
   startReAuthenticateScenario,
 } from './userSagas';
 import {
@@ -35,6 +36,7 @@ import {startGetClassifiedScenario} from './classifiedSagas';
 import {isArray} from 'lodash';
 import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
+import {SET_DEEP_LINKING} from '../types';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -138,7 +140,11 @@ export function* getCountry(country_id = null) {
     const country = isNull(country_id)
       ? yield call(api.getCountry)
       : yield call(api.getCountry, country_id);
-    if (!validate.isEmpty(country)) {
+    if (
+      !validate.isEmpty(country) &&
+      validate.isObject(country) &&
+      country.currency
+    ) {
       yield put({type: actions.SET_COUNTRY, payload: country});
       // yield put({type: actions.SET_CURRENCY, payload: country.currency_symbol});
       yield call(startSetCountryScenario, {payload: country});
@@ -169,6 +175,7 @@ export function* startDeepLinkingScenario(action) {
   try {
     const {bootStrapped} = yield select();
     const {type, id} = action.payload;
+    yield put({type: SET_DEEP_LINKING, payload: action.payload});
     if (!isNull(type) && bootStrapped) {
       switch (type) {
         case 'designer':
@@ -179,17 +186,24 @@ export function* startDeepLinkingScenario(action) {
           return yield call(startGetCompanyScenario, {
             payload: {id, redirect: true, searchParams: {user_id: id}},
           });
+        case 'shopper':
+          return yield call(startGetShopperScenario, {
+            payload: {id, redirect: true, searchParams: {user_id: id}},
+          });
+        case 'classified':
           return yield call(startGetClassifiedScenario, {
             payload: {id, redirect: true},
           });
         case 'product':
-          return yield call(startGetProductScenario, {payload: {id}});
+          return yield call(startGetProductScenario, {
+            payload: {id, redirect: true},
+          });
       }
     }
   } catch (e) {
     yield all([
       call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_deep_product')),
+      // call(enableErrorMessage, I18n.t('no_deep_product')),
     ]);
   }
 }

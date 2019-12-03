@@ -34,7 +34,7 @@ const ServiceWidget = ({element, showName = false}) => {
         loadingIndicatorSource={images.logo}
         imageStyle={styles.imageStyling}
         style={styles.image}
-        resizeMode="contain">
+        resizeMode="stretch">
         <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
           {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
           {element.isOnSale ? (

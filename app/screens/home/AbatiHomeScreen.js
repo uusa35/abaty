@@ -104,7 +104,6 @@ const AbatiHomeScreen = ({
   });
 
   const onOpened = useCallback(openResult => {
-    console.log('Notification Case');
     if (__DEV__) {
       console.log('the whole thing', openResult.notification.payload);
       console.log('Message: ', openResult.notification.payload.body);
@@ -112,10 +111,10 @@ const AbatiHomeScreen = ({
       console.log('isActive: ', openResult.notification.isAppInFocus);
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
-    const {path, params} = getPathForDeepLinking(
-      openResult.notification.payload.additionalData.url,
+    const {notification} = getPathForDeepLinking(
+      openResult.notification.payload.launchURL,
     );
-    return dispatch(goDeepLinking(path, params));
+    return dispatch(goDeepLinking(notification));
   });
 
   const onIds = useCallback(

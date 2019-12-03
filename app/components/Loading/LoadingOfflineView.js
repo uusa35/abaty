@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useContext} from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
@@ -6,14 +6,18 @@ import {colors, text, animations} from './../../constants';
 import LottieView from 'lottie-react-native';
 import CodePush from 'react-native-code-push';
 import PropTypes from 'prop-types';
+import {DispatchContext} from '../../redux/DispatchContext';
+import {resetStore} from '../../redux/actions';
 
 const LoadingOfflineView = ({isConnected = false, mainBg}) => {
   const [connected, setConnected] = useState(isConnected);
+  const {dispatch} = useContext(DispatchContext);
 
   const handleClick = useCallback(
     connected => {
       if (connected) {
         CodePush.restartApp();
+        dispatch(resetStore());
       }
     },
     [connected],
