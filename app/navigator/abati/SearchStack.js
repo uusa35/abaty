@@ -11,6 +11,7 @@ import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -27,7 +28,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     SearchProductIndex: {
-      screen: ProductIndexScreen,
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,

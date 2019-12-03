@@ -37,6 +37,9 @@ import slides from './slides';
 import splashes from './splashes';
 import product from './product';
 import homeProducts from './homeProducts';
+import searchProducts from './searchProducts';
+import searchServices from './searchServices';
+import searchClassifieds from './searchClassifieds';
 import homeCollections from './homeCollections';
 import productFavorites from './productFavorites';
 import products from './products';
@@ -103,6 +106,9 @@ let reducers = combineReducers({
   collections,
   homeCollections,
   homeProducts,
+  searchServices,
+  searchProducts,
+  searchClassifieds,
   productFavorites,
   videos,
   cart,

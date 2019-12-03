@@ -14,12 +14,9 @@ const PageTwoScreen = ({products, dispatch}) => {
   const [currentProducts, setCurrentProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
-
-  useEffect(() => {
     end.current = last(currentProducts).id;
     if (end.current !== last(products).id) {
+      console.log('fired from Pagetow');
       dispatch(getAllProducts());
       setCurrentProducts(products);
     }

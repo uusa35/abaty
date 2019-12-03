@@ -9,6 +9,7 @@ import React from 'react';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -25,7 +26,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     SearchProductIndex: {
-      screen: ProductIndexScreen,
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,

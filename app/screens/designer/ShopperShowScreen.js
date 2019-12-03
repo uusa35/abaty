@@ -44,8 +44,6 @@ const ShopperShowScreen = ({
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
-  console.log('from Shopper show', element.collections);
-
   useMemo(() => {
     if (!validate.isEmpty(element.products)) {
       setCollectedCategories(

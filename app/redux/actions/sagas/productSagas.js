@@ -181,7 +181,7 @@ export function* startGetSearchProductsScenario(action) {
     const elements = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
-        put({type: actions.SET_PRODUCTS, payload: elements}),
+        put({type: actions.SET_SEARCH_PRODUCTS, payload: elements}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
@@ -213,7 +213,7 @@ export function* startGetAllProductsScenario(action) {
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
+        // put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
       ]);
     }
   } catch (e) {

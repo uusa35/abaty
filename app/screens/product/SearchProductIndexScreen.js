@@ -5,15 +5,15 @@ import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 
-const ProductIndexScreen = ({products, searchParams}) => {
+const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
   const [currentElements, setCurrentElements] = useState([]);
-
-  console.log('productIndexScreen');
+  console.log('SearchproductIndexScreen');
   useMemo(() => {
     if (validate.isEmpty(currentElements)) {
-      setCurrentElements(products);
+      setCurrentElements(searchProducts);
     }
   }, [currentElements]);
+
   return (
     <ProductList
       products={currentElements}
@@ -25,16 +25,16 @@ const ProductIndexScreen = ({products, searchParams}) => {
 
 function mapStateToProps(state) {
   return {
-    products: state.products,
+    searchProducts: state.searchProducts,
     searchParams: state.searchParams,
     colors: state.settings.colors,
   };
 }
 
-export default connect(mapStateToProps)(ProductIndexScreen);
+export default connect(mapStateToProps)(SearchProductIndexScreen);
 
-ProductIndexScreen.propTypes = {
-  products: PropTypes.array.isRequired,
+SearchProductIndexScreen.propTypes = {
+  searchProducts: PropTypes.array.isRequired,
   searchParams: PropTypes.object.isRequired,
 };
 

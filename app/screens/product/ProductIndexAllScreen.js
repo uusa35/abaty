@@ -14,10 +14,6 @@ const ProductIndexAllScreen = ({dispatch, products, isLoadingContent}) => {
   const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
-
-  useEffect(() => {
     end.current = last(currentElements).id;
     if (end.current !== last(products).id) {
       dispatch(getAllProducts());

@@ -46,6 +46,7 @@ import ShopperShowScreen from '../../screens/designer/ShopperShowScreen';
 import {Icon} from 'react-native-elements';
 import MallrSettingsIndexScreen from './../../screens/mallr/MallrSettingsIndexScreen';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -262,6 +263,15 @@ export const HomeStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
+    SearchProductIndex: {
+      screen: SearchProductIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
