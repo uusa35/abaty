@@ -32,7 +32,7 @@ import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
-import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
+import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
@@ -60,7 +60,7 @@ export const HomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: ScrapHomeScreen,
+      screen: EscrapHomeScreen,
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} showSideMenu={true} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
@@ -314,7 +314,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     Scrap: {
-      screen: ScrapHomeScreen,
+      screen: EscrapHomeScreen,
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,

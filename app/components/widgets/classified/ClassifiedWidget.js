@@ -40,7 +40,11 @@ const ClassifiedWidget = ({element, showName = false}) => {
       ]}
       onPress={() =>
         dispatch(
-          getClassified({id: element.id, api_token: token ? token : null}),
+          getClassified({
+            id: element.id,
+            api_token: token ? token : null,
+            redirect: true,
+          }),
         )
       }>
       <ImageBackground

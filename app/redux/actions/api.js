@@ -113,7 +113,7 @@ export async function getTags() {
 export async function getClassified(params) {
   const {id} = params;
   return await axiosInstance
-    .get(`classified/${id}`, {params})
+    .get(`classified/${id}`, params)
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

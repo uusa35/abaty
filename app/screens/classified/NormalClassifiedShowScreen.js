@@ -56,6 +56,7 @@ const NormalClassifiedShowScreen = ({
       getClassified({
         id: element.id,
         api_token: token ? token : null,
+        redirect: true,
       }),
     );
   }, [refresh]);

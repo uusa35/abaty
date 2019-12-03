@@ -78,23 +78,24 @@ export function* startGetHomeClassifiedsScenario(action) {
 export function* startGetClassifiedScenario(action) {
   try {
     yield call(enableLoadingContent);
-    const classified = yield call(api.getClassified, action.payload);
-    if (!validate.isEmpty(classified) && validate.isObject(classified)) {
-      yield put({type: actions.SET_CLASSIFIED, payload: classified});
-      yield all([
-        put(
+    const {id, token, redirect} = action.payload;
+    const element = yield call(api.getClassified, {id, token});
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield put({type: actions.SET_CLASSIFIED, payload: element});
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
           NavigationActions.navigate({
             routeName: 'Classified',
             params: {
-              name: classified.name,
-              id: classified.id,
+              name: element.name,
+              id: element.id,
               model: 'classified',
               type: 'classified',
             },
           }),
-        ),
-        call(disableLoadingContent),
-      ]);
+        );
+      }
+      yield call(disableLoadingContent);
     }
   } catch (e) {
     yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);

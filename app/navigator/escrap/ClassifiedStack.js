@@ -6,7 +6,7 @@ import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScree
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import I18n from '../../I18n';
-import ScrapHomeScreen from '../../screens/home/ScrapHomeScreen';
+import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 
 export const ClassifiedStack = createStackNavigator(
@@ -28,7 +28,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     Home: {
-      screen: ScrapHomeScreen,
+      screen: EscrapHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,

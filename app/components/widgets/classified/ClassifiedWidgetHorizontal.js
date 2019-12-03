@@ -21,7 +21,7 @@ const ClassifiedWidgetHorizontal = ({
   widthVal = '100%',
   heightVal = '100%',
 }) => {
-  const {currency_symbol, token, exchange_rate, colors} = useContext(
+  const {currency_symbol, token, exchange_rate} = useContext(
     GlobalValuesContext,
   );
   const {dispatch} = useContext(DispatchContext);
@@ -42,7 +42,11 @@ const ClassifiedWidgetHorizontal = ({
       ]}
       onPress={() =>
         dispatch(
-          getClassified({id: element.id, api_token: token ? token : null}),
+          getClassified({
+            id: element.id,
+            api_token: token ? token : null,
+            redirect: true,
+          }),
         )
       }>
       <ImageBackground
