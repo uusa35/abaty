@@ -126,12 +126,10 @@ export function* startStoreClassifiedScenario(action) {
     if (validate.isEmpty(result)) {
       yield call(enableLoading);
       const classified = yield call(api.storeClassified, action.payload);
-      console.log('classifed', classified);
       if (!validate.isEmpty(classified) && validate.isObject(classified)) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
-          // call(getClassifiedIndex),
           put(NavigationActions.navigate({routeName: 'Home'})),
         ]);
       } else {
@@ -141,6 +139,7 @@ export function* startStoreClassifiedScenario(action) {
       throw first(values(result))[0];
     }
   } catch (e) {
+    console.log('the error', e);
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }

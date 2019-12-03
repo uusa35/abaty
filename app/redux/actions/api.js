@@ -380,7 +380,6 @@ export async function updateUser(params) {
 }
 
 export async function storeClassified(elements) {
-  console.log('the params', elements);
   const {
     name,
     api_token,
@@ -436,11 +435,10 @@ export async function storeClassified(elements) {
   form.append('price', price);
   form.append('api_token', api_token);
   map(classifiedProps, (prop, i) => {
-    form.append(`items[${i}][category_group_id]`, prop.cateogry_group.id);
+    form.append(`items[${i}][category_group_id]`, prop.category_group.id);
     form.append(`items[${i}][property_id]`, prop.property.id);
     form.append(`items[${i}][value]`, prop.property.value);
   });
-  console.log('the whole form', form);
   return await axiosInstance
     .post(`classified`, form)
     .then(r => r.data)
