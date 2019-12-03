@@ -13,6 +13,7 @@ import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
+  setDeepLinking,
   setPlayerId,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
@@ -56,6 +57,7 @@ const AbatiHomeScreen = ({
   showIntroduction,
   dispatch,
   navigation,
+  linking,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -87,7 +89,8 @@ const AbatiHomeScreen = ({
   const handleAppStateChange = useCallback(
     nextAppState => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        __DEV__ ? console.log('HERE NOW') : null;
+        // __DEV__ ? console.log('HERE NOW') : null;
+      } else {
       }
       setAppState(nextAppState);
     },
@@ -111,10 +114,13 @@ const AbatiHomeScreen = ({
       console.log('isActive: ', openResult.notification.isAppInFocus);
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
-    const {notification} = getPathForDeepLinking(
+    const notification = getPathForDeepLinking(
       openResult.notification.payload.launchURL,
     );
-    return dispatch(goDeepLinking(notification));
+    dispatch(setDeepLinking(notification));
+    setTimeout(() => {
+      dispatch(goDeepLinking());
+    }, 2000);
   });
 
   const onIds = useCallback(
@@ -232,6 +238,7 @@ function mapStateToProps(state) {
     showIntroduction: state.showIntroduction,
     homeCompanies: state.homeCompanies,
     bootStrapped: state.bootStrapped,
+    linking: state.linking,
   };
 }
 

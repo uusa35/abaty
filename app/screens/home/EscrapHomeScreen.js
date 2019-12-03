@@ -13,6 +13,7 @@ import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
+  setDeepLinking,
   setPlayerId,
 } from '../../redux/actions';
 import {isIOS, width} from '../../constants';
@@ -113,10 +114,13 @@ const EscrapHomeScreen = ({
       console.log('isActive: ', openResult.notification.isAppInFocus);
       console.log('openResult: ', openResult.notification.payload.launchURL);
     }
-    const {notification} = getPathForDeepLinking(
+    const notification = getPathForDeepLinking(
       openResult.notification.payload.launchURL,
     );
-    return dispatch(goDeepLinking(notification));
+    dispatch(setDeepLinking(notification));
+    setTimeout(() => {
+      dispatch(goDeepLinking());
+    }, 2000);
   });
 
   const onIds = useCallback(

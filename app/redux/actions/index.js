@@ -236,6 +236,13 @@ export function goDeepLinking(payload) {
   };
 }
 
+export function setDeepLinking(payload) {
+  return {
+    type: actions.SET_DEEP_LINKING,
+    payload,
+  };
+}
+
 export function refetchHomeElements() {
   return {
     type: actions.REFETCH_HOME_ELEMENTS,
