@@ -192,7 +192,7 @@ export function* startDeepLinkingScenario(action) {
           });
         case 'classified':
           return yield call(startGetClassifiedScenario, {
-            payload: {id, redirect: true, searchParams: {user_id: id}},
+            payload: {id, redirect: true},
           });
         case 'product':
           return yield call(startGetProductScenario, {
