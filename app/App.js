@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {appBootstrap, resetStore} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/Loading/LoadingView';
-import I18n, {isRTL} from './I18n';
+import I18n from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
@@ -58,7 +58,6 @@ const App = ({
       if (!update) {
         console.debug('The app is up to date!');
       } else {
-        // console.debug('else', update);
         // dispatch(resetStore());
       }
     });

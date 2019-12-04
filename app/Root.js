@@ -5,10 +5,11 @@ import {PersistGate} from 'redux-persist/integration/react';
 import App from './App';
 import {ReduxNetworkProvider} from 'react-native-offline';
 import {isLocal} from './env';
+import SimpleSpinner from './components/SimpleSpinner';
 console.disableYellowBox = true;
 
 export const Root = () => (
-  <PersistGate loading={null} persistor={PersistStore}>
+  <PersistGate loading={<SimpleSpinner />} persistor={PersistStore}>
     <Provider store={Store}>
       <ReduxNetworkProvider>
         {isLocal ? (
