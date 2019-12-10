@@ -7,7 +7,6 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const CommentWidget = ({element}) => {
   const {logo} = useContext(GlobalValuesContext);
-  console.log('element', element);
   return (
     <View
       style={{

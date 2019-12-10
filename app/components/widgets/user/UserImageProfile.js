@@ -12,6 +12,7 @@ import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {ABATI, MALLR} from './../../../../app';
 
 const UserImageProfile = ({
   medium,
@@ -84,15 +85,21 @@ const UserImageProfile = ({
             ]}>
             {slug.substring(0, 25)}
           </Text>
-          {!guest ? (
+          {!guest && !ABATI ? (
             <Icon
-              // name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-              name={fanMe ? 'star' : 'star-border'}
+              name={fanMe && !ABATI ? 'star' : 'star-border'}
               type="material"
               color={colors.header_tow_theme_color}
               onPress={() => handleFan(!fanMe)}
             />
-          ) : null}
+          ) : (
+            <Icon
+              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+              type="material-community"
+              color={colors.header_tow_theme_color}
+              onPress={() => handleFan(!fanMe)}
+            />
+          )}
         </View>
         {!validate.isEmpty(type) ? (
           <Text
