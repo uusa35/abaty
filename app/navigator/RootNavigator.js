@@ -3,6 +3,7 @@ import MallrRootNavigator from './mallr/MallrRootNavigator';
 import AbatiRootNavigator from './abati/AbatiRootNavigator';
 import EscrapRootNavigator from './escrap/EscrapRootNavigator';
 import HomeKeyRootNavigator from './homekey/HomeKeyRootNavigator';
+// import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
 const AppNav = () => {
   switch (APP_CASE) {

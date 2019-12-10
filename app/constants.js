@@ -167,5 +167,5 @@ export const storeClassifiedConstrains = {
 
 export const commentStoreConstrains = {
   title: {length: {minimum: 3}, presence: true},
-  content: {length: {minimum: 6}, presence: true},
+  content: {length: {minimum: 3}, presence: true},
 };

@@ -7,6 +7,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const CommentWidget = ({element}) => {
   const {logo} = useContext(GlobalValuesContext);
+  console.log('element', element);
   return (
     <View
       style={{
@@ -25,12 +26,24 @@ const CommentWidget = ({element}) => {
         title={element.title}
         subtitle={
           <View>
+            {element.owner ? (
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.small,
+                  paddingTop: 3,
+                  paddingBottom: 3,
+                  textAlign: 'left',
+                }}>
+                {element.owner.slug}
+              </Text>
+            ) : null}
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.small,
                 marginBottom: 10,
-                textAlign: 'left',
+                textAlign: 'right',
               }}>
               {element.created_at}
             </Text>

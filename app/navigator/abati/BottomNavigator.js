@@ -1,5 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createSwitchNavigator} from 'react-navigation';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';

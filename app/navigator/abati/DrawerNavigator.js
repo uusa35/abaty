@@ -3,7 +3,7 @@ import SideMenu from '../../components/SideMenu';
 import {isRTL} from '../../I18n';
 import React from 'react';
 import {BottomTabsStack} from './BottomNavigator';
-// import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
+
 export const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {

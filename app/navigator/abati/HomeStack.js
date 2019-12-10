@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
+import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 import I18n from '../../I18n';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
