@@ -102,14 +102,15 @@
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/runtime": "^7.3.1",
-    "@react-native-community/eslint-config": "^0.0.3",
-    "babel-jest": "^24.1.0",
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.8.0",
+    "eslint": "^6.1.0",
     "jest": "^24.1.0",
-    "metro-react-native-babel-preset": "^0.54.1",
-    "metro-react-native-babel-transformer": "^0.55.0",
+    "metro-react-native-babel-preset": "^0.55.0",
     "react-test-renderer": "16.8.6",
+    "metro-react-native-babel-transformer": "^0.55.0",
     "prettier": "^1.18.2"
   },
   "jest": {

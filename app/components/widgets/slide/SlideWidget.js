@@ -20,4 +20,4 @@ const SlideWidget = ({slide}) => {
   );
 };
 
-export default React.memo(SlideWidget);
+export default SlideWidget;
