@@ -154,6 +154,7 @@ export const HomeStack = createStackNavigator(
     CartConfirmation: {
       screen: CartConfirmationScreen,
       navigationOptions: () => ({
+        headerRight: <HeaderRight showCountry={false} displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
         headerBackTitle: null,
       }),

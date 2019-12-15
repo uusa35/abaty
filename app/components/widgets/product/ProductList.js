@@ -119,13 +119,12 @@ const ProductList = ({
           contentContainerStyle={{
             marginBottom: 15,
             justifyContent: 'flex-start',
-            minHeight: '100%',
+            minHeight: height / 1.2,
           }}
           columnWrapperStyle={{
             justifyContent: 'flex-start',
             alignSelf: 'center',
             alignItems: 'flex-start',
-            minHeight: '80%',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',

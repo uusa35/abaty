@@ -11,7 +11,7 @@ import ServiceWidget from './ServiceWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width} from '../../../constants';
+import {height, text, width} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
@@ -113,13 +113,12 @@ const ServiceList = ({
           contentContainerStyle={{
             marginBottom: 15,
             justifyContent: 'flex-start',
-            minHeight: '100%',
+            minHeight: height / 1.2,
           }}
           columnWrapperStyle={{
             justifyContent: 'flex-start',
             alignSelf: 'center',
             alignItems: 'flex-start',
-            minHeight: '80%',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',

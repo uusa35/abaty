@@ -25,6 +25,7 @@ const RegisterFormWidget = ({player_id}) => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 180}}
       contentContainerStyle={{
         flex: 1,
         width: '100%',
