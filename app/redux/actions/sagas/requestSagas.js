@@ -37,6 +37,7 @@ import {isArray} from 'lodash';
 import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
 import {SET_DEEP_LINKING} from '../types';
+import {isLocal} from '../../../env';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -551,17 +552,17 @@ export function* startCreateCashOnDeliveryPayment(action) {
 export function* startBecomeFanScenario(action) {
   try {
     const {id, fanMe} = action.payload;
-    const user = yield call(api.becomeFan, id);
-    if (!validate.isEmpty(user) && validate.isObject(user)) {
+    const element = yield call(api.becomeFan, id);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
       fanMe
         ? yield call(enableSuccessMessage, I18n.t('fan_success'))
         : yield call(enableWarningMessage, I18n.t('fan_deactivated'));
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('fan_error')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield all([call(enableErrorMessage, I18n.t('fan_error'))]);
   }
 }
 

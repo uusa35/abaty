@@ -8,15 +8,16 @@ import MapViewWidget from './MapViewWidget';
 import {View} from 'react-native-animatable';
 import validate from 'validate.js';
 
-const ContactInformationWidget = props => {
-  const {settings} = props;
+const ContactInformationWidget = ({settings}) => {
   return (
     <View animation="bounceInLeft" easing="ease-out">
-      <FastImage
-        source={{uri: settings.logo}}
-        resizeMode="contain"
-        style={styles.logo}
-      />
+      {settings.logo ? (
+        <FastImage
+          source={{uri: settings.logo}}
+          resizeMode="contain"
+          style={styles.logo}
+        />
+      ) : null}
       {!validate.isEmpty(settings.longitude) || !validate.isEmpty(latitude) ? (
         <MapViewWidget
           logo={settings.logo}
@@ -26,7 +27,6 @@ const ContactInformationWidget = props => {
           height={250}
         />
       ) : null}
-
       {settings.mobile ? (
         <TouchableOpacity
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
@@ -44,7 +44,7 @@ const ContactInformationWidget = props => {
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           onPress={() =>
             Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Escrap Support`,
+              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_NAME}`,
             )
           }
           style={styles.container}>
@@ -105,7 +105,7 @@ const ContactInformationWidget = props => {
   );
 };
 
-export default React.memo(ContactInformationWidget);
+export default ContactInformationWidget;
 
 const styles = StyleSheet.create({
   container: {

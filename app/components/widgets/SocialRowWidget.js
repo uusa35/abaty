@@ -91,7 +91,7 @@ const SocialRowWidget = ({settings}) => {
   );
 };
 
-export default React.memo(SocialRowWidget);
+export default SocialRowWidget;
 
 const styles = StyleSheet.create({
   container: {

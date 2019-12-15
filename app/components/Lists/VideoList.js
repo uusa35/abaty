@@ -63,7 +63,7 @@ const VideoList = ({
           }}
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{minHeight: 100}}>
+              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
                 <Button
                   loading={endList}
                   raised
@@ -89,9 +89,9 @@ const VideoList = ({
         <View
           style={{
             flex: 1,
-            marginTop: 300,
             width: width - 50,
             alignSelf: 'center',
+            justifyContent: 'center',
           }}>
           <Button
             raised

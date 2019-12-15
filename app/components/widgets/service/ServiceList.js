@@ -88,14 +88,7 @@ const ServiceList = ({
   }, [search]);
 
   return (
-    <KeyboardAvoidingView
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: width,
-      }}
-      behavior="padding"
-      enabled>
+    <KeyboardAvoidingView behavior="padding" enabled>
       {!validate.isEmpty(services) ? (
         <FlatList
           keyboardShouldPersistTaps="always"
@@ -118,20 +111,21 @@ const ServiceList = ({
           }
           onEndReached={() => loadMore()}
           contentContainerStyle={{
-            width: width - 20,
+            marginBottom: 15,
+            justifyContent: 'flex-start',
             minHeight: '100%',
           }}
           columnWrapperStyle={{
-            justifyContent: 'space-around',
-            alignItems: 'center',
+            justifyContent: 'flex-start',
+            alignSelf: 'center',
+            alignItems: 'flex-start',
+            minHeight: '80%',
           }}
           ListHeaderComponentStyle={{
-            width: '100%',
-            padding: 10,
             backgroundColor: 'white',
           }}
           ListHeaderComponent={
-            <View>
+            <View style={{paddingTop: 10, paddingBottom: 10}}>
               {showSearch ? (
                 <Input
                   placeholder={I18n.t('search')}
@@ -189,7 +183,7 @@ const ServiceList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{minHeight: 100}}>
+              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
                 <Button
                   loading={isLoading}
                   raised
@@ -205,7 +199,13 @@ const ServiceList = ({
           )}
         />
       ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            width: width - 50,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}>
           <Button
             raised
             title={I18n.t('no_services')}

@@ -14,20 +14,16 @@ const AlertMessage = ({message}) => {
     container: {
       opacity: 0.9,
       backgroundColor: message.color,
-      height: 120,
+      minHeight: 80,
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: '10%',
-      paddingRight: 15,
-      paddingBottom: 15,
-      paddingLeft: 15,
     },
     text: {
       color: 'white',
       fontFamily: 'Tajawal-Medium',
       fontSize: text.medium,
       fontWeight: 'bold',
-      textAlign: 'left',
+      textAlign: 'center',
     },
   };
 

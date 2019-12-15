@@ -6,14 +6,16 @@ import I18n from '../../I18n';
 import React from 'react';
 import VideoShowScreen from '../../screens/video/VideoShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
+import {HeaderRight} from '../../components/HeaderRight';
 
 export const VideoStack = createStackNavigator(
   {
     VideoIndex: {
       screen: VideoIndexScreen,
-      navigationOptions: ({navigation}) => ({
-        headerLeft: <HeaderLeft {...navigation} />,
+      navigationOptions: () => ({
+        headerLeft: <HeaderLeft />,
         headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },

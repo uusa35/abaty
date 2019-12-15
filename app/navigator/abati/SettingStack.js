@@ -20,19 +20,19 @@ export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
       screen: SettingsIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        headerLeft: <HeaderLeft {...navigation} />,
-        headerRight: <HeaderRight {...navigation} display={true} />,
+        headerLeft: <HeaderLeft />,
+        headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null,
       }),
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
@@ -40,7 +40,7 @@ export const SettingStack = createStackNavigator(
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
@@ -48,7 +48,7 @@ export const SettingStack = createStackNavigator(
     },
     UserEdit: {
       screen: UserEditScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
@@ -58,14 +58,14 @@ export const SettingStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: null,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
     },
     OrderIndex: {
       screen: OrderIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
         headerBackTitle: null,

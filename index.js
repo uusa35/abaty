@@ -4,7 +4,9 @@ import {Root} from './app/Root';
 import {name as appName} from './app.json';
 import * as Sentry from '@sentry/react-native';
 import {isLocal} from "./app/env";
+import { gestureHandlerRootHOC } from 'react-native-gesture-handler'
 console.disableYellowBox = true;
+
 
 if(!isLocal && !__DEV__) {
     console.log('from inside Sentary');

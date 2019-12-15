@@ -30,7 +30,7 @@ export default class NotAvailableElement extends Component {
             borderWidth: 0,
             borderRadius: 5,
           }}
-          titleStyle={{fontFamily: 'cairo', fontWeight: '700'}}
+          titleStyle={{fontFamily: 'cairo'}}
           icon={
             <Icon name="ios-alert" type="ionicon" size={25} color="white" />
           }

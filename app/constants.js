@@ -74,10 +74,10 @@ export const links = {
 };
 
 export const images = {
-  abati: require('./../assets/images/abati.png'),
-  mallr: require('./../assets/images/mallr.png'),
-  escrap: require('./../assets/images/escrap.png'),
-  homekey: require('./../assets/images/homekey.png'),
+  abati: require('./../assets/images/abati.jpeg'),
+  mallr: require('./../assets/images/mallr.jpeg'),
+  escrap: require('./../assets/images/escrap.jpeg'),
+  homekey: require('./../assets/images/homekey.jpeg'),
   pin: require('./../assets/images/pin.png'),
 };
 

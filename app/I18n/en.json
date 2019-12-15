@@ -547,5 +547,6 @@
   "cash_on_delivery" : "Cash On Delivery",
   "confirm_cash_on_delivery" : "Confirm Cash On Delivery Payment.",
   "order_cash_on_delivery_confirmation" : "Please confirm your order shall be paid by Cash On Delivery. an email will be sent to you with your order. we shall call you to confirm order before delivery process.",
-  "order_is_complete" : "Order is Complete"
+  "order_is_complete" : "Order is Complete",
+  "fan_error" : "Process did not work successfully."
 }

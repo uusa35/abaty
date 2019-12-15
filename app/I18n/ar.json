@@ -580,5 +580,6 @@
   "cash_on_delivery" : "الدفع عند الاستلام",
   "confirm_cash_on_delivery" : "تأكيد عملية الدفع عند الاستلام",
   "order_cash_on_delivery_confirmation" : "يرجى التأكد من البيانات قبل الموافقة. سيتم التواصل معكم لتأكيد طلبك عن طريق الدفع عند الاستلام  ",
-  "order_is_complete" : "تم استلام طلبك بنجاح"
+  "order_is_complete" : "تم استلام طلبك بنجاح",
+  "fan_error" : "لم يتم التقييم بنجاح"
 }

@@ -123,7 +123,6 @@ const CartList = ({
             justifyContent: 'space-between',
             alignText: 'center',
             marginTop: 10,
-
             paddingBottom: 20,
           }}>
           <Text
@@ -476,6 +475,7 @@ const CartList = ({
               numberOfLines={3}
               onChangeText={notes => setNotes(notes)}
             />
+
             {coupon && editMode ? (
               <View
                 style={{
@@ -508,7 +508,7 @@ const CartList = ({
                   }}
                   inputStyle={{
                     fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left',
+                    textAlign: 'left',
                   }}
                   shake={true}
                   keyboardType="default"
@@ -516,10 +516,9 @@ const CartList = ({
                 />
                 <Button
                   raised
-                  containerStyle={{marginBottom: 10, width: '90%%'}}
+                  containerStyle={{marginBottom: 10, width: '90%'}}
                   buttonStyle={{
                     backgroundColor: colors.btn_bg_theme_color,
-                    borderRadius: 0,
                   }}
                   title={I18n.t('add_coupon')}
                   titleStyle={{

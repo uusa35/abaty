@@ -11,7 +11,7 @@ import ProductWidget from './ProductWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width} from '../../../constants';
+import {text, width, height} from '../../../constants';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
@@ -93,7 +93,7 @@ const ProductList = ({
   }, [search]);
 
   return (
-    <KeyboardAvoidingView style={{}} behavior="padding" enabled>
+    <KeyboardAvoidingView behavior="padding" enabled>
       {!validate.isEmpty(elements) ? (
         <FlatList
           keyboardShouldPersistTaps="always"
@@ -117,13 +117,15 @@ const ProductList = ({
           }
           onEndReached={() => loadMore()}
           contentContainerStyle={{
-            minHeight: '100%',
             marginBottom: 15,
             justifyContent: 'flex-start',
+            minHeight: '100%',
           }}
           columnWrapperStyle={{
-            justifyContent: 'space-around',
-            alignItems: 'center',
+            justifyContent: 'flex-start',
+            alignSelf: 'center',
+            alignItems: 'flex-start',
+            minHeight: '80%',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',
@@ -189,7 +191,7 @@ const ProductList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{paddingTop: 10, paddingBottom: 10, flex: 1}}>
+              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
                 <Button
                   loading={isLoading}
                   raised
@@ -206,7 +208,12 @@ const ProductList = ({
         />
       ) : (
         <View
-          style={{marginTop: '20%', width: width - 50, alignSelf: 'center'}}>
+          style={{
+            flex: 1,
+            width: width - 50,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}>
           <Button
             raised
             title={I18n.t('no_products')}

@@ -299,6 +299,7 @@ export const HomeStack = createStackNavigator(
     Contactus: {
       screen: ContactusScreen,
       navigationOptions: () => ({
+        headerRight: <HeaderRight displayShare={false} displayCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
         headerBackTitle: null,
       }),

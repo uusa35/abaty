@@ -30,7 +30,7 @@ const TagWidget = ({textColor = 'white', bgColor = 'black', tagName}) => {
         padding: 0,
         fontFamily: text.font,
         fontSize: text.small,
-        fontWeight: '900',
+        // fontWeight: '900',
         color: textColor,
       }}
     />

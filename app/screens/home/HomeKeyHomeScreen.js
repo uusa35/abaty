@@ -19,7 +19,7 @@ import {
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
-import {HOMKEY_ONE_SIGNAL_APP_ID} from './../../../app.json';
+import {HOMKEY_ONE_SIGNAL_APP_ID, HOMEKEY} from './../../../app.json';
 import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
@@ -65,10 +65,12 @@ const HomeKeyHomeScreen = ({
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    OneSignal.init(HOMKEY_ONE_SIGNAL_APP_ID);
-    OneSignal.addEventListener('received', onReceived);
-    OneSignal.addEventListener('opened', onOpened);
-    OneSignal.addEventListener('ids', onIds);
+    if (HOMEKEY) {
+      OneSignal.init(HOMKEY_ONE_SIGNAL_APP_ID);
+      OneSignal.addEventListener('received', onReceived);
+      OneSignal.addEventListener('opened', onOpened);
+      OneSignal.addEventListener('ids', onIds);
+    }
     //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
