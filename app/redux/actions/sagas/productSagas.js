@@ -176,7 +176,10 @@ export function* startGetProductScenario(action) {
 
 export function* startGetSearchProductsScenario(action) {
   try {
-    yield call(enableLoadingBoxedList);
+    yield all([
+      call(enableLoadingBoxedList),
+      put({type: actions.SET_SEARCH_PRODUCTS, payload: []}),
+    ]);
     const {name, searchParams, redirect} = action.payload;
     const elements = yield call(api.getSearchProducts, searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
@@ -185,25 +188,20 @@ export function* startGetSearchProductsScenario(action) {
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
-        yield all([
-          put(
-            NavigationActions.navigate({
-              routeName: 'SearchProductIndex',
-              params: {name: name ? name : I18n.t('products')},
-            }),
-          ),
-          call(disableLoadingBoxedList),
-        ]);
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'SearchProductIndex',
+            params: {name: name ? name : I18n.t('products')},
+          }),
+        );
       }
     } else {
       throw products;
     }
-    yield call(disableLoadingBoxedList);
   } catch (e) {
-    yield all([
-      call(disableLoadingBoxedList),
-      call(enableWarningMessage, I18n.t('no_products')),
-    ]);
+    yield all([call(enableWarningMessage, I18n.t('no_products'))]);
+  } finally {
+    yield call(disableLoadingBoxedList);
   }
 }
 

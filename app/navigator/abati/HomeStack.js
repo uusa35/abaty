@@ -49,6 +49,7 @@ import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassified
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -117,7 +118,7 @@ export const HomeStack = createStackNavigator(
     PaymentIndex: {
       screen: PaymentIndexScreen,
       navigationOptions: () => ({
-        HeaderRight: <HeaderLeft />,
+        headerRight: <HeaderRight showCountry={false} displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null,
       }),
@@ -255,7 +256,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     SearchProductIndex: {
-      screen: ProductIndexScreen,
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,

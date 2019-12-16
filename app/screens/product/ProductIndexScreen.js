@@ -8,7 +8,6 @@ import validate from 'validate.js';
 const ProductIndexScreen = ({products, searchParams}) => {
   const [currentElements, setCurrentElements] = useState([]);
 
-  console.log('productIndexScreen');
   useMemo(() => {
     if (validate.isEmpty(currentElements)) {
       setCurrentElements(products);

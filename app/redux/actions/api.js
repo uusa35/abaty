@@ -157,7 +157,7 @@ export async function getService(params) {
 
 export async function getSearchProducts(params) {
   return await axiosInstance
-    .get(`search/product`, {params})
+    .get(`search/product`, {params: params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }
