@@ -14,7 +14,7 @@ import {
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
 import {commentStoreConstrains, registerConstrains} from '../../../constants';
-import {GoogleSignin} from 'react-native-google-signin';
+import {GoogleSignin} from '@react-native-community/google-signin';
 import {
   setHomeBrands,
   startGetCompanyScenario,
@@ -52,6 +52,9 @@ export function* startGetHomeCategoriesScenario(action) {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
   }
 }
@@ -69,6 +72,9 @@ export function* startGetParentCategoriesScenario() {
       yield put({type: actions.SET_CATEGORIES, payload: []});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     console.log('eee', e);
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
@@ -81,6 +87,9 @@ export function* setSettings() {
       yield put({type: actions.SET_SETTINGS, payload: settings});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
   }
 }
@@ -94,6 +103,9 @@ export function* setCommercials() {
       yield put({type: actions.SET_COMMERCIALS, payload: []});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
   }
 }
@@ -105,6 +117,9 @@ export function* setSlides() {
       yield all([put({type: actions.SET_HOME_SLIDERS, payload: slides})]);
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_slides'))]);
   }
 }
@@ -118,6 +133,9 @@ export function* getVideos() {
       yield put({type: actions.SET_VIDEOS, payload: []});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
   }
 }
@@ -131,6 +149,9 @@ export function* setCountries() {
       throw I18n.t('no_countries');
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
   }
 }
@@ -151,6 +172,9 @@ export function* getCountry(country_id = null) {
       yield call(startSetCountryScenario, {payload: country});
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   }
 }
@@ -168,6 +192,9 @@ export function* startSetCountryScenario(action) {
       ]);
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   }
 }
@@ -201,10 +228,12 @@ export function* startDeepLinkingScenario() {
       }
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      // call(enableErrorMessage, I18n.t('no_deep_product')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield; // call(enableErrorMessage, I18n.t('no_deep_product'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -248,11 +277,13 @@ export function* startRefetchHomeElementsScenario() {
       }),
     ]);
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     console.log('the ee', e);
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('refetch_home_error')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('refetch_home_error'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -265,10 +296,12 @@ export function* setHomeSplashes() {
       yield put({type: actions.SET_HOME_SPLASHES, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_splashes')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('no_splashes'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -292,6 +325,9 @@ export function* startAddToCartScenario(action) {
       ]);
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -309,10 +345,12 @@ export function* setTotalCartValue(cart) {
       throw 'Cart is Empty';
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('cart_is_empty')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('cart_is_empty'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -335,10 +373,12 @@ export function* setGrossTotalCartValue(values) {
       __DEV__ ? console.log('the grossTotal Now is ::::', grossTotal) : null;
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('cart_is_empty_gross_total')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -371,10 +411,12 @@ export function* startRemoveFromCartScenario(action) {
       ]);
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('error_removing_product_from_cart')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('error_removing_product_from_cart'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -412,10 +454,12 @@ export function* startClearCartScenario() {
       put({type: actions.SET_GROSS_TOTAL_CART, payload: 0}),
     ]);
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('authenticated_error')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('authenticated_error'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -449,6 +493,9 @@ export function* startSubmitCartScenario(action) {
         : null;
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -471,6 +518,9 @@ export function* startGetCouponScenario(action) {
       throw I18n.t('coupon_is_not_correct');
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -500,6 +550,9 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
       throw I18n.t('information_you_entered_not_correct');
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -522,6 +575,9 @@ export function* startCreateTapPaymentUrlScenario(action) {
       throw url;
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -545,6 +601,9 @@ export function* startCreateCashOnDeliveryPayment(action) {
       throw element;
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -559,6 +618,9 @@ export function* startBecomeFanScenario(action) {
         : yield call(enableWarningMessage, I18n.t('fan_deactivated'));
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     if (isLocal) {
       console.log('the e', e);
     }
@@ -584,6 +646,9 @@ export function* startAddCommentScenario(action) {
         : null;
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('the e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -593,6 +658,7 @@ export function* startGoogleLoginScenario() {
     const signIn = yield call(GoogleSignin.hasPlayServices);
     if (signIn) {
       const userInfo = yield call(GoogleSignin.signIn);
+      console.log('userInfo', userInfo);
       if (!validate.isEmpty(userInfo)) {
         const {email, name} = userInfo.user;
         const user = yield call(api.googleAuthenticate, {email, name});
@@ -614,8 +680,12 @@ export function* startGoogleLoginScenario() {
       }
     }
   } catch (e) {
-    console.log('the error', e);
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -628,10 +698,15 @@ export function* getPages() {
       yield put({type: actions.SET_PAGES, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_pages')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    if (isLocal) {
+      console.log('the error', e);
+    }
+    yield call(enableErrorMessage, I18n.t('no_pages'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -644,10 +719,12 @@ export function* getTags() {
       yield put({type: actions.SET_TAGS, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_tags')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('no_tags'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -685,9 +762,11 @@ export function* startGetCategoryAndGoToNavChildren(action) {
       });
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_items')),
-    ]);
+    if (isLocal) {
+      console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('no_items'));
+  } finally {
+    yield call(disableLoading);
   }
 }

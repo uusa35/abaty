@@ -11,7 +11,7 @@ import {getProduct} from '../../../redux/actions/product';
 import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, text} from '../../../constants';
+import {images, text, touchOpacity} from '../../../constants';
 import TagWidget from './../TagWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
@@ -23,6 +23,7 @@ const ProductWidget = ({element, showName = false}) => {
 
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={element.id}
       style={widgetStyles.productServiceWidget}
       onPress={() =>

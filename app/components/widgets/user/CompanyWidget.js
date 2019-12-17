@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getCompany} from '../../../redux/actions/user';
 import FastImage from 'react-native-fast-image';
-import {images} from '../../../constants';
+import {images, touchOpacity} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
@@ -14,6 +14,7 @@ const CompanyWidget = ({element, showName = true}) => {
   return (
     <View animation="pulse" easing="ease-out" key={element.id}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.btnStyle}
         onPress={() =>
           dispatch(

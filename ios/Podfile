@@ -69,6 +69,10 @@ target 'abaty' do
   pod 'lottie-ios', :path => '../node_modules/lottie-ios'
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
   # pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+  pod 'GoogleSignIn', '~> 5.0.2'
+  # add pods for desired Firebase products
+  # https://firebase.google.com/docs/ios/setup#available-pods
+
 
   target 'abatyTests' do
     inherit! :search_paths

@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:352297938172:ios:8d61e2889861fa77</string>
+	<string>1:352297938172:ios:9c04b9595bb01f4651bb79</string>
 	<key>DATABASE_URL</key>
 	<string>https://abati-6e86d.firebaseio.com</string>
 </dict>

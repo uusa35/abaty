@@ -80,7 +80,11 @@ export function* startGetClassifiedScenario(action) {
     yield call(enableLoadingContent);
     const {id, token, redirect} = action.payload;
     const element = yield call(api.getClassified, {id, token});
-    if (!validate.isEmpty(element) && validate.isObject(element)) {
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
       yield put({type: actions.SET_CLASSIFIED, payload: element});
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(

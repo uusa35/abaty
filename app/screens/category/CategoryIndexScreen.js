@@ -20,6 +20,7 @@ const CategoryIndexScreen = ({
         <CategoriesList
           elements={homeCategories}
           columns={2}
+          showBtn={true}
           type={ABATI || MALLR ? 'product' : 'classified'}
         />
       </View>

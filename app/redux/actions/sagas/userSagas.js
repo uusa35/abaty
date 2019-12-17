@@ -24,7 +24,11 @@ export function* startGetDesignerScenario(action) {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const element = yield call(api.getUser, id);
-    if (!validate.isEmpty(element) && validate.isObject(element)) {
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
       yield all([
         put({type: actions.SET_DESIGNER, payload: element}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
@@ -66,7 +70,11 @@ export function* startGetShopperScenario(action) {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const element = yield call(api.getUser, id);
-    if (!validate.isEmpty(element) && validate.isObject(element)) {
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
       yield all([
         put({type: actions.SET_DESIGNER, payload: element}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
@@ -107,7 +115,11 @@ export function* startGetCompanyScenario(action) {
     yield call(enableLoadingProfile);
     const {id, searchParams, redirect} = action.payload;
     const element = yield call(api.getUser, id);
-    if (!validate.isEmpty(element) && validate.isObject(element)) {
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
       yield all([
         put({type: actions.SET_COMPANY, payload: element}),
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),

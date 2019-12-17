@@ -14,7 +14,11 @@ import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images} from '../../../constants';
+import {
+  images,
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants';
 import {useNavigation} from 'react-navigation-hooks';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
@@ -39,6 +43,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() => navigate('CategoryIndex')}>
         <View style={widgetStyles.titleWrapper}>
@@ -60,9 +65,11 @@ const ProductCategoryHorizontalRoundedWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             key={i}
             style={widgetStyles.btnStyle}
             onPress={() => handleClick(c)}>

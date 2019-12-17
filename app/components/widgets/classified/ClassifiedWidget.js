@@ -9,7 +9,7 @@ import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, width} from '../../../constants';
+import {images, touchOpacity, width} from '../../../constants';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -22,6 +22,7 @@ const ClassifiedWidget = ({element, showName = false}) => {
 
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={element.id}
       style={[
         widgetStyles.btnStyle,

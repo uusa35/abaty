@@ -11,7 +11,7 @@ import {getService} from '../../../redux/actions/service';
 import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, text} from '../../../constants';
+import {images, text, touchOpacity} from '../../../constants';
 import TagWidget from './../TagWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
@@ -22,6 +22,7 @@ const ServiceWidget = ({element, showName = false}) => {
   const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={element.id}
       style={widgetStyles.productServiceWidget}
       onPress={() =>

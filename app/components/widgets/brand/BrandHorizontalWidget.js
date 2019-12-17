@@ -14,6 +14,7 @@ import widgetStyles from './../widgetStyles';
 import BrandWidget from './BrandWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import {rightHorizontalContentInset, touchOpacity} from '../../../constants';
 
 const BrandHorizontalWidget = ({elements, title}) => {
   const {navigate} = useNavigation();
@@ -21,6 +22,7 @@ const BrandHorizontalWidget = ({elements, title}) => {
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() => navigate('BrandIndex')}>
         <View style={widgetStyles.titleWrapper}>
@@ -42,6 +44,7 @@ const BrandHorizontalWidget = ({elements, title}) => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <BrandWidget element={c} key={i} />

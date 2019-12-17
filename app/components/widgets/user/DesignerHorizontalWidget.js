@@ -8,7 +8,11 @@ import {getDesigner, getSearchDesigners} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {
+  images,
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
@@ -25,6 +29,7 @@ const DesignerHorizontalWidget = ({
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() =>
           dispatch(
@@ -54,10 +59,12 @@ const DesignerHorizontalWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={widgetStyles.wrapper}>
+        contentInset={{right: rightHorizontalContentInset}}
+        style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <View animation="pulse" easing="ease-out" key={c.id}>
             <TouchableOpacity
+              activeOpacity={touchOpacity}
               key={i}
               style={widgetStyles.btnStyle}
               onPress={() =>

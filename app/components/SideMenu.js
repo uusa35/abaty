@@ -56,6 +56,15 @@ const SideMeu = ({
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
           <StatusBar barStyle="dark-content" />
+          <View style={{alignItems: 'flex-start', width: '100%'}}>
+            <Icon
+              name="close"
+              type="evilicon"
+              size={30}
+              color="lightgrey"
+              onPress={() => navigation.closeDrawer()}
+            />
+          </View>
           {showLogo ? (
             <FastImage
               source={{uri: logo}}

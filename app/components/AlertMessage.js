@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {text} from './../constants';
+import {isIOS, text} from './../constants';
 import PropTypes from 'prop-types';
 import Toaster from 'react-native-toaster';
 import validate from 'validate.js';
@@ -14,14 +14,15 @@ const AlertMessage = ({message}) => {
     container: {
       opacity: 0.9,
       backgroundColor: message.color,
-      minHeight: 80,
+      paddingTop: isIOS ? '5%' : '1%',
+      minHeight: 90,
       justifyContent: 'center',
       alignItems: 'center',
     },
     text: {
       color: 'white',
       fontFamily: 'Tajawal-Medium',
-      fontSize: text.medium,
+      fontSize: text.large,
       fontWeight: 'bold',
       textAlign: 'center',
     },

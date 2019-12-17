@@ -10,7 +10,7 @@ import widgetStyles from '../widgetStyles';
 import {getClassified} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, text} from '../../../constants';
+import {images, text, touchOpacity} from '../../../constants';
 import TagWidget from './../TagWidget';
 import {getConvertedFinalPrice} from '../../../helpers';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -27,6 +27,7 @@ const ClassifiedWidgetHorizontal = ({
   const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={element.id}
       style={[
         widgetStyles.btnStyle,

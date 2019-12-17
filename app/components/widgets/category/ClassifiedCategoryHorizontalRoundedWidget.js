@@ -13,7 +13,11 @@ import {getSearchClassifieds} from '../../../redux/actions/classified';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {
+  images,
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
@@ -41,6 +45,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>
       {showTitle ? (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           style={widgetStyles.titleContainer}
           onPress={() => navigate('CategoryIndex')}>
           <View style={widgetStyles.titleWrapper}>
@@ -63,9 +68,11 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             key={i}
             style={widgetStyles.btnStyle}
             onPress={() => handleClick(c)}>

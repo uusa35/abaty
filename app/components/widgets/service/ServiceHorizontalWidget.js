@@ -9,6 +9,7 @@ import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
+import {rightHorizontalContentInset, touchOpacity} from '../../../constants';
 
 const ServiceHorizontalWidget = ({elements, showName, title}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -16,6 +17,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() =>
           dispatch(
@@ -44,6 +46,7 @@ const ServiceHorizontalWidget = ({elements, showName, title}) => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <ServiceWidget element={c} showName={showName} key={i} />

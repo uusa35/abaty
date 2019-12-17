@@ -80,7 +80,7 @@ PODS:
   - lottie-react-native (3.3.2):
     - lottie-ios (~> 3.1.3)
     - React
-  - OneSignal (2.11.2)
+  - OneSignal (2.12.2)
   - QBImagePickerController (3.4.0)
   - RCTRequired (0.61.5)
   - RCTRestart (0.0.12):
@@ -262,10 +262,10 @@ PODS:
     - React
   - react-native-maps (0.25.0):
     - React
-  - react-native-netinfo (4.6.0):
+  - react-native-netinfo (5.0.0):
     - React
-  - react-native-onesignal (3.5.0):
-    - OneSignal (= 2.11.2)
+  - react-native-onesignal (3.6.0):
+    - OneSignal (= 2.12.2)
     - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (5.1.7):
     - React
@@ -317,7 +317,7 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - rn-fetch-blob (0.10.16):
     - React-Core
-  - RNCAsyncStorage (1.6.3):
+  - RNCAsyncStorage (1.7.1):
     - React
   - RNDeviceInfo (2.3.2):
     - React
@@ -325,9 +325,9 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.5.0):
+  - RNGestureHandler (1.5.2):
     - React
-  - RNGoogleSignin (2.1.0):
+  - RNGoogleSignin (3.0.3):
     - GoogleSignIn (~> 5.0.0)
     - React
   - RNI18n (2.0.15):
@@ -344,9 +344,9 @@ PODS:
     - Sentry (~> 4.4.0)
   - RNShare (1.2.1):
     - React
-  - RNSnackbar (2.0.3):
+  - RNSnackbar (2.0.4):
     - React
-  - RNSVG (9.13.3):
+  - RNSVG (9.13.6):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -375,6 +375,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - GoogleSignIn (~> 5.0.2)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - QBImagePickerController (from `../node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePickerController.podspec`)
@@ -418,7 +419,7 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNGoogleSignin (from `../node_modules/react-native-google-signin`)
+  - "RNGoogleSignin (from `../node_modules/@react-native-community/google-signin`)"
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -545,7 +546,7 @@ EXTERNAL SOURCES:
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
-    :path: "../node_modules/react-native-google-signin"
+    :path: "../node_modules/@react-native-community/google-signin"
   RNI18n:
     :path: "../node_modules/react-native-i18n"
   RNImageCropPicker:
@@ -587,7 +588,7 @@ SPEC CHECKSUMS:
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   lottie-react-native: 2a1a82bb326ae51331a5520de0cf706733c6db69
-  OneSignal: 4e3e68bb6c29975286a2fa910cb49132bc6e20bb
+  OneSignal: b2c1511c6b5db2d3b0ce1859f574dcf190dde5f3
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTRestart: 3abdd55016c31254b996e0a55cc14cc2544fa3c1
@@ -604,8 +605,8 @@ SPEC CHECKSUMS:
   react-native-google-maps: 88d750ad441b19c24885f20d43a55ecac25939b5
   react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
   react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
-  react-native-netinfo: fa32a5bb986924e9be82a261c262039042dde81e
-  react-native-onesignal: 663944f5290d758d138b65ab6e60cf7d9c8e8f8f
+  react-native-netinfo: 841c2a83fe7df998fed56fd48b73229f17a5aa5b
+  react-native-onesignal: 39d79554037ec5842a810efe1bb0343e332c757d
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a
@@ -622,18 +623,18 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
-  RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
+  RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
   RNDeviceInfo: 17e34f6dd902f08d88cbe2c0b7a01be948d43641
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
-  RNGoogleSignin: bb1393dec8541d997fd12b7b8f43481868a34e93
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
+  RNGoogleSignin: a10b849c165088c737d4465de6c2062f24d06002
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: e1d8c3381e5b05a1bdcd13ea57a4f1c020a09cef
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSentry: b63ba6a29ee142b5c3221896be8ff6cda587e03f
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
-  RNSnackbar: 5ce7c6c100fde59068e9135397760d7cee299c2a
-  RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
+  RNSnackbar: 2f53c450de4f74f3698f3be044130c32fb8edf71
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
@@ -644,6 +645,6 @@ SPEC CHECKSUMS:
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: d13c05d0969e9581ef70d73c2ac9df635c10723f
+PODFILE CHECKSUM: c2b03fab2cc1bc656866ef8ad9960d28ab605605
 
 COCOAPODS: 1.8.4

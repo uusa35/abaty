@@ -9,6 +9,7 @@ import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {rightHorizontalContentInset} from '../../../constants';
 
 const ProductHorizontalWidget = ({
   elements,
@@ -21,6 +22,7 @@ const ProductHorizontalWidget = ({
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity
+        activeOpacity={0.8}
         style={widgetStyles.titleContainer}
         onPress={() =>
           showLink
@@ -53,6 +55,7 @@ const ProductHorizontalWidget = ({
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
           <ProductWidget element={c} showName={showName} key={i} />

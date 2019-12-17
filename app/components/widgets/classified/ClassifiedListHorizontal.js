@@ -8,7 +8,12 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width} from '../../../constants';
+import {
+  rightHorizontalContentInset,
+  text,
+  touchOpacity,
+  width,
+} from '../../../constants';
 import {Button, Icon} from 'react-native-elements';
 import {map} from 'lodash';
 import validate from 'validate.js';
@@ -43,6 +48,7 @@ const ClassifiedListHorizontal = ({
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() => {
           dispatch(
@@ -73,6 +79,7 @@ const ClassifiedListHorizontal = ({
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
+          contentInset={{right: rightHorizontalContentInset}}
           style={[widgetStyles.wrapper, {}]}>
           {map(elements, (c, i) => (
             <ClassifiedWidgetHorizontal

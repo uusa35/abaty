@@ -1,11 +1,12 @@
 import React from 'react';
 import {Linking, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {width, images} from '../../../constants';
+import {width, images, touchOpacity} from '../../../constants';
 
 const SlideWidget = ({slide}) => {
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       onPress={() => {
         Linking.openURL(slide.path ? slide.path : slide.url);
       }}

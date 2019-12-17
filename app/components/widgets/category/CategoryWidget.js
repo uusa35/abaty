@@ -54,7 +54,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
         <Button
           onPress={() => handleClick()}
           raised
-          containerStyle={{width: '90%', marginBottom: 10, marginTop: 10}}
+          containerStyle={{width: '95%', marginBottom: 10, marginTop: 10}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
           title={element.name}
           titleStyle={{

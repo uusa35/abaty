@@ -5,7 +5,7 @@ import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
-import {images} from '../../../constants';
+import {images, touchOpacity} from '../../../constants';
 
 const BrandWidget = ({
   element,
@@ -16,6 +16,7 @@ const BrandWidget = ({
   const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={element.id}
       style={[
         widgetStyles.btnStyle,

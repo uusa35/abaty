@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {images, text} from './../../../constants';
+import {images, text, touchOpacity} from './../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getCompany} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
@@ -20,6 +20,7 @@ const CompanyWidgetHorizontal = ({user, showName}) => {
   const {dispatch} = useContext(DispatchContext);
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       key={user.id}
       style={[
         widgetStyles.btnStyle,
