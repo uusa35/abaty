@@ -74,6 +74,8 @@ target 'abaty' do
   # https://firebase.google.com/docs/ios/setup#available-pods
 
 
+  pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
+
   target 'abatyTests' do
     inherit! :search_paths
     # Pods for testing

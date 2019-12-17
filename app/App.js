@@ -56,8 +56,9 @@ const App = ({
     dispatch(appBootstrap());
     codePush.checkForUpdate().then(update => {
       if (!update) {
-        console.debug('The app is up to date!');
+        // console.debug('The app is up to date!');
       } else {
+        // console.log('there is an update here');
         // dispatch(resetStore());
       }
     });

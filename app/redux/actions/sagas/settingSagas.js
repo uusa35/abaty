@@ -3,9 +3,7 @@ import I18n from './../../../I18n';
 import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
 import {displayName} from './../../../../app';
-import validate from 'validate.js';
-import * as api from '../api';
-import {isArray} from 'lodash';
+import {isLocal} from '../../../env';
 
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
@@ -50,10 +48,14 @@ export function* toggleGuest(guest) {
 export function* setDeviceId() {
   try {
     let deviceId = DeviceInfo.getUniqueID(); // get the deviceID
-    __DEV__ ? console.log('device_id', deviceId) : null;
+    if (isLocal) {
+      console.log('device_id', deviceId);
+    }
     yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
   } catch (e) {
-    console.log('the e from device id', e);
+    if (isLocal) {
+      console.log('the e from device id', e);
+    }
     // yield call(enableErrorMessage, I18n.t('no_settings_from_catch'));
   }
 }

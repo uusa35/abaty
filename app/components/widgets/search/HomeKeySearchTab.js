@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useMemo} from 'react';
 import {Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
@@ -10,7 +10,7 @@ import {startClassifiedSearching} from '../../../redux/actions/classified';
 
 const HomeKeySearchTab = ({elements, main_bg}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+  const {colors, categories, lang} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
   const parentCategories = map(take(elements, 3), (e, i) => {
     if (e.isParent) {
@@ -22,6 +22,19 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
     }
   });
   const [routes, setRoutes] = useState(parentCategories);
+
+  useMemo(() => {
+    const parentCategories = map(take(elements, 3), (e, i) => {
+      if (e.isParent) {
+        return {
+          key: i,
+          title: e.name.substring(0, 15),
+          category: e,
+        };
+      }
+    });
+    setRoutes(parentCategories);
+  }, [elements, lang]);
 
   const SearchTab = ({element}) => {
     return (
