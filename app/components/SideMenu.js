@@ -61,7 +61,7 @@ const SideMeu = ({
               name="close"
               type="evilicon"
               size={30}
-              color="lightgrey"
+              color="black"
               onPress={() => navigation.closeDrawer()}
             />
           </View>

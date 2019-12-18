@@ -4,6 +4,7 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import React from 'react';
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
+import {HeaderLeft} from '../../components/HeaderLeft';
 
 export const SearchStack = createStackNavigator(
   {
@@ -13,6 +14,7 @@ export const SearchStack = createStackNavigator(
         // header: null,
         headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
         headerRight: <HeaderRight showCountry={true} />,
+        headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
         headerBackTitle: null,
       }),
     },

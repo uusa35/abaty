@@ -326,7 +326,7 @@ export const HomeStack = createStackNavigator(
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft  />,
+        // headerzLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
         headerBackTitle: null,

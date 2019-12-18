@@ -78,8 +78,8 @@ export function* startGetHomeClassifiedsScenario(action) {
 export function* startGetClassifiedScenario(action) {
   try {
     yield call(enableLoadingContent);
-    const {id, token, redirect} = action.payload;
-    const element = yield call(api.getClassified, {id, token});
+    const {id, api_token, redirect} = action.payload;
+    const element = yield call(api.getClassified, {id, api_token});
     if (
       !validate.isEmpty(element) &&
       validate.isObject(element) &&

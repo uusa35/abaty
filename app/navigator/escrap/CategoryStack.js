@@ -9,13 +9,15 @@ import {HeaderRight} from '../../components/HeaderRight';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
+import {HeaderLeft} from '../../components/HeaderLeft';
 
 export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
       screen: ParentCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft {...navigation} />,
+        headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerTitle: (
           <HeaderMiddle
             title={

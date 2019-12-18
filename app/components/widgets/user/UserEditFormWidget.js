@@ -30,7 +30,7 @@ const UserEditFormWidget = ({
     !validate.isEmpty(auth) ? auth.mobile : null,
   );
   const [address, setAddress] = useState(
-    !validate.isEmpty(auth) ? auth.email : null,
+    !validate.isEmpty(auth) ? auth.address : null,
   );
   const [description, setDescription] = useState(
     !validate.isEmpty(auth) ? auth.description : null,
@@ -52,7 +52,7 @@ const UserEditFormWidget = ({
       includeExif: true,
     }).then(image => {
       setImage(image);
-      setSampleLogo(image.sourceURL);
+      setSampleLogo(image.path);
     });
   });
 
@@ -123,6 +123,7 @@ const UserEditFormWidget = ({
           }}
           shake={true}
           keyboardType="default"
+          defaultValue={name ? name : null}
           onChangeText={text => setName(text)}
           placeholder={name ? name : I18n.t('name')}
         />
@@ -141,6 +142,7 @@ const UserEditFormWidget = ({
           }}
           shake={true}
           keyboardType="email-address"
+          defaultValue={email ? email : null}
           onChangeText={text => setEmail(text)}
           placeholder={email ? email : I18n.t('email')}
         />
@@ -159,6 +161,7 @@ const UserEditFormWidget = ({
           }}
           shake={true}
           keyboardType="number-pad"
+          defaultValue={mobile ? mobile : null}
           onChangeText={text => setMobile(text)}
           placeholder={mobile ? mobile : I18n.t('mobile')}
         />
@@ -207,6 +210,7 @@ const UserEditFormWidget = ({
           numberOfLines={3}
           shake={true}
           keyboardType="default"
+          defaultValue={address ? address : null}
           onChangeText={text => setAddress(text)}
           placeholder={address ? address : I18n.t('full_address')}
         />
@@ -228,6 +232,7 @@ const UserEditFormWidget = ({
           numberOfLines={3}
           shake={true}
           keyboardType="default"
+          defaultValue={description ? description : null}
           onChangeText={text => setDescription(text)}
           placeholder={description ? description : I18n.t('description')}
         />

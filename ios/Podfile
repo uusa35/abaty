@@ -55,9 +55,10 @@ target 'abaty' do
   # pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'QBImagePickerController', :path => '../node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePickerController.podspec'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
-  pod 'react-native-onesignal',
-      :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",
-      :inhibit_warnings => true
+  # pod 'react-native-onesignal',
+  #    :path => "../node_modules/react-native-onesignal/react-native-onesignal.podspec",
+  #    :inhibit_warnings => true
+   pod 'OneSignal', '>= 2.9.3', '< 3.0'
   pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'

@@ -1,4 +1,10 @@
-import React, {useState, useMemo, useCallback, useContext} from 'react';
+import React, {
+  useState,
+  useMemo,
+  useCallback,
+  useContext,
+  useEffect,
+} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -115,6 +121,10 @@ const ClassifiedList = ({
       );
     }
   }, [refresh]);
+
+  useEffect(() => {
+    setElements(classifieds);
+  }, []);
 
   useMemo(() => {
     if (search.length > 0) {
