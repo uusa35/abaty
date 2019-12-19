@@ -32,14 +32,14 @@ const ClassifiedStoreScreen = ({
   classifiedProps,
   navigation,
 }) => {
-  const [name, setName] = useState(isLocal ? 'testing' : '');
+  const [name, setName] = useState(isLocal ? 'testing' : 'teseting');
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null,
   );
-  const [price, setPrice] = useState(isLocal ? '10' : '');
+  const [price, setPrice] = useState(isLocal ? '10' : 'testing ');
   const {params} = navigation.state;
   const [address, setAddress] = useState(
-    !validate.isEmpty(params) ? params.address : '',
+    !validate.isEmpty(params) ? params.address : 'testing',
   );
   const [longitude, setLongitude] = useState(
     !validate.isEmpty(params) ? params.longitude : '',
@@ -47,7 +47,7 @@ const ClassifiedStoreScreen = ({
   const [latitude, setLatitude] = useState(
     !validate.isEmpty(params) ? params.latitude : '',
   );
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState('another testing');
   const [images, setImages] = useState('');
   const [image, setImage] = useState('');
   const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);

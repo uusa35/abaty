@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import MapView, {Marker} from 'react-native-maps';
 import I18n, {isRTL} from '../../I18n';
-import {text, width, images} from '../../constants';
+import {text, width, images, height} from '../../constants';
 import {Button, Input} from 'react-native-elements';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {axiosInstance} from '../../redux/actions/api';
@@ -56,12 +56,13 @@ const ChooseAddressScreen = () => {
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
+        minHeight: height,
       }}>
       <View style={{width: '100%', flex: 1, marginBottom: 100}}>
         <MapView
           style={{
             width,
-            height: '100%',
+            height: height / 2,
           }}
           title={I18n.t('google_map')}
           zoomEnabled={true}

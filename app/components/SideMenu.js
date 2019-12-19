@@ -55,13 +55,16 @@ const SideMeu = ({
           automaticallyAdjustContentInsets={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
-          <StatusBar barStyle="dark-content" />
-          <View style={{alignItems: 'flex-start', width: '100%'}}>
+          <StatusBar
+            barStyle="light-content"
+            backgroundColor={colors.menu_theme_bg}
+          />
+          <View style={{alignItems: 'flex-end', width: '100%'}}>
             <Icon
               name="close"
               type="evilicon"
               size={30}
-              color="black"
+              color={colors.main_theme_color}
               onPress={() => navigation.closeDrawer()}
             />
           </View>
