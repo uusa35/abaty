@@ -264,6 +264,9 @@ PODS:
     - React
   - react-native-netinfo (5.0.0):
     - React
+  - react-native-onesignal (3.6.1):
+    - OneSignal (= 2.12.3)
+    - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (5.1.7):
     - React
   - react-native-spinkit (1.4.1):
@@ -395,6 +398,7 @@ DEPENDENCIES:
   - react-native-google-places (from `../node_modules/react-native-google-places`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
   - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - react-native-video (from `../node_modules/react-native-video/react-native-video.podspec`)
@@ -500,6 +504,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-onesignal:
+    :path: "../node_modules/react-native-onesignal"
   react-native-pdf:
     :path: "../node_modules/react-native-pdf"
   react-native-spinkit:
@@ -601,6 +607,7 @@ SPEC CHECKSUMS:
   react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
   react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
   react-native-netinfo: 841c2a83fe7df998fed56fd48b73229f17a5aa5b
+  react-native-onesignal: 9ff0097cc4af1bb141eb2c4774d65b43045dcbb0
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a

@@ -162,6 +162,9 @@ const ClassifiedFilterScreen = ({
 
   const handleParent = useCallback(p => {
     setSelectedCategory(p);
+    setMin(p.min);
+    setMax(p.max);
+    setPriceRange([p.min, p.max]);
     if (!validate.isEmpty(p.children)) {
       setSelectedSubCategory(first(p.children));
     }

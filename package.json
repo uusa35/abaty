@@ -55,7 +55,7 @@
     "react-native-maps-directions": "^1.7.0",
     "react-native-modal": "^11.1.0",
     "react-native-offline": "^5.0.0",
-    "react-native-onesignal": "^3.2.14",
+    "react-native-onesignal": "^3.6.1",
     "react-native-parallax-view": "^2.0.6",
     "react-native-pdf": "^5.1.3",
     "react-native-popup-menu": "^0.15.6",

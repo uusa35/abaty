@@ -53,9 +53,9 @@ const widgetStyles = StyleSheet.create({
     shadowColor: '#000',
   },
   productServiceWidget: {
-    // width: '49%',
+    width: '49%',
     minWidth: 180,
-    // maxWidth: 200,
+    maxWidth: 200,
     margin: 5,
     borderWidth: 0.25,
     borderColor: 'lightgrey',

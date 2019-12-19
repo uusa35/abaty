@@ -7772,10 +7772,10 @@ react-native-offline@^5.0.0:
     redux "4.x"
     redux-saga "^1.0.2"
 
-react-native-onesignal@^3.2.14:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.0.tgz#775f33ba7b4fcd825d142df24ffe8c6b1b9ec009"
-  integrity sha512-MwHFI//EoaDCaDEroQPSnaqwWRhOm6CSO55wGhxfvL4YJ+Zedmw6UXw/xj7/MHhQNvDZFOxqeYmBWNABra9WwQ==
+react-native-onesignal@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.1.tgz#301a5849ee3bab2e297980d8aa293a61263e038e"
+  integrity sha512-2Ci0xZhk4mpt+UpeCyz++VV31DisBMR0GpOzfBGk67AZyN+BNOY50Nhr11f4mQFO+un7i/18I2hpjAF//gYdvg==
   dependencies:
     invariant "^2.2.2"
 

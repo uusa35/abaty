@@ -15,8 +15,8 @@ export const FavoriteStack = createStackNavigator(
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
       navigationOptions: () => ({
-        // headerLeft: <HeaderLeft  />,
-        // headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerLeft: <HeaderLeft showCart={false} showSideMenu={false} />,
+        headerRight: <HeaderRight showCountry={false} showFilter={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),

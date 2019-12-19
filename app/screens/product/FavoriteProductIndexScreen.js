@@ -1,45 +1,42 @@
 import React, {useState, useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
-import {text, width} from '../../constants';
+import {isIOS, text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
+import {map} from 'lodash';
+import ProductWidget from '../../components/widgets/product/ProductWidget';
 
 const FavoriteProductIndexScreen = ({
-  productFavorites,
+  favorites,
   searchParams,
   colors,
   navigation,
 }) => {
-  const [currentProductFavorites, setCurrentProductFavorites] = useState(
-    productFavorites,
-  );
+  const [currentFavorites, setCurrentFavorites] = useState(favorites);
 
   useMemo(() => {
-    if (validate.isEmpty(currentProductFavorites)) {
-      setCurrentProductFavorites(productFavorites);
+    if (validate.isEmpty(currentFavorites)) {
+      setCurrentFavorites(favorites);
     } else {
-      if (productFavorites.length !== currentProductFavorites.length) {
-        setCurrentProductFavorites(productFavorites);
+      if (favorites.length !== currentFavorites.length) {
+        setCurrentFavorites(favorites);
       }
     }
-  }, [currentProductFavorites, productFavorites]);
+  }, [currentFavorites, favorites]);
   return (
-    <View>
-      {!validate.isEmpty(currentProductFavorites) ? (
-        <ProductList
-          products={currentProductFavorites}
-          showName={true}
-          showSearch={false}
-          title={I18n.t('wishlist')}
-          showTitle={false}
-          showMore={false}
-          showFooter={false}
-          searchElements={searchParams}
-        />
+    <ScrollView
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 150}}>
+      {!validate.isEmpty(currentFavorites) ? (
+        map(currentFavorites, (c, i) => (
+          <ProductWidget element={c} showName={true} />
+        ))
       ) : (
         <View
           style={{
@@ -68,13 +65,13 @@ const FavoriteProductIndexScreen = ({
           />
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    productFavorites: state.productFavorites,
+    favorites: state.productFavorites,
     searchParams: state.searchParams,
     colors: state.settings.colors,
   };
@@ -83,7 +80,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(FavoriteProductIndexScreen);
 
 FavoriteProductIndexScreen.propTypes = {
-  productFavorites: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

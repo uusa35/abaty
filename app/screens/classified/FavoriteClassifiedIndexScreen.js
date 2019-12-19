@@ -1,33 +1,38 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
 import {text, width} from '../../constants';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
-import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
-import {NavigationActions} from 'react-navigation';
+import {map} from 'lodash';
+import ClassifiedWidget from '../../components/widgets/classified/ClassifiedWidget';
 
-const FavoriteClassifiedIndexScreen = ({
-  classifiedFavorites,
-  searchParams,
-  colors,
-  navigation,
-}) => {
+const FavoriteClassifiedIndexScreen = ({favorites, searchParams}) => {
+  const [currentFavorites, setCurrentFavorites] = useState(favorites);
+
+  useMemo(() => {
+    if (validate.isEmpty(currentFavorites)) {
+      setCurrentFavorites(favorites);
+    } else {
+      if (favorites.length !== currentFavorites.length) {
+        setCurrentFavorites(favorites);
+      }
+    }
+  }, [currentFavorites, favorites]);
+
   return (
-    <View>
-      {!validate.isEmpty(classifiedFavorites) ? (
-        <ClassifiedList
-          classifieds={classifiedFavorites}
-          showName={true}
-          showSearch={false}
-          title={I18n.t('wishlist')}
-          showTitle={false}
-          showMore={false}
-          showFooter={false}
-          searchElements={searchParams}
-        />
+    <ScrollView
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      contentInset={{bottom: 150}}>
+      {!validate.isEmpty(currentFavorites) ? (
+        map(currentFavorites, (c, i) => (
+          <ClassifiedWidget element={c} showName={true} key={i} />
+        ))
       ) : (
         <View
           style={{
@@ -56,13 +61,13 @@ const FavoriteClassifiedIndexScreen = ({
           {/*/>*/}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
 function mapStateToProps(state) {
   return {
-    classifiedFavorites: state.classifiedFavorites,
+    favorites: state.classifiedFavorites,
     searchParams: state.searchParams,
     colors: state.settings.colors,
   };
@@ -71,7 +76,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(FavoriteClassifiedIndexScreen);
 
 FavoriteClassifiedIndexScreen.propTypes = {
-  classifiedFavorites: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

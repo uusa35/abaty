@@ -49,15 +49,15 @@ export const SettingStack = createStackNavigator(
       screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
     },
     ProfileIndex: {
       screen: ProfileIndexScreen,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: null,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,

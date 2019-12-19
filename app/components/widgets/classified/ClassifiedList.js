@@ -122,10 +122,6 @@ const ClassifiedList = ({
     }
   }, [refresh]);
 
-  useEffect(() => {
-    setElements(classifieds);
-  }, []);
-
   useMemo(() => {
     if (search.length > 0) {
       setIsLoading(false);
