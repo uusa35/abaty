@@ -34,14 +34,14 @@ export const SettingStack = createStackNavigator(
       screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showCountry={false} showFilter={false} />,
       }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showCountry={false} showFilter={false} />,
         headerBackTitle: null,
       }),
     },

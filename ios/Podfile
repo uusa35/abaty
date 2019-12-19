@@ -73,8 +73,6 @@ target 'abaty' do
   pod 'GoogleSignIn', '~> 5.0.2'
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
-
-
   pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
 
   target 'abatyTests' do

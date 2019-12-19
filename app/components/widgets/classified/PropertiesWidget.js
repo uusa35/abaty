@@ -33,7 +33,7 @@ const PropertiesWidget = ({elements}) => {
             }}>
             <Image
               source={{uri: item.categoryGroup.thumb}}
-              style={{width: 40, height: 40, marginBottom: 5}}
+              style={{width: 25, height: 25, marginBottom: 5}}
             />
             {/*<Icon*/}
             {/*  name={item.categoryGroup.icon}*/}
