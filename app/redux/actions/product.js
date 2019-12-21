@@ -54,3 +54,10 @@ export function setBrand(payload) {
     payload,
   };
 }
+
+export function getCollection(payload) {
+  return {
+    type: actions.GET_COLLECTION,
+    payload,
+  };
+}

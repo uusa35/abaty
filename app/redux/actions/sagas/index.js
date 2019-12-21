@@ -36,6 +36,7 @@ export default function* rootSaga() {
     fork(userSagas.getSearchCelebrities),
     fork(productSagas.getAllProducts),
     fork(productSagas.getCollections),
+    fork(productSagas.triggerGetCollection),
     fork(classifiedSagas.getSearchClassifieds),
     fork(classifiedSagas.getClassified),
     fork(classifiedSagas.startNewClassified),

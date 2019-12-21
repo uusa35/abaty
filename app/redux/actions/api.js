@@ -197,6 +197,13 @@ export async function getCollections() {
     .catch(e => e.response.data.message);
 }
 
+export async function getCollection(id) {
+  return await axiosInstance
+    .get(`collection/${id}`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
 export async function getCountries() {
   return await axiosInstance
     .get(`country`)

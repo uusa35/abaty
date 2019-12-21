@@ -119,7 +119,34 @@ export function* startGetCollectionsScenario() {
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_collections'))]);
+    yield call(enableErrorMessage, I18n.t('no_collections'));
+  } finally {
+    yield call(disableLoading);
+  }
+}
+
+export function* startGetCollectionScenario(action) {
+  try {
+    yield call(enableLoadingContent);
+    const {id, redirect} = action.payload;
+    const element = yield call(api.getCollection, id);
+    if (validate.isEmpty(element) && validate.isObject(element) && element.id) {
+      yield put({type: actions.SET_COLLECTION, payload: element});
+      if (validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'CollectionShow',
+            params: {
+              name: element.user.slug,
+              searchElements: {collection_id: element.id},
+            },
+          }),
+        );
+      }
+    }
+  } catch (e) {
+  } finally {
+    yield call(disableLoadingContent);
   }
 }
 
@@ -277,4 +304,8 @@ export function* getSearchProducts() {
 
 export function* getCollections() {
   yield takeLatest(actions.GET_COLLECTIONS, startGetCollectionsScenario);
+}
+
+export function* triggerGetCollection() {
+  yield takeLatest(actions.GET_COLLECTION, startGetCollectionScenario);
 }

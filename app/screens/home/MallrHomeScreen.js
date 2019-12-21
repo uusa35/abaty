@@ -146,6 +146,7 @@ const MallrHomeScreen = ({
 
   useMemo(() => {}, [deviceId]);
 
+  console.log('homecollections', homeCollections);
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
@@ -174,8 +175,8 @@ const MallrHomeScreen = ({
           <ShopperHorizontalWidget
             elements={homeDesigners}
             showName={true}
-            name={I18n.t('mallr.designers')}
-            title={I18n.t('mallr.shoppers')}
+            name={I18n.t('mallr.personal_shoppers')}
+            title={I18n.t('mallr.personal_shoppers')}
             searchElements={{is_designer: true}}
           />
         ) : null}

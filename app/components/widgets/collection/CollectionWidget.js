@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getSearchProducts} from '../../../redux/actions/product';
+import {getCollection, getSearchProducts} from '../../../redux/actions/product';
 import PropTypes from 'prop-types';
 import {images, text} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
@@ -33,14 +33,15 @@ const CollectionWidget = ({element, showName = false}) => {
         },
       ]}
       onPress={() => {
-        dispatch({type: 'SET_COLLECTION', payload: element});
-        dispatch(
-          getSearchProducts({
-            name: element.slug,
-            searchParams: {collection_id: element.id},
-            redirect: true,
-          }),
-        );
+        // dispatch({type: 'SET_COLLECTION', payload: element});
+        // dispatch(
+        //   getSearchProducts({
+        //     name: element.slug,
+        //     searchParams: {collection_id: element.id},
+        //     redirect: true,
+        //   }),
+        // );
+        dispatch(getCollection(element.id));
       }}>
       <ImageBackground
         source={{
