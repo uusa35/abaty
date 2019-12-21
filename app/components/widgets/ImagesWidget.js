@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
-import {images, text} from '../../constants';
+import {images, text, touchOpacity} from '../../constants';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -64,6 +64,7 @@ const ImagesWidget = ({
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
         {map(elements, (c, i) => (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             key={i}
             onPress={() =>
               navigate('ImageZoom', {

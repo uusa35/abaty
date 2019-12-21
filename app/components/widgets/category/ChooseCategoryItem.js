@@ -6,7 +6,7 @@ import {
 } from 'accordion-collapse-react-native';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {map} from 'lodash';
-import {text} from '../../../constants';
+import {text, touchOpacity} from '../../../constants';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
@@ -59,6 +59,7 @@ const ChooseCategoryItem = ({category}) => {
                               {map(child.children, (sub, i) => {
                                 return (
                                   <TouchableOpacity
+                                    activeOpacity={touchOpacity}
                                     style={[
                                       styles.categoryItemWrapper,
                                       {height: 50, paddingLeft: 130},
@@ -81,6 +82,7 @@ const ChooseCategoryItem = ({category}) => {
                             </Fragment>
                           ) : (
                             <TouchableOpacity
+                              activeOpacity={touchOpacity}
                               style={[
                                 styles.categoryItemWrapper,
                                 {height: 50, paddingLeft: 80},
@@ -105,6 +107,7 @@ const ChooseCategoryItem = ({category}) => {
                       </Collapse>
                     ) : (
                       <TouchableOpacity
+                        activeOpacity={touchOpacity}
                         style={[
                           styles.categoryItemWrapper,
                           {height: 50, paddingLeft: 80},
@@ -131,6 +134,7 @@ const ChooseCategoryItem = ({category}) => {
         </Collapse>
       ) : (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           style={[styles.categoryItemWrapper, {height: 80}]}
           onPress={() =>
             dispatch({type: 'START_NEW_CLASSIFIED', payload: category})

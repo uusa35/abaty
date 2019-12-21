@@ -1,11 +1,12 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {width} from '../../../constants';
+import {touchOpacity, width} from '../../../constants';
 
 const CommercialWidget = ({element}) => {
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       onPress={() => {
         element.path ? element.path : element.url;
       }}

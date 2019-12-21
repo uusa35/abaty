@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {images, text} from '../../../constants';
+import {images, text, touchOpacity} from '../../../constants';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
@@ -150,7 +150,9 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
             color="#FCD12A"
           />
         ) : null}
-        <TouchableOpacity onPress={() => dispatch(showCommentModal())}>
+        <TouchableOpacity
+          activeOpacity={touchOpacity}
+          onPress={() => dispatch(showCommentModal())}>
           <Icon
             name="comment-account-outline"
             type="material-community"

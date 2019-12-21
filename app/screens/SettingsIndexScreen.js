@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from '../constants';
+import {text, touchOpacity} from '../constants';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../I18n';
 import {changeLang} from '../redux/actions';
@@ -38,6 +38,7 @@ const SettingsIndexScreen = ({
       <View style={styles.container}>
         {!guest && (MALLR || ABATI) ? (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             onPress={() => navigation.navigate('FavoriteProductIndex')}
             style={styles.btnWrapper}>
             <Icon name="staro" type="antdesign" size={45} />
@@ -46,6 +47,7 @@ const SettingsIndexScreen = ({
         ) : null}
         {!guest && (HOMEKEY || ESCRAP) ? (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
             style={styles.btnWrapper}>
             <Icon name="staro" type="antdesign" size={45} />
@@ -56,6 +58,7 @@ const SettingsIndexScreen = ({
         ) : null}
         {!guest ? (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             onPress={() =>
               navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
             }
@@ -66,6 +69,7 @@ const SettingsIndexScreen = ({
         ) : null}
         {!guest && !(HOMEKEY || ESCRAP) ? (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
             onPress={() => navigation.navigate('OrderIndex')}
             style={styles.btnWrapper}>
             <Icon name="history" type="material-community" size={45} />
@@ -73,6 +77,7 @@ const SettingsIndexScreen = ({
           </TouchableOpacity>
         ) : null}
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
           style={styles.btnWrapper}>
           <Icon name="language" type="entypo" size={45} />

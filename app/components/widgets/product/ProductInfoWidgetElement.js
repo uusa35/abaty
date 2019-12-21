@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {text} from '../../../constants';
+import {text, touchOpacity} from '../../../constants';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
@@ -17,6 +17,7 @@ const ProductInfoWidgetElement = ({
   const {colors} = useContext(GlobalValuesContext);
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',

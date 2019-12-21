@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {images, text} from '../../constants';
+import {images, text, touchOpacity} from '../../constants';
 import {showCountryModal} from '../../redux/actions';
 import {storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
@@ -95,6 +95,7 @@ const ClassifiedStoreScreen = ({
         alignSelf: 'center',
       }}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         onPress={() => openPicker()}
         style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
         <Icon

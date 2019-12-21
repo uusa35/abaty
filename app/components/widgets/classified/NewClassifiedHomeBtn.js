@@ -6,12 +6,14 @@ import {Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import FastImage from 'react-native-fast-image';
+import {touchOpacity} from '../../../constants';
 
 const NewClassifiedHomeBtn = () => {
   const {colors, logo, guest} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   return (
     <TouchableOpacity
+      activeOpacity={touchOpacity}
       onPress={() => (!guest ? navigate('ChooseCategory') : navigate('Login'))}
       style={[
         widgetStyles.newClassifiedBtnWrapper,

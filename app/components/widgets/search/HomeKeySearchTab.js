@@ -3,7 +3,7 @@ import {Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {text, width} from '../../../constants';
+import {text, touchOpacity, width} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {take, map} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions/classified';
@@ -39,6 +39,7 @@ const HomeKeySearchTab = ({elements, main_bg}) => {
   const SearchTab = ({element}) => {
     return (
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         onPress={() => dispatch(startClassifiedSearching(element.category))}
         style={{
           padding: 20,
