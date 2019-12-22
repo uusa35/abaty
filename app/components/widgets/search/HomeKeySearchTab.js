@@ -13,6 +13,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, categories, lang} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
+  const [search, setSearch] = useState('');
   const parentCategories = map(take(elements, 3), (e, i) => {
     if (e.isParent) {
       return {
@@ -81,7 +82,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
             alignSelf: 'center',
             marginTop: '35%',
           }}>
-          <ClassifiedSearchForm />
+          <ClassifiedSearchForm search={search} setSearch={setSearch} />
         </View>
       ) : (
         <TabView
