@@ -14,7 +14,6 @@ import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductIndexScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
-import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import ProfileClassifiedIndexScreen from '../../screens/classified/ProfileClassifiedIndexScreen';
 
