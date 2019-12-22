@@ -33,6 +33,7 @@ const ClassifiedShowScreen = ({
   dispatch,
   token,
   navigation,
+  auth,
   isLoadingContent,
 }) => {
   const {exchange_rate} = useContext(GlobalValuesContext);
@@ -89,7 +90,10 @@ const ClassifiedShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <View style={{flex: 1, padding: '5%'}}>
-          <ClassifiedInfoWidgetMainTitle element={element} />
+          <ClassifiedInfoWidgetMainTitle
+            element={element}
+            editMode={auth && auth.id === element.user_id && token}
+          />
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />
           ) : null}
@@ -212,6 +216,7 @@ function mapStateToProps(state) {
     classifieds: state.classifieds,
     commentModal: state.commentModal,
     token: state.token,
+    auth: state.auth,
     cart: state.cart,
     searchParams: state.searchParams,
     isLoadingContent: state.isLoadingContent,

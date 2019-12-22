@@ -6,17 +6,20 @@ import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {Badge, Icon} from 'react-native-elements';
+import {Badge, Icon, Button} from 'react-native-elements';
 import {showCommentModal} from '../../../redux/actions';
 import {toggleClassifiedFavorite} from '../../../redux/actions/classified';
 import {DispatchContext} from '../../../redux/DispatchContext';
+import I18n from './../../../I18n';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ClassifiedInfoWidgetMainTitle = ({element}) => {
+const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, token, guest, exchange_rate, currency_symbol} = useContext(
     GlobalValuesContext,
   );
   const [favorite, setFavorite] = useState(element.isFavorite);
+  const {navigate} = useNavigation();
 
   return (
     <View
@@ -46,7 +49,7 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
         }}
         loadingIndicatorSource={images.logo}
       />
-      <View style={{width: '65%'}}>
+      <View style={{width: '55%'}}>
         <Text
           style={{
             paddingRight: 5,
@@ -131,6 +134,24 @@ const ClassifiedInfoWidgetMainTitle = ({element}) => {
           justifyContent: 'space-between',
           flex: 1,
         }}>
+        {editMode ? (
+          <Icon
+            underlayColor="transparent"
+            name="edit"
+            size={25}
+            type="antdesign"
+            title={I18n.t('edit')}
+            hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+            onPress={() =>
+              navigate({
+                routeName: 'ClassifiedEdit',
+                params: {
+                  name: element.name,
+                },
+              })
+            }
+          />
+        ) : null}
         {!guest ? (
           <Icon
             onPress={() => {

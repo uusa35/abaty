@@ -454,8 +454,6 @@ export async function storeClassified(elements) {
 }
 
 export async function updateClassified({elements, id}) {
-  console.log('elements', elements);
-  console.log('id', id);
   const {
     name,
     api_token,
@@ -475,6 +473,7 @@ export async function updateClassified({elements, id}) {
     classifiedProps,
   } = elements;
   const formData = new FormData();
+  console.log('image path', image.path);
   if (checkImage(image)) {
     formData.append('image', {
       uri: getImagePath(image),
@@ -482,6 +481,7 @@ export async function updateClassified({elements, id}) {
       type: getImageExtension(image),
     });
   }
+  console.log('the image from updateclassified saga', image);
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
@@ -515,12 +515,14 @@ export async function updateClassified({elements, id}) {
     formData.append(`items[${i}][property_id]`, prop.property.id);
     formData.append(`items[${i}][value]`, prop.property.value);
   });
+  formData.append('_method', 'put');
   console.log('the form data', formData);
+  console.log('the id', id);
   return await axiosInstance
-    .post(`classified/${id}`, formData._parts)
+    .post(`classified/${id}`, formData)
     .then(r => r.data)
-    .catch(e => console.log('error from updateClassified', JSON.stringify(e)));
-  // .catch(e => e.response.data.message);
+    // .catch(e => console.log('error from updateClassified', JSON.stringify(e)));
+    .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

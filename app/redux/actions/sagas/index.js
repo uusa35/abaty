@@ -41,6 +41,7 @@ export default function* rootSaga() {
     fork(classifiedSagas.getClassified),
     fork(classifiedSagas.startNewClassified),
     fork(classifiedSagas.storeClassified),
+    fork(classifiedSagas.editClassified),
     fork(classifiedSagas.getHomeClassifieds),
     fork(classifiedSagas.triggerStartClassifiedSearching),
     fork(classifiedSagas.triggerGetMyClassifieds),

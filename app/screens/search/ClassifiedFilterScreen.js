@@ -229,7 +229,7 @@ const ClassifiedFilterScreen = ({
                 title={c.name.substring(0, 20)}
                 titleStyle={{
                   fontFamily: text.font,
-                  fontSize: text.medium,
+                  fontSize: text.small,
                   color: colors.btn_text_theme_color,
                 }}
               />
@@ -264,7 +264,7 @@ const ClassifiedFilterScreen = ({
                 title={sub.name.substring(0, 30)}
                 titleStyle={{
                   fontFamily: text.font,
-                  fontSize: text.medium,
+                  fontSize: text.small,
                   color: colors.btn_text_theme_color,
                 }}
               />

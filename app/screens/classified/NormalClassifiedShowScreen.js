@@ -44,6 +44,7 @@ const NormalClassifiedShowScreen = ({
   dispatch,
   token,
   colors,
+  auth,
   navigation,
 }) => {
   const {exchange_rate} = useContext(GlobalValuesContext);
@@ -65,6 +66,7 @@ const NormalClassifiedShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
+  console.log('element', element);
   return (
     <Fragment>
       <ScrollView
@@ -79,18 +81,25 @@ const NormalClassifiedShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        <ImagesWidget
-          resizeMode="cover"
-          elements={element.images
-            .concat({id: element.id, large: element.large})
-            .reverse()}
-          width={width}
-          height={height / 1.5}
-          name={element.name}
-          isFeatured={element.is_featured}
-        />
+        {element.images ? (
+          <ImagesWidget
+            resizeMode="cover"
+            elements={element.images
+              .concat({id: element.id, large: element.large})
+              .reverse()}
+            width={width}
+            height={height / 1.5}
+            name={element.name}
+            isFeatured={element.is_featured}
+          />
+        ) : null}
         <View style={{flex: 1, padding: '5%'}}>
-          <ClassifiedInfoWidgetMainTitle element={element} />
+          {element.user ? (
+            <ClassifiedInfoWidgetMainTitle
+              element={element}
+              editMode={auth && auth.id === element.user_id}
+            />
+          ) : null}
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />
           ) : null}
@@ -104,19 +113,21 @@ const NormalClassifiedShowScreen = ({
                 <Text style={styles.normalText}>{element.description}</Text>
               </View>
             ) : null}
-            <ClassifiedInfoWidgetElement
-              elementName="user_name"
-              name={element.user.slug}
-              showIcon={false}
-              // link={() =>
-              //   dispatch(
-              //     getDesigner({
-              //       id: element.user.id,
-              //       searchElements: {user_id: element.user.id}
-              //     })
-              //   )
-              // }
-            />
+            {element.user ? (
+              <ClassifiedInfoWidgetElement
+                elementName="user_name"
+                name={element.user.slug}
+                showIcon={false}
+                // link={() =>
+                //   dispatch(
+                //     getDesigner({
+                //       id: element.user.id,
+                //       searchElements: {user_id: element.user.id}
+                //     })
+                //   )
+                // }
+              />
+            ) : null}
             {element.has_items ? (
               <Fragment>
                 {map(element.items, (p, i) => (
@@ -138,19 +149,23 @@ const NormalClassifiedShowScreen = ({
                 showIcon={false}
               />
             ) : null}
-            <ClassifiedInfoWidgetElement
-              elementName="categories"
-              name={element.category.name}
-              link={() =>
-                dispatch(
-                  getSearchClassifieds({
-                    name: element.name,
-                    searchParams: {classified_category_id: element.category.id},
-                    redirect: true,
-                  }),
-                )
-              }
-            />
+            {element.category ? (
+              <ClassifiedInfoWidgetElement
+                elementName="categories"
+                name={element.category.name}
+                link={() =>
+                  dispatch(
+                    getSearchClassifieds({
+                      name: element.name,
+                      searchParams: {
+                        classified_category_id: element.category.id,
+                      },
+                      redirect: true,
+                    }),
+                  )
+                }
+              />
+            ) : null}
             {element.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
@@ -162,11 +177,15 @@ const NormalClassifiedShowScreen = ({
                 }
               />
             ) : (
-              <ClassifiedInfoWidgetElement
-                elementName="mobile"
-                name={element.mobile}
-                link={() => Linking.openURL(`tel:${element.user.mobile}`)}
-              />
+              <Fragment>
+                {element.user ? (
+                  <ClassifiedInfoWidgetElement
+                    elementName="mobile"
+                    name={element.mobile}
+                    link={() => Linking.openURL(`tel:${element.user.mobile}`)}
+                  />
+                ) : null}
+              </Fragment>
             )}
             {element.has_map ? (
               <MapViewWidget
@@ -217,6 +236,7 @@ function mapStateToProps(state) {
     commentModal: state.commentModal,
     token: state.token,
     cart: state.cart,
+    auth: state.auth,
     colors: state.settings.colors,
     searchParams: state.searchParams,
   };

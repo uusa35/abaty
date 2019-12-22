@@ -12,7 +12,7 @@ import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {images, text, touchOpacity} from '../../constants';
 import {showCountryModal} from '../../redux/actions';
-import {storeClassified} from '../../redux/actions/classified';
+import {editClassified, storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -22,7 +22,7 @@ import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
 import {isLocal} from '../../env';
 
-const ClassifiedUpdateScreen = ({
+const ClassifiedEditScreen = ({
   element,
   auth,
   category,
@@ -33,16 +33,16 @@ const ClassifiedUpdateScreen = ({
   classifiedProps,
   navigation,
 }) => {
-  const [name, setName] = useState(element.name_ar);
+  const [name, setName] = useState(element.name);
   const [mobile, setMobile] = useState(element.mobile);
-  const [price, setPrice] = useState(element.price);
+  const [price, setPrice] = useState(String(element.price));
   const {params} = navigation.state;
   const [address, setAddress] = useState(element.address);
   const [longitude, setLongitude] = useState(element.longitude);
   const [latitude, setLatitude] = useState(element.latitude);
   const [description, setDescription] = useState(element.description);
-  const [images, setImages] = useState('');
-  const [image, setImage] = useState('');
+  const [images, setImages] = useState(element.images);
+  const [image, setImage] = useState({path: element.large});
   const [onlyWhatsapp, setOnlyWhatsapp] = useState(element.only_whatsapp);
   const [sampleLogo, setSampleLogo] = useState('');
 
@@ -57,9 +57,9 @@ const ClassifiedUpdateScreen = ({
       maxFiles: 5,
       minFiles: 2,
       compressImageQuality: 0.5,
-    }).then(images => {
-      setImage(first(images));
-      setImages(images);
+    }).then(elements => {
+      setImage(first(elements));
+      setImages(elements);
     });
   });
 
@@ -129,7 +129,7 @@ const ClassifiedUpdateScreen = ({
           {map(images, (img, i) => (
             <ImageBackground
               key={i}
-              source={{uri: img.path}}
+              source={{uri: img.path ? img.path : img.thumb}}
               style={{width: 100, height: 100, marginRight: 5, marginLeft: 5}}>
               <View
                 style={{
@@ -386,7 +386,7 @@ const ClassifiedUpdateScreen = ({
         title={I18n.t('save_classified')}
         onPress={() =>
           dispatch(
-            storeClassified({
+            editClassified({
               user_id: auth.id,
               api_token: auth.api_token,
               name,
@@ -425,9 +425,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ClassifiedUpdateScreen);
+export default connect(mapStateToProps)(ClassifiedEditScreen);
 
-ClassifiedUpdateScreen.propTypes = {
+ClassifiedEditScreen.propTypes = {
   element: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   country: PropTypes.object.isRequired,

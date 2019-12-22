@@ -189,6 +189,15 @@ export const storeClassifiedConstrains = {
   images: {presence: {allowEmpty: false}},
 };
 
+export const editClassifiedConstrains = {
+  name: {length: {minimum: 3}, presence: true},
+  price: {presence: true},
+  mobile: {length: {minimum: 6}, presence: true},
+  description: {length: {minimum: 5}, presence: true},
+  image: {presence: {allowEmpty: true}},
+  images: {presence: {allowEmpty: true}},
+};
+
 export const commentStoreConstrains = {
   title: {length: {minimum: 3}, presence: true},
   content: {length: {minimum: 3}, presence: true},

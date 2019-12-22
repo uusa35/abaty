@@ -14,10 +14,14 @@ import {
   enableSuccessMessage,
   enableWarningMessage,
 } from './settingSagas';
-import {storeClassifiedConstrains} from '../../../constants';
+import {
+  editClassifiedConstrains,
+  storeClassifiedConstrains,
+} from '../../../constants';
 import validate from 'validate.js';
 import {HIDE_SEARCH_MODAL, SHOW_SEARCH_MODAL, SET_CATEGORY} from '../types';
 import {first, values} from 'lodash';
+import {SET_CLASSIFIED} from '../types';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -137,9 +141,6 @@ export function* startStoreClassifiedScenario(action) {
         validate.isObject(element) &&
         element.id
       ) {
-        // const currentElement = yield call(api.updateClassified, { elements : action.payload , id : element.id})
-        // console.log('the real element after update', currentElement)
-        // if (!validate.isEmpty(currentElement) && validate.isObject(currentElement) && currentElement.id) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
@@ -158,12 +159,54 @@ export function* startStoreClassifiedScenario(action) {
   }
 }
 
+export function* startEditClassifiedScenario(action) {
+  try {
+    yield call(enableLoadingContent);
+    const {name, mobile, description, images, image, price} = action.payload;
+    const {classified} = yield select();
+    const result = validate(
+      {name, mobile, images, image, description, price},
+      editClassifiedConstrains,
+    );
+    if (validate.isEmpty(result)) {
+      const element = yield call(api.updateClassified, {
+        elements: action.payload,
+        id: classified.id,
+      });
+      if (
+        !validate.isEmpty(element) &&
+        validate.isObject(element) &&
+        element.id
+      ) {
+        yield all([
+          call(enableSuccessMessage, I18n.t('update_information_success')),
+          put({type: SET_CLASSIFIED, payload: element}),
+          put(NavigationActions.back()),
+        ]);
+      } else {
+        throw element;
+      }
+    } else {
+      throw first(values(result))[0];
+    }
+  } catch (e) {
+    console.log('the error', e);
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoadingContent);
+  }
+}
+
 export function* getClassified() {
   yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
 }
 
 export function* storeClassified() {
   yield takeLatest(actions.STORE_CLASSIFIED, startStoreClassifiedScenario);
+}
+
+export function* editClassified() {
+  yield takeLatest(actions.EDIT_CLASSIFIED, startEditClassifiedScenario);
 }
 
 export function* startNewClassified() {

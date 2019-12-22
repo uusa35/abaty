@@ -21,6 +21,13 @@ export function storeClassified(payload) {
   };
 }
 
+export function editClassified(payload) {
+  return {
+    type: actions.EDIT_CLASSIFIED,
+    payload,
+  };
+}
+
 export function setProperties(payload) {
   return {
     type: actions.SET_PROPERTIES,
