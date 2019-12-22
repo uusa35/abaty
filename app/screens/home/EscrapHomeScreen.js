@@ -40,6 +40,7 @@ import {
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
+import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -157,7 +158,11 @@ const EscrapHomeScreen = ({
           {!validate.isEmpty(slides) ? (
             <MainSliderWidget slides={slides} />
           ) : null}
-          <HomeKeySearchTab elements={categories} main_bg={main_bg} />
+          <HomeKeySearchTab
+            elements={categories}
+            main_bg={main_bg}
+            onlyTextForm={true}
+          />
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <NavCategoryHorizontalRoundedWidget

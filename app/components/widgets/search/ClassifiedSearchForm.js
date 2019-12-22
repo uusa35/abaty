@@ -30,6 +30,7 @@ const ClassifiedSearchForm = ({search, setSearch}) => {
       containerStyle={{
         alignSelf: 'flex-end',
         width: '100%',
+        backgroundColor: '#E4E4E5',
       }}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
