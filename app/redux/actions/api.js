@@ -407,6 +407,7 @@ export async function storeClassified(elements) {
   } = elements;
   const formData = new FormData();
   if (checkImage(image)) {
+    console.log('image inside if');
     formData.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
@@ -447,6 +448,7 @@ export async function storeClassified(elements) {
     formData.append(`items[${i}][value]`, prop.property.value);
   });
   console.log('the final formData', formData);
+  console.log('fitered images', filteredImages);
   return await axiosInstance
     .post(`classified`, formData)
     .then(r => r.data)

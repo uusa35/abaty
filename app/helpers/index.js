@@ -64,7 +64,7 @@ export function checkImage(img) {
 export function getImageExtension(img) {
   return _.has(img, 'filename')
     ? img.filename.substring(img.filename.lastIndexOf('.') + 1)
-    : 'jpeg';
+    : img.mime;
 }
 
 export function getImageUri(img) {

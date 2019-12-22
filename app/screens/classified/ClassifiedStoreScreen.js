@@ -60,12 +60,11 @@ const ClassifiedStoreScreen = ({
       multiple: true,
       cropping: true,
       includeBase64: false,
-      includeExif: false,
+      includeExif: true,
       maxFiles: 5,
       minFiles: 2,
       compressImageQuality: 0.5,
     }).then(images => {
-      console.log('images', images);
       setImage(first(images));
       setImages(images);
     });
