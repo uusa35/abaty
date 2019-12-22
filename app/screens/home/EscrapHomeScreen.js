@@ -34,6 +34,7 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import I18n from '../../I18n';
 import SimpleSpinner from '../../components/SimpleSpinner';
 import {
+  ClassifiedCategoryHorizontalRoundedWidget,
   ClassifiedListHorizontal,
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
@@ -164,6 +165,14 @@ const EscrapHomeScreen = ({
               showName={true}
               showTitle={true}
               title={I18n.t('categories')}
+            />
+          ) : null}
+          {!validate.isEmpty(homeCategories) &&
+          validate.isArray(homeCategories) ? (
+            <ClassifiedCategoryHorizontalRoundedWidget
+              elements={homeCategories}
+              showName={true}
+              title={I18n.t('for_sale')}
             />
           ) : null}
           {!validate.isEmpty(homeClassifieds) &&

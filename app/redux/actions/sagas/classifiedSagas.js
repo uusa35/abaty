@@ -1,13 +1,15 @@
-import {call, put, all, takeLatest} from 'redux-saga/effects';
+import {call, put, all, takeLatest, select} from 'redux-saga/effects';
 import * as api from '../api';
 import * as actions from '../types';
 import {NavigationActions} from 'react-navigation';
 import I18n from '../../../I18n';
 import {
   disableLoading,
+  disableLoadingBoxedList,
   disableLoadingContent,
   enableErrorMessage,
   enableLoading,
+  enableLoadingBoxedList,
   enableLoadingContent,
   enableSuccessMessage,
   enableWarningMessage,
@@ -129,15 +131,23 @@ export function* startStoreClassifiedScenario(action) {
     );
     if (validate.isEmpty(result)) {
       yield call(enableLoading);
-      const classified = yield call(api.storeClassified, action.payload);
-      if (!validate.isEmpty(classified) && validate.isObject(classified)) {
+      const element = yield call(api.storeClassified, action.payload);
+      if (
+        !validate.isEmpty(element) &&
+        validate.isObject(element) &&
+        element.id
+      ) {
+        // const currentElement = yield call(api.updateClassified, { elements : action.payload , id : element.id})
+        // console.log('the real element after update', currentElement)
+        // if (!validate.isEmpty(currentElement) && validate.isObject(currentElement) && currentElement.id) {
         yield all([
           call(disableLoading),
           call(enableSuccessMessage, I18n.t('update_information_success')),
           put(NavigationActions.navigate({routeName: 'Home'})),
         ]);
+        // }
       } else {
-        throw classified;
+        throw element;
       }
     } else {
       throw first(values(result))[0];
@@ -200,6 +210,10 @@ export function* triggerStartClassifiedSearching() {
   );
 }
 
+export function* triggerGetMyClassifieds() {
+  yield takeLatest(actions.GET_MY_CLASSIFIEDS, startGetMyClassifiedsScenario);
+}
+
 export function* getHomeClassifieds() {
   yield takeLatest(
     actions.GET_HOME_CLASSIFIEDS,
@@ -214,6 +228,38 @@ export function* startClassifiedSearchingScenario(action) {
     put({type: SHOW_SEARCH_MODAL}),
     put(NavigationActions.navigate({routeName: 'ClassifiedFilter'})),
   ]);
+}
+
+export function* startGetMyClassifiedsScenario(action) {
+  console.log('action', action);
+  try {
+    const {redirect} = action.payload;
+    yield call(enableLoadingBoxedList);
+    const {auth} = yield select();
+    const elements = yield call(api.getSearchClassifieds, {user_id: auth.id});
+    if (
+      !validate.isEmpty(elements) &&
+      validate.isArray(elements) &&
+      auth.api_token
+    ) {
+      console.log('starting ');
+      yield put({type: actions.SET_CLASSIFIEDS, payload: elements});
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'ProfileClassifiedIndex',
+            params: {
+              name: auth.slug ? auth.slug : I18n.t('classifieds'),
+            },
+          }),
+        );
+      }
+    }
+  } catch (e) {
+    yield call(enableErrorMessage, 'No classifieds for profile');
+  } finally {
+    yield call(disableLoadingBoxedList);
+  }
 }
 
 export function* getClassifiedIndex() {

@@ -405,9 +405,9 @@ export async function storeClassified(elements) {
     only_whatsapp,
     classifiedProps,
   } = elements;
-  const form = new FormData();
+  const formData = new FormData();
   if (checkImage(image)) {
-    form.append('image', {
+    formData.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
@@ -416,40 +416,111 @@ export async function storeClassified(elements) {
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
-      form.append(`images[${i}]`, {
+      formData.append(`images[${i}]`, {
         uri: getImagePath(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
     }
   });
-  form.append('name_ar', name);
-  form.append('name_en', name);
-  form.append('mobile', mobile);
-  form.append('address', address);
-  form.append('longitude', longitude);
-  form.append('latitude', latitude);
-  form.append('user_id', user_id);
-  form.append('country_id', country_id);
-  form.append('category_id', category_id);
-  form.append('only_whatsapp', only_whatsapp);
+  formData.append('name_ar', name);
+  formData.append('name_en', name);
+  formData.append('mobile', mobile);
+  formData.append('address', address);
+  formData.append('longitude', longitude);
+  formData.append('latitude', latitude);
+  formData.append('user_id', user_id);
+  formData.append('country_id', country_id);
+  formData.append('category_id', category_id);
+  formData.append('only_whatsapp', only_whatsapp);
   if (area_id) {
-    form.append('area_id', area_id);
+    formData.append('area_id', area_id);
   }
-  form.append('mobile', mobile);
-  form.append('description_ar', description);
-  form.append('description_en', description);
-  form.append('price', price);
-  form.append('api_token', api_token);
+  formData.append('mobile', mobile);
+  formData.append('description_ar', description);
+  formData.append('description_en', description);
+  formData.append('price', price);
+  formData.append('api_token', api_token);
   map(classifiedProps, (prop, i) => {
-    form.append(`items[${i}][category_group_id]`, prop.category_group.id);
-    form.append(`items[${i}][property_id]`, prop.property.id);
-    form.append(`items[${i}][value]`, prop.property.value);
+    formData.append(`items[${i}][category_group_id]`, prop.category_group.id);
+    formData.append(`items[${i}][property_id]`, prop.property.id);
+    formData.append(`items[${i}][value]`, prop.property.value);
   });
+  console.log('the final formData', formData);
   return await axiosInstance
-    .post(`classified`, form)
+    .post(`classified`, formData)
     .then(r => r.data)
     .catch(e => e.response.data.message);
+}
+
+export async function updateClassified({elements, id}) {
+  console.log('elements', elements);
+  console.log('id', id);
+  const {
+    name,
+    api_token,
+    mobile,
+    user_id,
+    description,
+    area_id,
+    address,
+    longitude,
+    latitude,
+    country_id,
+    category_id,
+    price,
+    image,
+    images,
+    only_whatsapp,
+    classifiedProps,
+  } = elements;
+  const formData = new FormData();
+  if (checkImage(image)) {
+    formData.append('image', {
+      uri: getImagePath(image),
+      name: getImageName(image),
+      type: getImageExtension(image),
+    });
+  }
+  const filteredImages = filter(images, (img, i) => img.path !== image.path);
+  map(filteredImages, (img, i) => {
+    if (checkImage(img)) {
+      formData.append(`images[${i}]`, {
+        uri: getImagePath(img),
+        name: getImageName(img),
+        type: getImageExtension(img),
+      });
+    }
+  });
+  formData.append('name_ar', name);
+  formData.append('name_en', name);
+  formData.append('mobile', mobile);
+  formData.append('address', address);
+  formData.append('longitude', longitude);
+  formData.append('latitude', latitude);
+  formData.append('user_id', user_id);
+  formData.append('country_id', country_id);
+  formData.append('category_id', category_id);
+  formData.append('only_whatsapp', only_whatsapp);
+  if (area_id) {
+    formData.append('area_id', area_id);
+  }
+  formData.append('mobile', mobile);
+  formData.append('description_ar', description);
+  formData.append('description_en', description);
+  formData.append('price', price);
+  formData.append('api_token', api_token);
+  map(classifiedProps, (prop, i) => {
+    formData.append(`items[${i}][category_group_id]`, prop.category_group.id);
+    formData.append(`items[${i}][property_id]`, prop.property.id);
+    formData.append(`items[${i}][value]`, prop.property.value);
+  });
+  console.log('the form data', formData);
+  return await axiosInstance
+    .post(`classified/${id}`, formData._parts)
+    .then(r => r.data)
+    .catch(e => console.log('error from updateClassified', JSON.stringify(e)));
+  // .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {

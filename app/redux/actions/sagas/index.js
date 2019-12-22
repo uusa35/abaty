@@ -43,6 +43,7 @@ export default function* rootSaga() {
     fork(classifiedSagas.storeClassified),
     fork(classifiedSagas.getHomeClassifieds),
     fork(classifiedSagas.triggerStartClassifiedSearching),
+    fork(classifiedSagas.triggerGetMyClassifieds),
     fork(userSagas.getHomeCompanies),
     fork(userSagas.getHomeDesigners),
     fork(userSagas.getHomeCelebrities),

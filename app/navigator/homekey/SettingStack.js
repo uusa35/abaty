@@ -15,6 +15,7 @@ import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductInd
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import ProfileClassifiedIndexScreen from '../../screens/classified/ProfileClassifiedIndexScreen';
 
 export const SettingStack = createStackNavigator(
   {
@@ -60,7 +61,14 @@ export const SettingStack = createStackNavigator(
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
-      path: `product/:id`,
+    },
+    ProfileClassifiedIndex: {
+      screen: ProfileClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
+        headerBackTitle: null,
+      }),
     },
     OrderIndex: {
       screen: OrderIndexScreen,
@@ -82,7 +90,7 @@ export const SettingStack = createStackNavigator(
     },
     Product: {
       screen: NormalProductShow,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
         headerBackTitle: null,
@@ -91,7 +99,7 @@ export const SettingStack = createStackNavigator(
     },
     Classified: {
       screen: ClassifiedShowScreen,
-      navigationOptions: () => ({
+      navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} display={true} />,
         headerBackTitle: null,

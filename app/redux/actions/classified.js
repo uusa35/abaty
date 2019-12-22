@@ -55,3 +55,10 @@ export function toggleClassifiedFavorite(payload) {
     payload,
   };
 }
+
+export function getMyClassifieds(payload) {
+  return {
+    type: actions.GET_MY_CLASSIFIEDS,
+    payload,
+  };
+}

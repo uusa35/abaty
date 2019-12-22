@@ -22,7 +22,8 @@ import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
 import {isLocal} from '../../env';
 
-const ClassifiedStoreScreen = ({
+const ClassifiedUpdateScreen = ({
+  element,
   auth,
   category,
   colors,
@@ -32,25 +33,17 @@ const ClassifiedStoreScreen = ({
   classifiedProps,
   navigation,
 }) => {
-  const [name, setName] = useState(isLocal ? 'testing' : 'teseting');
-  const [mobile, setMobile] = useState(
-    !validate.isEmpty(auth) ? auth.mobile : null,
-  );
-  const [price, setPrice] = useState(isLocal ? '10' : '10');
+  const [name, setName] = useState(element.name_ar);
+  const [mobile, setMobile] = useState(element.mobile);
+  const [price, setPrice] = useState(element.price);
   const {params} = navigation.state;
-  const [address, setAddress] = useState(
-    !validate.isEmpty(params) ? params.address : 'testing',
-  );
-  const [longitude, setLongitude] = useState(
-    !validate.isEmpty(params) ? params.longitude : '',
-  );
-  const [latitude, setLatitude] = useState(
-    !validate.isEmpty(params) ? params.latitude : '',
-  );
-  const [description, setDescription] = useState('another testing');
+  const [address, setAddress] = useState(element.address);
+  const [longitude, setLongitude] = useState(element.longitude);
+  const [latitude, setLatitude] = useState(element.latitude);
+  const [description, setDescription] = useState(element.description);
   const [images, setImages] = useState('');
   const [image, setImage] = useState('');
-  const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);
+  const [onlyWhatsapp, setOnlyWhatsapp] = useState(element.only_whatsapp);
   const [sampleLogo, setSampleLogo] = useState('');
 
   const openPicker = useCallback(() => {
@@ -65,7 +58,6 @@ const ClassifiedStoreScreen = ({
       minFiles: 2,
       compressImageQuality: 0.5,
     }).then(images => {
-      console.log('images', images);
       setImage(first(images));
       setImages(images);
     });
@@ -421,6 +413,7 @@ const ClassifiedStoreScreen = ({
 
 function mapStateToProps(state) {
   return {
+    element: state.classified,
     category: state.category,
     auth: state.auth,
     country: state.country,
@@ -432,9 +425,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ClassifiedStoreScreen);
+export default connect(mapStateToProps)(ClassifiedUpdateScreen);
 
-ClassifiedStoreScreen.propTypes = {
+ClassifiedUpdateScreen.propTypes = {
+  element: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   country: PropTypes.object.isRequired,
   colors: PropTypes.object.isRequired,

@@ -16,6 +16,7 @@ import {changeLang} from '../redux/actions';
 import {HOMEKEY, MALLR, ABATI, ESCRAP} from './../../app';
 import {appUrlIos} from '../env';
 import PagesList from '../components/widgets/page/PagesList';
+import {getMyClassifieds} from '../redux/actions/classified';
 
 const SettingsIndexScreen = ({
   guest,
@@ -46,15 +47,24 @@ const SettingsIndexScreen = ({
           </TouchableOpacity>
         ) : null}
         {!guest && (HOMEKEY || ESCRAP) ? (
-          <TouchableOpacity
-            activeOpacity={touchOpacity}
-            onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
-            style={styles.btnWrapper}>
-            <Icon name="staro" type="antdesign" size={45} />
-            <Text style={styles.btnTitle}>
-              {I18n.t('classified_favorites')}
-            </Text>
-          </TouchableOpacity>
+          <Fragment>
+            <TouchableOpacity
+              activeOpacity={touchOpacity}
+              onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
+              style={styles.btnWrapper}>
+              <Icon name="staro" type="antdesign" size={45} />
+              <Text style={styles.btnTitle}>
+                {I18n.t('classified_favorites')}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={touchOpacity}
+              onPress={() => dispatch(getMyClassifieds({redirect: true}))}
+              style={styles.btnWrapper}>
+              <Icon name="profile" type="antdesign" size={45} />
+              <Text style={styles.btnTitle}>{I18n.t('my_classifieds')}</Text>
+            </TouchableOpacity>
+          </Fragment>
         ) : null}
         {!guest ? (
           <TouchableOpacity
