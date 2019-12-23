@@ -41,6 +41,7 @@ import {
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
+import {map, flatten} from 'lodash';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -61,7 +62,13 @@ const EscrapHomeScreen = ({
   [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [children, setChildren] = useState([]);
 
+  useMemo(() => {
+    const children = flatten(map(homeCategories, (c, i) => c.children));
+    setChildren(children);
+    console.log('children', children);
+  }, [homeCategories]);
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
@@ -169,14 +176,16 @@ const EscrapHomeScreen = ({
               elements={homeCategories}
               showName={true}
               showTitle={true}
+              showLink={true}
               title={I18n.t('categories')}
             />
           ) : null}
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <ClassifiedCategoryHorizontalRoundedWidget
-              elements={homeCategories}
+              elements={children}
               showName={true}
+              showLink={false}
               title={I18n.t('for_sale')}
             />
           ) : null}

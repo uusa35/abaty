@@ -26,6 +26,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
+  showLink = false,
   showTitle = true,
 }) => {
   const {dispatch} = useContext(DispatchContext);
@@ -47,7 +48,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
         <TouchableOpacity
           activeOpacity={touchOpacity}
           style={widgetStyles.titleContainer}
-          onPress={() => navigate('CategoryIndex')}>
+          onPress={() => (showLink ? navigate('CategoryIndex') : null)}>
           <View style={widgetStyles.titleWrapper}>
             <Text
               style={[
@@ -57,12 +58,14 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
               {title}
             </Text>
           </View>
-          <Icon
-            type="entypo"
-            name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-            size={20}
-            color={colors.header_one_theme_color}
-          />
+          {showLink ? (
+            <Icon
+              type="entypo"
+              name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+              size={20}
+              color={colors.header_one_theme_color}
+            />
+          ) : null}
         </TouchableOpacity>
       ) : null}
       <ScrollView
