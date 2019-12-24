@@ -33,10 +33,7 @@ const ServiceIndexAllScreen = ({services, isLoadingContent, dispatch}) => {
   }, [currentElements, services]);
 
   return (
-    <React.Suspense
-      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
-      <ServiceList services={services} searchElements={{}} showName={true} />
-    </React.Suspense>
+    <ServiceList services={services} searchElements={{}} showName={true} />
   );
 };
 

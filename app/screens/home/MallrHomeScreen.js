@@ -146,7 +146,6 @@ const MallrHomeScreen = ({
 
   useMemo(() => {}, [deviceId]);
 
-  console.log('homecollections', homeCollections);
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (

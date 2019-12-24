@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import I18n from './../I18n';
 import {connect} from 'react-redux';
-import {text} from './../constants';
+import {isIOS, text} from './../constants';
 import FastImage from 'react-native-fast-image';
 import {Icon, Divider} from 'react-native-elements';
 import {changeLang} from '../redux/actions';
@@ -56,7 +56,7 @@ const SideMeu = ({
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
           <StatusBar
-            barStyle="light-content"
+            barStyle={isIOS ? `dark-content` : `light-content`}
             backgroundColor={colors.menu_theme_bg}
           />
           <View style={{alignItems: 'flex-end', width: '100%'}}>

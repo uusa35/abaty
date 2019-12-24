@@ -106,7 +106,7 @@ export function* setCommercials() {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
+    // yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
   }
 }
 
@@ -114,13 +114,14 @@ export function* setSlides() {
   try {
     const slides = yield call(api.getSlides, {on_home: true});
     if (!validate.isEmpty(slides) && validate.isArray(slides)) {
-      yield all([put({type: actions.SET_HOME_SLIDERS, payload: slides})]);
+      yield put({type: actions.SET_HOME_SLIDERS, payload: slides});
+    } else {
+      yield put({type: actions.SET_HOME_SLIDERS, payload: []});
     }
   } catch (e) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_slides'))]);
   }
 }
 
@@ -280,7 +281,6 @@ export function* startRefetchHomeElementsScenario() {
     if (isLocal) {
       console.log('the e', e);
     }
-    console.log('the ee', e);
     yield call(enableErrorMessage, I18n.t('refetch_home_error'));
   } finally {
     yield call(disableLoading);
@@ -359,9 +359,13 @@ export function* setGrossTotalCartValue(values) {
     const {total, coupon, country} = values;
     const {cart} = yield select();
     const countPieces = sumBy(cart, i => i.qty);
-    __DEV__ ? console.log('the total', total) : null;
+    if (isLocal) {
+      console.log('the total', total);
+    }
     if (!validate.isEmpty(total) && total > 0) {
-      __DEV__ ? console.log('the coupon from calculating', coupon) : null;
+      if (isLocal) {
+        console.log('the coupon from calculating', coupon);
+      }
       const finalShipment = country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
@@ -370,7 +374,9 @@ export function* setGrossTotalCartValue(values) {
       );
       yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
       yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
-      __DEV__ ? console.log('the grossTotal Now is ::::', grossTotal) : null;
+      if (isLocal) {
+        console.log('the grossTotal Now is ::::', grossTotal);
+      }
     }
   } catch (e) {
     if (isLocal) {
@@ -733,7 +739,6 @@ export function* startGetCategoryAndGoToNavChildren(action) {
     const element = action.payload;
     if (element.children && !validate.isEmpty(element.children)) {
       if (element.isParent) {
-        console.log('if parent');
         yield put({type: actions.SET_CATEGORY, payload: element});
         yield put(
           NavigationActions.navigate({
@@ -742,7 +747,6 @@ export function* startGetCategoryAndGoToNavChildren(action) {
           }),
         );
       } else {
-        console.log('elese');
         yield put({type: actions.SET_SUB_CATEGORY, payload: element});
         yield put(
           NavigationActions.navigate({

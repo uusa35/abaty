@@ -18,7 +18,7 @@ const ChooseCategoryItem = ({category}) => {
   return (
     <Fragment>
       {!validate.isEmpty(category.children) && category.has_children ? (
-        <Collapse key={category.id}>
+        <Collapse key={category.id} style={{backgroundColor: 'white'}}>
           <CollapseHeader>
             <View style={styles.categoryItemWrapper}>
               <FastImage
@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
+    backgroundColor: 'white',
   },
   categoryTitle: {
     paddingRight: 20,

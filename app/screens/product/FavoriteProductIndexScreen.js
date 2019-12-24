@@ -35,7 +35,7 @@ const FavoriteProductIndexScreen = ({
       contentInset={{bottom: 150}}>
       {!validate.isEmpty(currentFavorites) ? (
         map(currentFavorites, (c, i) => (
-          <ProductWidget element={c} showName={true} />
+          <ProductWidget element={c} showName={true} key={i} />
         ))
       ) : (
         <View

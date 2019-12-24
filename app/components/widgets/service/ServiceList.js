@@ -200,7 +200,7 @@ const ServiceList = ({
       ) : (
         <View
           style={{
-            flex: 1,
+            minHeight: '100%',
             width: width - 50,
             alignSelf: 'center',
             justifyContent: 'center',

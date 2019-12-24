@@ -162,7 +162,7 @@ export const HomeStack = createStackNavigator(
     PaymentIndex: {
       screen: PaymentIndexScreen,
       navigationOptions: () => ({
-        HeaderRight: <HeaderLeft />,
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
         headerBackTitle: null,
       }),
@@ -340,6 +340,7 @@ export const HomeStack = createStackNavigator(
     ImageZoom: {
       screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
@@ -347,6 +348,7 @@ export const HomeStack = createStackNavigator(
     Contactus: {
       screen: ContactusScreen,
       navigationOptions: () => ({
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
       }),
       path: 'contactus',
@@ -354,6 +356,7 @@ export const HomeStack = createStackNavigator(
     TermAndCondition: {
       screen: TermAndConditionScreen,
       navigationOptions: () => ({
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
       }),
     },
@@ -376,7 +379,7 @@ export const HomeStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: null,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,

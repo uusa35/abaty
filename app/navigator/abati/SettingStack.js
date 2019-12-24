@@ -24,8 +24,8 @@ export const SettingStack = createStackNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        headerLeft: <HeaderLeft />,
-        headerRight: <HeaderRight display={true} />,
+        headerLeft: <HeaderLeft showSideMenu={true} showCart={true} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null,
       }),
@@ -34,7 +34,7 @@ export const SettingStack = createStackNavigator(
       screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
     },
@@ -42,7 +42,7 @@ export const SettingStack = createStackNavigator(
       screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
     },
@@ -50,7 +50,7 @@ export const SettingStack = createStackNavigator(
       screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
     },
@@ -58,7 +58,7 @@ export const SettingStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight />,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
@@ -67,7 +67,7 @@ export const SettingStack = createStackNavigator(
       screen: OrderIndexScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
-        headerRight: null,
+        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
@@ -77,7 +77,12 @@ export const SettingStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: (
-          <HeaderRight {...navigation} displayShare={false} display={true} />
+          <HeaderRight
+            {...navigation}
+            displayShare={false}
+            showCountry={true}
+            showFilter={false}
+          />
         ),
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,

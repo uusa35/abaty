@@ -39,6 +39,7 @@ import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
+import homeServices from '../../redux/reducers/homeServices';
 
 const AbatiHomeScreen = ({
   homeCategories,
@@ -236,7 +237,7 @@ function mapStateToProps(state) {
     show_commercials: state.settings.show_commercials,
     colors: state.settings.colors,
     lang: state.lang,
-    services: state.services,
+    services: state.homeServices,
     showIntroduction: state.showIntroduction,
     homeCompanies: state.homeCompanies,
     bootStrapped: state.bootStrapped,

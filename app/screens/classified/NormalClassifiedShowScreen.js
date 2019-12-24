@@ -66,7 +66,6 @@ const NormalClassifiedShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg]);
 
-  console.log('element', element);
   return (
     <Fragment>
       <ScrollView

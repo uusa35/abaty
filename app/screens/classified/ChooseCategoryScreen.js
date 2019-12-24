@@ -9,6 +9,7 @@ const ChooseCategoryScreen = ({categories, dispatch}) => {
   return (
     <View style={styles.container}>
       <FlatList
+        contentContainerStyle={{backgroundColor: 'white'}}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}

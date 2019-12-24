@@ -250,7 +250,13 @@ const ClassifiedList = ({
           )}
         />
       ) : (
-        <View style={{marginTop: '20%', width: width - 50}}>
+        <View
+          style={{
+            minHeight: '100%',
+            width: width - 50,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}>
           <Button
             raised
             title={I18n.t('no_classifieds')}

@@ -11,6 +11,7 @@ import validate from 'validate.js';
 import * as actions from '../types';
 import {NavigationActions} from 'react-navigation';
 import I18n from '../../../I18n';
+import {SET_SERVICES} from '../types';
 
 export function* startGetServiceScenario(action) {
   try {
@@ -66,7 +67,9 @@ export function* getServiceIndex() {
   try {
     const services = yield call(api.getServices, {page: 1});
     if (!validate.isEmpty(services) && validate.isArray(services)) {
-      yield all([put({type: actions.SET_SERVICES, payload: services})]);
+      yield put({type: actions.SET_SERVICES, payload: services});
+    } else {
+      yield put({type: SET_SERVICES, payload: []});
     }
   } catch (e) {
     yield all([

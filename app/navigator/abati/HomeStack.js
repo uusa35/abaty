@@ -231,7 +231,7 @@ export const HomeStack = createStackNavigator(
       screen: ServiceIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('services')} />,
         headerBackTitle: null,
       }),
@@ -240,7 +240,7 @@ export const HomeStack = createStackNavigator(
       screen: CollectionIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('our_collections')} />,
         headerBackTitle: null,
       }),
@@ -277,7 +277,7 @@ export const HomeStack = createStackNavigator(
       screen: FavoriteProductIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),
@@ -286,7 +286,7 @@ export const HomeStack = createStackNavigator(
       screen: FavoriteClassifiedIndexScreen,
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
-        headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerRight: <HeaderRight displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: null,
       }),
@@ -294,6 +294,7 @@ export const HomeStack = createStackNavigator(
     ImageZoom: {
       screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
@@ -301,7 +302,7 @@ export const HomeStack = createStackNavigator(
     Contactus: {
       screen: ContactusScreen,
       navigationOptions: () => ({
-        headerRight: <HeaderRight displayShare={false} displayCountry={true} />,
+        headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
         headerBackTitle: null,
       }),
@@ -310,6 +311,9 @@ export const HomeStack = createStackNavigator(
     TermAndCondition: {
       screen: TermAndConditionScreen,
       navigationOptions: () => ({
+        headerRight: (
+          <HeaderRight displayShare={false} displayCountry={false} />
+        ),
         headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
         headerBackTitle: null,
       }),
@@ -333,7 +337,7 @@ export const HomeStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: null,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,

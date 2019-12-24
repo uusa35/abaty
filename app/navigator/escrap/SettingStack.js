@@ -36,14 +36,14 @@ export const SettingStack = createStackNavigator(
       screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
       }),
     },
     Register: {
       screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -51,7 +51,7 @@ export const SettingStack = createStackNavigator(
       screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
-        headerRight: <HeaderRight display={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },
@@ -59,7 +59,7 @@ export const SettingStack = createStackNavigator(
       screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: null,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
@@ -68,7 +68,7 @@ export const SettingStack = createStackNavigator(
       screen: ProfileClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight showFilter={false} showCountry={false} />,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
     },

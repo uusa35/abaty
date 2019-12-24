@@ -10,11 +10,11 @@ const ChildrenCategoryIndexScreen = ({
   subCategory,
 }) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <View
         animation="bounceIn"
         easing="ease-out"
-        style={{flex: show_commercials ? 0.8 : 1}}>
+        style={{flex: show_commercials ? 0.8 : 1, backgroundColor: 'white'}}>
         <CategoriesList
           elements={subCategory.children}
           columns={2}

@@ -9,12 +9,15 @@ import {
   getImagePath,
 } from '../../helpers';
 import {map, filter} from 'lodash';
+import {isLocal} from '../../env';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl,
 });
 
-__DEV__ ? console.log('link', links.apiUrl) : null;
+if (__DEV__) {
+  console.log('link', links.apiUrl);
+}
 export function getLangForHeader() {
   return I18n.locale;
 }

@@ -1,5 +1,6 @@
 import React, {useContext, useCallback} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
+import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {images, text, width} from '../../../constants';
@@ -38,32 +39,41 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
   });
 
   return (
-    <TouchableOpacity
-      key={element.id}
-      style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}
-      onPress={() => {
-        handleClick();
-      }}>
-      <FastImage
-        style={{width: columns ? width / 2 : width, height: width / 2}}
-        resizeMode="cover"
-        source={{uri: element.large}}
-        loadingIndicatorSource={images.logo}
-      />
-      {showBtn ? (
-        <Button
-          onPress={() => handleClick()}
-          raised
-          containerStyle={{width: '95%', marginBottom: 10, marginTop: 10}}
-          buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-          title={element.name}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color,
-          }}
+    <View
+      animation="pulse"
+      easing="ease-out"
+      style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}>
+      <TouchableOpacity
+        key={element.id}
+        onPress={() => {
+          handleClick();
+        }}>
+        <FastImage
+          style={{width: columns ? width / 2 : width, height: width / 2}}
+          resizeMode="cover"
+          source={{uri: element.thumb}}
+          loadingIndicatorSource={images.logo}
         />
-      ) : null}
-    </TouchableOpacity>
+        {showBtn ? (
+          <Button
+            onPress={() => handleClick()}
+            raised
+            containerStyle={{
+              marginBottom: 10,
+              marginTop: 10,
+              marginRight: 10,
+              marginLeft: 10,
+            }}
+            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+            title={element.name}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color,
+            }}
+          />
+        ) : null}
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -79,6 +89,7 @@ const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   mainCategoryBg: {
     width: '100%',

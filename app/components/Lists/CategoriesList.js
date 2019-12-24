@@ -74,12 +74,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   wrapper: {
     flexWrap: 'wrap',
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
+    backgroundColor: 'white',
     // width: '100%'
   },
 });

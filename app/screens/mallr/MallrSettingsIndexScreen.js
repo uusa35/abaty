@@ -27,7 +27,6 @@ const MallrSettingsIndexScreen = ({
   element,
   logo,
 }) => {
-  console.log('element', element.collections);
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

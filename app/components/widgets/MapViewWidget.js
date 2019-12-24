@@ -61,6 +61,9 @@ const MapViewWidget = ({
         }}
         title={title}
         zoomEnabled={true}
+        cacheEnabled={true}
+        cacheLoadingBackgroundColor={'#eeeeee'}
+        cacheLoadingIndicatorColor={'#666666'}
         // cacheEnabled={true}
         // provider={PROVIDER_GOOGLE}
         initialRegion={{

@@ -67,7 +67,6 @@ const EscrapHomeScreen = ({
   useMemo(() => {
     const children = flatten(map(homeCategories, (c, i) => c.children));
     setChildren(children);
-    console.log('children', children);
   }, [homeCategories]);
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());

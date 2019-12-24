@@ -10,7 +10,7 @@ const ParentCategoryIndexScreen = ({
   categories,
 }) => {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <View
         animation="bounceIn"
         easing="ease-out"
