@@ -551,5 +551,6 @@
   "order_is_complete" : "Order is Complete",
   "fan_error" : "Process did not work successfully.",
   "my_classifieds" : "My Classifieds",
-  "for_sale" : "For Sale"
+  "for_sale" : "For Sale",
+  "shops" : "Shops"
 }

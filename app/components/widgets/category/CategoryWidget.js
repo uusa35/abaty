@@ -40,11 +40,11 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
 
   return (
     <View
+      key={element.id}
       animation="pulse"
       easing="ease-out"
       style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}>
       <TouchableOpacity
-        key={element.id}
         onPress={() => {
           handleClick();
         }}>

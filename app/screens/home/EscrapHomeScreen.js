@@ -176,7 +176,7 @@ const EscrapHomeScreen = ({
               showName={true}
               showTitle={true}
               showLink={true}
-              title={I18n.t('categories')}
+              title={I18n.t('shops')}
             />
           ) : null}
           {!validate.isEmpty(homeCategories) &&

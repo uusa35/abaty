@@ -21,7 +21,7 @@ const AlertMessage = ({message}) => {
     },
     text: {
       color: 'white',
-      fontFamily: 'Tajawal-Medium',
+      fontFamily: text.font,
       fontSize: text.large,
       fontWeight: 'bold',
       textAlign: 'center',

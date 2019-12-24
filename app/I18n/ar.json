@@ -583,5 +583,6 @@
   "order_is_complete" : "تم استلام طلبك بنجاح",
   "fan_error" : "لم يتم التقييم بنجاح",
   "my_classifieds" : "إعلاناتي",
-  "for_sale" : "للبيع"
+  "for_sale" : "للبيع",
+  "shops" : "محلات"
 }
