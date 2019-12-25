@@ -48,7 +48,9 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
         <TouchableOpacity
           activeOpacity={touchOpacity}
           style={widgetStyles.titleContainer}
-          onPress={() => (showLink ? navigate('CategoryIndex') : null)}>
+          onPress={() =>
+            showLink ? navigate('CategoryClassifiedIndex') : null
+          }>
           <View style={widgetStyles.titleWrapper}>
             <Text
               style={[

@@ -47,6 +47,7 @@ import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassified
 import {APP_CASE} from '../../../app';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
+import CategoryClassifiedIndexScreen from '../../screens/category/CategoryClassifiedIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -115,7 +116,15 @@ export const HomeStack = createStackNavigator(
     ParentCategoryIndex: {
       screen: ParentCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: <HeaderMiddle title={I18n.t('categories')} />,
+        headerTitle: <HeaderMiddle title={I18n.t('shops')} />,
+        headerRight: <HeaderRight />,
+        headerBackTitle: null,
+      }),
+    },
+    CategoryClassifiedIndex: {
+      screen: CategoryClassifiedIndexScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={I18n.t('for_sale')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),

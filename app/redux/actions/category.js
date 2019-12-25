@@ -34,3 +34,24 @@ export function getCategoryElements(payload) {
     payload,
   };
 }
+
+export function getHomeCategories(payload) {
+  return {
+    type: actions.GET_HOME_CATEGORIES,
+    payload,
+  };
+}
+
+export function getHomeUserCategories(payload) {
+  return {
+    type: actions.SET_HOME_USER_CATEGORIES,
+    payload,
+  };
+}
+
+export function getHomeClassifiedCategories(payload) {
+  return {
+    type: actions.SET_HOME_CLASSIFIED_CATEGORIES,
+    payload,
+  };
+}

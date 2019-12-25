@@ -1,4 +1,4 @@
-import React, {useCallback, useContext} from 'react';
+import React, {useCallback, useContext, useState, useMemo} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {map} from 'lodash';
+import {map, isNull} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
@@ -35,6 +35,7 @@ const NavCategoryHorizontalRoundedWidget = ({
   const handleClick = useCallback(c => {
     return dispatch(setCategoryAndGoToNavChildren(c));
   });
+  const [filteredElements, setFiltredElements] = useState(elements);
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>

@@ -40,8 +40,6 @@ import {
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
-import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
-import {map, flatten} from 'lodash';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -54,6 +52,8 @@ const EscrapHomeScreen = ({
   dispatch,
   navigation,
   homeClassifieds,
+  homeUserCategories,
+  homeClassifiedCategories,
   main_bg,
 }) => {
   [refresh, setRefresh] = useState(false);
@@ -62,12 +62,7 @@ const EscrapHomeScreen = ({
   [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const [children, setChildren] = useState([]);
 
-  useMemo(() => {
-    const children = flatten(map(homeCategories, (c, i) => c.children));
-    setChildren(children);
-  }, [homeCategories]);
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
@@ -169,22 +164,22 @@ const EscrapHomeScreen = ({
             main_bg={main_bg}
             onlyTextForm={true}
           />
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
+          {!validate.isEmpty(homeUserCategories) &&
+          validate.isArray(homeUserCategories) ? (
             <NavCategoryHorizontalRoundedWidget
-              elements={homeCategories}
+              elements={homeUserCategories}
               showName={true}
               showTitle={true}
               showLink={true}
               title={I18n.t('shops')}
             />
           ) : null}
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
+          {!validate.isEmpty(homeClassifiedCategories) &&
+          validate.isArray(homeClassifiedCategories) ? (
             <ClassifiedCategoryHorizontalRoundedWidget
-              elements={children}
+              elements={homeClassifiedCategories}
               showName={true}
-              showLink={false}
+              showLink={true}
               title={I18n.t('for_sale')}
             />
           ) : null}
@@ -199,13 +194,16 @@ const EscrapHomeScreen = ({
               searchElements={{on_home: true}}
             />
           ) : null}
-          <CompanyHorizontalWidget
-            elements={homeCompanies}
-            showName={true}
-            name={I18n.t('companies')}
-            title={I18n.t('companies')}
-            searchElements={{is_company: true}}
-          />
+          {!validate.isEmpty(homeCompanies) &&
+          validate.isArray(homeCompanies) ? (
+            <CompanyHorizontalWidget
+              elements={homeCompanies}
+              showName={true}
+              name={I18n.t('companies')}
+              title={I18n.t('companies')}
+              searchElements={{is_company: true}}
+            />
+          ) : null}
           <NewClassifiedHomeBtn />
         </React.Suspense>
       </ScrollView>
@@ -224,6 +222,8 @@ function mapStateToProps(state) {
   return {
     categories: state.categories,
     homeCategories: state.homeCategories,
+    homeUserCategories: state.homeUserCategories,
+    homeClassifiedCategories: state.homeClassifiedCategories,
     homeClassifieds: state.homeClassifieds,
     commercials: state.commercials,
     splashes: state.splashes,
@@ -243,6 +243,8 @@ export default connect(mapStateToProps)(EscrapHomeScreen);
 EscrapHomeScreen.propTypes = {
   categories: PropTypes.array,
   homeCategories: PropTypes.array,
+  homeUserCategories: PropTypes.array,
+  homeClassifiedCategories: PropTypes.array,
   brands: PropTypes.array,
   homeDesigners: PropTypes.array,
   homeProducts: PropTypes.array,

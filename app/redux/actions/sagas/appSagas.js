@@ -27,7 +27,6 @@ import {
   getPages,
   getTags,
   startGetHomeCategoriesScenario,
-  startGetCategoriesScenario,
   startGetParentCategoriesScenario,
   startGetCategoryAndGoToNavChildren,
   startCreateCashOnDeliveryPayment,
@@ -49,7 +48,6 @@ import {
   startStorePlayerIdScenario,
 } from './userSagas';
 import {
-  getAllProducts,
   getBestSaleProducts,
   getHomeCollectionsScenario,
   getHotDealsProducts,
@@ -59,6 +57,8 @@ import {
   setHomeProducts,
 } from './productSagas';
 import {getClassifiedIndex} from './classifiedSagas';
+import {getHometypeCategories} from './categorySagas';
+import {isLocal} from '../../../env';
 
 function* startAppBootStrap() {
   try {
@@ -103,6 +103,8 @@ function* startAppBootStrap() {
         call(getServiceIndex),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),
+        call(getHometypeCategories, {on_home: true, type: 'is_user'}),
+        call(getHometypeCategories, {on_home: true, type: 'is_classified'}),
         put({type: actions.GET_CATEGORIES}),
         put({type: actions.GET_HOME_CATEGORIES}),
         put({
@@ -126,11 +128,12 @@ function* startAppBootStrap() {
         yield call(disableLoading);
     }
   } catch (e) {
-    console.log('appSaga', e);
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('app_general_error')),
-    ]);
+    if (isLocal) {
+      console.log('appSaga', e);
+    }
+    yield call(enableErrorMessage, I18n.t('app_general_error'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 

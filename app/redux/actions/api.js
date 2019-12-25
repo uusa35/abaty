@@ -29,9 +29,9 @@ export async function getSettings() {
     .catch(e => e.response.data.message);
 }
 
-export async function getHomeCategories() {
+export async function getHomeCategories(params) {
   return await axiosInstance
-    .get(`category`, {params: {on_home: true}})
+    .get(`category`, {params})
     .then(r => r.data)
     .catch(e => e.response.data.message);
 }

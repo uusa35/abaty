@@ -12,6 +12,8 @@ import users from './users';
 import user from './user';
 import categories from './categories';
 import homeCategories from './homeCategories';
+import homeUserCategories from './homeUserCategories';
+import homeClassifiedCategories from './homeClassifiedCategories';
 import category from './category';
 import subCategory from './subCategory';
 import brands from './brands';
@@ -118,6 +120,8 @@ let reducers = combineReducers({
   user,
   categories,
   homeCategories,
+  homeUserCategories,
+  homeClassifiedCategories,
   category,
   subCategory,
   brand,
