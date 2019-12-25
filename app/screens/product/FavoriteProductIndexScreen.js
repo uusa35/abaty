@@ -32,6 +32,12 @@ const FavoriteProductIndexScreen = ({
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 10,
+      }}
       contentInset={{bottom: 150}}>
       {!validate.isEmpty(currentFavorites) ? (
         map(currentFavorites, (c, i) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
-import {links, text} from '../../constants';
+import {links, text, touchOpacity} from '../../constants';
 import I18n from '../../I18n';
 import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
@@ -29,6 +29,7 @@ const ContactInformationWidget = ({settings}) => {
       ) : null}
       {settings.mobile ? (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           onPress={() => Linking.openURL(`tel:${settings.mobile}`)}
           style={styles.container}>
@@ -41,6 +42,7 @@ const ContactInformationWidget = ({settings}) => {
       ) : null}
       {settings.whatsapp ? (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           onPress={() =>
             Linking.openURL(
@@ -71,6 +73,7 @@ const ContactInformationWidget = ({settings}) => {
       ) : null}
       {!validate.isEmpty(settings.longitude) || !validate.isEmpty(latitude) ? (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
             Linking.openURL(
@@ -91,6 +94,7 @@ const ContactInformationWidget = ({settings}) => {
       ) : null}
       {settings.email ? (
         <TouchableOpacity
+          activeOpacity={touchOpacity}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`mailto:${settings.email}`)}
           style={styles.container}>

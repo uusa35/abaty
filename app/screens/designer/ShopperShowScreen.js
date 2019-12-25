@@ -80,7 +80,7 @@ const ShopperShowScreen = ({
       showsVerticalScrollIndicator={false}
       maxHeight={150}
       minHeight={90}
-      containerStyle={{flex: 1}}
+      containerStyle={{flex: 1, backgroundColor: 'white'}}
       overlayColor="white"
       headerImage={{
         uri: element.banner ? element.banner : logo,
@@ -244,6 +244,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopWidth: 1,
     borderColor: 'lightgrey',
+    backgroundColor: 'white',
   },
   logo: {
     width: 80,

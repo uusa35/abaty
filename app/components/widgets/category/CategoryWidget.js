@@ -3,7 +3,7 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
-import {images, text, width} from '../../../constants';
+import {images, text, touchOpacity, width} from '../../../constants';
 import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
@@ -45,6 +45,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
       easing="ease-out"
       style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}>
       <TouchableOpacity
+        activeOpacity={touchOpacity}
         onPress={() => {
           handleClick();
         }}>

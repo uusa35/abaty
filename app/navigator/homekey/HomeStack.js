@@ -115,7 +115,7 @@ export const HomeStack = createStackNavigator(
     },
     ParentCategoryIndex: {
       screen: ParentCategoryIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('categories')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,

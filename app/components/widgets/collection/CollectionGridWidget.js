@@ -1,5 +1,6 @@
 import React, {Fragment, useContext} from 'react';
-import {View, Image, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {map} from 'lodash';
@@ -7,6 +8,7 @@ import {getSearchProducts} from '../../../redux/actions/product';
 import widgetStyles from '../widgetStyles';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {touchOpacity} from '../../../constants';
 
 const CollectionGridWidget = ({elements, showTitle = true}) => {
   const {dispatch} = useContext(DispatchContext);
@@ -34,6 +36,8 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
         }}>
         {map(elements, (e, i) => (
           <TouchableOpacity
+            activeOpacity={touchOpacity}
+            style={{margin: 5}}
             onPress={() =>
               dispatch(
                 getSearchProducts({
@@ -44,9 +48,14 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
               )
             }
             key={i}>
-            <Image
+            <FastImage
               source={{uri: e.thumb}}
-              style={{width: 130, height: 173, margin: 2}}
+              style={{
+                width: 110,
+                height: 150,
+                borderWidth: 0.5,
+                borderColor: 'lightgrey',
+              }}
             />
           </TouchableOpacity>
         ))}

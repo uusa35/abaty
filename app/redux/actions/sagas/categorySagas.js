@@ -4,6 +4,7 @@ import * as api from '../api';
 import validate from 'validate.js';
 import {isLocal} from '../../../env';
 import {SET_CATEGORY} from '../types';
+import {first} from 'lodash';
 
 export function* getHometypeCategories(action) {
   try {
@@ -21,8 +22,6 @@ export function* getHometypeCategories(action) {
       if (validate.isEmpty(category)) {
         yield put({type: SET_CATEGORY, payload: first(elements)});
       }
-    } else {
-      yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
     if (isLocal) {

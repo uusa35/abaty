@@ -8,7 +8,7 @@ import {getSearchDesigners, getShopper} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {images, touchOpacity} from '../../../constants';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
@@ -26,6 +26,7 @@ const ShopperHorizontalWidget = ({
     <View style={widgetStyles.container}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
+        activeOpacity={touchOpacity}
         onPress={() =>
           dispatch(
             getSearchDesigners({
@@ -58,6 +59,7 @@ const ShopperHorizontalWidget = ({
         {map(elements, (c, i) => (
           <View animation="pulse" easing="ease-out" key={c.id}>
             <TouchableOpacity
+              activeOpacity={touchOpacity}
               key={i}
               style={widgetStyles.btnStyle}
               onPress={() =>

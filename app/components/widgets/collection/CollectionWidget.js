@@ -33,15 +33,15 @@ const CollectionWidget = ({element, showName = false}) => {
         },
       ]}
       onPress={() => {
-        // dispatch({type: 'SET_COLLECTION', payload: element});
-        // dispatch(
-        //   getSearchProducts({
-        //     name: element.slug,
-        //     searchParams: {collection_id: element.id},
-        //     redirect: true,
-        //   }),
-        // );
-        dispatch(getCollection(element.id));
+        dispatch({type: 'SET_COLLECTION', payload: element});
+        dispatch(
+          getSearchProducts({
+            name: element.slug,
+            searchParams: {collection_id: element.id},
+            redirect: true,
+          }),
+        );
+        // dispatch(getCollection(element.id));
       }}>
       <ImageBackground
         source={{

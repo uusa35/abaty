@@ -564,10 +564,3 @@ export async function addComment(params) {
     .then(r => r.data)
     .catch(e => e.response.date.message);
 }
-
-export async function getParentCategories() {
-  return await axiosInstance
-    .get(`category`, {params: {is_parent: true}})
-    .then(r => r.data)
-    .catch(e => e.response.data.message);
-}

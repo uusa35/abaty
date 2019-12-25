@@ -24,8 +24,9 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
           contentContainerStyle={{
             alignItems: 'center',
             justifyContent: 'center',
-            width: '95%',
+            width: '100%',
             marginTop: 10,
+            padding: 10,
           }}
           style={{alignSelf: 'center'}}
           keyboardShouldPersistTaps="always"

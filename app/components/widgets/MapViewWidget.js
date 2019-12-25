@@ -59,6 +59,7 @@ const MapViewWidget = ({
           alignSelf: 'center',
           height: height ? height : '25%',
         }}
+        loadingBackgroundColor={`white`}
         title={title}
         zoomEnabled={true}
         cacheEnabled={true}
@@ -75,7 +76,7 @@ const MapViewWidget = ({
         {!isMulti ? (
           <Marker
             title={title}
-            onPress={() => console.log('here')}
+            // onPress={() => }
             scrollEnabled={false}
             image={images.pin}
             opacity={1}
@@ -98,7 +99,7 @@ const MapViewWidget = ({
             <Marker
               key={i}
               title={element.title}
-              onPress={() => console.log('here')}
+              // onPress={() => console.log('here')}
               scrollEnabled={false}
               image={images.pin}
               opacity={1}

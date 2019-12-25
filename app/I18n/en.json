@@ -507,6 +507,7 @@
   "mallr" : {
     "designers" : "Shoppers",
     "shoppers" : "Shoppers",
+    "personal_shoppers" : "المتسوقين الشخصيين",
     "personal_shoppers" : "Personal Shoppers",
     "shopper" : "Shopper",
     "designer" : "Shopper",

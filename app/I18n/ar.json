@@ -541,6 +541,7 @@
   "mallr" : {
     "designers" : "المتسوق الشخصي",
     "shoppers" : "المتسوق الشخصي",
+    "personal_shoppers" : "المتسوقين الشخصيين",
     "designers" : "المتسوق الشخصي",
     "shoppers" : "المتسوق الشخصي",
     "our_designers" : "المتسوق الشخصي",
@@ -584,5 +585,5 @@
   "fan_error" : "لم يتم التقييم بنجاح",
   "my_classifieds" : "إعلاناتي",
   "for_sale" : "للبيع",
-  "shops" : "محلات"
+  "shops" : "محلات",
 }

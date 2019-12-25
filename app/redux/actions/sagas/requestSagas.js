@@ -33,7 +33,6 @@ import {
 } from './productSagas';
 import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetClassifiedScenario} from './classifiedSagas';
-import {isArray} from 'lodash';
 import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
 import {isLocal} from '../../../env';
@@ -42,13 +41,14 @@ import {getHometypeCategories} from './categorySagas';
 export function* startGetHomeCategoriesScenario(action) {
   try {
     const elements = yield call(api.getHomeCategories, {on_home: true});
-    if (!validate.isEmpty(elements) && isArray(elements)) {
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: elements});
       const {category} = yield select();
       if (validate.isEmpty(category)) {
         yield put({type: SET_CATEGORY, payload: first(elements)});
       }
     } else {
+      console.log('else');
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
@@ -65,8 +65,8 @@ export function* startRefetchHomeCategories() {
 
 export function* startGetParentCategoriesScenario() {
   try {
-    const elements = yield call(api.getParentCategories);
-    if (!validate.isEmpty(elements) && isArray(elements)) {
+    const elements = yield call(api.getHomeCategories, {is_parent: true});
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_CATEGORIES, payload: elements});
     } else {
       yield put({type: actions.SET_CATEGORIES, payload: []});

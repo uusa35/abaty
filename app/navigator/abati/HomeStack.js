@@ -346,7 +346,7 @@ export const HomeStack = createStackNavigator(
       screen: OrderIndexScreen,
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
-        headerRight: null,
+        headerRight: <HeaderRight />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
