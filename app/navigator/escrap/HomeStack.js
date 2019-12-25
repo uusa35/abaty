@@ -115,7 +115,7 @@ export const HomeStack = createStackNavigator(
     },
     ParentCategoryIndex: {
       screen: ParentCategoryIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('shops')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
@@ -123,7 +123,7 @@ export const HomeStack = createStackNavigator(
     },
     CategoryClassifiedIndex: {
       screen: CategoryClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('for_sale')} />,
         headerRight: <HeaderRight />,
         headerBackTitle: null,
