@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {View} from 'react-native-animatable';
+import {APP_CASE} from './../../../app';
 
 const SocialRowWidget = ({settings}) => {
   const [size, setSize] = useState(25);
@@ -57,7 +58,7 @@ const SocialRowWidget = ({settings}) => {
             color="#25d366"
             onPress={() =>
               Linking.openURL(
-                `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=Shared by Escrap App`,
+                `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_CASE}`,
               )
             }
           />

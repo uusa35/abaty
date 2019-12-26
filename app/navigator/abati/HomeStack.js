@@ -127,7 +127,7 @@ export const HomeStack = createStackNavigator(
     CategoryIndex: {
       screen: gestureHandlerRootHOC(CategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
-        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={false} displayShare={false} />,
         headerTitle: (
           <HeaderMiddle
             title={

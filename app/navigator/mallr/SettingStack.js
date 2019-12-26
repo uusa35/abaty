@@ -13,6 +13,7 @@ import UserEditScreen from '../../screens/auth/UserEditScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const SettingStack = createStackNavigator(
   {
@@ -56,6 +57,15 @@ export const SettingStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
+    SearchProductIndex: {
+      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
