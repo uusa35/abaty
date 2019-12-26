@@ -89,9 +89,10 @@ export function* startGetShopperScenario(action) {
           NavigationActions.navigate({
             routeName: 'ShopperShow',
             params: {
-              name: element ? element.slug : I18n.t('shopper'),
+              name: element.slug,
               id: element.id,
-              mode: 'user',
+              model: 'user',
+              type: 'shopper',
             },
           }),
         );

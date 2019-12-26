@@ -6,11 +6,12 @@ import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const ProductStack = createStackNavigator(
   {
     ProductIndexAll: {
-      screen: ProductIndexAllScreen,
+      screen: gestureHandlerRootHOC(ProductIndexAllScreen),
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -19,7 +20,7 @@ export const ProductStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: NormalProductShowScreen,
+      screen: gestureHandlerRootHOC(NormalProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

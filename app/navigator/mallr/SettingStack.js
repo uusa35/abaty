@@ -12,11 +12,12 @@ import RegisterScreen from '../../screens/auth/RegisterScreen';
 import UserEditScreen from '../../screens/auth/UserEditScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const SettingStack = createStackNavigator(
   {
     Account: {
-      screen: MallrAccountScreen,
+      screen: gestureHandlerRootHOC(MallrAccountScreen),
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -28,14 +29,14 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: LoginScreen,
+      screen: gestureHandlerRootHOC(LoginScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
       }),
     },
     Register: {
-      screen: RegisterScreen,
+      screen: gestureHandlerRootHOC(RegisterScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
@@ -43,7 +44,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: UserEditScreen,
+      screen: gestureHandlerRootHOC(UserEditScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,
@@ -51,7 +52,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     ProductIndex: {
-      screen: ProductIndexScreen,
+      screen: gestureHandlerRootHOC(ProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -60,7 +61,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: gestureHandlerRootHOC(ProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} display={true} />,

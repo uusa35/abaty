@@ -5,11 +5,12 @@ import I18n from '../../I18n';
 import React from 'react';
 import ClassifiedFilterScreen from '../../screens/search/ClassifiedFilterScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const SearchStack = createStackNavigator(
   {
     ClassifiedFilter: {
-      screen: ClassifiedFilterScreen,
+      screen: gestureHandlerRootHOC(ClassifiedFilterScreen),
       navigationOptions: () => ({
         // header: null,
         headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,

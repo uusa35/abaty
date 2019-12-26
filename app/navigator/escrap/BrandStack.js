@@ -9,11 +9,12 @@ import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const BrandStack = createStackNavigator(
   {
     BrandIndex: {
-      screen: BrandIndexScreen,
+      screen: gestureHandlerRootHOC(BrandIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
@@ -21,7 +22,7 @@ export const BrandStack = createStackNavigator(
       }),
     },
     BrandShow: {
-      screen: BrandShowScreen,
+      screen: gestureHandlerRootHOC(BrandShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,
@@ -29,7 +30,7 @@ export const BrandStack = createStackNavigator(
       }),
     },
     ProductIndex: {
-      screen: ProductIndexScreen,
+      screen: gestureHandlerRootHOC(ProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -38,7 +39,7 @@ export const BrandStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: NormalProductShow,
+      screen: gestureHandlerRootHOC(NormalProductShow),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

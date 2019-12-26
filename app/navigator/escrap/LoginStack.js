@@ -6,18 +6,19 @@ import React from 'react';
 import LoginScreen from '../../screens/auth/LoginScreen';
 import RegisterScreen from '../../screens/auth/RegisterScreen';
 import UserEditScreen from '../../screens/auth/UserEditScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const LoginStack = createStackNavigator(
   {
     Login: {
-      screen: LoginScreen,
+      screen: gestureHandlerRootHOC(LoginScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
       }),
     },
     Register: {
-      screen: RegisterScreen,
+      screen: gestureHandlerRootHOC(RegisterScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,
@@ -25,7 +26,7 @@ export const LoginStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: UserEditScreen,
+      screen: gestureHandlerRootHOC(UserEditScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight display={false} />,

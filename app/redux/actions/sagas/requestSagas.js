@@ -200,11 +200,11 @@ export function* startSetCountryScenario(action) {
   }
 }
 
-export function* startDeepLinkingScenario() {
+export function* startDeepLinkingScenario(action) {
   try {
     const {bootStrapped, linking} = yield select();
-    const {type, id} = linking;
-    if (!isNull(type) && bootStrapped && !validate.isEmpty(linking)) {
+    const {type, id} = !validate.isEmpty(linking) ? linking : action.payload;
+    if (!isNull(type) && bootStrapped) {
       switch (type) {
         case 'designer':
           return yield call(startGetDesignerScenario, {

@@ -17,11 +17,12 @@ import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import ProfileClassifiedIndexScreen from '../../screens/classified/ProfileClassifiedIndexScreen';
 import ClassifiedEditScreen from '../../screens/classified/ClassifiedEditScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
-      screen: SettingsIndexScreen,
+      screen: gestureHandlerRootHOC(SettingsIndexScreen),
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -33,14 +34,14 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: LoginScreen,
+      screen: gestureHandlerRootHOC(LoginScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight />,
       }),
     },
     Register: {
-      screen: RegisterScreen,
+      screen: gestureHandlerRootHOC(RegisterScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight />,
@@ -48,7 +49,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: UserEditScreen,
+      screen: gestureHandlerRootHOC(UserEditScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight />,
@@ -56,7 +57,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     ProfileIndex: {
-      screen: ProfileIndexScreen,
+      screen: gestureHandlerRootHOC(ProfileIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -65,7 +66,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     ProfileClassifiedIndex: {
-      screen: ProfileClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(ProfileClassifiedIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -73,7 +74,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     OrderIndex: {
-      screen: OrderIndexScreen,
+      screen: gestureHandlerRootHOC(OrderIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
@@ -82,7 +83,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     FavoriteProductIndex: {
-      screen: FavoriteProductIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteProductIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -91,7 +92,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: NormalProductShow,
+      screen: gestureHandlerRootHOC(NormalProductShow),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
@@ -100,7 +101,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     Classified: {
-      screen: NormalClassifiedShowScreen,
+      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showCountry={true} showFilter={false} />,
@@ -115,7 +116,7 @@ export const SettingStack = createStackNavigator(
       path: `classified/:id`,
     },
     ClassifiedEdit: {
-      screen: ClassifiedEditScreen,
+      screen: gestureHandlerRootHOC(ClassifiedEditScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={false} showFilter={false} />,
@@ -123,7 +124,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     FavoriteClassifiedIndex: {
-      screen: FavoriteClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,

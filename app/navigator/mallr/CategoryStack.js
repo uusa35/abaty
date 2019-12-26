@@ -9,11 +9,12 @@ import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import React from 'react';
 import {HeaderLeft} from '../../components/HeaderLeft';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
-      screen: CategoryIndexScreen,
+      screen: gestureHandlerRootHOC(CategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -36,7 +37,7 @@ export const CategoryStack = createStackNavigator(
       path: 'category/:id',
     },
     ProductIndex: {
-      screen: ProductIndexScreen,
+      screen: gestureHandlerRootHOC(ProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: <HeaderRight {...navigation} display={true} />,
@@ -45,7 +46,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: gestureHandlerRootHOC(ProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -61,7 +62,7 @@ export const CategoryStack = createStackNavigator(
       path: `product/:id`,
     },
     SubCategoryIndex: {
-      screen: SubCategoryIndexScreen,
+      screen: gestureHandlerRootHOC(SubCategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight display={false} />,

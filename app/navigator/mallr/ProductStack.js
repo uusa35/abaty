@@ -8,11 +8,12 @@ import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import React from 'react';
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const ProductStack = createStackNavigator(
   {
     ProductIndexAll: {
-      screen: ProductIndexAllScreen,
+      screen: gestureHandlerRootHOC(ProductIndexAllScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight showCountry={true} />,
@@ -21,7 +22,7 @@ export const ProductStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: gestureHandlerRootHOC(ProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} />,
@@ -30,7 +31,7 @@ export const ProductStack = createStackNavigator(
       path: `product/:id`,
     },
     Home: {
-      screen: MallrHomeScreen,
+      screen: gestureHandlerRootHOC(MallrHomeScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft />,
         HeaderRight: <HeaderRight showCountry={true} displayShare={false} />,

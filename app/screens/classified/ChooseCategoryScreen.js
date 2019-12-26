@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from '../../constants';
 import ChooseCategoryItem from '../../components/widgets/category/ChooseCategoryItem';
+import {map, filter} from 'lodash';
 
-const ChooseCategoryScreen = ({categories, dispatch}) => {
+const ChooseCategoryScreen = ({categories}) => {
+  const [classifiedCategories, setClassifiedCategories] = useState([]);
+
+  useMemo(() => {
+    setClassifiedCategories(filter(categories, c => c.is_classified));
+  }, [categories]);
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -14,7 +21,7 @@ const ChooseCategoryScreen = ({categories, dispatch}) => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
-        data={categories}
+        data={classifiedCategories}
         renderItem={({item}) => (
           <ChooseCategoryItem category={item} key={item.id} />
         )}></FlatList>

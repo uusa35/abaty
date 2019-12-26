@@ -122,7 +122,7 @@ const AbatiHomeScreen = ({
     );
     dispatch(setDeepLinking(notification));
     setTimeout(() => {
-      dispatch(goDeepLinking());
+      dispatch(goDeepLinking(notification));
     }, 2000);
   });
 

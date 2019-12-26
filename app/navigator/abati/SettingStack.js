@@ -15,11 +15,12 @@ import FavoriteProductIndexScreen from '../../screens/product/FavoriteProductInd
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
-      screen: SettingsIndexScreen,
+      screen: gestureHandlerRootHOC(SettingsIndexScreen),
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -31,7 +32,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: LoginScreen,
+      screen: gestureHandlerRootHOC(LoginScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -39,7 +40,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Register: {
-      screen: RegisterScreen,
+      screen: gestureHandlerRootHOC(RegisterScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -47,7 +48,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: UserEditScreen,
+      screen: gestureHandlerRootHOC(UserEditScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -55,7 +56,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     ProfileIndex: {
-      screen: ProfileIndexScreen,
+      screen: gestureHandlerRootHOC(ProfileIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -64,7 +65,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     OrderIndex: {
-      screen: OrderIndexScreen,
+      screen: gestureHandlerRootHOC(OrderIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: <HeaderRight showFilter={false} showCountry={false} />,
@@ -73,7 +74,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     FavoriteProductIndex: {
-      screen: FavoriteProductIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: (
@@ -89,7 +90,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: NormalProductShow,
+      screen: gestureHandlerRootHOC(NormalProductShow),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -104,7 +105,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     Classified: {
-      screen: ClassifiedShowScreen,
+      screen: gestureHandlerRootHOC(ClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -125,7 +126,7 @@ export const SettingStack = createStackNavigator(
       path: `classified/:id`,
     },
     FavoriteClassifiedIndex: {
-      screen: FavoriteClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft {...navigation} />,
         headerRight: (

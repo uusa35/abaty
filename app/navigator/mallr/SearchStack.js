@@ -10,11 +10,12 @@ import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const SearchStack = createStackNavigator(
   {
     SearchIndex: {
-      screen: SearchScreen,
+      screen: gestureHandlerRootHOC(SearchScreen),
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
@@ -26,7 +27,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     SearchProductIndex: {
-      screen: SearchProductIndexScreen,
+      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,
@@ -35,7 +36,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: gestureHandlerRootHOC(ProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (
@@ -50,7 +51,7 @@ export const SearchStack = createStackNavigator(
       path: `product/:id`,
     },
     Service: {
-      screen: ServiceShowScreen,
+      screen: gestureHandlerRootHOC(ServiceShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

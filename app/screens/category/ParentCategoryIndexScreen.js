@@ -7,7 +7,7 @@ import CommercialSliderWidget from '../../components/widgets/CommercialSliderWid
 const ParentCategoryIndexScreen = ({
   commercials,
   show_commercials,
-  categories,
+  homeUserCategories,
 }) => {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -16,7 +16,7 @@ const ParentCategoryIndexScreen = ({
         easing="ease-out"
         style={{flex: show_commercials ? 0.8 : 1}}>
         <CategoriesList
-          elements={categories}
+          elements={homeUserCategories}
           columns={2}
           type="company"
           showBtn={true}
@@ -35,7 +35,7 @@ function mapStateToProps(state) {
   return {
     commercials: state.commercials,
     show_commercials: state.settings.show_commercials,
-    categories: state.categories,
+    homeUserCategories: state.homeUserCategories,
   };
 }
 

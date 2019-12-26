@@ -6,11 +6,12 @@ import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import I18n from '../../I18n';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const ServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
-      screen: ServiceIndexAllScreen,
+      screen: gestureHandlerRootHOC(ServiceIndexAllScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft />,
         headerRight: <HeaderRight showCountry={true} />,
@@ -19,7 +20,7 @@ export const ServiceStack = createStackNavigator(
       }),
     },
     Service: {
-      screen: ServiceShowScreen,
+      screen: gestureHandlerRootHOC(ServiceShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

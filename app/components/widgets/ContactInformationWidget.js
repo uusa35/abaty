@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image';
 import MapViewWidget from './MapViewWidget';
 import {View} from 'react-native-animatable';
 import validate from 'validate.js';
+import {APP_CASE} from './../../../app';
 
 const ContactInformationWidget = ({settings}) => {
   return (
@@ -46,7 +47,7 @@ const ContactInformationWidget = ({settings}) => {
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           onPress={() =>
             Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_NAME}`,
+              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_CASE}`,
             )
           }
           style={styles.container}>

@@ -48,11 +48,12 @@ import {APP_CASE} from '../../../app';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
 import CategoryClassifiedIndexScreen from '../../screens/category/CategoryClassifiedIndexScreen';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const HomeStack = createStackNavigator(
   {
     // Introduction: {
-    //   screen: IntroductionScreen,
+    //   screen: gestureHandlerRootHOC(IntroductionScreen),
     //   navigationOptions: ) => ({
     //     header: null,
     //     showLabel: false,
@@ -61,7 +62,7 @@ export const HomeStack = createStackNavigator(
     //   })
     // },
     Home: {
-      screen: HomeKeyHomeScreen,
+      screen: gestureHandlerRootHOC(HomeKeyHomeScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} showSideMenu={true} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
@@ -71,7 +72,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CartIndex: {
-      screen: CartIndexScreen,
+      screen: gestureHandlerRootHOC(CartIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         // headerRight: <HeaderRight showCountry={true} displayShare={false} />,
@@ -80,14 +81,14 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CartConfirmation: {
-      screen: CartConfirmationScreen,
+      screen: gestureHandlerRootHOC(CartConfirmationScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('cart_confirmation')} />,
         headerBackTitle: null,
       }),
     },
     PaymentIndex: {
-      screen: PaymentIndexScreen,
+      screen: gestureHandlerRootHOC(PaymentIndexScreen),
       navigationOptions: () => ({
         headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('payment_index_page')} />,
@@ -95,7 +96,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CategoryIndex: {
-      screen: CategoryIndexScreen,
+      screen: gestureHandlerRootHOC(CategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerTitle: (
@@ -114,7 +115,7 @@ export const HomeStack = createStackNavigator(
       path: 'category/:id',
     },
     ParentCategoryIndex: {
-      screen: ParentCategoryIndexScreen,
+      screen: gestureHandlerRootHOC(ParentCategoryIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('categories')} />,
         headerRight: <HeaderRight />,
@@ -122,7 +123,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CategoryClassifiedIndex: {
-      screen: CategoryClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(CategoryClassifiedIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: <HeaderRight />,
@@ -130,7 +131,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     SubCategoryIndex: {
-      screen: SubCategoryIndexScreen,
+      screen: gestureHandlerRootHOC(SubCategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -138,7 +139,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ChildrenCategoryIndex: {
-      screen: ChildrenCategoryIndexScreen,
+      screen: gestureHandlerRootHOC(ChildrenCategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -146,7 +147,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     DesignerIndex: {
-      screen: DesignerIndexScreen,
+      screen: gestureHandlerRootHOC(DesignerIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -154,7 +155,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CompanyIndex: {
-      screen: CompanyIndexScreen,
+      screen: gestureHandlerRootHOC(CompanyIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -162,7 +163,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CelebrityIndex: {
-      screen: CelebrityIndexScreen,
+      screen: gestureHandlerRootHOC(CelebrityIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -170,7 +171,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CompanyShow: {
-      screen: CompanyShowScreen,
+      screen: gestureHandlerRootHOC(CompanyShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -179,7 +180,7 @@ export const HomeStack = createStackNavigator(
       path: `user/:id`,
     },
     CompanyClassifiedShow: {
-      screen: CompanyClassifiedShowScreen,
+      screen: gestureHandlerRootHOC(CompanyClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -188,7 +189,7 @@ export const HomeStack = createStackNavigator(
       path: `user/:id`,
     },
     DesignerShow: {
-      screen: DesignerShowScreen,
+      screen: gestureHandlerRootHOC(DesignerShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -197,7 +198,7 @@ export const HomeStack = createStackNavigator(
       path: `user/:id`,
     },
     CelebrityShow: {
-      screen: CelebrityShowScreen,
+      screen: gestureHandlerRootHOC(CelebrityShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -206,7 +207,7 @@ export const HomeStack = createStackNavigator(
       path: `user/:id`,
     },
     ProductIndex: {
-      screen: ProductIndexScreen,
+      screen: gestureHandlerRootHOC(ProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight showCountry={true} />,
@@ -215,7 +216,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ServiceIndex: {
-      screen: ServiceIndexScreen,
+      screen: gestureHandlerRootHOC(ServiceIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -224,7 +225,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CollectionIndex: {
-      screen: CollectionIndexScreen,
+      screen: gestureHandlerRootHOC(CollectionIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -234,7 +235,7 @@ export const HomeStack = createStackNavigator(
     },
 
     Product: {
-      screen: NormalProductShow,
+      screen: gestureHandlerRootHOC(NormalProductShow),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
@@ -243,7 +244,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     Service: {
-      screen: ServiceShowScreen,
+      screen: gestureHandlerRootHOC(ServiceShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -252,7 +253,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     FavoriteProductIndex: {
-      screen: FavoriteProductIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteProductIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -261,7 +262,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     FavoriteClassifiedIndex: {
-      screen: FavoriteClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
       navigationOptions: () => ({
         // headerLeft: <HeaderLeft  />,
         headerRight: <HeaderRight displayShare={false} display={true} />,
@@ -270,7 +271,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ImageZoom: {
-      screen: ImageZoomWidget,
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
       navigationOptions: ({navigation}) => ({
         headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
@@ -278,7 +279,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Contactus: {
-      screen: ContactusScreen,
+      screen: gestureHandlerRootHOC(ContactusScreen),
       navigationOptions: () => ({
         headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('contactus')} />,
@@ -286,14 +287,14 @@ export const HomeStack = createStackNavigator(
       path: 'contactus',
     },
     TermAndCondition: {
-      screen: TermAndConditionScreen,
+      screen: gestureHandlerRootHOC(TermAndConditionScreen),
       navigationOptions: () => ({
         headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('terms_and_conditions')} />,
       }),
     },
     BrandIndex: {
-      screen: BrandIndexScreen,
+      screen: gestureHandlerRootHOC(BrandIndexScreen),
       navigationOptions: () => ({
         headerRight: <HeaderRight />,
         headerTitle: <HeaderMiddle title={I18n.t('brands')} />,
@@ -301,7 +302,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     BrandShow: {
-      screen: BrandShowScreen,
+      screen: gestureHandlerRootHOC(BrandShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,
@@ -309,7 +310,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ProfileIndex: {
-      screen: ProfileIndexScreen,
+      screen: gestureHandlerRootHOC(ProfileIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight />,
@@ -318,7 +319,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     OrderIndex: {
-      screen: OrderIndexScreen,
+      screen: gestureHandlerRootHOC(OrderIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
@@ -327,7 +328,7 @@ export const HomeStack = createStackNavigator(
       path: `product/:id`,
     },
     HomeKey: {
-      screen: HomeKeyHomeScreen,
+      screen: gestureHandlerRootHOC(HomeKeyHomeScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
@@ -339,7 +340,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Scrap: {
-      screen: EscrapHomeScreen,
+      screen: gestureHandlerRootHOC(EscrapHomeScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} />,
         headerRight: <HeaderRight showCountry={true} displayShare={false} />,
@@ -349,7 +350,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: ClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: <HeaderLeft  />,
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
@@ -358,8 +359,8 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Classified: {
-      // screen: ClassifiedShowScreen,
-      screen: NormalClassifiedShowScreen,
+      // screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight showCountry={true} displayShare={true} />,
@@ -374,7 +375,7 @@ export const HomeStack = createStackNavigator(
       path: `classified/:id`,
     },
     ClassifiedStore: {
-      screen: ClassifiedStoreScreen,
+      screen: gestureHandlerRootHOC(ClassifiedStoreScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('new_classified')} />,
         headerRight: <HeaderRight />,
@@ -382,7 +383,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ChooseCategory: {
-      screen: ChooseCategoryScreen,
+      screen: gestureHandlerRootHOC(ChooseCategoryScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('choose_your_category')} />,
         headerRight: <HeaderRight />,
@@ -390,7 +391,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ChooseCategoryGroups: {
-      screen: CategoryGroupsScreen,
+      screen: gestureHandlerRootHOC(CategoryGroupsScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_properties')} />,
         headerRight: <HeaderRight />,
@@ -398,7 +399,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ChooseAddress: {
-      screen: ChooseAddressScreen,
+      screen: gestureHandlerRootHOC(ChooseAddressScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('add_your_address')} />,
         headerRight: <HeaderRight />,
@@ -406,7 +407,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ClassifiedFilter: {
-      screen: ClassifiedFilterScreen,
+      screen: gestureHandlerRootHOC(ClassifiedFilterScreen),
       navigationOptions: () => ({
         // header: null,
         headerTitle: <HeaderMiddle title={I18n.t('search_classifieds')} />,
@@ -415,7 +416,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: LoginScreen,
+      screen: gestureHandlerRootHOC(LoginScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight display={false} />,
@@ -423,7 +424,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Register: {
-      screen: RegisterScreen,
+      screen: gestureHandlerRootHOC(RegisterScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('register')} />,
         headerRight: <HeaderRight display={false} />,

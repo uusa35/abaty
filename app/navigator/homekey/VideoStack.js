@@ -6,11 +6,12 @@ import I18n from '../../I18n';
 import React from 'react';
 import VideoShowScreen from '../../screens/video/VideoShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const VideoStack = createStackNavigator(
   {
     VideoIndex: {
-      screen: VideoIndexScreen,
+      screen: gestureHandlerRootHOC(VideoIndexScreen),
       navigationOptions: ({navigation}) => ({
         headerLeft: <HeaderLeft {...navigation} />,
         headerTitle: <HeaderMiddle title={I18n.t('videos')} />,
@@ -18,7 +19,7 @@ export const VideoStack = createStackNavigator(
       }),
     },
     VideoShow: {
-      screen: VideoShowScreen,
+      screen: gestureHandlerRootHOC(VideoShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom navigation={navigation} />,

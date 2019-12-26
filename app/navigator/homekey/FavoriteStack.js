@@ -8,12 +8,12 @@ import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifie
 import I18n from '../../I18n';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
-import {APP_CASE} from '../../../app';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const FavoriteStack = createStackNavigator(
   {
     FavoriteClassifiedIndex: {
-      screen: FavoriteClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft showCart={false} showSideMenu={false} />,
         headerRight: <HeaderRight showCountry={false} showFilter={false} />,
@@ -22,7 +22,7 @@ export const FavoriteStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: ClassifiedIndexScreen,
+      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
@@ -30,7 +30,7 @@ export const FavoriteStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: NormalClassifiedShowScreen,
+      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderRight displayShare={true} showCountry={true} />,
