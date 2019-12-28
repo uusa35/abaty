@@ -73,7 +73,9 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
         ),
-        title: I18n.t('search'),
+        tabBarLabel: ({focused}) => (
+          <TextTabBar title={I18n.t('search')} focused={focused} />
+        ),
       }),
     },
     ProductIndexAll: {

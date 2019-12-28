@@ -8,13 +8,13 @@ import ProductInfoWidgetElement from './../../components/widgets/product/Product
 import I18n from './../../I18n';
 import {first} from 'lodash';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
-import {getDesigner} from '../../redux/actions/product';
 import validate from 'validate.js';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
+import {getDesigner} from '../../redux/actions/user';
 
 const ProductShowScreen = ({
   product,
