@@ -7,6 +7,8 @@ import I18n from '../../I18n';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 
 export const ProductStack = createStackNavigator(
   {
@@ -27,6 +29,23 @@ export const ProductStack = createStackNavigator(
         headerBackTitle: null,
       }),
       path: `product/:id`,
+    },
+    SearchProductIndex: {
+      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
+    ImageZoom: {
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
     },
   },
   {

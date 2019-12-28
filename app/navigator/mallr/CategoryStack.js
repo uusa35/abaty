@@ -10,6 +10,8 @@ import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScree
 import React from 'react';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
+import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 
 export const CategoryStack = createStackNavigator(
   {
@@ -45,6 +47,15 @@ export const CategoryStack = createStackNavigator(
         headerBackTitle: null,
       }),
     },
+    SearchProductIndex: {
+      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
     Product: {
       screen: gestureHandlerRootHOC(ProductShowScreen),
       navigationOptions: ({navigation}) => ({
@@ -60,6 +71,14 @@ export const CategoryStack = createStackNavigator(
         headerBackTitle: null,
       }),
       path: `product/:id`,
+    },
+    ImageZoom: {
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
     },
     SubCategoryIndex: {
       screen: gestureHandlerRootHOC(SubCategoryIndexScreen),

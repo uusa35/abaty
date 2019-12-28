@@ -9,6 +9,8 @@ import React from 'react';
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
+import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 
 export const ProductStack = createStackNavigator(
   {
@@ -36,6 +38,23 @@ export const ProductStack = createStackNavigator(
         headerLeft: <HeaderLeft />,
         HeaderRight: <HeaderRight showCountry={true} displayShare={false} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
+        headerBackTitle: null,
+      }),
+    },
+    SearchProductIndex: {
+      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      navigationOptions: ({navigation}) => ({
+        // headerLeft: <HeaderLeft  />,
+        headerRight: <HeaderRight showCountry={true} />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
+    },
+    ImageZoom: {
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerBackTitle: null,
       }),
     },
