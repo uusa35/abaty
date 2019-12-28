@@ -186,7 +186,7 @@ export const storeClassifiedConstrains = {
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
   image: {presence: {allowEmpty: false}},
-  images: {presence: {allowEmpty: false}},
+  images: {presence: {allowEmpty: false}, length: {minimum: 2}},
 };
 
 export const editClassifiedConstrains = {
@@ -195,7 +195,7 @@ export const editClassifiedConstrains = {
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
   image: {presence: {allowEmpty: true}},
-  images: {presence: {allowEmpty: true}},
+  images: {presence: {allowEmpty: false}, length: {minimum: 2}},
 };
 
 export const commentStoreConstrains = {

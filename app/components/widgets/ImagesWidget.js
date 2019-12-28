@@ -109,6 +109,7 @@ export default ImagesWidget;
 ImagesWidget.propTypes = {
   elements: PropTypes.array.isRequired,
   height: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
 };
 

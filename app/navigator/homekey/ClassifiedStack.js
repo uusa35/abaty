@@ -18,6 +18,7 @@ export const ClassifiedStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: <HeaderRight showFilter={true} showCountry={true} />,
+        headerLeft: <HeaderLeft showCart={false} showSideMenu={false} />,
         headerBackTitle: null,
       }),
     },

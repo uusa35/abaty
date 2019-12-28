@@ -69,7 +69,7 @@ const ClassifiedShowScreen = ({
         overlayColor="white"
         renderForeground={() => (
           <ImagesWidget
-            resizeMode="cover"
+            resizeMode="stretch"
             elements={element.images
               .concat({id: element.id, large: element.large})
               .reverse()}

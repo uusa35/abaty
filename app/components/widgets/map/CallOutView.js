@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Linking, StyleSheet, Text, View, Image} from 'react-native';
 import {links, text} from '../../../constants';
-import FastImage from 'react-native-fast-image';
 import {Callout} from 'react-native-maps';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropertiesWidget from '../classified/PropertiesWidget';
@@ -33,11 +32,7 @@ const CallOutView = ({
         alignItems: 'flex-start',
       }}>
       <View style={{flexDirection: 'row'}}>
-        <FastImage
-          style={styles.image}
-          source={{uri: image}}
-          resizeMode="contain"
-        />
+        <Image style={styles.image} source={{uri: image}} resizeMode="cover" />
         <View
           style={{flexWrap: 'nowrap', flexDirection: 'column', padding: 10}}>
           <View
