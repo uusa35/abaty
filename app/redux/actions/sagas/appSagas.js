@@ -57,7 +57,12 @@ import {
   setHomeProducts,
 } from './productSagas';
 import {getClassifiedIndex} from './classifiedSagas';
-import {getHometypeCategories} from './categorySagas';
+import {
+  getHomeClassifiedCategories,
+  getHomeTypeCategories,
+  getHomeUserCategories,
+  getHomeUserClassifiedCategories,
+} from './categorySagas';
 import {isLocal} from '../../../env';
 
 function* startAppBootStrap() {
@@ -103,8 +108,11 @@ function* startAppBootStrap() {
         call(getServiceIndex),
         call(setHomeSplashes),
         call(getHomeCollectionsScenario),
-        call(getHometypeCategories, {on_home: true, type: 'is_user'}),
-        call(getHometypeCategories, {on_home: true, type: 'is_classified'}),
+        call(getHomeClassifiedCategories, {
+          on_home: true,
+          type: 'is_classified',
+        }),
+        call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
         put({type: actions.GET_CATEGORIES}),
         put({type: actions.GET_HOME_CATEGORIES}),
         put({

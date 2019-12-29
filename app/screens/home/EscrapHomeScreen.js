@@ -103,7 +103,10 @@ const EscrapHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
+    dispatch(setDeepLinking({type, id}));
+    setTimeout(() => {
+      dispatch(goDeepLinking({type, id}));
+    }, 2000);
   });
 
   const onReceived = useCallback(notification => {

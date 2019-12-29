@@ -18,9 +18,6 @@ export const axiosInstance = axios.create({
 if (__DEV__) {
   console.log('link', links.apiUrl);
 }
-export function getLangForHeader() {
-  return I18n.locale;
-}
 
 export async function getSettings() {
   return await axiosInstance

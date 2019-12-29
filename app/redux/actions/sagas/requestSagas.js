@@ -36,7 +36,11 @@ import {startGetClassifiedScenario} from './classifiedSagas';
 import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
 import {isLocal} from '../../../env';
-import {getHometypeCategories} from './categorySagas';
+import {
+  getHomeClassifiedCategories,
+  getHomeTypeCategories,
+  getHomeUserCategories,
+} from './categorySagas';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -260,8 +264,8 @@ export function* startRefetchHomeElementsScenario() {
       call(startReAuthenticateScenario),
       call(startGetHomeCategoriesScenario),
       call(startGetParentCategoriesScenario),
-      call(getHometypeCategories, {on_home: true, type: 'is_user'}),
-      call(getHometypeCategories, {on_home: true, type: 'is_classified'}),
+      call(getHomeClassifiedCategories, {on_home: true, type: 'is_classified'}),
+      call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
       put({
         type: actions.GET_HOME_COMPANIES,
         payload: {searchParams: {on_home: 1, is_company: 1}},
