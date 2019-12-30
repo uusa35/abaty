@@ -75,14 +75,13 @@ const VideoList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <React.Suspense fallback={<SimpleSpinner />}>
               <VideoWidget
+                  key={item.id}
                 element={item}
                 showName={true}
                 width={width}
                 showImage={true}
               />
-            </React.Suspense>
           )}
         />
       ) : (

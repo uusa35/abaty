@@ -9,6 +9,7 @@ import I18n from '../../../I18n';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {toggleLoading} from "../../../redux/actions";
 
 const VideosVerticalWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -25,7 +26,9 @@ const VideosVerticalWidget = ({videos}) => {
         alwaysBounceHorizontal={false}
         alwaysBounceVertical={false}
         showsHorizontalScrollIndicator={false}
-        style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
+        style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}
+        contentContainerStyle={{ alignItems : 'center', alignSelf : 'center'}}
+      >
         {!validate.isEmpty(videos) ? (
           map(videos, (v, i) =>
             !isNull(v) ? (
@@ -34,8 +37,10 @@ const VideosVerticalWidget = ({videos}) => {
                 key={i}
                 style={{
                   height: 200,
-                  width: width,
+                  width: '95%',
                   margin: 5,
+                  borderWidth : 0.5,
+                  borderColor : 'lightgrey'
                 }}
                 javaScriptEnabled={true}
                 source={{uri: `${appUrlIos}webview?url=${v}`}}

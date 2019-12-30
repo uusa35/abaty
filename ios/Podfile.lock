@@ -278,7 +278,7 @@ PODS:
     - React
   - react-native-viewpager (2.0.2):
     - React
-  - react-native-webview (5.12.1):
+  - react-native-webview (8.0.2):
     - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
@@ -351,9 +351,9 @@ PODS:
   - RNVectorIcons (6.6.0):
     - React
   - RSKImageCropper (2.2.3)
-  - SDWebImage (5.4.0):
-    - SDWebImage/Core (= 5.4.0)
-  - SDWebImage/Core (5.4.0)
+  - SDWebImage (5.4.1):
+    - SDWebImage/Core (= 5.4.1)
+  - SDWebImage/Core (5.4.1)
   - SDWebImageWebPCoder (0.2.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
@@ -612,7 +612,7 @@ SPEC CHECKSUMS:
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a
   react-native-viewpager: 88f4269c19d626d2ccd5f7c7f5f7f76422ddb9e3
-  react-native-webview: 5036ed4a973ad1deeeff118262d2df7b60b3419d
+  react-native-webview: 99bdfd6c189772b0f15494f728430c23b18b93e4
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -638,7 +638,7 @@ SPEC CHECKSUMS:
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
-  SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
+  SDWebImage: 29c340dbdcef342bb13125553f4e19ce056b07a7
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
@@ -646,6 +646,6 @@ SPEC CHECKSUMS:
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 56cfd46fc1e02bae3517991df69108654d462b6b
+PODFILE CHECKSUM: 154ce29e65ae7bca819949886a6f14898729fd1a
 
 COCOAPODS: 1.8.4

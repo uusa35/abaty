@@ -7,6 +7,8 @@ import YouTube from 'react-native-youtube';
 import FastImage from 'react-native-fast-image';
 import {GET_VIDEO} from '../../../redux/actions/types';
 import {DispatchContext} from '../../../redux/DispatchContext';
+import SimpleSpinner from "../../SimpleSpinner";
+import {toggleLoading} from "../../../redux/actions";
 
 const VideoWidget = ({
   element,
@@ -46,7 +48,7 @@ const VideoWidget = ({
           onChangeState={e => setStatus(e.status)}
           onChangeQuality={e => setQuality(e.quality)}
           onError={e => console.log(e.error)}
-          style={{alignSelf: 'center', height: 300, width: '100%'}}
+          style={{alignSelf: 'center', height: 300, width: '100%', borderWidth : 0.5, borderColor : 'lightgrey'}}
         />
       ) : (
         <WebView
@@ -55,9 +57,13 @@ const VideoWidget = ({
           style={{
             height,
             width: width,
+              borderWidth : 0.5,
+              borderColor : 'lightgrey'
           }}
           javaScriptEnabled={true}
           source={{uri: `${appUrlIos}webview?url=${element.url}`}}
+            onLoadStart={() => dispatch(toggleLoading(true))}
+            onLoad={() => dispatch(toggleLoading(false))}
         />
       )}
       <Text style={styles.title}>{element.name}</Text>
