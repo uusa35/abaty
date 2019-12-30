@@ -9,6 +9,7 @@ const PaymentIndexScreen = () => {
 
   return (
     <WebView
+      useWebKit={true}
       source={{uri: navigation.state.params.paymentUrl}}
       style={{marginTop: 20}}
       injectedJavaScript={'(function(){ return "test"}());'}

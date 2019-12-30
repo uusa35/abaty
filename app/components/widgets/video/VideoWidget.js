@@ -50,6 +50,7 @@ const VideoWidget = ({
         />
       ) : (
         <WebView
+          useWebKit={true}
           key={element.id}
           style={{
             height,

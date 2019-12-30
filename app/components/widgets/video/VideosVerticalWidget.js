@@ -30,6 +30,7 @@ const VideosVerticalWidget = ({videos}) => {
           map(videos, (v, i) =>
             !isNull(v) ? (
               <WebView
+                useWebKit={true}
                 key={i}
                 style={{
                   height: 200,
