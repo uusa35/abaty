@@ -41,6 +41,7 @@ import {
   getHomeTypeCategories,
   getHomeUserCategories,
 } from './categorySagas';
+import {SET_DEEP_LINKING} from '../types';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -236,7 +237,7 @@ export function* startDeepLinkingScenario(action) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield; // call(enableErrorMessage, I18n.t('no_deep_product'));
+    // call(enableErrorMessage, I18n.t('no_deep_product'));
   } finally {
     yield call(disableLoading);
   }

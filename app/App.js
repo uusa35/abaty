@@ -130,7 +130,7 @@ const App = ({
                 searchModal,
               }}>
               <React.Suspense fallback={<SimpleSpinner />}>
-                <AppNavigator uriPrefix={prefix} />
+                <AppNavigator />
               </React.Suspense>
               {validate.isBoolean(loginModal) ? (
                 <LoginScreenModal

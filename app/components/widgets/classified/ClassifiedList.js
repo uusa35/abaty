@@ -159,7 +159,7 @@ const ClassifiedList = ({
           keyExtractor={(item, index) => index.toString()}
           onEndReachedThreshold={1}
           contentInset={{bottom: 150}}
-          numColumns={1}
+          data={uniqBy(items, 'id')}
           data={items}
           refreshing={refresh}
           refreshControl={

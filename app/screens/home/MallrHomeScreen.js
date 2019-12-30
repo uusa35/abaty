@@ -72,11 +72,6 @@ const MallrHomeScreen = ({
   [device, setDevice] = useState('');
   [deviceId, setDeviceId] = useState('');
 
-  const handleRefresh = useCallback(() => {
-    console.log('here');
-    dispatch(refetchHomeElements());
-  }, [refresh]);
-
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     if (MALLR) {
@@ -93,6 +88,10 @@ const MallrHomeScreen = ({
       : null;
   });
 
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
+
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
@@ -101,7 +100,9 @@ const MallrHomeScreen = ({
   const handleAppStateChange = useCallback(
     nextAppState => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        __DEV__ ? console.log('HERE NOW') : null;
+        if (__DEV__) {
+          console.log('APP STATE ACTIVE');
+        }
       }
       setAppState(nextAppState);
     },
@@ -130,8 +131,8 @@ const MallrHomeScreen = ({
     );
     dispatch(setDeepLinking(notification));
     setTimeout(() => {
-      dispatch(goDeepLinking());
-    }, 2000);
+      dispatch(goDeepLinking(notification));
+    }, 1000);
   });
 
   const onIds = useCallback(

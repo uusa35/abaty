@@ -1,5 +1,5 @@
 import React from 'react';
-import {Platform, Dimensions} from 'react-native';
+import {Platform, Dimensions, Linking} from 'react-native';
 import {appUrlIos, appUrlAndroid} from './env';
 import {isRTL} from './I18n';
 import {
@@ -153,6 +153,7 @@ export const text = {
 };
 
 export const prefix = `${appUrlIos}element/linking`;
+// export const prefix = Linking.makeUrl('/');;
 export const linkingPrefix = `${appUrlIos}element/linking?model=`;
 
 export const submitLogin = {

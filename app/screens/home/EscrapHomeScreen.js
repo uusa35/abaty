@@ -40,6 +40,7 @@ import {
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
+import {isLocal} from '../../env';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -55,6 +56,8 @@ const EscrapHomeScreen = ({
   homeUserCategories,
   homeClassifiedCategories,
   main_bg,
+  linking,
+  bootStrapped,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
@@ -62,14 +65,6 @@ const EscrapHomeScreen = ({
   [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-
-  const handleRefresh = useCallback(() => {
-    dispatch(refetchHomeElements());
-  }, [refresh]);
-
-  useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
-  }, [headerBg, headerBgColor]);
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
@@ -86,6 +81,14 @@ const EscrapHomeScreen = ({
       : null;
   });
 
+  useMemo(() => {
+    navigation.setParams({headerBg, headerBgColor});
+  }, [headerBg, headerBgColor]);
+
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
+
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
@@ -94,7 +97,9 @@ const EscrapHomeScreen = ({
   const handleAppStateChange = useCallback(
     nextAppState => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        __DEV__ ? console.log('HERE NOW') : null;
+        if (__DEV__) {
+          console.log('APP STATE ACTIVE');
+        }
       }
       setAppState(nextAppState);
     },
@@ -103,10 +108,7 @@ const EscrapHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    dispatch(setDeepLinking({type, id}));
-    setTimeout(() => {
-      dispatch(goDeepLinking({type, id}));
-    }, 2000);
+    return dispatch(goDeepLinking({type, id}));
   });
 
   const onReceived = useCallback(notification => {
@@ -114,7 +116,6 @@ const EscrapHomeScreen = ({
   });
 
   const onOpened = useCallback(openResult => {
-    console.log('Notification Case');
     if (__DEV__) {
       console.log('the whole thing', openResult.notification.payload);
       console.log('Message: ', openResult.notification.payload.body);
@@ -127,8 +128,8 @@ const EscrapHomeScreen = ({
     );
     dispatch(setDeepLinking(notification));
     setTimeout(() => {
-      dispatch(goDeepLinking());
-    }, 2000);
+      dispatch(goDeepLinking(notification));
+    }, 1000);
   });
 
   const onIds = useCallback(
@@ -142,7 +143,14 @@ const EscrapHomeScreen = ({
   );
 
   return (
-    <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
+    <View
+      style={{
+        margin: 0,
+        padding: 0,
+        flex: 1,
+        height: '100%',
+        backgroundColor: colors.main_theme_bg_color,
+      }}>
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,
@@ -238,6 +246,8 @@ function mapStateToProps(state) {
     showIntroduction: state.showIntroduction,
     homeCompanies: state.homeCompanies,
     guest: state.guest,
+    linking: state.linking,
+    bootStrapped: state.bootStrapped,
   };
 }
 

@@ -58,16 +58,11 @@ const AbatiHomeScreen = ({
   showIntroduction,
   dispatch,
   navigation,
-  linking,
 }) => {
   [refresh, setRefresh] = useState(false);
   [appState, setAppState] = useState(AppState.currentState);
   [device, setDevice] = useState('');
   [deviceId, setDeviceId] = useState('');
-
-  const handleRefresh = useCallback(() => {
-    dispatch(refetchHomeElements());
-  }, [refresh]);
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
@@ -84,6 +79,10 @@ const AbatiHomeScreen = ({
       : null;
   }, [bootStrapped]);
 
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
+
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
@@ -92,8 +91,9 @@ const AbatiHomeScreen = ({
   const handleAppStateChange = useCallback(
     nextAppState => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        // __DEV__ ? console.log('HERE NOW') : null;
-      } else {
+        if (__DEV__) {
+          console.log('APP STATE ACTIVE');
+        }
       }
       setAppState(nextAppState);
     },
@@ -123,7 +123,7 @@ const AbatiHomeScreen = ({
     dispatch(setDeepLinking(notification));
     setTimeout(() => {
       dispatch(goDeepLinking(notification));
-    }, 2000);
+    }, 1000);
   });
 
   const onIds = useCallback(

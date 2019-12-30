@@ -38,6 +38,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: <HeaderMiddle title={I18n.t('login')} />,
         headerRight: <HeaderRight />,
+        headerBackTitle: null,
       }),
     },
     Register: {

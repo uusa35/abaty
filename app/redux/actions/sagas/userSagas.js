@@ -18,6 +18,7 @@ import {registerConstrains, submitLogin} from '../../../constants';
 import validate from 'validate.js';
 import {startBecomeFanScenario, startGoogleLoginScenario} from './requestSagas';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';
+import {first, values} from 'lodash';
 
 export function* startGetDesignerScenario(action) {
   try {

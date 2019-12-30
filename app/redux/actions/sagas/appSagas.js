@@ -64,6 +64,7 @@ import {
   getHomeUserClassifiedCategories,
 } from './categorySagas';
 import {isLocal} from '../../../env';
+import {GO_DEEP_LINKING} from '../types';
 
 function* startAppBootStrap() {
   try {

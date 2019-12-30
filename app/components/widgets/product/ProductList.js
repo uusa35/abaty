@@ -107,7 +107,7 @@ const ProductList = ({
           onEndReachedThreshold={1}
           contentInset={{bottom: 150}}
           numColumns={2}
-          data={items}
+          data={uniqBy(items, 'id')}
           refreshing={refresh}
           refreshControl={
             <RefreshControl
@@ -202,7 +202,7 @@ const ProductList = ({
             ) : null
           }
           renderItem={({item}) => (
-            <ProductWidget element={item} showName={showName} />
+            <ProductWidget element={item} showName={showName} key={item.id} />
           )}
         />
       ) : (

@@ -55,10 +55,6 @@ const HomeKeyHomeScreen = ({
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  const handleRefresh = useCallback(() => {
-    dispatch(refetchHomeElements());
-  }, [refresh]);
-
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
@@ -78,6 +74,10 @@ const HomeKeyHomeScreen = ({
       : null;
   });
 
+  const handleRefresh = useCallback(() => {
+    dispatch(refetchHomeElements());
+  }, [refresh]);
+
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
@@ -86,7 +86,9 @@ const HomeKeyHomeScreen = ({
   const handleAppStateChange = useCallback(
     nextAppState => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        __DEV__ ? console.log('HERE NOW') : null;
+        if (__DEV__) {
+          console.log('APP STATE ACTIVE');
+        }
       }
       setAppState(nextAppState);
     },
@@ -95,7 +97,7 @@ const HomeKeyHomeScreen = ({
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return this.props.dispatch(goDeepLinking({type, id}));
+    return dispatch(goDeepLinking({type, id}));
   });
 
   const onReceived = useCallback(notification => {
@@ -103,7 +105,6 @@ const HomeKeyHomeScreen = ({
   });
 
   const onOpened = useCallback(openResult => {
-    console.log('Notification Case');
     if (__DEV__) {
       console.log('the whole thing', openResult.notification.payload);
       console.log('Message: ', openResult.notification.payload.body);
@@ -116,8 +117,8 @@ const HomeKeyHomeScreen = ({
     );
     dispatch(setDeepLinking(notification));
     setTimeout(() => {
-      dispatch(goDeepLinking());
-    }, 2000);
+      dispatch(goDeepLinking(notification));
+    }, 1000);
   });
 
   const onIds = useCallback(
