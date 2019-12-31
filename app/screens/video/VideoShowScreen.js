@@ -1,22 +1,24 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../../components/widgets/product/ProductList';
 import VideoWidget from '../../components/widgets/video/VideoWidget';
 
-const VideoShowScreen = ({video, dispatch}) => {
+const VideoShowScreen = ({video}) => {
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}>
-      <VideoWidget element={video} showImage={false} />
-      <ProductList
-        products={video.products}
-        showName={true}
-        showSearch={false}
-        searchElements={{}}
-      />
+      <View>
+        <VideoWidget element={video} showImage={false} />
+        <ProductList
+          products={video.products}
+          showName={true}
+          showSearch={false}
+          searchElements={{}}
+        />
+      </View>
     </ScrollView>
   );
 };

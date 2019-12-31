@@ -7,11 +7,7 @@ import {videosSelector} from '../../redux/selectors/collections';
 import SimpleSpinner from '../../components/SimpleSpinner';
 
 const VideoIndexScreen = ({videos}) => {
-  return (
-    <React.Suspense fallback={<SimpleSpinner />}>
-      <VideoList elements={videos} />
-    </React.Suspense>
-  );
+  return <VideoList elements={videos} />;
 };
 
 function mapStateToProps(state) {

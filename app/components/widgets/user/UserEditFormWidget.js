@@ -99,7 +99,11 @@ const UserEditFormWidget = ({
           style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
           <FastImage
             source={{
-              uri: !isNull(sampleLogo) ? sampleLogo : auth.thumb,
+              uri: !isNull(sampleLogo)
+                ? sampleLogo
+                : !isNull(auth.thumb)
+                ? auth.thumb
+                : logo,
             }}
             style={{
               width: 120,
@@ -218,7 +222,7 @@ const UserEditFormWidget = ({
             keyboardType="default"
             defaultValue={address}
             onChangeText={text => setAddress(text)}
-            placeholder={I18n.t('full_address')}
+            placeholder={I18n.t('address')}
           />
           <Input
             inputContainerStyle={{

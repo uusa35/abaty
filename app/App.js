@@ -21,6 +21,7 @@ import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
 import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
 import SimpleSpinner from './components/SimpleSpinner';
+import {isLocal} from './env';
 
 const App = ({
   isLoading,
@@ -58,7 +59,9 @@ const App = ({
       if (!update) {
         // console.debug('The app is up to date!');
       } else {
-        // console.log('there is an update here');
+        if (isLocal) {
+          console.log('there is an update here');
+        }
         // dispatch(resetStore());
       }
     });

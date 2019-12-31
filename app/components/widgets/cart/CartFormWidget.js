@@ -229,4 +229,4 @@ const CartFormWidget = ({
   );
 };
 
-export default React.memo(CartFormWidget);
+export default CartFormWidget;

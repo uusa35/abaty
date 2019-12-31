@@ -28,17 +28,14 @@ const ProductIndexAllScreen = ({dispatch, products, isLoadingContent}) => {
   }, [currentElements, products]);
 
   return (
-    <React.Suspense
-      fallback={<LoadingBoxedListView isLoadingContent={isLoadingContent} />}>
-      <ProductList
-        products={products}
-        showName={true}
-        searchElements={{}}
-        showSearch={true}
-        showFooter={true}
-        showRefresh={true}
-      />
-    </React.Suspense>
+    <ProductList
+      products={products}
+      showName={true}
+      searchElements={{}}
+      showSearch={true}
+      showFooter={true}
+      showRefresh={true}
+    />
   );
 };
 

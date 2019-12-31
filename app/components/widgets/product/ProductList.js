@@ -71,7 +71,6 @@ const ProductList = ({
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      console.log('getSearchProducts fired from productList');
       dispatch(getSearchProducts({searchParams: params, redirect: false}));
     }
   }, [refresh]);

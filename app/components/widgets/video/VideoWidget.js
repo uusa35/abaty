@@ -52,8 +52,6 @@ const VideoWidget = ({
             alignSelf: 'center',
             height: 300,
             width: '100%',
-            borderWidth: 0.5,
-            borderColor: 'lightgrey',
           }}
         />
       ) : (
@@ -61,10 +59,8 @@ const VideoWidget = ({
           useWebKit={true}
           key={element.id}
           style={{
-            height,
-            width: width,
-            borderWidth: 0.5,
-            borderColor: 'lightgrey',
+            height: 300,
+            width: '100%',
           }}
           javaScriptEnabled={true}
           source={{uri: `${appUrlIos}webview?url=${element.url}`}}

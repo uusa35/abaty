@@ -36,7 +36,7 @@ const VideosVerticalWidget = ({videos}) => {
                 key={i}
                 style={{
                   height: 200,
-                  width: '95%',
+                  width: width / 1.1,
                   margin: 5,
                   borderWidth: 0.5,
                   borderColor: 'lightgrey',
