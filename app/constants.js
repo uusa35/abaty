@@ -178,7 +178,6 @@ export const registerConstrains = {
   name: {length: {minimum: 3}, presence: true},
   email: {email: true, presence: true},
   mobile: {length: {minimum: 6}, presence: true},
-  address: {length: {minimum: 3}, presence: true},
 };
 
 export const storeClassifiedConstrains = {

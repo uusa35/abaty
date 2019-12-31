@@ -8,9 +8,9 @@ import validate from 'validate.js';
 import {isRTL} from '../../I18n';
 import UserProfileInformationWidget from '../../components/widgets/user/UserProfileInformationWidget';
 import UserProfileBtns from '../../components/widgets/user/UserProfileBtns';
-import {authSelector, colorsSelector} from '../../redux/selectors/collection';
+import {authSelector} from '../../redux/selectors/collection';
 
-const ProfileIndexScreen = ({auth, colors}) => {
+const ProfileIndexScreen = ({auth}) => {
   return (
     <ScrollView
       contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
@@ -32,7 +32,6 @@ const ProfileIndexScreen = ({auth, colors}) => {
 function mapStateToProps(state) {
   return {
     auth: authSelector(state),
-    colors: colorsSelector(state),
   };
 }
 

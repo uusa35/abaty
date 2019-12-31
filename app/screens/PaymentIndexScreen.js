@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { WebView } from "react-native-webview";
+import {WebView} from 'react-native-webview';
 import {DispatchContext} from '../redux/DispatchContext';
 import {useNavigation} from 'react-navigation-hooks';
 

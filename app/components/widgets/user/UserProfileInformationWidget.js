@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -6,6 +6,8 @@ import {images, isIOS, text, width} from '../../../constants';
 import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import validate from 'validate.js';
+import {isNull} from 'lodash';
 
 const UserProfileInformationWidget = ({auth}) => {
   const {logo, colors} = useContext(GlobalValuesContext);
@@ -14,7 +16,7 @@ const UserProfileInformationWidget = ({auth}) => {
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{
-            uri: auth.thumb ? auth.thumb : logo,
+            uri: !isNull(auth.thumb) ? auth.thumb : logo,
           }}
           style={{
             width: 120,
@@ -24,7 +26,7 @@ const UserProfileInformationWidget = ({auth}) => {
             borderWidth: 0.5,
             borderColor: 'lightgrey',
           }}
-          resizeMode="cover"
+          resizeMode="contain"
           loadingIndicatorSource={images.logo}
         />
       </View>
@@ -153,9 +155,12 @@ const UserProfileInformationWidget = ({auth}) => {
             paddingRight: 20,
             paddingLeft: 20,
           }}>
-          <Text style={styles.subTitle}>{auth.address}</Text>
+          <Text style={styles.subTitle}>
+            {isNull(auth.address) ? auth.address : ''}
+          </Text>
         </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -189,7 +194,9 @@ const UserProfileInformationWidget = ({auth}) => {
             paddingRight: 20,
             paddingLeft: 20,
           }}>
-          <Text style={styles.subTitle}>{auth.description}</Text>
+          <Text style={styles.subTitle}>
+            {auth.description ? auth.description : ''}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>

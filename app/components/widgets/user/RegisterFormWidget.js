@@ -147,7 +147,7 @@ const RegisterFormWidget = ({player_id}) => {
           </Text>
         </TouchableOpacity>
         <Input
-          placeholder={I18n.t('full_address') + '*'}
+          placeholder={I18n.t('address') + '*'}
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',

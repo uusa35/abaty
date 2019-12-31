@@ -19,6 +19,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {useNavigation} from 'react-navigation-hooks';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {isNull} from 'lodash';
 
 const UserEditFormWidget = ({
   auth,
@@ -28,19 +29,11 @@ const UserEditFormWidget = ({
   country,
   showIcon = true,
 }) => {
-  const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
-  const [email, setEmail] = useState(
-    !validate.isEmpty(auth) ? auth.email : null,
-  );
-  const [mobile, setMobile] = useState(
-    !validate.isEmpty(auth) ? auth.mobile : null,
-  );
-  const [address, setAddress] = useState(
-    !validate.isEmpty(auth) ? auth.address : null,
-  );
-  const [description, setDescription] = useState(
-    !validate.isEmpty(auth) ? auth.description : null,
-  );
+  const [name, setName] = useState(auth.name);
+  const [email, setEmail] = useState(auth.email);
+  const [mobile, setMobile] = useState(auth.mobile);
+  const [address, setAddress] = useState(auth.address);
+  const [description, setDescription] = useState(auth.address);
   const [image, setImage] = useState(null);
   const [sampleLogo, setSampleLogo] = useState(null);
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
@@ -106,7 +99,7 @@ const UserEditFormWidget = ({
           style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
           <FastImage
             source={{
-              uri: !validate.isEmpty(sampleLogo) ? sampleLogo : auth.thumb,
+              uri: !isNull(sampleLogo) ? sampleLogo : auth.thumb,
             }}
             style={{
               width: 120,
@@ -116,7 +109,7 @@ const UserEditFormWidget = ({
               borderColor: 'lightgrey',
               borderRadius: 120 / 2,
             }}
-            resizeMode="cover"
+            resizeMode="contain"
             loadingIndicatorSource={images.logo}
           />
         </TouchableOpacity>
@@ -223,9 +216,9 @@ const UserEditFormWidget = ({
             numberOfLines={3}
             shake={true}
             keyboardType="default"
-            defaultValue={address ? address : null}
+            defaultValue={address}
             onChangeText={text => setAddress(text)}
-            placeholder={address ? address : I18n.t('full_address')}
+            placeholder={I18n.t('full_address')}
           />
           <Input
             inputContainerStyle={{
@@ -245,9 +238,9 @@ const UserEditFormWidget = ({
             numberOfLines={3}
             shake={true}
             keyboardType="default"
-            defaultValue={description ? description : null}
+            defaultValue={description}
             onChangeText={text => setDescription(text)}
-            placeholder={description ? description : I18n.t('description')}
+            placeholder={I18n.t('description')}
           />
           <Button
             raised

@@ -1,6 +1,6 @@
 import * as actions from './types';
 import I18n from './../../I18n';
-import {TOGGLE_LOADING} from "./types";
+import {TOGGLE_LOADING} from './types';
 
 export function appBootstrap() {
   return {
@@ -282,10 +282,9 @@ export function addComment(payload) {
   };
 }
 
-
 export function toggleLoading(payload) {
   return {
-    type : TOGGLE_LOADING,
-    payload
-  }
+    type: TOGGLE_LOADING,
+    payload,
+  };
 }

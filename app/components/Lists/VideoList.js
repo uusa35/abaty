@@ -75,13 +75,13 @@ const VideoList = ({
             ) : null
           }
           renderItem={({item}) => (
-              <VideoWidget
-                  key={item.id}
-                element={item}
-                showName={true}
-                width={width}
-                showImage={true}
-              />
+            <VideoWidget
+              key={item.id}
+              element={item}
+              showName={true}
+              width={width}
+              showImage={true}
+            />
           )}
         />
       ) : (

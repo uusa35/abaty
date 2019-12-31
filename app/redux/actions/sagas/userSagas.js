@@ -19,6 +19,7 @@ import validate from 'validate.js';
 import {startBecomeFanScenario, startGoogleLoginScenario} from './requestSagas';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';
 import {first, values} from 'lodash';
+import {isLocal} from '../../../env';
 
 export function* startGetDesignerScenario(action) {
   try {
@@ -390,8 +391,8 @@ export function* startReAuthenticateScenario() {
 
 export function* startUpdateUserScenario(action) {
   try {
-    const {name, mobile, email, address} = action.payload;
-    const result = validate({name, mobile, email, address}, registerConstrains);
+    const {name, mobile, email} = action.payload;
+    const result = validate({name, mobile, email}, registerConstrains);
     if (validate.isEmpty(result)) {
       yield call(enableLoading);
       const element = yield call(api.updateUser, action.payload);
@@ -403,12 +404,15 @@ export function* startUpdateUserScenario(action) {
           put(NavigationActions.back()),
         ]);
       } else {
-        throw user;
+        throw element;
       }
     } else {
       throw first(values(result))[0];
     }
   } catch (e) {
+    if (isLocal) {
+      console.log('e', e);
+    }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }

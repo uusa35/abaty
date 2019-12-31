@@ -72,17 +72,17 @@
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your camera</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to fetch your address from map to be used posting new classifieds.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to fetch your address from map to be used posting new classifieds.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your current location. in order to show the distance of each company/individual from your current location.</string>
+	<string>$(PRODUCT_NAME) would like access to your current location. in order to fetch your address from map to be used posting new classifieds.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use your microphone.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>$(PRODUCT_NAME) wants to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
+	<string>Allow $(PRODUCT_NAME) would like access to your photo gallery. In order to Change Your Profile Image.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Actor-Regular.ttf</string>
