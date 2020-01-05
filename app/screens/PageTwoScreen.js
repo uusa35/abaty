@@ -7,6 +7,7 @@ import I18n from '../I18n';
 import {getAllProducts} from '../redux/actions/product';
 import validate from 'validate.js';
 import {first, last} from 'lodash';
+import {isLocal} from '../env';
 
 const PageTwoScreen = ({products, dispatch}) => {
   [title, setTitle] = useState('');
@@ -16,7 +17,9 @@ const PageTwoScreen = ({products, dispatch}) => {
   useEffect(() => {
     end.current = last(currentProducts).id;
     if (end.current !== last(products).id) {
-      console.log('fired from Pagetow');
+      if (isLocal) {
+        console.log('fired from Pagetow');
+      }
       dispatch(getAllProducts());
       setCurrentProducts(products);
     }

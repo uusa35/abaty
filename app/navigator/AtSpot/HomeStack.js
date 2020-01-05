@@ -41,13 +41,13 @@ import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScree
 import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
 import React from 'react';
-import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
+import AtSpotHomeScreen from '../../screens/home/AtSpotHomeScreen';
 import ShopperShowScreen from '../../screens/designer/ShopperShowScreen';
 import {Icon} from 'react-native-elements';
-import MallrSettingsIndexScreen from './../../screens/mallr/MallrSettingsIndexScreen';
-import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
+import AtSpotSettingsIndexScreen from './../../screens/atspot/AtSpotSettingsIndexScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import AtSpotViewPagerAdapter from '../../screens/atspot/AtSpotViewPagerAdapter';
 
 export const HomeStack = createStackNavigator(
   {
@@ -64,7 +64,7 @@ export const HomeStack = createStackNavigator(
       screen: createMaterialTopTabNavigator(
         {
           Main: {
-            screen: gestureHandlerRootHOC(MallrHomeScreen),
+            screen: gestureHandlerRootHOC(AtSpotHomeScreen),
             navigationOptions: {
               headerBackTitle: null,
               title: I18n.t('home'),
@@ -121,7 +121,7 @@ export const HomeStack = createStackNavigator(
             },
             tabStyle: {
               backgroundColor: 'transparent',
-              width: width / 3,
+              width: width / 2,
             },
             indicatorStyle: {
               backgroundColor: 'black',
@@ -139,7 +139,7 @@ export const HomeStack = createStackNavigator(
             headerBackTitle: null,
           }),
           initialRouteName: 'Main',
-          order: ['Main', 'PageOne', 'PageTwo'],
+          order: ['Main', , 'PageOne', 'PageTwo'],
         },
       ),
     },
@@ -394,15 +394,6 @@ export const HomeStack = createStackNavigator(
       }),
       path: `product/:id`,
     },
-    HomeKey: {
-      screen: gestureHandlerRootHOC(HomeKeyHomeScreen),
-      navigationOptions: () => ({
-        headerLeft: <HeaderLeft />,
-        headerRight: <HeaderRight display={true} />,
-        headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={false} />,
-        headerBackTitle: null,
-      }),
-    },
     ClassifiedIndex: {
       screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
       navigationOptions: ({navigation}) => ({
@@ -476,7 +467,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     SettingIndex: {
-      screen: gestureHandlerRootHOC(MallrSettingsIndexScreen),
+      screen: gestureHandlerRootHOC(AtSpotSettingsIndexScreen),
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />

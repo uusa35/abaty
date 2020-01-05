@@ -276,7 +276,7 @@ PODS:
     - react-native-video/Video (= 4.4.4)
   - react-native-video/Video (4.4.4):
     - React
-  - react-native-viewpager (2.0.2):
+  - react-native-viewpager (3.3.0):
     - React
   - react-native-webview (8.0.2):
     - React
@@ -611,7 +611,7 @@ SPEC CHECKSUMS:
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: 8c49eca5a6087de968a05b340933b10e3b58169a
-  react-native-viewpager: 88f4269c19d626d2ccd5f7c7f5f7f76422ddb9e3
+  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
   react-native-webview: 99bdfd6c189772b0f15494f728430c23b18b93e4
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360

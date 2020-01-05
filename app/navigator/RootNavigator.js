@@ -3,6 +3,7 @@ import MallrRootNavigator from './mallr/MallrRootNavigator';
 import AbatiRootNavigator from './abati/AbatiRootNavigator';
 import EscrapRootNavigator from './escrap/EscrapRootNavigator';
 import HomeKeyRootNavigator from './homekey/HomeKeyRootNavigator';
+import AtSpotRootNavigator from './AtSpot/AtSpotRootNavigator';
 // import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
 const AppNav = () => {
@@ -15,6 +16,8 @@ const AppNav = () => {
       return MallrRootNavigator;
     case 'homekey':
       return HomeKeyRootNavigator;
+    case 'AtSpot':
+      return AtSpotRootNavigator;
     default:
       return AbatiRootNavigator;
   }
