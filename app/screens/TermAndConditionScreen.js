@@ -21,12 +21,10 @@ const TermAndConditionScreen = ({settings}) => {
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{padding: 25}}
         contentInset={{bottom: 100}}>
         <View
           style={{
-            flex: 1,
-            padding: 15,
-            justifyContent: 'space-around',
             alignItems: 'center',
           }}>
           <Text
@@ -40,18 +38,14 @@ const TermAndConditionScreen = ({settings}) => {
           <Divider style={{backgroundColor: colors.header_one_theme_bg}} />
           <View
             style={{
-              marginTop: -50,
-              borderBottomWidth: 1,
               borderColor: 'lightgrey',
-              width: '100%',
-              paddingLeft: 10,
-              paddingRight: 10,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 textAlign: 'left',
+                lineHeight: text.xlarge,
               }}>
               {terms}
             </Text>
@@ -66,15 +60,13 @@ const TermAndConditionScreen = ({settings}) => {
         />
         <View
           style={{
-            flex: 1,
-            padding: 15,
             justifyContent: 'space-around',
             alignItems: 'center',
           }}>
           <Text
             style={{
               fontFamily: text.font,
-              fontSize: 25,
+              fontSize: text.large,
               color: colors.header_one_theme_color,
             }}>
             {I18n.t('policies')}
@@ -82,18 +74,16 @@ const TermAndConditionScreen = ({settings}) => {
           <Divider style={{backgroundColor: colors.header_one_theme_bg}} />
           <View
             style={{
-              marginTop: -50,
               borderBottomWidth: 1,
               borderColor: 'lightgrey',
               width: '100%',
-              paddingLeft: 10,
-              paddingRight: 10,
             }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 textAlign: 'left',
+                lineHeight: text.xlarge,
               }}>
               {policy}
             </Text>

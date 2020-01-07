@@ -114,7 +114,7 @@ const App = ({
   }
   return (
     <DispatchContext.Provider value={{dispatch}}>
-      {network.isConnected && bootStrapped ? (
+      {network.isConnected || bootStrapped ? (
         <View style={{flex: 1}}>
           {bootStrapped ? (
             <GlobalValuesContext.Provider

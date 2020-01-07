@@ -121,7 +121,7 @@ export const HomeStack = createStackNavigator(
             },
             tabStyle: {
               backgroundColor: 'transparent',
-              width: width / 2,
+              width: width / 3,
             },
             indicatorStyle: {
               backgroundColor: 'black',
@@ -139,7 +139,7 @@ export const HomeStack = createStackNavigator(
             headerBackTitle: null,
           }),
           initialRouteName: 'Main',
-          order: ['Main', , 'PageOne', 'PageTwo'],
+          order: ['Main', 'PageOne', 'PageTwo'],
         },
       ),
     },

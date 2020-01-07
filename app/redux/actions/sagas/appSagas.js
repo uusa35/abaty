@@ -33,8 +33,16 @@ import {
 } from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
-import {disableLoading, setDeviceId, enableErrorMessage} from './settingSagas';
-import {offlineActionTypes} from 'react-native-offline';
+import {
+  disableLoading,
+  setDeviceId,
+  enableErrorMessage,
+  checkConnection,
+} from './settingSagas';
+import {
+  offlineActionTypes,
+  checkInternetConnection,
+} from 'react-native-offline';
 import validate from 'validate.js';
 import DeviceInfo from 'react-native-device-info';
 import {
@@ -59,17 +67,13 @@ import {
 import {getClassifiedIndex} from './classifiedSagas';
 import {
   getHomeClassifiedCategories,
-  getHomeTypeCategories,
   getHomeUserCategories,
-  getHomeUserClassifiedCategories,
 } from './categorySagas';
-import {isLocal} from '../../../env';
-import {GO_DEEP_LINKING} from '../types';
 
 function* startAppBootStrap() {
   try {
-    yield call(defaultLang);
-    const {network, bootStrapped, version} = yield select();
+    const {bootStrapped, version} = yield select();
+    yield all([call(defaultLang), call(checkConnection)]);
     if (validate.isEmpty(version)) {
       if (version !== DeviceInfo.getVersion()) {
         yield put({
@@ -83,10 +87,6 @@ function* startAppBootStrap() {
     }
     if (!bootStrapped) {
       yield all([
-        put({
-          type: offlineActionTypes.CONNECTION_CHANGE,
-          payload: network.isConnected,
-        }),
         call(getCountry),
         call(setSettings),
         call(setCountries),
@@ -137,7 +137,7 @@ function* startAppBootStrap() {
         yield call(disableLoading);
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('appSaga', e);
     }
     yield call(enableErrorMessage, I18n.t('app_general_error'));

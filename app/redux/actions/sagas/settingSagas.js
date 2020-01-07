@@ -4,6 +4,8 @@ import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
 import {displayName} from './../../../../app';
 import {isLocal} from '../../../env';
+import {checkConnectionStatus} from '../api';
+import {offlineActionTypes} from 'react-native-offline';
 
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
@@ -102,5 +104,16 @@ export function* enableWarningMessage(
       visible: true,
       color: 'orange',
     },
+  });
+}
+
+export function* checkConnection() {
+  const connecitonStatus = yield call(checkConnectionStatus);
+  if (__DEV__) {
+    console.log('currentConnection', connecitonStatus);
+  }
+  yield put({
+    type: offlineActionTypes.CONNECTION_CHANGE,
+    payload: connecitonStatus,
   });
 }

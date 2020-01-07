@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
-import {StyleSheet, ScrollView, Linking} from 'react-native';
+import {StyleSheet, ScrollView, Linking, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from './../../constants';
+import {text, height} from './../../constants';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import {appUrlIos} from '../../env';
@@ -52,7 +52,13 @@ const MallrAccountScreen = ({
         <CollectionGridWidget elements={element.collections} />
       ) : null}
       {guest ? (
-        <Fragment>
+        <View
+          style={{
+            marginTop: '50%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}>
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -95,7 +101,7 @@ const MallrAccountScreen = ({
             }}
             onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
           />
-        </Fragment>
+        </View>
       ) : null}
       <PagesList elements={pages} title={I18n.t('our_support')} />
     </ScrollView>

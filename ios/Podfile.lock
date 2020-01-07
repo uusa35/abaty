@@ -6,7 +6,7 @@ PODS:
   - AppAuth/ExternalUserAgent (1.3.0)
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
-  - CodePush (5.7.0):
+  - CodePush (6.0.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -46,13 +46,13 @@ PODS:
     - GoogleMaps
   - Google-Maps-iOS-Utils/QuadTree (2.1.0):
     - GoogleMaps
-  - GoogleMaps (3.1.0):
-    - GoogleMaps/Maps (= 3.1.0)
-  - GoogleMaps/Base (3.1.0)
-  - GoogleMaps/Maps (3.1.0):
+  - GoogleMaps (3.2.0):
+    - GoogleMaps/Maps (= 3.2.0)
+  - GoogleMaps/Base (3.2.0)
+  - GoogleMaps/Maps (3.2.0):
     - GoogleMaps/Base
-  - GooglePlaces (3.1.0):
-    - GoogleMaps/Base (= 3.1.0)
+  - GooglePlaces (3.2.0):
+    - GoogleMaps/Base (= 3.2.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
@@ -252,17 +252,17 @@ PODS:
   - React-jsinspector (0.61.5)
   - react-native-geolocation (2.0.2):
     - React
-  - react-native-google-maps (0.25.0):
+  - react-native-google-maps (0.26.1):
     - Google-Maps-iOS-Utils (= 2.1.0)
-    - GoogleMaps (= 3.1.0)
+    - GoogleMaps (= 3.2.0)
     - React
   - react-native-google-places (3.1.2):
-    - GoogleMaps (~> 3.1.0)
-    - GooglePlaces (~> 3.1.0)
+    - GoogleMaps (= 3.2.0)
+    - GooglePlaces (= 3.2.0)
     - React
-  - react-native-maps (0.25.0):
+  - react-native-maps (0.26.1):
     - React
-  - react-native-netinfo (5.0.0):
+  - react-native-netinfo (5.1.0):
     - React
   - react-native-onesignal (3.6.1):
     - OneSignal (= 2.12.3)
@@ -325,21 +325,21 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.5.2):
+  - RNGestureHandler (1.5.3):
     - React
-  - RNGoogleSignin (3.0.3):
+  - RNGoogleSignin (3.0.4):
     - GoogleSignIn (~> 5.0.0)
     - React
   - RNI18n (2.0.15):
     - React
-  - RNImageCropPicker (0.26.1):
+  - RNImageCropPicker (0.26.2):
     - QBImagePickerController
     - React-Core
     - React-RCTImage
     - RSKImageCropper
   - RNReanimated (1.4.0):
     - React
-  - RNSentry (1.2.0):
+  - RNSentry (1.2.1):
     - React
     - Sentry (~> 4.4.0)
   - RNShare (1.2.1):
@@ -573,15 +573,15 @@ SPEC CHECKSUMS:
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CodePush: d2e54ad42df82a8db65b2d23d8191b950ba945e1
+  CodePush: 58d8b6595f46057ca1f49c55fb6860ad7fd38ce3
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
-  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
-  GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
+  GooglePlaces: 41bc2e480816b1234a48f4bec92e1c886f37cfe1
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
@@ -603,10 +603,10 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
-  react-native-google-maps: 88d750ad441b19c24885f20d43a55ecac25939b5
-  react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
-  react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
-  react-native-netinfo: 841c2a83fe7df998fed56fd48b73229f17a5aa5b
+  react-native-google-maps: 2e2e697dab576abd5809d78cd74e775865b62bf7
+  react-native-google-places: 42727e1dfde8f0c47bb56fc96ff64b949bcb13da
+  react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
+  react-native-netinfo: 0cb400b3f66c6a968a8c577c3e0e8bbb3fce6a08
   react-native-onesignal: 9ff0097cc4af1bb141eb2c4774d65b43045dcbb0
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
@@ -627,12 +627,12 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
   RNDeviceInfo: 17e34f6dd902f08d88cbe2c0b7a01be948d43641
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
-  RNGoogleSignin: a10b849c165088c737d4465de6c2062f24d06002
+  RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
+  RNGoogleSignin: a00f87261ea13df9a5cea8deafa6927d6f2c3562
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNImageCropPicker: e1d8c3381e5b05a1bdcd13ea57a4f1c020a09cef
+  RNImageCropPicker: 9d1a7eea4f8368fc479cbd2bf26459bd3c74d9aa
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
-  RNSentry: b63ba6a29ee142b5c3221896be8ff6cda587e03f
+  RNSentry: 9b1d983b2d5d1c215ba6490348fd2a4cc23a8a9d
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
   RNSnackbar: 2f53c450de4f74f3698f3be044130c32fb8edf71
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
@@ -648,4 +648,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 154ce29e65ae7bca819949886a6f14898729fd1a
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0.beta.2

@@ -70,7 +70,7 @@ export default function* rootSaga() {
     fork(appSagas.goDeepLinking),
     fork(appSagas.addComment),
     fork(appSagas.resetStore),
-    fork(networkSaga, {pingInterval: 20000}),
+    // fork(networkSaga, {pingInterval: 20000}),
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store
   yield take(PURGE);

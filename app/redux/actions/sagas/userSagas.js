@@ -60,10 +60,9 @@ export function* startGetDesignerScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    yield all([
-      call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_designer')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_designer'));
+  } finally {
+    yield call(disableLoadingProfile);
   }
 }
 
@@ -106,10 +105,9 @@ export function* startGetShopperScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    yield all([
-      call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_designer')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_designer'));
+  } finally {
+    yield call(disableLoadingProfile);
   }
 }
 
@@ -166,10 +164,9 @@ export function* startGetCompanyScenario(action) {
       throw I18n.t('no_company');
     }
   } catch (e) {
-    yield all([
-      call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_company')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_company'));
+  } finally {
+    yield call(disableLoadingProfile);
   }
 }
 
@@ -208,10 +205,9 @@ export function* startGetCelebrityScenario(action) {
       throw I18n.t('no_celebrity');
     }
   } catch (e) {
-    yield all([
-      call(disableLoadingProfile),
-      call(enableWarningMessage, I18n.t('no_celebrity')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_celebrity'));
+  } finally {
+    yield call(disableLoadingProfile);
   }
 }
 
@@ -233,7 +229,9 @@ export function* startGetUserScenario(action) {
       );
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_user'))]);
+    yield enableErrorMessage(I18n.t('no_user'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -250,7 +248,9 @@ export function* startGetVideoScenario(action) {
       );
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_videos'))]);
+    yield enableErrorMessage(I18n.t('no_videos'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -258,7 +258,9 @@ export function* startStorePlayerIdScenario(action) {
   try {
     yield call(api.storePlayerId, action.payload);
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_player_id'))]);
+    yield enableErrorMessage(I18n.t('no_player_id'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -269,10 +271,9 @@ export function* setHomeBrands() {
       yield put({type: actions.SET_BRANDS, payload: elements});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_brands')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('no_brands'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -286,10 +287,9 @@ export function* startGetHomeCelebrities(action) {
       yield put({type: actions.SET_HOME_CELEBRITIES, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_celebrities')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_celebrities'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -303,10 +303,9 @@ export function* startGetHomeDesigners(action) {
       yield put({type: actions.SET_HOME_DESIGNERS, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_celebrities')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_celebrities'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -318,10 +317,9 @@ export function* startLogoutScenario() {
       put({type: actions.SET_ORDERS, payload: []}),
     ]);
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('logout_error')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('logout_error'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -353,14 +351,26 @@ export function* startSubmitAuthScenario(action) {
       if (loginModal) {
         yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
       } else {
-        yield put(NavigationActions.back());
+        yield put(
+          NavigationActions.navigate({
+            routeName: 'Home',
+          }),
+        );
+        // yield put(NavigationActions.back());
       }
-      yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
     } else {
       throw element;
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    if (__DEV__) {
+      console.log('e', e);
+    }
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield all([
+      call(disableLoading),
+      put({type: actions.HIDE_LOGIN_MODAL, payload: false}),
+    ]);
   }
 }
 
@@ -385,7 +395,9 @@ export function* startReAuthenticateScenario() {
       throw user;
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -413,7 +425,9 @@ export function* startUpdateUserScenario(action) {
     if (isLocal) {
       console.log('e', e);
     }
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -442,7 +456,9 @@ export function* startGetSearchCompaniesScenario(action) {
       throw elements;
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+    yield call(enableWarningMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -471,7 +487,9 @@ export function* startGetCelebritiesScenario(action) {
       throw I18n.t(elements);
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+    yield call(enableWarningMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -500,7 +518,9 @@ export function* startGetDesignersScenario(action) {
       throw I18n.t(elements);
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+    yield call(enableWarningMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -525,7 +545,9 @@ export function* startGetHomeCompaniesScenario(action) {
       // throw elements;
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableWarningMessage, e)]);
+    yield call(enableWarningMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -543,10 +565,9 @@ export function* startAuthenticatedScenario() {
       }
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('authenticated_error')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('authenticated_error'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -556,6 +577,7 @@ export function* startRegisterScenario(action) {
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
       const element = yield call(api.register, action.payload);
+      console.log('element register', element);
       if (validate.isObject(element) && !validate.isEmpty(element)) {
         const {email, password} = action.payload;
         yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});
@@ -574,7 +596,9 @@ export function* startRegisterScenario(action) {
       throw first(values(result))[0];
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -585,7 +609,9 @@ export function* startRateUserScenario(action) {
       yield call(enableSuccessMessage, I18n.t('rate_success'));
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 

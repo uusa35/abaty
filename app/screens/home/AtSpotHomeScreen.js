@@ -1,9 +1,9 @@
 import React, {
-  Component,
   useState,
   useMemo,
   useEffect,
   useCallback,
+  Fragment,
 } from 'react';
 import {
   BackHandler,
@@ -13,7 +13,6 @@ import {
   View,
   AppState,
   StyleSheet,
-  TouchableOpacity,
   Text,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -29,10 +28,9 @@ import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {
   MALLR_ONE_SIGNAL_APP_ID,
-  ABATI,
-  MALLR,
-  HOMEKEY,
-  ESCRAP,
+  ATSPOT,
+  APP_CASE,
+  pusherEnabled,
 } from './../../../app.json';
 import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -46,6 +44,10 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
+import {channel} from '../../env';
+import {Button} from 'react-native-elements';
+
+import {axiosInstance} from '../../redux/actions/api';
 
 const AtSpotHomeScreen = ({
   homeCategories,
@@ -71,22 +73,52 @@ const AtSpotHomeScreen = ({
   [appState, setAppState] = useState(AppState.currentState);
   [device, setDevice] = useState('');
   [deviceId, setDeviceId] = useState('');
+  const [currentData, setCurrentData] = useState('');
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    if (MALLR) {
+    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
+    Linking.addEventListener('url', handleOpenURL);
+    !isIOS
+      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
+      : null;
+    if (ATSPOT) {
       OneSignal.init(MALLR_ONE_SIGNAL_APP_ID);
       OneSignal.addEventListener('received', onReceived);
       OneSignal.addEventListener('opened', onOpened);
       OneSignal.addEventListener('ids', onIds);
+      if (__DEV__) {
+        channel
+          .bind('pusher:subscription_succeeded', d => {
+            console.log('channel subscripted succesffully', d);
+          })
+          .bind('pusher:subscription_error', d => {
+            console.log('the d from error', d);
+          });
+      }
     }
-    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', handleOpenURL);
-
-    !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
-      : null;
   });
+
+  const handlePusher = useCallback(id => {
+    return axiosInstance
+      .post(`map/event`, {message: `From ${APP_CASE}`, id})
+      .then(r => {
+        if (r.data) {
+          setCurrentData(r.data);
+        } else {
+          setCurrentData({});
+        }
+      })
+      .catch(e => console.log(e));
+  });
+
+  useMemo(() => {
+    if (!validate.isEmpty(currentData) && pusherEnabled) {
+      channel.bind(`my-event-${currentData.id}`, data => {
+        alert(JSON.stringify(data));
+      });
+    }
+  }, [currentData]);
 
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
@@ -168,6 +200,21 @@ const AtSpotHomeScreen = ({
         endFillColor="white"
         showsVerticalScrollIndicator={false}
         style={{flex: 0.8}}>
+        {__DEV__ ? (
+          <Fragment>
+            <Button
+              onPress={() => handlePusher(10)}
+              raised
+              containerStyle={{margin: 10}}
+              title="Fire Channel 10"></Button>
+            <Button
+              onPress={() => handlePusher(11)}
+              raised
+              containerStyle={{margin: 10}}
+              title="Fire Channel 11"></Button>
+          </Fragment>
+        ) : null}
+
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}

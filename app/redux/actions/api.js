@@ -10,6 +10,8 @@ import {
 } from '../../helpers';
 import {map, filter} from 'lodash';
 import {isLocal} from '../../env';
+import {checkInternetConnection} from 'react-native-offline';
+import NetInfo from '@react-native-community/netinfo';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl,
@@ -278,6 +280,11 @@ export const networkTransform = createTransform(
   // named your network reducer.
   {whitelist: ['network']},
 );
+
+export async function checkConnectionStatus() {
+  return NetInfo.fetch().then(state => state.isConnected);
+  // return checkInternetConnection().then(isConnected => isConnected)
+}
 
 export async function authenticated(api_token) {
   return await axiosInstance
