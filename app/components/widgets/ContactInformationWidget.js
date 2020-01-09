@@ -24,7 +24,7 @@ const ContactInformationWidget = ({settings}) => {
           logo={settings.logo}
           longitude={settings.longitude}
           latitude={settings.latitude}
-          title={settings.company}
+          title={`${settings.company} - ${settings.address}`}
           height={250}
         />
       ) : null}

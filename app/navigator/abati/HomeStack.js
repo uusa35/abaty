@@ -70,6 +70,10 @@ export const HomeStack = createStackNavigator(
         headerRight: <HeaderRight displayShare={false} showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null,
+        headerStyle: {
+          borderBottomColor: 'lightgrey',
+          borderBottomWidth: 0.5,
+        },
       }),
     },
     Mallr: {

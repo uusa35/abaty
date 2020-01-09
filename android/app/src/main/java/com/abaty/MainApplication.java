@@ -12,11 +12,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import java.util.List;
-
 import androidx.multidex.MultiDexApplication;
-
 import com.microsoft.codepush.react.CodePush;
-
 import cl.json.ShareApplication;
 
 public class MainApplication extends MultiDexApplication implements ReactApplication {

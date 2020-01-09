@@ -114,8 +114,8 @@ DesignerHorizontalWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 200 / 2,
+    width: 80,
+    height: 80,
+    borderRadius: 80 / 2,
   },
 });
