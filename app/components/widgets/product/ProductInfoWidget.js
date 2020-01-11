@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
 
-const ProductInfoWidget = ({element}) => {
+const ProductInfoWidget = ({element, giftImage}) => {
   return (
     <View
       contentContainerStyle={{
@@ -13,7 +13,7 @@ const ProductInfoWidget = ({element}) => {
         marginTop: 10,
       }}>
       <ProductInfoWidgetMainTitle element={element} />
-      <ProductInfoWidgetBtns element={element} />
+      <ProductInfoWidgetBtns element={element} giftImage={giftImage} />
     </View>
   );
 };

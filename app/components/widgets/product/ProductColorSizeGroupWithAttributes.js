@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Icon, Input} from 'react-native-elements';
+import {Button, Icon, Input, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants';
 import PropTypes from 'prop-types';
@@ -12,20 +12,23 @@ import {axiosInstance} from '../../../redux/actions/api';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import FastImage from 'react-native-fast-image';
 
-const ProductColorSizeGroupWithAttributes = ({element}) => {
-  const {colors} = useContext(GlobalValuesContext);
+const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
+  const {colors, settings} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
-  [requestQty, setRequestQty] = useState(0);
-  [productAttribute, setProductAttribute] = useState(null);
-  [sizeVisible, setSizeVisible] = useState(false);
-  [colorVisible, setColorVisible] = useState(false);
-  [colorItems, setColorItems] = useState(null);
-  [colorItem, setColorItem] = useState(null);
-  [colorName, setColorName] = useState(null);
-  [sizeItem, setSizeItem] = useState(null);
-  [notes, setNotes] = useState('');
-  [elementId, setElementId] = useState(null);
+  const [requestQty, setRequestQty] = useState(0);
+  const [productAttribute, setProductAttribute] = useState(null);
+  const [sizeVisible, setSizeVisible] = useState(false);
+  const [colorVisible, setColorVisible] = useState(false);
+  const [colorItems, setColorItems] = useState(null);
+  const [colorItem, setColorItem] = useState(null);
+  const [colorName, setColorName] = useState(null);
+  const [sizeItem, setSizeItem] = useState(null);
+  const [notes, setNotes] = useState('');
+  const [elementId, setElementId] = useState(null);
+  const [wrapGift, setWrapGift] = useState(false);
+  const [giftMessage, setGiftMessage] = useState('');
 
   useMemo(() => {
     if (sizeVisible) {
@@ -147,6 +150,54 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           colorVisible={colorVisible}
           setColorVisible={setColorVisible}
         />
+        {element.wrap_as_gift ? (
+          <View>
+            <CheckBox
+              title={I18n.t('wrap_as_gift')}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+              checkedColor={colors.btn_bg_theme_color}
+              checked={wrapGift}
+              onPress={() => setWrapGift(!wrapGift)}
+            />
+            {wrapGift ? (
+              <View
+                style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                <FastImage
+                  source={{uri: giftImage}}
+                  style={{width: 100, height: 100}}
+                />
+                <Input
+                  spellCheck={true}
+                  placeholder={
+                    giftMessage ? giftMessage : I18n.t('wrap_as_gift_message')
+                  }
+                  // value={notes ? notes : null}
+                  inputContainerStyle={{
+                    borderWidth: 1,
+                    borderColor: 'lightgrey',
+                    borderRadius: 5,
+                    paddingLeft: 15,
+                    marginTop: 5,
+                    height: 80,
+                    width: '72%',
+                  }}
+                  inputStyle={{
+                    fontFamily: text.font,
+                    textAlign: isRTL ? 'right' : 'left',
+                  }}
+                  editable={!productAttribute || requestQty <= 0 ? false : true}
+                  shake={true}
+                  keyboardType="default"
+                  multiline={true}
+                  numberOfLines={3}
+                  onChangeText={e => setGiftMessage(e)}
+                />
+              </View>
+            ) : null}
+          </View>
+        ) : null}
+
         <Input
           spellCheck={true}
           placeholder={
@@ -166,7 +217,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             fontFamily: text.font,
             textAlign: isRTL ? 'right' : 'left',
           }}
-          editable={!productAttribute || requestQty <= 0 ? false : true}
+          editable={!productAttribute || requestQty <= 0}
           shake={true}
           keyboardType="default"
           multiline={true}
@@ -185,11 +236,15 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 qty: requestQty,
                 type: 'product',
                 element,
-                notes,
+                notes: wrapGift
+                  ? notes.concat(
+                      ` :: ${I18n.t('wrap_as_gift')} :: ${giftMessage}`,
+                    )
+                  : notes,
               }),
             )
           }
-          disabled={!productAttribute || requestQty <= 0 ? true : false}
+          disabled={!productAttribute || requestQty <= 0}
           raised
           containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}

@@ -9,7 +9,14 @@ import validate from 'validate.js';
 import {removeItem} from '../../../redux/actions/cart';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
-const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
+const ProductItem = ({
+  element,
+  logo,
+  editMode,
+  qty,
+  notes = null,
+  timeData = null,
+}) => {
   const {dispatch} = useContext(DispatchContext);
   return (
     <View
@@ -143,6 +150,24 @@ const ProductItem = ({element, logo, editMode, qty, timeData = null}) => {
                 paddingRight: 10,
               }}>
               {qty}
+            </Text>
+          </View>
+        ) : null}
+        {!validate.isEmpty(notes) ? (
+          <View style={{flexDirection: 'row', paddingTop: 3, maxWidth: 140}}>
+            <Text style={styles.productItemTitle}>
+              {I18n.t('notes')}
+              <Text>:</Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: text.font,
+                fontSize: 13,
+                textAlign: 'left',
+                paddingLeft: 10,
+                paddingRight: 10,
+              }}>
+              {notes}
             </Text>
           </View>
         ) : null}

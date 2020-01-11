@@ -360,9 +360,9 @@
   "additional_information": "additional information",
   "add_coupon": "add coupon",
   "have_coupon": "Have a coupon ?",
-  "coupon": "coupon",
+  "coupon": "Coupon",
   "invalid_email_or_password": "invalid email or password",
-  "size_chart": "size chart",
+  "size_chart": "Size Chart",
   "coupon_is_empty": "coupon code is empty.",
   "coupon_is_added_and_applied": "coupon is added and applied. thank you",
   "login_success": "login success",
@@ -395,7 +395,7 @@
   "error_while_loading_product" : "ُError occurred while loading product.",
   "product_added_to_cart_successfully" : "product added to cart successfully",
   "sku" : "SKU",
-  "product_weight" : "product weight",
+  "product_weight" : "Product Weight",
   "contactus_order_by_phone" : " Order by Phone",
   "grossTotal" : "Gross Total",
   "shipment_fees" : "Shipment Fees",
@@ -553,5 +553,9 @@
   "fan_error" : "Process did not work successfully.",
   "my_classifieds" : "My Classifieds",
   "for_sale" : "For Sale",
-  "shops" : "Shops"
+  "shops" : "Shops",
+  "kg" : "Kg",
+  "wrap_as_gift_message" : "Gift Message",
+  "wrap_as_gift" : "Wrap as a gift",
+  "notes" : "Notes"
 }

@@ -23,6 +23,7 @@ const NormalProductShowScreen = ({
   mobile,
   shipment_prices,
   size_chart,
+  giftImage,
   weight,
   homeProducts,
   token,
@@ -67,7 +68,7 @@ const NormalProductShowScreen = ({
           isReallyHot={product.isReallyHot}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget element={product} />
+          <ProductInfoWidget element={product} giftImage={giftImage} />
           <View animation="bounceInLeft" easing="ease-out">
             {product.description ? (
               <View>
@@ -109,10 +110,10 @@ const NormalProductShowScreen = ({
               name={product.sku}
               showIcon={false}
             />
-            {weight ? (
+            {product.weight ? (
               <ProductInfoWidgetElement
                 elementName="product_weight"
-                name={weight}
+                name={`${product.weight} ${I18n.t('kg')}`}
                 showIcon={false}
               />
             ) : null}
@@ -170,6 +171,7 @@ function mapStateToProps(state) {
     phone: state.settings.phone,
     shipment_prices: state.settings.shipment_prices,
     size_chart: state.settings.size_chart,
+    giftImage: state.settings.gift_image,
     mobile: state.settings.mobile,
     weight: state.settings.weight,
     homeProducts: state.homeProducts,

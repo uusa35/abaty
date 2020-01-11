@@ -76,6 +76,7 @@ const CartList = ({
               key={item.element.id}
               editMode={editMode}
               qty={item.qty}
+              notes={item.notes}
             />
           );
         })}
