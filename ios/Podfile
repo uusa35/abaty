@@ -61,7 +61,6 @@ target 'abaty' do
    pod 'OneSignal', '>= 2.9.3', '< 3.0'
   pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
   # pod 'RCTRestart', :path => '../node_modules/react-native-restart/ios'
   pod 'RNShare', :path => '../node_modules/react-native-share'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'

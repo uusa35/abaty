@@ -332,24 +332,29 @@ export function* startAddToCartScenario(action) {
       ]);
     }
   } catch (e) {
-    if (isLocal) {
-      console.log('the e', e);
-    }
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    // if (isLocal) {
+    console.log('the e', e);
+    // }
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
 export function* setTotalCartValue(cart) {
   try {
     if (!validate.isEmpty(cart) && cart.length > 0) {
-      const total = sumBy(cart, i => i.element.finalPrice * i.qty);
+      const {settings} = yield select();
+      const total = sumBy(
+        cart,
+        i =>
+          (i.element.finalPrice + (i.wrapGift ? settings.gift_fee : 0)) * i.qty,
+      );
       const {coupon, country} = yield select();
       yield all([
         put({type: actions.SET_TOTAL_CART, payload: total}),
         call(setGrossTotalCartValue, {total, coupon, country}),
       ]);
-    } else {
-      throw 'Cart is Empty';
     }
   } catch (e) {
     if (isLocal) {

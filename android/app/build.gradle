@@ -146,8 +146,8 @@ android {
         applicationId "com.abaty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "6"
+        versionCode 9
+        versionName "9"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
@@ -206,29 +206,28 @@ android {
 
 dependencies {
     implementation project(':react-native-svg')
-    //implementation project(':@react-native-community_netinfo')
-    implementation project(':react-native-webview')
-    implementation project(':react-native-vector-icons')
-    implementation project(':react-native-restart')
-    implementation project(':react-native-pdf')
-    implementation project(':react-native-i18n')
-    implementation project(':react-native-fast-image')
-    implementation project(':react-native-device-info')
-    implementation project(':react-native-share')
-    implementation project(':react-native-video')
-    implementation project(':@react-native-community_async-storage')
-    implementation project(':@react-native-community_viewpager')
-    implementation project(':react-native-reanimated')
-    implementation project(':lottie-react-native')
-    implementation project(':rn-fetch-blob')
-    implementation project(':react-native-image-crop-picker')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-community-netinfo')
-    // google maps
-    implementation(project(':react-native-maps')) {
-        exclude group: 'com.google.android.gms', module: 'play-services-base'
-        exclude group: 'com.google.android.gms', module: 'play-services-maps'
-    }
+       implementation project(':@react-native-community_netinfo')
+       implementation project(':react-native-webview')
+       implementation project(':react-native-vector-icons')
+       implementation project(':react-native-restart')
+       implementation project(':react-native-pdf')
+       implementation project(':react-native-i18n')
+       implementation project(':react-native-fast-image')
+       implementation project(':react-native-device-info')
+       implementation project(':react-native-share')
+       implementation project(':react-native-video')
+       implementation project(':@react-native-community_async-storage')
+       implementation project(':@react-native-community_viewpager')
+       implementation project(':react-native-reanimated')
+       implementation project(':lottie-react-native')
+       implementation project(':rn-fetch-blob')
+       implementation project(':react-native-image-crop-picker')
+       implementation project(':react-native-gesture-handler')
+       // google maps
+       implementation(project(':react-native-maps')) {
+           exclude group: 'com.google.android.gms', module: 'play-services-base'
+           exclude group: 'com.google.android.gms', module: 'play-services-maps'
+       }
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.android.support:design:27.1.0'
     implementation 'com.android.support:support-v4:27.1.0'

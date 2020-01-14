@@ -14,8 +14,8 @@ import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import FastImage from 'react-native-fast-image';
 
-const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
-  const {colors, settings} = useContext(GlobalValuesContext);
+const ProductColorSizeGroupWithAttributes = ({element, settings}) => {
+  const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const [requestQty, setRequestQty] = useState(0);
   const [productAttribute, setProductAttribute] = useState(null);
@@ -153,26 +153,32 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
         {element.wrap_as_gift ? (
           <View>
             <CheckBox
-              title={I18n.t('wrap_as_gift')}
+              title={I18n.t('wrap_as_gift', {item: settings.gift_fee})}
+              textStyle={{fontFamily: text.font, padding: 5}}
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
               checkedColor={colors.btn_bg_theme_color}
               checked={wrapGift}
               onPress={() => setWrapGift(!wrapGift)}
+              disabled={!productAttribute || requestQty <= 0}
             />
             {wrapGift ? (
               <View
                 style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                 <FastImage
-                  source={{uri: giftImage}}
+                  source={{uri: settings.gift_image}}
                   style={{width: 100, height: 100}}
                 />
                 <Input
                   spellCheck={true}
                   placeholder={
-                    giftMessage ? giftMessage : I18n.t('wrap_as_gift_message')
+                    giftMessage
+                      ? giftMessage
+                      : I18n.t('wrap_as_gift_message', {
+                          item: settings.gift_fee,
+                        })
                   }
-                  // value={notes ? notes : null}
+                  defaultValue={giftMessage ? giftMessage : null}
                   inputContainerStyle={{
                     borderWidth: 1,
                     borderColor: 'lightgrey',
@@ -186,7 +192,8 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
                     fontFamily: text.font,
                     textAlign: isRTL ? 'right' : 'left',
                   }}
-                  editable={!productAttribute || requestQty <= 0 ? false : true}
+                  disabled={!productAttribute || requestQty <= 0}
+                  // editable={!productAttribute || requestQty <= 0}
                   shake={true}
                   keyboardType="default"
                   multiline={true}
@@ -203,7 +210,7 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
           placeholder={
             notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
           }
-          value={notes ? notes : null}
+          defaultValue={notes ? notes : null}
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',
@@ -217,7 +224,7 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
             fontFamily: text.font,
             textAlign: isRTL ? 'right' : 'left',
           }}
-          editable={!productAttribute || requestQty <= 0}
+          disabled={!productAttribute || requestQty <= 0}
           shake={true}
           keyboardType="default"
           multiline={true}
@@ -230,6 +237,7 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
           onPress={() =>
             dispatch(
               addToCart({
+                wrapGift,
                 product_attribute_id: productAttribute.id,
                 cart_id: productAttribute.cart_id,
                 product_id: productAttribute.product_id,
@@ -238,7 +246,9 @@ const ProductColorSizeGroupWithAttributes = ({element, giftImage}) => {
                 element,
                 notes: wrapGift
                   ? notes.concat(
-                      ` :: ${I18n.t('wrap_as_gift')} :: ${giftMessage}`,
+                      `\n :: ${I18n.t('wrap_as_gift', {
+                        item: settings.gift_fee,
+                      })} :: \n ${giftMessage}`,
                     )
                   : notes,
               }),

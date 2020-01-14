@@ -11,7 +11,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 
-const ProductColorSizeGroup = ({element, giftImage}) => {
+const ProductColorSizeGroup = ({element, settings}) => {
   const {colors} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const {size, color, qty, show_attribute} = element;
@@ -80,7 +80,7 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
       {element.wrap_as_gift ? (
         <View>
           <CheckBox
-            title={I18n.t('wrap_as_gift')}
+            title={I18n.t('wrap_as_gift', {item: settings.gift_fee})}
             checkedIcon="dot-circle-o"
             uncheckedIcon="circle-o"
             checkedColor={colors.btn_bg_theme_color}
@@ -90,15 +90,17 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
           {wrapGift ? (
             <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
               <FastImage
-                source={{uri: giftImage}}
+                source={{uri: settings.gift_image}}
                 style={{width: 100, height: 100}}
               />
               <Input
                 spellCheck={true}
                 placeholder={
-                  giftMessage ? giftMessage : I18n.t('wrap_as_gift_message')
+                  giftMessage
+                    ? giftMessage
+                    : I18n.t('wrap_as_gift_message', {item: settings.gift_fee})
                 }
-                // value={notes ? notes : null}
+                defaultValue={giftMessage ? giftMessage : null}
                 inputContainerStyle={{
                   borderWidth: 1,
                   borderColor: 'lightgrey',
@@ -112,7 +114,7 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
                   fontFamily: text.font,
                   textAlign: isRTL ? 'right' : 'left',
                 }}
-                editable={!productAttribute || requestQty <= 0 ? false : true}
+                disabled={!qty || requestQty <= 0}
                 shake={true}
                 keyboardType="default"
                 multiline={true}
@@ -126,10 +128,7 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
       <View>
         <Input
           spellCheck={true}
-          placeholder={
-            notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
-          }
-          value={notes ? notes : null}
+          placeholder={I18n.t('add_notes_shoulders_height_and_other_notes')}
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',
@@ -143,6 +142,7 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
             fontFamily: text.font,
             textAlign: isRTL ? 'right' : 'left',
           }}
+          defaultValue={notes ? notes : null}
           disabled={!qty || requestQty <= 0}
           shake={true}
           keyboardType="default"
@@ -162,9 +162,12 @@ const ProductColorSizeGroup = ({element, giftImage}) => {
                 qty: requestQty,
                 element,
                 type: 'product',
+                wrapGift,
                 notes: wrapGift
                   ? notes.concat(
-                      ` :: ${I18n.t('wrap_as_gift')} :: ${giftMessage}`,
+                      `\n :: (${I18n.t('wrap_as_gift', {
+                        item: settings.gift_fee,
+                      })}) :: \n ${giftMessage}`,
                     )
                   : notes,
               }),

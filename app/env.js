@@ -17,8 +17,8 @@ const appUrl = () => {
       return 'http://mallr.test/';
   }
 };
-const appUrlIos = isLocal ? 'http://mallr.test' : appUrl();
-const appUrlAndroid = isLocal ? 'http://mallr.test' : appUrl();
+const appUrlIos = isLocal ? 'http://mallr.test/' : appUrl();
+const appUrlAndroid = isLocal ? 'http://mallr.test/' : appUrl();
 const pusherInstance = () => {
   switch (APP_CASE) {
     case 'AtSpot':

@@ -23,11 +23,10 @@ const NormalProductShowScreen = ({
   mobile,
   shipment_prices,
   size_chart,
-  giftImage,
-  weight,
   homeProducts,
   token,
   navigation,
+  settings,
 }) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
@@ -68,7 +67,7 @@ const NormalProductShowScreen = ({
           isReallyHot={product.isReallyHot}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget element={product} giftImage={giftImage} />
+          <ProductInfoWidget element={product} settings={settings} />
           <View animation="bounceInLeft" easing="ease-out">
             {product.description ? (
               <View>
@@ -171,12 +170,11 @@ function mapStateToProps(state) {
     phone: state.settings.phone,
     shipment_prices: state.settings.shipment_prices,
     size_chart: state.settings.size_chart,
-    giftImage: state.settings.gift_image,
     mobile: state.settings.mobile,
-    weight: state.settings.weight,
     homeProducts: state.homeProducts,
     token: state.token,
     cart: state.cart,
+    settings: state.settings,
   };
 }
 

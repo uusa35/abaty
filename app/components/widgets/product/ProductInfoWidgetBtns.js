@@ -8,7 +8,7 @@ import ProductColorSizeGroup from './ProductColorSizeGroup';
 import ProductColorSizeGroupWithAttributes from './ProductColorSizeGroupWithAttributes';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ProductInfoWidgetBtns = ({element, giftImage}) => {
+const ProductInfoWidgetBtns = ({element, settings}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View
@@ -41,10 +41,10 @@ const ProductInfoWidgetBtns = ({element, giftImage}) => {
       {element.has_attributes ? (
         <ProductColorSizeGroupWithAttributes
           element={element}
-          giftImage={giftImage}
+          settings={settings}
         />
       ) : (
-        <ProductColorSizeGroup element={element} giftImage={giftImage} />
+        <ProductColorSizeGroup element={element} settings={settings} />
       )}
       {!element.has_stock ? (
         <Button

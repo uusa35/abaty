@@ -555,7 +555,7 @@
   "for_sale" : "For Sale",
   "shops" : "Shops",
   "kg" : "Kg",
-  "wrap_as_gift_message" : "Gift Message",
-  "wrap_as_gift" : "Wrap as a gift",
+  "wrap_as_gift_message" : "Gift Message, Note that %{item} KD shall be added to price",
+  "wrap_as_gift" : "Wrap as a gift, Price is %{item} per piece.",
   "notes" : "Notes"
 }
