@@ -306,9 +306,9 @@ export function* setHomeSplashes() {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield call(enableErrorMessage, I18n.t('no_splashes'));
+    // yield call(enableErrorMessage, I18n.t('no_splashes'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 
@@ -561,7 +561,6 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
       yield call(enableLoading, I18n.t('create_payment_url'));
       const url = yield call(api.makeMyFatoorahPayment, action.payload);
       if (validate.isObject(url) && url.paymentUrl.includes('https')) {
-        yield call(disableLoading);
         yield put(
           NavigationActions.navigate({
             routeName: 'PaymentIndex',
@@ -580,7 +579,14 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+    yield put(
+      NavigationActions.navigate({
+        routeName: 'CartIndex',
+      }),
+    );
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -589,7 +595,6 @@ export function* startCreateTapPaymentUrlScenario(action) {
     yield call(enableLoading);
     const url = yield call(api.makeTapPayment, action.payload);
     if (validate.isObject(url) && url.paymentUrl.includes('http')) {
-      yield call(disableLoading);
       yield put(
         NavigationActions.navigate({
           routeName: 'PaymentIndex',
@@ -605,7 +610,14 @@ export function* startCreateTapPaymentUrlScenario(action) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
+    yield put(
+      NavigationActions.navigate({
+        routeName: 'CartIndex',
+      }),
+    );
+  } finally {
+    yield call(disableLoading);
   }
 }
 
