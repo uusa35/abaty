@@ -30,11 +30,11 @@ const CountriesList = ({country, countries, countryModal}) => {
 
   const handleClick = useCallback(country => {
     dispatch(setCountry(country));
-    if (!validate.isEmpty(country.areas)) {
-      dispatch(showAreaModal());
-    } else {
-      dispatch(setArea({}));
-    }
+    // if (!validate.isEmpty(country.areas)) {
+    //   dispatch(showAreaModal());
+    // } else {
+    //   dispatch(setArea({}));
+    // }
   });
 
   return (
@@ -81,7 +81,7 @@ const CountriesList = ({country, countries, countryModal}) => {
   );
 };
 
-export default React.memo(CountriesList);
+export default CountriesList;
 
 CountriesList.propTypes = {
   country: PropTypes.object.isRequired,
@@ -103,7 +103,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'lightgrey',
     backgroundColor: 'white',
-    paddingTop: 15,
+    padding: 5,
+    alignItems: 'center',
     height: 50,
   },
   phoneNo: {

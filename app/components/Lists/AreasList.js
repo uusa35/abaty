@@ -9,11 +9,9 @@ import {
 } from 'react-native';
 import {hideAreaModal, setArea} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {images, text, height} from '../../constants';
-import FastImage from 'react-native-fast-image';
+import {text} from '../../constants';
 import {Icon} from 'react-native-elements';
-import {SafeAreaView} from 'react-navigation';
-import I18n, {isRTL} from './../../I18n';
+import {isRTL} from './../../I18n';
 import PropTypes from 'prop-types';
 
 const AreasList = ({area, areas, areaModal}) => {
@@ -47,20 +45,12 @@ const AreasList = ({area, areas, areaModal}) => {
               onPress={() => handleClick(item)}
               style={styles.wrapper}>
               <Text style={styles.phoneNo}>{item.slug}</Text>
-              {item.thumb ? (
-                <FastImage
-                  source={{uri: item.thumb}}
-                  style={styles.areaFlag}
-                  loadingIndicatorSource={images.logo}
-                />
-              ) : (
-                <Icon
-                  name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                  type="entypo"
-                  size={15}
-                  color="black"
-                />
-              )}
+              <Icon
+                name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                type="entypo"
+                size={15}
+                color="black"
+              />
             </TouchableOpacity>
           )}></FlatList>
       </View>
@@ -68,7 +58,7 @@ const AreasList = ({area, areas, areaModal}) => {
   );
 };
 
-export default React.memo(AreasList);
+export default AreasList;
 
 AreasList.propTypes = {
   area: PropTypes.object.isRequired,
@@ -85,11 +75,11 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'baseline',
+    alignItems: 'center',
     borderWidth: 0.5,
     borderColor: 'lightgrey',
     backgroundColor: 'white',
-    padding: 15,
+    padding: 1,
     height: 50,
   },
   phoneNo: {

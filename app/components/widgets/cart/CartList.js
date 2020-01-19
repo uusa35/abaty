@@ -46,6 +46,7 @@ const CartList = ({
   );
   const [editMode, setEditMode] = useState(editModeDefault);
   const [checked, setChecked] = useState(false);
+  const [area, setArea] = useState('');
 
   useEffect(() => {
     setEmail(auth.email);
@@ -387,34 +388,33 @@ const CartList = ({
                 {shipmentCountry.slug}
               </Text>
             </TouchableOpacity>
-            {!validate.isEmpty(selectedArea) ? (
-              <View
-                // onPress={() => dispatch(showAreaModal())}
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'lightgrey',
-                  borderRadius: 10,
-                  paddingLeft: 15,
-                  paddingRight: 15,
-                  marginBottom: 20,
-                  height: 45,
-                  width: '95%',
-                  alignSelf: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <Text
-                  style={{
-                    fontFamily: text.font,
-                    fontSize: text.large,
-                    textAlign: isRTL ? 'right' : 'left',
-                    color: colors.main_theme_color,
-                  }}>
-                  {I18n.t('area')}{' '}
-                  {selectedArea ? selectedArea.slug : I18n.t('choose_area')}
-                </Text>
-              </View>
-            ) : null}
+            <Input
+              editable={editMode}
+              placeholder={area ? area : I18n.t('area')}
+              value={area ? area : null}
+              inputContainerStyle={{
+                borderWidth: 1,
+                borderColor: 'lightgrey',
+                borderRadius: 10,
+                paddingLeft: 15,
+                paddingRight: 15,
+                marginBottom: 20,
+              }}
+              inputStyle={{
+                fontFamily: text.font,
+                textAlign: isRTL ? 'right' : 'left',
+              }}
+              label={I18n.t('area')}
+              labelStyle={{
+                paddingBottom: 10,
+
+                fontFamily: text.font,
+                textAlign: 'left',
+              }}
+              shake={true}
+              keyboardType="default"
+              onChangeText={area => setArea(area)}
+            />
             <Input
               editable={editMode}
               placeholder={address ? address : I18n.t('full_address')}
@@ -580,7 +580,7 @@ const CartList = ({
                     address,
                     country_id: shipmentCountry.id,
                     notes,
-                    area: selectedArea.slug,
+                    area: area ? area : selectedArea.slug,
                   }),
                 )
               }

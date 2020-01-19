@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useCallback, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -6,17 +6,19 @@ import {
   TouchableOpacity,
   Text,
   Linking,
+  RefreshControl,
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text, touchOpacity} from '../constants';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../I18n';
-import {changeLang} from '../redux/actions';
+import {changeLang, refetchHomeElements} from '../redux/actions';
 import {HOMEKEY, MALLR, ABATI, ESCRAP} from './../../app';
 import {appUrlIos} from '../env';
 import PagesList from '../components/widgets/page/PagesList';
 import {getMyClassifieds} from '../redux/actions/classified';
+import {reAuthenticate} from '../redux/actions/user';
 
 const SettingsIndexScreen = ({
   guest,
@@ -26,6 +28,10 @@ const SettingsIndexScreen = ({
   colors,
   navigation,
 }) => {
+  const handleRefresh = useCallback(() => {
+    dispatch(reAuthenticate());
+  }, [refresh]);
+  const [refresh, setRefresh] = useState(false);
   return (
     <ScrollView
       style={{flex: 1, paddingTop: 20}}
@@ -35,7 +41,13 @@ const SettingsIndexScreen = ({
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
-      }}>
+      }}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => handleRefresh()}
+        />
+      }>
       <View style={styles.container}>
         {!guest && (MALLR || ABATI) ? (
           <TouchableOpacity

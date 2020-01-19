@@ -27,7 +27,7 @@ const LoginScreenModal = ({loginModal}) => {
   );
 };
 
-export default React.memo(LoginScreenModal);
+export default LoginScreenModal;
 
 LoginScreenModal.propTypes = {
   token: PropTypes.string,

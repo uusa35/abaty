@@ -20,13 +20,13 @@ const OrderStatus = ({element}) => {
         ]}>
         <Text style={styles.smText}>{I18n.t('under_process')}</Text>
       </View>
-      <View
-        style={[
-          styles.statusWrapper,
-          {backgroundColor: element.received ? '#bced8b' : '#d6d6d6'},
-        ]}>
-        <Text style={styles.smText}>{I18n.t('received')}</Text>
-      </View>
+      {/*<View*/}
+      {/*  style={[*/}
+      {/*    styles.statusWrapper,*/}
+      {/*    {backgroundColor: element.received ? '#bced8b' : '#d6d6d6'},*/}
+      {/*  ]}>*/}
+      {/*  <Text style={styles.smText}>{I18n.t('received')}</Text>*/}
+      {/*</View>*/}
       <View
         style={[
           styles.statusWrapper,
@@ -44,7 +44,7 @@ const OrderStatus = ({element}) => {
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.completed ? '#bced8b' : '#d6d6d6'},
+          {backgroundColor: element.completed ? '#d5ff56' : '#d6d6d6'},
         ]}>
         <Text style={styles.smText}>{I18n.t('completed')}</Text>
       </View>
@@ -56,22 +56,30 @@ export default OrderStatus;
 const styles = StyleSheet.create({
   statusContainer: {
     flexDirection: 'row',
-    marginTop: 10,
-    marginBottom: 10,
+    padding: 8,
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   statusWrapper: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '17%',
+    width: '19.8%',
     height: 40,
     borderWidth: 1,
+    borderRadius: 5,
     borderColor: 'white',
   },
   smText: {
     fontFamily: text.font,
-    fontSize: 10,
+    fontSize: text.small,
     textAlign: 'center',
   },
 });

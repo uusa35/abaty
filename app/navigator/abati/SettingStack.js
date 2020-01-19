@@ -16,6 +16,7 @@ import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClas
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 
 export const SettingStack = createStackNavigator(
   {

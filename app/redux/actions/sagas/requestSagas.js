@@ -483,7 +483,15 @@ export function* startClearCartScenario() {
 
 export function* startSubmitCartScenario(action) {
   try {
-    const {name, mobile, email, address, country_id, notes} = action.payload;
+    const {
+      name,
+      mobile,
+      email,
+      address,
+      country_id,
+      notes,
+      area,
+    } = action.payload;
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
       yield put(
@@ -495,6 +503,7 @@ export function* startSubmitCartScenario(action) {
             cMobile: mobile,
             cAddress: address,
             country_id,
+            cArea: area,
             cNotes: notes,
           },
         }),

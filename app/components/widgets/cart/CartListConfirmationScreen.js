@@ -35,12 +35,20 @@ const CartListConfirmationScreen = ({
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total} = useContext(GlobalValuesContext);
-  const {cName, cEmail, cMobile, cAddress, cNotes} = navigation.state.params;
+  const {
+    cName,
+    cEmail,
+    cMobile,
+    cAddress,
+    cNotes,
+    cArea,
+  } = navigation.state.params;
   const [name, setName] = useState(cName);
   const [email, setEmail] = useState(cEmail);
   const [mobile, setMobile] = useState(cMobile);
   const [address, setAddress] = useState(cAddress);
   const [notes, setNotes] = useState(cNotes);
+  const [area, setArea] = useState(cArea);
   const [editMode, setEditMode] = useState(editModeDefault);
 
   const handleCashOnDelivery = useCallback(() => {
@@ -62,6 +70,7 @@ const CartListConfirmationScreen = ({
                 email,
                 mobile,
                 address,
+                area,
                 country_id: shipmentCountry.id,
                 coupon_id: !isNull(coupon) ? coupon.id : null,
                 cart,
@@ -383,6 +392,28 @@ const CartListConfirmationScreen = ({
                 {shipmentCountry.slug}
               </Text>
             </TouchableOpacity>
+            {area ? (
+              <Input
+                editable={editMode}
+                placeholder={area ? area : I18n.t('area')}
+                value={area ? area : null}
+                inputContainerStyle={{
+                  borderWidth: 1,
+                  borderColor: 'lightgrey',
+                  borderRadius: 10,
+                  paddingLeft: 15,
+                  paddingRight: 15,
+                  marginBottom: 20,
+                }}
+                inputStyle={{
+                  fontFamily: text.font,
+                  textAlign: isRTL ? 'right' : 'left',
+                }}
+                shake={true}
+                keyboardType="default"
+                onChangeText={area => setArea(area)}
+              />
+            ) : null}
             <Input
               editable={editMode}
               placeholder={address ? address : I18n.t('full_address')}
@@ -547,6 +578,7 @@ const CartListConfirmationScreen = ({
                         email,
                         mobile,
                         address,
+                        area,
                         country_id: shipmentCountry.id,
                         coupon_id: !isNull(coupon) ? coupon.id : null,
                         cart,
@@ -583,6 +615,7 @@ const CartListConfirmationScreen = ({
                         email,
                         mobile,
                         address,
+                        area,
                         country_id: shipmentCountry.id,
                         coupon_id: !isNull(coupon) ? coupon.id : null,
                         cart,

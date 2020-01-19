@@ -118,10 +118,10 @@ const ProductList = ({
           contentContainerStyle={{
             marginBottom: 15,
             justifyContent: 'flex-start',
-            minHeight: height / 1.2,
+            minHeight: height,
           }}
           columnWrapperStyle={{
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
             alignSelf: 'center',
             alignItems: 'flex-start',
           }}
@@ -207,10 +207,12 @@ const ProductList = ({
       ) : (
         <View
           style={{
+            paddingTop: '20%',
             minHeight: '100%',
+            // borderWidth : 10,
             width: width - 50,
             alignSelf: 'center',
-            justifyContent: 'center',
+            // justifyContent: 'center',
           }}>
           <Button
             raised

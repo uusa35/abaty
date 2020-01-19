@@ -112,6 +112,7 @@ const App = ({
       />
     );
   }
+
   return (
     <DispatchContext.Provider value={{dispatch}}>
       {network.isConnected || bootStrapped ? (

@@ -269,6 +269,8 @@ export function* setHomeBrands() {
     const elements = yield call(api.getHomeBrands);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_BRANDS, payload: elements});
+    } else {
+      yield put({type: actions.SET_BRANDS, payload: []});
     }
   } catch (e) {
     yield call(enableErrorMessage, I18n.t('no_brands'));
@@ -353,7 +355,7 @@ export function* startSubmitAuthScenario(action) {
       } else {
         yield put(
           NavigationActions.navigate({
-            routeName: 'Home',
+            routeName: 'SettingIndex',
           }),
         );
         // yield put(NavigationActions.back());
