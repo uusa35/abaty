@@ -35,7 +35,7 @@ const ProductColorSizeGroup = ({element, settings}) => {
           {!validate.isEmpty(size) && show_attribute ? (
             <Button
               raised
-              containerStyle={{flex: 0.4, marginBottom: 10, margin: 2}}
+              containerStyle={{flex: 0.4, marginBottom: 12, margin: 2}}
               buttonStyle={{
                 backgroundColor: 'white',
                 borderRadius: 10,

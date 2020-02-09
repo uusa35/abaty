@@ -94,7 +94,7 @@ const ProductColorSizeGroupWithAttributes = ({element, settings}) => {
           }}>
           <Button
             onPress={() => setSizeVisible(true)}
-            containerStyle={{flex: 0.4, marginBottom: 10, margin: 2}}
+            containerStyle={{flex: 0.4, marginBottom: 12, margin: 2}}
             buttonStyle={{
               backgroundColor: 'white',
               borderRadius: 10,

@@ -5,7 +5,6 @@ import {Icon} from 'react-native-elements';
 import {hideLoginModal} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import LoginForm from '../../components/widgets/LoginForm';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const LoginScreenModal = ({loginModal}) => {
   const {dispatch} = useContext(DispatchContext);

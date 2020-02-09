@@ -6,9 +6,9 @@ import {Icon} from 'react-native-elements';
 import {useNavigation} from 'react-navigation-hooks';
 
 const LoginScreen = () => {
-  const [visible, setVisible] = useState(false);
-  const {goBack, navigate, dangerouslyGetParent} = useNavigation();
-  const parent = dangerouslyGetParent();
+  // const [visible, setVisible] = useState(false);
+  // const {goBack, navigate, dangerouslyGetParent} = useNavigation();
+  // const parent = dangerouslyGetParent();
 
   return (
     <Fragment>

@@ -151,13 +151,13 @@ const NormalProductShowScreen = ({
         !validate.isEmpty(product.videoGroup) ? (
           <VideosVerticalWidget videos={product.videoGroup} />
         ) : null}
-        {!validate.isEmpty(homeProducts) ? (
-          <ProductHorizontalWidget
-            elements={homeProducts}
-            showName={true}
-            title={I18n.t('related_products')}
-          />
-        ) : null}
+        {/*{!validate.isEmpty(homeProducts) ? (*/}
+        {/*  <ProductHorizontalWidget*/}
+        {/*    elements={homeProducts}*/}
+        {/*    showName={true}*/}
+        {/*    title={I18n.t('related_products')}*/}
+        {/*  />*/}
+        {/*) : null}*/}
       </ScrollView>
       <ActionBtnWidget />
     </Fragment>

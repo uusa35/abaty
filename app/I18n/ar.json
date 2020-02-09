@@ -412,7 +412,7 @@
   "coupon" : "كوبون",
   "invalid_email_or_password" : "البريد الإلكتروني أو كلمة المرور غير صحيحة",
   "shipment_fees" : "مصاريف الشحن",
-  "shipment_fees_per_piece" : "مصاريف الشحن (للقطعة)",
+  "shipment_fees_per_piece" : "مصاريف الشحن",
   "grossTotal" : "الإجمالي",
   "size_chart" : "جدول المقاسات",
   "coupon_is_empty" : "كود الكوبون الذي ادخلته غير صحيح",
@@ -559,7 +559,7 @@
   "by_alpha_desc" : "أبجدي من النهاية",
   "selected_collections" : "المجموعات المختارة",
   "choose_your_category" : "اختر تصنيف",
-  "followers" : "متابعين",
+  "followers" : "معجبين",
   "choose_your_location" : "اختيار عنوان اعلانك",
   "choose_address_from_map_or_you_can_write_your_map" : "يمكنك اختيار عنوان إعلانك من الخريطة أو كتابة عنوانك",
   "get_your_address_from_map" : "ابحث عن عنوانك من الخريطة",
@@ -588,6 +588,6 @@
   "shops" : "محلات",
   "kg" : "ك/ج",
   "wrap_as_gift_message" : "رسالة تغليف المنتج كهدية ، يرجى العلم بأنه سيتم اضافه %{item} د.ك عند طلب التغليف كهدية",
-  "wrap_as_gift" : "تغليف المنتج كهدية - سعر الخدمة للمنتج الواحد %{item} د.ك",
+  "wrap_as_gift" : "تغليف المنتج كهدية - سعر الخدمة %{item} د.ك",
   "notes" : "ملاحظات"
 }

@@ -181,6 +181,9 @@ export function* startGetProductScenario(action) {
       validate.isObject(element) &&
       element.id
     ) {
+      if (__DEV__) {
+        console.log('the product', element);
+      }
       yield put({type: actions.SET_PRODUCT, payload: element});
       yield all([
         put(

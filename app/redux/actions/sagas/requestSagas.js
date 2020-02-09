@@ -174,14 +174,14 @@ export function* getCountry(country_id = null) {
       country.currency
     ) {
       yield put({type: actions.SET_COUNTRY, payload: country});
-      // yield put({type: actions.SET_CURRENCY, payload: country.currency_symbol});
       yield call(startSetCountryScenario, {payload: country});
     }
   } catch (e) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
+    // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
+  } finally {
   }
 }
 
@@ -201,7 +201,8 @@ export function* startSetCountryScenario(action) {
     if (isLocal) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
+    // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
+  } finally {
   }
 }
 

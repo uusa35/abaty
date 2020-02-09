@@ -45,6 +45,19 @@ const SocialRowWidget = ({settings}) => {
             onPress={() => Linking.openURL(settings.instagram)}
           />
         ) : null}
+        {settings.snapchat ? (
+          <Icon
+            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+            reverse
+            raised
+            size={size}
+            name="snapchat"
+            type="font-awesome"
+            color="#FFFC00"
+            reverseColor="black"
+            onPress={() => Linking.openURL(settings.snapchat)}
+          />
+        ) : null}
       </View>
       <View style={styles.rowWrapper}>
         {settings.whatsapp ? (

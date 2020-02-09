@@ -4,7 +4,6 @@ import AbatiRootNavigator from './abati/AbatiRootNavigator';
 import EscrapRootNavigator from './escrap/EscrapRootNavigator';
 import HomeKeyRootNavigator from './homekey/HomeKeyRootNavigator';
 import AtSpotRootNavigator from './AtSpot/AtSpotRootNavigator';
-// import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
 const AppNav = () => {
   switch (APP_CASE) {

@@ -74,7 +74,7 @@ const App = ({
     }
   }, [lang, bootStrapped, token]);
 
-  if (!bootStrapped || isLoading) {
+  if (isLoading) {
     return (
       <LoadingView
         loadingText={I18n.t('loading')}
@@ -113,66 +113,67 @@ const App = ({
     );
   }
 
+  if (!network.isConnected && bootStrapped) {
+    return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
+  }
+
   return (
     <DispatchContext.Provider value={{dispatch}}>
-      {network.isConnected || bootStrapped ? (
-        <View style={{flex: 1}}>
-          {bootStrapped ? (
-            <GlobalValuesContext.Provider
-              value={{
-                cartLength: cart.length,
-                currency_symbol: country.currency.currency_symbol,
-                exchange_rate: country.currency.exchange_rate,
-                total,
-                grossTotal,
-                colors,
-                country,
-                token,
-                logo,
-                app_logo,
-                guest,
-                searchModal,
-              }}>
-              <React.Suspense fallback={<SimpleSpinner />}>
-                <AppNavigator />
-              </React.Suspense>
-              {validate.isBoolean(loginModal) ? (
-                <LoginScreenModal
-                  logo={logo}
-                  loginModal={loginModal}
-                  mainBg={main_bg}
-                />
-              ) : null}
-              {validate.isBoolean(countryModal) && countryModal && country ? (
-                <CountriesList
-                  country={country}
-                  countries={countries}
-                  countryModal={countryModal}
-                />
-              ) : null}
-              {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
-                <AreasList area={area} areas={areas} areaModal={areaModal} />
-              ) : null}
-            </GlobalValuesContext.Provider>
-          ) : (
-            <LoadingView
-              loadingText={I18n.t('loading')}
-              color={colors.btn_bg_theme_color}
-              isLoading={isLoading}
-              logo={logo}
-              mainBg={main_bg}
-            />
-          )}
-          {!validate.isEmpty(message) &&
-          message.visible &&
-          network.isConnected &&
-          validate.isString(message.content) ? (
-            <AlertMessage message={message} />
-          ) : null}
-        </View>
-      ) : (
-        <LoadingOfflineView mainBg={main_bg} />
-      )}
+      <View style={{flex: 1}}>
+        {bootStrapped ? (
+          <GlobalValuesContext.Provider
+            value={{
+              cartLength: cart.length,
+              currency_symbol: country.currency.currency_symbol,
+              exchange_rate: country.currency.exchange_rate,
+              total,
+              grossTotal,
+              colors,
+              country,
+              token,
+              logo,
+              app_logo,
+              guest,
+              searchModal,
+            }}>
+            <React.Suspense fallback={<SimpleSpinner />}>
+              <AppNavigator />
+            </React.Suspense>
+            {validate.isBoolean(loginModal) ? (
+              <LoginScreenModal
+                logo={logo}
+                loginModal={loginModal}
+                mainBg={main_bg}
+              />
+            ) : null}
+            {validate.isBoolean(countryModal) && countryModal && country ? (
+              <CountriesList
+                country={country}
+                countries={countries}
+                countryModal={countryModal}
+              />
+            ) : null}
+            {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
+              <AreasList area={area} areas={areas} areaModal={areaModal} />
+            ) : null}
+          </GlobalValuesContext.Provider>
+        ) : (
+          <LoadingView
+            loadingText={I18n.t('loading')}
+            color={colors.btn_bg_theme_color}
+            isLoading={isLoading}
+            logo={logo}
+            mainBg={main_bg}
+          />
+        )}
+        {!validate.isEmpty(message) &&
+        message.visible &&
+        validate.isString(message.content) &&
+        network.isConnected &&
+        bootStrapped ? (
+          <AlertMessage message={message} />
+        ) : null}
+      </View>
     </DispatchContext.Provider>
   );
 };

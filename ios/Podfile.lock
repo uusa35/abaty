@@ -351,9 +351,9 @@ PODS:
   - RNVectorIcons (6.6.0):
     - React
   - RSKImageCropper (2.2.3)
-  - SDWebImage (5.4.2):
-    - SDWebImage/Core (= 5.4.2)
-  - SDWebImage/Core (5.4.2)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
   - SDWebImageWebPCoder (0.2.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
@@ -638,7 +638,7 @@ SPEC CHECKSUMS:
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
-  SDWebImage: 4ca2dc4eefae4224bea8f504251cda485a363745
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
