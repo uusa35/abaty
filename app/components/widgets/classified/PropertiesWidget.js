@@ -16,8 +16,8 @@ const PropertiesWidget = ({elements}) => {
         alignItems: 'center',
         borderWidth: 0.5,
       }}>
-      {map(elements, (item, i) => {
-        return (
+      {map(elements, (item, i) =>
+        item.on_home ? (
           <View
             key={i}
             style={{
@@ -29,7 +29,7 @@ const PropertiesWidget = ({elements}) => {
               alignSelf: 'center',
               padding: 10,
               width: '25%',
-              minHeight: 85,
+              // minHeight: 85,
             }}>
             <Image
               source={{uri: item.categoryGroup.thumb}}
@@ -41,14 +41,14 @@ const PropertiesWidget = ({elements}) => {
             {/*  size={25}*/}
             {/*  color={colors.icon_theme_color}*/}
             {/*/>*/}
-            <Text
-              style={{
-                textAlign: 'center',
-                fontFamily: text.font,
-                fontSize: text.small,
-              }}>
-              {item.categoryGroup.name}
-            </Text>
+            {/*<Text*/}
+            {/*  style={{*/}
+            {/*    textAlign: 'center',*/}
+            {/*    fontFamily: text.font,*/}
+            {/*    fontSize: text.smaller,*/}
+            {/*  }}>*/}
+            {/*  {item.categoryGroup.name}*/}
+            {/*</Text>*/}
             <Text
               style={{
                 textAlign: 'center',
@@ -58,8 +58,8 @@ const PropertiesWidget = ({elements}) => {
               {item.property.value}
             </Text>
           </View>
-        );
-      })}
+        ) : null,
+      )}
     </View>
   );
 };

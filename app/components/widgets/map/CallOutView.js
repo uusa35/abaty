@@ -11,6 +11,7 @@ const CallOutView = ({
   longitude,
   image,
   title,
+  address,
   price,
   description,
   element,
@@ -44,6 +45,9 @@ const CallOutView = ({
             }}>
             {title ? (
               <Text style={styles.title}>{title.substring(0, 50)}</Text>
+            ) : null}
+            {address ? (
+              <Text style={styles.title}>{address.substring(0, 50)}</Text>
             ) : null}
             {price ? (
               <Text style={styles.title}>

@@ -118,6 +118,7 @@ const MapViewWidget = ({
                   element={element}
                   title={element.name}
                   description={element.description}
+                  address={element.address}
                   image={element.thumb}
                   price={round(
                     getProductConvertedFinalPrice(element.price, exchange_rate),

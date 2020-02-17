@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {map} from 'lodash';
 import ClassifiedWidget from '../../components/widgets/classified/ClassifiedWidget';
 
-const ProfileClassifiedIndexScreen = ({elements, searchParams}) => {
+const ProfileClassifiedIndexScreen = ({elements}) => {
   const [currentElements, setCurrentElements] = useState(elements);
 
   useMemo(() => {
@@ -67,7 +67,7 @@ const ProfileClassifiedIndexScreen = ({elements, searchParams}) => {
 
 function mapStateToProps(state) {
   return {
-    elements: state.classifieds,
+    elements: state.auth.classifieds,
     searchParams: state.searchParams,
     colors: state.settings.colors,
   };

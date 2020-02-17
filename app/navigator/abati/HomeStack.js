@@ -388,7 +388,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Classified: {
-      // screen: gestureHandlerRootHOC(ClassifiedShowScree,
+      // screen: gestureHandlerRootHOC(ClassifiedShowScreen),
       screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,

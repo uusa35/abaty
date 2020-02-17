@@ -16,6 +16,10 @@ import {CategoryStack} from './CategoryStack';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
 import {FavoriteStack} from './FavoriteStack';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
+import {HeaderMiddle} from '../../components/HeaderMiddle';
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -128,6 +132,22 @@ export const BottomTabsStack = createBottomTabNavigator(
           <TextTabBar title={I18n.t('classifieds')} focused={focused} />
         ),
       }),
+    },
+    Classified: {
+      // screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      navigationOptions: ({navigation}) => ({
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerRight: <HeaderRight showCountry={true} displayShare={true} />,
+        headerBackTitle: null,
+        //   headerTransparent: true,
+        // headerStyle: {
+        // backgroundColor: 'white',
+        // borderColor: 'transparent',
+        // zIndex: 100
+        // }
+      }),
+      path: `classified/:id`,
     },
   },
   {

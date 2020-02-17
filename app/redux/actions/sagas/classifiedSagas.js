@@ -22,6 +22,7 @@ import validate from 'validate.js';
 import {HIDE_SEARCH_MODAL, SHOW_SEARCH_MODAL, SET_CATEGORY} from '../types';
 import {first, values} from 'lodash';
 import {SET_CLASSIFIED} from '../types';
+import {isLocal} from '../../../env';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;
@@ -74,10 +75,9 @@ export function* startGetHomeClassifiedsScenario(action) {
       yield put({type: actions.SET_HOME_CLASSIFIEDS, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_classifieds')),
-    ]);
+    yield call(enableWarningMessage, I18n.t('no_classifieds'));
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -105,10 +105,11 @@ export function* startGetClassifiedScenario(action) {
           }),
         );
       }
-      yield call(disableLoadingContent);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_classifieds'))]);
+    yield call(enableErrorMessage, I18n.t('no_classifieds'));
+  } finally {
+    yield call(disableLoadingContent);
   }
 }
 
@@ -274,30 +275,22 @@ export function* startClassifiedSearchingScenario(action) {
 }
 
 export function* startGetMyClassifiedsScenario(action) {
-  console.log('action', action);
   try {
+    const {auth} = yield select();
     const {redirect} = action.payload;
     yield call(enableLoadingBoxedList);
-    const {auth} = yield select();
-    const elements = yield call(api.getSearchClassifieds, {user_id: auth.id});
-    if (
-      !validate.isEmpty(elements) &&
-      validate.isArray(elements) &&
-      auth.api_token
-    ) {
-      console.log('starting ');
-      yield put({type: actions.SET_CLASSIFIEDS, payload: elements});
-      if (!validate.isEmpty(redirect) && redirect) {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'ProfileClassifiedIndex',
-            params: {
-              name: auth.slug ? auth.slug : I18n.t('classifieds'),
-            },
-          }),
-        );
-      }
+    if (!validate.isEmpty(redirect) && redirect) {
+      const {auth} = yield select();
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'ProfileClassifiedIndex',
+          params: {
+            name: auth.slug ? auth.slug : I18n.t('classifieds'),
+          },
+        }),
+      );
     }
+    // }
   } catch (e) {
     yield call(enableErrorMessage, 'No classifieds for profile');
   } finally {

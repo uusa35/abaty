@@ -144,6 +144,7 @@ export const colors = {
 };
 
 export const text = {
+  smallest: 5,
   smaller: 10,
   small: 12,
   medium: 16,

@@ -48,10 +48,10 @@ const HomeKeyHomeScreen = ({
   main_bg,
   guest,
 }) => {
-  [refresh, setRefresh] = useState(false);
-  [appState, setAppState] = useState(AppState.currentState);
-  [device, setDevice] = useState('');
-  [deviceId, setDeviceId] = useState('');
+  const [refresh, setRefresh] = useState(false);
+  const [appState, setAppState] = useState(AppState.currentState);
+  const [device, setDevice] = useState('');
+  const [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
