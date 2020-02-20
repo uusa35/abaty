@@ -5,13 +5,9 @@ import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import {getSearchClassifieds} from '../../redux/actions/classified';
 
-const ClassifiedIndexAllScreen = ({
-  classifieds,
-  dispatch,
-}) => {
-
+const ClassifiedIndexAllScreen = ({classifieds, dispatch}) => {
   useEffect(() => {
-    dispatch(getSearchClassifieds({searchParams: {}, redirect : false}));
+    dispatch(getSearchClassifieds({searchParams: {}, redirect: false}));
   }, []);
 
   return (

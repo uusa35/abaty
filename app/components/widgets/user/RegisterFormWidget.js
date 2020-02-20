@@ -42,7 +42,7 @@ const RegisterFormWidget = ({player_id}) => {
         }}>
         <FastImage
           source={{uri: logo}}
-          style={{width: 100, height: 100, margin: 20}}
+          style={{width: 50, height: 50, marginTop: 10, marginBottom: 10}}
           resizeMode="contain"
           loadingIndicatorSource={images.logo}
         />

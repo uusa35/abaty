@@ -190,14 +190,14 @@ const ClassifiedShowScreen = ({
         !validate.isEmpty(element.videoGroup) ? (
           <VideosHorizontalWidget videos={element.videoGroup} />
         ) : null}
-        {!validate.isEmpty(classifieds) ? (
-          <ClassifiedListHorizontal
-            classifieds={classifieds}
-            showName={true}
-            title={I18n.t('related_classifieds')}
-            searchElements={{classified_category_id: element.category_id}}
-          />
-        ) : null}
+        {/*{!validate.isEmpty(classifieds) ? (*/}
+        {/*  <ClassifiedListHorizontal*/}
+        {/*    classifieds={classifieds}*/}
+        {/*    showName={true}*/}
+        {/*    title={I18n.t('related_classifieds')}*/}
+        {/*    searchElements={{classified_category_id: element.category_id}}*/}
+        {/*  />*/}
+        {/*) : null}*/}
       </HeaderImageScrollView>
       <QuickCallActionBtnWidget mobile={element.mobile} />
       <CommentScreenModal

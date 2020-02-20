@@ -105,9 +105,14 @@ export function* startGetClassifiedScenario(action) {
           }),
         );
       }
+    } else {
+      throw 'error';
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_classifieds'));
+    if (__DEV__) {
+      console.log('the e', e);
+    }
+    // yield call(enableErrorMessage, I18n.t('no_classifieds'));
   } finally {
     yield call(disableLoadingContent);
   }

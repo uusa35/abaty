@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {map} from 'lodash';
 import ClassifiedWidget from '../../components/widgets/classified/ClassifiedWidget';
 
-const FavoriteClassifiedIndexScreen = ({favorites, searchParams}) => {
+const FavoriteClassifiedIndexScreen = ({favorites}) => {
   const [currentFavorites, setCurrentFavorites] = useState(favorites);
 
   useMemo(() => {

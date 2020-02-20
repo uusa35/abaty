@@ -113,7 +113,7 @@ const App = ({
     );
   }
 
-  if (!network.isConnected && bootStrapped) {
+  if (!network.isConnected || !bootStrapped) {
     return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
   }
 

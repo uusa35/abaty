@@ -60,7 +60,9 @@ export function* startGetDesignerScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_designer'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -105,7 +107,9 @@ export function* startGetShopperScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_designer'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -164,7 +168,9 @@ export function* startGetCompanyScenario(action) {
       throw I18n.t('no_company');
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_company'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -205,7 +211,9 @@ export function* startGetCelebrityScenario(action) {
       throw I18n.t('no_celebrity');
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_celebrity'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -229,7 +237,9 @@ export function* startGetUserScenario(action) {
       );
     }
   } catch (e) {
-    yield enableErrorMessage(I18n.t('no_user'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }
@@ -248,7 +258,9 @@ export function* startGetVideoScenario(action) {
       );
     }
   } catch (e) {
-    yield enableErrorMessage(I18n.t('no_videos'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }
@@ -258,7 +270,9 @@ export function* startStorePlayerIdScenario(action) {
   try {
     yield call(api.storePlayerId, action.payload);
   } catch (e) {
-    yield enableErrorMessage(I18n.t('no_player_id'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }
@@ -273,7 +287,9 @@ export function* setHomeBrands() {
       yield put({type: actions.SET_BRANDS, payload: []});
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_brands'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }
@@ -289,7 +305,9 @@ export function* startGetHomeCelebrities(action) {
       yield put({type: actions.SET_HOME_CELEBRITIES, payload: []});
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_celebrities'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }
@@ -305,7 +323,9 @@ export function* startGetHomeDesigners(action) {
       yield put({type: actions.SET_HOME_DESIGNERS, payload: []});
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_celebrities'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
   } finally {
     yield call(disableLoading);
   }

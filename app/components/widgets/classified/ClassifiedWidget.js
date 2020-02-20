@@ -15,7 +15,7 @@ import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const ClassifiedWidget = ({element, showName = false}) => {
-  const {currency_symbol, exchange_rate, token, colors} = useContext(
+  const {currency_symbol, exchange_rate, token} = useContext(
     GlobalValuesContext,
   );
   const {dispatch} = useContext(DispatchContext);
