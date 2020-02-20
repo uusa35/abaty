@@ -17,6 +17,7 @@ import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
+import NormalClassifiedShowScreen from "../../screens/classified/NormalClassifiedShowScreen";
 
 export const SettingStack = createStackNavigator(
   {
@@ -106,7 +107,8 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     Classified: {
-      screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      // screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: (

@@ -375,7 +375,7 @@ export function* startSubmitAuthScenario(action) {
       } else {
         yield put(
           NavigationActions.navigate({
-            routeName: 'SettingIndex',
+            routeName: 'Home',
           }),
         );
         // yield put(NavigationActions.back());
