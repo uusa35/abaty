@@ -31,7 +31,6 @@ import PropertiesWidget from '../../components/widgets/classified/PropertiesWidg
 import QuickCallActionBtnWidget from '../../components/widgets/QuickCallActionBtnWidget';
 import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './../CommentScreenModal';
-import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import {getProductConvertedFinalPrice} from '../../helpers';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -43,7 +42,6 @@ const NormalClassifiedShowScreen = ({
   commentModal,
   dispatch,
   token,
-  colors,
   auth,
   navigation,
 }) => {
@@ -57,15 +55,17 @@ const NormalClassifiedShowScreen = ({
       getClassified({
         id: element.id,
         api_token: token ? token : null,
-        redirect: true,
+        redirect: false,
       }),
     );
   }, [refresh]);
 
   useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
+    if(headerBg && headerBgColor) {
+      navigation.setParams({headerBg, headerBgColor});
+    }
   }, [headerBg]);
-
+  
   return (
     <Fragment>
       <ScrollView
@@ -96,7 +96,7 @@ const NormalClassifiedShowScreen = ({
           {element.user ? (
             <ClassifiedInfoWidgetMainTitle
               element={element}
-              editMode={auth && auth.id === element.user_id}
+              editMode={auth && auth.id === element.user_id && token}
             />
           ) : null}
           {!validate.isEmpty(element.items) ? (
@@ -127,7 +127,7 @@ const NormalClassifiedShowScreen = ({
                 // }
               />
             ) : null}
-            {element.has_items ? (
+            {element.has_items && element.items ? (
               <Fragment>
                 {map(element.items, (p, i) => (
                   <ClassifiedInfoWidgetElement

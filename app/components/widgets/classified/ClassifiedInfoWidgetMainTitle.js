@@ -15,12 +15,11 @@ import {useNavigation} from 'react-navigation-hooks';
 
 const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, token, guest, exchange_rate, currency_symbol} = useContext(
+  const {colors, token, guest, exchange_rate, currency_symbol, logo } = useContext(
     GlobalValuesContext,
   );
   const [favorite, setFavorite] = useState(element.isFavorite);
   const {navigate} = useNavigation();
-
   return (
     <View
       style={{
@@ -33,7 +32,7 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
         alignItems: 'center',
       }}>
       <FastImage
-        source={{uri: element.user.thumb}}
+        source={{uri: element.user.thumb ? element.user.thumb : logo}}
         style={{
           width: 60,
           height: 60,
@@ -47,7 +46,6 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
           shadowRadius: 1.41,
           elevation: 2,
         }}
-        loadingIndicatorSource={images.logo}
       />
       <View style={{width: '55%'}}>
         <Text
