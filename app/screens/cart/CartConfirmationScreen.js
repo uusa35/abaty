@@ -21,20 +21,6 @@ const CartConfirmationScreen = ({
   country,
   COD,
 }) => {
-  // useEffect(() => {
-  //   console.log('here', cartLength);
-  //   if(cartLength === 0) {
-  //     console.log('here inside');
-  //     // dispatch(navigation.navigate('Home'));
-  //     navigation.addListener(
-  //         'willBlur',
-  //         payload => {
-  //           console.debug('didBlur', payload);
-  //         }
-  //     );
-  //   }
-  // })
-
   return (
     <View
       style={{

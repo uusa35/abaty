@@ -144,42 +144,44 @@ const CartListConfirmationScreen = ({
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignText: 'center',
-            marginTop: 10,
-            paddingTop: 10,
-            paddingBottom: 20,
-          }}>
-          <Text
+        {shipmentFees > 0 ? (
+          <View
             style={{
-              fontFamily: text.font,
-              fontSize: text.medium,
-              color: colors.header_one_theme_color,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignText: 'center',
+              marginTop: 10,
+              paddingTop: 10,
+              paddingBottom: 20,
             }}>
-            {I18n.t('shipment_fees')}
-          </Text>
-          <View style={{flexDirection: 'row'}}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 color: colors.header_one_theme_color,
               }}>
-              {round(shipmentCountry.fixed_shipment_charge, 2)}
+              {I18n.t('shipment_fees_per_piece')}
             </Text>
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.medium,
-                color: colors.header_one_theme_color,
-              }}>
-              {I18n.t('kwd')}
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                }}>
+                {round(shipmentCountry.fixed_shipment_charge, 2)}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                }}>
+                {I18n.t('kwd')}
+              </Text>
+            </View>
           </View>
-        </View>
+        ) : null}
         {discount && discount > 0 ? (
           <View
             style={{
