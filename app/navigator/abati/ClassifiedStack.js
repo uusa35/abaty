@@ -8,6 +8,7 @@ import React from 'react';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -47,6 +48,14 @@ export const ClassifiedStack = createStackNavigator(
         },
       }),
       path: `classified/:id`,
+    },
+    ImageZoom: {
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
     },
   },
   {

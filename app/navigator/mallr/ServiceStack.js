@@ -7,6 +7,7 @@ import I18n from '../../I18n';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 
 export const ServiceStack = createStackNavigator(
   {
@@ -31,6 +32,14 @@ export const ServiceStack = createStackNavigator(
         },
       }),
       path: `service/:id`,
+    },
+    ImageZoom: {
+      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      navigationOptions: ({navigation}) => ({
+        headerRight: <HeaderRight />,
+        headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
+        headerBackTitle: null,
+      }),
     },
   },
   {

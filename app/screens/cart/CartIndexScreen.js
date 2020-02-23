@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import validate from 'validate.js';
@@ -10,6 +10,7 @@ import I18n from '../../I18n';
 const CartIndexScreen = ({
   cart,
   country,
+  shipmentFees,
   shipment_notes,
   navigation,
   auth,
@@ -42,6 +43,7 @@ const CartIndexScreen = ({
           <CartList
             cart={cart}
             shipmentCountry={country}
+            shipmentFees={shipmentFees}
             selectedArea={area}
             auth={auth}
             guest={guest}
@@ -92,6 +94,7 @@ function mapStateToProps(state) {
     shipment_notes: state.settings.shipment_notes,
     auth: state.auth,
     country: state.country,
+    shipmentFees: state.shipmentFees,
     area: state.area,
     guest: state.guest,
     coupon: state.coupon,

@@ -57,7 +57,7 @@ export function* startGetHomeCategoriesScenario(action) {
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
@@ -77,7 +77,7 @@ export function* startGetParentCategoriesScenario() {
       yield put({type: actions.SET_CATEGORIES, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     console.log('eee', e);
@@ -92,7 +92,7 @@ export function* setSettings() {
       yield put({type: actions.SET_SETTINGS, payload: settings});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
@@ -108,7 +108,7 @@ export function* setCommercials() {
       yield put({type: actions.SET_COMMERCIALS, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     // yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
@@ -124,7 +124,7 @@ export function* setSlides() {
       yield put({type: actions.SET_HOME_SLIDERS, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
   }
@@ -139,7 +139,7 @@ export function* getVideos() {
       yield put({type: actions.SET_VIDEOS, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
@@ -155,7 +155,7 @@ export function* setCountries() {
       throw I18n.t('no_countries');
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
@@ -177,7 +177,7 @@ export function* getCountry(country_id = null) {
       yield call(startSetCountryScenario, {payload: country});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
@@ -189,16 +189,16 @@ export function* startSetCountryScenario(action) {
   try {
     const country = action.payload;
     if (!validate.isEmpty(country) && validate.isObject(country)) {
-      const {total, coupon} = yield select();
+      const {total, coupon, cart} = yield select();
       yield all([
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
         put({type: actions.SET_AREAS, payload: country.areas}),
         put({type: actions.HIDE_COUNTRY_MODAL}),
-        call(setGrossTotalCartValue, {total, coupon, country}),
+        call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
@@ -235,7 +235,7 @@ export function* startDeepLinkingScenario(action) {
       }
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     // call(enableErrorMessage, I18n.t('no_deep_product'));
@@ -286,7 +286,7 @@ export function* startRefetchHomeElementsScenario() {
       }),
     ]);
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('refetch_home_error'));
@@ -304,7 +304,7 @@ export function* setHomeSplashes() {
       yield put({type: actions.SET_HOME_SPLASHES, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     // yield call(enableErrorMessage, I18n.t('no_splashes'));
@@ -333,7 +333,7 @@ export function* startAddToCartScenario(action) {
       ]);
     }
   } catch (e) {
-    // if (isLocal) {
+    // if (__DEV__) {
     console.log('the e', e);
     // }
     yield call(enableErrorMessage, e);
@@ -354,11 +354,11 @@ export function* setTotalCartValue(cart) {
       const {coupon, country} = yield select();
       yield all([
         put({type: actions.SET_TOTAL_CART, payload: total}),
-        call(setGrossTotalCartValue, {total, coupon, country}),
+        call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('cart_is_empty'));
@@ -369,30 +369,36 @@ export function* setTotalCartValue(cart) {
 
 export function* setGrossTotalCartValue(values) {
   try {
-    const {total, coupon, country} = values;
-    const {cart} = yield select();
+    const {total, coupon, country, cart} = values;
     const countPieces = sumBy(cart, i => i.qty);
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the total', total);
     }
-    if (!validate.isEmpty(total) && total > 0) {
-      if (isLocal) {
-        console.log('the coupon from calculating', coupon);
-      }
-      const finalShipment = country.is_local
+    if (__DEV__) {
+      console.log('the coupon from calculating', coupon);
+    }
+    const finalShipment =
+      cart.length === 1 && first(cart).type === 'service'
+        ? 0
+        : country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
-      const grossTotal = parseFloat(
-        total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0),
-      );
-      yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
-      yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
-      if (isLocal) {
-        console.log('the grossTotal Now is ::::', grossTotal);
-      }
+    if (__DEV__) {
+      console.log('the country', country);
+      console.log('the final Shipment', finalShipment);
+      console.log('the result', cart.length === 1);
+      console.log('the first', first(cart));
+    }
+    const grossTotal = parseFloat(
+      total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0),
+    );
+    yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
+    yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
+    if (__DEV__) {
+      console.log('the grossTotal Now is ::::', grossTotal);
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'));
@@ -430,7 +436,7 @@ export function* startRemoveFromCartScenario(action) {
       ]);
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('error_removing_product_from_cart'));
@@ -473,7 +479,7 @@ export function* startClearCartScenario() {
       put({type: actions.SET_GROSS_TOTAL_CART, payload: 0}),
     ]);
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('authenticated_error'));
@@ -521,7 +527,7 @@ export function* startSubmitCartScenario(action) {
         : null;
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -546,7 +552,7 @@ export function* startGetCouponScenario(action) {
       throw I18n.t('coupon_is_not_correct');
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -577,7 +583,7 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
       throw I18n.t('information_you_entered_not_correct');
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
@@ -608,7 +614,7 @@ export function* startCreateTapPaymentUrlScenario(action) {
       throw url;
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
@@ -641,7 +647,7 @@ export function* startCreateCashOnDeliveryPayment(action) {
       throw element;
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -658,10 +664,10 @@ export function* startBecomeFanScenario(action) {
         : yield call(enableWarningMessage, I18n.t('fan_deactivated'));
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([call(enableErrorMessage, I18n.t('fan_error'))]);
@@ -686,7 +692,7 @@ export function* startAddCommentScenario(action) {
         : null;
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -720,7 +726,7 @@ export function* startGoogleLoginScenario() {
       }
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
@@ -738,10 +744,10 @@ export function* getPages() {
       yield put({type: actions.SET_PAGES, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the error', e);
     }
     yield call(enableErrorMessage, I18n.t('no_pages'));
@@ -759,7 +765,7 @@ export function* getTags() {
       yield put({type: actions.SET_TAGS, payload: []});
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('no_tags'));
@@ -800,7 +806,7 @@ export function* startGetCategoryAndGoToNavChildren(action) {
       });
     }
   } catch (e) {
-    if (isLocal) {
+    if (__DEV__) {
       console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('no_items'));

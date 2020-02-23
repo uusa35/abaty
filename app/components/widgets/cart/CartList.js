@@ -24,6 +24,7 @@ const CartList = ({
   editModeDefault = true,
   coupon,
   selectedArea,
+  shipmentFees,
 }) => {
   const {dispatch} = useContext(DispatchContext);
   const {colors, total, grossTotal} = useContext(GlobalValuesContext);
@@ -119,41 +120,44 @@ const CartList = ({
             </Text>
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignText: 'center',
-            marginTop: 10,
-            paddingBottom: 20,
-          }}>
-          <Text
+        {shipmentFees > 0 ? (
+          <View
             style={{
-              fontFamily: text.font,
-              fontSize: text.medium,
-              color: colors.header_one_theme_color,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignText: 'center',
+              marginTop: 10,
+              paddingBottom: 20,
             }}>
-            {I18n.t('shipment_fees_per_piece')}
-          </Text>
-          <View style={{flexDirection: 'row'}}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 color: colors.header_one_theme_color,
               }}>
-              {round(shipmentCountry.fixed_shipment_charge, 2)}
+              {I18n.t('shipment_fees_per_piece')}
             </Text>
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.medium,
-                color: colors.header_one_theme_color,
-              }}>
-              {I18n.t('kwd')}
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                }}>
+                {round(shipmentCountry.fixed_shipment_charge, 2)}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                }}>
+                {I18n.t('kwd')}
+              </Text>
+            </View>
           </View>
-        </View>
+        ) : null}
+
         {coupon && coupon.value > 0 ? (
           <View
             style={{

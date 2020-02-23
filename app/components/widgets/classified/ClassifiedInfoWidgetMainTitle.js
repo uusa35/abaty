@@ -15,9 +15,14 @@ import {useNavigation} from 'react-navigation-hooks';
 
 const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, token, guest, exchange_rate, currency_symbol, logo } = useContext(
-    GlobalValuesContext,
-  );
+  const {
+    colors,
+    token,
+    guest,
+    exchange_rate,
+    currency_symbol,
+    logo,
+  } = useContext(GlobalValuesContext);
   const [favorite, setFavorite] = useState(element.isFavorite);
   const {navigate} = useNavigation();
   return (

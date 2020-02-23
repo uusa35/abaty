@@ -17,7 +17,7 @@ import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
-import NormalClassifiedShowScreen from "../../screens/classified/NormalClassifiedShowScreen";
+import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 
 export const SettingStack = createStackNavigator(
   {

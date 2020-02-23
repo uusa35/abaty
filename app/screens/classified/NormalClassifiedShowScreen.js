@@ -61,11 +61,11 @@ const NormalClassifiedShowScreen = ({
   }, [refresh]);
 
   useMemo(() => {
-    if(headerBg && headerBgColor) {
+    if (headerBg && headerBgColor) {
       navigation.setParams({headerBg, headerBgColor});
     }
   }, [headerBg]);
-  
+
   return (
     <Fragment>
       <ScrollView

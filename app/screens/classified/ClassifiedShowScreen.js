@@ -91,10 +91,10 @@ const ClassifiedShowScreen = ({
         contentInset={{bottom: 50}}>
         <View style={{flex: 1, padding: '5%'}}>
           {element.user ? (
-              <ClassifiedInfoWidgetMainTitle
-                  element={element}
-                  editMode={auth && auth.id === element.user_id && token}
-              />
+            <ClassifiedInfoWidgetMainTitle
+              element={element}
+              editMode={auth && auth.id === element.user_id && token}
+            />
           ) : null}
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />
