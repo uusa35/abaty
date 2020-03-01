@@ -599,7 +599,6 @@ export function* startRegisterScenario(action) {
     const result = validate({name, mobile, email, address}, registerConstrains);
     if (validate.isEmpty(result)) {
       const element = yield call(api.register, action.payload);
-      console.log('element register', element);
       if (validate.isObject(element) && !validate.isEmpty(element)) {
         const {email, password} = action.payload;
         yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});

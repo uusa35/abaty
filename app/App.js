@@ -62,7 +62,6 @@ const App = ({
         if (isLocal) {
           console.log('there is an update here');
         }
-        // dispatch(resetStore());
       }
     });
     axiosInstance.defaults.headers['currency'] = currency;

@@ -13,6 +13,7 @@ import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
+  resetStore,
   setDeepLinking,
   setPlayerId,
 } from '../../redux/actions';
@@ -90,10 +91,15 @@ const HomeKeyHomeScreen = ({
           console.log('APP STATE ACTIVE');
         }
       }
+      if (nextAppState === 'background') {
+        return dispatch(resetStore());
+      }
       setAppState(nextAppState);
     },
     [appState],
   );
+
+  console.log('appState', appState);
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);

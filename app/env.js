@@ -1,6 +1,6 @@
 import {APP_CASE, ENV, AT_SPOT_PUSHER_ID, pusherEnabled} from '../app';
 import Pusher from 'pusher-js/react-native';
-const isLocal = ENV === 'local' && __DEV__;
+const isLocal = __DEV__;
 const appUrl = () => {
   switch (APP_CASE) {
     case 'abati':
@@ -17,8 +17,9 @@ const appUrl = () => {
       return 'http://mallr.test/';
   }
 };
-const appUrlIos = isLocal ? 'http://mallr.test/' : appUrl();
-const appUrlAndroid = isLocal ? 'http://mallr.test/' : appUrl();
+const appUrlIos = isLocal && ENV === 'local' ? 'http://mallr.test/' : appUrl();
+const appUrlAndroid =
+  isLocal && ENV === 'local' ? 'http://mallr.test/' : appUrl();
 const pusherInstance = () => {
   switch (APP_CASE) {
     case 'AtSpot':

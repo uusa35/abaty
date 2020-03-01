@@ -37,7 +37,11 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
                     {e.category_group.name.substring(0, 15)}
                   </Text>
                   {/*<Text style={styles.title}>{p.property.name}</Text>*/}
-                  <Text style={styles.title}>{e.property.value}</Text>
+                  <Text style={styles.title}>
+                    {e.category_group.is_multi
+                      ? e.property.name
+                      : e.property.value}
+                  </Text>
                 </View>
               </View>
             );
@@ -76,7 +80,8 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.large,
     alignSelf: 'center',
-    paddingTop: 10,
+    // paddingTop: 10,
+    marginTop: 5,
     paddingBottom: 20,
     paddingLeft: 20,
     paddingRight: 20,

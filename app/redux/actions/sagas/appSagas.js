@@ -248,8 +248,15 @@ export function* resetStore() {
 }
 
 export function* startResetStoreScenario() {
-  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
-    PersistStore.purge();
+  yield all([
+    put(
+        NavigationActions.navigate({
+        routeName: 'Home',
+      }),
+    ),
+    put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
+  ]);
+  PersistStore.purge();
   yield delay(1000);
   yield call(startAppBootStrap);
 }
