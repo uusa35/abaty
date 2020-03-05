@@ -375,7 +375,7 @@ export function* startSubmitAuthScenario(action) {
       } else {
         yield put(
           NavigationActions.navigate({
-            routeName: 'Home',
+            routeName: MALLR ? 'Account' : 'Home',
           }),
         );
         // yield put(NavigationActions.back());

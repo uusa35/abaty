@@ -250,7 +250,7 @@ export function* resetStore() {
 export function* startResetStoreScenario() {
   yield all([
     put(
-        NavigationActions.navigate({
+      NavigationActions.navigate({
         routeName: 'Home',
       }),
     ),

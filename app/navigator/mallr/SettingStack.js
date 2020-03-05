@@ -23,7 +23,7 @@ export const SettingStack = createStackNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        headerLeft: <HeaderLeft />,
+        headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null,
