@@ -14,6 +14,7 @@ import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
+import MallrCollectionCreateScreen from '../../screens/mallr/MallrCollectionCreateScreen';
 
 export const SettingStack = createStackNavigator(
   {
@@ -26,6 +27,14 @@ export const SettingStack = createStackNavigator(
         headerLeft: <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
+        headerBackTitle: null,
+      }),
+    },
+    CollectionCreate: {
+      screen: gestureHandlerRootHOC(MallrCollectionCreateScreen),
+      navigationOptions: () => ({
+        headerTitle: <HeaderMiddle title={I18n.t('new_collection')} />,
+        headerRight: <HeaderRight display={false} />,
         headerBackTitle: null,
       }),
     },

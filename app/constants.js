@@ -17,6 +17,28 @@ export const isIOS = Platform.OS === 'ios' ? true : false;
 export const touchOpacity = 0.8;
 export const rightHorizontalContentInset = 200;
 export const bottomVerticalContentInset = 200;
+export const productWidget = {
+  smallest: {
+    productWidth: 150,
+    productHeight: 200,
+  },
+  smaller: {
+    productWidth: 200,
+    productHeight: 267,
+  },
+  small: {
+    productWidth: 220,
+    productHeight: 293,
+  },
+  medium: {
+    productWidth: 250,
+    productHeight: 333,
+  },
+  large: {
+    productWidth: 280,
+    productHeight: 373,
+  },
+};
 export const LOGIN_AUTH_KEY = () => {
   switch (APP_CASE) {
     case 'abati':

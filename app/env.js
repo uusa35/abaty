@@ -6,7 +6,7 @@ const appUrl = () => {
     case 'abati':
       return 'http://abatiapp.com/';
     case 'mallr':
-      return 'http://mallr.net/';
+      return 'http://abatiapp.com/';
     case 'homekey':
       return 'http://homekey.site/';
     case 'escrap':

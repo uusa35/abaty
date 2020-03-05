@@ -13,6 +13,7 @@ import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
 import {Badge, Icon, Button} from 'react-native-elements';
 import {MALLR} from './../../../../app';
+import {useNavigation} from 'react-navigation-hooks';
 const ShopperImageProfile = ({
   medium,
   logo,
@@ -34,6 +35,7 @@ const ShopperImageProfile = ({
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
+  const {navigate} = useNavigation();
 
   const handleRating = useCallback(
     rating => {
@@ -93,6 +95,7 @@ const ShopperImageProfile = ({
           ) : null}
           {MALLR ? (
             <Button
+              onPress={() => navigate('CollectionCreate')}
               icon={
                 <Icon
                   name="plus"
