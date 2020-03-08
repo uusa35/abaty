@@ -73,7 +73,8 @@ import {
 function* startAppBootStrap() {
   try {
     const {bootStrapped, version} = yield select();
-    yield all([call(defaultLang), call(checkConnection)]);
+    yield call(checkConnection);
+    yield all([call(defaultLang)]);
     if (validate.isEmpty(version)) {
       if (version !== DeviceInfo.getVersion()) {
         yield put({

@@ -112,7 +112,7 @@ const App = ({
     );
   }
 
-  if (!network.isConnected && !bootStrapped) {
+  if (!network.isConnected && bootStrapped) {
     return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
   }
 
@@ -156,6 +156,8 @@ const App = ({
               <AreasList area={area} areas={areas} areaModal={areaModal} />
             ) : null}
           </GlobalValuesContext.Provider>
+        ) : !network.isConnected && bootStrapped ? (
+          <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />
         ) : (
           <LoadingView
             loadingText={I18n.t('loading')}

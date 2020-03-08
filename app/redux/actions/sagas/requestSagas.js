@@ -60,7 +60,7 @@ export function* startGetHomeCategoriesScenario(action) {
     if (__DEV__) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
+    // yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
   }
 }
 
@@ -81,7 +81,7 @@ export function* startGetParentCategoriesScenario() {
       console.log('the e', e);
     }
     console.log('eee', e);
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    // yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
 
@@ -95,7 +95,7 @@ export function* setSettings() {
     if (__DEV__) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
+    // yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
   }
 }
 
@@ -142,7 +142,7 @@ export function* getVideos() {
     if (__DEV__) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
+    // yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
   }
 }
 
@@ -158,7 +158,8 @@ export function* setCountries() {
     if (__DEV__) {
       console.log('the e', e);
     }
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
+    // yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
+  } finally {
   }
 }
 

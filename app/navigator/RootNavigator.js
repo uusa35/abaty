@@ -15,7 +15,7 @@ const AppNav = () => {
       return MallrRootNavigator;
     case 'homekey':
       return HomeKeyRootNavigator;
-    case 'AtSpot':
+    case 'atspot':
       return AtSpotRootNavigator;
     default:
       return AbatiRootNavigator;
