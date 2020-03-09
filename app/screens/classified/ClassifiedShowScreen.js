@@ -8,7 +8,7 @@ import React, {
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, height} from './../../constants';
+import {width, text, height} from './../../constants/sizes';
 import I18n from './../../I18n';
 import {getClassified} from '../../redux/actions/classified';
 import validate from 'validate.js';

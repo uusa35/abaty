@@ -2,7 +2,7 @@ import React, {useState, useCallback, useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';

@@ -3,7 +3,8 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text} from '../../../constants';
+import {text} from '../../../constants/sizes';
+import {isIOS} from '../../../constants';
 import Collapsible from 'react-native-collapsible';
 import PropTypes from 'prop-types';
 

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {text} from '../constants';
+import {text} from '../constants/sizes';
 import {Text} from 'react-native';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 

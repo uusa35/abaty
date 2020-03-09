@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, ImageBackground, Modal} from 'react-native';
-import {isIOS, text, height, width} from './../../constants';
+import React from 'react';
+import {StyleSheet, Modal} from 'react-native';
+import {height, width, text} from './../../constants/sizes';
+import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
-import {first, shuffle} from 'lodash';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
-import Svg, {Circle, Rect} from 'react-native-svg';
+import Svg, {Rect} from 'react-native-svg';
 import {isRTL} from '../../I18n';
 
 const LoadingProfileView = ({isLoadingContent}) => {

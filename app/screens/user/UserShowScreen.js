@@ -5,11 +5,10 @@ import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
 import MapViewWidget from '../components/widgets/MapViewWidget';
-import {text, links} from '../constants';
+import {text} from '../../constants/sizes';
 import FastImage from 'react-native-fast-image';
 import ImagesWidget from '../components/widgets/ImagesWidget';
 import validate from 'validate.js';
-import {NavContext} from './../redux/NavContext';
 import {View} from 'react-native-animatable';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
 import Collapsible from 'react-native-collapsible';

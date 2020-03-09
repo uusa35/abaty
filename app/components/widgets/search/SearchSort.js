@@ -1,8 +1,8 @@
-import React, {Fragment, useState, useCallback} from 'react';
+import React, {Fragment, useCallback} from 'react';
 import {TouchableOpacity, Text, Modal, View, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
-import {images, text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 
 const SearchSort = ({
   sort,

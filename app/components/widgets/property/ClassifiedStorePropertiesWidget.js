@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import I18n from '../../../I18n';
 import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';

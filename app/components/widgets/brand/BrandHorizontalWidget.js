@@ -14,7 +14,10 @@ import widgetStyles from './../widgetStyles';
 import BrandWidget from './BrandWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
-import {rightHorizontalContentInset, touchOpacity} from '../../../constants';
+import {
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants/sizes';
 
 const BrandHorizontalWidget = ({elements, title}) => {
   const {navigate} = useNavigation();

@@ -24,7 +24,7 @@ import {
   setDeepLinking,
   setPlayerId,
 } from '../../redux/actions';
-import {isIOS, width} from '../../constants';
+import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import OneSignal from 'react-native-onesignal';
 import {

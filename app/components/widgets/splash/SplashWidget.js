@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
-import {width, height, text, images} from './../../../constants';
-import {Button, Icon} from 'react-native-elements';
-import {isRTL} from '../../../I18n';
+import {width, height, text} from './../../../constants/sizes';
+import {images} from './../../../constants/images';
+import {Icon} from 'react-native-elements';
 
 const SplashWidget = ({elements, handleClick}) => {
   return (

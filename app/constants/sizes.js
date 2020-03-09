@@ -1,3 +1,11 @@
+import {Dimensions} from 'react-native';
+import {isRTL} from '../I18n';
+import {AR_FONT, EN_FONT} from '../../app';
+
+export const {height, width} = Dimensions.get('window');
+export const touchOpacity = 0.8;
+export const rightHorizontalContentInset = 200;
+export const bottomVerticalContentInset = 200;
 export const productWidget = {
   smallest: {
     productWidth: 150,
@@ -51,4 +59,14 @@ export const iconSizes = {
   large: 40,
   larger: 50,
   largest: 60,
+};
+
+export const text = {
+  smallest: 5,
+  smaller: 10,
+  small: 12,
+  medium: 16,
+  large: 20,
+  xlarge: 25,
+  font: isRTL ? AR_FONT : EN_FONT,
 };

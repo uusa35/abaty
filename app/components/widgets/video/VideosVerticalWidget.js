@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
 import {appUrlIos} from '../../../env';
 import {map, isNull} from 'lodash';
 import PropTypes from 'prop-types';

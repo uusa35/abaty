@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {ListItem} from 'react-native-elements';
-import {text} from './../../../constants';
+import {text} from './../../../constants/sizes';
 import {isRTL} from '../../../I18n';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getUser} from './../../../redux/actions/user';

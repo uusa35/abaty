@@ -9,7 +9,6 @@ import I18n from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
-import {prefix} from './constants';
 import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';

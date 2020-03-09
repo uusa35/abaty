@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
-import {images, width} from '../../constants';
+import {width} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import widgetStyles from './widgetStyles';
 
 const CommercialSliderWidget = ({commercials}) => {

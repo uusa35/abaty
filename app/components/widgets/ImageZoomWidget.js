@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {height, images, width} from './../../constants';
+import {height, width} from './../../constants/sizes';
 import {map} from 'lodash';
 import Swiper from 'react-native-swiper';
 

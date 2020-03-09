@@ -1,16 +1,7 @@
-import React, {useState, useMemo} from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import ProductWidget from '../product/ProductWidget';
+import React from 'react';
+import {StyleSheet, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
 import BrandWidget from './BrandWidget';
-import {axiosInstance} from '../../../redux/actions/api';
-import {isIOS, width} from '../../../constants';
 import {map} from 'lodash';
 import {View} from 'react-native-animatable';
 

@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {StyleSheet} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import {text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
 import ProductList from '../product/ProductList';
 import UserCategoriesInfoWidget from './UserCategoriesInforWidget';
 import UserInfoWidget from './UserInfoWidget';

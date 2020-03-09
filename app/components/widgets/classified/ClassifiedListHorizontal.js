@@ -13,7 +13,7 @@ import {
   text,
   touchOpacity,
   width,
-} from '../../../constants';
+} from '../../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import {map} from 'lodash';
 import validate from 'validate.js';

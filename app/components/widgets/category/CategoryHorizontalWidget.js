@@ -13,7 +13,7 @@ import {getSearchProducts} from '../../../redux/actions/product';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {images} from '../../../constants/images';
 
 const CategoryHorizontalWidget = ({
   elements,

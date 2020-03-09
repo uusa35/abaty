@@ -1,7 +1,6 @@
 import React, {useState, useMemo} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
-import {text} from '../../../constants';
 import PropTypes from 'prop-types';
 
 const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {

@@ -2,7 +2,8 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
-import {images, text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {getSearchProducts} from '../../../redux/actions/product';
 import PropTypes from 'prop-types';
 

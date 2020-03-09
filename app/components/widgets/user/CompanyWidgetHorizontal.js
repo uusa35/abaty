@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
-import {images, text, touchOpacity} from './../../../constants';
+import {text, touchOpacity} from './../../../constants/sizes';
+import {images} from './../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getCompany} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';

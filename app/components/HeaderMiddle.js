@@ -3,7 +3,7 @@
  */
 import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {text} from './../constants';
+import {text} from './../constants/sizes';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from 'react-navigation-hooks';

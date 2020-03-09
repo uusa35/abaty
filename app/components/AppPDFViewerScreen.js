@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Pdf from 'react-native-pdf';
 import PropTypes from 'prop-types';
-import {width} from './../constants';
+import {width} from './../constants/sizes';
 import connect from 'react-redux/es/connect/connect';
 
 class AppPDFViewerScreen extends Component {

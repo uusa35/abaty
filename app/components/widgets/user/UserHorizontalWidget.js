@@ -8,7 +8,7 @@ import {getDesigner, getSearchDesigners} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {images} from '../../../constants/images';
 
 const UserHorizontalWidget = ({
   elements,

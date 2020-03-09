@@ -9,7 +9,7 @@ import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {rightHorizontalContentInset} from '../../../constants';
+import {rightHorizontalContentInset} from '../../../constants/sizes';
 
 const ProductHorizontalWidget = ({
   elements,

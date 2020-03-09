@@ -1,11 +1,10 @@
-import React, {Fragment, useState} from 'react';
-import {View, StyleSheet, ImageBackground, Modal} from 'react-native';
-import {isIOS, text, height, width} from './../../constants';
+import React from 'react';
+import {StyleSheet, Modal} from 'react-native';
+import {text, height, width} from './../../constants/sizes';
+import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
-import {first, shuffle} from 'lodash';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import Svg, {Circle, Rect} from 'react-native-svg';
-import {isRTL} from '../../I18n';
 
 const LoadingBoxedListView = ({isLoadingContent}) => {
   return (

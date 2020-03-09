@@ -14,7 +14,7 @@ import {setProductFavorites} from './productSagas';
 import * as actions from '../types';
 import {NavigationActions} from 'react-navigation';
 import I18n from '../../../I18n';
-import {registerConstrains, submitLogin} from '../../../constants';
+import {registerConstrains, submitLogin} from '../../../constants/validations';
 import validate from 'validate.js';
 import {startBecomeFanScenario, startGoogleLoginScenario} from './requestSagas';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';

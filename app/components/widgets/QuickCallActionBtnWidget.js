@@ -5,7 +5,7 @@ import {Linking, StyleSheet, View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
-import {text} from './../../constants';
+import {text} from './../../constants/sizes';
 import PropTypes from 'prop-types';
 
 const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {

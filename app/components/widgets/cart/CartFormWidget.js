@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {View} from 'react-native-animatable';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import {Text, TouchableOpacity} from 'react-native';
 import {showCountryModal} from '../../../redux/actions';
 import {getCoupon} from '../../../redux/actions/cart';

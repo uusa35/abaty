@@ -13,7 +13,10 @@ import {
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
 import {startAppBootStrap} from './appSagas';
-import {commentStoreConstrains, registerConstrains} from '../../../constants';
+import {
+  commentStoreConstrains,
+  registerConstrains,
+} from '../../../constants/validations';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {
   setHomeBrands,

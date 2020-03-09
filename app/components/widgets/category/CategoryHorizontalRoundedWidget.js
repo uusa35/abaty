@@ -1,4 +1,4 @@
-import React, {useContext, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -11,12 +11,10 @@ import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {getClassifieds} from '../../../redux/actions/classified';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images} from '../../../constants';
+import {images} from '../../../constants/images';
 
 const CategoryHorizontalRoundedWidget = ({
   elements,

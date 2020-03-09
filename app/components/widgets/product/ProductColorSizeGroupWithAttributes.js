@@ -2,7 +2,7 @@ import React, {useState, useMemo, useContext, useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import SizesModal from './SizesModal';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';

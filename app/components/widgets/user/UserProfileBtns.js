@@ -1,4 +1,4 @@
-import {text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from '../../../I18n';
 import React, {useContext} from 'react';

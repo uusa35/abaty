@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import I18n from './../I18n';
 import {connect} from 'react-redux';
-import {isIOS, text} from './../constants';
+import {text} from './../constants/sizes';
+import {isIOS} from './../constants';
 import FastImage from 'react-native-fast-image';
 import {Icon, Divider} from 'react-native-elements';
 import {changeLang} from '../redux/actions';

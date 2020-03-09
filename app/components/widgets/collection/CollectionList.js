@@ -11,7 +11,7 @@ import CollectionWidget from './CollectionWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter} from 'lodash';
 import validate from 'validate.js';

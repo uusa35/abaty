@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
 import FastImage from 'react-native-fast-image';
-import {images, links, text, LOGIN_AUTH_KEY} from '../../constants';
+import {text} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import {appUrlIos} from './../../env';
 import {Button, Input, SocialIcon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
@@ -11,7 +12,6 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
 import {GoogleSignin} from '@react-native-community/google-signin';
-import {APP_CASE} from './../../../app';
 
 const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');

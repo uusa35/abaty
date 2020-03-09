@@ -21,7 +21,8 @@ import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSear
 import {SafeAreaView} from 'react-navigation';
 import {HIDE_SEARCH_MODAL, SET_CATEGORY} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import {width, text, isIOS} from './../../constants';
+import {isIOS} from './../../constants';
+import {width, text} from './../../constants/sizes';
 import {map, first, shuffle, take, filter} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';

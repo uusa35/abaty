@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native';

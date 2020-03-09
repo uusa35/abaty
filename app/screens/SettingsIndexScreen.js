@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text, touchOpacity} from '../constants';
+import {text, touchOpacity} from '../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../I18n';
 import {changeLang, refetchHomeElements} from '../redux/actions';

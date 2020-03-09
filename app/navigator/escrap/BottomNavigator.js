@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
-import {text} from '../../constants';
+import {text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
 import {VideoStack} from './VideoStack';
 import {SettingStack} from './SettingStack';

@@ -7,7 +7,7 @@ import FastImage from 'react-native-fast-image';
 import {DispatchContext} from '../redux/DispatchContext';
 import {showCountryModal} from '../redux/actions';
 import {Icon} from 'react-native-elements';
-import {linkingPrefix} from '../constants';
+import {linkingPrefix} from '../constants/links';
 import Share from 'react-native-share';
 import I18n from '../I18n';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
@@ -15,7 +15,7 @@ import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 import {APP_CASE} from '../../app';
-import {iconSizes} from '../constatns/sizes';
+import {iconSizes} from '../constants/sizes';
 
 export const HeaderRight = ({
   showCountry = false,

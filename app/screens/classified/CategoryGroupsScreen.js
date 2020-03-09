@@ -16,7 +16,7 @@ import {
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter, shuffle, uniqBy} from 'lodash';
-import {text} from './../../constants';
+import {text} from './../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import FastImage from 'react-native-fast-image';

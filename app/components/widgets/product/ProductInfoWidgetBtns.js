@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {Button, Divider} from 'react-native-elements';
 import I18n from '../../../I18n';

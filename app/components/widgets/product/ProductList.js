@@ -11,7 +11,7 @@ import ProductWidget from './ProductWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width, height} from '../../../constants';
+import {text, width, height} from '../../../constants/sizes';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';

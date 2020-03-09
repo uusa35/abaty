@@ -1,8 +1,8 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {StyleSheet, ScrollView, Linking, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text, height} from './../../constants';
+import {text} from './../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import {appUrlIos} from '../../env';

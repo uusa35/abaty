@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
 import {HIDE_SEARCH_MODAL} from '../../../redux/actions/types';

@@ -1,7 +1,7 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
-import {text} from '../../../constants';
+import {text} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {setSearchParams} from '../../../redux/actions';

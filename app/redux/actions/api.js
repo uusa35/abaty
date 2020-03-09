@@ -1,7 +1,6 @@
 import axios from 'axios';
-import {links} from './../../constants';
+import {links} from './../../constants/links';
 import {createTransform} from 'redux-persist';
-import I18n from 'react-native-i18n';
 import {
   checkImage,
   getImageExtension,
@@ -9,7 +8,6 @@ import {
   getImagePath,
 } from '../../helpers';
 import {map, filter} from 'lodash';
-import {isLocal} from '../../env';
 import {checkInternetConnection} from 'react-native-offline';
 import NetInfo from '@react-native-community/netinfo';
 

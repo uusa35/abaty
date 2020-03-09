@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
-import {text} from './../../constants';
+import {text} from './../../constants/sizes';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import {DispatchContext} from '../../redux/DispatchContext';

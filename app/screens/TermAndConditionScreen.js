@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, ImageBackground, Text, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {settingsSelector} from '../redux/selectors/collection';
 import I18n from './../I18n';
-import {width, height, images, text} from './../constants';
+import {width, height, text} from './../constants/sizes';
+import {images} from './../constants/images';
 import {Divider} from 'react-native-elements';
 
 const TermAndConditionScreen = ({settings}) => {

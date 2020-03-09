@@ -2,7 +2,7 @@ import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, height} from './../../constants';
+import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';

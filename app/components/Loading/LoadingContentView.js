@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Modal} from 'react-native';
-import {isIOS, text, height, width} from './../../constants';
+import {text, height, width} from './../../constants/sizes';
+import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import Svg, {Circle, Rect} from 'react-native-svg';

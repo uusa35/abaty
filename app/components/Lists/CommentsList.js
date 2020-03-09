@@ -1,6 +1,6 @@
 import React, {useContext, useState, useMemo} from 'react';
 import {RefreshControl, FlatList, StyleSheet, View} from 'react-native';
-import {text, width} from './../../constants';
+import {text, width} from './../../constants/sizes';
 import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import CommentWidget from '../widgets/comment/CommentWidget';

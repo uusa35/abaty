@@ -13,7 +13,7 @@ import {getSearchServices} from '../../../redux/actions/service';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {images} from '../../../constants/images';
 
 const ServiceCategoryHorizontalWidget = ({
   elements,

@@ -5,7 +5,7 @@ import I18n from '../../I18n';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
-import {text} from '../../constants';
+import {text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
 import {CategoryStack} from './CategoryStack';
 import {VideoStack} from './VideoStack';

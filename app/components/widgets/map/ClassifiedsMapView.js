@@ -1,8 +1,8 @@
-import React, {Fragment, useState, useCallback} from 'react';
-import {TouchableOpacity, Text, Modal, View, StyleSheet} from 'react-native';
+import React, {Fragment} from 'react';
+import {TouchableOpacity, Modal, View, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
-import {images, text, width, height} from '../../../constants';
+import {text, width, height} from '../../../constants/sizes';
 import MapViewWidget from '../MapViewWidget';
 import {first} from 'lodash';
 

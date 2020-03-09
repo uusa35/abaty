@@ -3,7 +3,7 @@ import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import CategoryWidget from '../widgets/category/CategoryWidget';
 import {refetchHomeElements} from '../../redux/actions';
 import {map} from 'lodash';
-import {text} from './../../constants';
+import {text} from './../../constants/sizes';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';

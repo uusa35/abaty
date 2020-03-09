@@ -3,7 +3,7 @@ import {StyleSheet, Modal} from 'react-native';
 import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from './SplashWidget';
-import {height, text} from './../../../constants';
+import {height, text} from './../../../constants/sizes';
 import I18n from './../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';

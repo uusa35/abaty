@@ -1,15 +1,14 @@
-import React, {useState, useContext} from 'react';
-import {Text, StyleSheet, ImageBackground} from 'react-native';
-import {isIOS, images, text, animations, width} from './../../constants';
+import React, {useState} from 'react';
+import {Text, StyleSheet} from 'react-native';
+import {text, width} from './../../constants/sizes';
+import {isIOS} from './../../constants';
 import FastImage from 'react-native-fast-image';
 import LottieView from 'lottie-react-native';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import PropTypes from 'prop-types';
 import Spinner from 'react-native-spinkit';
 import {first, shuffle} from 'lodash';
-import {ABATI, MALLR} from './../../../app';
 import RadialGradient from 'react-native-radial-gradient';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const LoadingView = ({logo, loadingText, color, type = 'ThreeBounce'}) => {
   const [moveRand, setMoveRand] = useState([

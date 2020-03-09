@@ -3,7 +3,7 @@ import {Text, ImageBackground, TouchableOpacity, View} from 'react-native';
 import {TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {text, touchOpacity, width} from '../../../constants';
+import {text, touchOpacity, width} from '../../../constants/sizes';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {take, map} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions/classified';

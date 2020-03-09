@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {map} from 'lodash';
-import {text} from './../../../constants';
+import {text} from './../../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import I18n from './../../../I18n';
 import PropTypes from 'prop-types';

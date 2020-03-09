@@ -2,7 +2,8 @@ import React, {useContext, useState, useCallback} from 'react';
 import {StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
-import {isIOS, text} from '../../../constants';
+import {isIOS} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';
 import {
   clearCart,

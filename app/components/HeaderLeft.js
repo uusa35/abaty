@@ -7,7 +7,7 @@ import {Icon, Badge} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
-import {iconSizes} from '../constatns/sizes';
+import {iconSizes} from '../constants/sizes';
 
 export const HeaderLeft = ({
   showCart = true,

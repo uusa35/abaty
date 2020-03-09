@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
-import {links, text, touchOpacity} from '../../constants';
+import {text, touchOpacity} from '../../constants/sizes';
+import {links} from '../../constants/links';
 import I18n from '../../I18n';
 import {Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';

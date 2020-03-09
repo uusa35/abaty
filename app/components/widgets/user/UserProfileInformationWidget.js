@@ -1,12 +1,13 @@
-import React, {Fragment, useContext} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {images, isIOS, text, width} from '../../../constants';
+import {isIOS} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import validate from 'validate.js';
 import {isNull} from 'lodash';
 
 const UserProfileInformationWidget = ({auth}) => {

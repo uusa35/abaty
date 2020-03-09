@@ -1,4 +1,4 @@
-import {text} from './constants';
+import {text} from './constants/sizes';
 
 export const navLabelStyle = {
   fontSize: text.smaller,

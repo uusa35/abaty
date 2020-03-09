@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {touchOpacity, width} from '../../../constants';
+import {touchOpacity, width} from '../../../constants/sizes';
 
 const CommercialWidget = ({element}) => {
   return (

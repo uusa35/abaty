@@ -1,8 +1,10 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
-import {colors, text, animations} from './../../constants';
+import {colors} from './../../constants/colors';
+import {text} from './../../constants/sizes';
+import {animations} from './../../constants/animations';
 import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';
 import {resetStore} from '../../redux/actions';

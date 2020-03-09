@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Linking, Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View} from 'react-native';
 import PropTypes from 'prop-types';
 import FastImage from 'react-native-fast-image';
 import MapView, {
@@ -8,7 +8,8 @@ import MapView, {
   Callout,
   CalloutSubview,
 } from 'react-native-maps';
-import {width, text, links, images} from '../../constants';
+import {width, text} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import CallOutView from './map/CallOutView';

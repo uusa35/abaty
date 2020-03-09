@@ -1,5 +1,6 @@
 import React, {useState, useMemo, useContext} from 'react';
-import {isIOS, text} from './../constants';
+import {text} from './../constants/sizes';
+import {isIOS} from './../constants';
 import PropTypes from 'prop-types';
 import Toaster from 'react-native-toaster';
 import validate from 'validate.js';

@@ -5,7 +5,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
-import {linkingPrefix} from './../constants';
+import {linkingPrefix} from './../constants/links';
 import I18n from './../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import {APP_CASE} from '../../app';

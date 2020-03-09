@@ -1,12 +1,12 @@
 import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {images, text, touchOpacity} from '../../../constants';
+import {text, touchOpacity} from '../../../constants/sizes';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {Badge, Icon, Button} from 'react-native-elements';
+import {Badge, Icon} from 'react-native-elements';
 import {showCommentModal} from '../../../redux/actions';
 import {toggleClassifiedFavorite} from '../../../redux/actions/classified';
 import {DispatchContext} from '../../../redux/DispatchContext';

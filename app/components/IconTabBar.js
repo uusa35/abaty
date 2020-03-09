@@ -1,8 +1,8 @@
 import React, {useContext} from 'react';
-import {text} from '../constants';
+import {text} from '../constants/sizes';
 import {Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
-import {iconSizes} from '../constatns/sizes';
+import {iconSizes} from '../constants/sizes';
 
 const IconTabBar = ({type, name, focused}) => {
   const {colors} = useContext(GlobalValuesContext);

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {map} from 'lodash';
-import {text} from './../../../constants';
+import {text} from './../../../constants/sizes';
 
 const PropertiesWidget = ({elements}) => {
   return (

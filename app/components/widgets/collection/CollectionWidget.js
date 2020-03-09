@@ -9,7 +9,8 @@ import {
 import widgetStyles from '../widgetStyles';
 import {getCollection, getSearchProducts} from '../../../redux/actions/product';
 import PropTypes from 'prop-types';
-import {images, text} from '../../../constants';
+import {images} from '../../../constants/images';
+import {text} from '../../../constants/sizes';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 

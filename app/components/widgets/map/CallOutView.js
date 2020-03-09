@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {Linking, StyleSheet, Text, View, Image} from 'react-native';
-import {links, text} from '../../../constants';
+import {text} from '../../../constants/sizes';
+import {links} from '../../../constants/links';
 import {Callout} from 'react-native-maps';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropertiesWidget from '../classified/PropertiesWidget';

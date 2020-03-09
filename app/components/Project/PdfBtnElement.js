@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {icons} from '../../constants';
+import {icons} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
 import Communications from 'react-native-communications';

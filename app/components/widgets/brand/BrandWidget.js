@@ -5,7 +5,8 @@ import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
-import {images, touchOpacity} from '../../../constants';
+import {touchOpacity} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 
 const BrandWidget = ({
   element,

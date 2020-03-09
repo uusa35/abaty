@@ -17,12 +17,11 @@ import {
 import {
   editClassifiedConstrains,
   storeClassifiedConstrains,
-} from '../../../constants';
+} from '../../../constants/validations';
 import validate from 'validate.js';
 import {HIDE_SEARCH_MODAL, SHOW_SEARCH_MODAL, SET_CATEGORY} from '../types';
 import {first, values} from 'lodash';
 import {SET_CLASSIFIED} from '../types';
-import {isLocal} from '../../../env';
 
 export function* startGetClassifiedsScenario(action) {
   const {searchParams, redirect, name} = action.payload;

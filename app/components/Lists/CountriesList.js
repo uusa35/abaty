@@ -1,4 +1,4 @@
-import React, {useState, useContext, useMemo, useCallback, A} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import {
   View,
   ScrollView,
@@ -8,19 +8,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {map} from 'lodash';
-import {
-  hideCountryModal,
-  setArea,
-  setCountry,
-  showAreaModal,
-} from '../../redux/actions';
+import {hideCountryModal, setCountry} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {images, text} from '../../constants';
+import {text} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import FastImage from 'react-native-fast-image';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
-import validate from 'validate.js';
 
 const CountriesList = ({country, countries, countryModal}) => {
   const {dispatch} = useContext(DispatchContext);

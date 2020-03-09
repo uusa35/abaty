@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {text, touchOpacity} from '../../../constants';
+import {text, touchOpacity} from '../../../constants/sizes';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';

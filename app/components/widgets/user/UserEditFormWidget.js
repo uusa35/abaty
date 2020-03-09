@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {images, text, width} from '../../../constants';
+import {text, width} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {updateUser} from '../../../redux/actions/user';
 import {showCountryModal} from '../../../redux/actions';
 import PropTypes from 'prop-types';
-import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';

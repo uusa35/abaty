@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 

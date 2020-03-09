@@ -9,10 +9,10 @@ import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {
-  images,
   rightHorizontalContentInset,
   touchOpacity,
-} from '../../../constants';
+} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 

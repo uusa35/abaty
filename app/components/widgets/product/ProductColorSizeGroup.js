@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, CheckBox, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
 import {DispatchContext} from '../../../redux/DispatchContext';

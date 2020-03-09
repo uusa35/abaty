@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
-import {text, width} from './../../constants';
+import {text, width} from './../../constants/sizes';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';

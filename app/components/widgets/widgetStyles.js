@@ -1,5 +1,5 @@
 import {I18nManager, StyleSheet} from 'react-native';
-import {text, width} from '../../constants';
+import {text, width} from '../../constants/sizes';
 
 const widgetStyles = StyleSheet.create({
   container: {

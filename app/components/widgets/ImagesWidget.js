@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
-import {images, text, touchOpacity} from '../../constants';
+import {text, touchOpacity} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';

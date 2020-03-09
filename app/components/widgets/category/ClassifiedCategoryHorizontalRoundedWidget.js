@@ -14,10 +14,10 @@ import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {
-  images,
   rightHorizontalContentInset,
   touchOpacity,
-} from '../../../constants';
+} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';

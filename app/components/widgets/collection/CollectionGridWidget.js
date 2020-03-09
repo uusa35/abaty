@@ -8,7 +8,7 @@ import {getSearchProducts} from '../../../redux/actions/product';
 import widgetStyles from '../widgetStyles';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {touchOpacity} from '../../../constants';
+import {touchOpacity} from '../../../constants/sizes';
 
 const CollectionGridWidget = ({elements, showTitle = true}) => {
   const {dispatch} = useContext(DispatchContext);

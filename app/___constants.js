@@ -14,9 +14,6 @@ import {APP_CASE} from '../app';
 
 export const {height, width} = Dimensions.get('window');
 export const isIOS = Platform.OS === 'ios' ? true : false;
-export const touchOpacity = 0.8;
-export const rightHorizontalContentInset = 200;
-export const bottomVerticalContentInset = 200;
 export const LOGIN_AUTH_KEY = () => {
   switch (APP_CASE) {
     case 'abati':
@@ -30,49 +27,6 @@ export const LOGIN_AUTH_KEY = () => {
     default:
       return {};
   }
-};
-export const coreState = {
-  isLoading: false,
-  bootStrapped: false,
-  message: {
-    visible: false,
-    title: '',
-    content: '',
-    icon: 'exclamation-triangle',
-    color: '#fac811',
-  },
-  auth: {},
-  guest: true,
-  currentPage: 1,
-  lang: 'ar',
-  settings: {},
-  users: [],
-  user: {},
-  categories: [],
-  category: {},
-  brand: {},
-  brands: [],
-  company: {},
-  companies: [],
-  designer: {},
-  designers: [],
-  product: {},
-  products: [],
-  homeProducts: [],
-  cart: [],
-  coupon: {},
-  items: [],
-  celebrity: {},
-  celebrities: [],
-  country: {},
-  countries: [],
-  currency: 'KWD',
-  commercials: [],
-  deviceId: '',
-  playerId: '',
-  countryModal: false,
-  linking: {},
-  classifiedProps: [],
 };
 
 export const links = {
@@ -152,10 +106,6 @@ export const text = {
   xlarge: 25,
   font: isRTL ? AR_FONT : EN_FONT,
 };
-
-export const prefix = `${appUrlIos}element/linking`;
-// export const prefix = Linking.makeUrl('/');;
-export const linkingPrefix = `${appUrlIos}element/linking?model=`;
 
 export const submitLogin = {
   email: {

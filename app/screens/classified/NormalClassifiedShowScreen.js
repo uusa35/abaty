@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, height} from './../../constants';
+import {width, text, height} from './../../constants/sizes';
 import I18n from './../../I18n';
 import {
   getClassified,
