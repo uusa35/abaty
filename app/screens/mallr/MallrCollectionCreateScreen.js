@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {productWidget} from '../../constants/sizes';
 import ProductCreateCollectionWidget from '../../components/widgets/product/ProductCreateCollectionWidget';
 import {Button, Icon} from 'react-native-elements';
+import I18n from './../../I18n';
 
 const MallrCollectionCreateScreen = ({products}) => {
   console.log('products', products);
@@ -152,7 +153,6 @@ const MallrCollectionCreateScreen = ({products}) => {
           margin: 3,
           width: '100%',
         }}>
-        <Button title="save" color="black" />
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -163,7 +163,6 @@ const MallrCollectionCreateScreen = ({products}) => {
           numColumns={1}
           scrollEnabled={true}
           style={{maxWidth: productWidth, margin: 5}}
-          contentContainerStyle={{width: productWidth, height: productHeight}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
@@ -173,7 +172,30 @@ const MallrCollectionCreateScreen = ({products}) => {
             />
           )}
         />
-        <Button title="save" />
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+          width: '100%',
+        }}>
+        <Button
+          titleStyle={{color: 'white', fontSize: 13}}
+          buttonStyle={{backgroundColor: 'grey'}}
+          raised
+          title={I18n.t('upload_cover')}
+          type="outline"
+          icon={<Icon type="antdesign" name="save" size={13} color="white" />}
+        />
+        <Button
+          titleStyle={{color: 'white', fontSize: 13}}
+          buttonStyle={{backgroundColor: 'black'}}
+          raised
+          title={I18n.t('save_collection')}
+          type="outline"
+          icon={<Icon type="antdesign" name="save" size={13} color="white" />}
+        />
       </View>
     </View>
   );

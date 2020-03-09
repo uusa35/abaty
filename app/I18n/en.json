@@ -558,5 +558,8 @@
   "wrap_as_gift_message" : "Gift Message, Note that %{item} KD shall be added to price",
   "wrap_as_gift" : "Wrap as a gift, Price is %{item} per piece.",
   "notes" : "Notes",
-  "new_collection" : "New Collection"
+  "new_collection" : "New Collection",
+  "save" : "Save",
+  "save_collection" : "Save Collection",
+  "upload_cover" : "Upload Cover"
 }
