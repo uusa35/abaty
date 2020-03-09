@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {images, text, touchOpacity} from '../../constants';
+import {text, touchOpacity} from '../../constants/sizes';
 import {showCountryModal} from '../../redux/actions';
 import {storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
@@ -20,7 +20,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
-import {isLocal} from '../../env';
 
 const ClassifiedStoreScreen = ({
   auth,
@@ -404,7 +403,7 @@ const ClassifiedStoreScreen = ({
               mobile,
               price,
               country_id: country.id,
-              area_id: area ? area.id : null,
+              area_id: area ? area.id : 1,
               image,
               images,
               classifiedProps,

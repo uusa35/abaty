@@ -1,7 +1,8 @@
 import React from 'react';
 import {Linking, TouchableOpacity} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {width, images, touchOpacity} from '../../../constants/sizes';
+import {width, touchOpacity} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {isNull} from 'lodash';
 
 const SlideWidget = ({slide}) => {

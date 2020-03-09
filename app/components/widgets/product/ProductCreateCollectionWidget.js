@@ -2,16 +2,16 @@ import {Icon} from 'react-native-elements';
 import {ImageBackground, StyleSheet} from 'react-native';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {productWidget} from '../../../constants';
+import {productWidget} from '../../../constants/sizes';
 
-const ProductCreateCollectionWidget = ({element}) => {
-  const {productWidth, productHeight} = productWidget.smallest;
+const ProductCreateCollectionWidget = ({element, width, height}) => {
   return (
     <ImageBackground
       source={{uri: element.thumb}}
       style={{
-        width: productWidth,
-        height: productHeight,
+        width: width,
+        height,
+        // margin : 1,
         borderWidth: 0.5,
         borderColor: 'lightgrey',
         flexDirection: 'row',

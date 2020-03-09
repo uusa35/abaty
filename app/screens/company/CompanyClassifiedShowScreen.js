@@ -1,10 +1,10 @@
-import React, {useState, useCallback, useMemo, useContext} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
-import {text, width} from '../../constants';
+import {text, width} from '../../constants/sizes';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';

@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS} from '../../../constants';
-import {text,width} from '../../../constants/sizes';
+import {text, width} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';

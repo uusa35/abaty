@@ -2,11 +2,10 @@ import React, {useContext} from 'react';
 import widgetStyles from '../widgetStyles';
 import {Text, TouchableOpacity, View} from 'react-native';
 import I18n from '../../../I18n';
-import {Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import FastImage from 'react-native-fast-image';
-import {touchOpacity} from '../../../constants';
+import {touchOpacity} from '../../../constants/sizes';
 
 const NewClassifiedHomeBtn = () => {
   const {colors, logo, guest} = useContext(GlobalValuesContext);

@@ -10,9 +10,10 @@ import {
 import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {images, text, touchOpacity} from '../../constants';
+import {images} from '../../constants/images';
+import {text, touchOpacity} from '../../constants/sizes';
 import {showCountryModal} from '../../redux/actions';
-import {editClassified, storeClassified} from '../../redux/actions/classified';
+import {editClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -20,7 +21,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
-import {isLocal} from '../../env';
 
 const ClassifiedEditScreen = ({
   element,

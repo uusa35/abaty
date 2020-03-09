@@ -2,9 +2,9 @@ import React, {useState, useMemo} from 'react';
 import {StyleSheet, FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from '../../constants';
+import {text} from '../../constants/sizes';
 import ChooseCategoryItem from '../../components/widgets/category/ChooseCategoryItem';
-import {map, filter} from 'lodash';
+import {filter} from 'lodash';
 
 const ChooseCategoryScreen = ({categories}) => {
   const [classifiedCategories, setClassifiedCategories] = useState([]);

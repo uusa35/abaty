@@ -7,6 +7,10 @@ export const touchOpacity = 0.8;
 export const rightHorizontalContentInset = 200;
 export const bottomVerticalContentInset = 200;
 export const productWidget = {
+  x4Small: {
+    productWidth: 100,
+    productHeight: 160,
+  },
   smallest: {
     productWidth: 150,
     productHeight: 200,

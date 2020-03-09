@@ -10,14 +10,14 @@ import {map, isNull} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
-import I18n, {isRTL} from './../../../I18n';
+import {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {
-  images,
   rightHorizontalContentInset,
   touchOpacity,
-} from '../../../constants';
+} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';

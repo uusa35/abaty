@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import I18n from '../../../I18n';
-import {text} from './../../../constants';
+import {text} from './../../../constants/sizes';
 
 const OrderStatus = ({element}) => {
   return (

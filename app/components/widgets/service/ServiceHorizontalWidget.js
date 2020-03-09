@@ -9,7 +9,10 @@ import {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ServiceWidget from './ServiceWidget';
-import {rightHorizontalContentInset, touchOpacity} from '../../../constants/sizes';
+import {
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants/sizes';
 
 const ServiceHorizontalWidget = ({elements, showName, title}) => {
   const {dispatch} = useContext(DispatchContext);

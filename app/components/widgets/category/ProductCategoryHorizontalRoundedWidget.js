@@ -18,7 +18,7 @@ import {
   rightHorizontalContentInset,
   touchOpacity,
 } from '../../../constants/sizes';
-import { images } from "../../../constants/images";
+import {images} from '../../../constants/images';
 import {useNavigation} from 'react-navigation-hooks';
 import {DispatchContext} from '../../../redux/DispatchContext';
 

@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {appUrlIos} from '../../../env';
-import {images, text} from '../../../constants';
+import {text} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {Button, Icon} from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';

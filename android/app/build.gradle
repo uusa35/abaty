@@ -206,7 +206,7 @@ android {
 
 dependencies {
     implementation project(':react-native-svg')
-       implementation project(':@react-native-community_netinfo')
+       //implementation project(':@react-native-community_netinfo')
        implementation project(':react-native-webview')
        implementation project(':react-native-vector-icons')
        implementation project(':react-native-restart')
@@ -216,9 +216,11 @@ dependencies {
        implementation project(':react-native-device-info')
        implementation project(':react-native-share')
        implementation project(':react-native-video')
-       implementation project(':@react-native-community_async-storage')
+       // implementation project(':@react-native-community_async-storage')
        implementation project(':@react-native-community_viewpager')
        implementation project(':react-native-reanimated')
+       implementation project(':react-native-radial-gradient')
+       implementation project(':react-native-google-places')
        implementation project(':lottie-react-native')
        implementation project(':rn-fetch-blob')
        implementation project(':react-native-image-crop-picker')

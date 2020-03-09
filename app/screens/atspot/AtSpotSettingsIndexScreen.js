@@ -9,7 +9,7 @@ import {
 import {View} from 'react-native-animatable';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from './../../constants';
+import {text} from './../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import {changeLang} from '../../redux/actions';

@@ -3,7 +3,7 @@ import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import I18n from '../../I18n';
 import PageOneScreen from '../../screens/PageOneScreen';
 import PageTwoScreen from '../../screens/PageTwoScreen';
-import {text, width} from '../../constants';
+import {text, width} from '../../constants/sizes';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';

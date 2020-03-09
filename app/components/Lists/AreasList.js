@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {hideAreaModal, setArea} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {text} from '../../constants';
+import {text} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import {isRTL} from './../../I18n';
 import PropTypes from 'prop-types';
