@@ -112,10 +112,9 @@ const App = ({
     );
   }
 
-  if (!network.isConnected && bootStrapped) {
-    return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
-  }
-
+  // if (!network.isConnected && bootStrapped) {
+  //   return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
+  // }
   return (
     <DispatchContext.Provider value={{dispatch}}>
       <View style={{flex: 1}}>
@@ -123,6 +122,7 @@ const App = ({
           <GlobalValuesContext.Provider
             value={{
               cartLength: cart.length,
+              countriesLength: countries.length,
               currency_symbol: country.currency.currency_symbol,
               exchange_rate: country.currency.exchange_rate,
               total,

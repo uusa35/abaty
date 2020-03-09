@@ -14,7 +14,7 @@ import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
-
+import {ATSPOT} from './../../../app';
 export const SettingStack = createStackNavigator(
   {
     Account: {
@@ -23,7 +23,7 @@ export const SettingStack = createStackNavigator(
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
         ),
-        headerLeft: <HeaderLeft />,
+        headerLeft: <HeaderLeft showCart={!ATSPOT} showAccount={ATSPOT} />,
         headerRight: <HeaderRight display={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: null,

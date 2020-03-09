@@ -99,8 +99,6 @@ const HomeKeyHomeScreen = ({
     [appState],
   );
 
-  console.log('appState', appState);
-
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
     return dispatch(goDeepLinking({type, id}));

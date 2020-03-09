@@ -48,6 +48,7 @@ import AtSpotSettingsIndexScreen from './../../screens/atspot/AtSpotSettingsInde
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import AtSpotViewPagerAdapter from '../../screens/atspot/AtSpotViewPagerAdapter';
+import {ATSPOT} from './../../../app';
 
 export const HomeStack = createStackNavigator(
   {
@@ -129,7 +130,7 @@ export const HomeStack = createStackNavigator(
           },
           navigationOptions: () => ({
             tabBarVisible: true,
-            headerLeft: <HeaderLeft />,
+            headerLeft: <HeaderLeft showCart={!ATSPOT} showAccount={ATSPOT} />,
             headerRight: (
               <HeaderRight displayShare={false} showCountry={true} />
             ),

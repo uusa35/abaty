@@ -218,15 +218,6 @@ const AtSpotHomeScreen = ({
         {!validate.isEmpty(slides) ? (
           <MainSliderWidget slides={slides} />
         ) : null}
-        {!validate.isEmpty(homeDesigners) && validate.isArray(homeDesigners) ? (
-          <ShopperHorizontalWidget
-            elements={homeDesigners}
-            showName={true}
-            name={I18n.t('mallr.personal_shoppers')}
-            title={I18n.t('mallr.personal_shoppers')}
-            searchElements={{is_designer: true}}
-          />
-        ) : null}
         {!validate.isEmpty(homeCompanies) && validate.isArray(homeCompanies) ? (
           <CompanyHorizontalWidget
             elements={homeCompanies}
@@ -243,52 +234,6 @@ const AtSpotHomeScreen = ({
             showName={true}
             title={I18n.t('categories')}
             type="products"
-          />
-        ) : null}
-        {!validate.isEmpty(latestProducts) ? (
-          <ProductHorizontalWidget
-            elements={latestProducts}
-            showName={true}
-            title={I18n.t('latest_products')}
-            showLink={false}
-          />
-        ) : null}
-        {!validate.isEmpty(onSaleProducts) ? (
-          <ProductHorizontalWidget
-            elements={onSaleProducts}
-            showName={true}
-            title={I18n.t('on_sale_products')}
-            showLink={false}
-          />
-        ) : null}
-        {!validate.isEmpty(bestSaleProducts) ? (
-          <ProductHorizontalWidget
-            elements={bestSaleProducts}
-            showName={true}
-            title={I18n.t('best_sale_products')}
-            showLink={false}
-          />
-        ) : null}
-        {!validate.isEmpty(hotDealsProducts) ? (
-          <ProductHorizontalWidget
-            elements={hotDealsProducts}
-            showName={true}
-            title={I18n.t('hot_deals_products')}
-            showLink={false}
-          />
-        ) : null}
-        {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-          <BrandHorizontalWidget
-            elements={brands}
-            showName={false}
-            title={I18n.t('brands')}
-          />
-        ) : null}
-        {!validate.isEmpty(homeCollections) ? (
-          <CollectionHorizontalWidget
-            elements={homeCollections}
-            showName={true}
-            title={I18n.t('our_collections')}
           />
         ) : null}
       </ScrollView>

@@ -15,16 +15,18 @@ import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 import {APP_CASE} from '../../app';
+import {iconSizes} from '../constatns/sizes';
 
 export const HeaderRight = ({
   showCountry = false,
   displayShare = false,
   showFilter = false,
 }) => {
-  const {country} = useContext(GlobalValuesContext);
+  const {country, countriesLength} = useContext(GlobalValuesContext);
   const {dispatch} = useContext(DispatchContext);
   const navigation = useNavigation();
   const {params} = navigation.state;
+
   const shareLink = link => {
     __DEV__ ? console.log('the link', link) : null;
     return Share.open({
@@ -45,7 +47,9 @@ export const HeaderRight = ({
     <View style={widgetStyles.safeContainer}>
       {showCountry ? (
         <TouchableOpacity
-          onPress={() => dispatch(showCountryModal())}
+          onPress={() =>
+            countriesLength >= 2 ? dispatch(showCountryModal()) : null
+          }
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <FastImage
             source={{uri: country.thumb}}
@@ -62,7 +66,7 @@ export const HeaderRight = ({
             )
           }
           name="share"
-          size={25}
+          size={iconSizes.medium}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
@@ -76,7 +80,7 @@ export const HeaderRight = ({
           }}
           name="tune"
           type="material-icon"
-          size={25}
+          size={iconSizes.medium}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"

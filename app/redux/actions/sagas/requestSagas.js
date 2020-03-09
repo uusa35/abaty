@@ -35,13 +35,10 @@ import {getHomeServicesScenario, getServiceIndex} from './serviceSagas';
 import {startGetClassifiedScenario} from './classifiedSagas';
 import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
-import {isLocal} from '../../../env';
 import {
   getHomeClassifiedCategories,
-  getHomeTypeCategories,
   getHomeUserCategories,
 } from './categorySagas';
-import {SET_DEEP_LINKING} from '../types';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -194,6 +191,10 @@ export function* startSetCountryScenario(action) {
       yield all([
         put({type: actions.SET_CURRENCY, payload: country.currency.symbol}),
         put({type: actions.SET_AREAS, payload: country.areas}),
+        put({
+          type: actions.SET_AREA,
+          payload: country.areas ? first(country.areas) : 1,
+        }),
         put({type: actions.HIDE_COUNTRY_MODAL}),
         call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);

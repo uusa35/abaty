@@ -7,8 +7,13 @@ import {Icon, Badge} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
+import {iconSizes} from '../constatns/sizes';
 
-export const HeaderLeft = ({showCart = true, showSideMenu = true}) => {
+export const HeaderLeft = ({
+  showCart = true,
+  showSideMenu = true,
+  showAccount = false,
+}) => {
   const {navigate, openDrawer} = useNavigation();
   const {cartLength, colors} = useContext(GlobalValuesContext);
   return (
@@ -17,7 +22,7 @@ export const HeaderLeft = ({showCart = true, showSideMenu = true}) => {
         <Icon
           name="ios-menu"
           type="ionicon"
-          size={32}
+          size={iconSizes.large}
           onPress={() => openDrawer()}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -30,7 +35,7 @@ export const HeaderLeft = ({showCart = true, showSideMenu = true}) => {
             onPress={() => navigate('CartIndex')}
             name="ios-cart"
             type="ionicon"
-            size={32}
+            size={iconSizes.small}
             underlayColor="transparent"
             hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
             color={colors.icon_theme_color}
@@ -42,6 +47,18 @@ export const HeaderLeft = ({showCart = true, showSideMenu = true}) => {
               containerStyle={{position: 'absolute', top: -10, right: -4}}
             />
           ) : null}
+        </View>
+      ) : showAccount ? (
+        <View>
+          <Icon
+            onPress={() => navigate('Account')}
+            name="user-circle"
+            type="font-awesome"
+            size={iconSizes.small}
+            underlayColor="transparent"
+            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+            color={colors.icon_theme_color}
+          />
         </View>
       ) : null}
     </View>
