@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, View} from 'react-native';
-import {images, text} from '../../../constants';
+import {text} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';

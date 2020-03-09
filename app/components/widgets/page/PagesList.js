@@ -7,9 +7,10 @@ import {
   View,
   Linking,
 } from 'react-native';
-import {Button, Icon} from 'react-native-elements';
-import I18n, {isRTL} from '../../../I18n';
-import {text, isIOS, width} from '../../../constants';
+import {Icon} from 'react-native-elements';
+import {isRTL} from '../../../I18n';
+import {isIOS} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import validate from 'validate.js';

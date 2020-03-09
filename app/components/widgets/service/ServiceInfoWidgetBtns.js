@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useContext} from 'react';
 import {View, Picker} from 'react-native';
-import {text} from './../../../constants';
+import {text} from './../../../constants/sizes';
 import _ from 'lodash';
 import {Button, Input} from 'react-native-elements';
 import {addToCart} from '../../../redux/actions/cart';

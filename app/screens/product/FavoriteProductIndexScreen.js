@@ -3,7 +3,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
-import {isIOS, text, width} from '../../constants';
+import {text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
 import {map} from 'lodash';

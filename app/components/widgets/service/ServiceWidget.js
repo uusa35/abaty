@@ -11,7 +11,8 @@ import {getService} from '../../../redux/actions/service';
 import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {images, text, touchOpacity} from '../../../constants';
+import {text, touchOpacity} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import {DispatchContext} from '../../../redux/DispatchContext';
 

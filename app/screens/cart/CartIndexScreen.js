@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import CartList from '../../components/widgets/cart/CartList';
-import {text, width} from '../../constants';
+import {text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 const CartIndexScreen = ({

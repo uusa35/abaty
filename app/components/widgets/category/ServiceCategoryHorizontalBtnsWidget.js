@@ -10,10 +10,10 @@ import {map} from 'lodash';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {getSearchServices} from '../../../redux/actions/service';
-import I18n, {isRTL} from './../../../I18n';
+import {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants';
+import {images} from '../../../constants/images';
 
 const ServiceCategoryHorizontalBtnsWidget = ({
   elements,

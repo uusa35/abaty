@@ -3,7 +3,8 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getCompany} from '../../../redux/actions/user';
 import FastImage from 'react-native-fast-image';
-import {images, touchOpacity} from '../../../constants';
+import {touchOpacity} from '../../../constants/sizes';
+import {images} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 

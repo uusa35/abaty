@@ -11,7 +11,7 @@ import ServiceWidget from './ServiceWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {height, text, width} from '../../../constants';
+import {height, text, width} from '../../../constants/sizes';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';

@@ -1,4 +1,4 @@
-import {width} from '../../../constants';
+import {width} from '../../../constants/sizes';
 import Carousel from 'react-native-snap-carousel';
 import React from 'react';
 import CategoryWidget from './CategoryWidget';

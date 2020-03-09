@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import {appUrlIos} from '../../../env';
 import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';

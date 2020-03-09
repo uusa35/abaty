@@ -1,7 +1,7 @@
 import React, {useContext, Fragment} from 'react';
 import {Text, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {text} from '../../../constants';
+import {text} from '../../../constants/sizes';
 import {getConvertedFinalPrice} from '../../../helpers';
 import validate from 'validate.js';
 import PropertiesWidget from './PropertiesWidget';
