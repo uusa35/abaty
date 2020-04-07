@@ -48,9 +48,11 @@ export function* startGetClassifiedsScenario(action) {
     }
   } catch (e) {
     yield all([
-      call(disableLoading),
-      call(enableWarningMessage, I18n.t('no_classifieds')),
+      // call(disableLoading),
+      // call(enableWarningMessage, I18n.t('no_classifieds')),
     ]);
+  } finally {
+    yield call(disableLoading);
   }
 }
 
@@ -74,9 +76,12 @@ export function* startGetHomeClassifiedsScenario(action) {
       yield put({type: actions.SET_HOME_CLASSIFIEDS, payload: []});
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_classifieds'));
+    if (__DEV__) {
+      console.log('e', e);
+    }
+    // yield call(enableWarningMessage, I18n.t('no_classifieds'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 

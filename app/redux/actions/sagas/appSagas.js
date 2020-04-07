@@ -38,6 +38,7 @@ import {
   setDeviceId,
   enableErrorMessage,
   checkConnection,
+  startSetAppStateScenario,
 } from './settingSagas';
 import {
   offlineActionTypes,

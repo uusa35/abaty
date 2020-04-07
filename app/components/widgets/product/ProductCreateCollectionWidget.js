@@ -9,7 +9,7 @@ const ProductCreateCollectionWidget = ({element, width, height}) => {
     <ImageBackground
       source={{uri: element.thumb}}
       style={{
-        width: width,
+        width,
         height,
         // margin : 1,
         borderWidth: 0.5,

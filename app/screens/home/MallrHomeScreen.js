@@ -46,6 +46,7 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
+import AppStateComponent from '../AppStateComponent';
 
 const MallrHomeScreen = ({
   homeCategories,
@@ -149,6 +150,7 @@ const MallrHomeScreen = ({
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+      <AppStateComponent />
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
         <IntroductionWidget
           elements={splashes}

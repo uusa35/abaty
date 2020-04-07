@@ -11,7 +11,6 @@ import {
   RefreshControl,
   ScrollView,
   View,
-  AppState,
   StyleSheet,
   Text,
 } from 'react-native';
@@ -48,6 +47,7 @@ import {channel} from '../../env';
 import {Button} from 'react-native-elements';
 
 import {axiosInstance} from '../../redux/actions/api';
+import AppStateComponent from '../AppStateComponent';
 
 const AtSpotHomeScreen = ({
   homeCategories,
@@ -70,13 +70,11 @@ const AtSpotHomeScreen = ({
   navigation,
 }) => {
   [refresh, setRefresh] = useState(false);
-  [appState, setAppState] = useState(AppState.currentState);
   [device, setDevice] = useState('');
   [deviceId, setDeviceId] = useState('');
   const [currentData, setCurrentData] = useState('');
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
     //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
     Linking.addEventListener('url', handleOpenURL);
     !isIOS
@@ -129,18 +127,6 @@ const AtSpotHomeScreen = ({
     return true;
   });
 
-  const handleAppStateChange = useCallback(
-    nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        if (__DEV__) {
-          console.log('APP STATE ACTIVE');
-        }
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
-
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
     return dispatch(goDeepLinking({type, id}));
@@ -181,6 +167,7 @@ const AtSpotHomeScreen = ({
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+      <AppStateComponent />
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
         <IntroductionWidget
           elements={splashes}

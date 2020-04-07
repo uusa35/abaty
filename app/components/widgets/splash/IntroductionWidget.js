@@ -9,7 +9,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
 
 const IntroductionWidget = ({elements, showIntroduction}) => {
-  [visible, setVisible] = useState(showIntroduction);
+  const [visible, setVisible] = useState(showIntroduction);
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
 

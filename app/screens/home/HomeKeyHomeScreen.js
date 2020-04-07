@@ -5,7 +5,6 @@ import {
   RefreshControl,
   ScrollView,
   View,
-  AppState,
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -33,6 +32,7 @@ import {
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
+import AppStateComponent from '../AppStateComponent';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -50,7 +50,6 @@ const HomeKeyHomeScreen = ({
   guest,
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const [appState, setAppState] = useState(AppState.currentState);
   const [device, setDevice] = useState('');
   const [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
@@ -61,7 +60,6 @@ const HomeKeyHomeScreen = ({
   }, [headerBg, headerBgColor]);
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
     if (HOMEKEY) {
       OneSignal.init(HOMKEY_ONE_SIGNAL_APP_ID);
       OneSignal.addEventListener('received', onReceived);
@@ -83,21 +81,6 @@ const HomeKeyHomeScreen = ({
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
   });
-
-  const handleAppStateChange = useCallback(
-    nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        if (__DEV__) {
-          console.log('APP STATE ACTIVE');
-        }
-      }
-      if (nextAppState === 'background') {
-        return dispatch(resetStore());
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
@@ -137,6 +120,7 @@ const HomeKeyHomeScreen = ({
 
   return (
     <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
+      <AppStateComponent />
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,

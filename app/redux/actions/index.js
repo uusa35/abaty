@@ -1,6 +1,7 @@
 import * as actions from './types';
 import I18n from './../../I18n';
 import {TOGGLE_LOADING} from './types';
+import {SET_APP_STATE} from './types';
 
 export function appBootstrap() {
   return {

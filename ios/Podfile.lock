@@ -262,7 +262,7 @@ PODS:
     - React
   - react-native-maps (0.25.0):
     - React
-  - react-native-netinfo (5.5.1):
+  - react-native-netinfo (5.6.1):
     - React
   - react-native-onesignal (3.6.5):
     - OneSignal (= 2.12.6)
@@ -339,7 +339,7 @@ PODS:
     - RSKImageCropper
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (2.2.0):
+  - RNScreens (2.3.0):
     - React
   - RNSentry (1.3.3):
     - React
@@ -611,7 +611,7 @@ SPEC CHECKSUMS:
   react-native-google-maps: 88d750ad441b19c24885f20d43a55ecac25939b5
   react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
   react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
-  react-native-netinfo: 3bf235d94cc291cf0673ad9fd9eaae82f84ed8a9
+  react-native-netinfo: fa42683301345997e876760ba2be86f06148baa5
   react-native-onesignal: f6e1f20292cba72076ddb97e52290b0d5cc0a51c
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
@@ -637,7 +637,7 @@ SPEC CHECKSUMS:
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: 9d1a7eea4f8368fc479cbd2bf26459bd3c74d9aa
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: 812b79d384e2bea7eebc4ec981469160d4948fd5
+  RNScreens: 03bf608b92ac0acf323f47d8f5b63a8f829340c8
   RNSentry: 86baf0c87120cd5eb491d073989f8cbc1a2174c6
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
   RNSnackbar: 160077964866262ed08cfd33ab4760219ea2aef6

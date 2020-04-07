@@ -5,8 +5,8 @@ import {
   RefreshControl,
   ScrollView,
   View,
-  AppState,
   StyleSheet,
+  AppState,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {
@@ -15,6 +15,7 @@ import {
   refetchHomeElements,
   setDeepLinking,
   setPlayerId,
+  toggleBootstrapped,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
@@ -40,6 +41,7 @@ import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/cat
 import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import homeServices from '../../redux/reducers/homeServices';
+import AppStateComponent from '../AppStateComponent';
 
 const AbatiHomeScreen = ({
   homeCategories,
@@ -60,12 +62,10 @@ const AbatiHomeScreen = ({
   navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const [appState, setAppState] = useState(AppState.currentState);
   const [device, setDevice] = useState('');
   const [deviceId, setDeviceId] = useState('');
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
     if (ABATI) {
       OneSignal.init(ABATI_ONE_SIGNAL_APP_ID);
       OneSignal.addEventListener('received', onReceived);
@@ -87,18 +87,6 @@ const AbatiHomeScreen = ({
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
   });
-
-  const handleAppStateChange = useCallback(
-    nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        if (__DEV__) {
-          console.log('APP STATE ACTIVE');
-        }
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
@@ -138,7 +126,8 @@ const AbatiHomeScreen = ({
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-      {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
+      <AppStateComponent />
+      {!validate.isEmpty(splashes) && splash_on ? (
         <IntroductionWidget
           elements={splashes}
           showIntroduction={showIntroduction}

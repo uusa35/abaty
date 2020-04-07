@@ -146,8 +146,8 @@ android {
         applicationId "com.abaty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
-        versionName "10"
+        versionCode 11
+        versionName "11"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }
@@ -182,7 +182,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             //debuggable true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
@@ -217,7 +217,7 @@ dependencies {
        implementation project(':react-native-share')
        implementation project(':react-native-video')
        // implementation project(':@react-native-community_async-storage')
-       implementation project(':@react-native-community_viewpager')
+       // implementation project(':@react-native-community_viewpager')
        implementation project(':react-native-reanimated')
        implementation project(':react-native-radial-gradient')
        implementation project(':react-native-google-places')
@@ -266,5 +266,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
+googleServices.disableVersionCheck = true
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

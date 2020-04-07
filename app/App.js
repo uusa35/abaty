@@ -1,8 +1,13 @@
-import React, {useEffect} from 'react';
-import {View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, AppState} from 'react-native';
 import codePush from 'react-native-code-push';
 import {connect} from 'react-redux';
-import {appBootstrap, resetStore} from './redux/actions';
+import {
+  appBootstrap,
+  resetStore,
+  setApplicationState,
+  toggleBootstrapped,
+} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/Loading/LoadingView';
 import I18n from './I18n';

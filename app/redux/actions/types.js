@@ -50,6 +50,7 @@ export const SET_AREAS = 'SET_AREAS';
 export const SET_COUNTRY = 'SET_COUNTRY';
 export const CHOOSE_COUNTRY = 'CHOOSE_COUNTRY';
 export const SET_AREA = 'SET_AREA';
+export const SET_APP_STATE = 'SET_APP_STATE';
 export const CHOOSE_AREA = 'CHOOSE_AREA';
 export const SET_CURRENCY = 'SET_CURRENCY';
 export const SET_SEARCH = 'SET_SEARCH';

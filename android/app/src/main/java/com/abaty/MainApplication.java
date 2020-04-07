@@ -34,34 +34,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         protected List<ReactPackage> getPackages() {
             @SuppressWarnings("UnnecessaryLocalVariable")
             List<ReactPackage> packages = new PackageList(this).getPackages();
-            // Packages that cannot be autolinked yet can be added manually here, for example:
-            // packages.add(new MyReactNativePackage());
-            //packages.add(new AsyncStoragePackage());
-            //packages.add(new MapsPackage());
-            //packages.add(new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG));
             return packages;
-            // Packages that cannot be autolinked yet can be added manually here, for example:
-            //packages.add(new MyReactNativePackage());
-            //packages.add(new ReanimatedPackage());
-            //packages.add(new PickerPackage());
-            //packages.add(new MapsPackage());
-            //packages.add(new LottiePackage());
-            //packages.add(new RNFetchBlobPackage());
-            //packages.add(new RNGestureHandlerPackage());
-            //packages.add(new SvgPackage());
-            //packages.add(new NetInfoPackage());
-            //packages.add(new RNCWebViewPackage());
-            //packages.add(new AsyncStoragePackage());
-            //packages.add(new ReactNativeOneSignalPackage());
-            //packages.add(new VectorIconsPackage());
-            //packages.add(new ReactNativeRestartPackage());
-            //packages.add(new RCTPdfView());
-            //packages.add(new RNI18nPackage());
-            //packages.add(new FastImageViewPackage());
-            //packages.add(new RNDeviceInfo());
-            //packages.add(new RNSharePackage());
-            //packages.add(new ReactVideoPackage());
-            //packages.add(new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG));
         }
 
         @Override

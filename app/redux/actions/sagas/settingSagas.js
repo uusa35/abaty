@@ -1,4 +1,4 @@
-import {call, put} from 'redux-saga/effects';
+import {call, put, select} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
@@ -6,7 +6,14 @@ import {displayName} from './../../../../app';
 import {isLocal} from '../../../env';
 import {checkConnectionStatus} from '../api';
 import {offlineActionTypes} from 'react-native-offline';
-
+import {
+  NavigationContext,
+  NavigationAction,
+  NavigationBackActionPayload,
+  NavigationActions,
+} from 'react-navigation';
+import {first} from 'lodash';
+import {TOGGLE_BOOTSTRAPPED} from '../types';
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
 }
@@ -50,9 +57,9 @@ export function* toggleGuest(guest) {
 export function* setDeviceId() {
   try {
     let deviceId = DeviceInfo.getUniqueID(); // get the deviceID
-    if (isLocal) {
-      console.log('device_id', deviceId);
-    }
+    // if (isLocal) {
+    //   console.log('device_id', deviceId);
+    // }
     yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
   } catch (e) {
     if (isLocal) {
@@ -109,9 +116,9 @@ export function* enableWarningMessage(
 
 export function* checkConnection() {
   const connecitonStatus = yield call(checkConnectionStatus);
-  if (__DEV__) {
-    console.log('currentConnection', connecitonStatus);
-  }
+  // if (__DEV__) {
+  //   console.log('currentConnection', connecitonStatus);
+  // }
   yield put({
     type: offlineActionTypes.CONNECTION_CHANGE,
     payload: connecitonStatus,

@@ -388,20 +388,20 @@ export function* setGrossTotalCartValue(values) {
         : country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
-    if (__DEV__) {
-      console.log('the country', country);
-      console.log('the final Shipment', finalShipment);
-      console.log('the result', cart.length === 1);
-      console.log('the first', first(cart));
-    }
+    // if (__DEV__) {
+    //   console.log('the country', country);
+    //   console.log('the final Shipment', finalShipment);
+    //   console.log('the result', cart.length === 1);
+    //   console.log('the first', first(cart));
+    // }
     const grossTotal = parseFloat(
       total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0),
     );
     yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
     yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
-    if (__DEV__) {
-      console.log('the grossTotal Now is ::::', grossTotal);
-    }
+    // if (__DEV__) {
+    //   console.log('the grossTotal Now is ::::', grossTotal);
+    // }
   } catch (e) {
     if (__DEV__) {
       console.log('the e', e);

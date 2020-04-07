@@ -5,7 +5,6 @@ import {
   RefreshControl,
   ScrollView,
   View,
-  AppState,
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -41,6 +40,7 @@ import {
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 import {isLocal} from '../../env';
+import AppStateComponent from '../AppStateComponent';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -60,14 +60,12 @@ const EscrapHomeScreen = ({
   bootStrapped,
 }) => {
   [refresh, setRefresh] = useState(false);
-  [appState, setAppState] = useState(AppState.currentState);
   [device, setDevice] = useState('');
   [deviceId, setDeviceId] = useState('');
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
     if (ESCRAP) {
       OneSignal.init(ESCRAP_ONE_SIGNAL_APP_ID);
       OneSignal.addEventListener('received', onReceived);
@@ -93,18 +91,6 @@ const EscrapHomeScreen = ({
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
   });
-
-  const handleAppStateChange = useCallback(
-    nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        if (__DEV__) {
-          console.log('APP STATE ACTIVE');
-        }
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
 
   const handleOpenURL = useCallback(event => {
     const {type, id} = getPathForDeepLinking(event.url);
@@ -151,6 +137,7 @@ const EscrapHomeScreen = ({
         height: '100%',
         backgroundColor: colors.main_theme_bg_color,
       }}>
+      <AppStateComponent />
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,
