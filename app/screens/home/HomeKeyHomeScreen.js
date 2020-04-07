@@ -15,6 +15,7 @@ import {
   resetStore,
   setDeepLinking,
   setPlayerId,
+  toggleResetApp,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
@@ -32,7 +33,6 @@ import {
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
-import AppStateComponent from '../AppStateComponent';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -77,6 +77,10 @@ const HomeKeyHomeScreen = ({
     dispatch(refetchHomeElements());
   }, [refresh]);
 
+  useEffect(() => {
+    dispatch(toggleResetApp(true));
+  }, []);
+
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
     return true;
@@ -120,7 +124,6 @@ const HomeKeyHomeScreen = ({
 
   return (
     <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
-      <AppStateComponent />
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,

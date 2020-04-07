@@ -45,9 +45,7 @@ import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
 import {channel} from '../../env';
 import {Button} from 'react-native-elements';
-
 import {axiosInstance} from '../../redux/actions/api';
-import AppStateComponent from '../AppStateComponent';
 
 const AtSpotHomeScreen = ({
   homeCategories,
@@ -167,7 +165,6 @@ const AtSpotHomeScreen = ({
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-      <AppStateComponent />
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
         <IntroductionWidget
           elements={splashes}

@@ -55,8 +55,12 @@ const App = ({
   searchModal,
   lang,
   currency,
+  resetApp,
 }) => {
+  const [appState, setAppState] = useState(AppState.currentState);
+
   useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
     codePush.allowRestart();
     dispatch(appBootstrap());
     codePush.checkForUpdate().then(update => {
@@ -76,6 +80,21 @@ const App = ({
       axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
     }
   }, [lang, bootStrapped, token]);
+
+  const handleAppStateChange = useCallback(
+    nextAppState => {
+      if (appState.match(/inactive|background/) && nextAppState === 'active') {
+      }
+      setAppState(nextAppState);
+    },
+    [appState],
+  );
+
+  useEffect(() => {
+    if (appState === 'background' && resetApp) {
+      dispatch(toggleBootstrapped(false));
+    }
+  }, [appState]);
 
   if (isLoading) {
     return (
@@ -211,6 +230,7 @@ function mapStateToProps(state) {
     guest: state.guest,
     loginModal: state.loginModal,
     searchModal: state.searchModal,
+    resetApp: state.resetApp,
   };
 }
 
@@ -234,6 +254,7 @@ App.propTypes = {
   lang: PropTypes.string.isRequired,
   token: PropTypes.string,
   guest: PropTypes.bool,
+  resetApp: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(codePush(App));

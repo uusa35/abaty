@@ -207,7 +207,7 @@ const SideMeu = ({
               </View>
             )}
             <TouchableOpacity
-              onPress={() => navigation.navigate('Contactus')}
+              onPress={() => navigation.navigate('Contactus', {reset: false})}
               style={styles.menuBtn}>
               <Icon
                 name="old-phone"

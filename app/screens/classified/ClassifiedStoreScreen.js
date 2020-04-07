@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {text, touchOpacity} from '../../constants/sizes';
-import {showCountryModal} from '../../redux/actions';
+import {showCountryModal, toggleResetApp} from '../../redux/actions';
 import {storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
@@ -51,6 +51,10 @@ const ClassifiedStoreScreen = ({
   const [image, setImage] = useState('');
   const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);
   const [sampleLogo, setSampleLogo] = useState('');
+
+  useEffect(() => {
+    dispatch(toggleResetApp(false));
+  }, []);
 
   const openPicker = useCallback(() => {
     return ImagePicker.openPicker({

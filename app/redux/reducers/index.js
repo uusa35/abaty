@@ -85,6 +85,7 @@ import hotDealsProducts from './hotDealsProducts';
 import bestSaleProducts from './bestSaleProducts';
 import searchModal from './searchModal';
 import video from './video';
+import resetApp from './resetApp';
 import {reducer as network} from 'react-native-offline';
 
 let reducers = combineReducers({
@@ -174,6 +175,7 @@ let reducers = combineReducers({
   hotDealsProducts,
   bestSaleProducts,
   video,
+  resetApp,
   searchModal,
 });
 

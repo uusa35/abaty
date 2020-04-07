@@ -23,6 +23,7 @@ import {
   refetchHomeElements,
   setDeepLinking,
   setPlayerId,
+  toggleResetApp,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
@@ -46,7 +47,6 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
-import AppStateComponent from '../AppStateComponent';
 
 const MallrHomeScreen = ({
   homeCategories,
@@ -92,6 +92,10 @@ const MallrHomeScreen = ({
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
+
+  useEffect(() => {
+    dispatch(toggleResetApp(true));
+  }, []);
 
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
@@ -145,12 +149,10 @@ const MallrHomeScreen = ({
     },
     [deviceId],
   );
-
   useMemo(() => {}, [deviceId]);
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-      <AppStateComponent />
       {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
         <IntroductionWidget
           elements={splashes}

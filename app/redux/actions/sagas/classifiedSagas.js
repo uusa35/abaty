@@ -247,6 +247,7 @@ export function* startNewClassifiedScenario(action) {
     yield put(
       NavigationActions.navigate({
         routeName: 'ClassifiedStore',
+        params: {reset: false},
       }),
     );
   }

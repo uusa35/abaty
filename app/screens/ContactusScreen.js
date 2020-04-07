@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import SocialRowWidget from '../components/widgets/SocialRowWidget';
 import ContactInformationWidget from '../components/widgets/ContactInformationWidget';

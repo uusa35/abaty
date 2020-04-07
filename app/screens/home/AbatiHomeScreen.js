@@ -16,6 +16,7 @@ import {
   setDeepLinking,
   setPlayerId,
   toggleBootstrapped,
+  toggleResetApp,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
@@ -41,7 +42,6 @@ import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/cat
 import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import homeServices from '../../redux/reducers/homeServices';
-import AppStateComponent from '../AppStateComponent';
 
 const AbatiHomeScreen = ({
   homeCategories,
@@ -82,6 +82,10 @@ const AbatiHomeScreen = ({
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
+
+  useEffect(() => {
+    dispatch(toggleResetApp(true));
+  }, []);
 
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
@@ -126,7 +130,6 @@ const AbatiHomeScreen = ({
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-      <AppStateComponent />
       {!validate.isEmpty(splashes) && splash_on ? (
         <IntroductionWidget
           elements={splashes}

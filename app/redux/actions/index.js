@@ -1,7 +1,5 @@
 import * as actions from './types';
 import I18n from './../../I18n';
-import {TOGGLE_LOADING} from './types';
-import {SET_APP_STATE} from './types';
 
 export function appBootstrap() {
   return {
@@ -285,7 +283,14 @@ export function addComment(payload) {
 
 export function toggleLoading(payload) {
   return {
-    type: TOGGLE_LOADING,
+    type: actions.TOGGLE_LOADING,
+    payload,
+  };
+}
+
+export function toggleResetApp(payload) {
+  return {
+    type: actions.TOGGLE_RESET_APP,
     payload,
   };
 }

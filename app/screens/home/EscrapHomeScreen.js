@@ -14,6 +14,7 @@ import {
   refetchHomeElements,
   setDeepLinking,
   setPlayerId,
+  toggleResetApp,
 } from '../../redux/actions';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
@@ -39,8 +40,6 @@ import {
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
-import {isLocal} from '../../env';
-import AppStateComponent from '../AppStateComponent';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -86,6 +85,10 @@ const EscrapHomeScreen = ({
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
+
+  useEffect(() => {
+    dispatch(toggleResetApp(true));
+  }, []);
 
   const handleBackPress = useCallback(() => {
     return dispatch(goBackBtn(navigation.isFocused()));
@@ -137,7 +140,6 @@ const EscrapHomeScreen = ({
         height: '100%',
         backgroundColor: colors.main_theme_bg_color,
       }}>
-      <AppStateComponent />
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,
