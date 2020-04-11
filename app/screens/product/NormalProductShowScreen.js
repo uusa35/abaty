@@ -55,6 +55,8 @@ const NormalProductShowScreen = ({
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <ImagesWidget
+          sku={product.sku}
+          qr={product.qr}
           elements={product.images
             .concat({id: product.id, large: product.large})
             .reverse()}

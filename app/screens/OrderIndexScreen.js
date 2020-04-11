@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
-import {StyleSheet, RefreshControl, FlatList} from 'react-native';
+import React, {Fragment, useState} from 'react';
+import {
+  StyleSheet,
+  RefreshControl,
+  FlatList,
+  ImageBackground,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import {isIOS} from '../constants';
-import {text} from '../constants/sizes';
+import {height, text, width} from '../constants/sizes';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import {isRTL} from '../I18n';
@@ -14,6 +19,8 @@ import {map} from 'lodash';
 import OrderWidget from '../components/widgets/order/OrderWidget';
 import {colorsSelector, logoSelector} from '../redux/selectors/collection';
 import {reAuthenticate} from '../redux/actions/user';
+import {ABATI} from '../../app';
+import {images} from '../constants/images';
 
 const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
@@ -50,19 +57,40 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
           renderItem={({item}) => <OrderWidget element={item} logo={logo} />}
         />
       ) : (
-        <Button
-          raised
-          containerStyle={{marginBottom: 10, width: '90%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0,
+        <ImageBackground
+          style={{
+            width,
+            height: height,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
-          title={I18n.t('no_orders')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color,
-          }}
-        />
+          resizeMode="contain"
+          source={ABATI ? images.emptyOrder : null}>
+          {!ABATI ? (
+            <Fragment>
+              <Button
+                raised
+                title={I18n.t('no_orders')}
+                type="outline"
+                containerStyle={{marginBottom: 20, width: '90%'}}
+                titleStyle={{fontFamily: text.font}}
+              />
+              <Button
+                onPress={() => navigation.navigate('Home')}
+                raised
+                title={I18n.t('shop_now')}
+                type="outline"
+                containerStyle={{marginBottom: 20, width: '90%'}}
+                titleStyle={{
+                  fontFamily: text.font,
+                  color: colors.main_text_theme_color,
+                }}
+                col
+              />
+            </Fragment>
+          ) : null}
+        </ImageBackground>
       )}
     </View>
   );

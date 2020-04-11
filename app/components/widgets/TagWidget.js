@@ -5,21 +5,26 @@ import {text} from '../../constants/sizes';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 
-const TagWidget = ({textColor = 'white', bgColor = 'black', tagName}) => {
+const TagWidget = ({
+  textColor = 'white',
+  bgColor = 'black',
+  tagName,
+  sku = null,
+}) => {
   return (
     <Button
-      title={I18n.t(tagName)}
+      title={sku ? `${I18n.t('sku')} : ${sku}` : I18n.t(tagName)}
       raised
       containerStyle={{
-        width: 80,
+        minWidth: 80,
         height: 25,
-        opacity: 0.7,
+        // opacity: 0.7,
         padding: 0,
         marginBottom: 10,
       }}
       buttonStyle={{
         borderRadius: 0,
-        width: 80,
+        minWidth: 80,
         height: 25,
         padding: 0,
         backgroundColor: bgColor,
@@ -27,7 +32,7 @@ const TagWidget = ({textColor = 'white', bgColor = 'black', tagName}) => {
         justifyContent: 'center',
       }}
       titleStyle={{
-        padding: 0,
+        padding: 10,
         fontFamily: text.font,
         fontSize: text.small,
         // fontWeight: '900',

@@ -3,12 +3,12 @@ import {
   I18nManager,
   StyleSheet,
   ImageBackground,
-  ScrollView,
   TouchableOpacity,
   View,
   Text,
+  FlatList,
+  Image,
 } from 'react-native';
-import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {text, touchOpacity} from '../../constants/sizes';
 import {images} from '../../constants/images';
@@ -29,6 +29,8 @@ const ImagesWidget = ({
   height = 200,
   width = 200,
   resizeMode = 'cover',
+  sku = null,
+  qr = null,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
@@ -56,32 +58,39 @@ const ImagesWidget = ({
           </Text>
         ) : null}
       </View>
-      <ScrollView
+      <FlatList
         horizontal={true}
         alwaysBounceVertical={false}
         alwaysBounceHorizontal={false}
         showsHorizontalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={width + 10}
+        bounces={true}
+        disableIntervalMomentum={true}
         contentContainerStyle={{height: height}}
-        style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}>
-        {map(elements, (c, i) => (
+        style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}
+        numColumns={1}
+        scrollEnabled={true}
+        data={elements}
+        renderItem={item => (
           <TouchableOpacity
             activeOpacity={touchOpacity}
-            key={i}
+            key={item.index}
             onPress={() =>
               navigate('ImageZoom', {
                 images: elements,
                 name,
-                index: i,
+                index: item.index,
               })
             }>
             <ImageBackground
               source={{
-                uri: c.large,
+                uri: item.item.large,
               }}
               loadingIndicatorSource={images.logo}
               style={{width, height}}
               resizeMode={resizeMode}>
-              {showLabels && i === 0 ? (
+              {showLabels && item.index === 0 ? (
                 <View
                   style={{
                     flex: 1,
@@ -89,18 +98,30 @@ const ImagesWidget = ({
                     justifyContent: 'flex-end',
                     alignItems: 'flex-end',
                   }}>
+                  {qr ? (
+                    <Image
+                      source={{uri: qr}}
+                      style={{
+                        width: 80,
+                        height: 80,
+                        marginTop: 10,
+                        marginBottom: 10,
+                      }}
+                    />
+                  ) : null}
                   {isFeatured ? <TagWidget tagName="featured" /> : null}
                   {exclusive ? <TagWidget tagName="exclusive" /> : null}
                   {isOnSale ? (
                     <TagWidget tagName="under_sale" bgColor="red" />
                   ) : null}
                   {isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
+                  {sku ? <TagWidget sku={sku} bgColor="black" /> : null}
                 </View>
               ) : null}
             </ImageBackground>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 };

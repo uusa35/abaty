@@ -1,14 +1,15 @@
-import React, {useState, useMemo} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import React, {useState, useMemo, Fragment} from 'react';
+import {ScrollView, StyleSheet, View, ImageBackground} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
-import {text, width} from '../../constants/sizes';
+import {text, width, height} from '../../constants/sizes';
+import {images} from '../../constants/images';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
 import {map} from 'lodash';
 import ProductWidget from '../../components/widgets/product/ProductWidget';
-
+import {ABATI} from './../../../app';
 const FavoriteProductIndexScreen = ({
   favorites,
   searchParams,
@@ -44,32 +45,40 @@ const FavoriteProductIndexScreen = ({
           <ProductWidget element={c} showName={true} key={i} />
         ))
       ) : (
-        <View
+        <ImageBackground
           style={{
-            marginTop: 300,
-            width: width - 50,
+            width,
+            height: height - 100,
             alignSelf: 'center',
-          }}>
-          <Button
-            raised
-            title={I18n.t('no_items')}
-            type="outline"
-            containerStyle={{marginBottom: 20}}
-            titleStyle={{fontFamily: text.font}}
-          />
-          <Button
-            onPress={() => navigation.navigate('Home')}
-            raised
-            title={I18n.t('shop_now')}
-            type="outline"
-            containerStyle={{marginBottom: 20}}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.main_text_theme_color,
-            }}
-            col
-          />
-        </View>
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          resizeMode="contain"
+          source={ABATI ? images.emptyProductFavorite : null}>
+          {!ABATI ? (
+            <Fragment>
+              <Button
+                raised
+                title={I18n.t('no_items')}
+                type="outline"
+                containerStyle={{marginBottom: 20, width: '90%'}}
+                titleStyle={{fontFamily: text.font}}
+              />
+              <Button
+                onPress={() => navigation.navigate('Home')}
+                raised
+                title={I18n.t('shop_now')}
+                type="outline"
+                containerStyle={{marginBottom: 20, width: '90%'}}
+                titleStyle={{
+                  fontFamily: text.font,
+                  color: colors.main_text_theme_color,
+                }}
+                col
+              />
+            </Fragment>
+          ) : null}
+        </ImageBackground>
       )}
     </ScrollView>
   );
