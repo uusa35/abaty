@@ -7,6 +7,7 @@ import {height, text} from './../../../constants/sizes';
 import I18n from './../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
+import {toggleIntroduction} from '../../../redux/actions';
 
 const IntroductionWidget = ({elements, showIntroduction}) => {
   const [visible, setVisible] = useState(showIntroduction);
@@ -15,13 +16,13 @@ const IntroductionWidget = ({elements, showIntroduction}) => {
 
   const handleClick = useCallback(() => {
     setVisible(false);
-    dispatch({type: 'HIDE_INTRODUCTION'});
+    dispatch(toggleIntroduction(false));
   }, [visible]);
 
   return (
     <Modal
       transparent={false}
-      visible={visible}
+      visible={showIntroduction}
       animationType="slide"
       onRequestClose={() => setVisible(false)}>
       <AppIntroSlider

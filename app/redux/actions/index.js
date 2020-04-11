@@ -294,3 +294,10 @@ export function toggleResetApp(payload) {
     payload,
   };
 }
+
+export function toggleIntroduction(payload) {
+  return {
+    type: actions.TOGGLE_INTRODUCTION,
+    payload,
+  };
+}

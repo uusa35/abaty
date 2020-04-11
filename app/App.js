@@ -7,6 +7,7 @@ import {
   resetStore,
   setApplicationState,
   toggleBootstrapped,
+  toggleIntroduction,
 } from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/Loading/LoadingView';
@@ -92,6 +93,7 @@ const App = ({
 
   useEffect(() => {
     if (appState === 'background' && resetApp) {
+      dispatch(toggleIntroduction(true));
       dispatch(toggleBootstrapped(false));
     }
   }, [appState]);

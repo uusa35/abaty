@@ -28,6 +28,13 @@ const FavoriteClassifiedIndexScreen = ({favorites}) => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignSelf: 'center',
+        padding: 10,
+      }}
       contentInset={{bottom: 150}}>
       {!validate.isEmpty(currentFavorites) ? (
         map(currentFavorites, (c, i) => (

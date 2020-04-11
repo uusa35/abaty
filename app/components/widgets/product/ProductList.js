@@ -117,13 +117,14 @@ const ProductList = ({
           onEndReached={() => loadMore()}
           contentContainerStyle={{
             marginBottom: 15,
-            justifyContent: 'flex-start',
+            alignSelf: 'center',
             minHeight: height,
           }}
           columnWrapperStyle={{
-            justifyContent: 'center',
-            alignSelf: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-start',
             alignItems: 'flex-start',
+            alignSelf: 'center',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',

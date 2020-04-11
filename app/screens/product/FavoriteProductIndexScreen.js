@@ -34,9 +34,10 @@ const FavoriteProductIndexScreen = ({
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{
-        width: '100%',
+        flexWrap: 'wrap',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
+        alignSelf: 'center',
         padding: 10,
       }}
       contentInset={{bottom: 150}}>
