@@ -25,7 +25,7 @@ export const ProductStack = createStackNavigator(
       screen: gestureHandlerRootHOC(NormalProductShowScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: <HeaderMiddle title={navigation.state.params.name} />,
-        headerRight: <HeaderRight displayShare={true} display={true} />,
+        headerRight: <HeaderRight displayShare={true} showCountry={true} display={true} />,
         headerBackTitle: null,
       }),
       path: `product/:id`,
