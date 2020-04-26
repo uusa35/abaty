@@ -73,3 +73,10 @@ export function removeCoupon() {
     type: actions.REMOVE_COUPON,
   };
 }
+
+export function setShipmentFees(payload) {
+  return {
+    type: actions.SET_SHIPMENT_FEES,
+    payload,
+  };
+}

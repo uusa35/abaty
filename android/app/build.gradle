@@ -146,8 +146,8 @@ android {
         applicationId "com.abaty"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "12"
+        versionCode 14
+        versionName "14"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
     }

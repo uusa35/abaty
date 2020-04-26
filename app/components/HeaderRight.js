@@ -53,7 +53,13 @@ export const HeaderRight = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <FastImage
             source={{uri: country.thumb}}
-            style={{width: 35, height: 20}}
+            style={{
+              width: 25,
+              height: 25,
+              borderRadius: 25 / 2,
+              borderWidth: 0.4,
+              borderColor: '#cdcdcd',
+            }}
             resizeMode="stretch"
           />
         </TouchableOpacity>

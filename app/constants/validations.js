@@ -26,7 +26,13 @@ export const registerConstrains = {
 
 export const storeClassifiedConstrains = {
   name: {length: {minimum: 3}, presence: true},
-  price: {presence: true, length: {minimum: 1}},
+  price: {
+    presence: true,
+    length: {minimum: 1, maximum: 10},
+    format: {
+      pattern: '[a-z0-9]+',
+    },
+  },
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
   image: {presence: {allowEmpty: false}},
@@ -35,7 +41,13 @@ export const storeClassifiedConstrains = {
 
 export const editClassifiedConstrains = {
   name: {length: {minimum: 3}, presence: true},
-  price: {presence: true},
+  price: {
+    presence: true,
+    length: {minimum: 1, maximum: 10},
+    format: {
+      pattern: '[a-z0-9]+',
+    },
+  },
   mobile: {length: {minimum: 6}, presence: true},
   description: {length: {minimum: 5}, presence: true},
   image: {presence: {allowEmpty: true}},

@@ -1,34 +1,8 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {
-  BackHandler,
-  Linking,
-  RefreshControl,
-  ScrollView,
-  View,
-  StyleSheet,
-  AppState,
-} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {
-  goBackBtn,
-  goDeepLinking,
-  refetchHomeElements,
-  setDeepLinking,
-  setPlayerId,
-  toggleBootstrapped,
-  toggleResetApp,
-} from '../../redux/actions';
-import {isIOS} from '../../constants';
+import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
-import OneSignal from 'react-native-onesignal';
-import {
-  ABATI_ONE_SIGNAL_APP_ID,
-  ABATI,
-  MALLR,
-  HOMEKEY,
-  ESCRAP,
-} from './../../../app.json';
-import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
@@ -41,95 +15,35 @@ import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
-import homeServices from '../../redux/reducers/homeServices';
+import AndroidBackHandlerComponent from '../../components/AndroidBackHandlerComponent';
+import AppHomeConfigComponent from '../../AppHomeConfigComponent';
 
 const AbatiHomeScreen = ({
   homeCategories,
-  bootStrapped,
   commercials,
   slides,
-  splashes,
   brands,
   homeDesigners,
   homeCelebrities,
   homeProducts,
+  splashes,
   splash_on,
   show_commercials,
   colors,
   services,
   showIntroduction,
   dispatch,
-  navigation,
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const [device, setDevice] = useState('');
-  const [deviceId, setDeviceId] = useState('');
-
-  useEffect(() => {
-    if (ABATI) {
-      OneSignal.init(ABATI_ONE_SIGNAL_APP_ID);
-      OneSignal.addEventListener('received', onReceived);
-      OneSignal.addEventListener('opened', onOpened);
-      OneSignal.addEventListener('ids', onIds);
-    }
-    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', handleOpenURL);
-    !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
-      : null;
-  }, [bootStrapped]);
 
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
 
-  useEffect(() => {
-    dispatch(toggleResetApp(true));
-  }, []);
-
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
-
-  const handleOpenURL = useCallback(event => {
-    const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
-  });
-
-  const onReceived = useCallback(notification => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
-  });
-
-  const onOpened = useCallback(openResult => {
-    if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
-    }
-    const notification = getPathForDeepLinking(
-      openResult.notification.payload.launchURL,
-    );
-    dispatch(setDeepLinking(notification));
-    setTimeout(() => {
-      dispatch(goDeepLinking(notification));
-    }, 1000);
-  });
-
-  const onIds = useCallback(
-    device => {
-      setDeviceId(device.userId);
-      if (device.userId !== deviceId) {
-        dispatch(setPlayerId(device.userId));
-      }
-    },
-    [deviceId],
-  );
-
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
+      <AndroidBackHandlerComponent />
+      <AppHomeConfigComponent />
       {!validate.isEmpty(splashes) && splash_on ? (
         <IntroductionWidget
           elements={splashes}

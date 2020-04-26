@@ -8,6 +8,7 @@ import {
   setApplicationState,
   toggleBootstrapped,
   toggleIntroduction,
+  toggleResetApp,
 } from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import LoadingView from './components/Loading/LoadingView';
@@ -62,8 +63,8 @@ const App = ({
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
-    codePush.allowRestart();
     dispatch(appBootstrap());
+    codePush.allowRestart();
     codePush.checkForUpdate().then(update => {
       if (!update) {
         // console.debug('The app is up to date!');
@@ -159,6 +160,7 @@ const App = ({
               app_logo,
               guest,
               searchModal,
+              resetApp,
             }}>
             <React.Suspense fallback={<SimpleSpinner />}>
               <AppNavigator />

@@ -373,12 +373,15 @@ export function* startSubmitAuthScenario(action) {
       if (loginModal) {
         yield put({type: actions.HIDE_LOGIN_MODAL, payload: false});
       } else {
-        yield put(
-          NavigationActions.navigate({
-            routeName: MALLR ? 'Account' : 'Home',
-          }),
-        );
-        // yield put(NavigationActions.back());
+        if (MALLR) {
+          yield put(
+            NavigationActions.navigate({
+              routeName: 'Account',
+            }),
+          );
+        } else {
+          yield put(NavigationActions.back());
+        }
       }
     } else {
       throw element;

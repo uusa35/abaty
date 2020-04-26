@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {showCountryModal} from '../../../redux/actions';
 import {register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -97,6 +97,8 @@ const RegisterFormWidget = ({player_id}) => {
         onChangeText={text => setEmail(text)}
       />
       <Input
+        leftIcon={() => <Text>+{country.calling_code}</Text>}
+        leftIconContainerStyle={{paddingRight: 15}}
         placeholder={I18n.t('mobile') + '*'}
         inputContainerStyle={{
           borderWidth: 1,
@@ -112,7 +114,7 @@ const RegisterFormWidget = ({player_id}) => {
         }}
         shake={true}
         keyboardType="number-pad"
-        onChangeText={text => setMobile(text)}
+        onChangeText={text => setMobile(`+${country.calling_code}${text}`)}
       />
       <TouchableOpacity
         onPress={() => {

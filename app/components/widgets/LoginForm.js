@@ -138,7 +138,7 @@ const LoginForm = ({showBtns = false}) => {
               fontFamily: text.font,
               color: colors.btn_text_theme_color,
             }}
-            onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
+            onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
           />
         ) : null}
         {/*<SocialIcon*/}

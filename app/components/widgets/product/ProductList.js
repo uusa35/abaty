@@ -119,6 +119,7 @@ const ProductList = ({
             marginBottom: 15,
             alignSelf: 'center',
             minHeight: height,
+            minWidth: '100%',
           }}
           columnWrapperStyle={{
             flexWrap: 'wrap',

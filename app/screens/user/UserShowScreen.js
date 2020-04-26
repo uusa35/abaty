@@ -11,7 +11,6 @@ import ImagesWidget from '../components/widgets/ImagesWidget';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import UserInfoWidget from '../components/widgets/user/UserInfoWidget';
-import Collapsible from 'react-native-collapsible';
 import VideosWidget from '../components/widgets/VideosWidget';
 
 class UserShowScreen extends Component {

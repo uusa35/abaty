@@ -12,7 +12,7 @@ import {
   enableWarningMessage,
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
-import {startAppBootStrap} from './appSagas';
+import {enableResetApp, startAppBootStrap} from './appSagas';
 import {
   commentStoreConstrains,
   registerConstrains,
@@ -42,6 +42,7 @@ import {
   getHomeClassifiedCategories,
   getHomeUserCategories,
 } from './categorySagas';
+import {setShipmentFees} from '../cart';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -196,9 +197,15 @@ export function* startSetCountryScenario(action) {
         put({type: actions.SET_AREAS, payload: country.areas}),
         put({
           type: actions.SET_AREA,
-          payload: country.areas ? first(country.areas) : 1,
+          payload: !validate.isEmpty(country.areas)
+            ? first(country.areas)
+            : {id: 1, name: 'none'},
         }),
         put({type: actions.HIDE_COUNTRY_MODAL}),
+        put({
+          type: actions.SET_SHIPMENT_FEES,
+          payload: country.fixed_shipment_charge,
+        }),
         call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);
     }
@@ -289,6 +296,7 @@ export function* startRefetchHomeElementsScenario() {
         type: actions.GET_HOME_CLASSIFIEDS,
         payload: {searchParams: {on_home: 1}},
       }),
+      put({type: actions.TOGGLE_RESET_APP, payload: false}),
     ]);
   } catch (e) {
     if (__DEV__) {
@@ -297,6 +305,7 @@ export function* startRefetchHomeElementsScenario() {
     yield call(enableErrorMessage, I18n.t('refetch_home_error'));
   } finally {
     yield call(disableLoading);
+    yield call(enableResetApp);
   }
 }
 

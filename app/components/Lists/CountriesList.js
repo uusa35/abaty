@@ -2,15 +2,16 @@ import React, {useState, useContext, useCallback} from 'react';
 import {
   View,
   ScrollView,
-  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
-import {map} from 'lodash';
-import {hideCountryModal, setCountry} from '../../redux/actions';
+// import Modal from 'react-native-modal';
+import {map, first} from 'lodash';
+import {hideCountryModal, setArea, setCountry} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
-import {text} from '../../constants/sizes';
+import {text, width} from '../../constants/sizes';
 import {images} from '../../constants/images';
 import FastImage from 'react-native-fast-image';
 import {Icon} from 'react-native-elements';
@@ -25,11 +26,6 @@ const CountriesList = ({country, countries, countryModal}) => {
 
   const handleClick = useCallback(country => {
     dispatch(setCountry(country));
-    // if (!validate.isEmpty(country.areas)) {
-    //   dispatch(showAreaModal());
-    // } else {
-    //   dispatch(setArea({}));
-    // }
   });
 
   return (
@@ -37,6 +33,7 @@ const CountriesList = ({country, countries, countryModal}) => {
       transparent={true}
       visible={countryModal}
       animationType={'slide'}
+      // presentationStyle="formSheet"
       onRequestClose={() => setVisible(false)}>
       <View style={styles.container}>
         <ScrollView
@@ -44,32 +41,45 @@ const CountriesList = ({country, countries, countryModal}) => {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}>
           <View style={styles.titleContainer}>
-            <Text style={styles.phoneNo}>{I18n.t('choose_country')}</Text>
+            <Text style={[styles.phoneNo, {fontSize: text.medium}]}>
+              {I18n.t('choose_country')}
+            </Text>
             <Icon
               name="close"
               type="evil-icons"
-              size={30}
+              // type="ionicon"
+              size={20}
+              containerStyle={{position: 'absolute', top: 5, right: 5}}
               onPress={() => dispatch(hideCountryModal())}
               hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
             />
           </View>
-          {map(countries, (country, i) => {
-            return (
-              <TouchableOpacity
-                activeOpacity={1}
-                key={country.id}
-                hitSlop={{left: 15, right: 15}}
-                onPress={() => handleClick(country)}
-                style={styles.wrapper}>
-                <FastImage
-                  source={{uri: country.thumb}}
-                  style={styles.countryFlag}
-                  loadingIndicatorSource={images.logo}
-                />
-                <Text style={styles.phoneNo}>{country.slug}</Text>
-              </TouchableOpacity>
-            );
-          })}
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}>
+            {map(countries, (country, i) => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={1}
+                  key={country.id}
+                  hitSlop={{left: 15, right: 15}}
+                  onPress={() => handleClick(country)}
+                  style={styles.wrapper}>
+                  <FastImage
+                    source={{uri: country.thumb}}
+                    style={styles.countryFlag}
+                    resizeMode="cover"
+                    loadingIndicatorSource={images.logo}
+                  />
+                  <Text style={styles.phoneNo}>{country.slug}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </ScrollView>
       </View>
     </Modal>
@@ -86,39 +96,40 @@ CountriesList.propTypes = {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '25%',
-    right: '15%',
-    width: '70%',
-    backgroundColor: 'white',
-    padding: 10,
-    paddingTop: 15,
+    bottom: 0,
+    width,
+    backgroundColor: '#ffffff',
+    padding: 5,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#cdcdcd',
+    paddingBottom: 50,
   },
   wrapper: {
-    flexDirection: 'row',
     borderWidth: 0.5,
-    borderColor: 'lightgrey',
-    backgroundColor: 'white',
-    padding: 5,
+    borderColor: '#cdcdcd',
+    borderRadius: 10,
+    width: '30%',
+    height: 100,
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    height: 50,
+    alignSelf: 'center',
+    margin: 5,
   },
   phoneNo: {
     fontFamily: text.font,
-    fontSize: text.large,
-    paddingLeft: 20,
-    margin: 0,
-    padding: 0,
-    textAlign: 'left',
+    fontSize: text.smaller,
+    textAlign: 'center',
   },
   countryFlag: {
-    width: 45,
-    height: 25,
-    marginLeft: 10,
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
   },
   titleContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 15,
   },
 });

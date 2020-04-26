@@ -38,12 +38,7 @@ import {
   setDeviceId,
   enableErrorMessage,
   checkConnection,
-  startSetAppStateScenario,
 } from './settingSagas';
-import {
-  offlineActionTypes,
-  checkInternetConnection,
-} from 'react-native-offline';
 import validate from 'validate.js';
 import DeviceInfo from 'react-native-device-info';
 import {
@@ -134,6 +129,7 @@ function* startAppBootStrap() {
           type: actions.GET_HOME_CLASSIFIEDS,
           payload: {searchParams: {on_home: 1}},
         }),
+        put({type: actions.TOGGLE_RESET_APP, payload: false}),
       ]);
       yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
         yield call(disableLoading);
@@ -145,7 +141,13 @@ function* startAppBootStrap() {
     yield call(enableErrorMessage, I18n.t('app_general_error'));
   } finally {
     yield call(disableLoading);
+    yield call(enableResetApp);
   }
+}
+
+export function* enableResetApp() {
+  yield delay(60 * 15 * 1000);
+  yield put({type: actions.TOGGLE_RESET_APP, payload: true});
 }
 
 export function* appBootstrap() {

@@ -412,7 +412,6 @@ export async function storeClassified(elements) {
   } = elements;
   const formData = new FormData();
   if (checkImage(image)) {
-    console.log('image inside if');
     formData.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
@@ -452,8 +451,6 @@ export async function storeClassified(elements) {
     formData.append(`items[${i}][property_id]`, prop.property.id);
     formData.append(`items[${i}][value]`, prop.property.value);
   });
-  console.log('the final formData', formData);
-  console.log('fitered images', filteredImages);
   return await axiosInstance
     .post(`classified`, formData)
     .then(r => r.data)
@@ -480,7 +477,6 @@ export async function updateClassified({elements, id}) {
     classifiedProps,
   } = elements;
   const formData = new FormData();
-  console.log('image path', image.path);
   if (checkImage(image)) {
     formData.append('image', {
       uri: getImagePath(image),
@@ -488,7 +484,6 @@ export async function updateClassified({elements, id}) {
       type: getImageExtension(image),
     });
   }
-  console.log('the image from updateclassified saga', image);
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
@@ -523,8 +518,6 @@ export async function updateClassified({elements, id}) {
     formData.append(`items[${i}][value]`, prop.property.value);
   });
   formData.append('_method', 'put');
-  console.log('the form data', formData);
-  console.log('the id', id);
   return await axiosInstance
     .post(`classified/${id}`, formData)
     .then(r => r.data)

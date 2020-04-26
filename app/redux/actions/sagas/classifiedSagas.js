@@ -164,7 +164,6 @@ export function* startStoreClassifiedScenario(action) {
       throw first(values(result))[0];
     }
   } catch (e) {
-    console.log('the error', e);
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -200,7 +199,6 @@ export function* startEditClassifiedScenario(action) {
       throw first(values(result))[0];
     }
   } catch (e) {
-    console.log('the error', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoadingContent);

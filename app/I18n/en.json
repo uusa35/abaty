@@ -561,5 +561,6 @@
   "new_collection" : "New Collection",
   "save" : "Save",
   "save_collection" : "Save Collection",
-  "upload_cover" : "Upload Cover"
+  "upload_cover" : "Upload Cover",
+  "exists" : "Yes"
 }

@@ -5,11 +5,10 @@ import {ProductList} from '../../components/LazyLoadingComponents/productCompone
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import {productsSelector} from '../../redux/selectors/collections';
-import LoadingBoxedListView from '../../components/Loading/LoadingBoxedListView';
 import validate from 'validate.js';
 import {last} from 'lodash';
 
-const ProductIndexAllScreen = ({dispatch, products, isLoadingContent}) => {
+const ProductIndexAllScreen = ({dispatch, products}) => {
   const end = useRef();
   const [currentElements, setCurrentElements] = useState([]);
 

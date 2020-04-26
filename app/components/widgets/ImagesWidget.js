@@ -115,7 +115,9 @@ const ImagesWidget = ({
                     <TagWidget tagName="under_sale" bgColor="red" />
                   ) : null}
                   {isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
-                  {sku ? <TagWidget sku={sku} bgColor="black" /> : null}
+                  {sku ? (
+                    <TagWidget tagName={sku} sku={sku} bgColor="black" />
+                  ) : null}
                 </View>
               ) : null}
             </ImageBackground>

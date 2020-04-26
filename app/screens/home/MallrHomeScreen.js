@@ -47,12 +47,13 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
+import AndroidBackHandlerComponent from '../../components/AndroidBackHandlerComponent';
+import AppHomeConfigComponent from '../../AppHomeConfigComponent';
 
 const MallrHomeScreen = ({
   homeCategories,
   commercials,
   slides,
-  splashes,
   brands,
   homeDesigners,
   bestSaleProducts,
@@ -61,99 +62,19 @@ const MallrHomeScreen = ({
   onSaleProducts,
   homeCollections,
   splash_on,
+  splashes,
   show_commercials,
   colors,
   showIntroduction,
   homeCompanies,
-  dispatch,
-  navigation,
 }) => {
-  [refresh, setRefresh] = useState(false);
-  [appState, setAppState] = useState(AppState.currentState);
-  [device, setDevice] = useState('');
-  [deviceId, setDeviceId] = useState('');
-
-  useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    if (MALLR) {
-      OneSignal.init(MALLR_ONE_SIGNAL_APP_ID);
-      OneSignal.addEventListener('received', onReceived);
-      OneSignal.addEventListener('opened', onOpened);
-      OneSignal.addEventListener('ids', onIds);
-    }
-    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', handleOpenURL);
-
-    !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
-      : null;
-  });
-
-  const handleRefresh = useCallback(() => {
-    dispatch(refetchHomeElements());
-  }, [refresh]);
-
-  useEffect(() => {
-    dispatch(toggleResetApp(true));
-  }, []);
-
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
-
-  const handleAppStateChange = useCallback(
-    nextAppState => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        if (__DEV__) {
-          console.log('APP STATE ACTIVE');
-        }
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
-
-  const handleOpenURL = useCallback(event => {
-    const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
-  });
-
-  const onReceived = useCallback(notification => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
-  });
-
-  const onOpened = useCallback(openResult => {
-    if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
-    }
-    const notification = getPathForDeepLinking(
-      openResult.notification.payload.launchURL,
-    );
-    dispatch(setDeepLinking(notification));
-    setTimeout(() => {
-      dispatch(goDeepLinking(notification));
-    }, 1000);
-  });
-
-  const onIds = useCallback(
-    device => {
-      setDeviceId(device.userId);
-      if (device.userId !== deviceId) {
-        dispatch(setPlayerId(device.userId));
-      }
-    },
-    [deviceId],
-  );
-  useMemo(() => {}, [deviceId]);
+  const [refresh, setRefresh] = useState(false);
 
   return (
     <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-      {!validate.isEmpty(splashes) && splash_on && __DEV__ ? (
+      <AndroidBackHandlerComponent />
+      <AppHomeConfigComponent />
+      {!validate.isEmpty(splashes) && splash_on ? (
         <IntroductionWidget
           elements={splashes}
           showIntroduction={showIntroduction}

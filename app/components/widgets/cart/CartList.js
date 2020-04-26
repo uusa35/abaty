@@ -28,7 +28,7 @@ const CartList = ({
   shipmentFees,
 }) => {
   const {dispatch} = useContext(DispatchContext);
-  const {colors, total, grossTotal} = useContext(GlobalValuesContext);
+  const {colors, total, grossTotal, country} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -342,6 +342,8 @@ const CartList = ({
               editable={editMode}
               textContentType="telephoneNumber"
               placeholder={mobile ? mobile : I18n.t('mobile')}
+              leftIcon={() => <Text>+{country.calling_code}</Text>}
+              leftIconContainerStyle={{paddingRight: 15}}
               value={mobile ? mobile : null}
               inputContainerStyle={{
                 borderWidth: 1,
@@ -364,7 +366,9 @@ const CartList = ({
               }}
               shake={true}
               keyboardType="number-pad"
-              onChangeText={mobile => setMobile(mobile)}
+              onChangeText={text =>
+                setMobile(`+${country.calling_code}${text}`)
+              }
             />
             <TouchableOpacity
               onPress={() => {

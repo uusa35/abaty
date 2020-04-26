@@ -134,8 +134,14 @@ const NormalClassifiedShowScreen = ({
                     key={i}
                     elementName={p.categoryGroup.name}
                     name={p.property.value}
+                    properties={p.property}
                     showIcon={false}
                     translate={false}
+                    properties={
+                      p.categoryGroup.is_multi
+                        ? p.categoryGroup.properties
+                        : null
+                    }
                     iconName={p.categoryGroup.icon}
                   />
                 ))}

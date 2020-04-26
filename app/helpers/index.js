@@ -11,6 +11,9 @@ import {isIOS} from './../constants';
 import geolib, {getDistance} from 'geolib';
 import validate from 'validate.js';
 
+export const convertNumberToEnglish = n => {
+  return n.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, c => c.charCodeAt(0) & 0xf);
+};
 export async function setAuthToken(token) {
   return AsyncStorage.setItem('api_token', token);
 }

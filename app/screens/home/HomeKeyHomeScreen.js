@@ -1,27 +1,8 @@
-import React, {useState, useMemo, useEffect, useCallback} from 'react';
-import {
-  BackHandler,
-  Linking,
-  RefreshControl,
-  ScrollView,
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {
-  goBackBtn,
-  goDeepLinking,
-  refetchHomeElements,
-  resetStore,
-  setDeepLinking,
-  setPlayerId,
-  toggleResetApp,
-} from '../../redux/actions';
-import {isIOS} from '../../constants';
+import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
-import OneSignal from 'react-native-onesignal';
-import {HOMKEY_ONE_SIGNAL_APP_ID, HOMEKEY} from './../../../app.json';
-import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/MainSliderWidget';
 import validate from 'validate.js';
@@ -33,6 +14,9 @@ import {
   HomeKeySearchTab,
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
+import AndroidBackHandlerComponent from '../../components/AndroidBackHandlerComponent';
+import AppHomeConfigComponent from '../../AppHomeConfigComponent';
+import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -44,86 +28,33 @@ const HomeKeyHomeScreen = ({
   showIntroduction,
   homeCompanies,
   dispatch,
-  navigation,
   homeClassifieds,
   main_bg,
-  guest,
+  splashes,
+  splash_on,
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const [device, setDevice] = useState('');
-  const [deviceId, setDeviceId] = useState('');
-  const [headerBg, setHeaderBg] = useState(true);
-  const [headerBgColor, setHeaderBgColor] = useState('transparent');
-
-  useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
-  }, [headerBg, headerBgColor]);
-
-  useEffect(() => {
-    if (HOMEKEY) {
-      OneSignal.init(HOMKEY_ONE_SIGNAL_APP_ID);
-      OneSignal.addEventListener('received', onReceived);
-      OneSignal.addEventListener('opened', onOpened);
-      OneSignal.addEventListener('ids', onIds);
-    }
-    //OneSignal.configure(); // this will fire even to fetch the player_id of the device;
-    Linking.addEventListener('url', handleOpenURL);
-    !isIOS
-      ? BackHandler.addEventListener('hardwareBackPress', handleBackPress)
-      : null;
-  });
 
   const handleRefresh = useCallback(() => {
     dispatch(refetchHomeElements());
   }, [refresh]);
 
-  useEffect(() => {
-    dispatch(toggleResetApp(true));
-  }, []);
-
-  const handleBackPress = useCallback(() => {
-    return dispatch(goBackBtn(navigation.isFocused()));
-    return true;
-  });
-
-  const handleOpenURL = useCallback(event => {
-    const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
-  });
-
-  const onReceived = useCallback(notification => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
-  });
-
-  const onOpened = useCallback(openResult => {
-    if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
-    }
-    const notification = getPathForDeepLinking(
-      openResult.notification.payload.launchURL,
-    );
-    dispatch(setDeepLinking(notification));
-    setTimeout(() => {
-      dispatch(goDeepLinking(notification));
-    }, 1000);
-  });
-
-  const onIds = useCallback(
-    device => {
-      setDeviceId(device.userId);
-      if (device.userId !== deviceId) {
-        dispatch(setPlayerId(device.userId));
-      }
-    },
-    [deviceId],
-  );
-
   return (
     <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
+      <AndroidBackHandlerComponent />
+      <AppHomeConfigComponent />
+      {!validate.isEmpty(splashes) && splash_on ? (
+        <IntroductionWidget
+          elements={splashes}
+          showIntroduction={showIntroduction}
+        />
+      ) : null}
+      {!validate.isEmpty(splashes) && splash_on ? (
+        <IntroductionWidget
+          elements={splashes}
+          showIntroduction={showIntroduction}
+        />
+      ) : null}
       <ScrollView
         contentContainerStyle={{
           backgroundColor: colors.main_theme_bg_color,

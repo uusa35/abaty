@@ -1,5 +1,5 @@
 import React, {useState, useMemo} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';

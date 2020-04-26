@@ -309,9 +309,9 @@ const ClassifiedFilterScreen = ({
               step={10}
               values={priceRange}
               sliderLength={width - 90}
-              onValuesChangeStart={() => console.log('started')}
+              // onValuesChangeStart={() => console.log('started')}
               onValuesChange={e => setPriceRange(e)}
-              onValuesChangeFinish={() => console.log('end')}
+              // onValuesChangeFinish={() => console.log('end')}
               style={{alignSelf: 'center'}}
               selectedStyle={{
                 backgroundColor: colors.btn_bg_theme_color,

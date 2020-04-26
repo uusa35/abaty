@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {map} from 'lodash';
 import {text} from './../../../constants/sizes';
+import I18n from '../../../I18n';
 
 const PropertiesWidget = ({elements}) => {
   return (
@@ -49,13 +50,16 @@ const PropertiesWidget = ({elements}) => {
             {/*  }}>*/}
             {/*  {item.categoryGroup.name}*/}
             {/*</Text>*/}
+
             <Text
               style={{
                 textAlign: 'center',
                 fontFamily: text.font,
                 fontSize: text.small,
               }}>
-              {item.property.value}
+              {item.categoryGroup.is_multi
+                ? I18n.t('exists')
+                : item.property.value}
             </Text>
           </View>
         ) : null,

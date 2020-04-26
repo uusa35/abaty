@@ -20,6 +20,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
+import {convertNumberToEnglish} from '../../helpers';
 
 const ClassifiedStoreScreen = ({
   auth,
@@ -31,12 +32,12 @@ const ClassifiedStoreScreen = ({
   classifiedProps,
   navigation,
 }) => {
-  const [name, setName] = useState('');
+  const {params} = navigation.state;
+  const [name, setName] = useState();
   const [mobile, setMobile] = useState(
     !validate.isEmpty(auth) ? auth.mobile : null,
   );
-  const [price, setPrice] = useState('');
-  const {params} = navigation.state;
+  const [price, setPrice] = useState();
   const [address, setAddress] = useState(
     !validate.isEmpty(params) ? params.address : '',
   );
@@ -47,10 +48,10 @@ const ClassifiedStoreScreen = ({
     !validate.isEmpty(params) ? params.latitude : '',
   );
   const [description, setDescription] = useState('');
-  const [images, setImages] = useState('');
-  const [image, setImage] = useState('');
+  const [images, setImages] = useState();
+  const [image, setImage] = useState();
   const [onlyWhatsapp, setOnlyWhatsapp] = useState(false);
-  const [sampleLogo, setSampleLogo] = useState('');
+  const [sampleLogo, setSampleLogo] = useState();
 
   useEffect(() => {
     dispatch(toggleResetApp(false));
@@ -290,7 +291,7 @@ const ClassifiedStoreScreen = ({
           }}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={text => setPrice(text)}
+          onChangeText={text => setPrice(convertNumberToEnglish(text))}
           defaultValue={price}
           placeholder={I18n.t('price')}
           label={I18n.t('price')}
@@ -434,7 +435,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ClassifiedStoreScreen);
+export default connect(mapStateToProps)(React.memo(ClassifiedStoreScreen));
 
 ClassifiedStoreScreen.propTypes = {
   auth: PropTypes.object.isRequired,
