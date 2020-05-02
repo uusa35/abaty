@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
-import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import {getCelebrity} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';

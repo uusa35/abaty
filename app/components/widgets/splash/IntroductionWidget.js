@@ -40,6 +40,7 @@ const IntroductionWidget = ({elements, showIntroduction}) => {
         doneLabel={I18n.t('done')}
         nextLabel={I18n.t('next')}
         prevLabel={I18n.t('back')}
+        activeDotStyle={{backgroundColor: colors.btn_bg_theme_color}}
         buttonTextStyle={{
           fontFamily: text.font,
           color: colors.btn_text_theme_color,

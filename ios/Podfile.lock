@@ -76,10 +76,11 @@ PODS:
   - libwebp/mux (1.1.0):
     - libwebp/demux
   - libwebp/webp (1.1.0)
-  - lottie-ios (3.1.6)
+  - lottie-ios (3.1.8)
   - lottie-react-native (3.3.2):
     - lottie-ios (~> 3.1.3)
     - React
+  - Mixpanel (3.6.0)
   - OneSignal (2.13.1)
   - QBImagePickerController (3.4.0)
   - RCTRequired (0.61.5)
@@ -90,7 +91,7 @@ PODS:
     - Folly (= 2018.10.22.00)
     - RCTRequired (= 0.61.5)
     - React-Core (= 0.61.5)
-  - RCTYouTube (2.0.0):
+  - RCTYouTube (2.0.1):
     - React
     - YoutubePlayer-in-WKWebView (~> 0.3.1)
   - React (0.61.5):
@@ -262,12 +263,17 @@ PODS:
     - React
   - react-native-maps (0.25.0):
     - React
-  - react-native-netinfo (5.7.1):
+  - react-native-mixpanel (1.2.0):
+    - Mixpanel (~> 3.6.0)
     - React
-  - react-native-onesignal (3.7.2):
+  - react-native-netinfo (5.8.0):
+    - React
+  - react-native-onesignal (3.7.3):
     - OneSignal (= 2.13.1)
     - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (5.1.7):
+    - React
+  - react-native-safe-area-context (0.7.3):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -319,6 +325,8 @@ PODS:
     - React-Core
   - RNCAsyncStorage (1.9.0):
     - React
+  - RNCMaskedView (0.1.10):
+    - React
   - RNDeviceInfo (2.3.2):
     - React
   - RNFastImage (7.0.2):
@@ -339,7 +347,7 @@ PODS:
     - RSKImageCropper
   - RNReanimated (1.8.0):
     - React
-  - RNScreens (2.5.0):
+  - RNScreens (2.7.0):
     - React
   - RNSentry (1.3.7):
     - React
@@ -353,9 +361,9 @@ PODS:
   - RNVectorIcons (6.6.0):
     - React
   - RSKImageCropper (2.2.3)
-  - SDWebImage (5.7.2):
-    - SDWebImage/Core (= 5.7.2)
-  - SDWebImage/Core (5.7.2)
+  - SDWebImage (5.7.3):
+    - SDWebImage/Core (= 5.7.3)
+  - SDWebImage/Core (5.7.3)
   - SDWebImageWebPCoder (0.2.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
@@ -399,9 +407,11 @@ DEPENDENCIES:
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-google-places (from `../node_modules/react-native-google-places`)
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-spinkit (from `../node_modules/react-native-spinkit`)
   - react-native-video (from `../node_modules/react-native-video/react-native-video.podspec`)
   - "react-native-viewpager (from `../node_modules/@react-native-community/viewpager`)"
@@ -419,6 +429,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
@@ -448,6 +459,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - JWT
     - libwebp
+    - Mixpanel
     - OneSignal
     - RSKImageCropper
     - SDWebImage
@@ -505,12 +517,16 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-google-places"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-mixpanel:
+    :path: "../node_modules/react-native-mixpanel"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
   react-native-pdf:
     :path: "../node_modules/react-native-pdf"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   react-native-spinkit:
     :path: "../node_modules/react-native-spinkit"
   react-native-video:
@@ -543,6 +559,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/rn-fetch-blob"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-community/masked-view"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
   RNFastImage:
@@ -592,14 +610,15 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
-  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 2a1a82bb326ae51331a5520de0cf706733c6db69
+  Mixpanel: 446b6e7713aa34a9a3516ff7648d56551384fc94
   OneSignal: fa98eaa90372bb367b6a4a1c1622ffb9832c7600
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTRestart: 3abdd55016c31254b996e0a55cc14cc2544fa3c1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
-  RCTYouTube: 57458fe8653bb696b7d7585326d735d01b871af8
+  RCTYouTube: 4509d59a7de050dd0c7c6cb1f427d37678d63b5c
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
   React-Core: 688b451f7d616cc1134ac95295b593d1b5158a04
   React-CoreModules: d04f8494c1a328b69ec11db9d1137d667f916dcb
@@ -611,9 +630,11 @@ SPEC CHECKSUMS:
   react-native-google-maps: 88d750ad441b19c24885f20d43a55ecac25939b5
   react-native-google-places: 34e976a0e13cb55cc9603ef2fa6764ed534af806
   react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
-  react-native-netinfo: 4fa023c153d582aeae8435df95c9a975c5986449
-  react-native-onesignal: e8895a69983c8ffe953e1b0fc0f2ca75afc6af68
+  react-native-mixpanel: d644efe1ca33d2646d5cba29e24a13ebc9b37209
+  react-native-netinfo: b9650ab1b8b4362b3c455b1274e4bc48223cc957
+  react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 3c4f29b56f8916c4be96cad5cdb51ed2542c4b5c
+  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
@@ -630,6 +651,7 @@ SPEC CHECKSUMS:
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   rn-fetch-blob: 651b8d076b43d0d7aa294a3d9ec16c00aab8bef9
   RNCAsyncStorage: 453cd7c335ec9ba3b877e27d02238956b76f3268
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNDeviceInfo: 17e34f6dd902f08d88cbe2c0b7a01be948d43641
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
@@ -637,14 +659,14 @@ SPEC CHECKSUMS:
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: 9d1a7eea4f8368fc479cbd2bf26459bd3c74d9aa
   RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNScreens: ac02d0e4529f08ced69f5580d416f968a6ec3a1d
+  RNScreens: cf198f915f8a2bf163de94ca9f5bfc8d326c3706
   RNSentry: 370623102247ebea20191b5fb549ecc7a275b324
   RNShare: 48cf88cadf9ca2143cdaa557c1ec7f8808040ffc
   RNSnackbar: 160077964866262ed08cfd33ab4760219ea2aef6
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
-  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
+  SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a

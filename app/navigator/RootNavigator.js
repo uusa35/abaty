@@ -4,6 +4,7 @@ import AbatiRootNavigator from './abati/AbatiRootNavigator';
 import EscrapRootNavigator from './escrap/EscrapRootNavigator';
 import HomeKeyRootNavigator from './homekey/HomeKeyRootNavigator';
 import AtSpotRootNavigator from './AtSpot/AtSpotRootNavigator';
+import ExpoRootNavigator from './expo/ExpoRootNavigator';
 
 const AppNav = () => {
   switch (APP_CASE) {
@@ -17,6 +18,8 @@ const AppNav = () => {
       return HomeKeyRootNavigator;
     case 'atspot':
       return AtSpotRootNavigator;
+    case 'expo':
+      return ExpoRootNavigator;
     default:
       return AbatiRootNavigator;
   }

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
 import I18n from '../../I18n';

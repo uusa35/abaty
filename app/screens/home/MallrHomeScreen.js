@@ -37,7 +37,7 @@ import {
 } from './../../../app.json';
 import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';

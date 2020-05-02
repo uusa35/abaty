@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
@@ -47,6 +47,7 @@ const AbatiHomeScreen = ({
       {!validate.isEmpty(splashes) && splash_on ? (
         <IntroductionWidget
           elements={splashes}
+          IntroductionWidget
           showIntroduction={showIntroduction}
         />
       ) : null}

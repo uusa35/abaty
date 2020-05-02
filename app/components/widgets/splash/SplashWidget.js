@@ -21,7 +21,7 @@ const SplashWidget = ({elements, handleClick}) => {
           }}
           loadingIndicatorSource={images.logo}
           resizeMode="contain">
-          {i == 0 ? (
+          {i === 0 ? (
             <Icon
               size={30}
               name="close"

@@ -131,7 +131,7 @@ const UserImageProfile = ({
         <View
           style={{
             width: '100%',
-            flexDirection: 'row',
+            flexDirection: 'row-reverse',
             justifyContent: 'space-between',
           }}>
           {showRating ? (

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from '../components/widgets/splash/SplashWidget';
 import {useNavigation} from 'react-navigation-hooks';
+import I18n from '../../I18n';
 
 const IntroductionScreen = ({splashes}) => {
   const {navigate} = useNavigation();

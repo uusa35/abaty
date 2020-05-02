@@ -1,4 +1,10 @@
-import {APP_CASE, ENV, AT_SPOT_PUSHER_KEY, pusherEnabled} from '../app';
+import {
+  APP_CASE,
+  ENV,
+  AT_SPOT_PUSHER_KEY,
+  pusherEnabled,
+  EXPO_PUSHER_KEY,
+} from '../app';
 import Pusher from 'pusher-js/react-native';
 const isLocal = __DEV__;
 const appUrl = () => {
@@ -13,6 +19,8 @@ const appUrl = () => {
       return 'http://escrapco.com/';
     case 'atspot':
       return 'http://atspot.ideasowners.net/';
+    case 'expo':
+      return 'http://myexpo.live/';
     default:
       return 'http://mallr.test/';
   }
@@ -24,11 +32,12 @@ const pusherInstance = () => {
   switch (APP_CASE) {
     case 'atspot':
       return AT_SPOT_PUSHER_KEY;
+    case 'expo':
+      return EXPO_PUSHER_KEY;
     default:
       return pusherEnabled ? AT_SPOT_PUSHER_KEY : '';
   }
 };
-console.log('appCase', APP_CASE);
 const pusher = new Pusher(pusherInstance(), {
   cluster: 'ap2',
   forceTLS: true,

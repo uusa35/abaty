@@ -114,7 +114,7 @@ const RegisterFormWidget = ({player_id}) => {
         }}
         shake={true}
         keyboardType="number-pad"
-        onChangeText={text => setMobile(`+${country.calling_code}${text}`)}
+        onChangeText={text => setMobile(text)}
       />
       <TouchableOpacity
         onPress={() => {

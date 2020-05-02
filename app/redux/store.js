@@ -5,7 +5,6 @@ import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import {navMiddleware} from './../AppNavigator';
 import {persistStore, persistReducer} from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createNetworkMiddleware} from 'react-native-offline';
 import {networkTransform} from './../redux/actions/api';

@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
-import MainSliderWidget from '../../components/widgets/MainSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import {enableWarningMessage} from '../../redux/actions';
 import {getDesigner} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';

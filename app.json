@@ -1,13 +1,14 @@
 {
   "name": "abaty",
-  "ABATI" : true,
+  "ABATI" : false,
   "MALLR" : false,
   "HOMEKEY" : false,
   "ESCRAP" : false,
   "ATSPOT" : false,
+  "EXPO" : true,
   "pusherEnabled" : false,
-  "displayName": "abati",
-  "APP_CASE" : "abati",
+  "displayName": "expo",
+  "APP_CASE" : "expo",
   "apiUrl" : "http://mallr.test/",
   "ENV" : "production",
   "PORT" : 4000,
@@ -24,7 +25,7 @@
   "ESCRAP_IOS_GOOGLE_API_AUTH_KEY" : "166842560446-e5if7g7goa8n56lqv9aah46kjs9656sa.apps.googleusercontent.com",
   "AT_SPOT_PUSHER_ID" : "927172",
   "AT_SPOT_PUSHER_KEY" : "4c2c5900c67fc7b33987",
-  "AT_SPOT_PUSHER_SECRET" : "bc46963e2df48de4b239"
-
+  "AT_SPOT_PUSHER_SECRET" : "bc46963e2df48de4b239",
+  "EXPO_PUSHER_KEY" : "4c2c5900c67fc7b33987"
 }
 

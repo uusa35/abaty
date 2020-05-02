@@ -12,6 +12,10 @@ const IconTabBar = ({type, name, focused}) => {
       name={name}
       type={type}
       color={focused ? colors.icon_theme_color : colors.main_theme_color}
+      containerStyle={{
+        borderBottomWidth: focused ? 2 : 0,
+        borderColor: focused ? colors.icon_theme_bg : 'transparent',
+      }}
     />
   );
 };

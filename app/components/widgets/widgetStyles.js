@@ -19,14 +19,9 @@ const widgetStyles = StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'baseline',
   },
-  titleWrapper: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginTop: 20,
-    margin: 10,
-  },
+  titleWrapper: {},
   title: {
     fontFamily: text.font,
     fontSize: text.large,

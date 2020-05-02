@@ -21,7 +21,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="home" type="octicon" />
+          <IconTabBar focused={focused} name="home" type="feather" />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('home')} focused={focused} />
@@ -79,38 +79,35 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: ProductStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar
-            focused={focused}
-            name="sort-by-alpha"
-            type="material-icon"
-          />
+          <IconTabBar focused={focused} name="shop" type="entypo" />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('all_products')} focused={focused} />
         ),
+        activeBackgroundColor: 'green',
       }),
     },
-    ServiceIndexAll: {
-      screen: ServiceStack,
-      navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({focused}) => (
-          <IconTabBar
-            focused={focused}
-            name="customerservice"
-            type="antdesign"
-          />
-        ),
-        tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('services')} focused={focused} />
-        ),
-      }),
-    },
+    // ServiceIndexAll: {
+    //   screen: ServiceStack,
+    //   navigationOptions: ({navigation}) => ({
+    //     tabBarIcon: ({focused}) => (
+    //       <IconTabBar
+    //         focused={focused}
+    //         name="customerservice"
+    //         type="antdesign"
+    //       />
+    //     ),
+    //     tabBarLabel: ({focused}) => (
+    //       <TextTabBar title={I18n.t('services')} focused={focused} />
+    //     ),
+    //   }),
+    // },
   },
   {
     tabBarOptions: {
-      lazy: true,
+      lazy: false,
       showIcon: true,
-      showLabel: true,
+      showLabel: false,
       scrollEnabled: true,
       allowFontScaling: true,
       activeTintColor: '#ddca21',
@@ -126,12 +123,6 @@ export const BottomTabsStack = createBottomTabNavigator(
       tabBarVisible: true,
     },
     initialRouteName: 'Home',
-    order: [
-      'Home',
-      'ProductIndexAll',
-      'VideoIndexAll',
-      'ServiceIndexAll',
-      'Setting',
-    ],
+    order: ['Home', 'ProductIndexAll', 'VideoIndexAll', 'Setting'],
   },
 );
