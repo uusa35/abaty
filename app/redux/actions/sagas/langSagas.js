@@ -37,9 +37,6 @@ export function* startChangeLang(action) {
     yield call(enableErrorMessage, e.message);
   }
 }
-export function* changeLang() {
-  yield takeLatest(actions.CHANGE_LANG, startChangeLang);
-}
 
 export function* defaultLang() {
   try {

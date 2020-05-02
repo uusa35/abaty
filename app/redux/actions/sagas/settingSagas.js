@@ -1,4 +1,4 @@
-import {call, put, select} from 'redux-saga/effects';
+import {call, put, all, select, delay} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import * as actions from '../types';
 import DeviceInfo from 'react-native-device-info';
@@ -6,14 +6,9 @@ import {displayName} from './../../../../app';
 import {isLocal} from '../../../env';
 import {checkConnectionStatus} from '../api';
 import {offlineActionTypes} from 'react-native-offline';
-import {
-  NavigationContext,
-  NavigationAction,
-  NavigationBackActionPayload,
-  NavigationActions,
-} from 'react-navigation';
-import {first} from 'lodash';
-import {TOGGLE_BOOTSTRAPPED} from '../types';
+import {startResetStoreScenario} from './appSagas';
+import validate from 'validate.js';
+
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
 }
@@ -123,4 +118,24 @@ export function* checkConnection() {
     type: offlineActionTypes.CONNECTION_CHANGE,
     payload: connecitonStatus,
   });
+}
+
+export function* setVersion() {
+  const {version} = yield select();
+  if (validate.isEmpty(version)) {
+    if (version !== DeviceInfo.getVersion()) {
+      yield put({
+        type: actions.SET_VERSION,
+        payload: DeviceInfo.getVersion(),
+      });
+      yield call(startResetStoreScenario);
+    }
+  } else {
+    yield put({type: actions.SET_VERSION, payload: DeviceInfo.getVersion()});
+  }
+}
+
+export function* enableResetApp() {
+  yield delay(60 * 15 * 1000);
+  yield put({type: actions.TOGGLE_RESET_APP, payload: true});
 }

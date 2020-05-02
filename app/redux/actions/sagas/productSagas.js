@@ -286,29 +286,3 @@ export function* startToggleProductFavoriteScenario(action) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
-
-export function* getProduct() {
-  yield takeLatest(actions.GET_PRODUCT, startGetProductScenario);
-}
-
-export function* getAllProducts() {
-  yield takeLatest(actions.GET_ALL_PRODUCTS, startGetAllProductsScenario);
-}
-
-export function* toggleProductFavorite() {
-  yield takeLatest(
-    actions.TOGGLE_PRODUCT_FAVORITE,
-    startToggleProductFavoriteScenario,
-  );
-}
-export function* getSearchProducts() {
-  yield takeLatest(actions.GET_SEARCH_PRODUCTS, startGetSearchProductsScenario);
-}
-
-export function* getCollections() {
-  yield takeLatest(actions.GET_COLLECTIONS, startGetCollectionsScenario);
-}
-
-export function* triggerGetCollection() {
-  yield takeLatest(actions.GET_COLLECTION, startGetCollectionScenario);
-}

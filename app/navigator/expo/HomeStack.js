@@ -54,15 +54,6 @@ import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
-    // Introduction: {
-    //   screen: IntroductionScreen,
-    //   navigationOptions: ) => ({
-    //     header: null,
-    //     showLabel: false,
-    //     showIcon: false,
-    //     tabBarVisible: false
-    //   })
-    // },
     Home: {
       screen: gestureHandlerRootHOC(ExpoHomeScreen),
       navigationOptions: () => ({
@@ -70,9 +61,9 @@ export const HomeStack = createStackNavigator(
         headerRight: <HeaderRight displayShare={false} showCountry={true} />,
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null,
+        headerTransparent: true,
         headerStyle: {
-          borderBottomColor: 'lightgrey',
-          borderBottomWidth: 0.5,
+          backgroundColor: 'transparent',
         },
       }),
     },

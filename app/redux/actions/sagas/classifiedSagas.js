@@ -205,22 +205,6 @@ export function* startEditClassifiedScenario(action) {
   }
 }
 
-export function* getClassified() {
-  yield takeLatest(actions.GET_CLASSIFIED, startGetClassifiedScenario);
-}
-
-export function* storeClassified() {
-  yield takeLatest(actions.STORE_CLASSIFIED, startStoreClassifiedScenario);
-}
-
-export function* editClassified() {
-  yield takeLatest(actions.EDIT_CLASSIFIED, startEditClassifiedScenario);
-}
-
-export function* startNewClassified() {
-  yield takeLatest(actions.START_NEW_CLASSIFIED, startNewClassifiedScenario);
-}
-
 export function* startNewClassifiedScenario(action) {
   const category = action.payload;
   yield put({type: actions.CLEAR_PROPERTIES});
@@ -249,28 +233,6 @@ export function* startNewClassifiedScenario(action) {
       }),
     );
   }
-}
-
-export function* getSearchClassifieds() {
-  yield takeLatest(actions.GET_CLASSIFIEDS, startGetClassifiedsScenario);
-}
-
-export function* triggerStartClassifiedSearching() {
-  yield takeLatest(
-    actions.START_CLASSIFIED_SEARCHING,
-    startClassifiedSearchingScenario,
-  );
-}
-
-export function* triggerGetMyClassifieds() {
-  yield takeLatest(actions.GET_MY_CLASSIFIEDS, startGetMyClassifiedsScenario);
-}
-
-export function* getHomeClassifieds() {
-  yield takeLatest(
-    actions.GET_HOME_CLASSIFIEDS,
-    startGetHomeClassifiedsScenario,
-  );
 }
 
 export function* startClassifiedSearchingScenario(action) {

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useMemo} from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -49,93 +49,60 @@ const ExpoHomeScreen = ({
   }, [refresh]);
 
   return (
-    <ImageBackground style={{height, width}} source={{uri: mainBg}}>
-      <View
-        style={{flex: 1, backgroundColor: 'transparent', marginBottom: '20%'}}>
-        <AndroidBackHandlerComponent />
-        <AppHomeConfigComponent />
-        {!validate.isEmpty(splashes) && splash_on ? (
-          <IntroductionWidget
-            elements={splashes}
-            showIntroduction={showIntroduction}
+    <ImageBackground
+      style={{height, width, paddingTop: '25%'}}
+      source={{uri: mainBg}}>
+      <AndroidBackHandlerComponent />
+      <AppHomeConfigComponent />
+      {!validate.isEmpty(splashes) && splash_on ? (
+        <IntroductionWidget
+          elements={splashes}
+          showIntroduction={showIntroduction}
+        />
+      ) : null}
+      <ScrollView
+        contentContainerStyle={{backgroundColor: 'transparent'}}
+        // contentInset={{bottom: 50}}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        showsHorizontalScrollIndicator={false}
+        endFillColor="white"
+        showsVerticalScrollIndicator={false}
+        style={{flex: 1}}>
+        {/*<ProductSearchForm />*/}
+        {!validate.isEmpty(slides) ? (
+          <ExpoMainSliderWidget slides={slides} />
+        ) : null}
+        {!validate.isEmpty(homeDesigners) && validate.isArray(homeDesigners) ? (
+          <ExpoDesignerHorizontalWidget
+            elements={homeDesigners}
+            showName={true}
+            name={I18n.t('designers')}
+            title={I18n.t('designers')}
+            searchElements={{is_designer: true}}
           />
         ) : null}
-        <ScrollView
-          contentContainerStyle={{backgroundColor: 'transparent'}}
-          contentInset={{bottom: 50}}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => handleRefresh()}
-            />
-          }
-          showsHorizontalScrollIndicator={false}
-          endFillColor="white"
-          showsVerticalScrollIndicator={false}
-          style={{flex: 0.8}}>
-          {/*<ProductSearchForm />*/}
-          {!validate.isEmpty(slides) ? (
-            <ExpoMainSliderWidget slides={slides} />
-          ) : null}
-          {!validate.isEmpty(homeDesigners) &&
-          validate.isArray(homeDesigners) ? (
-            <ExpoDesignerHorizontalWidget
-              elements={homeDesigners}
-              showName={true}
-              name={I18n.t('designers')}
-              title={I18n.t('designers')}
-              searchElements={{is_designer: true}}
-            />
-          ) : null}
-          {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
-            <ProductCategoryHorizontalRoundedWidget
-              elements={homeCategories}
-              showName={true}
-              title={I18n.t('categories')}
-              type="products"
-            />
-          ) : null}
-          {!validate.isEmpty(homeCelebrities) &&
-          validate.isArray(homeCelebrities) ? (
-            <CelebrityHorizontalWidget
-              elements={homeCelebrities}
-              showName={true}
-              name="celebrities"
-              title={I18n.t('celebrities')}
-              searchElements={{is_celebrity: true}}
-            />
-          ) : null}
-          {!validate.isEmpty(homeProducts) ? (
-            <ProductHorizontalWidget
-              elements={homeProducts}
-              showName={true}
-              title={I18n.t('featured_products')}
-            />
-          ) : null}
-          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
-            <BrandHorizontalWidget
-              elements={brands}
-              showName={false}
-              title={I18n.t('brands')}
-            />
-          ) : null}
-          {!validate.isEmpty(services) ? (
-            <ServiceHorizontalWidget
-              elements={services}
-              showName={true}
-              title={I18n.t('our_services')}
-            />
-          ) : null}
-        </ScrollView>
-        {show_commercials ? (
-          <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
-              <FixedCommercialSliderWidget sliders={commercials} />
-            ) : null}
-          </View>
+        {!validate.isEmpty(homeCategories) &&
+        validate.isArray(homeCategories) ? (
+          <ProductCategoryHorizontalRoundedWidget
+            elements={homeCategories}
+            showName={true}
+            title={I18n.t('categories')}
+            type="products"
+          />
         ) : null}
-      </View>
+      </ScrollView>
+      {show_commercials ? (
+        <View style={{flex: 0.2}}>
+          {!validate.isEmpty(commercials) ? (
+            <FixedCommercialSliderWidget sliders={commercials} />
+          ) : null}
+        </View>
+      ) : null}
     </ImageBackground>
   );
 };

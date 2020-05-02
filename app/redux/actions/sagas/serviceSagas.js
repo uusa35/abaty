@@ -111,11 +111,3 @@ export function* startToggleClassifiedFavoriteScenario(action) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
-
-export function* getService() {
-  yield takeLatest(actions.GET_SERVICE, startGetServiceScenario);
-}
-
-export function* getSearchServices() {
-  yield takeLatest(actions.GET_SEARCH_SERVICES, startGetSearchServicesScenario);
-}

@@ -1,157 +1,51 @@
+import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import {ABATI, MALLR, HOMEKEY, appVersion} from './../../../../app';
-import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
+import {ABATI, MALLR, ESCRAP, EXPO, HOMEKEY} from './../../../../app';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
-import {
-  getCountry,
-  setSlides,
-  startDeepLinkingScenario,
-  startSetCountryScenario,
-  startRefetchHomeElementsScenario,
-  setHomeSplashes,
-  startAddToCartScenario,
-  startClearCartScenario,
-  startGetCouponScenario,
-  startCreateMyFatorrahPaymentUrlScenario,
-  startCreateTapPaymentUrlScenario,
-  startRemoveFromCartScenario,
-  startSubmitCartScenario,
-  getVideos,
-  startAddCommentScenario,
-  setSettings,
-  startRefetchHomeCategories,
-  setCommercials,
-  setCountries,
-  getPages,
-  getTags,
-  startGetHomeCategoriesScenario,
-  startGetParentCategoriesScenario,
-  startGetCategoryAndGoToNavChildren,
-  startCreateCashOnDeliveryPayment,
-} from './requestSagas';
 import {NavigationActions} from 'react-navigation';
 import I18n from './../../../I18n';
 import {
   disableLoading,
-  setDeviceId,
   enableErrorMessage,
   checkConnection,
+  setVersion,
+  enableResetApp,
 } from './settingSagas';
-import validate from 'validate.js';
-import DeviceInfo from 'react-native-device-info';
-import {
-  getHomeServicesScenario,
-  getServiceIndex,
-  startToggleClassifiedFavoriteScenario,
-} from './serviceSagas';
-import {
-  setHomeBrands,
-  startAuthenticatedScenario,
-  startStorePlayerIdScenario,
-} from './userSagas';
-import {
-  getBestSaleProducts,
-  getHomeCollectionsScenario,
-  getHotDealsProducts,
-  getLatestProducts,
-  getOnSaleProducts,
-  getProductIndex,
-  setHomeProducts,
-} from './productSagas';
-import {getClassifiedIndex} from './classifiedSagas';
-import {
-  getHomeClassifiedCategories,
-  getHomeUserCategories,
-} from './categorySagas';
+import {abatiBootStrap} from './abati/appSagas';
+import {mallrBootStrap} from './mallr/appSagas';
+import {escrapBootStrap} from './escrap/appSagas';
+import {homeKeyBootStrap} from './homekey/appSagas';
+import {expoBootStrap} from './expo/appSagas';
 
-function* startAppBootStrap() {
+export function* startAppBootStrap() {
   try {
-    const {bootStrapped, version} = yield select();
+    const {bootStrapped} = yield select();
     yield call(checkConnection);
-    yield all([call(defaultLang)]);
-    if (validate.isEmpty(version)) {
-      if (version !== DeviceInfo.getVersion()) {
-        yield put({
-          type: actions.SET_VERSION,
-          payload: DeviceInfo.getVersion(),
-        });
-        yield call(startResetStoreScenario);
-      }
-    } else {
-      yield put({type: actions.SET_VERSION, payload: DeviceInfo.getVersion()});
-    }
+    yield all([call(defaultLang), call(setVersion)]);
     if (!bootStrapped) {
-      yield all([
-        call(getCountry),
-        call(setSettings),
-        call(setCountries),
-        call(setSlides),
-        call(setCommercials),
-        call(setHomeBrands),
-        call(startAuthenticatedScenario),
-        call(setDeviceId),
-        call(setHomeProducts),
-        call(getOnSaleProducts),
-        call(getBestSaleProducts),
-        call(getHotDealsProducts),
-        call(getLatestProducts),
-        call(getPages),
-        call(getTags),
-        call(getVideos),
-        call(getProductIndex),
-        call(getClassifiedIndex),
-        call(getHomeServicesScenario),
-        call(getServiceIndex),
-        call(setHomeSplashes),
-        call(getHomeCollectionsScenario),
-        call(getHomeClassifiedCategories, {
-          on_home: true,
-          type: 'is_classified',
-        }),
-        call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-        put({type: actions.GET_CATEGORIES}),
-        put({type: actions.GET_HOME_CATEGORIES}),
-        put({
-          type: actions.GET_HOME_COMPANIES,
-          payload: {searchParams: {on_home: 1, is_company: 1}},
-        }),
-        put({
-          type: actions.GET_HOME_DESIGNERS,
-          payload: {searchParams: {on_home: 1, is_designer: 1}},
-        }),
-        put({
-          type: actions.GET_HOME_CELEBRITIES,
-          payload: {searchParams: {on_home: 1, is_celebrity: 1}},
-        }),
-        put({
-          type: actions.GET_HOME_CLASSIFIEDS,
-          payload: {searchParams: {on_home: 1}},
-        }),
-        put({type: actions.TOGGLE_RESET_APP, payload: false}),
-      ]);
-      yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true}),
-        yield call(disableLoading);
+      if (ABATI) {
+        yield call(abatiBootStrap);
+      } else if (MALLR) {
+        yield call(mallrBootStrap);
+      } else if (ESCRAP) {
+        yield call(escrapBootStrap);
+      } else if (HOMEKEY) {
+        yield call(homeKeyBootStrap);
+      } else if (EXPO) {
+        yield call(expoBootStrap);
+      }
     }
   } catch (e) {
     if (__DEV__) {
       console.log('appSaga', e);
+      yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
-    yield call(enableErrorMessage, I18n.t('app_general_error'));
   } finally {
     yield call(disableLoading);
     yield call(enableResetApp);
   }
-}
-
-export function* enableResetApp() {
-  yield delay(60 * 15 * 1000);
-  yield put({type: actions.TOGGLE_RESET_APP, payload: true});
-}
-
-export function* appBootstrap() {
-  yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);
 }
 
 export function* goBackBtnScenario(action) {
@@ -171,86 +65,6 @@ export function* goBackBtnScenario(action) {
   }
 }
 
-export function* goBackBtn() {
-  yield takeLatest(actions.GO_BACK, goBackBtnScenario);
-}
-
-export function* refetchHomeCategories() {
-  yield takeLatest(actions.REFETCH_HOME_CATEGORIES, startRefetchHomeCategories);
-}
-
-export function* toggleClassifiedFavorite() {
-  yield takeLatest(
-    actions.TOGGLE_CLASSIFIED_FAVORITE,
-    startToggleClassifiedFavoriteScenario,
-  );
-}
-
-export function* setCountry() {
-  yield takeLatest(actions.SET_COUNTRY, startSetCountryScenario);
-}
-
-export function* goDeepLinking() {
-  yield takeLatest(actions.GO_DEEP_LINKING, startDeepLinkingScenario);
-}
-
-export function* setPlayerId() {
-  yield takeLatest(actions.SET_PLAYER_ID, startStorePlayerIdScenario);
-}
-
-export function* refetchHomeElements() {
-  yield takeLatest(
-    actions.REFETCH_HOME_ELEMENTS,
-    startRefetchHomeElementsScenario,
-  );
-}
-
-export function* addToCart() {
-  yield takeLatest(actions.ADD_TO_CART, startAddToCartScenario);
-}
-
-export function* removeFromCart() {
-  yield takeLatest(actions.REMOVE_FROM_CART, startRemoveFromCartScenario);
-}
-
-export function* clearCart() {
-  yield takeLatest(actions.DO_CLEAR_CART_PROCESS, startClearCartScenario);
-}
-
-export function* submitCart() {
-  yield takeLatest(actions.SUBMIT_CART, startSubmitCartScenario);
-}
-
-export function* getCoupon() {
-  yield takeLatest(actions.GET_COUPON, startGetCouponScenario);
-}
-
-export function* createMyFatoorahPaymentUrl() {
-  yield takeLatest(
-    actions.CREATE_MYFATOORAH_PAYMENT_URL,
-    startCreateMyFatorrahPaymentUrlScenario,
-  );
-}
-
-export function* createTapPaymentUrl() {
-  yield takeLatest(
-    actions.CREATE_TAP_PAYMENT_URL,
-    startCreateTapPaymentUrlScenario,
-  );
-}
-
-export function* createCashOnDeliveryPayment() {
-  yield takeLatest(actions.CASH_ON_DELIVERY, startCreateCashOnDeliveryPayment);
-}
-
-export function* addComment() {
-  yield takeLatest(actions.ADD_COMMENT, startAddCommentScenario);
-}
-
-export function* resetStore() {
-  yield takeLatest(actions.RESET_STORE, startResetStoreScenario);
-}
-
 export function* startResetStoreScenario() {
   yield all([
     put(
@@ -263,19 +77,4 @@ export function* startResetStoreScenario() {
   PersistStore.purge();
   yield delay(1000);
   yield call(startAppBootStrap);
-}
-
-export function* triggerGetHomeCategories() {
-  yield takeLatest(actions.GET_HOME_CATEGORIES, startGetHomeCategoriesScenario);
-}
-
-export function* triggerGetParentCategories() {
-  yield takeLatest(actions.GET_CATEGORIES, startGetParentCategoriesScenario);
-}
-
-export function* triggerGetCategoryAndGoToNavChildren() {
-  yield takeLatest(
-    actions.SET_CATEGORY_AND_GO_TO_NAV_CHILDREN,
-    startGetCategoryAndGoToNavChildren,
-  );
 }
