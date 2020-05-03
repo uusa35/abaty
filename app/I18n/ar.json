@@ -594,5 +594,11 @@
   "save" : "حفظ",
   "save_collection" : "حفظ الكولكشن",
   "upload_cover" : "تحميل الغلاف",
-  "exits" : "يوجد"
+  "exits" : "يوجد",
+  "expos" : "معارض",
+  "women" : "نسائية",
+  "small" : "صغيرة",
+  "business" : "مشاريع",
+  "small_business" : "مشاريع صغيرة",
+  "no_available" : "لا توجد"
 }

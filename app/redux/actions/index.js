@@ -185,6 +185,13 @@ export function setCountry(payload) {
   };
 }
 
+export function chooseCountry(payload) {
+  return {
+    type: actions.CHOOSE_COUNTRY,
+    payload,
+  };
+}
+
 export function setArea(payload) {
   return {
     type: actions.SET_AREA,

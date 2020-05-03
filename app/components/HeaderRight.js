@@ -14,7 +14,7 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
-import {APP_CASE} from '../../app';
+import {APP_CASE, HOMEKEY, EXPO} from '../../app';
 import {iconSizes} from '../constants/sizes';
 
 export const HeaderRight = ({
@@ -84,7 +84,7 @@ export const HeaderRight = ({
             dispatch({type: SHOW_SEARCH_MODAL});
             navigation.navigate('ClassifiedFilter');
           }}
-          name="tune"
+          name={EXPO ? 'search' : 'tune'}
           type="material-icon"
           size={iconSizes.medium}
           underlayColor="transparent"

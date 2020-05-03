@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 // import Modal from 'react-native-modal';
 import {map, first} from 'lodash';
-import {hideCountryModal, setArea, setCountry} from '../../redux/actions';
+import {hideCountryModal, setArea, chooseCountry} from '../../redux/actions';
 import {DispatchContext} from '../../redux/DispatchContext';
 import {text, width} from '../../constants/sizes';
 import {images} from '../../constants/images';
@@ -17,15 +17,18 @@ import FastImage from 'react-native-fast-image';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
+import {EXPO} from './../../../app';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const CountriesList = ({country, countries, countryModal}) => {
   const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
   [visible, setVisible] = useState(countryModal);
   [currentCountry, setCurrentCountry] = useState(country);
   [currentCurrency, setCurrentCurrency] = useState(country.currency.symbol);
 
   const handleClick = useCallback(country => {
-    dispatch(setCountry(country));
+    dispatch(chooseCountry({country, redirect: EXPO}));
   });
 
   return (
@@ -61,21 +64,29 @@ const CountriesList = ({country, countries, countryModal}) => {
               justifyContent: 'center',
               flexWrap: 'wrap',
             }}>
-            {map(countries, (country, i) => {
+            {map(countries, (c, i) => {
               return (
                 <TouchableOpacity
                   activeOpacity={1}
-                  key={country.id}
+                  key={c.id}
                   hitSlop={{left: 15, right: 15}}
-                  onPress={() => handleClick(country)}
-                  style={styles.wrapper}>
+                  onPress={() => handleClick(c)}
+                  style={[
+                    styles.wrapper,
+                    {
+                      borderColor:
+                        c.id === country.id
+                          ? colors.btn_bg_theme_color
+                          : '#cdcdcd',
+                    },
+                  ]}>
                   <FastImage
-                    source={{uri: country.thumb}}
+                    source={{uri: c.thumb}}
                     style={styles.countryFlag}
                     resizeMode="cover"
                     loadingIndicatorSource={images.logo}
                   />
-                  <Text style={styles.phoneNo}>{country.slug}</Text>
+                  <Text style={styles.phoneNo}>{c.slug}</Text>
                 </TouchableOpacity>
               );
             })}
@@ -107,7 +118,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderWidth: 0.5,
-    borderColor: '#cdcdcd',
     borderRadius: 10,
     width: '30%',
     height: 100,

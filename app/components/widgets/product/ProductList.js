@@ -18,6 +18,7 @@ import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {DispatchContext} from '../../../redux/DispatchContext';
+import NoMoreElements from '../NoMoreElements';
 
 const ProductList = ({
   products,
@@ -120,7 +121,9 @@ const ProductList = ({
             alignSelf: 'center',
             minHeight: height,
             minWidth: '100%',
+            flexGrow: 1,
           }}
+          disableVirtualization={false}
           columnWrapperStyle={{
             flexWrap: 'wrap',
             justifyContent: 'flex-start',
@@ -191,15 +194,10 @@ const ProductList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
-                <Button
-                  loading={isLoading}
-                  raised
-                  title={I18n.t('no_more_products')}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
+              <NoMoreElements
+                title={I18n.t('no_more_products')}
+                isLoading={refresh}
+              />
             ) : null
           }
           renderItem={({item}) => (

@@ -76,11 +76,13 @@ const App = ({
     });
     axiosInstance.defaults.headers['currency'] = currency;
     axiosInstance.defaults.headers.common['currency'] = currency;
+    axiosInstance.defaults.headers['country'] = country.name;
+    axiosInstance.defaults.headers.common['country'] = country.name;
     axiosInstance.defaults.headers['lang'] = lang;
     axiosInstance.defaults.headers.common['lang'] = lang;
-    if (bootStrapped && !guest) {
-      axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
-    }
+    bootStrapped && !guest
+      ? (axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`)
+      : null;
   }, [lang, bootStrapped, token]);
 
   const handleAppStateChange = useCallback(

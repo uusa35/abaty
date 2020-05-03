@@ -12,7 +12,7 @@ import {
   enableWarningMessage,
 } from './settingSagas';
 import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
-import {enableResetApp, startAppBootStrap} from './appSagas';
+import {enableResetApp} from './settingSagas';
 import {
   commentStoreConstrains,
   registerConstrains,
@@ -43,6 +43,7 @@ import {
   getHomeUserCategories,
 } from './categorySagas';
 import {setShipmentFees} from '../cart';
+import {startResetStoreScenario} from './appSagas';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -167,16 +168,20 @@ export function* setCountries() {
 // get the country if it' snot set
 export function* getCountry(country_id = null) {
   try {
-    const country = isNull(country_id)
-      ? yield call(api.getCountry)
-      : yield call(api.getCountry, country_id);
-    if (
-      !validate.isEmpty(country) &&
-      validate.isObject(country) &&
-      country.currency
-    ) {
-      yield put({type: actions.SET_COUNTRY, payload: country});
-      yield call(startSetCountryScenario, {payload: country});
+    const {country} = yield select();
+    if (validate.isEmpty(country) && !country.id) {
+      const fetchedCountry = isNull(country_id)
+        ? yield call(api.getCountry)
+        : yield call(api.getCountry, country_id);
+      if (
+        !validate.isEmpty(fetchedCountry) &&
+        validate.isObject(fetchedCountry) &&
+        fetchedCountry.currency
+      ) {
+        yield call(startChooseCountryScenario, {
+          payload: {country: fetchedCountry},
+        });
+      }
     }
   } catch (e) {
     if (__DEV__) {
@@ -187,9 +192,10 @@ export function* getCountry(country_id = null) {
   }
 }
 
-export function* startSetCountryScenario(action) {
+export function* startChooseCountryScenario(action) {
   try {
-    const country = action.payload;
+    const {country, redirect} = action.payload;
+    yield put({type: actions.SET_COUNTRY, payload: country});
     if (!validate.isEmpty(country) && validate.isObject(country)) {
       const {total, coupon, cart} = yield select();
       yield all([
@@ -208,6 +214,9 @@ export function* startSetCountryScenario(action) {
         }),
         call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);
+      if (!validate.isEmpty(redirect) && redirect) {
+        yield call(startResetStoreScenario);
+      }
     }
   } catch (e) {
     if (__DEV__) {

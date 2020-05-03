@@ -81,18 +81,19 @@ const ExpoHomeScreen = ({
           <ExpoDesignerHorizontalWidget
             elements={homeDesigners}
             showName={true}
-            name={I18n.t('designers')}
-            title={I18n.t('designers')}
+            name={I18n.t('expos')}
+            title={I18n.t('expos')}
             searchElements={{is_designer: true}}
           />
         ) : null}
-        {!validate.isEmpty(homeCategories) &&
-        validate.isArray(homeCategories) ? (
-          <ProductCategoryHorizontalRoundedWidget
-            elements={homeCategories}
+        {!validate.isEmpty(homeCelebrities) &&
+        validate.isArray(homeCelebrities) ? (
+          <ExpoDesignerHorizontalWidget
+            elements={homeCelebrities}
             showName={true}
-            title={I18n.t('categories')}
-            type="products"
+            name="small_business"
+            title={I18n.t('small_business')}
+            searchElements={{is_celebrity: true}}
           />
         ) : null}
       </ScrollView>

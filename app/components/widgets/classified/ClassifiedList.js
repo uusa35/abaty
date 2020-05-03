@@ -17,7 +17,7 @@ import {
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
 import I18n, {isRTL} from './../../../I18n';
-import {text, width} from '../../../constants/sizes';
+import {height, text, width} from '../../../constants/sizes';
 import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
@@ -29,6 +29,7 @@ import {orderBy} from 'lodash';
 import ClassifiedsMapView from '../map/ClassifiedsMapView';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import NoMoreElements from '../NoMoreElements';
 
 const ClassifiedList = ({
   classifieds,
@@ -170,11 +171,14 @@ const ClassifiedList = ({
           }
           onEndReached={() => loadMore()}
           contentContainerStyle={{
-            minHeight: '100%',
-            width,
             marginBottom: 15,
             justifyContent: 'flex-start',
+            minHeight: height,
+            minWidth: '100%',
+            flexGrow: 1,
+            alignSelf: 'center',
           }}
+          disableVirtualization={false}
           // columnWrapperStyle={{
           //   justifyContent: 'space-around',
           //   alignItems: 'center'
@@ -234,15 +238,10 @@ const ClassifiedList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View>
-                <Button
-                  loading={isLoading}
-                  raised
-                  title={I18n.t('no_more_classifieds')}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
+              <NoMoreElements
+                title={I18n.t('no_more_classifieds')}
+                isLoading={refresh}
+              />
             ) : null
           }
           renderItem={({item}) => (

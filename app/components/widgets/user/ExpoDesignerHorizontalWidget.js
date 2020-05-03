@@ -22,6 +22,8 @@ import {
 import {images} from '../../../constants/images';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import NotAvailableElement from '../../NotAvailableElement';
+import NoMoreElements from '../NoMoreElements';
 
 const ExpoDesignerHorizontalWidget = ({
   elements,
@@ -34,7 +36,7 @@ const ExpoDesignerHorizontalWidget = ({
   const {dispatch} = useContext(DispatchContext);
   const {colors} = useContext(GlobalValuesContext);
   return (
-    <View>
+    <View style={{marginTop: 10, marginBottom: 10}}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
         style={{
@@ -63,7 +65,7 @@ const ExpoDesignerHorizontalWidget = ({
             marginLeft: 20,
             marginTop: 10,
             flexDirection: 'row',
-            backgroundColor: '#f2f2f2',
+            backgroundColor: '#f9f9f9',
             padding: 10,
             borderRadius: 25,
             width: '40%',
@@ -101,6 +103,15 @@ const ExpoDesignerHorizontalWidget = ({
           showsHorizontalScrollIndicator={false}
           contentInset={{right: rightHorizontalContentInset}}
           keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          disableVirtualization={false}
+          ListEmptyComponent={() => (
+            <NoMoreElements title={`${I18n.t('no_available')} ${title}`} />
+          )}
           style={{
             flexDirection: 'row',
             width: '100%',

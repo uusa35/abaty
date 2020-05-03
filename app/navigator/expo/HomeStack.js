@@ -58,7 +58,13 @@ export const HomeStack = createStackNavigator(
       screen: gestureHandlerRootHOC(ExpoHomeScreen),
       navigationOptions: () => ({
         headerLeft: <HeaderLeft />,
-        headerRight: <HeaderRight displayShare={false} showCountry={true} />,
+        headerRight: (
+          <HeaderRight
+            displayShare={false}
+            showCountry={true}
+            showFilter={true}
+          />
+        ),
         headerTitle: <HeaderMiddle title={I18n.t('home')} showLogo={true} />,
         headerBackTitle: null,
         headerTransparent: true,

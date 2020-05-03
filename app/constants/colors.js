@@ -3,4 +3,7 @@ export const colors = {
   danger: 'red',
   warning: 'yellow',
   success: 'green',
+  expo: {
+    main: 'blue',
+  },
 };

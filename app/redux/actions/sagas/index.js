@@ -55,7 +55,7 @@ export default function* rootSaga() {
     fork(triggers.triggerRemoveFromCart),
     fork(triggers.triggerClearCart),
     fork(triggers.triggerSubmitCart),
-    fork(triggers.triggerSetCountry),
+    fork(triggers.triggerChooseCountry),
     fork(triggers.triggerSetPlayerId),
     fork(triggers.triggerGetCoupon),
     fork(triggers.triggerCreateMyFatoorahPaymentUrl),

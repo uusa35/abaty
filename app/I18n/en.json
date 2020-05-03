@@ -562,5 +562,11 @@
   "save" : "Save",
   "save_collection" : "Save Collection",
   "upload_cover" : "Upload Cover",
-  "exists" : "Yes"
+  "exists" : "Yes",
+  "expos" : "Expos",
+  "women" : "Women",
+  "small" : "Small",
+  "business" : "Business",
+  "small_business" : "Small Business",
+  "no_available" : "No Available"
 }

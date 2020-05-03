@@ -35,8 +35,11 @@ export function* triggerToggleClassifiedFavorite() {
   );
 }
 
-export function* triggerSetCountry() {
-  yield takeLatest(actions.SET_COUNTRY, requestSaga.startSetCountryScenario);
+export function* triggerChooseCountry() {
+  yield takeLatest(
+    actions.CHOOSE_COUNTRY,
+    requestSaga.startChooseCountryScenario,
+  );
 }
 
 export function* triggerGoDeepLinking() {

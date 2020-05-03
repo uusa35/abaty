@@ -18,6 +18,7 @@ import validate from 'validate.js';
 import {getSearchServices} from '../../../redux/actions/service';
 import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import NoMoreElements from '../NoMoreElements';
 
 const ServiceList = ({
   services,
@@ -112,13 +113,16 @@ const ServiceList = ({
           onEndReached={() => loadMore()}
           contentContainerStyle={{
             marginBottom: 15,
-            justifyContent: 'flex-start',
-            minHeight: height / 1.2,
+            alignSelf: 'center',
+            minHeight: height,
+            minWidth: '100%',
+            flexGrow: 1,
           }}
+          disableVirtualization={false}
           columnWrapperStyle={{
             justifyContent: 'flex-start',
-            alignSelf: 'center',
             alignItems: 'flex-start',
+            alignSelf: 'center',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',
@@ -182,15 +186,10 @@ const ServiceList = ({
           }
           ListFooterComponent={() =>
             showFooter ? (
-              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
-                <Button
-                  loading={isLoading}
-                  raised
-                  title={I18n.t('no_more_services')}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
+              <NoMoreElements
+                title={I18n.t('no_more_services')}
+                isLoading={refresh}
+              />
             ) : null
           }
           renderItem={({item}) => (
