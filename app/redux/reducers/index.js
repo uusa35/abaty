@@ -94,7 +94,8 @@ import video from './video';
 import roles from './roles';
 import role from './role';
 import resetApp from './resetApp';
-import {reducer as network} from 'react-native-offline';
+// import {reducer as network} from 'react-native-offline';
+import isConnected from './isConnected';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -163,7 +164,8 @@ let reducers = combineReducers({
   countryModal,
   areaModal,
   coupon,
-  network,
+  // network,
+  isConnected,
   searchParams,
   loginModal,
   showIntroduction,

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {ImageBackground} from 'react-native';
 import {height, width} from '../../constants/sizes';
-import LoadingContainer from './../Loading/LoadingContainer';
 import AndroidBackHandlerComponent from './AndroidBackHandlerComponent';
 import AppHomeConfigComponent from './AppHomeConfigComponent';
 import AppGlobalConfig from './AppGlobalConfig';
 import {useSelector} from 'react-redux';
+import LoadingView from '../Loading/LoadingView';
+import LoadingOfflineView from '../Loading/LoadingOfflineView';
 
 const BgContainer = ({children, showImage = true}) => {
-  const {settings, isLoading} = useSelector((state) => state);
+  const {settings, isLoading, isConnected} = useSelector((state) => state);
   return (
     <ImageBackground
       source={{
@@ -19,11 +20,18 @@ const BgContainer = ({children, showImage = true}) => {
       }}
       style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
       resizeMode="cover">
-      <LoadingContainer isLoading={isLoading} />
+      {isConnected ? (
+        isLoading && isConnected ? (
+          <LoadingView />
+        ) : (
+          <Fragment>{children}</Fragment>
+        )
+      ) : (
+        <LoadingOfflineView />
+      )}
       <AndroidBackHandlerComponent />
       <AppHomeConfigComponent />
       <AppGlobalConfig />
-      {children}
     </ImageBackground>
   );
 };

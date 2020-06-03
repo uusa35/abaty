@@ -276,7 +276,7 @@ export const networkTransform = createTransform(
   },
   // The 'network' key may change depending on what you
   // named your network reducer.
-  {whitelist: ['network']},
+  {whitelist: ['isConnected']},
 );
 
 export async function checkConnectionStatus() {

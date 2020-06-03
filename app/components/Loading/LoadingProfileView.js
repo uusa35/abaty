@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import Svg, {Rect} from 'react-native-svg';
 import {isRTL} from '../../I18n';
+import {useSelector} from 'react-redux';
 
-const LoadingProfileView = ({isLoadingContent}) => {
+const LoadingProfileView = () => {
+  const {isLoadingProfile} = useSelector((state) => state);
   return (
     <Modal
       animationType="fade"
-      visible={isLoadingContent}
+      visible={isLoadingProfile}
       transparent={false}
       style={{
         position: 'absolute',
@@ -147,7 +149,6 @@ const LoadingProfileView = ({isLoadingContent}) => {
 export default LoadingProfileView;
 
 LoadingProfileView.propTypes = {
-  isLoadingContent: PropTypes.bool.isRequired,
   logo: PropTypes.string,
   columns: PropTypes.number,
 };

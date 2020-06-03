@@ -16,7 +16,7 @@ import I18n from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
-import LoadingOfflineView from './components/Loading/LoadingOfflineView';
+// import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
@@ -53,7 +53,7 @@ const App = ({
   grossTotal,
   token,
   guest,
-  network,
+  isConnected,
   loginModal,
   main_bg,
   searchModal,
@@ -103,113 +103,59 @@ const App = ({
     }
   }, [appState]);
 
-  if (isLoading) {
-    return (
-      <LoadingView
-        loadingText={I18n.t('loading')}
-        isLoading={isLoading}
-        logo={logo}
-        color={colors ? colors.btn_bg_theme_color : 'black'}
-        mainBg={main_bg}
-      />
-    );
-  }
-  if (isLoadingContent) {
-    return (
-      <LoadingContentView
-        loadingText={I18n.t('loading')}
-        isLoadingContent={isLoadingContent}
-        logo={logo}
-      />
-    );
-  }
-  if (isLoadingProfile) {
-    return (
-      <LoadingProfileView
-        loadingText={I18n.t('loading')}
-        isLoadingContent={isLoadingProfile}
-        logo={logo}
-      />
-    );
-  }
-  if (isLoadingBoxedList) {
-    return (
-      <LoadingBoxedListView
-        loadingText={I18n.t('loading')}
-        isLoadingContent={isLoadingBoxedList}
-        logo={logo}
-      />
-    );
-  }
-
-  // if (!network.isConnected && bootStrapped) {
-  //   return <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />;
-  // }
   return (
     <DispatchContext.Provider value={{dispatch}}>
-      <View style={{flex: 1}}>
-        <StatusBar barStyle={`${colorScheme}-content`} />
-        {bootStrapped ? (
-          <GlobalValuesContext.Provider
-            value={{
-              cartLength: cart.length,
-              countriesLength: countries.length,
-              currency_symbol: country.currency.currency_symbol,
-              exchange_rate: country.currency.exchange_rate,
-              total,
-              grossTotal,
-              colors,
-              country,
-              token,
-              logo,
-              app_logo,
-              guest,
-              searchModal,
-              resetApp,
-              settings,
-              lang,
-              isLoading,
-            }}>
-            <React.Suspense fallback={<SimpleSpinner />}>
-              <AppNavigator />
-            </React.Suspense>
-            {validate.isBoolean(loginModal) ? (
-              <LoginScreenModal
-                logo={logo}
-                loginModal={loginModal}
-                mainBg={main_bg}
-              />
-            ) : null}
-            {validate.isBoolean(countryModal) && countryModal && country ? (
-              <CountriesList
-                country={country}
-                countries={countries}
-                countryModal={countryModal}
-              />
-            ) : null}
-            {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
-              <AreasList area={area} areas={areas} areaModal={areaModal} />
-            ) : null}
-          </GlobalValuesContext.Provider>
-        ) : !network.isConnected && bootStrapped ? (
-          <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />
-        ) : (
-          <LoadingView
-            loadingText={I18n.t('loading')}
-            // color={colors.btn_bg_theme_color}
-            isLoading={isLoading}
-            logo={logo}
-            mainBg={main_bg}
-          />
-        )}
-        {!validate.isEmpty(message) &&
-        message.visible &&
-        validate.isString(message.content) &&
-        network.isConnected &&
-        bootStrapped ? (
-          <AlertMessage message={message} />
-        ) : null}
-      </View>
+      <StatusBar barStyle={`${colorScheme}-content`} />
+      {bootStrapped && (
+        <GlobalValuesContext.Provider
+          value={{
+            cartLength: cart.length,
+            countriesLength: countries.length,
+            currency_symbol: country.currency.currency_symbol,
+            exchange_rate: country.currency.exchange_rate,
+            total,
+            grossTotal,
+            colors,
+            country,
+            token,
+            logo,
+            app_logo,
+            guest,
+            searchModal,
+            resetApp,
+            settings,
+            lang,
+            isLoading,
+          }}>
+          <React.Suspense fallback={<SimpleSpinner />}>
+            <AppNavigator />
+          </React.Suspense>
+          {validate.isBoolean(loginModal) ? (
+            <LoginScreenModal
+              logo={logo}
+              loginModal={loginModal}
+              mainBg={main_bg}
+            />
+          ) : null}
+          {validate.isBoolean(countryModal) && countryModal && country ? (
+            <CountriesList
+              country={country}
+              countries={countries}
+              countryModal={countryModal}
+            />
+          ) : null}
+          {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
+            <AreasList area={area} areas={areas} areaModal={areaModal} />
+          ) : null}
+        </GlobalValuesContext.Provider>
+      )}
+      {!validate.isEmpty(message) &&
+      message.visible &&
+      validate.isString(message.content) &&
+      isConnected &&
+      bootStrapped ? (
+        <AlertMessage message={message} />
+      ) : null}
       {bootStrapped ? (
         <Fragment>
           <ProductFilterModal />
@@ -239,7 +185,7 @@ function mapStateToProps(state) {
     cart: state.cart,
     total: state.total,
     grossTotal: state.grossTotal,
-    network: state.network,
+    isConnected: state.isConnected,
     colors: state.settings.colors,
     settings: state.settings,
     logo: state.settings.logo,

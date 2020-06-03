@@ -1,28 +1,37 @@
-import React, {useContext} from 'react';
+import React, {useEffect} from 'react';
 import {Modal, Text, View} from 'react-native';
 import Spinner from 'react-native-spinkit';
 import {whitesmoke} from 'color-name';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useSelector} from 'react-redux';
+import {height} from './../../constants/sizes';
 
-const LoadingContainer = ({isLoading}) => {
-  const {settings} = useContext(GlobalValuesContext);
+const LoadingContainer = () => {
+  const {settings, isLoading, bootStrapped} = useSelector((state) => state);
+
+  useEffect(() => {}, [isLoading]);
+  console.log(isLoading && bootStrapped);
   return (
-    <Modal visible={isLoading} transparent>
-      <View
-        style={{
-          opacity: 0.3,
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'whitesmoke',
-        }}>
-        <Spinner
-          type="FadingCircle"
-          size={40}
-          color={settings.colors.main_theme_color}
-        />
-      </View>
-    </Modal>
+    <View
+      style={{
+        // opacity: 0.3,
+        // borderWidth : 10 ,
+        // flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'whitesmoke',
+        height,
+      }}>
+      <Modal visible={isLoading && bootStrapped} transparent={true}>
+        <View style={{backgroundColor: 'rgba(255,255,255,0.5', flex: 1}}>
+          <Spinner
+            type="FadingCircle"
+            size={40}
+            style={{position: 'absolute', top: height / 2, alignSelf: 'center'}}
+            color={settings.colors.main_theme_color}
+          />
+        </View>
+      </Modal>
+    </View>
   );
 };
 

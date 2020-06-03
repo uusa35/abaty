@@ -1,26 +1,21 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
-import {colors} from './../../constants/colors';
-import {text} from './../../constants/sizes';
+import {text, height} from './../../constants/sizes';
 import {animations} from './../../constants/animations';
 import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';
 import {resetStore} from '../../redux/actions';
+import {useDispatch, useSelector} from 'react-redux';
 
-const LoadingOfflineView = ({isConnected = false, mainBg, dispatch}) => {
-  const [connected, setConnected] = useState(isConnected);
+const LoadingOfflineView = () => {
+  const dispatch = useDispatch();
+  const {settings} = useSelector((state) => state);
 
-  const handleClick = useCallback(
-    (connected) => {
-      if (connected) {
-        // CodePush.restartApp();
-        return dispatch(resetStore());
-      }
-    },
-    [connected],
-  );
+  const handleClick = () => {
+    dispatch(resetStore());
+  };
 
   return (
     <ImageBackground
@@ -31,7 +26,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg, dispatch}) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      source={{uri: mainBg}}
+      source={{uri: settings.main_bg}}
       resizeMode="cover">
       <LottieView
         source={animations.offline}
@@ -40,7 +35,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg, dispatch}) => {
         style={{height: 120}}
       />
       <Button
-        onPress={() => setConnected(!connected)}
+        onPress={() => handleClick()}
         title={I18n.t('no_internet')}
         raised
         type="outline"
@@ -48,13 +43,13 @@ const LoadingOfflineView = ({isConnected = false, mainBg, dispatch}) => {
         titleStyle={{
           fontFamily: text.font,
           fontSize: text.medium,
-          color: colors.main_text_theme_color,
+          color: settings.colors.main_text_theme_color,
         }}
       />
       <Button
         raised
         icon={{name: 'ios-repeat', type: 'ionicon', color: 'red'}}
-        onPress={() => handleClick(!connected)}
+        onPress={() => handleClick()}
         title={I18n.t('retry')}
         type="outline"
         containerStyle={{marginBottom: 20, width: '90%'}}
@@ -63,7 +58,7 @@ const LoadingOfflineView = ({isConnected = false, mainBg, dispatch}) => {
           paddingLeft: 10,
           fontFamily: text.font,
           fontSize: text.medium,
-          color: colors.main_text_theme_color,
+          color: settings.colors.main_text_theme_color,
         }}
       />
     </ImageBackground>
@@ -94,7 +89,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
   },
-  menuBtn: {
-    backgroundColor: colors.main,
-  },
+  // menuBtn: {
+  //   backgroundColor: settings.colors.main,
+  // },
 });

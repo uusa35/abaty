@@ -6,7 +6,7 @@ import reducers from './reducers';
 import {navMiddleware} from './../AppNavigator';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-import {createNetworkMiddleware} from 'react-native-offline';
+// import {createNetworkMiddleware} from 'react-native-offline';
 import {networkTransform} from './../redux/actions/api';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
@@ -46,9 +46,9 @@ if (__DEV__) {
   // the 1st parameter's object.
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
-  const networkMiddleware = createNetworkMiddleware({
-    queueReleaseThrottle: 200,
-  });
+  // const networkMiddleware = createNetworkMiddleware({
+  //   queueReleaseThrottle: 200,
+  // });
   const appLogger = createLogger({
     collapsed: true,
     duration: true,
@@ -61,7 +61,7 @@ if (__DEV__) {
     persistedReducer,
     composeEnhancers(
       applyMiddleware(
-        networkMiddleware,
+        // networkMiddleware,
         createDebugger(),
         createFlipperMiddleware(),
         appLogger,
@@ -75,12 +75,12 @@ if (__DEV__) {
 } else {
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
-  const networkMiddleware = createNetworkMiddleware({
-    queueReleaseThrottle: 200,
-  });
+  // const networkMiddleware = createNetworkMiddleware({
+  //   queueReleaseThrottle: 200,
+  // });
   Store = createStore(
     persistedReducer,
-    applyMiddleware(networkMiddleware, sagaMiddleware, navMiddleware),
+    applyMiddleware(sagaMiddleware, navMiddleware),
   );
   PersistStore = persistStore(Store);
   sagaMiddleware.run(rootSaga);

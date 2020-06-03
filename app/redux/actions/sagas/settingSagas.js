@@ -14,6 +14,7 @@ import {SET_COLORS} from '../types';
 import {SET_SIZES} from '../types';
 import codePush from 'react-native-code-push';
 import {buildVersion} from './../../../../app';
+import {TOGGLE_IS_CONNECTED} from '../types';
 
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
@@ -119,13 +120,13 @@ export function* enableWarningMessage(
 }
 
 export function* checkConnection() {
-  const connecitonStatus = yield call(checkConnectionStatus);
-  // if (__DEV__) {
-  //   console.log('currentConnection', connecitonStatus);
-  // }
+  const internetStatus = yield call(checkConnectionStatus);
+  if (__DEV__) {
+    console.log('internetStatus', internetStatus);
+  }
   yield put({
-    type: offlineActionTypes.CONNECTION_CHANGE,
-    payload: connecitonStatus,
+    type: TOGGLE_IS_CONNECTED,
+    payload: internetStatus,
   });
 }
 

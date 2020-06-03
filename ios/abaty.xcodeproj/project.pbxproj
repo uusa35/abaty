@@ -99,7 +99,7 @@
 		0FB5D916EDC8CE47F48E27E0 /* Pods-abaty-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-tvOS.release.xcconfig"; path = "Target Support Files/Pods-abaty-tvOS/Pods-abaty-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		0FF55BB6F1AC4E97B5AD0A88 /* bein-ar-black_0.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "bein-ar-black_0.ttf"; path = "../assets/fonts/bein-ar-black_0.ttf"; sourceTree = "<group>"; };
 		138C1806978C433C8433ACAB /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Abaty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abaty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* Abati.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abati.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = abaty/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = abaty/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Abaty.app */,
+				13B07F961A680F5B00A75B9A /* Abati.app */,
 				00E356EE1AD99517003FC87E /* abatyTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* abaty-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* abaty-tvOSTests.xctest */,
@@ -421,7 +421,7 @@
 			);
 			name = abaty;
 			productName = abaty;
-			productReference = 13B07F961A680F5B00A75B9A /* Abaty.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* Abati.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* abaty-tvOS */ = {
@@ -1077,7 +1077,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.abati;
-				PRODUCT_NAME = Abaty;
+				PRODUCT_NAME = Abati;
 				SWIFT_OBJC_BRIDGING_HEADER = "abaty-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1104,7 +1104,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ideasowners.abati;
-				PRODUCT_NAME = Abaty;
+				PRODUCT_NAME = Abati;
 				SWIFT_OBJC_BRIDGING_HEADER = "abaty-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

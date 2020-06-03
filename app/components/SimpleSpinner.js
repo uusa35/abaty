@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Image} from 'react-native';
 import Spinner from 'react-native-spinkit';
-import {text, width} from '../constants/sizes';
+import {iconSizes, text, width} from '../constants/sizes';
 import RadialGradient from 'react-native-radial-gradient';
 import {isIOS} from '../constants';
 import {images} from '../constants/images';
@@ -19,7 +19,7 @@ const SimpleSpinner = ({color = 'black'}) => {
         style={{width: 150, height: 100, margin: 10}}
         resizeMode="contain"
       />
-      <Spinner type="ChasingDots" color={color} size={40} />
+      <Spinner type="Arc" color={color} size={iconSizes.medium} />
     </RadialGradient>
   );
 };
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0A3D62',
+    // backgroundColor: '#0A3D62',
     overflow: 'hidden',
   },
 });
