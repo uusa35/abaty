@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">عباتي</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey" translatable="false">N_taLc-A443NvPdG33rapbAzdAC20b4c8795-48ce-4f42-a238-9e0ad63054bd</string>
+    <string name="facebook_app_id">2151249995182148</string>
+    <color name="white">#ffffff</color>
+</resources>

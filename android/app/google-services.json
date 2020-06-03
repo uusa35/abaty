@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "352297938172",
+    "firebase_url": "https://abati-6e86d.firebaseio.com",
+    "project_id": "abati-6e86d",
+    "storage_bucket": "abati-6e86d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352297938172:android:ece37790ae97aaba51bb79",
+        "android_client_info": {
+          "package_name": "com.abaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352297938172-i993cfvmv2ssh9i3jg323ghde5jh650e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh1pQ6x_R7JUqZINiFK3t9UoQDaLC2rZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352297938172-i993cfvmv2ssh9i3jg323ghde5jh650e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "352297938172-5kdcfclv5f3eeca6ufcdc0l9egkjcpv0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abaty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
