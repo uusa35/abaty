@@ -20,7 +20,7 @@ export const FavoriteStack = createStackNavigator(
           <HeaderRight showCountry={false} showFilter={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ClassifiedIndex: {
@@ -28,7 +28,7 @@ export const FavoriteStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Classified: {
@@ -40,7 +40,7 @@ export const FavoriteStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight displayShare={true} showCountry={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           backgroundColor: 'white',
           borderColor: 'transparent',

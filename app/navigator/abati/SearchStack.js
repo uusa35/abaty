@@ -23,7 +23,7 @@ export const SearchStack = createStackNavigator(
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('search')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     SearchProductIndex: {
@@ -34,7 +34,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -50,7 +50,7 @@ export const SearchStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -67,7 +67,7 @@ export const SearchStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           // backgroundColor: 'white',
           // zIndex: 100
@@ -85,7 +85,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('home')} showLogo={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

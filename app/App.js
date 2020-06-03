@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState, Fragment} from 'react';
-import {View, AppState} from 'react-native';
+import {View, AppState, useColorScheme, StatusBar} from 'react-native';
 import codePush from 'react-native-code-push';
 import {connect} from 'react-redux';
 import {
@@ -62,6 +62,7 @@ const App = ({
   resetApp,
   settings,
 }) => {
+  const colorScheme = useColorScheme();
   const [appState, setAppState] = useState(AppState.currentState);
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
@@ -147,6 +148,7 @@ const App = ({
   return (
     <DispatchContext.Provider value={{dispatch}}>
       <View style={{flex: 1}}>
+        <StatusBar barStyle={`${colorScheme}-content`} />
         {bootStrapped ? (
           <GlobalValuesContext.Provider
             value={{

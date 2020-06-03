@@ -24,7 +24,7 @@ export const SearchStack = createStackNavigator(
           <HeaderRight showCountry={true} showClassifiedsFilter={true} />
         ),
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ClassifiedIndex: {
@@ -37,7 +37,7 @@ export const SearchStack = createStackNavigator(
         headerRight: (
           <HeaderRight showCountry={true} showClassifiedsFilter={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Classified: {
@@ -53,7 +53,7 @@ export const SearchStack = createStackNavigator(
             showCountry={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           backgroundColor: 'white',
           borderColor: 'transparent',
@@ -69,7 +69,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

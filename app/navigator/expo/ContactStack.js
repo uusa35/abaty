@@ -17,7 +17,7 @@ export const ContactStack = createStackNavigator(
           <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('more')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Contactus: {
@@ -25,7 +25,7 @@ export const ContactStack = createStackNavigator(
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: 'contactus',
     },

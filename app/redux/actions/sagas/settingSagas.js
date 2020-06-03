@@ -1,7 +1,7 @@
 import {call, put, all, select, delay} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import * as actions from '../types';
-import DeviceInfo from 'react-native-device-info';
+import {getUniqueId} from 'react-native-device-info';
 import {displayName} from './../../../../app';
 import {isLocal} from '../../../env';
 import {checkConnectionStatus, getColors, getSizes} from '../api';
@@ -57,7 +57,7 @@ export function* toggleGuest(guest) {
 
 export function* setDeviceId() {
   try {
-    let deviceId = DeviceInfo.getUniqueID(); // get the deviceID
+    let deviceId = yield call(getUniqueId); // get the deviceID
     // if (isLocal) {
     //   console.log('device_id', deviceId);
     // }

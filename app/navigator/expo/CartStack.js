@@ -24,7 +24,7 @@ export const CartStack = createStackNavigator(
           <HeaderRight showCountry={true} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CartConfirmation: {
@@ -34,7 +34,7 @@ export const CartStack = createStackNavigator(
           <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart_confirmation')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     PaymentIndex: {
@@ -46,7 +46,7 @@ export const CartStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('payment_index_page')} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -58,7 +58,7 @@ export const CartStack = createStackNavigator(
         headerRight: (
           <HeaderRight displayShare={true} showCountry={true} display={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -70,7 +70,7 @@ export const CartStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ImageZoom: {
@@ -80,7 +80,7 @@ export const CartStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

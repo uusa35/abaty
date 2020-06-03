@@ -25,7 +25,7 @@ export const CategoryStack = createStackNavigator(
             }
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerTransparent: false,
       }),
       params: {
@@ -42,7 +42,7 @@ export const CategoryStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -59,7 +59,7 @@ export const CategoryStack = createStackNavigator(
           />
         ),
         headerTransparent: true,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -70,7 +70,7 @@ export const CategoryStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

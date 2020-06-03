@@ -19,7 +19,7 @@ export const ClassifiedStack = createStackNavigator(
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
         headerLeft: () => <HeaderLeft showCart={false} showSideMenu={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ClassifiedIndex: {
@@ -27,7 +27,7 @@ export const ClassifiedStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Home: {
@@ -36,7 +36,7 @@ export const ClassifiedStack = createStackNavigator(
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
         // headerTitle: () => <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Classified: {
@@ -52,7 +52,7 @@ export const ClassifiedStack = createStackNavigator(
             showCountry={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           backgroundColor: 'white',
           borderColor: 'transparent',
@@ -68,7 +68,7 @@ export const ClassifiedStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

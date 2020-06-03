@@ -17,7 +17,7 @@ export const BrandStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('brands')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     BrandShow: {
@@ -27,7 +27,7 @@ export const BrandStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom navigation={navigation} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ProductIndex: {
@@ -38,7 +38,7 @@ export const BrandStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -54,7 +54,7 @@ export const BrandStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },

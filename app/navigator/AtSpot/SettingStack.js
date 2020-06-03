@@ -27,7 +27,7 @@ export const SettingStack = createStackNavigator(
         ),
         headerRight: () => <HeaderRight display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Login: {
@@ -35,7 +35,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Register: {
@@ -43,7 +43,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     UserEdit: {
@@ -51,7 +51,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ProductIndex: {
@@ -62,7 +62,7 @@ export const SettingStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     SearchProductIndex: {
@@ -73,7 +73,7 @@ export const SettingStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -83,7 +83,7 @@ export const SettingStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight displayShare={true} display={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },

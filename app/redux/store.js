@@ -53,14 +53,17 @@ if (__DEV__) {
     collapsed: true,
     duration: true,
   });
-  // const composeEnhancers =
-  //   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});
+  const createDebugger = require('redux-flipper').default;
+  const createFlipperMiddleware = require('rn-redux-middleware-flipper')
+    .default;
   Store = createStore(
     persistedReducer,
     composeEnhancers(
       applyMiddleware(
         networkMiddleware,
+        createDebugger(),
+        createFlipperMiddleware(),
         appLogger,
         sagaMiddleware,
         navMiddleware,
@@ -68,9 +71,6 @@ if (__DEV__) {
     ),
   );
   PersistStore = persistStore(Store);
-  // Only in case you want to empty the store !!!
-  // PresistStore.purge();
-  // run the saga --> go to actions then calling the saga related function
   sagaMiddleware.run(rootSaga);
 } else {
   const persistedReducer = persistReducer(persistConfig, reducers);

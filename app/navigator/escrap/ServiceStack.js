@@ -17,7 +17,7 @@ export const ServiceStack = createStackNavigator(
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('services')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Service: {
@@ -33,7 +33,7 @@ export const ServiceStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           // backgroundColor: 'white',
           // zIndex: 100
@@ -48,7 +48,7 @@ export const ServiceStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

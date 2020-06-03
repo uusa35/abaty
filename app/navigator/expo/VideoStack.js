@@ -17,7 +17,7 @@ export const VideoStack = createStackNavigator(
         headerLeft: () => <HeaderLeft />,
         headerTitle: () => <HeaderMiddle title={I18n.t('videos')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     VideoShow: {
@@ -27,7 +27,7 @@ export const VideoStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom navigation={navigation} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

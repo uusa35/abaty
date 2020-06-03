@@ -16,7 +16,7 @@ export const LoginStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     Register: {
@@ -24,7 +24,7 @@ export const LoginStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     UserEdit: {
@@ -32,7 +32,7 @@ export const LoginStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

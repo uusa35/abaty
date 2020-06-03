@@ -33,7 +33,13 @@ const MapViewWidget = ({
 }) => {
   const {colors, exchange_rate} = useContext(GlobalValuesContext);
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+        marginTop: 10,
+        marginBottom: 10,
+      }}>
       {showTitle ? (
         <Text
           style={{

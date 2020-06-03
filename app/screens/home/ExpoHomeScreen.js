@@ -44,6 +44,7 @@ const ExpoHomeScreen = ({
   return (
     <BgContainer>
       <IntroductionWidget
+        elements={splashes}
         IntroductionWidget
         showIntroduction={showIntroduction}
       />
@@ -64,7 +65,7 @@ const ExpoHomeScreen = ({
         showsVerticalScrollIndicator={false}
         style={{flex: 1}}>
         {/*<ProductSearchForm />*/}
-        <ExpoMainSliderWidget slides={slides} />
+        <ExpoMainSliderWidget elements={slides} />
         <ExpoDesignerHorizontalWidget
           elements={homeCompanies}
           showName={true}

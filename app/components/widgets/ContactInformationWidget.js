@@ -13,7 +13,7 @@ const ContactInformationWidget = ({settings}) => {
   const {longitude, latitude} = settings;
   const {colors} = settings;
   return (
-    <View style={{flex: 1, backgroundColor: 'transparent'}}>
+    <View style={{flex: 1, backgroundColor: 'transparent', marginTop: '5%'}}>
       {settings.logo ? (
         <ImageLoaderContainer
           img={settings.logo}

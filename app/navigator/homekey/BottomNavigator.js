@@ -143,7 +143,7 @@ export const BottomTabsStack = createBottomTabNavigator(
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',

@@ -29,7 +29,7 @@ export const SettingStack = createStackNavigator(
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Login: {
@@ -37,7 +37,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Register: {
@@ -45,7 +45,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     UserEdit: {
@@ -53,7 +53,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ProfileIndex: {
@@ -63,7 +63,7 @@ export const SettingStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -74,7 +74,7 @@ export const SettingStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     OrderIndex: {
@@ -82,7 +82,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -92,7 +92,7 @@ export const SettingStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -104,7 +104,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight displayShare={true} showCountry={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -117,7 +117,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={true} showFilter={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -136,7 +136,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight displayShare={false} showFilter={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     FavoriteClassifiedIndex: {
@@ -145,7 +145,7 @@ export const SettingStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Contactus: {

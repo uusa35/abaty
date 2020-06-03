@@ -32,7 +32,7 @@ export const SettingStack = createStackNavigator(
           <HeaderRight showFilter={false} showCountry={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('me')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Login: {
@@ -42,7 +42,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Register: {
@@ -52,7 +52,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     UserEdit: {
@@ -62,7 +62,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ProfileIndex: {
@@ -74,7 +74,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -85,7 +85,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -102,7 +102,7 @@ export const SettingStack = createStackNavigator(
           />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -118,7 +118,7 @@ export const SettingStack = createStackNavigator(
             showCountry={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -136,7 +136,7 @@ export const SettingStack = createStackNavigator(
             display={true}
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -154,7 +154,7 @@ export const SettingStack = createStackNavigator(
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

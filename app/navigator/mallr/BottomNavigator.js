@@ -65,7 +65,7 @@ export const BottomTabsStack = createBottomTabNavigator(
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight display={true} />,
         // headerTitle: () => <HeaderMiddle title={I18n.t('home')}/>,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Search: {

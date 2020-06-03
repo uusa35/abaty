@@ -16,7 +16,7 @@ export const SearchStack = createStackNavigator(
           <HeaderMiddle title={I18n.t('search_classifieds')} />
         ),
         headerRight: () => <HeaderRight showCountry={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

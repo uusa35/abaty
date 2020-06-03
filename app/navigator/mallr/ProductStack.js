@@ -20,7 +20,7 @@ export const ProductStack = createStackNavigator(
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight showCountry={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('products')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Product: {
@@ -30,7 +30,7 @@ export const ProductStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight displayShare={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -44,7 +44,7 @@ export const ProductStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('home')} showLogo={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     SearchProductIndex: {
@@ -55,7 +55,7 @@ export const ProductStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ImageZoom: {
@@ -65,7 +65,7 @@ export const ProductStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
   },

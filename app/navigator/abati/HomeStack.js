@@ -73,7 +73,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('home')} showLogo={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerStyle: {
           borderBottomColor: 'lightgrey',
           borderBottomWidth: 0.5,
@@ -88,7 +88,7 @@ export const HomeStack = createStackNavigator(
           <HeaderRight displayShare={false} showCountry={true} />
         ),
         headerTitle: () => <HeaderMiddle title={'mallr'} showLogo={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Escrap: {
@@ -99,7 +99,7 @@ export const HomeStack = createStackNavigator(
           <HeaderRight displayShare={false} showCountry={true} />
         ),
         headerTitle: () => <HeaderMiddle title={'escrap'} showLogo={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Homekey: {
@@ -110,7 +110,7 @@ export const HomeStack = createStackNavigator(
           <HeaderRight displayShare={false} showCountry={true} />
         ),
         headerTitle: () => <HeaderMiddle title={'homekey'} showLogo={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CartIndex: {
@@ -121,7 +121,7 @@ export const HomeStack = createStackNavigator(
           <HeaderRight showCountry={true} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CartConfirmation: {
@@ -131,7 +131,7 @@ export const HomeStack = createStackNavigator(
           <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart_confirmation')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     PaymentIndex: {
@@ -143,7 +143,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('payment_index_page')} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CategoryIndex: {
@@ -162,7 +162,7 @@ export const HomeStack = createStackNavigator(
             }
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerTransparent: false,
       }),
       path: 'category/:id',
@@ -174,7 +174,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ChildrenCategoryIndex: {
@@ -184,7 +184,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     DesignerIndex: {
@@ -194,7 +194,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CompanyIndex: {
@@ -204,7 +204,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CelebrityIndex: {
@@ -214,7 +214,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CompanyShow: {
@@ -224,7 +224,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
@@ -235,7 +235,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
@@ -246,7 +246,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
@@ -257,7 +257,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
@@ -269,7 +269,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ServiceIndex: {
@@ -278,7 +278,7 @@ export const HomeStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('services')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CollectionIndex: {
@@ -287,7 +287,7 @@ export const HomeStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('our_collections')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
 
@@ -300,7 +300,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight displayShare={true} showCountry={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -312,7 +312,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Service: {
@@ -322,7 +322,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -332,7 +332,7 @@ export const HomeStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     FavoriteClassifiedIndex: {
@@ -341,7 +341,7 @@ export const HomeStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ImageZoom: {
@@ -351,7 +351,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Contactus: {
@@ -359,7 +359,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: 'contactus',
     },
@@ -372,7 +372,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('terms_and_conditions')} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Policy: {
@@ -382,14 +382,14 @@ export const HomeStack = createStackNavigator(
           <HeaderRight displayShare={false} displayCountry={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('policies')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     BrandIndex: {
       screen: gestureHandlerRootHOC(BrandIndexScreen),
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('brands')} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     BrandShow: {
@@ -399,7 +399,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     ProfileIndex: {
@@ -409,7 +409,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -418,7 +418,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `product/:id`,
     },
@@ -432,7 +432,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: (
           <HeaderMiddle title={I18n.t('homekey')} showLogo={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerTransparent: true,
       }),
     },
@@ -446,7 +446,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('scrap')} showLogo={false} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerTransparent: true,
       }),
     },
@@ -456,7 +456,7 @@ export const HomeStack = createStackNavigator(
         // headerLeft: () => <HeaderLeft  />,
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     Classified: {
@@ -469,7 +469,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={true} />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         //   headerTransparent: true,
         // headerStyle: {
         // backgroundColor: 'white',
@@ -484,7 +484,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('new_classified')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     ChooseCategory: {
@@ -494,7 +494,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={I18n.t('choose_your_category')} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     ChooseCategoryGroups: {
@@ -504,7 +504,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={I18n.t('add_your_properties')} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     ChooseAddress: {
@@ -512,7 +512,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('add_your_address')} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     Login: {
@@ -520,7 +520,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
     Register: {
@@ -528,7 +528,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       },
     },
   },

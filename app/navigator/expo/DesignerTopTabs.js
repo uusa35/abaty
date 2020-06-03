@@ -21,7 +21,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
       navigationOptions: ({navigation}) => ({
         // headerTitle: () => <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CompanyIndex: {
@@ -31,7 +31,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CelebrityIndex: {
@@ -41,7 +41,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => <HeaderRight />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
     },
     CategoryIndex: {
@@ -60,7 +60,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
             }
           />
         ),
-        headerBackTitle: null,
+        headerBackTitle: () => null,
         headerTransparent: false,
       }),
       path: 'category/:id',
@@ -72,7 +72,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
@@ -83,7 +83,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: <HeaderCustom />,
-        headerBackTitle: null,
+        headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
