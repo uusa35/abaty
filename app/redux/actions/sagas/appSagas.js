@@ -22,7 +22,6 @@ import {expoBootStrap} from './expo/appSagas';
 export function* startAppBootStrap() {
   try {
     const {bootStrapped} = yield select();
-    yield call(checkConnection);
     yield call(defaultLang);
     yield call(setVersion);
     if (!bootStrapped) {
@@ -44,8 +43,12 @@ export function* startAppBootStrap() {
       yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
   } finally {
-    yield call(disableLoading);
-    yield call(enableResetApp);
+    console.log('finally');
+    yield all([
+      call(disableLoading),
+      call(enableResetApp),
+      call(checkConnection),
+    ]);
   }
 }
 

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {ImageBackground} from 'react-native';
 import {height, width} from '../../constants/sizes';
 import AndroidBackHandlerComponent from './AndroidBackHandlerComponent';
@@ -9,7 +9,18 @@ import LoadingView from '../Loading/LoadingView';
 import LoadingOfflineView from '../Loading/LoadingOfflineView';
 
 const BgContainer = ({children, showImage = true}) => {
-  const {settings, isLoading, isConnected} = useSelector((state) => state);
+  const {
+    settings,
+    isLoading,
+    isConnected,
+    isLoadingContent,
+    isLoadingProfile,
+    isLoadingBoxedList,
+  } = useSelector((state) => state);
+
+  console.log('isConnected', isConnected);
+  useEffect(() => {}, []);
+
   return (
     <ImageBackground
       source={{
@@ -21,7 +32,10 @@ const BgContainer = ({children, showImage = true}) => {
       style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
       resizeMode="cover">
       {isConnected ? (
-        isLoading && isConnected ? (
+        isLoading ||
+        isLoadingProfile ||
+        isLoadingContent ||
+        isLoadingBoxedList ? (
           <LoadingView />
         ) : (
           <Fragment>{children}</Fragment>

@@ -13,6 +13,7 @@ import LoadingOfflineView from './LoadingOfflineView';
 import I18n from '../../I18n';
 import LoadingProfileView from './LoadingProfileView';
 import LoadingContentView from './LoadingContentView';
+import LoadingBoxedListView from './LoadingBoxedListView';
 
 const LoadingView = ({
   loadingText = null,
@@ -26,7 +27,7 @@ const LoadingView = ({
     isLoading,
     isLoadingContent,
     isLoadingProfile,
-    network,
+    isLoadingBoxedList,
   } = useSelector((state) => state);
   const [moveRand, setMoveRand] = useState([
     'CircleFlip',
@@ -76,8 +77,13 @@ const LoadingView = ({
       {isLoadingProfile && (
         <LoadingProfileView
           loadingText={I18n.t('loading')}
-          isLoadingContent={isLoadingProfile}
-          logo={logo}
+          logo={settings.logo}
+        />
+      )}
+      {isLoadingBoxedList && (
+        <LoadingBoxedListView
+          loadingText={I18n.t('loading')}
+          logo={settings.logo}
         />
       )}
     </Fragment>
@@ -88,7 +94,6 @@ export default LoadingView;
 
 LoadingView.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  logo: PropTypes.string,
   columns: PropTypes.number,
 };
 

@@ -280,6 +280,7 @@ export const networkTransform = createTransform(
 );
 
 export async function checkConnectionStatus() {
+  console.log('checkking');
   return NetInfo.fetch().then((state) => state.isConnected);
   // return checkInternetConnection().then(isConnected => isConnected)
 }

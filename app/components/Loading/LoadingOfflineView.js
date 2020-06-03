@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
-import {text, height} from './../../constants/sizes';
+import {text} from './../../constants/sizes';
 import {animations} from './../../constants/animations';
 import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';

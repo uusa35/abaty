@@ -13,7 +13,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  transforms: [networkTransform],
+  // transforms: [networkTransform],
   blacklist: [
     'message',
     'cart',
@@ -32,6 +32,7 @@ const persistConfig = {
     'classifiedFilterModal',
     'isLoadingBoxedList',
     'showIntroduction',
+    'isConnected',
     // 'network',
   ], // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted

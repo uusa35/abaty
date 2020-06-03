@@ -227,6 +227,9 @@ export function* startGetProductScenario(action) {
 export function* startGetSearchProductsScenario(action) {
   try {
     const {name, searchParams, redirect} = action.payload;
+    if (!validate.isEmpty(redirect) && redirect) {
+      yield call(enableLoadingBoxedList);
+    }
     yield all([
       put({type: actions.HIDE_PRODUCT_FILTER_MODAL}),
       call(enableLoadingBoxedList),

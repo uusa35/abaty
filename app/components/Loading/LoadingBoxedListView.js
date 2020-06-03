@@ -5,12 +5,15 @@ import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
 import Svg, {Circle, Rect} from 'react-native-svg';
+import {enableLoadingBoxedList} from '../../redux/actions/sagas/settingSagas';
+import {useSelector} from 'react-redux';
 
-const LoadingBoxedListView = ({isLoadingContent}) => {
+const LoadingBoxedListView = () => {
+  const {isLoadingBoxedList} = useSelector((state) => state);
   return (
     <Modal
       animationType="fade"
-      visible={isLoadingContent}
+      visible={isLoadingBoxedList}
       transparent={false}
       style={{
         position: 'absolute',
