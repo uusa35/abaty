@@ -5,22 +5,23 @@ import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants/sizes';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {addToCart} from '../../../redux/actions/cart';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductColorSizeGroup = ({element}) => {
-  const {colors, settings} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {settings} = useSelector((state) => state);
+  const {colors} = settings;
+  const dispatch = useDispatch();
   const {size, color, qty, show_attribute} = element;
-  [requestQty, setRequestQty] = useState(0);
-  [notes, setNotes] = useState('');
+  const [requestQty, setRequestQty] = useState(0);
+  const [notes, setNotes] = useState('');
   const [wrapGift, setWrapGift] = useState(false);
   const [giftMessage, setGiftMessage] = useState('');
+
   return (
     <View
       style={{

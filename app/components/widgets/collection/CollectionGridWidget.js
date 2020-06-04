@@ -2,17 +2,16 @@ import React, {Fragment, useContext} from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {map} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';
 import widgetStyles from '../widgetStyles';
 import I18n from '../../../I18n';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {touchOpacity} from '../../../constants/sizes';
+import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionGridWidget = ({elements, showTitle = true}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors} = useSelector((state) => state.settings);
   return (
     <Fragment>
       {showTitle ? (

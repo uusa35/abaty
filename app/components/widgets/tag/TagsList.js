@@ -9,8 +9,8 @@ import {map, isNull} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
 import validate from 'validate.js';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const TagsList = ({
   elements,
@@ -19,7 +19,7 @@ const TagsList = ({
   title,
   type,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const handleClick = useCallback((c) => {

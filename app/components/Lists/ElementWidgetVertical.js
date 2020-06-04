@@ -2,10 +2,10 @@ import React, {useContext, useCallback} from 'react';
 import {ListItem} from 'react-native-elements';
 import {iconSizes, text} from './../../constants/sizes';
 import {isRTL} from '../../I18n';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {getDesigner, getUser} from './../../redux/actions/user';
 import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../redux/actions/product';
+import {useDispatch} from 'react-redux';
 
 const ElementWidgetVertical = ({
   title,
@@ -16,7 +16,7 @@ const ElementWidgetVertical = ({
   user_id = null,
   thumb,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   const handleClick = useCallback(() => {
     switch (type) {

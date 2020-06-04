@@ -8,11 +8,11 @@ import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch} from 'react-redux';
 
 const CategoriesList = ({elements, columns, type, showBtn = false}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {goBack} = useNavigation();
   const [refresh, setRefresh] = useState(false);
   useMemo(() => {

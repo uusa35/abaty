@@ -1,19 +1,13 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useContext,
-  useRef,
-} from 'react';
+import React, {Fragment, useCallback, useEffect} from 'react';
 import {BackHandler} from 'react-native';
 import {useNavigation} from 'react-navigation-hooks';
 import {goBackBtn} from '../../redux/actions';
 import {isIOS} from '../../constants';
-import {DispatchContext} from '../../redux/DispatchContext';
+import {useDispatch} from 'react-redux';
 
 const AndroidBackHandlerComponent = () => {
   const navigation = useNavigation();
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     !isIOS

@@ -1,15 +1,14 @@
 import React, {useContext, useState, useMemo} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
 import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import I18n from './../../../I18n';
 import validate from 'validate.js';
 import {removeItem} from '../../../redux/actions/cart';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {filter, first} from 'lodash';
+import {useDispatch} from 'react-redux';
 const ProductItem = ({
   item,
   logo,
@@ -18,7 +17,7 @@ const ProductItem = ({
   notes = null,
   timeData = null,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const [element, setElement] = useState(item.element);
   const [selectedSize, setSelectedSize] = useState({});
   const [selectedColor, setSelectedColor] = useState({});

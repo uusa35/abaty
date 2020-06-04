@@ -14,13 +14,14 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ServiceWidget = ({element, showName = false}) => {
-  const {colors, currency_symbol, exchange_rate, token} = useContext(
+  const {colors, currency_symbol, exchange_rate} = useContext(
     GlobalValuesContext,
   );
-  const {dispatch} = useContext(DispatchContext);
+  const {token} = useSelector((state) => state);
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

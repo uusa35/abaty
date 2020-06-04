@@ -11,11 +11,11 @@ import FastImage from 'react-native-fast-image';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {startNewClassified} from '../../../redux/actions/classified';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useDispatch} from 'react-redux';
 
 const ChooseCategoryItem = ({category}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <Fragment>
       {!validate.isEmpty(category.children) && category.has_children ? (

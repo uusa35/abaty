@@ -8,16 +8,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {hideAreaModal, setArea} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {text} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import {isRTL} from './../../I18n';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
 
 const AreasList = ({area, areas, areaModal}) => {
-  const {dispatch} = useContext(DispatchContext);
-  [visible, setVisible] = useState(areaModal);
-  [currentArea, setCurrentArea] = useState(area);
+  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(areaModal);
+  const [currentArea, setCurrentArea] = useState(area);
 
   const handleClick = useCallback((area) => {
     dispatch(setArea(area));

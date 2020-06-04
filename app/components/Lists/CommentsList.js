@@ -8,16 +8,15 @@ import {SafeAreaView} from 'react-navigation';
 import AddCommentFormWidget from '../widgets/comment/AddCommentFormWidget';
 import I18n from '../../I18n';
 import validate from 'validate.js';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import {hideCommentModal} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const CommentsList = ({elements, model, id}) => {
   const [refresh, setRefresh] = useState(false);
-  const {guest} = useContext(GlobalValuesContext);
+  const {guest} = useSelector((state) => state);
   const {navigate} = useNavigation();
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   useMemo(() => {
     if (refresh) {

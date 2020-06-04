@@ -29,10 +29,10 @@ import {Button, Icon, Input} from 'react-native-elements';
 import {filter, uniqBy} from 'lodash';
 import validate from 'validate.js';
 import {getSearchServices} from '../../../redux/actions/service';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import NoMoreElements from '../NoMoreElements';
 import TopSearchInput from '../TopSearchInput';
+import {useDispatch} from 'react-redux';
 
 const ServiceList = ({
   services,
@@ -51,7 +51,7 @@ const ServiceList = ({
   const [params, setParams] = useState(searchElements);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {

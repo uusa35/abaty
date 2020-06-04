@@ -10,9 +10,9 @@ import {showCommentModal} from '../../../redux/actions';
 import {becomeFan, rateUser} from '../../../redux/actions/user';
 import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {ABATI, MALLR} from './../../../../app';
+import {useDispatch} from 'react-redux';
 
 const UserImageProfile = ({
   medium,
@@ -33,8 +33,7 @@ const UserImageProfile = ({
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
-
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const handleRating = useCallback(

@@ -7,13 +7,12 @@ import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import CollectionWidget from './CollectionWidget';
 import CollectionInfoWidget from './CollectionInfoWidget';
-import {useNavigation} from 'react-navigation-hooks';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {getCollections} from '../../../redux/actions/product';
+import {useDispatch} from 'react-redux';
 
 const CollectionHorizontalWidget = ({elements, showName, title}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={[widgetStyles.container, {backgroundColor: '#FAFAFA'}]}>

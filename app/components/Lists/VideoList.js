@@ -6,9 +6,8 @@ import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import PropTypes from 'prop-types';
 import VideoWidget from '../widgets/video/VideoWidget';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {refetchHomeElements} from '../../redux/actions';
-import SimpleSpinner from '../SimpleSpinner';
+import {useDispatch} from 'react-redux';
 
 const VideoList = ({
   elements,
@@ -21,7 +20,7 @@ const VideoList = ({
   const [refresh, setRefresh] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [endList, setEndList] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   useMemo(() => {
     if (refresh) {

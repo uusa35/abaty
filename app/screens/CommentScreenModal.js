@@ -2,15 +2,14 @@ import React, {useState, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Modal, View} from 'react-native';
 import {hideCommentModal} from '../redux/actions';
-import {DispatchContext} from '../redux/DispatchContext';
 import CommentsList from '../components/Lists/CommentsList';
 import {Icon} from 'react-native-elements';
 import {SafeAreaView} from 'react-navigation';
 import {isRTL} from '../I18n';
-import ModalBackContainer from '../components/containers/ModalBackContainer';
+import {useDispatch} from 'react-redux';
 
 const CommentScreenModal = ({commentModal, elements, model, id}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(commentModal);
   return (
     <SafeAreaView horizontal="always">

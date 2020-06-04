@@ -10,13 +10,11 @@ import {
 import I18n from './../../../I18n';
 import PropTypes from 'prop-types';
 import {setColor, setSize} from '../../../redux/actions';
-import {filter} from 'lodash';
-import {DispatchContext} from '../../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const ProductFilterSizesWidget = ({elements, type, colors, size}) => {
   const [currentElement, setCurrentElement] = useState({});
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   const handleSetElement = useCallback((item) => {
     setCurrentElement(item);

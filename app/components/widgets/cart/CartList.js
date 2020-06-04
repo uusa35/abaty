@@ -7,7 +7,6 @@ import {text} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';
 import {clearCart, getCoupon, submitCart} from '../../../redux/actions/cart';
 import {Button, Input, CheckBox, Icon} from 'react-native-elements';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
@@ -15,6 +14,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import validate from 'validate.js';
 import {useNavigation} from 'react-navigation-hooks';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useDispatch, useSelector} from 'react-redux';
 
 const CartList = ({
   cart,
@@ -27,8 +27,9 @@ const CartList = ({
   selectedArea,
   shipmentFees,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors, total, grossTotal, country} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors, total, grossTotal} = useContext(GlobalValuesContext);
+  const {country} = useSelector((state) => state);
   const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -273,16 +274,16 @@ const CartList = ({
           </View>
         ) : null}
         <View>
-          <Button
-            raised
-            title={shipment_notes}
-            type="outline"
-            containerStyle={{marginBottom: 20}}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.header_one_theme_color,
-            }}
-          />
+          {/*<Button*/}
+          {/*  raised*/}
+          {/*  title={shipment_notes}*/}
+          {/*  type="outline"*/}
+          {/*  containerStyle={{marginBottom: 20}}*/}
+          {/*  titleStyle={{*/}
+          {/*    fontFamily: text.font,*/}
+          {/*    color: colors.header_one_theme_color,*/}
+          {/*  }}*/}
+          {/*/>*/}
           <View style={{paddingTop: 20, paddingBottom: 20}}>
             <Input
               editable={editMode}

@@ -33,11 +33,11 @@ import widgetStyles from '../widgetStyles';
 import SearchSort from '../search/SearchSort';
 import {orderBy} from 'lodash';
 import ClassifiedsMapView from '../map/ClassifiedsMapView';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import NoMoreElements from '../NoMoreElements';
 import {HOMEKEY} from './../../../../app';
 import SortByModal from '../search/SortByModal';
+import {useDispatch} from 'react-redux';
 
 const ClassifiedList = ({
   classifieds,
@@ -63,7 +63,7 @@ const ClassifiedList = ({
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
   const [mapModal, setMapModal] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {

@@ -18,9 +18,9 @@ import {
   touchOpacity,
 } from '../../../constants/sizes';
 import {images} from '../../../constants/images';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch} from 'react-redux';
 
 const NavCategoryHorizontalRoundedWidget = ({
   elements,
@@ -29,7 +29,7 @@ const NavCategoryHorizontalRoundedWidget = ({
   showTitle = true,
   showLink = true,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const handleClick = (c) => dispatch(setCategoryAndGoToNavChildren(c));

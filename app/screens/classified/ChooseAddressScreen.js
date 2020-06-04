@@ -10,7 +10,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {axiosInstance} from '../../redux/actions/api';
 import {useNavigation} from 'react-navigation-hooks';
 import {enableErrorMessage} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
+import {useDispatch} from 'react-redux';
 
 const ChooseAddressScreen = () => {
   const [longitude, setLongitude] = useState(47.9323259);
@@ -18,7 +18,7 @@ const ChooseAddressScreen = () => {
   const [address, setAddress] = useState('');
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   useMemo(() => {
     // Geolocation.getCurrentPosition(info => {

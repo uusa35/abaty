@@ -93,7 +93,7 @@ const LoadingView = ({
 export default LoadingView;
 
 LoadingView.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
   columns: PropTypes.number,
 };
 

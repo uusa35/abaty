@@ -5,11 +5,11 @@ import {isIOS} from './../constants';
 import PropTypes from 'prop-types';
 import Toaster from 'react-native-toaster';
 import validate from 'validate.js';
-import {DispatchContext} from '../redux/DispatchContext';
 import {Icon} from 'react-native-elements';
+import {useDispatch} from 'react-redux';
 
 const AlertMessage = ({message}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const [messageVisible, setMessageVisible] = useState(message.visible);
   const styles = {
     container: {

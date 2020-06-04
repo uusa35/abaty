@@ -1,14 +1,5 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useContext,
-  useState,
-  useMemo,
-} from 'react';
+import React, {Fragment, useEffect, useState, useMemo} from 'react';
 import {Linking} from 'react-native';
-import {GlobalValuesContext} from './../../redux/GlobalValuesContext';
-import {DispatchContext} from './../../redux/DispatchContext';
 import {
   ABATI,
   ABATI_ONE_SIGNAL_APP_ID,
@@ -30,15 +21,14 @@ import {
 } from './../../redux/actions';
 import validate from 'validate.js';
 import analytics from '@react-native-firebase/analytics';
-import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch, useSelector} from 'react-redux';
 
 const AppHomeConfigComponent = () => {
-  const {dispatch} = useContext(DispatchContext);
-  const {bootStrapped, resetApp} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {bootStrapped, resetApp} = useSelector((state) => state);
   const [deviceId, setDeviceId] = useState('');
   const [device, setDevice] = useState('');
   const [signalId, setSignalId] = useState();
-  const navigation = useNavigation();
 
   useMemo(() => {
     analytics().setAnalyticsCollectionEnabled(true);
@@ -63,16 +53,16 @@ const AppHomeConfigComponent = () => {
     Linking.addEventListener('url', handleOpenURL);
   }, [bootStrapped]);
 
-  const handleOpenURL = useCallback((event) => {
+  const handleOpenURL = (event) => {
     const {type, id} = getPathForDeepLinking(event.url);
     return dispatch(goDeepLinking({type, id}));
-  });
+  };
 
-  const onReceived = useCallback((notification) => {
+  const onReceived = (notification) => {
     __DEV__ ? console.log('Notification received: ', notification) : null;
-  });
+  };
 
-  const onOpened = useCallback((openResult) => {
+  const onOpened = (openResult) => {
     if (__DEV__) {
       console.log('the whole thing', openResult.notification.payload);
       console.log('Message: ', openResult.notification.payload.body);
@@ -87,21 +77,18 @@ const AppHomeConfigComponent = () => {
     setTimeout(() => {
       dispatch(goDeepLinking(notification));
     }, 1000);
-  });
+  };
 
-  const onIds = useCallback(
-    (device) => {
-      if (!validate.isEmpty(device)) {
-        setDeviceId(device.userId);
-        if (device.userId !== deviceId) {
-          dispatch(setPlayerId(device.userId));
-        }
+  const onIds = (device) => {
+    if (!validate.isEmpty(device)) {
+      setDeviceId(device.userId);
+      if (device.userId !== deviceId) {
+        dispatch(setPlayerId(device.userId));
       }
-    },
-    [deviceId],
-  );
+    }
+  };
 
   return <Fragment></Fragment>;
 };
 
-export default AppHomeConfigComponent;
+export default React.memo(AppHomeConfigComponent);

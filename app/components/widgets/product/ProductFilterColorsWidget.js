@@ -10,13 +10,11 @@ import {
 import I18n from './../../../I18n';
 import PropTypes from 'prop-types';
 import {setColor, setSize} from '../../../redux/actions';
-import {filter} from 'lodash';
-import {DispatchContext} from '../../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductFilterColorsWidget = ({elements, type, colors, color}) => {
   const [currentElement, setCurrentElement] = useState(color);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   const handleSetElement = useCallback((item) => {
     setCurrentElement(item);

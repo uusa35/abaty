@@ -6,12 +6,12 @@ import {Button, Input} from 'react-native-elements';
 import {addToCart} from '../../../redux/actions/cart';
 import I18n, {isRTL} from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useDispatch} from 'react-redux';
 
 const ServiceInfoWidgetBtns = ({element}) => {
   const {timings} = element;
   const {colors} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const [days, setDays] = useState(_.keys(timings));
   const [day, setDay] = useState(_.first(_.keys(timings)));
   const [selectedDay, setSelectedDay] = useState([]);

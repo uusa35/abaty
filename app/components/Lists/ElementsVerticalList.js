@@ -20,12 +20,12 @@ import {
 import {filter, orderBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
-import {DispatchContext} from '../../redux/DispatchContext';
 import TopSearchInput from '../widgets/TopSearchInput';
 import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
 import ElementWidgetVertical from './ElementWidgetVertical';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import SearchSort from '../widgets/search/SearchSort';
+import {useDispatch} from 'react-redux';
 
 const UsersVerticalList = ({
   elements,
@@ -40,16 +40,16 @@ const UsersVerticalList = ({
   iconSize = iconSizes.small,
   textSize = text.small,
 }) => {
-  [isLoading, setIsLoading] = useState(false);
-  [refresh, setRefresh] = useState(false);
-  [showMore, setShowMore] = useState(showMore);
-  [items, setItems] = useState(elements);
-  [params, setParams] = useState(searchParams);
-  [page, setPage] = useState(1);
-  [search, setSearch] = useState('');
-  [sort, setSort] = useState('');
-  [sortModal, setSortModal] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [currentShowMore, setCurrentShowMore] = useState(showMore);
+  const [items, setItems] = useState(elements);
+  const [params, setParams] = useState(searchParams);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState('');
+  const [sortModal, setSortModal] = useState(false);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = useCallback(() => {

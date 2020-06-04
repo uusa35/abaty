@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 import I18n from './../../../I18n';
 import validate from 'validate.js';
 import {removeItem} from '../../../redux/actions/cart';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useDispatch} from 'react-redux';
 
 const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <View
       style={{

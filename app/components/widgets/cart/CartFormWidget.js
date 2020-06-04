@@ -6,7 +6,7 @@ import {text} from '../../../constants/sizes';
 import {Text, TouchableOpacity} from 'react-native';
 import {showCountryModal} from '../../../redux/actions';
 import {getCoupon} from '../../../redux/actions/cart';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useSelector} from 'react-redux';
 
 const CartFormWidget = ({
   country,
@@ -15,10 +15,10 @@ const CartFormWidget = ({
   grossTotal,
   shipment_notes,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
-  [email, setEmail] = useState(auth.email);
-  [name, setName] = useState(auth.name);
-  [mobile, setMobile] = useState(auth.mobile);
+  const dispatch = useSelector();
+  const [email, setEmail] = useState(auth.email);
+  const [name, setName] = useState(auth.name);
+  const [mobile, setMobile] = useState(auth.mobile);
 
   return (
     <View>

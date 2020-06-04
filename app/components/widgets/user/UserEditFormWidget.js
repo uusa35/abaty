@@ -23,9 +23,9 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useNavigation} from 'react-navigation-hooks';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {isNull} from 'lodash';
+import {useDispatch} from 'react-redux';
 
 const UserEditFormWidget = ({
   auth,
@@ -44,7 +44,7 @@ const UserEditFormWidget = ({
   const [sampleLogo, setSampleLogo] = useState(null);
   const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   const parent = dangerouslyGetParent();
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const [selectedCountry, setSelectedCountry] = useState(auth.country);
   const [currentCountry, setCurrentCountry] = useState(country);

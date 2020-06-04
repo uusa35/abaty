@@ -7,20 +7,22 @@ import {images} from '../../../constants/images';
 import {showCountryModal} from '../../../redux/actions';
 import {register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import {ABATI} from './../../../../app';
+import {useDispatch, useSelector} from 'react-redux';
 
 const RegisterFormWidget = ({player_id}) => {
-  const {colors, country, logo} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {colors, logo} = useContext(GlobalValuesContext);
+  const {country} = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [description, setDescription] = useState('');
+
   return (
     <KeyboardAwareScrollView
       horizontal={false}

@@ -19,11 +19,10 @@ import I18n from './../../I18n';
 import {bottomContentInset, text, TheHold} from './../../constants/sizes';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
-import {DispatchContext} from '../../redux/DispatchContext';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {useNavigation} from 'react-navigation-hooks';
 import TopSearchInput from '../widgets/TopSearchInput';
-import ElementWidgetVertical from './ElementWidgetVertical';
+import {useDispatch} from 'react-redux';
 
 const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +32,7 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const [params, setParams] = useState(searchParams);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {goBack} = useNavigation();
 
   const loadMore = useCallback(() => {

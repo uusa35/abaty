@@ -9,8 +9,8 @@ import {map, isNull, uniqBy} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const ProductCategoryVerticalWidget = ({
   elements,
@@ -20,7 +20,7 @@ const ProductCategoryVerticalWidget = ({
   showChildren = true,
   title,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <Fragment>

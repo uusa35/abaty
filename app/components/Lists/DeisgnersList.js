@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback, useContext} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {
   View,
   FlatList,
@@ -8,11 +8,10 @@ import {
 import {getSearchDesigners} from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {Button, Input, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
+import {Button} from 'react-native-elements';
+import I18n from './../../I18n';
 import {
   bottomContentInset,
-  iconSizes,
   text,
   TheHold,
   width,
@@ -20,9 +19,9 @@ import {
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
-import {DispatchContext} from '../../redux/DispatchContext';
 import TopSearchInput from '../widgets/TopSearchInput';
 import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
+import {useDispatch} from 'react-redux';
 
 const DesignersList = ({
   elements,
@@ -30,18 +29,17 @@ const DesignersList = ({
   showMore,
   showSearch = false,
 }) => {
-  [isLoading, setIsLoading] = useState(false);
-  [refresh, setRefresh] = useState(false);
-  [showMore, setShowMore] = useState(showMore);
-  [items, setItems] = useState(elements);
-  [elements, setElements] = useState(elements);
-  [params, setParams] = useState(searchParams);
-  [page, setPage] = useState(1);
-  [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [currentShowMore, setCurrentShowMore] = useState(showMore);
+  const [items, setItems] = useState(elements);
+  const [params, setParams] = useState(searchParams);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
 
   const loadMore = useCallback(() => {
-    setShowMore(true);
+    setCurrentShowMore(true);
     setPage(page + 1);
   });
 
@@ -50,14 +48,14 @@ const DesignersList = ({
       setIsLoading(true);
       setIsLoading(false);
       setRefresh(false);
-      setShowMore(false);
+      setCurrentShowMore(false);
       return axiosInstance(`user?page=${page}`, {
         params,
       })
         .then((r) => {
           const userGroup = uniqBy(items.concat(r.data), 'id');
           setItems(userGroup);
-          setElements(userGroup);
+          setItems(userGroup);
         })
         .catch((e) => e);
     }
@@ -75,7 +73,7 @@ const DesignersList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      setShowMore(false);
+      setCurrentShowMore(false);
       let filtered = filter(elements, (i) =>
         i.slug.includes(search) ? i : null,
       );

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {text} from '../../../constants/sizes';
 import {appUrlIos} from '../../../env';
@@ -6,9 +6,8 @@ import {WebView} from 'react-native-webview';
 import YouTube from 'react-native-youtube';
 import FastImage from 'react-native-fast-image';
 import {GET_VIDEO} from '../../../redux/actions/types';
-import {DispatchContext} from '../../../redux/DispatchContext';
-import SimpleSpinner from '../../SimpleSpinner';
 import {toggleLoading} from '../../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const VideoWidget = ({
   element,
@@ -16,10 +15,10 @@ const VideoWidget = ({
   width = 180,
   showImage = false,
 }) => {
-  [isReady, setIsReady] = useState(false);
-  [status, setStatus] = useState(false);
-  [quality, setQuality] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const [isReady, setIsReady] = useState(false);
+  const [status, setStatus] = useState(false);
+  const [quality, setQuality] = useState('');
+  const dispatch = useDispatch();
   return (
     <View
       style={{

@@ -13,13 +13,13 @@ import {
   storeOrderTap,
 } from '../../../redux/actions/cart';
 import {Button, Input} from 'react-native-elements';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {map, round, isNull} from 'lodash';
 import ProductItem from '../product/ProductItem';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {MALLR, ABATI, HOMEKEY, PAYMENT} from './../../../../app';
 import validate from 'validate.js';
+import {useDispatch} from 'react-redux';
 
 const CartListConfirmationScreen = ({
   cart,
@@ -34,7 +34,7 @@ const CartListConfirmationScreen = ({
   navigation,
   COD,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors, total} = useContext(GlobalValuesContext);
   const {
     cName,
@@ -297,16 +297,16 @@ const CartListConfirmationScreen = ({
           </View>
         ) : null}
         <View>
-          <Button
-            raised
-            title={shipment_notes}
-            type="outline"
-            containerStyle={{marginBottom: 20}}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.header_one_theme_color,
-            }}
-          />
+          {/*<Button*/}
+          {/*  raised*/}
+          {/*  title={shipment_notes}*/}
+          {/*  type="outline"*/}
+          {/*  containerStyle={{marginBottom: 20}}*/}
+          {/*  titleStyle={{*/}
+          {/*    fontFamily: text.font,*/}
+          {/*    color: colors.header_one_theme_color,*/}
+          {/*  }}*/}
+          {/*/>*/}
           <View style={{paddingTop: 20, paddingBottom: 20}}>
             <Input
               editable={editMode}

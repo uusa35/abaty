@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {images} from './../../../constants/images';
 import {text} from './../../../constants/sizes';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {getDesigner} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
 import {
@@ -15,10 +14,11 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import I18n from '../../../I18n';
 import {Rating} from 'react-native-ratings';
+import {useDispatch} from 'react-redux';
 
 const UserWidgetHorizontal = ({user, showName}) => {
   const {colors} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       key={user.id}

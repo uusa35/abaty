@@ -13,13 +13,12 @@ import {touchOpacity, width} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedWidget = ({element, showName = false}) => {
-  const {currency_symbol, exchange_rate, token} = useContext(
-    GlobalValuesContext,
-  );
-  const {dispatch} = useContext(DispatchContext);
+  const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {token} = useSelector((state) => state);
 
   return (
     <TouchableOpacity

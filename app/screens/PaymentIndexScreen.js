@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
 import {WebView} from 'react-native-webview';
-import {DispatchContext} from '../redux/DispatchContext';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch} from 'react-redux';
 
 const PaymentIndexScreen = () => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   return (

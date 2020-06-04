@@ -2,11 +2,11 @@ import React, {useState, useContext} from 'react';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {text} from '../../../constants/sizes';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {getSearchProducts} from '../../../redux/actions/product';
+import {useDispatch} from 'react-redux';
 
 const DesignerSearchForm = () => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   [search, setSearch] = useState('');
   return (
     <Input

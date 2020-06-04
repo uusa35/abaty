@@ -15,15 +15,15 @@ import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import ColorsModal from './ColorsModal';
 import {isNull, first} from 'lodash';
 import {axiosInstance} from '../../../redux/actions/api';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useDispatch} from 'react-redux';
 
 const ProductColorSizeGroupWithAttributes = ({element}) => {
-  const {colors, settings} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
   const [requestQty, setRequestQty] = useState(0);
   const [productAttribute, setProductAttribute] = useState(null);
   const [sizeVisible, setSizeVisible] = useState(false);

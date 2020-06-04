@@ -9,11 +9,11 @@ import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
 import {showCommentModal} from '../../../redux/actions';
 import {becomeFan, rateUser} from '../../../redux/actions/user';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
 import {Badge, Icon, Button} from 'react-native-elements';
 import {MALLR} from './../../../../app';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch, useSelector} from 'react-redux';
 const ShopperImageProfile = ({
   medium,
   logo,
@@ -30,8 +30,9 @@ const ShopperImageProfile = ({
   showComments = true,
   showLike = true,
 }) => {
-  const {colors, guest} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useContext(GlobalValuesContext);
+  const {guest} = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);

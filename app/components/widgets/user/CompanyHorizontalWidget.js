@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {text, touchOpacity} from './../../../constants/sizes';
 import {images} from './../../../constants/images';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {getCompany} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
@@ -10,10 +9,11 @@ import PropTypes from 'prop-types';
 import I18n from '../../../I18n';
 import {Rating} from 'react-native-ratings';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useDispatch} from 'react-redux';
 
 const CompanyHorizontalWidget = ({user, showName, showRating = false}) => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   return (
     <TouchableOpacity

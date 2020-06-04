@@ -3,10 +3,10 @@ import widgetStyles from '../widgetStyles';
 import {getSearchProducts} from '../../../redux/actions/product';
 import FastImage from 'react-native-fast-image';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
+import {useDispatch} from 'react-redux';
 
 const BrandWidget = ({
   element,
@@ -14,7 +14,7 @@ const BrandWidget = ({
   currentWidth = 100,
   currentMarginBottom = 0,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

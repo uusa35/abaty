@@ -2,15 +2,13 @@ import React, {useState, useMemo, useContext, Fragment, useEffect} from 'react';
 import {text} from './../constants/sizes';
 import {isIOS} from './../constants';
 import PropTypes from 'prop-types';
-import Toaster from 'react-native-toaster';
-import validate from 'validate.js';
-import {DispatchContext} from '../redux/DispatchContext';
 import Snackbar from 'react-native-snackbar';
 import {Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const ToastMessage = ({message}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {isRTL} = useContext(GlobalValuesContext);
   const [messageVisible, setMessageVisible] = useState(message.visible);
   const styles = {

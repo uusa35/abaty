@@ -15,7 +15,7 @@ const ContactusScreen = () => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentInset={{bottom: bottomContentInset}}
-      style={{paddingBottom: bottomContentInset}}>
+      style={{paddingBottom: bottomContentInset, backgroundColor: 'white'}}>
       {!validate.isEmpty(settings) && (
         <Fragment>
           <SocialRowWidget settings={settings} />

@@ -10,7 +10,6 @@ import {
 // import Modal from 'react-native-modal';
 import {map} from 'lodash';
 import {hideCountryModal, setArea, chooseCountry} from '../../redux/actions';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {text, width, height} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
@@ -18,9 +17,10 @@ import PropTypes from 'prop-types';
 import {EXPO} from './../../../app';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
+import {useDispatch} from 'react-redux';
 
 const CountriesList = ({country, countries, countryModal}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const [visible, setVisible] = useState(false);
 

@@ -9,7 +9,7 @@ import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {iconSizes} from '../constants/sizes';
 import {showProductFilter} from '../redux/actions';
-import {DispatchContext} from '../redux/DispatchContext';
+import {useDispatch} from 'react-redux';
 
 export const HeaderLeft = ({
   showCart = false,
@@ -19,7 +19,7 @@ export const HeaderLeft = ({
 }) => {
   const {navigate, openDrawer} = useNavigation();
   const {cartLength, colors} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <View style={widgetStyles.safeContainer}>
       {showSideMenu ? (

@@ -20,8 +20,8 @@ import validate from 'validate.js';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
 import widgetStyles from '../widgetStyles';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const ClassifiedListHorizontal = ({
   classifieds,
@@ -34,15 +34,14 @@ const ClassifiedListHorizontal = ({
   title,
   searchElements,
 }) => {
-  [items, setItems] = useState(classifieds);
-  [elements, setElements] = useState(classifieds);
-  [isLoading, setIsLoading] = useState(false);
-  [refresh, setRefresh] = useState(false);
-  [showMore, setShowMore] = useState(showMore);
-  [items, setItems] = useState(elements);
-  [page, setPage] = useState(1);
-  [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const [items, setItems] = useState(classifieds);
+  const [elements, setElements] = useState(classifieds);
+  const [isLoading, setIsLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+  const [currentShowMore, setCurrentShowMore] = useState(showMore);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   return (

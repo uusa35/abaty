@@ -4,12 +4,11 @@ import {Button, Icon} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import {enableWarningMessage} from '../../../redux/actions';
 import I18n from '../../../I18n';
-import {DispatchContext} from '../../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors} = useSelector((state) => state.settings);
   return (
     <View
       style={{

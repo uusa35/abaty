@@ -4,17 +4,16 @@ import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {text, touchOpacity, width} from '../../../constants/sizes';
-import {images} from '../../../constants/images';
 import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useDispatch} from 'react-redux';
 
 const CategoryWidget = ({element, columns, showBtn = false, type}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const handleClick = (c) => {

@@ -14,7 +14,7 @@ import {text, touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import {getConvertedFinalPrice} from '../../../helpers';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedWidgetHorizontal = ({
   element,
@@ -22,10 +22,9 @@ const ClassifiedWidgetHorizontal = ({
   widthVal = '100%',
   heightVal = '100%',
 }) => {
-  const {currency_symbol, token, exchange_rate} = useContext(
-    GlobalValuesContext,
-  );
-  const {dispatch} = useContext(DispatchContext);
+  const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
+  const {token} = useSelector((state) => state);
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

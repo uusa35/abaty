@@ -10,15 +10,14 @@ import {
 import CollectionWidget from './CollectionWidget';
 import PropTypes from 'prop-types';
 import {axiosInstance} from '../../../redux/actions/api';
-import I18n, {isRTL} from './../../../I18n';
+import I18n from './../../../I18n';
 import {text, TheHold, width} from '../../../constants/sizes';
-import {Button, Icon, Input} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import {filter} from 'lodash';
 import validate from 'validate.js';
 import {getSearchProducts} from '../../../redux/actions/product';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import TopSearchInput from '../TopSearchInput';
+import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionList = ({
   collections,
@@ -39,8 +38,8 @@ const CollectionList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  const {colors} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {colors} = useSelector((state) => state.settings);
+  const dispatch = useDispatch();
 
   useMemo(() => {
     if (showMore && page > 1 && page <= 20) {

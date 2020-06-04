@@ -1,13 +1,13 @@
 import React, {useState, useContext} from 'react';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
-import {iconSizes, text, width} from '../../../constants/sizes';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {iconSizes, text} from '../../../constants/sizes';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {setSearchParams} from '../../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const ProductSearchForm = () => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   [search, setSearch] = useState('');
 
   return (

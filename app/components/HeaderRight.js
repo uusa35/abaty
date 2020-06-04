@@ -4,7 +4,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {DispatchContext} from '../redux/DispatchContext';
 import {
   showClassifiedFilter,
   showCountryModal,
@@ -14,12 +13,11 @@ import {Icon} from 'react-native-elements';
 import {linkingPrefix} from '../constants/links';
 import Share from 'react-native-share';
 import I18n from '../I18n';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
-import {SHOW_SEARCH_MODAL} from '../redux/actions/types';
 import {APP_CASE, HOMEKEY, EXPO} from '../../app';
 import {iconSizes} from '../constants/sizes';
+import {useDispatch, useSelector} from 'react-redux';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -28,8 +26,8 @@ export const HeaderRight = ({
   showProductsSearch = false,
   showExpoSearch = false,
 }) => {
-  const {country, countriesLength} = useContext(GlobalValuesContext);
-  const {dispatch} = useContext(DispatchContext);
+  const {country} = useSelector((state) => state);
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const {params} = navigation.state;
 

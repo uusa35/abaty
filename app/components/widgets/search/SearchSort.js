@@ -10,19 +10,15 @@ import {
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
 import {iconSizes, text, width} from '../../../constants/sizes';
-import {
-  hideCountryModal,
-  showClassifiedFilter,
-  showProductFilter,
-} from '../../../redux/actions';
-import {DispatchContext} from '../../../redux/DispatchContext';
+import {showClassifiedFilter, showProductFilter} from '../../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const SearchSort = ({
   showProductsFilter = false,
   showClassifiedsFilter = false,
   setSortModal,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   return (
     <View

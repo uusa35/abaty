@@ -9,20 +9,16 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Badge, Icon} from 'react-native-elements';
 import {showCommentModal} from '../../../redux/actions';
 import {toggleClassifiedFavorite} from '../../../redux/actions/classified';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import I18n from './../../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {
-    colors,
-    token,
-    guest,
-    exchange_rate,
-    currency_symbol,
-    logo,
-  } = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors, exchange_rate, currency_symbol, logo} = useContext(
+    GlobalValuesContext,
+  );
+  const {token, guest} = useSelector((state) => state);
   const [favorite, setFavorite] = useState(element.isFavorite);
   const {navigate} = useNavigation();
   return (

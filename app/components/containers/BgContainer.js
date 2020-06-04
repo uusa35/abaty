@@ -18,7 +18,9 @@ const BgContainer = ({children, showImage = true}) => {
     isLoadingBoxedList,
   } = useSelector((state) => state);
 
-  console.log('isConnected', isConnected);
+  if (__DEV__) {
+    console.log('BgContainer rendered');
+  }
   useEffect(() => {}, []);
 
   return (

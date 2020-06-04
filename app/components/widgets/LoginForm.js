@@ -3,21 +3,20 @@ import FastImage from 'react-native-fast-image';
 import {text} from '../../constants/sizes';
 import {images} from '../../constants/images';
 import {appUrlIos} from './../../env';
-import {Button, Input, SocialIcon} from 'react-native-elements';
+import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {googleLogin, submitAuth} from '../../redux/actions/user';
 import {View, Linking} from 'react-native';
-import {DispatchContext} from '../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
-import {GoogleSignin} from '@react-native-community/google-signin';
+import {useDispatch} from 'react-redux';
 
 const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
-  const {dispatch} = useContext(DispatchContext);
   const {logo, colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
   const {navigate} = useNavigation();
 
   // GoogleSignin.configure({

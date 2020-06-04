@@ -17,7 +17,6 @@ import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
 // import LoadingOfflineView from './components/Loading/LoadingOfflineView';
-import {DispatchContext} from './redux/DispatchContext';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
@@ -86,7 +85,7 @@ const App = ({
     bootStrapped && !guest
       ? (axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`)
       : null;
-  }, [lang, bootStrapped, token]);
+  }, [bootStrapped, token]);
 
   const handleAppStateChange = useCallback(
     (nextAppState) => {
@@ -104,7 +103,7 @@ const App = ({
   }, [appState]);
 
   return (
-    <DispatchContext.Provider value={{dispatch}}>
+    <Fragment>
       <StatusBar barStyle={`${colorScheme}-content`} />
       {bootStrapped && (
         <GlobalValuesContext.Provider
@@ -116,16 +115,11 @@ const App = ({
             total,
             grossTotal,
             colors,
-            country,
-            token,
             logo,
             app_logo,
-            guest,
             searchModal,
             resetApp,
-            settings,
             lang,
-            isLoading,
           }}>
           <React.Suspense fallback={<SimpleSpinner />}>
             <AppNavigator />
@@ -162,7 +156,7 @@ const App = ({
           <ClassifiedFilterModal />
         </Fragment>
       ) : null}
-    </DispatchContext.Provider>
+    </Fragment>
   );
 };
 
@@ -170,10 +164,6 @@ function mapStateToProps(state) {
   return {
     bootStrapped: state.bootStrapped,
     message: state.message,
-    isLoading: state.isLoading,
-    isLoadingContent: state.isLoadingContent,
-    isLoadingProfile: state.isLoadingProfile,
-    isLoadingBoxedList: state.isLoadingBoxedList,
     country: state.country,
     countries: state.countries,
     countryModal: state.countryModal,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
@@ -12,6 +12,7 @@ const CategoryIndexScreen = ({
   commercials,
   show_commercials,
 }) => {
+  useEffect(() => {}, [homeCategories]);
   return (
     <BgContainer showImage={false}>
       <View style={{flex: 1}}>

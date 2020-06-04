@@ -3,14 +3,14 @@ import {text, width} from '../../../constants/sizes';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import PropTypes from 'prop-types';
 import {addComment} from '../../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const AddCommentFormWidget = ({model, id}) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   return (
     <View
       style={{

@@ -15,12 +15,11 @@ import {
 import PropTypes from 'prop-types';
 import {images} from '../../../constants/images';
 import {text} from '../../../constants/sizes';
-import {DispatchContext} from '../../../redux/DispatchContext';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionWidget = ({element, showName = false}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors} = useSelector((state) => state.settings);
   return (
     <TouchableOpacity
       key={element.id}

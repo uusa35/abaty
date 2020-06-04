@@ -10,8 +10,8 @@ import {getSearchClassifieds} from '../../../redux/actions/classified';
 import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 import ClassifiedCategoryHorizontalRoundedWidget from './ClassifiedCategoryHorizontalRoundedWidget';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const ClassifiedCategoryVerticalWidget = ({
   elements,
@@ -20,7 +20,7 @@ const ClassifiedCategoryVerticalWidget = ({
   showChildren = true,
   title,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   return (
     <Fragment>

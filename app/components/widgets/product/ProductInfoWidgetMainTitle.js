@@ -9,14 +9,15 @@ import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Icon} from 'react-native-elements';
 import {toggleProductFavorite} from '../../../redux/actions/product';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors, token, guest, exchange_rate, currency_symbol} = useContext(
+  const dispatch = useDispatch();
+  const {colors, exchange_rate, currency_symbol} = useContext(
     GlobalValuesContext,
   );
+  const {token, guest} = useSelector((state) => state);
   const [favorite, setFavorite] = useState(element.isFavorite);
 
   return (

@@ -5,11 +5,11 @@ import {getCompany} from '../../../redux/actions/user';
 import FastImage from 'react-native-fast-image';
 import {touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useDispatch} from 'react-redux';
 
 const CompanyWidget = ({element, showName = true}) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   return (

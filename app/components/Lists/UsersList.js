@@ -8,14 +8,14 @@ import {
 import {getUsers} from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {Button, Input, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
+import {Button} from 'react-native-elements';
+import I18n from './../../I18n';
 import {bottomContentInset, text, width} from './../../constants/sizes';
 import {filter} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
-import {DispatchContext} from '../../redux/DispatchContext';
 import TopSearchInput from '../widgets/TopSearchInput';
+import {useDispatch} from 'react-redux';
 
 const UsersList = ({elements, searchElements, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ const UsersList = ({elements, searchElements, showMore}) => {
   [params, setParams] = useState(searchElements);
   [page, setPage] = useState(1);
   [search, setSearch] = useState('');
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   const loadMore = useCallback(() => {
     setShowMore(true);

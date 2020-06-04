@@ -25,9 +25,9 @@ import widgetStyles from '../widgetStyles';
 import SearchSort from '../search/SearchSort';
 import {orderBy} from 'lodash';
 import ClassifiedsMapView from '../map/ClassifiedsMapView';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedDoubleList = ({
   classifieds,
@@ -55,8 +55,8 @@ const ClassifiedDoubleList = ({
   [sort, setSort] = useState('');
   [sortModal, setSortModal] = useState(false);
   [mapModal, setMapModal] = useState(false);
-  const {dispatch} = useContext(DispatchContext);
-  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors} = useSelector((state) => state.settings);
 
   const loadMore = useCallback(() => {
     setShowMore(true);

@@ -18,9 +18,9 @@ import {
   touchOpacity,
 } from '../../../constants/sizes';
 import {images} from '../../../constants/images';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import {useDispatch} from 'react-redux';
 
 const ClassifiedCategoryHorizontalRoundedWidget = ({
   elements,
@@ -29,10 +29,11 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   showLink = false,
   showTitle = true,
 }) => {
-  const {dispatch} = useContext(DispatchContext);
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
-  const handleClick = useCallback((c) => {
+
+  const handleClick = (c) => {
     return dispatch(
       getSearchClassifieds({
         name: c.name,
@@ -40,7 +41,7 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
         redirect: true,
       }),
     );
-  });
+  };
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>

@@ -4,15 +4,15 @@ import {TabBar, TabView} from 'react-native-tab-view';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, touchOpacity, width} from '../../../constants/sizes';
-import {DispatchContext} from '../../../redux/DispatchContext';
 import {take, map} from 'lodash';
 import {startClassifiedSearching} from '../../../redux/actions/classified';
 import ClassifiedSearchForm from './ClassifiedSearchForm';
 import {showClassifiedFilter} from '../../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
-  const {dispatch} = useContext(DispatchContext);
-  const {colors, categories, lang} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const {colors, lang} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
   const [search, setSearch] = useState('');
   const parentCategories = map(take(elements, 3), (e, i) => {
