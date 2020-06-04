@@ -23,7 +23,7 @@ const SearchSort = ({
   return (
     <View
       style={{
-        marginTop: 1,
+        marginTop: '1%',
         flexDirection: 'row',
         alignSelf: 'center',
         flex: 1,

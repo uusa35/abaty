@@ -518,9 +518,9 @@ PODS:
   - SDWebImageWebPCoder (0.4.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.5)
-  - Sentry (5.1.1):
-    - Sentry/Core (= 5.1.1)
-  - Sentry/Core (5.1.1)
+  - Sentry (5.1.2):
+    - Sentry/Core (= 5.1.2)
+  - Sentry/Core (5.1.2)
   - SRSRadialGradient (1.0.0):
     - React
   - SSZipArchive (2.2.3)
@@ -571,7 +571,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
-  - react-native-flipper (from `../node_modules/react-native-flipper`)
+  - react-native-flipper (from `../node_modules/react-native-flipper/react-native-flipper.podspec`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
@@ -701,7 +701,7 @@ EXTERNAL SOURCES:
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
   react-native-flipper:
-    :path: "../node_modules/react-native-flipper"
+    :path: "../node_modules/react-native-flipper/react-native-flipper.podspec"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-maps:
@@ -885,7 +885,7 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8
-  Sentry: a8e37dc33aedb8a53540e36607fc2eaef7c31b4f
+  Sentry: 7ee9a34a2c075a5e9306a1501d61c93a4b5c2333
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   TOCropViewController: e9da34f484aedd4e5d5a8ab230ba217cfe16c729
@@ -893,6 +893,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: e1e5567b2bcd3d1f2407ebdd5e425e0aeada2829
+PODFILE CHECKSUM: 7ce6dd8514aff0c9818c0d690c2293a2f6cd9772
 
 COCOAPODS: 1.9.3

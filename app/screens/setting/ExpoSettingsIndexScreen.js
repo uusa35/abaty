@@ -31,11 +31,14 @@ const ExpoSettingsIndexScreen = ({
   navigation,
   version,
 }) => {
-  const handleRefresh = useCallback(() => {
-    dispatch(reAuthenticate());
-    dispatch(refetchHomeElements());
-  }, [refresh]);
   const [refresh, setRefresh] = useState(false);
+
+  const handleRefresh = () => {
+    if (!guest) {
+      dispatch(reAuthenticate());
+    }
+    dispatch(refetchHomeElements());
+  };
 
   return (
     <BgContainer>

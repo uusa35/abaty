@@ -145,7 +145,6 @@ const ServiceList = ({
           }}
           ListHeaderComponent={
             <View style={{paddingTop: 10, paddingBottom: 10}}>
-              {showSearch ? <TopSearchInput setSearch={setSearch} /> : null}
               {showTitle ? (
                 <View>
                   <Text

@@ -48,7 +48,6 @@
     "react-native-elements": "^2.0.1",
     "react-native-fast-image": "^8.1.5",
     "react-native-fbsdk": "^2.0.0",
-    "react-native-flipper": "^0.39.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-gifted-chat": "^0.16.1",
     "react-native-i18n": "^2.0.15",
@@ -102,7 +101,6 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-flipper": "^1.2.0",
     "redux-logger": "^3.0.6",
     "redux-observable": "^1.2.0",
     "redux-persist": "^6.0.0",
@@ -110,7 +108,6 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rn-fetch-blob": "^0.12.0",
-    "rn-redux-middleware-flipper": "^0.1.0",
     "tslib": "^2.0.0",
     "validate.js": "^0.13.1"
   },
@@ -123,9 +120,13 @@
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "prettier": "^2.0.5",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.11.0",
+    "react-native-flipper": "^0.39.0",
+    "redux-flipper": "^1.2.0",
+    "rn-redux-middleware-flipper": "^0.1.0"
   },
   "jest": {
     "preset": "react-native"
   }
 }
+

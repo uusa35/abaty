@@ -14,10 +14,9 @@ const SlideWidget = ({slide}) => {
       }}
       key={slide.id}>
       <FastImage
-        loadingIndicatorSource={images.logo}
         source={{uri: slide.large}}
         style={{width: width, height: '100%'}}
-        resizeMode="cover"
+        resizeMode="contain"
       />
     </TouchableOpacity>
   );

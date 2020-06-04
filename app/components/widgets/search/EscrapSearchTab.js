@@ -83,7 +83,7 @@ const EscrapSearchTab = ({elements, main_bg, onlyTextForm = false}) => {
             alignSelf: 'center',
             marginTop: '35%',
           }}>
-          <CompanySearchForm search={search} setSearch={setSearch} />
+          {/*<CompanySearchForm search={search} setSearch={setSearch} />*/}
         </View>
       ) : (
         <TabView

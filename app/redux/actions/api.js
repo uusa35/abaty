@@ -162,9 +162,9 @@ export async function getSearchProducts(params) {
     .catch((e) => e.response.data.message);
 }
 
-export async function getSearchServices(elements) {
+export async function getSearchServices(params) {
   return await axiosInstance
-    .get(`search/service`, {params: elements})
+    .get(`search/service`, {params})
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }

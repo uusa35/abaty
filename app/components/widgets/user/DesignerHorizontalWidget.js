@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {map} from 'lodash';
@@ -13,8 +13,9 @@ import {
 } from '../../../constants/sizes';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {isIOS} from '../../../constants';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {isEmpty} from 'lodash';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const DesignerHorizontalWidget = ({
   elements,
@@ -24,7 +25,16 @@ const DesignerHorizontalWidget = ({
   searchParams,
 }) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useContext(GlobalValuesContext);
+
+  const handleClick = () =>
+    dispatch(
+      getSearchDesigners({
+        searchParams,
+        name,
+        redirect: true,
+      }),
+    );
   return (
     <Fragment>
       {!isEmpty(elements) && (
@@ -32,15 +42,7 @@ const DesignerHorizontalWidget = ({
           <TouchableOpacity
             activeOpacity={touchOpacity}
             style={widgetStyles.titleContainer}
-            onPress={() =>
-              dispatch(
-                getSearchDesigners({
-                  searchParams,
-                  name,
-                  redirect: true,
-                }),
-              )
-            }>
+            onPress={() => handleClick()}>
             <View style={widgetStyles.titleWrapper}>
               <Text
                 style={[

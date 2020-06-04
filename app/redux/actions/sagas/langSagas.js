@@ -13,6 +13,8 @@ import * as helpers from './../../../helpers';
 import axios from 'axios';
 import {resetStore, startResetStoreScenario} from './appSagas';
 import {DrawerActions} from 'react-navigation-drawer';
+import {getLang} from './../../../helpers';
+import {PersistStore} from '../../store';
 
 export function* setDirection(lang) {
   try {
@@ -24,7 +26,10 @@ export function* setDirection(lang) {
       I18nManager.forceRTL(false);
     }
   } catch (e) {
-    yield all([call(disableLoading), call(enableErrorMessage, e.message)]);
+    if (__DEV__) {
+      console.log('e', e);
+      yield call(enableErrorMessage, e.message);
+    }
   }
 }
 
@@ -33,18 +38,19 @@ export function* startChangeLang(action) {
     yield call(enableLoading);
     yield put(DrawerActions.closeDrawer());
     const lang = action.payload;
-    yield call(helpers.setLang, lang);
+    helpers.setLang(lang);
     yield call(setDirection, lang);
-    I18n.locale = lang;
     axios.defaults.headers.common['lang'] = lang;
+    I18n.locale = lang;
     yield delay(1000);
-    yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false});
-    yield call(CodePush.restartApp());
+    PersistStore.purge();
   } catch (e) {
     if (__DEV__) {
       console.log('ee', e);
     }
   } finally {
+    yield delay(2000);
+    yield call(CodePush.restartApp());
   }
 }
 

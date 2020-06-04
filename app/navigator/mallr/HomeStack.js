@@ -131,10 +131,10 @@ export const HomeStack = createStackNavigator(
           navigationOptions: () => ({
             tabBarVisible: true,
             headerLeft: () => <HeaderLeft />,
-            headerRight: (
+            headerRight: () => (
               <HeaderRight displayShare={false} showCountry={true} />
             ),
-            headerTitle: (
+            headerTitle: () => (
               <HeaderMiddle showLogo={true} title={I18n.t('home')} />
             ),
             headerBackTitle: () => null,
@@ -331,7 +331,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
@@ -390,7 +390,7 @@ export const HomeStack = createStackNavigator(
     TermAndCondition: {
       screen: gestureHandlerRootHOC(TermAndConditionScreen),
       navigationOptions: () => ({
-        headerRight: (
+        headerRight: () => (
           <HeaderRight displayShare={false} displayCountry={false} />
         ),
         headerTitle: () => (
@@ -401,7 +401,7 @@ export const HomeStack = createStackNavigator(
     Policy: {
       screen: gestureHandlerRootHOC(PolicyScreen),
       navigationOptions: () => ({
-        headerRight: (
+        headerRight: () => (
           <HeaderRight displayShare={false} displayCountry={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('policies')} />,
@@ -421,7 +421,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: () => <HeaderCustom navigation={navigation} />,
         headerBackTitle: () => null,
       }),
     },
@@ -473,7 +473,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
@@ -494,7 +494,7 @@ export const HomeStack = createStackNavigator(
       screen: gestureHandlerRootHOC(ClassifiedStoreScreen),
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('new_classified')} />,
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={false}
@@ -510,7 +510,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('choose_your_category')} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={false}
@@ -526,7 +526,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('add_your_properties')} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={false}

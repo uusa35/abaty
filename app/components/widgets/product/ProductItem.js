@@ -116,7 +116,7 @@ const ProductItem = ({
             </Text>
           </View>
         ) : null}
-        {!validate.isEmpty(element.size) && element.show_attribute ? (
+        {!validate.isEmpty(element.size) && !element.has_attributes ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('size')}
@@ -134,7 +134,7 @@ const ProductItem = ({
             </Text>
           </View>
         ) : null}
-        {!validate.isEmpty(element.color) && element.show_attribute ? (
+        {!validate.isEmpty(element.color) && !element.has_attributes ? (
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('color_or_height')}

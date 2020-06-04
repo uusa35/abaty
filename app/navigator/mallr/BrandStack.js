@@ -48,7 +48,7 @@ export const BrandStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}

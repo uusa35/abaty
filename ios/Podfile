@@ -41,8 +41,17 @@ def flipper_post_install(installer)
         config.build_settings['SWIFT_VERSION'] = '4.1'
       end
     end
+
+    # Enable Flipper for simulators only
+    if target.name.start_with?('Flipper')
+      target.build_configurations.each do |config|
+        config.build_settings['VALID_ARCHS'] = 'arm64 arm64e'
+      end
+    end
   end
 end
+
+
 
 target 'abaty' do
   # Pods for abaty
@@ -78,7 +87,7 @@ target 'abaty' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
+  pod 'react-native-flipper', :path => '../node_modules/react-native-flipper/react-native-flipper.podspec', :configuration => 'Debug'
   target 'abatyTests' do
     inherit! :complete
     # Pods for testing

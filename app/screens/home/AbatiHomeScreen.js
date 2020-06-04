@@ -32,9 +32,9 @@ const AbatiHomeScreen = ({
   dispatch,
 }) => {
   const [refresh, setRefresh] = useState(false);
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     dispatch(refetchHomeElements());
-  }, [refresh]);
+  };
 
   return (
     <BgContainer>
@@ -48,7 +48,7 @@ const AbatiHomeScreen = ({
         contentInset={{bottom: 50}}
         refreshControl={
           <RefreshControl
-            refreshing={refresh}
+            refreshing={false}
             onRefresh={() => handleRefresh()}
           />
         }

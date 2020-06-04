@@ -12,7 +12,8 @@ I18n.translations = {
 };
 export const isRTL = I18nManager.isRTL;
 I18nManager.allowRTL(isRTL);
-if (isLocal) {
+if (__DEV__) {
+  console.log('the lang', I18n.locale);
   console.log('the isRTL', isRTL);
 }
 export default I18n;

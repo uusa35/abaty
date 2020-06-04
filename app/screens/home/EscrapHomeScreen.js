@@ -1,24 +1,29 @@
 import React, {useState, useCallback} from 'react';
-import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
-import {bottomContentInset} from '../../constants/sizes';
+import {bottomContentInset, touchOpacity} from '../../constants/sizes';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
-import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import I18n from '../../I18n';
-import SimpleSpinner from '../../components/SimpleSpinner';
-import {
-  ClassifiedCategoryHorizontalRoundedWidget,
-  ClassifiedListHorizontal,
-} from '../../components/LazyLoadingComponents/classifiedComponents';
-import NavCategoryHorizontalRoundedWidget from '../../components/widgets/category/NavCategoryHorizontalRoundedWidget';
+import {ClassifiedListHorizontal} from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
-import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 import EscrapSearchTab from '../../components/widgets/search/EscrapSearchTab';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import widgetStyles from '../../components/widgets/widgetStyles';
+import {text} from '../../constants/sizes';
+import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer';
+import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
+import {map} from 'lodash';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -37,11 +42,9 @@ const EscrapHomeScreen = ({
   showIntroduction,
   dispatch,
 }) => {
-  const [refresh, setRefresh] = useState(false);
-
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     dispatch(refetchHomeElements());
-  }, [refresh]);
+  };
 
   return (
     <BgContainer showImage={false}>
@@ -53,12 +56,6 @@ const EscrapHomeScreen = ({
           height: '100%',
           backgroundColor: colors.main_theme_bg_color,
         }}>
-        {!validate.isEmpty(splashes) && splash_on ? (
-          <IntroductionWidget
-            elements={splashes}
-            showIntroduction={showIntroduction}
-          />
-        ) : null}
         <ScrollView
           contentContainerStyle={{
             backgroundColor: colors.main_theme_bg_color,
@@ -66,7 +63,7 @@ const EscrapHomeScreen = ({
           contentInset={{bottom: bottomContentInset}}
           refreshControl={
             <RefreshControl
-              refreshing={refresh}
+              refreshing={false}
               onRefresh={() => handleRefresh()}
             />
           }
@@ -74,33 +71,62 @@ const EscrapHomeScreen = ({
           endFillColor="white"
           showsVerticalScrollIndicator={false}
           style={{flex: 0.8}}>
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
-          ) : null}
           <EscrapSearchTab
             elements={categories}
             main_bg={main_bg}
             onlyTextForm={true}
           />
-          {!validate.isEmpty(homeUserCategories) &&
-          validate.isArray(homeUserCategories) ? (
-            <NavCategoryHorizontalRoundedWidget
-              elements={homeUserCategories}
-              showName={true}
-              showTitle={true}
-              showLink={true}
-              title={I18n.t('shops')}
-            />
-          ) : null}
-          {!validate.isEmpty(homeClassifiedCategories) &&
-          validate.isArray(homeClassifiedCategories) ? (
-            <ClassifiedCategoryHorizontalRoundedWidget
-              elements={homeClassifiedCategories}
-              showName={true}
-              showLink={true}
-              title={I18n.t('for_sale')}
-            />
-          ) : null}
+          {/*{!validate.isEmpty(homeUserCategories) &&*/}
+          {/*validate.isArray(homeUserCategories) ? (*/}
+          {/*  <NavCategoryHorizontalRoundedWidget*/}
+          {/*    elements={homeUserCategories}*/}
+          {/*    showName={true}*/}
+          {/*    showTitle={true}*/}
+          {/*    showLink={true}*/}
+          {/*    title={I18n.t('shops')}*/}
+          {/*  />*/}
+          {/*) : null}*/}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              paddingTop: 20,
+              paddingBottom: 10,
+            }}>
+            {map(homeUserCategories, (c, i) => (
+              <TouchableOpacity
+                activeOpacity={touchOpacity}
+                key={i}
+                style={widgetStyles.btnStyle}
+                onPress={() => dispatch(setCategoryAndGoToNavChildren(c))}>
+                <ImageLoaderContainer
+                  img={c.thumb}
+                  style={{width: 150, height: 140, borderRadius: 20}}
+                  resizeMode="cover"
+                />
+                <Text
+                  style={[
+                    widgetStyles.elementName,
+                    {
+                      color: colors.header_tow_theme_color,
+                      fontSize: text.large,
+                    },
+                  ]}>
+                  {c.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+          {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
+          {/*validate.isArray(homeClassifiedCategories) ? (*/}
+          {/*  <ClassifiedCategoryHorizontalRoundedWidget*/}
+          {/*    elements={homeClassifiedCategories}*/}
+          {/*    showName={true}*/}
+          {/*    showLink={true}*/}
+          {/*    title={I18n.t('for_sale')}*/}
+          {/*  />*/}
+          {/*) : null}*/}
           {!validate.isEmpty(homeClassifieds) &&
           validate.isArray(homeClassifieds) ? (
             <ClassifiedListHorizontal

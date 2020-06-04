@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useState} from 'react';
+import React, {Fragment, useCallback, useState, useEffect} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -33,10 +33,12 @@ const SettingsIndexScreen = ({
 }) => {
   const [refresh, setRefresh] = useState(false);
 
-  const handleRefresh = useCallback(() => {
-    dispatch(reAuthenticate());
+  const handleRefresh = () => {
+    if (!guest) {
+      dispatch(reAuthenticate());
+    }
     dispatch(refetchHomeElements());
-  }, [refresh]);
+  };
 
   return (
     <BgContainer>

@@ -94,7 +94,7 @@ export const SettingStack = createStackNavigator(
       screen: gestureHandlerRootHOC(FavoriteProductIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             {...navigation}
             displayShare={false}
@@ -112,7 +112,7 @@ export const SettingStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
@@ -130,7 +130,7 @@ export const SettingStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}
@@ -151,7 +151,7 @@ export const SettingStack = createStackNavigator(
       screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
-        headerRight: (
+        headerRight: () => (
           <HeaderRight {...navigation} displayShare={false} display={true} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,

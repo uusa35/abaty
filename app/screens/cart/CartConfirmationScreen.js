@@ -28,6 +28,7 @@ const CartConfirmationScreen = ({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '5%',
+        backgroundColor: 'white',
       }}>
       <ScrollView
         style={{width: '95%'}}
@@ -35,6 +36,7 @@ const CartConfirmationScreen = ({
           justifyContent: 'center',
           alignItems: 'center',
           padding: 10,
+          backgroundColor: 'white',
         }}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}

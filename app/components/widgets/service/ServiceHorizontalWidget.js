@@ -51,7 +51,12 @@ const ServiceHorizontalWidget = ({showName, title}) => {
         contentInset={{right: rightHorizontalContentInset}}
         style={widgetStyles.wrapper}>
         {map(homeServices, (c, i) => (
-          <ServiceWidget element={c} showName={showName} key={i} />
+          <ServiceWidget
+            element={c}
+            showName={showName}
+            key={i}
+            minWidth={200}
+          />
         ))}
       </ScrollView>
     </View>

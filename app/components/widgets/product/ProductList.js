@@ -182,8 +182,8 @@ const ProductList = ({
           ListHeaderComponent={
             <View
               style={{
-                marginTop: 5,
-                marginBottom: 5,
+                marginTop: '2%',
+                marginBottom: '2%',
                 alignSelf: 'center',
                 width: '100%',
                 backgroundColor: 'transparent',

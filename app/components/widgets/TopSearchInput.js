@@ -22,7 +22,7 @@ const TopSearchInput = ({search, setSearch}) => {
           size={iconSizes.smaller}
         />
       )}
-      containerStyle={{marginTop: 5, marginBottom: 5, alignSelf: 'center'}}
+      containerStyle={{alignSelf: 'center', maxHeight: 60}}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
         borderRadius: 5,

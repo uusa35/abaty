@@ -46,7 +46,7 @@ const ServiceShowScreen = ({
         maxHeight={height / 1.5}
         minHeight={90}
         style={{width}}
-        scrollViewBackgroundColor="transparent"
+        scrollViewBackgroundColor="white"
         overlayColor="white"
         renderForeground={() => (
           <ImagesWidget

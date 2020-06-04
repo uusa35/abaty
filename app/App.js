@@ -31,10 +31,6 @@ import ProductFilterModal from './screens/product/ProductFilterModal';
 import ClassifiedFilterModal from './screens/search/ClassifiedFilterModal';
 
 const App = ({
-  isLoading,
-  isLoadingContent,
-  isLoadingProfile,
-  isLoadingBoxedList,
   dispatch,
   bootStrapped,
   message,
@@ -63,6 +59,7 @@ const App = ({
 }) => {
   const colorScheme = useColorScheme();
   const [appState, setAppState] = useState(AppState.currentState);
+
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     dispatch(appBootstrap());
@@ -76,16 +73,23 @@ const App = ({
         }
       }
     });
+  }, [bootStrapped]);
+
+  useEffect(() => {
+    console.log('the token form App.js', token);
+    if (token.length > 5) {
+      axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
+    }
+  }, [token]);
+
+  useEffect(() => {
     axiosInstance.defaults.headers['currency'] = currency;
     axiosInstance.defaults.headers.common['currency'] = currency;
     axiosInstance.defaults.headers['country'] = country.name;
     axiosInstance.defaults.headers.common['country'] = country.name;
     axiosInstance.defaults.headers['lang'] = lang;
     axiosInstance.defaults.headers.common['lang'] = lang;
-    bootStrapped && !guest
-      ? (axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`)
-      : null;
-  }, [bootStrapped, token]);
+  }, [lang]);
 
   const handleAppStateChange = useCallback(
     (nextAppState) => {
@@ -194,9 +198,6 @@ App.propTypes = {
   logo: PropTypes.string,
   app_logo: PropTypes.string,
   colors: PropTypes.object,
-  isLoading: PropTypes.bool.isRequired,
-  isLoadingContent: PropTypes.bool.isRequired,
-  isLoadingProfile: PropTypes.bool.isRequired,
   searchModal: PropTypes.bool,
   message: PropTypes.object,
   country: PropTypes.object.isRequired,

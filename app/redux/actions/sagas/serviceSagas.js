@@ -18,10 +18,11 @@ export function* startGetServiceScenario(action) {
   try {
     const {redirect} = action.payload;
     yield call(enableLoadingContent);
-    const service = yield call(api.getService, action.payload);
-    if (!validate.isEmpty(service) && validate.isObject(service)) {
+    const element = yield call(api.getService, action.payload);
+    console.log('element', element);
+    if (!validate.isEmpty(element) && element.id) {
       yield all([
-        put({type: actions.SET_SERVICE, payload: service}),
+        put({type: actions.SET_SERVICE, payload: element}),
         call(disableLoadingContent),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
@@ -32,17 +33,19 @@ export function* startGetServiceScenario(action) {
           put(
             NavigationActions.navigate({
               routeName: 'Service',
-              params: {name: service.name, id: service.id, model: 'service'},
+              params: {name: element.name, id: element.id, model: 'service'},
             }),
           ),
         ]);
       }
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableWarningMessage, I18n.t('error_while_loading_service')),
-    ]);
+    if (__DEV__) {
+      console.log('e', e);
+    }
+    yield call(enableWarningMessage, I18n.t('error_while_loading_service'));
+  } finally {
+    yield call(disableLoadingContent);
   }
 }
 

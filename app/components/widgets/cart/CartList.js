@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS} from '../../../constants';
-import {text} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';
 import {clearCart, getCoupon, submitCart} from '../../../redux/actions/cart';
 import {Button, Input, CheckBox, Icon} from 'react-native-elements';
@@ -295,7 +295,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
               }}
               inputStyle={{
                 fontFamily: text.font,
@@ -322,7 +322,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
               }}
               inputStyle={{
                 fontFamily: text.font,
@@ -352,7 +352,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
               }}
               inputStyle={{
                 fontFamily: text.font,
@@ -379,7 +379,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.small,
                 height: 45,
                 width: '95%',
                 alignSelf: 'center',
@@ -406,7 +406,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
               }}
               inputStyle={{
                 fontFamily: text.font,
@@ -433,7 +433,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
                 height: 80,
               }}
               inputStyle={{
@@ -464,7 +464,7 @@ const CartList = ({
                 borderRadius: 10,
                 paddingLeft: 15,
                 paddingRight: 15,
-                marginBottom: 20,
+                marginBottom: iconSizes.tiny,
                 height: 80,
               }}
               inputStyle={{
@@ -513,7 +513,7 @@ const CartList = ({
                     borderRadius: 10,
                     paddingLeft: 15,
                     paddingRight: 15,
-                    marginBottom: 20,
+                    marginBottom: iconSizes.tiny,
                   }}
                   inputStyle={{
                     fontFamily: text.font,

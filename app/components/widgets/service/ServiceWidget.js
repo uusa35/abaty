@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -16,35 +16,37 @@ import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import {useDispatch, useSelector} from 'react-redux';
 
-const ServiceWidget = ({element, showName = false}) => {
+const ServiceWidget = ({element, showName = false, minWidth = 150}) => {
   const {colors, currency_symbol, exchange_rate} = useContext(
     GlobalValuesContext,
   );
   const {token} = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const handleClick = () => {
+    dispatch(
+      getService({
+        id: element.id,
+        api_token: token ? token : null,
+        redirect: true,
+      }),
+    );
+  };
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}
       key={element.id}
-      style={widgetStyles.productServiceWidget}
-      onPress={() =>
-        dispatch(
-          getService({
-            id: element.id,
-            api_token: token ? token : null,
-            redirect: true,
-          }),
-        )
-      }>
+      style={[widgetStyles.productServiceWidget, {minWidth}]}
+      onPress={() => handleClick()}>
       <ImageBackground
         source={{
           uri: element.thumb,
         }}
-        loadingIndicatorSource={images.logo}
         imageStyle={styles.imageStyling}
         style={styles.image}
-        resizeMode="stretch">
-        <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
+        resizeMode={'cover'}>
+        <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
           {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
           {element.isOnSale ? (
             <TagWidget tagName="under_sale" bgColor="red" />
@@ -55,9 +57,11 @@ const ServiceWidget = ({element, showName = false}) => {
       {showName ? (
         <View
           style={{
-            flex: 1,
             width: '100%',
-            alignItems: 'center',
+            paddingTop: 5,
+            paddingRight: 10,
+            paddingLeft: 10,
+            alignItems: 'flex-start',
             justifyContent: 'center',
           }}>
           <Text

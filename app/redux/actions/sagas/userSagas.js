@@ -347,14 +347,17 @@ export function* startGetHomeDesigners(action) {
 export function* startLogoutScenario() {
   try {
     yield all([
-      put({type: actions.REMOVE_TOKEN, payload: ''}),
+      put({type: actions.SET_TOKEN, payload: ''}),
       put({type: actions.TOGGLE_GUEST, payload: true}),
       put({type: actions.SET_ORDERS, payload: []}),
       call(setClassifiedFavorites, []),
       call(setProductFavorites, []),
     ]);
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('logout_error'));
+    if (__DEV__) {
+      console.log('ee', e);
+    }
+    // yield call(enableErrorMessage, I18n.t('logout_error'));
   } finally {
     yield call(disableLoading);
   }
@@ -419,7 +422,8 @@ export function* startSubmitAuthScenario(action) {
 
 export function* startReAuthenticateScenario() {
   try {
-    const {token, loginModal} = yield select();
+    const {token} = yield select();
+    console.log('token from authentiate', token);
     const element = yield call(api.reAuthenticate, token);
     if (
       !validate.isEmpty(element) &&

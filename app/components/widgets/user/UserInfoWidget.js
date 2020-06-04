@@ -12,6 +12,7 @@ import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImagesWidget from '../ImagesWidget';
 import {getWhatsappLink} from '../../../helpers';
+import {ESCRAP} from './../../../../app';
 
 const UserInfoWidget = ({
   mobile,
@@ -360,7 +361,7 @@ const UserInfoWidget = ({
           height={235}
         />
       ) : null}
-      {!validate.isEmpty(longitude || latitude) && has_map ? (
+      {!validate.isEmpty(longitude || latitude) && has_map && !ESCRAP ? (
         <MapViewWidget
           latitude={latitude}
           longitude={longitude}
