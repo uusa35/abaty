@@ -106,6 +106,10 @@ const App = ({
     }
   }, [appState]);
 
+  useEffect(() => {
+    codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});
+  }, []);
+
   return (
     <Fragment>
       <StatusBar barStyle={`${colorScheme}-content`} />
@@ -214,7 +218,5 @@ App.propTypes = {
 };
 
 export default connect(mapStateToProps)(
-  codePush({updateDialog: false, installMode: codePush.InstallMode.IMMEDIATE})(
-    App,
-  ),
+  codePush({checkFrequency: codePush.CheckFrequency.ON_APP_RESUME})(App),
 );

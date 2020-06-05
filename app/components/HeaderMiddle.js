@@ -6,15 +6,16 @@ import {StyleSheet, Text, View} from 'react-native';
 import {text} from './../constants/sizes';
 import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
+import ImageLoaderContainer from './widgets/ImageLoaderContainer';
 
 export const HeaderMiddle = ({title, showLogo = false}) => {
   const {app_logo, colors} = useSelector((state) => state.settings);
   return (
     <View style={styles.container}>
       {showLogo ? (
-        <FastImage
+        <ImageLoaderContainer
           resizeMode="contain"
-          source={{uri: app_logo}}
+          img={app_logo}
           style={{
             width: 120,
             height: 35,
