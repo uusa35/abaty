@@ -151,30 +151,30 @@ export function* setClassifiedFavorites(classifiedFavorites) {
 export function* startStoreClassifiedScenario(action) {
   try {
     const {name, mobile, description, images, image, price} = action.payload;
-    const result = validate(
-      {name, mobile, images, image, description, price},
-      storeClassifiedConstrains,
-    );
-    if (validate.isEmpty(result)) {
-      yield call(enableLoading);
-      const element = yield call(api.storeClassified, action.payload);
-      if (
-        !validate.isEmpty(element) &&
-        validate.isObject(element) &&
-        element.id
-      ) {
-        yield all([
-          call(disableLoading),
-          call(enableSuccessMessage, I18n.t('update_information_success')),
-          put(NavigationActions.navigate({routeName: 'Home'})),
-        ]);
-        // }
-      } else {
-        throw element;
-      }
+    // const result = validate(
+    //   {name, mobile, images, image, description, price},
+    //   storeClassifiedConstrains,
+    // );
+    // if (validate.isEmpty(result)) {
+    yield call(enableLoading);
+    const element = yield call(api.storeClassified, action.payload);
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
+      yield all([
+        call(disableLoading),
+        call(enableSuccessMessage, I18n.t('update_information_success')),
+        put(NavigationActions.navigate({routeName: 'Home'})),
+      ]);
+      // }
     } else {
-      throw first(values(result))[0];
+      throw element;
     }
+    // } else {
+    //   throw first(values(result))[0];
+    // }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }

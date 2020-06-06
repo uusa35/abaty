@@ -46,7 +46,6 @@ const BgContainer = ({children, showImage = true}) => {
         <LoadingOfflineView />
       )}
       <AndroidBackHandlerComponent />
-      <AppHomeConfigComponent />
       <AppGlobalConfig />
     </ImageBackground>
   );

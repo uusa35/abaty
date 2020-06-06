@@ -68,7 +68,7 @@ const App = ({
       if (!update) {
         // console.debug('The app is up to date!');
       } else {
-        if (isLocal) {
+        if (__DEV__) {
           console.log('there is an update here');
         }
       }
@@ -76,7 +76,6 @@ const App = ({
   }, [bootStrapped]);
 
   useEffect(() => {
-    console.log('the token form App.js', token);
     if (token.length > 5) {
       axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
     }

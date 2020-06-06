@@ -19,11 +19,12 @@ import {addToCart} from '../../../redux/actions/cart';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductColorSizeGroupWithAttributes = ({element}) => {
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
+  const {settings} = useSelector((state) => state);
   const [requestQty, setRequestQty] = useState(0);
   const [productAttribute, setProductAttribute] = useState(null);
   const [sizeVisible, setSizeVisible] = useState(false);

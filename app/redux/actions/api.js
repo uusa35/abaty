@@ -281,7 +281,6 @@ export const networkTransform = createTransform(
 
 export async function checkConnectionStatus() {
   return NetInfo.fetch().then((state) => state.isConnected);
-  // return checkInternetConnection().then(isConnected => isConnected)
 }
 
 export async function authenticated(api_token) {

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../redux/actions/product';
 import {useDispatch} from 'react-redux';
 
-const ElementWidgetVertical = ({
+const ElementWidgetHorizontal = ({
   title,
   type,
   iconSize = iconSizes.medium,
@@ -60,9 +60,9 @@ const ElementWidgetVertical = ({
   );
 };
 
-export default React.memo(ElementWidgetVertical);
+export default React.memo(ElementWidgetHorizontal);
 
-ElementWidgetVertical.propTypes = {
+ElementWidgetHorizontal.propTypes = {
   user: PropTypes.object,
   type: PropTypes.string.isRequired,
   searchParams: PropTypes.object.isRequired,

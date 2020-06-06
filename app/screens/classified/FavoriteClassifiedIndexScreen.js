@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import BgContainer from '../../components/containers/BgContainer';
+import I18n from './../../I18n';
 
 const FavoriteClassifiedIndexScreen = ({classifieds}) => {
   return (
@@ -13,6 +14,7 @@ const FavoriteClassifiedIndexScreen = ({classifieds}) => {
         showName={true}
         showMore={false}
         searchElements={{}}
+        noElementsTitle={I18n.t('no_classifieds_favorites')}
       />
     </BgContainer>
   );

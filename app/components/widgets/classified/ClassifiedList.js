@@ -51,6 +51,8 @@ const ClassifiedList = ({
   showSortSearch = true,
   title,
   searchElements,
+  noMoreElementsTitle = null,
+  noElementsTitle = null,
 }) => {
   const [items, setItems] = useState([]);
   const [elementsWithMap, setElementsWithMap] = useState([]);
@@ -251,7 +253,11 @@ const ClassifiedList = ({
           ListFooterComponent={() =>
             showFooter ? (
               <NoMoreElements
-                title={I18n.t('no_more_classifieds')}
+                title={
+                  noMoreElementsTitle
+                    ? noMoreElementsTitle
+                    : I18n.t('no_more_classifieds')
+                }
                 isLoading={refresh}
               />
             ) : null
@@ -273,7 +279,7 @@ const ClassifiedList = ({
           }}>
           <Button
             raised
-            title={I18n.t('no_classifieds')}
+            title={noElementsTitle ? noElementsTitle : I18n.t('no_classifieds')}
             type="outline"
             titleStyle={{fontFamily: text.font}}
           />

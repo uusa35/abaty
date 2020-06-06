@@ -98,6 +98,7 @@ const ClassifiedStoreScreen = ({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
+        backgroundColor: 'white',
       }}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
@@ -188,7 +189,7 @@ const ClassifiedStoreScreen = ({
           defaultValue={name}
           onChangeText={(text) => setName(text)}
           placeholder={I18n.t('classified_title')}
-          label={I18n.t('classified_title')}
+          label={`${I18n.t('classified_title')}*`}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -243,7 +244,7 @@ const ClassifiedStoreScreen = ({
           keyboardType="default"
           onChangeText={(text) => setDescription(text)}
           placeholder={description ? description : I18n.t('description')}
-          label={I18n.t('description')}
+          label={`${I18n.t('description')}*`}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -269,7 +270,7 @@ const ClassifiedStoreScreen = ({
           onChangeText={(text) => setMobile(text)}
           defaultValue={mobile}
           placeholder={mobile ? mobile : I18n.t('mobile')}
-          label={I18n.t('mobile')}
+          label={`${I18n.t('mobile')}*`}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,
@@ -295,7 +296,7 @@ const ClassifiedStoreScreen = ({
           onChangeText={(text) => setPrice(convertNumberToEnglish(text))}
           defaultValue={price}
           placeholder={I18n.t('price')}
-          label={I18n.t('price')}
+          label={`${I18n.t('price')}*`}
           labelStyle={{
             paddingBottom: 10,
             paddingTop: 10,

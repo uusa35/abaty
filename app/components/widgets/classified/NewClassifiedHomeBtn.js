@@ -1,16 +1,22 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import widgetStyles from '../widgetStyles';
 import {Text, TouchableOpacity, View} from 'react-native';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
-import FastImage from 'react-native-fast-image';
 import {touchOpacity} from '../../../constants/sizes';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {useSelector} from 'react-redux';
 
 const NewClassifiedHomeBtn = () => {
-  const {colors, logo, guest} = useContext(GlobalValuesContext);
+  const {colors, logo} = useContext(GlobalValuesContext);
+  const {guest} = useSelector((state) => state);
   const {navigate} = useNavigation();
+
+  useEffect(() => {}, [guest]);
+
+  console.log('geust', guest);
+
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

@@ -16,6 +16,7 @@ import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassif
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const HomeKeyHomeScreen = ({
   homeCategories,
@@ -40,6 +41,7 @@ const HomeKeyHomeScreen = ({
 
   return (
     <BgContainer showImage={false}>
+      <AppHomeConfigComponent />
       <View style={{margin: 0, padding: 0, flex: 1, height: '100%'}}>
         {!validate.isEmpty(splashes) && splash_on ? (
           <IntroductionWidget

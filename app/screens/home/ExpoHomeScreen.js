@@ -17,6 +17,7 @@ import ExpoDesignerHorizontalWidget from '../../components/widgets/user/ExpoDesi
 import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns';
 import BgContainer from '../../components/containers/BgContainer';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const ExpoHomeScreen = ({
   homeCategories,
@@ -36,13 +37,13 @@ const ExpoHomeScreen = ({
   dispatch,
   mainBg,
 }) => {
-  const [refresh, setRefresh] = useState(false);
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     dispatch(refetchHomeElements());
-  }, [refresh]);
+  };
 
   return (
     <BgContainer>
+      <AppHomeConfigComponent />
       <IntroductionWidget
         elements={splashes}
         IntroductionWidget
@@ -56,7 +57,7 @@ const ExpoHomeScreen = ({
         contentInset={{bottom: 200}}
         refreshControl={
           <RefreshControl
-            refreshing={refresh}
+            refreshing={false}
             onRefresh={() => handleRefresh()}
           />
         }
@@ -71,14 +72,14 @@ const ExpoHomeScreen = ({
           showName={true}
           name={I18n.t('expos')}
           title={I18n.t('expos')}
-          searchElements={{is_designer: 1}}
+          searchElements={{is_company: 1}}
         />
         <ExpoDesignerHorizontalWidget
           elements={homeDesigners}
           showName={true}
           name={I18n.t('small_business')}
           title={I18n.t('small_business')}
-          searchElements={{is_celebrity: 1}}
+          searchElements={{is_designer: 1}}
         />
         <ExpoHomeScreenBtns />
       </ScrollView>

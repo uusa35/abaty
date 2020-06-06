@@ -48,7 +48,10 @@ const LoadingView = ({
 
   return (
     <Fragment>
-      {isLoading && (
+      {isLoading ||
+      isLoadingContent ||
+      isLoadingProfile ||
+      isLoadingBoxedList ? (
         <RadialGradient
           style={styles.itemContainerStyle}
           colors={['grey', 'lightgrey', 'white']}
@@ -70,22 +73,22 @@ const LoadingView = ({
             <Text style={styles.loadingText}>{loadingText}</Text>
           )}
         </RadialGradient>
-      )}
-      {isLoadingContent && (
-        <LoadingContentView loadingText={I18n.t('loading')} />
-      )}
-      {isLoadingProfile && (
-        <LoadingProfileView
-          loadingText={I18n.t('loading')}
-          logo={settings.logo}
-        />
-      )}
-      {isLoadingBoxedList && (
-        <LoadingBoxedListView
-          loadingText={I18n.t('loading')}
-          logo={settings.logo}
-        />
-      )}
+      ) : null}
+      {/*{isLoadingContent && (*/}
+      {/*  <LoadingContentView loadingText={I18n.t('loading')} />*/}
+      {/*)}*/}
+      {/*{isLoadingProfile && (*/}
+      {/*  <LoadingProfileView*/}
+      {/*    loadingText={I18n.t('loading')}*/}
+      {/*    logo={settings.logo}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {/*{isLoadingBoxedList && (*/}
+      {/*  <LoadingBoxedListView*/}
+      {/*    loadingText={I18n.t('loading')}*/}
+      {/*    logo={settings.logo}*/}
+      {/*  />*/}
+      {/*)}*/}
     </Fragment>
   );
 };
@@ -120,38 +123,3 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
-
-{
-  /*<LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />*/
-}
-// if (isLoading) {
-//   return (
-//       <LoadingView
-//           loadingText={I18n.t('loading')}
-//           isLoading={isLoading}
-//           logo={logo}
-//           color={colors ? colors.btn_bg_theme_color : 'black'}
-//           mainBg={main_bg}
-//       />
-//   );
-// }
-// if (isLoadingContent) {
-//   return (
-//       <LoadingContentView
-//           loadingText={I18n.t('loading')}
-//           isLoadingContent={isLoadingContent}
-//           logo={logo}
-//       />
-//   );
-// }
-// if (isLoadingProfile) {
-//   return (
-//       <LoadingProfileView
-//           loadingText={I18n.t('loading')}
-//           isLoadingContent={isLoadingProfile}
-//           logo={logo}
-//       />
-//   );
-// }
-// !network.isConnected && bootStrapped ? (
-//     <LoadingOfflineView mainBg={main_bg} dispatch={dispatch} />

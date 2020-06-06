@@ -20,7 +20,7 @@ import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassified
 export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
-      screen: gestureHandlerRootHOC(ParentCategoryIndexScreen),
+      screen: ParentCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: () => (
@@ -45,7 +45,7 @@ export const CategoryStack = createStackNavigator(
       path: 'category/:id',
     },
     ProductIndex: {
-      screen: gestureHandlerRootHOC(ProductIndexScreen),
+      screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -56,7 +56,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(NormalProductShowScreen),
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -74,7 +74,7 @@ export const CategoryStack = createStackNavigator(
       path: `product/:id`,
     },
     SubCategoryIndex: {
-      screen: gestureHandlerRootHOC(SubCategoryIndexScreen),
+      screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -84,7 +84,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     ChildrenCategoryIndex: {
-      screen: gestureHandlerRootHOC(ChildrenCategoryIndexScreen),
+      screen: ChildrenCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -94,7 +94,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     CompanyIndex: {
-      screen: gestureHandlerRootHOC(CompanyIndexScreen),
+      screen: CompanyIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -104,7 +104,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     CompanyClassifiedShow: {
-      screen: gestureHandlerRootHOC(CompanyClassifiedShowScreen),
+      screen: CompanyClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         // headerTitle: () => <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: <HeaderCustom />,

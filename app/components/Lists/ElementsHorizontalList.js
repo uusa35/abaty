@@ -39,8 +39,9 @@ import SearchSort from '../widgets/search/SearchSort';
 import {useDispatch} from 'react-redux';
 import {getSearchProducts} from '../../redux/actions/product';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementWidgetHorizontal from './ElementWidgetHorizontal';
 
-const ElementsVerticalList = ({
+const ElementsHorizontalList = ({
   elements,
   searchParams,
   showMore = false,
@@ -103,7 +104,7 @@ const ElementsVerticalList = ({
             })
             .catch((e) => {
               if (__DEV__) {
-                console.log('the e ElementsVerticalList', e);
+                console.log('the e ElementsHorizontalList', e);
               }
             });
           break;
@@ -117,7 +118,7 @@ const ElementsVerticalList = ({
             })
             .catch((e) => {
               if (__DEV__) {
-                console.log('the e ElementsVerticalList', e);
+                console.log('the e ElementsHorizontalList', e);
               }
             });
           break;
@@ -194,7 +195,6 @@ const ElementsVerticalList = ({
   }, [elements]);
 
   const handleClick = useCallback((type, searchParams, element) => {
-    console.log('clicked', type);
     switch (type) {
       case 'designer':
         dispatch(
@@ -271,7 +271,7 @@ const ElementsVerticalList = ({
           //   alignItems: 'center',
           // }}
           renderItem={({item}) => (
-            <ElementWidgetVertical
+            <ElementWidgetHorizontal
               element={item}
               title={item.slug ? item.slug : item.name}
               showName={true}
@@ -349,9 +349,9 @@ const ElementsVerticalList = ({
   );
 };
 
-export default ElementsVerticalList;
+export default ElementsHorizontalList;
 
-ElementsVerticalList.propTypes = {
+ElementsHorizontalList.propTypes = {
   elements: PropTypes.array.isRequired,
   category: PropTypes.object,
   searchParams: PropTypes.object,

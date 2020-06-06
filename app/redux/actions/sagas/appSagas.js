@@ -43,7 +43,6 @@ export function* startAppBootStrap() {
       yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
   } finally {
-    console.log('finally');
     yield all([
       call(disableLoading),
       call(enableResetApp),

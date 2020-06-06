@@ -9,8 +9,16 @@ import {
   setHomeSplashes,
   setSettings,
   setSlides,
+  startGetHomeCategoriesScenario,
+  startGetParentCategoriesScenario,
 } from '../requestSagas';
-import {setHomeBrands, startAuthenticatedScenario} from '../userSagas';
+import {
+  setHomeBrands,
+  startAuthenticatedScenario,
+  startGetHomeCelebrities,
+  startGetHomeCompaniesScenario,
+  startGetHomeDesigners,
+} from '../userSagas';
 import {
   setDeviceId,
   setVersion,
@@ -56,18 +64,15 @@ export function* abatiBootStrap() {
     call(startGetColorsScenario),
     call(startGetSizesScenario),
     call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-    put({type: actions.GET_CATEGORIES}),
-    put({type: actions.GET_HOME_CATEGORIES}),
-    put({
-      type: actions.GET_HOME_COMPANIES,
+    call(startGetParentCategoriesScenario),
+    call(startGetHomeCategoriesScenario),
+    call(startGetHomeCompaniesScenario, {
       payload: {searchParams: {on_home: 1, is_company: 1}},
     }),
-    put({
-      type: actions.GET_HOME_DESIGNERS,
+    call(startGetHomeDesigners, {
       payload: {searchParams: {on_home: 1, is_designer: 1}},
     }),
-    put({
-      type: actions.GET_HOME_CELEBRITIES,
+    call(startGetHomeCelebrities, {
       payload: {searchParams: {on_home: 1, is_celebrity: 1}},
     }),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),

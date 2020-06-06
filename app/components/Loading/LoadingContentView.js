@@ -28,6 +28,7 @@ const LoadingContentView = () => {
           padding: 0,
         }}>
         <SvgAnimatedLinearGradient
+          useNativeDriver={true}
           height={600}
           width={width}
           style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -43,6 +44,7 @@ const LoadingContentView = () => {
         </SvgAnimatedLinearGradient>
         {isRTL ? (
           <SvgAnimatedLinearGradient
+            useNativeDriver={true}
             height={150}
             width={width - 25}
             style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -56,6 +58,7 @@ const LoadingContentView = () => {
           </SvgAnimatedLinearGradient>
         ) : (
           <SvgAnimatedLinearGradient
+            useNativeDriver={true}
             height={150}
             width={width - 50}
             style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -72,6 +75,7 @@ const LoadingContentView = () => {
         )}
         {isRTL ? (
           <SvgAnimatedLinearGradient
+            useNativeDriver={true}
             height={150}
             width="98%"
             style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -85,6 +89,7 @@ const LoadingContentView = () => {
           </SvgAnimatedLinearGradient>
         ) : (
           <SvgAnimatedLinearGradient
+            useNativeDriver={true}
             height={150}
             width={width - 50}
             style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -98,6 +103,7 @@ const LoadingContentView = () => {
           </SvgAnimatedLinearGradient>
         )}
         <SvgAnimatedLinearGradient
+          useNativeDriver={true}
           height={150}
           width={width - 50}
           style={{marginBottom: 5, alignSelf: 'center'}}>

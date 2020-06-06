@@ -15,7 +15,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const SearchStack = createStackNavigator(
   {
     SearchIndex: {
-      screen: gestureHandlerRootHOC(SearchScreen),
+      screen: SearchScreen,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-search" type="ionicon" color={tintColor} />
@@ -27,7 +27,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     SearchProductIndex: {
-      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -38,7 +38,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(NormalProductShowScreen),
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -55,7 +55,7 @@ export const SearchStack = createStackNavigator(
       path: `product/:id`,
     },
     Service: {
-      screen: gestureHandlerRootHOC(ServiceShowScreen),
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -76,7 +76,7 @@ export const SearchStack = createStackNavigator(
       path: `service/:id`,
     },
     Home: {
-      screen: gestureHandlerRootHOC(AbatiHomeScreen),
+      screen: AbatiHomeScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerRight: () => (

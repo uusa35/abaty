@@ -14,7 +14,7 @@ import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 export const ClassifiedStack = createStackNavigator(
   {
     ClassifiedIndexAll: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexAllScreen),
+      screen: ClassifiedIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
@@ -29,7 +29,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
+      screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
@@ -37,7 +37,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     Home: {
-      screen: gestureHandlerRootHOC(EscrapHomeScreen),
+      screen: EscrapHomeScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -46,7 +46,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -68,7 +68,7 @@ export const ClassifiedStack = createStackNavigator(
       path: `classified/:id`,
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

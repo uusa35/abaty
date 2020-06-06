@@ -1,7 +1,7 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {refetchHomeElements, toggleIntroduction} from '../../redux/actions';
+import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
@@ -16,6 +16,7 @@ import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/cat
 import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import BgContainer from '../../components/containers/BgContainer';
+import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const AbatiHomeScreen = ({
   homeCategories,
@@ -31,13 +32,13 @@ const AbatiHomeScreen = ({
   showIntroduction,
   dispatch,
 }) => {
-  const [refresh, setRefresh] = useState(false);
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
   };
 
   return (
     <BgContainer>
+      <AppHomeConfigComponent />
       <IntroductionWidget
         elements={splashes}
         IntroductionWidget

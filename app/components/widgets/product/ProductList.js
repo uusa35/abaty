@@ -107,13 +107,13 @@ const ProductList = ({
     }
   }, [page]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     if (currentShowMore) {
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchProducts({searchParams: params, redirect: false}));
     }
-  }, [refresh]);
+  };
 
   useMemo(() => {
     if (search.length > 0) {

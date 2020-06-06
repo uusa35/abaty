@@ -58,14 +58,14 @@ const CompanyClassifiedShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     return dispatch(
       getCompany({
         id: element.id,
         searchParams: {user_id: element.id},
       }),
     );
-  }, [refresh]);
+  };
 
   return (
     <HeaderImageScrollView

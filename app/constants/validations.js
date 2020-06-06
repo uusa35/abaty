@@ -19,24 +19,60 @@ export const submitLogin = {
 };
 
 export const registerConstrains = {
-  name: {length: {minimum: 3}, presence: true},
-  email: {email: true, presence: true},
-  mobile: {length: {minimum: 6}, presence: true},
+  name: {
+    length: {
+      minimum: 3,
+      maximum: 50,
+      message: I18n.t('validations.name_at_least_three_max'),
+    },
+    presence: true,
+  },
+  email: {
+    email: true,
+    presence: true,
+    message: I18n.t('validations.email_required'),
+  },
+  mobile: {
+    length: {
+      minimum: 6,
+      maximum: 11,
+      message: I18n.t('validations.mobile_at_least_size_numbers_or_max_eleven'),
+    },
+    presence: true,
+  },
 };
 
 export const storeClassifiedConstrains = {
   name: {length: {minimum: 3}, presence: true},
   price: {
     presence: true,
-    length: {minimum: 1, maximum: 10},
+    length: {
+      minimum: 1,
+      maximum: 6,
+      message: I18n.t('validations.price_at_least_one_number_or_max_six'),
+    },
     format: {
       pattern: '[a-z0-9]+',
     },
   },
-  mobile: {length: {minimum: 6}, presence: true},
-  description: {length: {minimum: 5}, presence: true},
+  mobile: {
+    length: {
+      minimum: 6,
+      maximum: 11,
+      message: I18n.t('validations.mobile_at_least_size_numbers_or_max_eleven'),
+    },
+    presence: true,
+  },
+  description: {length: {minimum: 5, max: 200}, presence: true},
   image: {presence: {allowEmpty: false}},
-  images: {presence: {allowEmpty: false}, length: {minimum: 2}},
+  images: {
+    presence: {allowEmpty: false},
+    length: {
+      minimum: 2,
+      maximum: 5,
+      message: I18n.t('validations.images_tow_only'),
+    },
+  },
 };
 
 export const editClassifiedConstrains = {

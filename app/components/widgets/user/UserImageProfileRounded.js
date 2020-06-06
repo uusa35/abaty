@@ -14,6 +14,7 @@ import {images} from '../../../constants/images';
 import {getWhatsappLink} from '../../../helpers';
 import {links} from '../../../constants/links';
 import {useDispatch} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const UserImageProfileRounded = ({
   medium,
@@ -81,13 +82,7 @@ const UserImageProfileRounded = ({
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Image
-            source={
-              imageLoading ? images.loadingSm : {uri: medium ? medium : logo}
-            }
-            style={styles.logo}
-            onLoadEnd={() => setImageLoading(false)}
-          />
+          <ImageLoaderContainer img={medium} style={styles.logo} />
           <View
             style={{
               flexDirection: 'row',
@@ -304,15 +299,16 @@ const styles = StyleSheet.create({
   logo: {
     width: 80,
     height: 80,
+    position: 'relative',
     borderRadius: 80 / 2,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.18,
-    shadowRadius: 1.0,
-    elevation: 1,
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 1,
+    // },
+    // shadowOpacity: 0.18,
+    // shadowRadius: 1.0,
+    // elevation: 1,
     borderWidth: 0.5,
     borderColor: 'lightgrey',
   },

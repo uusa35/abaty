@@ -14,7 +14,7 @@ import {FavoriteStack} from '../homekey/FavoriteStack';
 export const SearchStack = createStackNavigator(
   {
     ClassifiedFilter: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexAllScreen),
+      screen: ClassifiedIndexAllScreen,
       navigationOptions: () => ({
         // header: null,
         headerTitle: () => (
@@ -28,7 +28,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
+      screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerzLeft: <HeaderLeft  />,
         headerTitle: () => (
@@ -41,7 +41,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -63,7 +63,7 @@ export const SearchStack = createStackNavigator(
       path: `classified/:id`,
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

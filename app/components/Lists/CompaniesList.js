@@ -17,7 +17,7 @@ import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import {bottomContentInset, text, TheHold} from './../../constants/sizes';
-import {filter} from 'lodash';
+import {filter, uniqBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {useNavigation} from 'react-navigation-hooks';
@@ -35,30 +35,39 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const dispatch = useDispatch();
   const {goBack} = useNavigation();
 
-  const loadMore = useCallback(() => {
+  const loadMore = (d) => {
+    if (__DEV__) {
+      console.log('distance from ', d);
+    }
     setPage(page + 1);
-  });
+  };
 
   useMemo(() => {
-    if (currentShowMore) {
-      return axiosInstance(`user?page=${page}`, {
+    if (showMore && page > 1 && page <= 20) {
+      axiosInstance(`search/user?page=${page}`, {
         params,
       })
         .then((r) => {
-          const userGroup = uniqBy(items.concat(r.data), 'id');
-          setItems(userGroup);
+          if (!validate.isEmpty(r.data)) {
+            const userGroup = uniqBy(items.concat(r.data), 'id');
+            setItems(userGroup);
+          }
         })
-        .catch((e) => e);
+        .catch((e) => console.log('the ee', e));
     }
   }, [page]);
 
-  const handleRefresh = useCallback(() => {
-    if (currentShowMore) {
+  const handleRefresh = () => {
+    if (showMore) {
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchCompanies({searchParams: params}));
     }
-  }, [refresh]);
+  };
+
+  useEffect(() => {
+    setItems(elements);
+  }, [elements]);
 
   useMemo(() => {
     if (search.length > 0) {
@@ -105,7 +114,6 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
           numColumns={2}
           data={items}
           keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => loadMore()}
           onEndReachedThreshold={TheHold}
           onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
           refreshing={refresh}

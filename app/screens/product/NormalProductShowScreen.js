@@ -1,16 +1,8 @@
 import React, {Fragment, useState, useMemo, useCallback} from 'react';
-import {
-  StyleSheet,
-  Text,
-  Linking,
-  RefreshControl,
-  View,
-  FlatList,
-} from 'react-native';
+import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height, bottomContentInset} from './../../constants/sizes';
-import {ScrollView} from 'react-navigation';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';
@@ -89,7 +81,7 @@ const NormalProductShowScreen = ({
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
-          <View animation="bounceInLeft" easing="ease-out">
+          <View>
             {product.description ? (
               <View>
                 <Text

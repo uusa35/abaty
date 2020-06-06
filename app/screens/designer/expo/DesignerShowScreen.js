@@ -133,6 +133,7 @@ const DesignerShowScreen = ({
             <ElementsVerticalList
               elements={collectedCategories}
               showMore={false}
+              showFooter={false}
               showSearch={false}
               showTitle={true}
               type="category"

@@ -407,6 +407,11 @@
   "confirm_information" : "Confirm Information",
   "clear_cart" : "Clear Cart",
   "no_more_products" : "No More Products..",
+  "no_more_product" : "No More Products ..",
+  "no_more_company" : "No More Companies ..",
+  "no_more_designer" : "No More Designers ..",
+  "no_more_category" : "No More Categories",
+  "no_more_elements" : "No More Elements ..",
   "no_more_users" : "No More Users ..",
   "wishlist" : "Wish List",
   "all_products" : "All Products",
@@ -472,6 +477,7 @@
   "classified" : "إعلان مبوب",
   "no_more_classifieds" : "No more Classifieds",
   "no_classifieds" : "No Classifieds",
+  "no_classifieds_favorites" : "No Favorite Classifieds",
   "no_videos" : "No Videos Available Now.",
   "user_name" : "Username",
   "related_classifieds" : "ٌRelated Classifieds",
@@ -594,5 +600,12 @@
   "app_information" : "App Information",
   "classified_filter" : "Classified Filter",
   "app_build" : "App Build",
-  "client_id" : "App Unique No."
+  "client_id" : "App Unique No.",
+  "validations" : {
+    "price_at_least_one_number_or_max_six" : "Price is required. Min is one number and max only six numbers.",
+    "mobile_at_least_size_numbers_or_max_eleven" : "Mobile is required. Min is 6 digits and max is 11 digits",
+    "images_tow_only" : "Images must be at least 2 images.",
+    "name_at_least_three_max": "Name is required. Min is 3 letters and max is 50 letters only.",
+    "email_required" : "Email is required and must be in correct form"
+  }
 }

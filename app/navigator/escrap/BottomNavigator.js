@@ -15,7 +15,7 @@ import {ClassifiedStack} from './ClassifiedStack';
 import {CategoryStack} from './CategoryStack';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
-import {FavoriteStack} from '../homekey/FavoriteStack';
+import {FavoriteStack} from '../escrap/FavoriteStack';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {

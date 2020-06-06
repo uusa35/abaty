@@ -45,14 +45,11 @@ const UserImageProfile = ({
     [rating],
   );
 
-  const handleFan = useCallback(
-    (fanMe) => {
-      fanMe ? setFans(fans + 1) : setFans(fans - 1);
-      setFanMe(fanMe);
-      return dispatch(becomeFan({id: member_id, fanMe}));
-    },
-    [fanMe],
-  );
+  const handleFan = (fanMe) => {
+    fanMe ? setFans(fans + 1) : setFans(fans - 1);
+    setFanMe(fanMe);
+    dispatch(becomeFan({id: member_id, fanMe}));
+  };
 
   return (
     <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>

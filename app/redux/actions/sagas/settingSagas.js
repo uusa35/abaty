@@ -59,10 +59,12 @@ export function* toggleGuest(guest) {
 export function* setDeviceId() {
   try {
     let deviceId = yield call(getUniqueId); // get the deviceID
-    // if (isLocal) {
-    //   console.log('device_id', deviceId);
-    // }
-    yield put({type: actions.SET_DEVICE_ID, payload: deviceId}); // store deviceId into state
+    if (__DEV__) {
+      console.log('device_id', deviceId);
+    }
+    if (deviceId) {
+      yield put({type: actions.SET_DEVICE_ID, payload: deviceId});
+    }
   } catch (e) {
     if (isLocal) {
       console.log('the e from device id', e);

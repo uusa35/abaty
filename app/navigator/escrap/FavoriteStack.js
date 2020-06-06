@@ -9,11 +9,14 @@ import I18n from '../../I18n';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import FavoriteCompanyIndexScreen from '../../screens/company/FavoriteCompanyIndexScreen';
+import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
+import HeaderCustom from '../../components/HeaderCustom';
 
 export const FavoriteStack = createStackNavigator(
   {
     FavoriteClassifiedIndex: {
-      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
+      screen: gestureHandlerRootHOC(FavoriteCompanyIndexScreen),
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft showCart={false} showSideMenu={false} />,
         headerRight: () => (
@@ -48,6 +51,15 @@ export const FavoriteStack = createStackNavigator(
         },
       }),
       path: `classified/:id`,
+    },
+    CompanyClassifiedShow: {
+      screen: CompanyClassifiedShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: () => null,
+        headerRight: <HeaderCustom />,
+        headerBackTitle: () => null,
+      }),
+      path: `user/:id`,
     },
   },
   {

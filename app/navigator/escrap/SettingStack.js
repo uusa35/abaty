@@ -24,7 +24,7 @@ import ContactusScreen from '../../screens/ContactusScreen';
 export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
-      screen: gestureHandlerRootHOC(SettingsIndexScreen),
+      screen: SettingsIndexScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
         headerRight: () => <HeaderRight displayShare={false} />,
@@ -33,7 +33,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: gestureHandlerRootHOC(LoginScreen),
+      screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight />,
@@ -41,7 +41,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Register: {
-      screen: gestureHandlerRootHOC(RegisterScreen),
+      screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight />,
@@ -49,7 +49,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: gestureHandlerRootHOC(UserEditScreen),
+      screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight />,
@@ -57,7 +57,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     ProfileIndex: {
-      screen: gestureHandlerRootHOC(ProfileIndexScreen),
+      screen: ProfileIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -68,7 +68,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     ProfileClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ProfileClassifiedIndexScreen),
+      screen: ProfileClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -78,7 +78,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     OrderIndex: {
-      screen: gestureHandlerRootHOC(OrderIndexScreen),
+      screen: OrderIndexScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('order_history')} />,
         headerRight: null,
@@ -87,7 +87,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     FavoriteProductIndex: {
-      screen: gestureHandlerRootHOC(FavoriteProductIndexScreen),
+      screen: FavoriteProductIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} display={true} />,
@@ -96,7 +96,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(NormalProductShow),
+      screen: NormalProductShow,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -109,7 +109,7 @@ export const SettingStack = createStackNavigator(
       path: `product/:id`,
     },
     Classified: {
-      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -128,7 +128,7 @@ export const SettingStack = createStackNavigator(
       path: `classified/:id`,
     },
     ClassifiedEdit: {
-      screen: gestureHandlerRootHOC(ClassifiedEditScreen),
+      screen: ClassifiedEditScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -140,7 +140,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     FavoriteClassifiedIndex: {
-      screen: gestureHandlerRootHOC(FavoriteClassifiedIndexScreen),
+      screen: FavoriteClassifiedIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight displayShare={false} display={true} />,
@@ -149,10 +149,11 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Contactus: {
-      screen: gestureHandlerRootHOC(ContactusScreen),
+      screen: ContactusScreen,
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,
+        headerBackTitle: () => null,
       }),
       path: 'contactus',
     },

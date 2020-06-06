@@ -24,6 +24,7 @@ import {text} from '../../constants/sizes';
 import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer';
 import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
 import {map} from 'lodash';
+import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const EscrapHomeScreen = ({
   homeCategories,
@@ -48,6 +49,7 @@ const EscrapHomeScreen = ({
 
   return (
     <BgContainer showImage={false}>
+      <AppHomeConfigComponent />
       <View
         style={{
           margin: 0,
