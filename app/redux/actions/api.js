@@ -10,6 +10,7 @@ import {
 import {map, filter} from 'lodash';
 import {checkInternetConnection} from 'react-native-offline';
 import NetInfo from '@react-native-community/netinfo';
+import {isRTL} from '../../I18n';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl,

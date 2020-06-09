@@ -142,14 +142,14 @@ export function* setVersion() {
       console.log('version', version);
       console.log('Will Load AlL ::', version !== buildVersion);
     }
-    if (version !== buildVersion) {
+    yield put({
+      type: actions.SET_VERSION,
+      payload: buildVersion,
+    });
+    if (validate.isEmpty(version) || version !== buildVersion) {
       if (__DEV__) {
         console.log('form inside if buildVersion', buildVersion);
       }
-      yield put({
-        type: actions.SET_VERSION,
-        payload: buildVersion,
-      });
       yield call(startResetStoreScenario);
     }
   } catch (e) {

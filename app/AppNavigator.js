@@ -14,7 +14,6 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 const AppWithNavigationState = createReduxContainer(RootNavigator);
 const mapStateToProps = (state) => ({
   state: state.nav,
-  network: state.network,
 });
 
 const AppNavigator = connect(mapStateToProps)(

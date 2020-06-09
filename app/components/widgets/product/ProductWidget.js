@@ -61,7 +61,7 @@ const ProductWidget = ({
               widgetStyles.elementName,
               {
                 textAlign: 'center',
-                fontSize: text.medium,
+                fontSize: text.small,
                 color: colors.header_tow_theme_color,
               },
             ]}>

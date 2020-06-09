@@ -15,10 +15,10 @@ export function linkNotification(notification) {
   };
 }
 
-export function toggleBootstrapped(bootstrapped) {
+export function toggleBootstrapped(payload) {
   return {
     type: actions.TOGGLE_BOOTSTRAPPED,
-    payload: bootstrapped,
+    payload,
   };
 }
 

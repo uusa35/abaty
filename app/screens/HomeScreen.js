@@ -97,16 +97,16 @@ const HomeScreen = ({
     return true;
   });
 
-  const handleOpenURL = useCallback((event) => {
+  const handleOpenURL = (event) => {
     const {type, id} = getPathForDeepLinking(event.url);
     return this.props.dispatch(goDeepLinking({type, id}));
-  });
+  };
 
   // const onReceived = useCallback((notification) => {
   //   __DEV__ ? console.log('Notification received: ', notification) : null;
   // },[notification]);
 
-  const onOpened = useCallback((openResult) => {
+  const onOpened = (openResult) => {
     console.log('Notification Case');
     if (__DEV__) {
       console.log('the whole thing', openResult.notification.payload);
@@ -119,17 +119,14 @@ const HomeScreen = ({
       openResult.notification.payload.additionalData.url,
     );
     dispatch(goDeepLinking(path, params));
-  });
+  };
 
-  const onIds = useCallback(
-    (device) => {
-      setDeviceId(device.userId);
-      if (device.userId !== deviceId) {
-        dispatch(setPlayerId(device.userId));
-      }
-    },
-    [deviceId],
-  );
+  const onIds = (device) => {
+    setDeviceId(device.userId);
+    if (device.userId !== deviceId) {
+      dispatch(setPlayerId(device.userId));
+    }
+  };
 
   useMemo(() => {}, [deviceId]);
 

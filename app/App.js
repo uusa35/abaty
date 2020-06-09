@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState, Fragment} from 'react';
 import {View, AppState, useColorScheme, StatusBar} from 'react-native';
 import codePush from 'react-native-code-push';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {
   appBootstrap,
   resetStore,
@@ -30,34 +30,33 @@ import {isLocal} from './env';
 import ProductFilterModal from './screens/product/ProductFilterModal';
 import ClassifiedFilterModal from './screens/search/ClassifiedFilterModal';
 
-const App = ({
-  dispatch,
-  bootStrapped,
-  message,
-  countries,
-  country,
-  countryModal,
-  area,
-  areas,
-  areaModal,
-  colors,
-  logo,
-  app_logo,
-  cart,
-  total,
-  grossTotal,
-  token,
-  guest,
-  isConnected,
-  loginModal,
-  main_bg,
-  searchModal,
-  lang,
-  currency,
-  resetApp,
-  settings,
-}) => {
+const App = () => {
   const colorScheme = useColorScheme();
+  const {
+    bootStrapped,
+    message,
+    countries,
+    country,
+    countryModal,
+    area,
+    areas,
+    areaModal,
+    logo,
+    app_logo,
+    cart,
+    total,
+    grossTotal,
+    token,
+    isConnected,
+    loginModal,
+    main_bg,
+    searchModal,
+    lang,
+    currency,
+    resetApp,
+    settings,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [appState, setAppState] = useState(AppState.currentState);
 
   useEffect(() => {
@@ -86,8 +85,6 @@ const App = ({
     axiosInstance.defaults.headers.common['currency'] = currency;
     axiosInstance.defaults.headers['country'] = country.name;
     axiosInstance.defaults.headers.common['country'] = country.name;
-    axiosInstance.defaults.headers['lang'] = lang;
-    axiosInstance.defaults.headers.common['lang'] = lang;
   }, [lang]);
 
   const handleAppStateChange = useCallback(
@@ -121,9 +118,9 @@ const App = ({
             exchange_rate: country.currency.exchange_rate,
             total,
             grossTotal,
-            colors,
-            logo,
-            app_logo,
+            colors: settings.colors,
+            logo: settings.logo,
+            app_logo: settings.app_logo,
             searchModal,
             resetApp,
             lang,
@@ -167,55 +164,6 @@ const App = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    bootStrapped: state.bootStrapped,
-    message: state.message,
-    country: state.country,
-    countries: state.countries,
-    countryModal: state.countryModal,
-    area: state.area,
-    areas: state.areas,
-    areaModal: state.areaModal,
-    currency: state.currency,
-    lang: state.lang,
-    cart: state.cart,
-    total: state.total,
-    grossTotal: state.grossTotal,
-    isConnected: state.isConnected,
-    colors: state.settings.colors,
-    settings: state.settings,
-    logo: state.settings.logo,
-    app_logo: state.settings.app_logo,
-    main_bg: state.settings.main_bg,
-    token: state.token,
-    guest: state.guest,
-    loginModal: state.loginModal,
-    searchModal: state.searchModal,
-    resetApp: state.resetApp,
-  };
-}
-
-App.propTypes = {
-  bootStrapped: PropTypes.bool.isRequired,
-  logo: PropTypes.string,
-  app_logo: PropTypes.string,
-  colors: PropTypes.object,
-  searchModal: PropTypes.bool,
-  message: PropTypes.object,
-  country: PropTypes.object.isRequired,
-  currency: PropTypes.string.isRequired,
-  currency_symbol: PropTypes.string,
-  exchange_rate: PropTypes.number,
-  countries: PropTypes.array.isRequired,
-  cart: PropTypes.array,
-  total: PropTypes.number.isRequired,
-  lang: PropTypes.string.isRequired,
-  token: PropTypes.string,
-  guest: PropTypes.bool,
-  resetApp: PropTypes.bool,
-};
-
-export default connect(mapStateToProps)(
-  codePush({checkFrequency: codePush.CheckFrequency.ON_APP_RESUME})(App),
-);
+export default codePush({
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+})(App);

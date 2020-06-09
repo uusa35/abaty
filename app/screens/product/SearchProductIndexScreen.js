@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 
 const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
+  console.log('search Products', searchProducts);
   return (
     <BgContainer showImage={false}>
       <ProductList

@@ -282,7 +282,8 @@ export function* startGetVideoScenario(action) {
 export function* startStorePlayerIdScenario(action) {
   try {
     if (action.payload) {
-      yield call(api.storePlayerId, action.payload);
+      const result = yield call(api.storePlayerId, action.payload);
+      console.log('the result from device id', result);
     }
   } catch (e) {
     if (__DEV__) {
@@ -425,7 +426,6 @@ export function* startSubmitAuthScenario(action) {
 export function* startReAuthenticateScenario() {
   try {
     const {token} = yield select();
-    console.log('token from authentiate', token);
     const element = yield call(api.reAuthenticate, token);
     if (
       !validate.isEmpty(element) &&
@@ -453,28 +453,28 @@ export function* startReAuthenticateScenario() {
 export function* startUpdateUserScenario(action) {
   try {
     const {name, mobile, email} = action.payload;
-    const result = validate({name, mobile, email}, registerConstrains);
-    if (validate.isEmpty(result)) {
-      yield call(enableLoading);
-      const element = yield call(api.updateUser, action.payload);
-      if (!validate.isEmpty(element) && validate.isObject(element)) {
-        yield all([
-          put({type: actions.SET_AUTH, payload: element}),
-          call(disableLoading),
-          call(enableSuccessMessage, I18n.t('update_information_success')),
-          put(NavigationActions.back()),
-        ]);
-      } else {
-        throw element;
-      }
+    // const result = validate({name, mobile, email}, registerConstrains);
+    // if (validate.isEmpty(result)) {
+    //   yield call(enableLoading);
+    const element = yield call(api.updateUser, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        put({type: actions.SET_AUTH, payload: element}),
+        call(disableLoading),
+        call(enableSuccessMessage, I18n.t('update_information_success')),
+        put(NavigationActions.back()),
+      ]);
     } else {
-      throw first(values(result))[0];
+      throw element;
     }
+    // } else {
+    //   throw element;
+    // }
   } catch (e) {
     if (isLocal) {
       console.log('e', e);
+      yield call(enableErrorMessage, e);
     }
-    yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
   }

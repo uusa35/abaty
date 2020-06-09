@@ -183,10 +183,10 @@ const ClassifiedList = ({
           contentContainerStyle={{
             marginBottom: 15,
             justifyContent: 'flex-start',
+            alignSelf: 'center',
             minHeight: height,
             minWidth: '100%',
             flexGrow: 1,
-            alignSelf: 'center',
           }}
           // disableVirtualization={false}
           ListHeaderComponentStyle={{

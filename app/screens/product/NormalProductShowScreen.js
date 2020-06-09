@@ -36,7 +36,7 @@ const NormalProductShowScreen = ({
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     setRefresh(false);
     dispatch(
       getProduct({
@@ -45,7 +45,7 @@ const NormalProductShowScreen = ({
         redirect: false,
       }),
     );
-  }, [refresh]);
+  };
 
   return (
     <BgContainer showImage={false}>

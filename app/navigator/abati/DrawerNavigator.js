@@ -8,9 +8,6 @@ export const DrawerNavigator = createDrawerNavigator(
   {
     Tabs: {
       screen: BottomTabsStack,
-      navigationOptions: {
-        drawerLockMode: 'locked-closed',
-      },
     },
   },
   {
@@ -18,6 +15,7 @@ export const DrawerNavigator = createDrawerNavigator(
     drawerPosition: isRTL ? 'right' : 'left',
     drawerBackgroundColor: 'white',
     overlayColor: 'transparent',
+    drawerLockMode: 'locked-closed',
     contentOptions: {
       activeTintColor: 'black',
       itemsContainerStyle: {

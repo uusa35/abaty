@@ -16,7 +16,7 @@ import HeaderCustom from '../../components/HeaderCustom';
 export const FavoriteStack = createStackNavigator(
   {
     FavoriteClassifiedIndex: {
-      screen: gestureHandlerRootHOC(FavoriteCompanyIndexScreen),
+      screen: FavoriteCompanyIndexScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft showCart={false} showSideMenu={false} />,
         headerRight: () => (
@@ -27,7 +27,7 @@ export const FavoriteStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
+      screen: ClassifiedIndexScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
@@ -35,7 +35,7 @@ export const FavoriteStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

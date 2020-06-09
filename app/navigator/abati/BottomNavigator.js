@@ -13,12 +13,13 @@ import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="home" type="octicon" />
         ),
@@ -29,7 +30,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     // CategoryIndexScreen: {
     //   screen: AbatiCategoryStack,
-    //   navigationOptions: ({navigation}) => ({
+    //   navigationOptions: () => ({
     //     tabBarIcon: ({tintColor}) => (
     //       <Icon
     //           size={text.xlarge}
@@ -40,7 +41,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     // },
     VideoIndexAll: {
       screen: VideoStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="play-video" type="foundation" />
         ),
@@ -51,32 +52,32 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     Setting: {
       screen: SettingStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar name="ios-person" type="ionicon" focused={focused} />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('me')} focused={focused} />
         ),
-        headerLeft: () => <HeaderLeft {...navigation} />,
-        headerRight: () => <HeaderRight {...navigation} display={true} />,
+        headerLeft: () => <HeaderLeft />,
+        headerRight: () => <HeaderRight display={true} />,
         // headerTitle: () => <HeaderMiddle title={I18n.t('home')}/>,
       }),
     },
-    Search: {
-      screen: SearchStack,
-      navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
-        ),
-        tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('search')} focused={focused} />
-        ),
-      }),
-    },
+    // Search: {
+    //   screen: SearchStack,
+    //   navigationOptions: () => ({
+    //     tabBarIcon: ({focused}) => (
+    //       <IconTabBar focused={focused} name="ios-search" type="ionicon" />
+    //     ),
+    //     tabBarLabel: ({focused}) => (
+    //       <TextTabBar title={I18n.t('search')} focused={focused} />
+    //     ),
+    //   }),
+    // },
     ProductIndexAll: {
       screen: ProductStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar
             focused={focused}
@@ -91,7 +92,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     ServiceIndexAll: {
       screen: ServiceStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar
             focused={focused}

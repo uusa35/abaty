@@ -17,14 +17,6 @@ const IntroductionWidget = ({elements}) => {
     dispatch(toggleIntroduction(false));
   }, []);
 
-  useEffect(() => {
-    if (showIntroduction) {
-      setTimeout(() => {
-        dispatch(toggleIntroduction(false));
-      }, 12000);
-    }
-  }, []);
-
   return (
     <Fragment>
       {!isEmpty(elements) && (

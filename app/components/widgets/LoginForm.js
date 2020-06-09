@@ -11,11 +11,14 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch} from 'react-redux';
+import BgContainer from '../containers/BgContainer';
+import ImageLoaderContainer from './ImageLoaderContainer';
 
 const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
   const {logo, colors} = useContext(GlobalValuesContext);
+  console.log('the logo', logo);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
 
@@ -32,83 +35,68 @@ const LoginForm = ({showBtns = false}) => {
   // });
 
   return (
-    <KeyboardAwareScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        flex: 1,
-        width: '100%',
-        padding: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View
-        style={{
+    <BgContainer>
+      <KeyboardAwareScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          flex: 1,
           width: '100%',
-          marginTop: 0,
+          padding: 15,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <FastImage
-          source={{uri: logo}}
-          style={{width: 100, height: 100, margin: 20}}
-          resizeMode="contain"
-          loadingIndicatorSource={images.logo}
-        />
-        <Input
-          placeholder={I18n.t('email')}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20,
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left',
-          }}
-          shake={true}
-          keyboardType="email-address"
-          onChangeText={(email) => setEmail(email)}
-        />
-        <Input
-          placeholder={I18n.t('password')}
-          secureTextEntry={true}
-          inputContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgrey',
-            borderRadius: 10,
-            paddingLeft: 15,
-            paddingRight: 15,
-            marginBottom: 20,
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left',
-          }}
-          shake={true}
-          keyboardType="default"
-          onChangeText={(password) => setPassword(password)}
-        />
-        <Button
-          raised
-          containerStyle={{marginBottom: 10, width: '100%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0,
-          }}
-          title={I18n.t('login')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color,
-          }}
-          onPress={() => dispatch(submitAuth({email, password}))}
-        />
-        {showBtns ? (
+        <View
+          style={{
+            width: '100%',
+            marginTop: 0,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <ImageLoaderContainer
+            img={logo}
+            style={{width: 100, height: 100, margin: 20}}
+            resizeMode="contain"
+          />
+          <Input
+            placeholder={I18n.t('email')}
+            inputContainerStyle={{
+              borderWidth: 1,
+              borderColor: 'lightgrey',
+              borderRadius: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+              marginBottom: 20,
+            }}
+            inputStyle={{
+              fontFamily: text.font,
+              textAlign: isRTL ? 'right' : 'left',
+            }}
+            shake={true}
+            keyboardType="email-address"
+            onChangeText={(email) => setEmail(email)}
+          />
+          <Input
+            placeholder={I18n.t('password')}
+            secureTextEntry={true}
+            inputContainerStyle={{
+              borderWidth: 1,
+              borderColor: 'lightgrey',
+              borderRadius: 10,
+              paddingLeft: 15,
+              paddingRight: 15,
+              marginBottom: 20,
+            }}
+            inputStyle={{
+              fontFamily: text.font,
+              textAlign: isRTL ? 'right' : 'left',
+            }}
+            shake={true}
+            keyboardType="default"
+            onChangeText={(password) => setPassword(password)}
+          />
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -116,40 +104,56 @@ const LoginForm = ({showBtns = false}) => {
               backgroundColor: colors.btn_bg_theme_color,
               borderRadius: 0,
             }}
-            title={I18n.t('new_user')}
+            title={I18n.t('login')}
             titleStyle={{
               fontFamily: text.font,
               color: colors.btn_text_theme_color,
             }}
-            onPress={() => navigate('Register')}
+            onPress={() => dispatch(submitAuth({email, password}))}
           />
-        ) : null}
-        {showBtns ? (
-          <Button
-            raised
-            containerStyle={{marginBottom: 10, width: '100%'}}
-            buttonStyle={{
-              backgroundColor: colors.btn_bg_theme_color,
-              borderRadius: 0,
-            }}
-            title={I18n.t('forget_password')}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color,
-            }}
-            onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
-          />
-        ) : null}
-        {/*<SocialIcon*/}
-        {/*  title={I18n.t('sign_with_google')}*/}
-        {/*  button*/}
-        {/*  type="google-plus-official"*/}
-        {/*  fontStyle={{fontFamily: text.font, fontSize: text.medium}}*/}
-        {/*  style={{width: '100%', height: 50, borderRadius: 0}}*/}
-        {/*  onPress={() => dispatch(googleLogin())}*/}
-        {/*/>*/}
-      </View>
-    </KeyboardAwareScrollView>
+          {showBtns ? (
+            <Button
+              raised
+              containerStyle={{marginBottom: 10, width: '100%'}}
+              buttonStyle={{
+                backgroundColor: colors.btn_bg_theme_color,
+                borderRadius: 0,
+              }}
+              title={I18n.t('new_user')}
+              titleStyle={{
+                fontFamily: text.font,
+                color: colors.btn_text_theme_color,
+              }}
+              onPress={() => navigate('Register')}
+            />
+          ) : null}
+          {showBtns ? (
+            <Button
+              raised
+              containerStyle={{marginBottom: 10, width: '100%'}}
+              buttonStyle={{
+                backgroundColor: colors.btn_bg_theme_color,
+                borderRadius: 0,
+              }}
+              title={I18n.t('forget_password')}
+              titleStyle={{
+                fontFamily: text.font,
+                color: colors.btn_text_theme_color,
+              }}
+              onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
+            />
+          ) : null}
+          {/*<SocialIcon*/}
+          {/*  title={I18n.t('sign_with_google')}*/}
+          {/*  button*/}
+          {/*  type="google-plus-official"*/}
+          {/*  fontStyle={{fontFamily: text.font, fontSize: text.medium}}*/}
+          {/*  style={{width: '100%', height: 50, borderRadius: 0}}*/}
+          {/*  onPress={() => dispatch(googleLogin())}*/}
+          {/*/>*/}
+        </View>
+      </KeyboardAwareScrollView>
+    </BgContainer>
   );
 };
 

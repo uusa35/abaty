@@ -9,6 +9,7 @@ export const images = {
   emptyOrder: require('./../../assets/images/empty_order.jpeg'),
   loading: require('./../../assets/images/loading.gif'),
   loadingSm: require('./../../assets/images/loading_sm.gif'),
+  whiteBg: require('./../../assets/images/whiteBg.png'),
 };
 
 export const icons = {

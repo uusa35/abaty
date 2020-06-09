@@ -4,7 +4,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
-import {SafeAreaView} from 'react-navigation';
 
 export const HeaderBack = ({navigation}) => {
   return (

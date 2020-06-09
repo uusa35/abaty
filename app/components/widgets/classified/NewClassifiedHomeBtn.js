@@ -13,10 +13,6 @@ const NewClassifiedHomeBtn = () => {
   const {guest} = useSelector((state) => state);
   const {navigate} = useNavigation();
 
-  useEffect(() => {}, [guest]);
-
-  console.log('geust', guest);
-
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

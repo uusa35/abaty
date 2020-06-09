@@ -13,7 +13,6 @@ import {
   ImageBackground,
 } from 'react-native';
 import I18n from './../I18n';
-import {connect} from 'react-redux';
 import {iconSizes, text} from './../constants/sizes';
 import {isIOS} from './../constants';
 import FastImage from 'react-native-fast-image';
@@ -24,28 +23,29 @@ import {SafeAreaView} from 'react-navigation';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {HOMEKEY, ESCRAP} from './../../app';
+import {useSelector, useDispatch} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
-const SideMeu = ({
-  menuBg,
-  logo,
-  company,
-  images,
-  colors,
-  youtube,
-  guest,
-  lang,
-  navigation,
-  dispatch,
-  showLogo = true,
-  terms,
-  policy,
-}) => {
+const SideMeu = ({showLogo = true}) => {
+  const {
+    logo,
+    company,
+    images,
+    menuBg,
+    youtube,
+    guest,
+    colors,
+    terms,
+    policy,
+  } = useSelector((state) => state.settings);
+  const {lang} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   return (
     <ImageBackground
       source={{
         uri: menuBg ? menuBg : 'http://placehold.it/10/FFFFFF/FFFFFF',
       }}
-      loadingIndicatorSource={{uri: logo}}
       style={{width: '100%', flex: 1, opacity: 1}}
       resizeMode="cover">
       <SafeAreaView style={{flex: 1}}>
@@ -350,7 +350,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(SideMeu);
+export default SideMeu;
 
 SideMeu.propTypes = {
   menuBg: PropTypes.string,

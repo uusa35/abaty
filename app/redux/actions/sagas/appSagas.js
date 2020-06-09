@@ -1,5 +1,5 @@
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
-import {BackHandler, Alert} from 'react-native';
+import {BackHandler, Alert, DevSettings} from 'react-native';
 import * as actions from '../types';
 import {ABATI, MALLR, ESCRAP, EXPO, HOMEKEY} from './../../../../app';
 import {PersistStore} from './../../store';

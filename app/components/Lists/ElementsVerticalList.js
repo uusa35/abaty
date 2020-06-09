@@ -17,11 +17,12 @@ import {
   getDesigner,
   getSearchCompanies,
   getSearchDesigners,
+  reAuthenticate,
 } from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Button, Input, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
+import I18n from './../../I18n';
 import {
   bottomContentInset,
   iconSizes,
@@ -39,6 +40,7 @@ import SearchSort from '../widgets/search/SearchSort';
 import {useDispatch} from 'react-redux';
 import {getSearchProducts} from '../../redux/actions/product';
 import {useNavigation} from 'react-navigation-hooks';
+import NoMoreElements from '../widgets/NoMoreElements';
 
 const ElementsVerticalList = ({
   elements,
@@ -53,6 +55,7 @@ const ElementsVerticalList = ({
   iconSize = iconSizes.small,
   textSize = text.small,
   columns = 1,
+  noElementsTitle = I18n.t('not_available'),
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -66,7 +69,6 @@ const ElementsVerticalList = ({
   const {colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
 
-  console.log('elementsVerticalList');
   const loadMore = (d) => {
     if (__DEV__) {
       console.log('distance from ', d);
@@ -165,6 +167,8 @@ const ElementsVerticalList = ({
           dispatch(getSearchProducts({searchParams: params, redirect: false}));
         case 'company':
           dispatch(getSearchCompanies({searchParams: params}));
+        case 'favoriteCompanies':
+          dispatch(reAuthenticate());
           break;
         default:
           null;
@@ -223,6 +227,15 @@ const ElementsVerticalList = ({
           }),
         );
         break;
+      case 'favoriteCompanies':
+        dispatch(
+          getCompany({
+            id: element.id,
+            searchParams,
+            redirect: true,
+          }),
+        );
+        break;
       default:
         null;
     }
@@ -234,117 +247,115 @@ const ElementsVerticalList = ({
         justifyContent: 'center',
         alignItems: 'center',
         width: width,
-        // marginTop: '5%',
         flex: 1,
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(elements) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          scrollEnabled={showMore}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: showFooter ? bottomContentInset : 10}}
-          numColumns={columns}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-          onEndReachedThreshold={1}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => handleRefresh()}
-            />
-          }
-          contentContainerStyle={{
-            width: width - 30,
-          }}
-          // columnWrapperStyle={{
-          //   justifyContent: 'space-between',
-          //   alignItems: 'center',
-          // }}
-          renderItem={({item}) => (
-            <ElementWidgetVertical
-              element={item}
-              title={item.slug ? item.slug : item.name}
-              showName={true}
-              showSearch={false}
-              thumb={item.thumb}
-              iconSize={iconSize}
-              textSize={textSize}
-              type={type}
-              handleClick={handleClick}
-            />
-          )}
-          ListFooterComponent={
-            showFooter ? (
-              <View
-                style={{
-                  width: '100%',
-                  minHeight: 100,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flex: 1,
-                }}>
-                <Button
-                  loading={isLoading}
-                  raised
-                  onPress={() => dispatch(navigation.navigate('Home'))}
-                  containerStyle={{width: '100%'}}
-                  title={I18n.t(`no_more_${type}`)}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
-            ) : null
-          }
-          ListFooterComponentStyle={{
-            marginBottom: bottomContentInset,
-          }}
-          ListHeaderComponentStyle={{
-            backgroundColor: 'white',
-          }}
-          ListHeaderComponent={
-            <View style={{paddingTop: 5, paddingBottom: 5}}>
-              {showSearch ? <TopSearchInput setSearch={setSearch} /> : null}
-              {showSortSearch ? (
-                <SearchSort
-                  sort={sort}
-                  sortModal={sortModal}
-                  setSortModal={setSortModal}
-                  setSort={setSort}
-                />
-              ) : null}
-              {showTitle ? (
-                <Text
-                  style={{
-                    fontFamily: text.font,
-                    fontSize: text.large,
-                    textAlign: 'left',
-                    color: colors.header_one_theme_color,
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 1,
-                    },
-                    shadowOpacity: 0.18,
-                    shadowRadius: 1.0,
-                    elevation: 1,
-                  }}>
-                  {title}
-                </Text>
-              ) : null}
+      <FlatList
+        ListEmptyComponent={() => <NoMoreElements title={noElementsTitle} />}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        scrollEnabled={showMore}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: showFooter ? bottomContentInset : 10}}
+        numColumns={columns}
+        data={items}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        onEndReachedThreshold={1}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        contentContainerStyle={{
+          width: width - 30,
+        }}
+        // columnWrapperStyle={{
+        //   justifyContent: 'space-between',
+        //   alignItems: 'center',
+        // }}
+        renderItem={({item}) => (
+          <ElementWidgetVertical
+            element={item}
+            title={item.slug ? item.slug : item.name}
+            showName={true}
+            showSearch={false}
+            thumb={item.thumb}
+            iconSize={iconSize}
+            textSize={textSize}
+            type={type}
+            handleClick={handleClick}
+          />
+        )}
+        ListFooterComponent={
+          showFooter ? (
+            <View
+              style={{
+                width: '100%',
+                minHeight: 100,
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+              }}>
+              <Button
+                loading={isLoading}
+                raised
+                onPress={() => dispatch(navigation.navigate('Home'))}
+                containerStyle={{width: '100%'}}
+                title={I18n.t(`no_more_${type}`)}
+                type="outline"
+                titleStyle={{fontFamily: text.font}}
+              />
             </View>
-          }
-        />
-      ) : null}
+          ) : null
+        }
+        ListFooterComponentStyle={{
+          marginBottom: bottomContentInset,
+        }}
+        ListHeaderComponentStyle={{
+          backgroundColor: 'white',
+        }}
+        ListHeaderComponent={
+          <View style={{paddingTop: 5, paddingBottom: 5}}>
+            {showSearch ? <TopSearchInput setSearch={setSearch} /> : null}
+            {showSortSearch ? (
+              <SearchSort
+                sort={sort}
+                sortModal={sortModal}
+                setSortModal={setSortModal}
+                setSort={setSort}
+              />
+            ) : null}
+            {showTitle ? (
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.large,
+                  textAlign: 'left',
+                  color: colors.header_one_theme_color,
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.18,
+                  shadowRadius: 1.0,
+                  elevation: 1,
+                }}>
+                {title}
+              </Text>
+            ) : null}
+          </View>
+        }
+      />
     </KeyboardAvoidingView>
   );
 };

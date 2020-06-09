@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
-import {text} from '../../constants/sizes';
+import {text, width} from '../../constants/sizes';
 import {View} from 'react-native';
 
 const NoMoreElements = ({
@@ -11,7 +11,7 @@ const NoMoreElements = ({
   return (
     <View
       style={{
-        justifyContent: 'center',
+        alignSelf: 'center',
         marginRight: 10,
         marginLeft: 10,
       }}>
@@ -20,6 +20,7 @@ const NoMoreElements = ({
         raised
         title={title}
         type="outline"
+        containerStyle={{minWidth: width / 1.5}}
         titleStyle={{fontFamily: text.font}}
       />
     </View>

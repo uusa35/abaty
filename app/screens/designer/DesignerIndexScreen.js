@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
 import {StyleSheet} from 'react-native';
 import DesignersList from '../../components/Lists/DeisgnersList';
 import BgContainer from '../../components/containers/BgContainer';
 
-const DesignerIndexScreen = ({designers, searchParams}) => {
+const DesignerIndexScreen = () => {
+  const {designers, searchParams} = useSelector((state) => state);
+
   useEffect(() => {}, [designers]);
 
   return (
@@ -20,17 +21,6 @@ const DesignerIndexScreen = ({designers, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    designers: state.designers,
-    searchParams: state.searchParams,
-  };
-}
-
-export default connect(mapStateToProps)(DesignerIndexScreen);
-
-DesignerIndexScreen.propTypes = {
-  users: PropTypes.array,
-};
+export default DesignerIndexScreen;
 
 const styles = StyleSheet.create({});

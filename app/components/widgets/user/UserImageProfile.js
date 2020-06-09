@@ -46,9 +46,11 @@ const UserImageProfile = ({
   );
 
   const handleFan = (fanMe) => {
-    fanMe ? setFans(fans + 1) : setFans(fans - 1);
-    setFanMe(fanMe);
-    dispatch(becomeFan({id: member_id, fanMe}));
+    if (!guest) {
+      fanMe ? setFans(fans + 1) : setFans(fans - 1);
+      setFanMe(fanMe);
+      dispatch(becomeFan({id: member_id, fanMe}));
+    }
   };
 
   return (
@@ -132,6 +134,7 @@ const UserImageProfile = ({
             type="material"
             color={colors.header_tow_theme_color}
             onPress={() => handleFan(!fanMe)}
+            disabled={guest}
           />
         ) : (
           <Icon
@@ -139,6 +142,7 @@ const UserImageProfile = ({
             type="material-community"
             color={colors.header_tow_theme_color}
             onPress={() => handleFan(!fanMe)}
+            disabled={guest}
           />
         )}
         <TouchableOpacity

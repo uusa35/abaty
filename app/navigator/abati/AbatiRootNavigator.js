@@ -4,12 +4,6 @@ import {LoginStack} from './LoginStack';
 import {DrawerNavigator} from './DrawerNavigator';
 
 const AbatiRootNavigator = createSwitchNavigator({
-  HomeStack: {
-    screen: HomeStack,
-  },
-  Login: {
-    screen: LoginStack,
-  },
   DrawerStack: {
     screen: DrawerNavigator,
   },

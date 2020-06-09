@@ -25,7 +25,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const AppHomeConfigComponent = () => {
   const dispatch = useDispatch();
-  const {bootStrapped, resetApp} = useSelector((state) => state);
+  const {bootStrapped, resetApp, playerId} = useSelector((state) => state);
   const [deviceId, setDeviceId] = useState('');
   const [device, setDevice] = useState('');
   const [signalId, setSignalId] = useState();
@@ -51,6 +51,12 @@ const AppHomeConfigComponent = () => {
     OneSignal.addEventListener('opened', onOpened);
     OneSignal.addEventListener('ids', onIds);
     Linking.addEventListener('url', handleOpenURL);
+    return () => {
+      OneSignal.removeEventListener('received', onReceived);
+      OneSignal.removeEventListener('opened', onOpened);
+      OneSignal.removeEventListener('ids', onIds);
+      Linking.removeEventListener('url', handleOpenURL);
+    };
   }, [bootStrapped]);
 
   const handleOpenURL = (event) => {
@@ -80,7 +86,7 @@ const AppHomeConfigComponent = () => {
   };
 
   const onIds = (device) => {
-    if (!validate.isEmpty(device)) {
+    if (!validate.isEmpty(device.userId) && playerId !== device.userId) {
       setDeviceId(device.userId);
       if (device.userId !== deviceId) {
         dispatch(setPlayerId(device.userId));

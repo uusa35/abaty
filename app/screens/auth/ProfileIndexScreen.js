@@ -3,30 +3,34 @@ import {StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
-import {text} from '../../constants/sizes';
+import {bottomContentInset, text} from '../../constants/sizes';
 import {isIOS} from '../../constants';
 import validate from 'validate.js';
 import {isRTL} from '../../I18n';
 import UserProfileInformationWidget from '../../components/widgets/user/UserProfileInformationWidget';
 import UserProfileBtns from '../../components/widgets/user/UserProfileBtns';
 import {authSelector} from '../../redux/selectors/collection';
+import BgContainer from '../../components/containers/BgContainer';
 
 const ProfileIndexScreen = ({auth}) => {
   return (
-    <ScrollView
-      contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 100}}>
-      {!validate.isEmpty(auth) ? (
-        <View style={{marginTop: '10%'}}>
-          <UserProfileInformationWidget auth={auth} />
-          <UserProfileBtns />
-        </View>
-      ) : null}
-    </ScrollView>
+    <BgContainer>
+      <ScrollView
+        contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset}}>
+        {!validate.isEmpty(auth) ? (
+          <View style={{marginTop: '10%'}}>
+            <UserProfileInformationWidget auth={auth} />
+            <UserProfileBtns />
+          </View>
+        ) : null}
+      </ScrollView>
+    </BgContainer>
   );
 };
 

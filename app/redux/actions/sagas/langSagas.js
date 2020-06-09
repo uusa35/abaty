@@ -1,7 +1,7 @@
-import {I18nManager} from 'react-native';
+import {I18nManager, DevSettings} from 'react-native';
 import CodePush from 'react-native-code-push';
 import * as actions from '../types';
-import {call, put, all, delay, takeLatest} from 'redux-saga/effects';
+import {call, put, all, delay, takeLatest, select} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import validate from 'validate.js/validate';
 import {
@@ -15,6 +15,10 @@ import {resetStore, startResetStoreScenario} from './appSagas';
 import {DrawerActions} from 'react-navigation-drawer';
 import {getLang} from './../../../helpers';
 import {PersistStore} from '../../store';
+import {TOGGLE_BOOTSTRAPPED} from '../types';
+import {toggleBootstrapped} from '../index';
+import RNRestart from 'react-native-restart';
+import {axiosInstance} from '../api';
 
 export function* setDirection(lang) {
   try {
@@ -40,17 +44,18 @@ export function* startChangeLang(action) {
     const lang = action.payload;
     helpers.setLang(lang);
     yield call(setDirection, lang);
-    axios.defaults.headers.common['lang'] = lang;
     I18n.locale = lang;
-    yield delay(1000);
-    PersistStore.purge();
   } catch (e) {
     if (__DEV__) {
       console.log('ee', e);
     }
   } finally {
     yield delay(2000);
-    yield call(CodePush.restartApp());
+    yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false});
+    yield delay(1000);
+    RNRestart.Restart();
+    // yield call(CodePush.restartApp());
+    // PersistStore.purge(['homeUserCategories']);
   }
 }
 
@@ -67,6 +72,8 @@ export function* defaultLang() {
         call(setDirection, lang),
         call(helpers.setLang, lang),
       ]);
+      axiosInstance.defaults.headers['lang'] = lang;
+      axiosInstance.defaults.headers.common['lang'] = lang;
     }
   } catch (e) {
     __DEV__ ? console.log('the e from default Lang', e) : null;

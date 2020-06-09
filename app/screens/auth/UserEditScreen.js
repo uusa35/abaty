@@ -1,22 +1,9 @@
-import React, {useContext} from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import UserEditFormWidget from '../../components/widgets/user/UserEditFormWidget';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const UserEditScreen = ({auth, playerId, country}) => {
-  const {token, logo} = useContext(GlobalValuesContext);
-  return (
-    <UserEditFormWidget
-      showIcon={false}
-      auth={auth}
-      token={token}
-      player_id={playerId}
-      logo={logo}
-      country={country}
-    />
-  );
+const UserEditScreen = () => {
+  return <UserEditFormWidget showIcon={false} />;
 };
 
 function mapStateToProps(state) {
@@ -27,12 +14,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(UserEditScreen);
-
-UserEditScreen.propTypes = {
-  country: PropTypes.object,
-  playerId: PropTypes.string,
-  auth: PropTypes.object,
-};
+export default UserEditScreen;
 
 const styles = StyleSheet.create({});

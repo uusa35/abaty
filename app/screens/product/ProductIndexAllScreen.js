@@ -1,12 +1,10 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
-import {productsSelector} from '../../redux/selectors/collections';
 import BgContainer from '../../components/containers/BgContainer';
-import validate from 'validate.js';
 
 const ProductIndexAllScreen = ({dispatch, products}) => {
   useEffect(() => {

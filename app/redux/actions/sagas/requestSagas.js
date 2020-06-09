@@ -23,6 +23,7 @@ import {
   startGetCompanyScenario,
   startGetDesignerScenario,
   startGetShopperScenario,
+  startReAuthenticateScenario,
 } from './userSagas';
 import {startGetProductScenario} from './productSagas';
 import {startGetClassifiedScenario} from './classifiedSagas';
@@ -647,9 +648,12 @@ export function* startBecomeFanScenario(action) {
     const {id, fanMe} = action.payload;
     const element = yield call(api.becomeFan, id);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
-      fanMe
-        ? yield call(enableSuccessMessage, I18n.t('fan_success'))
-        : yield call(enableWarningMessage, I18n.t('fan_deactivated'));
+      if (fanMe) {
+        yield call(enableSuccessMessage, I18n.t('fan_success'));
+      } else {
+        yield call(enableWarningMessage, I18n.t('fan_deactivated'));
+      }
+      yield call(startReAuthenticateScenario);
     }
   } catch (e) {
     if (__DEV__) {

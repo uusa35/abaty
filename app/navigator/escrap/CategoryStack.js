@@ -105,8 +105,8 @@ export const CategoryStack = createStackNavigator(
     },
     CompanyClassifiedShow: {
       screen: CompanyClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        // headerTitle: () => <HeaderMiddle title={navigation.state.params.name} />,
+      navigationOptions: () => ({
+        headerTitle: () => null,
         headerRight: <HeaderCustom />,
         headerBackTitle: () => null,
       }),
@@ -114,8 +114,9 @@ export const CategoryStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
-    headerMode: 'float',
+    mode: 'modal',
+    headerMode: 'screen',
+    swipeEnabled: true,
   },
 );
 

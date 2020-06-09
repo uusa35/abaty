@@ -64,17 +64,15 @@ export const HeaderLeft = ({
           ) : null}
         </View>
       ) : showAccount ? (
-        <View>
-          <Icon
-            onPress={() => navigate('Account')}
-            name="user-circle"
-            type="font-awesome"
-            size={iconSizes.small}
-            underlayColor="transparent"
-            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
-            color={colors.icon_theme_color}
-          />
-        </View>
+        <Icon
+          onPress={() => navigate('Account')}
+          name="user-circle"
+          type="font-awesome"
+          size={iconSizes.small}
+          underlayColor="transparent"
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+          color={colors.icon_theme_color}
+        />
       ) : null}
     </View>
   );
