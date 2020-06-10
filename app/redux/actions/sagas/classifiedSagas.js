@@ -126,7 +126,7 @@ export function* startGetClassifiedScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield call(enableErrorMessage, I18n.t('no_classifieds'));
   } finally {

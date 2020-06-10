@@ -67,7 +67,7 @@ export function* setDeviceId() {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('the e from device id', e);
+      // console.log('the e from device id', e);
     }
     // yield call(enableErrorMessage, I18n.t('no_settings_from_catch'));
   }

@@ -96,10 +96,10 @@ const App = () => {
     codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});
     codePush.checkForUpdate().then((update) => {
       if (!update) {
-        console.warn('====> The app is up to date!');
+        // console.warn('====> The app is up to date!');
       } else {
         if (__DEV__) {
-          console.warn('===> there is an update here');
+          // console.warn('===> there is an update here');
         }
       }
     });

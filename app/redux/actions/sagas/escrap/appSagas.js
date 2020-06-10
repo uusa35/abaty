@@ -9,10 +9,19 @@ import {
   setHomeSplashes,
   setSettings,
   setSlides,
+  startGetHomeCategoriesScenario,
+  startGetParentCategoriesScenario,
 } from '../requestSagas';
-import {setHomeBrands, startAuthenticatedScenario} from '../userSagas';
+import {
+  setHomeBrands,
+  startAuthenticatedScenario,
+  startGetHomeCompaniesScenario,
+} from '../userSagas';
 import {setDeviceId, setVersion} from '../settingSagas';
-import {getClassifiedIndex} from '../classifiedSagas';
+import {
+  getClassifiedIndex,
+  startGetHomeClassifiedsScenario,
+} from '../classifiedSagas';
 import {
   getHomeClassifiedCategories,
   getHomeUserCategories,
@@ -39,14 +48,14 @@ export function* escrapBootStrap() {
       type: 'is_classified',
     }),
     call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-    put({type: actions.GET_CATEGORIES}),
-    put({type: actions.GET_HOME_CATEGORIES}),
-    put({
-      type: actions.GET_HOME_COMPANIES,
+    // put({type: actions.GET_CATEGORIES}),
+    yield call(startGetParentCategoriesScenario),
+    // put({type: actions.GET_HOME_CATEGORIES}),
+    call(startGetHomeCategoriesScenario),
+    call(startGetHomeCompaniesScenario, {
       payload: {searchParams: {on_home: 1, is_company: 1}},
     }),
-    put({
-      type: actions.GET_HOME_CLASSIFIEDS,
+    yield call(startGetHomeClassifiedsScenario, {
       payload: {searchParams: {on_home: 1}},
     }),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),

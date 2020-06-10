@@ -17,7 +17,7 @@ export const axiosInstance = axios.create({
 });
 
 if (__DEV__) {
-  console.log('link', links.apiUrl);
+  // console.log('link', links.apiUrl);
 }
 
 export async function getSettings() {

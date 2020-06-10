@@ -28,7 +28,7 @@ const SideMeu = ({showLogo = true}) => {
     logo,
     company,
     images,
-    menuBg,
+    menu_bg,
     youtube,
     colors,
     terms,
@@ -41,7 +41,7 @@ const SideMeu = ({showLogo = true}) => {
   return (
     <ImageBackground
       source={{
-        uri: menuBg ? menuBg : 'http://placehold.it/10/FFFFFF/FFFFFF',
+        uri: menu_bg ? menu_bg : 'http://placehold.it/10/FFFFFF/FFFFFF',
       }}
       style={{width: '100%', flex: 1, opacity: 1}}
       resizeMode="cover">

@@ -12,6 +12,8 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import FavoriteCompanyIndexScreen from '../../screens/company/FavoriteCompanyIndexScreen';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
+import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
+import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -52,10 +54,12 @@ export const FavoriteStack = createStackNavigator(
       }),
       path: `classified/:id`,
     },
-    CompanyClassifiedShow: {
-      screen: CompanyClassifiedShowScreen,
+    CompanyShow: {
+      screen: EscrapCompanyShowScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: () => null,
+        headerTitle: () => (
+          <HeaderMiddle title={navigation.state.params.name} />
+        ),
         headerRight: <HeaderCustom />,
         headerBackTitle: () => null,
       }),
@@ -63,9 +67,10 @@ export const FavoriteStack = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
+    animation: 'spring',
   },
 );
 FavoriteStack.navigationOptions = ({navigation}) => {

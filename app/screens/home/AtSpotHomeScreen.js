@@ -86,10 +86,10 @@ const AtSpotHomeScreen = ({
       if (__DEV__) {
         channel
           .bind('pusher:subscription_succeeded', (d) => {
-            console.log('channel subscripted succesffully', d);
+            // console.log('channel subscripted succesffully', d);
           })
           .bind('pusher:subscription_error', (d) => {
-            console.log('the d from error', d);
+            // console.log('the d from error', d);
           });
       }
     }
@@ -131,16 +131,16 @@ const AtSpotHomeScreen = ({
   });
 
   const onReceived = useCallback((notification) => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
+    // __DEV__ ? console.log('Notification received: ', notification) : null;
   });
 
   const onOpened = useCallback((openResult) => {
     if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
+      // console.log('the whole thing', openResult.notification.payload);
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const notification = getPathForDeepLinking(
       openResult.notification.payload.launchURL,

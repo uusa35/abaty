@@ -64,7 +64,6 @@ const HomeScreen = ({
   [deviceId, setDeviceId] = useState('');
 
   const handleRefresh = useCallback(() => {
-    console.log('here');
     dispatch(refetchHomeElements());
   }, [refresh]);
 
@@ -85,7 +84,7 @@ const HomeScreen = ({
   const handleAppStateChange = useCallback(
     (nextAppState) => {
       if (appState.match(/inactive|background/) && nextAppState === 'active') {
-        __DEV__ ? console.log('HERE NOW') : null;
+        // __DEV__ ? console.log('HERE NOW') : null;
       }
       setAppState(nextAppState);
     },
@@ -107,13 +106,12 @@ const HomeScreen = ({
   // },[notification]);
 
   const onOpened = (openResult) => {
-    console.log('Notification Case');
     if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
+      // console.log('the whole thing', openResult.notification.payload);
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url,

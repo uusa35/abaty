@@ -8,7 +8,6 @@ import {Button, Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 
 const MallrCollectionCreateScreen = ({products}) => {
-  console.log('products', products);
   const {productWidth, productHeight} = productWidget.smallest;
 
   return (

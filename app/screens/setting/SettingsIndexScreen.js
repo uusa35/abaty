@@ -8,7 +8,7 @@ import {
   Linking,
   RefreshControl,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {bottomContentInset, text, touchOpacity} from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
@@ -21,17 +21,13 @@ import {getMyClassifieds} from '../../redux/actions/classified';
 import {reAuthenticate} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
+import {useNavigation} from 'react-navigation-hooks';
 
-const SettingsIndexScreen = ({
-  guest,
-  lang,
-  pages,
-  dispatch,
-  colors,
-  navigation,
-  version,
-}) => {
+const SettingsIndexScreen = () => {
+  const {guest, lang, settings, version} = useSelector((state) => state);
+  const {colors} = settings;
   const [refresh, setRefresh] = useState(false);
+  const navigation = useNavigation();
 
   const handleRefresh = () => {
     if (!guest) {
@@ -171,7 +167,7 @@ const SettingsIndexScreen = ({
             />
           </Fragment>
         ) : null}
-        <PagesList elements={pages} title={I18n.t('our_support')} />
+        <PagesList elements={settings.pages} title={I18n.t('our_support')} />
       </ScrollView>
       <CopyRightInfo version={version} />
     </BgContainer>

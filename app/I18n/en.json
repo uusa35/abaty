@@ -604,6 +604,7 @@
   "client_id" : "App Unique No.",
   "company_favorite_success" : "added to your Favorite List successfully.",
   "company_favorite_failure" : "failure. Item is not added to your Favorite List",
+  "recent_classifieds" : "Recent Classifieds",
   "validations" : {
     "price_at_least_one_number_or_max_six" : "Price is required. Min is one number and max only six numbers.",
     "mobile_at_least_size_numbers_or_max_eleven" : "Mobile is required. Min is 6 digits and max is 11 digits",

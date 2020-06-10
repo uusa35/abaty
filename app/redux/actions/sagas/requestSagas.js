@@ -74,7 +74,7 @@ export function* startGetParentCategoriesScenario() {
     if (__DEV__) {
       // console.log('the e', e);
     }
-    console.log('eee', e);
+    // console.log('eee', e);
     // yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }
@@ -361,10 +361,10 @@ export function* setGrossTotalCartValue(values) {
     const {total, coupon, country, cart} = values;
     const countPieces = sumBy(cart, (i) => i.qty);
     if (__DEV__) {
-      console.log('the total', total);
+      // console.log('the total', total);
     }
     if (__DEV__) {
-      console.log('the coupon from calculating', coupon);
+      // console.log('the coupon from calculating', coupon);
     }
     const finalShipment =
       cart.length === 1 && first(cart).type === 'service'

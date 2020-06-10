@@ -40,7 +40,7 @@ const EscrapHomeScreen = () => {
     homeClassifiedCategories,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const {mainBg, colors} = useContext(GlobalValuesContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   // useEffect(() => {
   //   navigation.setParams({mainBg});
@@ -125,21 +125,21 @@ const EscrapHomeScreen = () => {
           {!validate.isEmpty(homeClassifieds) &&
           validate.isArray(homeClassifieds) ? (
             <Fragment>
-              {!validate.isEmpty(homeClassifiedCategories) &&
-                validate.isArray(homeClassifiedCategories) && (
-                  <ClassifiedCategoryHorizontalRoundedWidget
-                    elements={homeClassifiedCategories}
-                    showName={true}
-                    showLink={true}
-                    title={I18n.t('for_sale')}
-                  />
-                )}
+              {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
+              {/*  validate.isArray(homeClassifiedCategories) && (*/}
+              {/*    <ClassifiedCategoryHorizontalRoundedWidget*/}
+              {/*      elements={homeClassifiedCategories}*/}
+              {/*      showName={true}*/}
+              {/*      showLink={true}*/}
+              {/*      title={I18n.t('for_sale')}*/}
+              {/*    />*/}
+              {/*  )}*/}
               <ClassifiedListHorizontal
                 classifieds={homeClassifieds}
                 showName={true}
                 showSearch={false}
                 showTitle={true}
-                title={I18n.t('featured_classifieds')}
+                title={I18n.t('recent_classifieds')}
                 searchElements={{on_home: true}}
               />
               <NewClassifiedHomeBtn />

@@ -36,7 +36,9 @@ const BgContainer = ({
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        source={!showImage ? images.whiteBg : {uri: isNull(img) ? mainBg : img}}
+        source={
+          !showImage ? images.whiteBg : {uri: !isNull(mainBg) ? mainBg : img}
+        }
         style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
         resizeMode="cover">
         {isConnected ? (
