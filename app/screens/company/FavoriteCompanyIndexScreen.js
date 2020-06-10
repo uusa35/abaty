@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
-import CompaniesList from '../../components/Lists/CompaniesList';
 import BgContainer from '../../components/containers/BgContainer';
 import {reAuthenticate} from '../../redux/actions/user';
 import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
 import I18n from './../../I18n';
+import {View} from 'react-native-animatable';
 
 const FavoriteCompanyIndexScreen = () => {
   const {auth, guest} = useSelector((state) => state);
@@ -19,14 +19,19 @@ const FavoriteCompanyIndexScreen = () => {
   }, []);
 
   return (
-    <BgContainer showImage={false}>
-      <ElementsVerticalList
-        elements={auth.myFannedList}
-        searchParams={{}}
-        showMore={true}
-        type="favoriteCompanies"
-        noElementsTitle={I18n.t('no_companies_favorites')}
-      />
+    <BgContainer>
+      <View
+        animation="bounceIn"
+        easing="ease-out"
+        style={{flex: 1, marginTop: '5%'}}>
+        <ElementsVerticalList
+          elements={auth.myFannedList}
+          searchParams={{}}
+          showMore={true}
+          type="favoriteCompanies"
+          noElementsTitle={I18n.t('no_companies_favorites')}
+        />
+      </View>
     </BgContainer>
   );
 };
@@ -34,7 +39,7 @@ const FavoriteCompanyIndexScreen = () => {
 export default FavoriteCompanyIndexScreen;
 
 FavoriteCompanyIndexScreen.propTypes = {
-  companies: PropTypes.array.isRequired,
+  // companies: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({});

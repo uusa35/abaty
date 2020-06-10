@@ -320,7 +320,7 @@ const ElementsVerticalList = ({
           marginBottom: bottomContentInset,
         }}
         ListHeaderComponentStyle={{
-          backgroundColor: 'white',
+          backgroundColor: 'transparent',
         }}
         ListHeaderComponent={
           <View style={{paddingTop: 5, paddingBottom: 5}}>

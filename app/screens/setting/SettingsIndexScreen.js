@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useState, useEffect} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -8,7 +8,7 @@ import {
   Linking,
   RefreshControl,
 } from 'react-native';
-import {connect, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {bottomContentInset, text, touchOpacity} from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
@@ -28,6 +28,7 @@ const SettingsIndexScreen = () => {
   const {colors} = settings;
   const [refresh, setRefresh] = useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleRefresh = () => {
     if (!guest) {
@@ -174,21 +175,11 @@ const SettingsIndexScreen = () => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    guest: state.guest,
-    lang: state.lang,
-    colors: state.settings.colors,
-    pages: state.pages,
-    version: state.version,
-  };
-}
+export default SettingsIndexScreen;
 
-export default connect(mapStateToProps)(SettingsIndexScreen);
-
-SettingsIndexScreen.propTypes = {
-  guest: PropTypes.bool.isRequired,
-};
+// SettingsIndexScreen.propTypes = {
+//   guest: PropTypes.bool.isRequired,
+// };
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

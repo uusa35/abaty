@@ -14,6 +14,7 @@ const NoMoreElements = ({
         alignSelf: 'center',
         marginRight: 10,
         marginLeft: 10,
+        width: '100%',
       }}>
       <Button
         loading={isLoading}
