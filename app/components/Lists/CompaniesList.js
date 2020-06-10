@@ -36,9 +36,6 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const {goBack} = useNavigation();
 
   const loadMore = (d) => {
-    if (__DEV__) {
-      console.log('distance from ', d);
-    }
     setPage(page + 1);
   };
 
@@ -53,7 +50,7 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
             setItems(userGroup);
           }
         })
-        .catch((e) => console.log('the ee', e));
+        .catch((e) => e);
     }
   }, [page]);
 

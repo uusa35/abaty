@@ -88,9 +88,9 @@ export function* startGetHomeClassifiedsScenario(action) {
       throw 'no_classifieds';
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('e', e);
-    }
+    // if (__DEV__) {
+    //   console.log('e', e);
+    // }
     // yield call(enableWarningMessage, I18n.t('no_classifieds'));
   } finally {
     yield call(disableLoading);

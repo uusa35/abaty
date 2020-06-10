@@ -1,6 +1,6 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -20,18 +20,16 @@ import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
 import {filter, uniqBy} from 'lodash';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const CompanyClassifiedShowScreen = ({
-  element,
-  commentModal,
-  comments,
-  dispatch,
-  colors,
-  logo,
-  guest,
-  searchParams,
-  navigation,
-}) => {
+const CompanyClassifiedShowScreen = () => {
+  const {company, comments, commentModal, searchParams} = useSelector(
+    (state) => state,
+  );
+  const {colors, guest, logo} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
@@ -45,14 +43,14 @@ const CompanyClassifiedShowScreen = ({
   const [classifieds, setClassifieds] = useState([]);
 
   useMemo(() => {
-    if (!validate.isEmpty(element.classifieds)) {
+    if (!validate.isEmpty(company.classifieds)) {
       const categories = uniqBy(
-        filter(element.classifieds, (c) => c.category),
+        filter(company.classifieds, (c) => c.category),
         'id',
       );
       setCollectedCategories(categories);
     }
-  }, [element]);
+  }, [company]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -61,8 +59,8 @@ const CompanyClassifiedShowScreen = ({
   const handleRefresh = () => {
     return dispatch(
       getCompany({
-        id: element.id,
-        searchParams: {user_id: element.id},
+        id: company.id,
+        searchParams: {user_id: company.id},
       }),
     );
   };
@@ -78,7 +76,7 @@ const CompanyClassifiedShowScreen = ({
       containerStyle={{flex: 1}}
       overlayColor="white"
       headerImage={{
-        uri: element.banner ? element.banner : logo,
+        uri: company.banner ? company.banner : logo,
       }}
       refreshControl={
         <RefreshControl
@@ -87,31 +85,31 @@ const CompanyClassifiedShowScreen = ({
         />
       }>
       <View style={styles.wrapper}>
-        <TriggeringView onHide={() => console.log('text hidden')}>
+        <TriggeringView
+        // onHide={() => console.log('text hidden')}
+        >
           <UserImageProfile
-            member_id={element.id}
+            member_id={company.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
             showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
-            guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
-            logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            commentsCount={element.commentsCount}
+            isFanned={company.isFanned}
+            totalFans={company.totalFans}
+            currentRating={company.rating}
+            medium={company.medium}
+            slug={company.slug}
+            type={company.role.slug}
+            views={company.views}
+            commentsCount={company.commentsCount}
           />
-          {!validate.isEmpty(element.slides) ? (
+          {!validate.isEmpty(company.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={element.slides} />
+              <MainSliderWidget slides={company.slides} />
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
             <ClassifiedCategoryVerticalWidget
-              user_id={element.id}
+              user_id={company.id}
               elements={collectedCategories}
               showImage={false}
               title={I18n.t('categories')}
@@ -144,7 +142,7 @@ const CompanyClassifiedShowScreen = ({
             renderScene={SceneMap({
               classifieds: () => (
                 <ClassifiedDoubleList
-                  classifieds={element.classifieds}
+                  classifieds={company.classifieds}
                   showSearch={false}
                   showTitle={false}
                   showFooter={false}
@@ -154,28 +152,28 @@ const CompanyClassifiedShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  has_map={element.has_map}
-                  mobile={element.mobile}
-                  phone={element.phone}
-                  slug={element.slug}
-                  whatsapp={element.whatsapp}
-                  twitter={element.twitter}
-                  facebook={element.facebook}
-                  instagram={element.instagram}
-                  android={element.android}
-                  youtube={element.youtube}
-                  website={element.website}
-                  description={element.description}
-                  service={element.service}
-                  address={element.address}
-                  images={element.images}
-                  latitude={element.latitude}
-                  longitude={element.longitude}
-                  thumb={element.thumb}
+                  has_map={company.has_map}
+                  mobile={company.mobile}
+                  phone={company.phone}
+                  slug={company.slug}
+                  whatsapp={company.whatsapp}
+                  twitter={company.twitter}
+                  facebook={company.facebook}
+                  instagram={company.instagram}
+                  android={company.android}
+                  youtube={company.youtube}
+                  website={company.website}
+                  description={company.description}
+                  service={company.service}
+                  address={company.address}
+                  images={company.images}
+                  latitude={company.latitude}
+                  longitude={company.longitude}
+                  thumb={company.thumb}
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget videos={element.videoGroup} />
+                <VideosVerticalWidget videos={company.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
@@ -187,24 +185,12 @@ const CompanyClassifiedShowScreen = ({
           commentModal={commentModal}
           elements={comments}
           model="user"
-          id={element.id}
+          id={company.id}
         />
       </View>
     </HeaderImageScrollView>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    element: state.company,
-    comments: state.comments,
-    commentModal: state.commentModal,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    guest: state.guest,
-  };
-}
 
 CompanyClassifiedShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
@@ -213,10 +199,10 @@ CompanyClassifiedShowScreen.navigationOptions = ({navigation}) => ({
   },
 });
 
-export default connect(mapStateToProps)(CompanyClassifiedShowScreen);
+export default CompanyClassifiedShowScreen;
 
 CompanyClassifiedShowScreen.propTypes = {
-  element: PropTypes.object.isRequired,
+  company: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
   commentModal: PropTypes.bool.isRequired,
 };

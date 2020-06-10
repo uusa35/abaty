@@ -10,7 +10,10 @@ import {connect} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import I18n from './../../I18n';
-import {getClassified} from '../../redux/actions/classified';
+import {
+  getClassified,
+  getSearchClassifieds,
+} from '../../redux/actions/classified';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {map, round} from 'lodash';
@@ -146,11 +149,14 @@ const ClassifiedShowScreen = ({
             <ClassifiedInfoWidgetElement
               elementName="categories"
               name={element.category.name}
-              link={
-                () => console.log('here')
-                // dispatch(
-                //   getClassifieds({searchParams : {classified_category_id: element.id}, redirect : true , name : element.category.name})
-                // )
+              link={() =>
+                dispatch(
+                  getSearchClassifieds({
+                    searchParams: {classified_category_id: element.id},
+                    redirect: true,
+                    name: element.category.name,
+                  }),
+                )
               }
             />
             {element.only_whatsapp ? (

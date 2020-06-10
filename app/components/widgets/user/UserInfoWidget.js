@@ -13,6 +13,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImagesWidget from '../ImagesWidget';
 import {getWhatsappLink} from '../../../helpers';
 import {ESCRAP} from './../../../../app';
+import ImagesGridWidget from '../ImagesGridWidget';
 
 const UserInfoWidget = ({
   mobile,
@@ -33,29 +34,33 @@ const UserInfoWidget = ({
   longitude,
   thumb,
   has_map,
+  showMainTitle = true,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
+
   return (
     <View style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
-      <Text
-        style={{
-          fontFamily: text.font,
-          fontSize: text.large,
-          marginBottom: 10,
-          textAlign: 'left',
-          color: colors.header_one_theme_color,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 1,
-          },
-          shadowOpacity: 0.18,
-          shadowRadius: 1.0,
+      {showMainTitle && (
+        <Text
+          style={{
+            fontFamily: text.font,
+            fontSize: text.large,
+            marginBottom: 10,
+            textAlign: 'left',
+            color: colors.header_one_theme_color,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 1,
+            },
+            shadowOpacity: 0.18,
+            shadowRadius: 1.0,
 
-          elevation: 1,
-        }}>
-        {I18n.t('information')}
-      </Text>
+            elevation: 1,
+          }}>
+          {I18n.t('information')}
+        </Text>
+      )}
       {longitude && latitude && has_map ? (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -351,16 +356,16 @@ const UserInfoWidget = ({
           type="entypo"
         />
       ) : null}
-      {!validate.isEmpty(images) ? (
-        <ImagesWidget
+      {!validate.isEmpty(images) && (
+        <ImagesGridWidget
           elements={images}
           name={slug}
           showLabels={false}
           showTitle={true}
-          width={175}
-          height={235}
+          width={100}
+          height={100}
         />
-      ) : null}
+      )}
       {!validate.isEmpty(longitude || latitude) && has_map && !ESCRAP ? (
         <MapViewWidget
           latitude={latitude}

@@ -57,7 +57,11 @@ const ShopperImageProfile = ({
   );
 
   return (
-    <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
+    <View
+      useNativeDriver={true}
+      animation="bounceInLeft"
+      easing="ease-out"
+      style={styles.elementRow}>
       <FastImage source={{uri: medium ? medium : logo}} style={styles.logo} />
       <View
         style={{

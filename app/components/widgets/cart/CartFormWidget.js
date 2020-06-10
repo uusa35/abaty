@@ -157,7 +157,7 @@ const CartFormWidget = ({
           keyboardType="default"
           multiline={true}
           numberOfLines={3}
-          onChangeText={(text) => console.log(text)}
+          // onChangeText={(text) => console.log(text)}
         />
         <View
           style={{
@@ -223,7 +223,7 @@ const CartFormWidget = ({
           fontFamily: text.font,
           color: colors.btn_text_theme_color,
         }}
-        onPress={() => console.log('confirm information')}
+        // onPress={() => console.log('confirm information')}
       />
     </View>
   );

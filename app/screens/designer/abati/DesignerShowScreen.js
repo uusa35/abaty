@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo, useContext} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
@@ -94,7 +94,9 @@ const DesignerShowScreen = () => {
         />
       }>
       <View style={styles.wrapper}>
-        <TriggeringView onHide={() => console.log('text hidden')}>
+        <TriggeringView
+        // onHide={() => console.log('text hidden')}
+        >
           <UserImageProfile
             member_id={designer.id}
             showFans={true}

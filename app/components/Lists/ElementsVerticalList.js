@@ -71,7 +71,7 @@ const ElementsVerticalList = ({
 
   const loadMore = (d) => {
     if (__DEV__) {
-      console.log('distance from ', d);
+      // console.log('distance from ', d);
     }
     if (showMore) {
       setPage(page + 1);
@@ -105,7 +105,7 @@ const ElementsVerticalList = ({
             })
             .catch((e) => {
               if (__DEV__) {
-                console.log('the e ElementsVerticalList', e);
+                // console.log('the e ElementsVerticalList', e);
               }
             });
           break;
@@ -119,7 +119,7 @@ const ElementsVerticalList = ({
             })
             .catch((e) => {
               if (__DEV__) {
-                console.log('the e ElementsVerticalList', e);
+                // console.log('the e ElementsVerticalList', e);
               }
             });
           break;
@@ -198,7 +198,6 @@ const ElementsVerticalList = ({
   }, [elements]);
 
   const handleClick = useCallback((type, searchParams, element) => {
-    console.log('clicked', type);
     switch (type) {
       case 'designer':
         dispatch(

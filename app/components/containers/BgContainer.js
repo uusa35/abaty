@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {Fragment, useState, useMemo, useContext} from 'react';
 import {ImageBackground, SafeAreaView} from 'react-native';
 import {height, width} from '../../constants/sizes';
 import {images} from '../../constants/images';
@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import LoadingView from '../Loading/LoadingView';
 import LoadingOfflineView from '../Loading/LoadingOfflineView';
 import {isNull} from 'lodash';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const BgContainer = ({
   children,
@@ -15,13 +16,13 @@ const BgContainer = ({
   img = 'https://via.placeholder.com/100/fffffff/fffffff?text=text',
 }) => {
   const {
-    settings,
     isLoading,
     isConnected,
     isLoadingContent,
     isLoadingProfile,
     isLoadingBoxedList,
   } = useSelector((state) => state);
+  const {mainBg} = useContext(GlobalValuesContext);
   const [currentLoading, setCurrentLoading] = useState(
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
@@ -32,18 +33,10 @@ const BgContainer = ({
     );
   }, [isLoading, isLoadingBoxedList, isLoadingProfile, isLoadingContent]);
 
-  if (__DEV__) {
-    console.log('BgContainer rendered');
-  }
-
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        source={
-          !showImage
-            ? images.whiteBg
-            : {uri: isNull(img) ? settings.menu_bg : img}
-        }
+        source={!showImage ? images.whiteBg : {uri: isNull(img) ? mainBg : img}}
         style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
         resizeMode="cover">
         {isConnected ? (

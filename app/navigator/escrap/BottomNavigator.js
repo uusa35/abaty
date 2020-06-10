@@ -66,17 +66,17 @@ export const BottomTabsStack = createBottomTabNavigator(
         // headerTitle: () => <HeaderMiddle title={I18n.t('home')}/>,
       }),
     },
-    Search: {
-      screen: SearchStack,
-      navigationOptions: () => ({
-        tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
-        ),
-        tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('search')} focused={focused} />
-        ),
-      }),
-    },
+    // Search: {
+    //   screen: SearchStack,
+    //   navigationOptions: () => ({
+    //     tabBarIcon: ({focused}) => (
+    //       <IconTabBar focused={focused} name="ios-search" type="ionicon" />
+    //     ),
+    //     tabBarLabel: ({focused}) => (
+    //       <TextTabBar title={I18n.t('search')} focused={focused} />
+    //     ),
+    //   }),
+    // },
     Favorite: {
       screen: FavoriteStack,
       navigationOptions: () => ({
@@ -157,7 +157,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       // 'ProductIndexAll',
       // 'VideoIndexAll',
       // 'ServiceIndexAll',
-      'Search',
+      // 'Search',
       'Favorite',
       'Setting',
     ],

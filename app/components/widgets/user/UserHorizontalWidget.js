@@ -21,7 +21,7 @@ const UserHorizontalWidget = ({
 }) => {
   const [params, setParams] = useState(searchElements);
   return (
-    <View style={widgetStyles.container}>
+    <View useNativeDriver={true} style={widgetStyles.container}>
       <TouchableOpacity
         style={widgetStyles.titleContainer}
         onPress={() =>

@@ -21,7 +21,7 @@ export function* getHomeUserCategories(action) {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
+      // console.log('e', e);
     }
   } finally {
   }
@@ -43,7 +43,7 @@ export function* getHomeClassifiedCategories(action) {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
+      // console.log('e', e);
     }
   } finally {
   }

@@ -16,7 +16,7 @@ const AppGlobalConfig = () => {
     if (!isEmpty(navigation)) {
       const {routeName} = navigation.state;
       if (__DEV__) {
-        console.log('dev routeName', routeName);
+        // console.log('dev routeName', routeName);
       }
       analytics().logEvent(routeName, {
         item: `${APP_CASE}_${routeName}`,

@@ -59,7 +59,7 @@ const CartListConfirmationScreen = ({
       [
         {
           text: I18n.t('cancel'),
-          onPress: () => console.log('Cancel Pressed'),
+          // onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {
@@ -94,6 +94,7 @@ const CartListConfirmationScreen = ({
   return (
     <View style={{width: '100%'}}>
       <View
+        useNativeDriver={true}
         animation="bounceInLeft"
         easing="ease-out"
         style={{flexDirection: 'column', width: '100%'}}>

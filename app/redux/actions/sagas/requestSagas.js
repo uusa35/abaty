@@ -22,6 +22,7 @@ import {GoogleSignin} from '@react-native-community/google-signin';
 import {
   startGetCompanyScenario,
   startGetDesignerScenario,
+  startGetSearchCompaniesScenario,
   startGetShopperScenario,
   startReAuthenticateScenario,
 } from './userSagas';
@@ -47,12 +48,11 @@ export function* startGetHomeCategoriesScenario(action) {
         yield put({type: SET_CATEGORY, payload: first(elements)});
       }
     } else {
-      console.log('else');
       yield put({type: actions.SET_HOME_CATEGORIES, payload: []});
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // // console.log('the e', e);
     }
     // yield all([disableLoading, enableWarningMessage(I18n.t('no_categories'))]);
   }
@@ -72,7 +72,7 @@ export function* startGetParentCategoriesScenario() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     console.log('eee', e);
     // yield all([call(disableLoading), call(enableErrorMessage, e)]);
@@ -87,7 +87,7 @@ export function* setSettings() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableWarningMessage(I18n.t('no_settings'))]);
   }
@@ -103,7 +103,7 @@ export function* setCommercials() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableWarningMessage(I18n.t('no_commercials'))]);
   }
@@ -119,7 +119,7 @@ export function* setSlides() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
   }
 }
@@ -134,7 +134,7 @@ export function* getVideos() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_splashes'))]);
   }
@@ -150,7 +150,7 @@ export function* setCountries() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_countries'))]);
   } finally {
@@ -177,7 +177,7 @@ export function* getCountry(country_id = null) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   } finally {
@@ -212,7 +212,7 @@ export function* startChooseCountryScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield all([disableLoading, enableErrorMessage(I18n.t('no_country'))]);
   } finally {
@@ -249,7 +249,7 @@ export function* startDeepLinkingScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // call(enableErrorMessage, I18n.t('no_deep_product'));
   } finally {
@@ -272,7 +272,7 @@ export function* startRefetchHomeElementsScenario() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('refetch_home_error'));
   } finally {
@@ -291,7 +291,7 @@ export function* setHomeSplashes() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     // yield call(enableErrorMessage, I18n.t('no_splashes'));
   } finally {
@@ -323,7 +323,7 @@ export function* startAddToCartScenario(action) {
     }
   } catch (e) {
     // if (__DEV__) {
-    console.log('the e', e);
+    // console.log('the e', e);
     // }
     yield call(enableErrorMessage, e);
   } finally {
@@ -348,7 +348,7 @@ export function* setTotalCartValue(cart) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('cart_is_empty'));
   } finally {
@@ -388,7 +388,7 @@ export function* setGrossTotalCartValue(values) {
     // }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'));
   } finally {
@@ -426,7 +426,7 @@ export function* startRemoveFromCartScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('error_removing_product_from_cart'));
   } finally {
@@ -469,7 +469,7 @@ export function* startClearCartScenario() {
     ]);
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('authenticated_error'));
   } finally {
@@ -517,7 +517,7 @@ export function* startSubmitCartScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
@@ -542,7 +542,7 @@ export function* startGetCouponScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
@@ -573,7 +573,7 @@ export function* startCreateMyFatorrahPaymentUrlScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
     yield put(
@@ -604,7 +604,7 @@ export function* startCreateTapPaymentUrlScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
     yield put(
@@ -637,7 +637,7 @@ export function* startCreateCashOnDeliveryPayment(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
@@ -649,18 +649,18 @@ export function* startBecomeFanScenario(action) {
     const element = yield call(api.becomeFan, id);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       if (fanMe) {
-        yield call(enableSuccessMessage, I18n.t('fan_success'));
+        yield call(enableSuccessMessage, I18n.t('company_favorite_success'));
       } else {
-        yield call(enableWarningMessage, I18n.t('fan_deactivated'));
+        yield call(enableWarningMessage, I18n.t('company_favorite_failure'));
       }
       yield call(startReAuthenticateScenario);
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield all([call(enableErrorMessage, I18n.t('fan_error'))]);
   }
@@ -685,7 +685,7 @@ export function* startAddCommentScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
@@ -719,7 +719,7 @@ export function* startGoogleLoginScenario() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, e);
   } finally {
@@ -737,7 +737,7 @@ export function* getPages() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     if (__DEV__) {
       console.log('the error', e);
@@ -758,7 +758,7 @@ export function* getTags() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('no_tags'));
   } finally {
@@ -788,8 +788,7 @@ export function* startGetCategoryAndGoToNavChildren(action) {
         );
       }
     } else {
-      yield put({
-        type: GET_COMPANIES,
+      yield call(startGetSearchCompaniesScenario, {
         payload: {
           searchParams: {is_company: 1, user_category_id: element.id},
           name: element.name,
@@ -799,7 +798,7 @@ export function* startGetCategoryAndGoToNavChildren(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('the e', e);
+      // console.log('the e', e);
     }
     yield call(enableErrorMessage, I18n.t('no_items'));
   } finally {

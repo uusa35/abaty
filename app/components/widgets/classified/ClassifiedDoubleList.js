@@ -72,11 +72,9 @@ const ClassifiedDoubleList = ({
         setItems(orderBy(items, ['id'], ['desc']));
         break;
       case 3:
-        console.log('heigest');
         setItems(orderBy(items, ['price'], ['asc']));
         break;
       case 4:
-        console.log('lowest');
         setItems(orderBy(items, ['price'], ['desc']));
         break;
       case 5:

@@ -1,7 +1,6 @@
-import React, {useContext, useCallback, useState} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
-import FastImage from 'react-native-fast-image';
 import {Button} from 'react-native-elements';
 import {text, touchOpacity, width} from '../../../constants/sizes';
 import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';

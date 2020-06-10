@@ -1,6 +1,6 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -10,72 +10,60 @@ import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
 import PropTypes from 'prop-types';
 import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
-import {enableWarningMessage} from '../../redux/actions';
-import {getDesigner} from '../../redux/actions/user';
+import {getCompany} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import ProductList from '../../components/widgets/product/ProductList';
 import UserInfoWidget from '../../components/widgets/user/UserInfoWidget';
 import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
-import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
-import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../app';
+import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
+import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
+import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
+import {filter, uniqBy} from 'lodash';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const DesignerShowScreen = ({
-  element,
-  commentModal,
-  comments,
-  dispatch,
-  colors,
-  logo,
-  guest,
-  searchParams,
-  navigation,
-}) => {
+const EscrapCompanyShowScreen = () => {
+  const {company, comments, commentModal, searchParams} = useSelector(
+    (state) => state,
+  );
+  const {colors, guest, logo} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
-    {key: 'products', title: I18n.t('products')},
     {key: 'info', title: I18n.t('information').substring(0, 10)},
-    {key: 'videos', title: I18n.t('videos')},
+    // {key: 'classifieds', title: I18n.t('classifieds')},
+    // {key: 'videos', title: I18n.t('videos')},
   ]);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [classifieds, setClassifieds] = useState([]);
 
   useMemo(() => {
-    if (element) {
-      if (!validate.isEmpty(element.products)) {
-        setCollectedCategories(
-          collectedCategories.concat(element.productCategories),
-        );
-        setProducts(products.concat(element.products));
-      }
-      if (!validate.isEmpty(element.productGroup)) {
-        setCollectedCategories(
-          collectedCategories.concat(element.productGroupCategories),
-        );
-        setProducts(products.concat(element.productGroup));
-      }
-    } else {
-      dispatch(enableWarningMessage(I18n.t('element_does_not_exist')));
-      return dispatch(navigation.goBack());
+    if (!validate.isEmpty(company.classifieds)) {
+      const categories = uniqBy(
+        filter(company.classifieds, (c) => c.category),
+        'id',
+      );
+      setCollectedCategories(categories);
     }
-  }, [element]);
+  }, [company]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     return dispatch(
-      getDesigner({
-        id: element.id,
-        searchParams: {user_id: element.id},
+      getCompany({
+        id: company.id,
+        searchParams: {user_id: company.id},
       }),
     );
-  }, [refresh]);
+  };
 
   return (
     <HeaderImageScrollView
@@ -88,7 +76,7 @@ const DesignerShowScreen = ({
       containerStyle={{flex: 1}}
       overlayColor="white"
       headerImage={{
-        uri: element.banner ? element.banner : logo,
+        uri: company.banner ? company.banner : logo,
       }}
       refreshControl={
         <RefreshControl
@@ -101,30 +89,28 @@ const DesignerShowScreen = ({
         // onHide={() => console.log('text hidden')}
         >
           <UserImageProfile
-            member_id={element.id}
+            member_id={company.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
             showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
-            guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
-            logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            commentsCount={element.commentsCount}
+            isFanned={company.isFanned}
+            totalFans={company.totalFans}
+            currentRating={company.rating}
+            medium={company.medium}
+            slug={company.slug}
+            type={company.role.slug}
+            views={company.views}
+            commentsCount={company.commentsCount}
           />
-          {!validate.isEmpty(element.slides) ? (
+          {!validate.isEmpty(company.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={element.slides} />
+              <MainSliderWidget slides={company.slides} />
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
-            <ProductCategoryVerticalWidget
+            <ClassifiedCategoryVerticalWidget
+              user_id={company.id}
               elements={collectedCategories}
-              user_id={element.id}
               showImage={false}
               title={I18n.t('categories')}
             />
@@ -154,12 +140,11 @@ const DesignerShowScreen = ({
               routes,
             }}
             renderScene={SceneMap({
-              products: () => (
-                <ProductList
-                  products={products}
+              classifieds: () => (
+                <ClassifiedDoubleList
+                  classifieds={company.classifieds}
                   showSearch={false}
-                  showTitle={true}
-                  showTitleIcons={true}
+                  showTitle={false}
                   showFooter={false}
                   showMore={false}
                   searchElements={searchParams}
@@ -167,28 +152,29 @@ const DesignerShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  has_map={element.has_map}
-                  mobile={element.mobile}
-                  phone={element.phone}
-                  slug={element.slug}
-                  whatsapp={element.whatsapp}
-                  twitter={element.twitter}
-                  facebook={element.facebook}
-                  instagram={element.instagram}
-                  android={element.android}
-                  youtube={element.youtube}
-                  website={element.website}
-                  description={element.description}
-                  service={element.service}
-                  address={element.address}
-                  images={element.images}
-                  latitude={element.latitude}
-                  longitude={element.longitude}
-                  thumb={element.thumb}
+                  has_map={company.has_map}
+                  mobile={company.mobile}
+                  phone={company.phone}
+                  slug={company.slug}
+                  whatsapp={company.whatsapp}
+                  twitter={company.twitter}
+                  facebook={company.facebook}
+                  instagram={company.instagram}
+                  android={company.android}
+                  youtube={company.youtube}
+                  website={company.website}
+                  description={company.description}
+                  service={company.service}
+                  address={company.address}
+                  images={company.images}
+                  latitude={company.latitude}
+                  longitude={company.longitude}
+                  thumb={company.thumb}
+                  showMainTitle={false}
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget videos={element.videoGroup} />
+                <VideosVerticalWidget videos={company.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
@@ -200,36 +186,24 @@ const DesignerShowScreen = ({
           commentModal={commentModal}
           elements={comments}
           model="user"
-          id={element.id}
+          id={company.id}
         />
       </View>
     </HeaderImageScrollView>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    element: state.designer,
-    comments: state.comments,
-    commentModal: state.commentModal,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    guest: state.guest,
-  };
-}
-
-DesignerShowScreen.navigationOptions = ({navigation}) => ({
-  // headerTransparent: navigation.state.params.headerBg,
-  // headerStyle: {
-  //   backgroundColor: navigation.state.params.headerBgColor
-  // }
+EscrapCompanyShowScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: navigation.state.params.headerBg,
+  headerStyle: {
+    backgroundColor: navigation.state.params.headerBgColor,
+  },
 });
 
-export default connect(mapStateToProps)(DesignerShowScreen);
+export default EscrapCompanyShowScreen;
 
-DesignerShowScreen.propTypes = {
-  element: PropTypes.object.isRequired,
+EscrapCompanyShowScreen.propTypes = {
+  company: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
   commentModal: PropTypes.bool.isRequired,
 };

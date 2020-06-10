@@ -30,6 +30,7 @@ const persistConfig = {
     'resetApp',
     'productFilterModal',
     'classifiedFilterModal',
+    'companySearchTextInputModal',
     'isLoadingBoxedList',
     'showIntroduction',
     'isConnected',

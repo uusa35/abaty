@@ -105,7 +105,7 @@ const AtSpotHomeScreen = ({
           setCurrentData({});
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => e);
   });
 
   useMemo(() => {

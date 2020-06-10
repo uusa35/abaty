@@ -215,9 +215,9 @@ export function* startGetProductScenario(action) {
       }
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('e', e);
-    }
+    // if (__DEV__) {
+    //   console.log('e', e);
+    // }
     yield call(enableWarningMessage, I18n.t('error_while_loading_product'));
   } finally {
     yield call(disableLoadingContent);

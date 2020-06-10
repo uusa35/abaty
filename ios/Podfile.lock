@@ -389,7 +389,7 @@ PODS:
     - React
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.0.2):
+  - react-native-safe-area-context (3.0.3):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -504,7 +504,7 @@ PODS:
   - RNSentry (1.4.5):
     - React
     - Sentry (~> 5.1.4)
-  - RNShare (3.3.2):
+  - RNShare (3.3.3):
     - React
   - RNSnackbar (2.2.2):
     - React
@@ -850,7 +850,7 @@ SPEC CHECKSUMS:
   react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 7d76a6619f76a6ebfb2f82a4f2feeb17826ba8b4
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: b11a34881faac509cad5578726c98161ad4d275c
+  react-native-safe-area-context: 45e98227f3d65b31d384a5d0950aec4bf73a884c
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: 1af972f5a745647b51250285f4da26d3fb3d5f0f
@@ -879,7 +879,7 @@ SPEC CHECKSUMS:
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   RNSentry: 0a70359ddacbfb9b1cbbb0971e54065b9f70ac57
-  RNShare: bd6518701db274b8ba282b33620885f2225a5bcf
+  RNShare: f4ec422e27904e0dc9310038d1110460a59ad30d
   RNSnackbar: 8694815358c8a7fa0b75d0698d7bbfaa4d8babf2
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4

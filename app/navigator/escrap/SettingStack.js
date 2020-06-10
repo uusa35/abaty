@@ -95,19 +95,6 @@ export const SettingStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
-    Product: {
-      screen: NormalProductShow,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
-        headerRight: () => (
-          <HeaderRight displayShare={true} showCountry={true} />
-        ),
-        headerBackTitle: () => null,
-      }),
-      path: `product/:id`,
-    },
     Classified: {
       screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({

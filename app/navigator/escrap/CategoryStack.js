@@ -16,6 +16,7 @@ import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
 import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
+import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 
 export const CategoryStack = createStackNavigator(
   {
@@ -55,24 +56,6 @@ export const CategoryStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
-    Product: {
-      screen: NormalProductShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
-        headerRight: (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerTransparent: true,
-        headerBackTitle: () => null,
-      }),
-      path: `product/:id`,
-    },
     SubCategoryIndex: {
       screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -103,8 +86,8 @@ export const CategoryStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
-    CompanyClassifiedShow: {
-      screen: CompanyClassifiedShowScreen,
+    CompanyShow: {
+      screen: EscrapCompanyShowScreen,
       navigationOptions: () => ({
         headerTitle: () => null,
         headerRight: <HeaderCustom />,

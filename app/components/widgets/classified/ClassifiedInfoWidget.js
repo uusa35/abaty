@@ -12,7 +12,7 @@ const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View
-      onPress={() => console.log('clicked')}
+      //onPress={() => console.log('clicked')}
       style={{
         width: '100%',
         flex: 1,

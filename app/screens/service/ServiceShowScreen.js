@@ -83,6 +83,7 @@ const ServiceShowScreen = ({
           <ServiceInfoWidget element={service} />
           <View
             animation="bounceInLeft"
+            useNativeDriver={true}
             easing="ease-out"
             style={{marginTop: 15}}>
             {service.description ? (

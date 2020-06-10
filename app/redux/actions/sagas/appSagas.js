@@ -39,7 +39,7 @@ export function* startAppBootStrap() {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('appSaga', e);
+      // console.log('appSaga', e);
       yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
   } finally {

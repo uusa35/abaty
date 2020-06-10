@@ -45,9 +45,9 @@ const pusher = new Pusher(pusherInstance(), {
   forceTLS: true,
 });
 if (__DEV__) {
-  console.log('isLocal', isLocal);
-  console.log('the Link Now', appUrlIos);
-  console.log('the isLocal now', isLocal);
+  // console.log('isLocal', isLocal);
+  // console.log('the Link Now', appUrlIos);
+  // console.log('the isLocal now', isLocal);
   Pusher.logToConsole = pusherEnabled;
 }
 const channel = pusher.subscribe('my-channel');

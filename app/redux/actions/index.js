@@ -342,3 +342,8 @@ export const hideClassifiedFilter = () => ({
   type: actions.HIDE_CLASSIFIED_FILTER_MODAL,
   payload: false,
 });
+
+export const toggleCompanySearchTextInputModal = (payload) => ({
+  type: actions.TOGGLE_COMPANY_SEARCH_TEXT_INPUT_MODAL,
+  payload,
+});

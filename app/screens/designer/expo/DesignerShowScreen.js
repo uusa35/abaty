@@ -96,7 +96,9 @@ const DesignerShowScreen = ({
         />
       }>
       <View style={styles.wrapper}>
-        <TriggeringView onHide={() => console.log('text hidden')}>
+        <TriggeringView
+        // onHide={() => console.log('text hidden')}
+        >
           <UserImageProfileRounded
             member_id={element.id}
             showFans={true}

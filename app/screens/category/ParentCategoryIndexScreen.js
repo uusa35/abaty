@@ -1,18 +1,16 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import validate from 'validate.js';
 
-const ParentCategoryIndexScreen = ({
-  commercials,
-  show_commercials,
-  homeUserCategories,
-  dispatch,
-  navigation,
-}) => {
+const ParentCategoryIndexScreen = () => {
+  const {commercials, settings, homeUserCategories} = useSelector(
+    (state) => state,
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
     if (validate.isEmpty(homeUserCategories)) {
       dispatch(navigation.navigate('Home'));
@@ -25,7 +23,7 @@ const ParentCategoryIndexScreen = ({
         <View
           animation="bounceIn"
           easing="ease-out"
-          style={{flex: show_commercials ? 0.8 : 1}}>
+          style={{flex: settings.show_commercials ? 0.8 : 1}}>
           <CategoriesList
             elements={homeUserCategories}
             type="company"
@@ -33,7 +31,7 @@ const ParentCategoryIndexScreen = ({
             showBtn={true}
           />
         </View>
-        {show_commercials ? (
+        {settings.show_commercials ? (
           <View style={{flex: 0.2}}>
             <CommercialSliderWidget commercials={commercials} />
           </View>
@@ -43,12 +41,4 @@ const ParentCategoryIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-    homeUserCategories: state.homeUserCategories,
-  };
-}
-
-export default connect(mapStateToProps)(ParentCategoryIndexScreen);
+export default ParentCategoryIndexScreen;

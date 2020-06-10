@@ -11,7 +11,7 @@ const UsersWidget = (props) => {
     axiosInstance
       .get(`${apiUrl}user`)
       .then((r) => setUsers(r.data))
-      .catch((e) => console.log(e));
+      .catch((e) => e);
   }, []);
 
   return !validate.isEmpty(users) && validate.isArray(users) ? (

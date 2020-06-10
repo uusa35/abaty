@@ -60,7 +60,7 @@ export function* setDeviceId() {
   try {
     let deviceId = yield call(getUniqueId); // get the deviceID
     if (__DEV__) {
-      console.log('device_id', deviceId);
+      // console.log('device_id', deviceId);
     }
     if (deviceId) {
       yield put({type: actions.SET_DEVICE_ID, payload: deviceId});
@@ -125,7 +125,7 @@ export function* checkConnection() {
   while (true) {
     const internetStatus = yield call(checkConnectionStatus);
     if (__DEV__) {
-      console.log('internetStatus', internetStatus);
+      // console.log('internetStatus', internetStatus);
     }
     yield put({
       type: TOGGLE_IS_CONNECTED,
@@ -139,8 +139,8 @@ export function* setVersion() {
   try {
     const {version} = yield select();
     if (__DEV__) {
-      console.log('version', version);
-      console.log('Will Load AlL ::', version !== buildVersion);
+      // console.log('version', version);
+      // console.log('Will Load AlL ::', version !== buildVersion);
     }
     yield put({
       type: actions.SET_VERSION,
@@ -148,14 +148,14 @@ export function* setVersion() {
     });
     if (validate.isEmpty(version) || version !== buildVersion) {
       if (__DEV__) {
-        console.log('form inside if buildVersion', buildVersion);
+        // console.log('form inside if buildVersion', buildVersion);
       }
       yield call(startResetStoreScenario);
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   }
 }
 
@@ -243,7 +243,7 @@ export function* startGetColorsScenario() {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
+      // console.log('e', e);
     }
   } finally {
   }
@@ -257,7 +257,7 @@ export function* startGetSizesScenario() {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
+      // console.log('e', e);
     }
   } finally {
   }

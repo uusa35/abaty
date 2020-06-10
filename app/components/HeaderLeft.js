@@ -8,21 +8,27 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
 import {iconSizes} from '../constants/sizes';
-import {showProductFilter} from '../redux/actions';
-import {useDispatch} from 'react-redux';
+import {
+  showProductFilter,
+  toggleCompanySearchTextInputModal,
+} from '../redux/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {EXPO} from '../../app';
 
 export const HeaderLeft = ({
   showCart = false,
   showSideMenu = true,
   showAccount = false,
   showProductsSearch = false,
+  showCompanySearchTextInputModal = false,
 }) => {
   const {navigate, openDrawer} = useNavigation();
   const {cartLength, colors} = useContext(GlobalValuesContext);
+  const {companySearchTextInputModal} = useSelector((state) => state);
   const dispatch = useDispatch();
   return (
     <View style={widgetStyles.safeContainer}>
-      {showSideMenu ? (
+      {showSideMenu && (
         <Icon
           name="ios-menu"
           type="ionicon"
@@ -32,8 +38,23 @@ export const HeaderLeft = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
-      ) : null}
-      {showProductsSearch ? (
+      )}
+      {showCompanySearchTextInputModal && (
+        <Icon
+          onPress={() =>
+            dispatch(
+              toggleCompanySearchTextInputModal(!companySearchTextInputModal),
+            )
+          }
+          name="ios-search"
+          type="ionicon"
+          size={iconSizes.small}
+          underlayColor="transparent"
+          hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+          color={colors.icon_theme_color}
+        />
+      )}
+      {showProductsSearch && (
         <Icon
           onPress={() => dispatch(showProductFilter())}
           name="filter"
@@ -43,7 +64,7 @@ export const HeaderLeft = ({
           hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
           color={colors.icon_theme_color}
         />
-      ) : null}
+      )}
       {showCart ? (
         <View>
           <Icon

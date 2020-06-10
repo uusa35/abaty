@@ -4,6 +4,7 @@ import codePush from 'react-native-code-push';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {
   appBootstrap,
+  refetchHomeElements,
   resetStore,
   setApplicationState,
   toggleBootstrapped,
@@ -49,7 +50,6 @@ const App = () => {
     token,
     isConnected,
     loginModal,
-    main_bg,
     searchModal,
     lang,
     currency,
@@ -62,16 +62,6 @@ const App = () => {
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
     dispatch(appBootstrap());
-    // codePush.allowRestart();
-    codePush.checkForUpdate().then((update) => {
-      if (!update) {
-        // console.debug('The app is up to date!');
-      } else {
-        if (__DEV__) {
-          console.log('there is an update here');
-        }
-      }
-    });
   }, [bootStrapped]);
 
   useEffect(() => {
@@ -104,6 +94,15 @@ const App = () => {
 
   useEffect(() => {
     codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});
+    codePush.checkForUpdate().then((update) => {
+      if (!update) {
+        console.warn('====> The app is up to date!');
+      } else {
+        if (__DEV__) {
+          console.warn('===> there is an update here');
+        }
+      }
+    });
   }, []);
 
   return (
@@ -121,6 +120,7 @@ const App = () => {
             colors: settings.colors,
             logo: settings.logo,
             app_logo: settings.app_logo,
+            mainBg: settings.main_bg,
             searchModal,
             resetApp,
             lang,
@@ -132,7 +132,7 @@ const App = () => {
             <LoginScreenModal
               logo={logo}
               loginModal={loginModal}
-              mainBg={main_bg}
+              mainBg={settings.main_bg}
             />
           ) : null}
           {validate.isBoolean(countryModal) && countryModal && country ? (

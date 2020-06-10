@@ -65,16 +65,16 @@ const AppHomeConfigComponent = () => {
   };
 
   const onReceived = (notification) => {
-    __DEV__ ? console.log('Notification received: ', notification) : null;
+    // __DEV__ ? console.log('Notification received: ', notification) : null;
   };
 
   const onOpened = (openResult) => {
     if (__DEV__) {
-      console.log('the whole thing', openResult.notification.payload);
-      console.log('Message: ', openResult.notification.payload.body);
-      console.log('Data: ', openResult.notification.payload.additionalData);
-      console.log('isActive: ', openResult.notification.isAppInFocus);
-      console.log('openResult: ', openResult.notification.payload.launchURL);
+      // console.log('the whole thing', openResult.notification.payload);
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult.notification.payload.launchURL);
     }
     const notification = getPathForDeepLinking(
       openResult.notification.payload.launchURL,

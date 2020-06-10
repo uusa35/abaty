@@ -75,6 +75,7 @@ import searchParams from './searchParams';
 import commentModal from './commentModal';
 import productFilterModal from './productFilterModal';
 import classifiedFilterModal from './classifiedFilterModal';
+import companySearchTextInputModal from './companySearchTextInputModal';
 import comments from './comments';
 import orders from './orders';
 import newClassified from './newClassified';
@@ -172,6 +173,7 @@ let reducers = combineReducers({
   commentModal,
   productFilterModal,
   classifiedFilterModal,
+  companySearchTextInputModal,
   comments,
   orders,
   classifieds,

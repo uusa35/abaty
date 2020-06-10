@@ -71,9 +71,9 @@ export function* startGetDesignerScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -121,9 +121,9 @@ export function* startGetShopperScenario(action) {
       throw I18n.t('no_designer');
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -151,7 +151,7 @@ export function* startGetCompanyScenario(action) {
         yield call(startGoogleAnalyticsScenario, {
           payload: {type: 'User', element},
         });
-        if (HOMEKEY || ESCRAP) {
+        if (HOMEKEY) {
           yield put(
             NavigationActions.navigate({
               routeName: 'CompanyClassifiedShow',
@@ -183,9 +183,9 @@ export function* startGetCompanyScenario(action) {
       throw I18n.t('no_company');
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   }
 }
 
@@ -224,9 +224,9 @@ export function* startGetCelebrityScenario(action) {
       throw I18n.t('no_celebrity');
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoadingProfile);
   }
@@ -250,9 +250,9 @@ export function* startGetUserScenario(action) {
       );
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -271,9 +271,9 @@ export function* startGetVideoScenario(action) {
       );
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -283,12 +283,12 @@ export function* startStorePlayerIdScenario(action) {
   try {
     if (action.payload) {
       const result = yield call(api.storePlayerId, action.payload);
-      console.log('the result from device id', result);
+      //console.log('the result from device id', result);
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -303,9 +303,9 @@ export function* setHomeBrands() {
       yield put({type: actions.SET_BRANDS, payload: []});
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -321,9 +321,9 @@ export function* startGetHomeCelebrities(action) {
       yield put({type: actions.SET_HOME_CELEBRITIES, payload: []});
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -339,9 +339,9 @@ export function* startGetHomeDesigners(action) {
       yield put({type: actions.SET_HOME_DESIGNERS, payload: []});
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield call(disableLoading);
   }
@@ -357,9 +357,9 @@ export function* startLogoutScenario() {
       call(setProductFavorites, []),
     ]);
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
     // yield call(enableErrorMessage, I18n.t('logout_error'));
   } finally {
     yield call(disableLoading);
@@ -411,9 +411,9 @@ export function* startSubmitAuthScenario(action) {
       throw element;
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('e', e);
-    }
+    // if (__DEV__) {
+    //   console.log('e', e);
+    // }
     yield call(enableErrorMessage, e);
   } finally {
     yield all([

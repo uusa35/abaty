@@ -1,7 +1,4 @@
-/**
- * Created by usamaahmed on 9/27/17.
- */
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -33,14 +30,14 @@ const SideMeu = ({showLogo = true}) => {
     images,
     menuBg,
     youtube,
-    guest,
     colors,
     terms,
     policy,
   } = useSelector((state) => state.settings);
-  const {lang} = useSelector((state) => state);
+  const {lang, guest} = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
   return (
     <ImageBackground
       source={{

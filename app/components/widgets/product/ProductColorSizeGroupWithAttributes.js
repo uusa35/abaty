@@ -83,7 +83,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           },
         })
         .then((r) => setProductAttribute(r.data))
-        .catch((e) => console.log(e));
+        .catch((e) => e);
     }
   }, [colorItem]);
 

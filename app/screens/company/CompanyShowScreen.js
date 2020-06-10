@@ -91,7 +91,9 @@ const CompanyShowScreen = ({
         />
       }>
       <View style={styles.wrapper}>
-        <TriggeringView onHide={() => console.log('text hidden')}>
+        <TriggeringView
+        // onHide={() => console.log('text hidden')}
+        >
           <UserImageProfile
             member_id={element.id}
             showFans={true}

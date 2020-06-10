@@ -4,16 +4,11 @@ import I18n from '../../I18n';
 import {HeaderLeft} from '../../components/HeaderLeft';
 import {HeaderRight} from '../../components/HeaderRight';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
-import CartIndexScreen from '../../screens/cart/CartIndexScreen';
-import CartConfirmationScreen from '../../screens/cart/CartConfirmationScreen';
-import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
 import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import LoginScreen from '../../screens/auth/LoginScreen';
 import RegisterScreen from '../../screens/auth/RegisterScreen';
 import DesignerIndexScreen from '../../screens/designer/DesignerIndexScreen';
 import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
-import CelebrityIndexScreen from '../../screens/celebrity/CelebrityIndexScreen';
-import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import DesignerShowScreen from '../../screens/designer/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/celebrity/CelebrityShowScreen';
@@ -31,10 +26,8 @@ import BrandIndexScreen from '../../screens/brand/BrandIndexScreen';
 import BrandShowScreen from '../../screens/brand/BrandShowScreen';
 import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
-import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
 import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
@@ -42,13 +35,12 @@ import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import validate from 'validate.js';
 import ChooseAddressScreen from '../../screens/classified/ChooseAddressScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
-import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import {APP_CASE} from '../../../app';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
 import CategoryClassifiedIndexScreen from '../../screens/category/CategoryClassifiedIndexScreen';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
+import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -64,7 +56,13 @@ export const HomeStack = createStackNavigator(
     Home: {
       screen: EscrapHomeScreen,
       navigationOptions: () => ({
-        headerLeft: () => <HeaderLeft showCart={false} showSideMenu={true} />,
+        headerLeft: () => (
+          <HeaderLeft
+            showCart={false}
+            showSideMenu={true}
+            showCompanySearchTextInputModal={true}
+          />
+        ),
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={false} />
         ),
@@ -72,7 +70,10 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={I18n.t(APP_CASE)} showLogo={true} />
         ),
         headerBackTitle: () => null,
-        headerTransparent: true,
+        // headerTransparent: true,
+        //   headerStyle : {
+        //     backgroundColor : 'blue'
+        //     }
       }),
     },
     CategoryIndex: {
@@ -151,20 +152,11 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CompanyShow: {
-      screen: CompanyShowScreen,
+      screen: EscrapCompanyShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom />,
-        headerBackTitle: () => null,
-      }),
-      path: `user/:id`,
-    },
-    CompanyClassifiedShow: {
-      screen: CompanyClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: () => null,
         headerRight: <HeaderCustom />,
         headerBackTitle: () => null,
       }),

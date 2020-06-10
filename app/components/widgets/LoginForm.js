@@ -18,7 +18,6 @@ const LoginForm = ({showBtns = false}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
   const {logo, colors} = useContext(GlobalValuesContext);
-  console.log('the logo', logo);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
 

@@ -21,6 +21,7 @@ import {images} from '../../../constants/images';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
@@ -76,12 +77,8 @@ const ProductCategoryHorizontalRoundedWidget = ({
                 key={i}
                 style={widgetStyles.btnStyle}
                 onPress={() => handleClick(c)}>
-                <FastImage
-                  source={{
-                    uri: c.thumb,
-                    priority: FastImage.priority.normal,
-                  }}
-                  loadingIndicatorSource={images.logo}
+                <ImageLoaderContainer
+                  img={c.thumb}
                   style={styles.image}
                   resizeMode="cover"
                 />

@@ -32,7 +32,7 @@ const UserProfileInformationWidget = ({auth}) => {
         />
       </View>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -55,7 +55,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -78,7 +78,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -101,7 +101,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -124,7 +124,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -146,7 +146,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -163,7 +163,7 @@ const UserProfileInformationWidget = ({auth}) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View
@@ -185,7 +185,7 @@ const UserProfileInformationWidget = ({auth}) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => console.log('user')}
+        // onPress={() => console.log('user')}
         hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
         style={styles.itemRow}>
         <View

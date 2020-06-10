@@ -30,10 +30,10 @@ export function* setDirection(lang) {
       I18nManager.forceRTL(false);
     }
   } catch (e) {
-    if (__DEV__) {
-      console.log('e', e);
-      yield call(enableErrorMessage, e.message);
-    }
+    // if (__DEV__) {
+    //   console.log('e', e);
+    //   yield call(enableErrorMessage, e.message);
+    // }
   }
 }
 
@@ -46,9 +46,9 @@ export function* startChangeLang(action) {
     yield call(setDirection, lang);
     I18n.locale = lang;
   } catch (e) {
-    if (__DEV__) {
-      console.log('ee', e);
-    }
+    // if (__DEV__) {
+    //   console.log('ee', e);
+    // }
   } finally {
     yield delay(2000);
     yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false});
@@ -76,6 +76,6 @@ export function* defaultLang() {
       axiosInstance.defaults.headers.common['lang'] = lang;
     }
   } catch (e) {
-    __DEV__ ? console.log('the e from default Lang', e) : null;
+    // __DEV__ ? console.log('the e from default Lang', e) : null;
   }
 }

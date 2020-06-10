@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import CompaniesList from '../../components/Lists/CompaniesList';
 import BgContainer from '../../components/containers/BgContainer';
+import {shuffle} from 'lodash';
+import {ESCRAP} from './../../../app.json';
 
 const CompanyIndexScreen = ({companies, searchParams}) => {
   return (
     <BgContainer showImage={false}>
       <CompaniesList
-        elements={companies}
+        elements={ESCRAP ? shuffle(companies) : companies}
         searchParams={searchParams}
         showMore={true}
       />

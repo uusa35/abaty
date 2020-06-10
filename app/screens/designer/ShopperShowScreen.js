@@ -92,7 +92,9 @@ const ShopperShowScreen = ({
         />
       }>
       <View style={styles.wrapper}>
-        <TriggeringView onHide={() => console.log('text hidden')}>
+        <TriggeringView
+        // onHide={() => console.log('text hidden')}
+        >
           {!validate.isEmpty(element) ? (
             <ShopperImageProfile
               member_id={element.id}

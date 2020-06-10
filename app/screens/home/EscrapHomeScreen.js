@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useContext, useEffect, useMemo, useState, Fragment} from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -7,7 +7,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import {bottomContentInset, touchOpacity} from '../../constants/sizes';
 import PropTypes from 'prop-types';
@@ -25,24 +25,27 @@ import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer'
 import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
 import {map} from 'lodash';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import ClassifiedCategoryHorizontalRoundedWidget from '../../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
+import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 
-const EscrapHomeScreen = ({
-  homeCategories,
-  categories,
-  commercials,
-  slides,
-  show_commercials,
-  colors,
-  homeCompanies,
-  homeClassifieds,
-  homeUserCategories,
-  homeClassifiedCategories,
-  main_bg,
-  splashes,
-  splash_on,
-  showIntroduction,
-  dispatch,
-}) => {
+const EscrapHomeScreen = () => {
+  const {
+    categories,
+    commercials,
+    settings,
+    homeCompanies,
+    homeClassifieds,
+    homeUserCategories,
+    homeClassifiedCategories,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const {mainBg, colors} = useContext(GlobalValuesContext);
+
+  // useEffect(() => {
+  //   navigation.setParams({mainBg});
+  // },[])
+
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
   };
@@ -75,8 +78,7 @@ const EscrapHomeScreen = ({
           style={{flex: 0.8}}>
           <EscrapSearchTab
             elements={categories}
-            main_bg={main_bg}
-            onlyTextForm={true}
+            onlyCompanySearchTextInput={true}
           />
           {/*{!validate.isEmpty(homeUserCategories) &&*/}
           {/*validate.isArray(homeUserCategories) ? (*/}
@@ -120,42 +122,34 @@ const EscrapHomeScreen = ({
               </TouchableOpacity>
             ))}
           </View>
-          {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
-          {/*validate.isArray(homeClassifiedCategories) ? (*/}
-          {/*  <ClassifiedCategoryHorizontalRoundedWidget*/}
-          {/*    elements={homeClassifiedCategories}*/}
-          {/*    showName={true}*/}
-          {/*    showLink={true}*/}
-          {/*    title={I18n.t('for_sale')}*/}
-          {/*  />*/}
-          {/*) : null}*/}
           {!validate.isEmpty(homeClassifieds) &&
           validate.isArray(homeClassifieds) ? (
-            <ClassifiedListHorizontal
-              classifieds={homeClassifieds}
-              showName={true}
-              showSearch={false}
-              showTitle={true}
-              title={I18n.t('featured_classifieds')}
-              searchElements={{on_home: true}}
-            />
+            <Fragment>
+              {!validate.isEmpty(homeClassifiedCategories) &&
+                validate.isArray(homeClassifiedCategories) && (
+                  <ClassifiedCategoryHorizontalRoundedWidget
+                    elements={homeClassifiedCategories}
+                    showName={true}
+                    showLink={true}
+                    title={I18n.t('for_sale')}
+                  />
+                )}
+              <ClassifiedListHorizontal
+                classifieds={homeClassifieds}
+                showName={true}
+                showSearch={false}
+                showTitle={true}
+                title={I18n.t('featured_classifieds')}
+                searchElements={{on_home: true}}
+              />
+              <NewClassifiedHomeBtn />
+            </Fragment>
           ) : null}
-          {!validate.isEmpty(homeCompanies) &&
-          validate.isArray(homeCompanies) ? (
-            <DesignerHorizontalWidget
-              elements={homeCompanies}
-              showName={true}
-              name={I18n.t('companies')}
-              title={I18n.t('companies')}
-              searchElements={{is_company: true}}
-            />
-          ) : null}
-          <NewClassifiedHomeBtn />
         </ScrollView>
-        {show_commercials ? (
+        {settings.show_commercials ? (
           <View style={{flex: 0.2}}>
             {!validate.isEmpty(commercials) ? (
-              <FixedCommercialSliderWidget sliders={commercials} />
+              <CommercialSliderWidget commercials={commercials} />
             ) : null}
           </View>
         ) : null}
@@ -164,29 +158,11 @@ const EscrapHomeScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories,
-    homeCategories: state.homeCategories,
-    homeUserCategories: state.homeUserCategories,
-    homeClassifiedCategories: state.homeClassifiedCategories,
-    homeClassifieds: state.homeClassifieds,
-    commercials: state.commercials,
-    splashes: state.splashes,
-    logo: state.settings.logo,
-    main_bg: state.settings.main_bg,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors,
-    lang: state.lang,
-    showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies,
-    guest: state.guest,
-    linking: state.linking,
-    bootStrapped: state.bootStrapped,
-  };
-}
+export default EscrapHomeScreen;
 
-export default connect(mapStateToProps)(EscrapHomeScreen);
+EscrapHomeScreen.navigationOptions = ({navigation}) => ({
+  headerTransparent: true,
+});
 
 EscrapHomeScreen.propTypes = {
   categories: PropTypes.array,
@@ -210,12 +186,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-});
-
-EscrapHomeScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor,
   },
 });

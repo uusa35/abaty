@@ -12,11 +12,11 @@ import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {ABATI, MALLR} from './../../../../app';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const UserImageProfile = ({
   medium,
-  logo,
   member_id,
   slug,
   type = null,
@@ -25,25 +25,22 @@ const UserImageProfile = ({
   isFanned,
   showFans,
   showRating,
-  guest,
   views,
   showComments = false,
   commentsCount,
 }) => {
+  const {guest} = useSelector((state) => state);
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
   const dispatch = useDispatch();
-  const {colors} = useContext(GlobalValuesContext);
+  const {colors, logo} = useContext(GlobalValuesContext);
 
-  const handleRating = useCallback(
-    (rating) => {
-      if (rating !== currentRating) {
-        return dispatch(rateUser({value: rating, member_id}));
-      }
-    },
-    [rating],
-  );
+  const handleRating = (rating) => {
+    if (rating !== currentRating) {
+      return dispatch(rateUser({value: rating, member_id}));
+    }
+  };
 
   const handleFan = (fanMe) => {
     if (!guest) {
@@ -54,8 +51,12 @@ const UserImageProfile = ({
   };
 
   return (
-    <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
-      <FastImage source={{uri: medium ? medium : logo}} style={styles.logo} />
+    <View
+      useNativeDriver={true}
+      animation="bounceInLeft"
+      easing="ease-out"
+      style={styles.elementRow}>
+      <ImageLoaderContainer img={medium} style={styles.logo} />
       <View
         style={{
           justifyContent: 'flex-start',
@@ -128,23 +129,25 @@ const UserImageProfile = ({
         </View>
       </View>
       <View style={{margin: 10}}>
-        {!guest && !ABATI ? (
-          <Icon
-            name={fanMe && !ABATI ? 'star' : 'star-border'}
-            type="material"
-            color={colors.header_tow_theme_color}
-            onPress={() => handleFan(!fanMe)}
-            disabled={guest}
-          />
-        ) : (
-          <Icon
-            name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-            type="material-community"
-            color={colors.header_tow_theme_color}
-            onPress={() => handleFan(!fanMe)}
-            disabled={guest}
-          />
-        )}
+        {!guest ? (
+          !ABATI ? (
+            <Icon
+              name={fanMe && !ABATI ? 'star' : 'star-border'}
+              type="material"
+              color={colors.header_tow_theme_color}
+              onPress={() => handleFan(!fanMe)}
+              disabled={guest}
+            />
+          ) : (
+            <Icon
+              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+              type="material-community"
+              color={colors.header_tow_theme_color}
+              onPress={() => handleFan(!fanMe)}
+              disabled={guest}
+            />
+          )
+        ) : null}
         <TouchableOpacity
           onPress={() => dispatch(showCommentModal())}
           style={{marginTop: 15}}>

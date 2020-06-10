@@ -452,7 +452,7 @@ export async function storeClassified(elements) {
     formData.append(`items[${i}][value]`, prop.property.value);
   });
   if (__DEV__) {
-    console.log('the formData', formData);
+    // console.log('the formData', formData);
   }
   return await axiosInstance
     .post(`classified`, formData)

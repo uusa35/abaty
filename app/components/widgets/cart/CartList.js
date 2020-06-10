@@ -71,6 +71,7 @@ const CartList = ({
       <View
         animation="bounceInLeft"
         easing="ease-out"
+        useNativeDriver={true}
         style={{flexDirection: 'column', width: '100%'}}>
         {map(cart, (item, i) => {
           return (

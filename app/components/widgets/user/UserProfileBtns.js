@@ -13,6 +13,7 @@ const UserProfileBtns = () => {
     <View
       animation="fadeInUpBig"
       easing="ease-out"
+      useNativeDriver={true}
       style={{
         marginTop: 50,
         width: width - 50,

@@ -46,7 +46,7 @@ const VideoWidget = ({
           onReady={(e) => setIsReady(true)}
           onChangeState={(e) => setStatus(e.status)}
           onChangeQuality={(e) => setQuality(e.quality)}
-          onError={(e) => console.log(e.error)}
+          // onError={(e) => console.log(e.error)}
           style={{
             alignSelf: 'center',
             height: 300,

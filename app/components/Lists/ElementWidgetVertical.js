@@ -33,9 +33,6 @@ const ElementWidgetVertical = ({
         null;
     }
   }, [type]);
-  console.log('the type', type);
-  //searchParams: {user_id: element.id},
-  // searchParams: {product_category_id: element.id, user_id},
 
   return (
     <ListItem

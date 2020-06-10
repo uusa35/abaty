@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 
 const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
-  console.log('search Products', searchProducts);
   return (
     <BgContainer showImage={false}>
       <ProductList

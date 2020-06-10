@@ -17,11 +17,17 @@ const CompanySearchForm = ({title = 'search'}) => {
           name={search.length > 0 ? 'ios-funnel' : 'ios-search'}
           size={iconSizes.smaller}
           color="#c4c4c4"
-          hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
+          hitSlop={{
+            top: iconSizes.largest,
+            bottom: iconSizes.largest,
+            left: iconSizes.largest,
+            right: iconSizes.largest,
+          }}
           onPress={() =>
             dispatch(
               getSearchCompanies({
                 searchParams: {slug: search},
+                name: I18n.t('search'),
                 redirect: true,
               }),
             )

@@ -7,11 +7,10 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import {map} from 'lodash';
-import FastImage from 'react-native-fast-image';
+import {map, shuffle} from 'lodash';
 import {width} from '../../constants/sizes';
-import {images} from '../../constants/images';
 import widgetStyles from './widgetStyles';
+import ImageLoaderContainer from './ImageLoaderContainer';
 
 const CommercialSliderWidget = ({commercials}) => {
   return (
@@ -19,20 +18,26 @@ const CommercialSliderWidget = ({commercials}) => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        style={widgetStyles.wrapper}>
-        {map(commercials, (c, i) => (
+        style={{flexDirection: 'row', width: '100%'}}
+        contentContainerStyle={{
+          justifyContent: 'center',
+          alignSelf: 'center',
+          alignItems: 'center',
+        }}>
+        {map(shuffle(commercials), (c, i) => (
           <TouchableOpacity
             key={i}
-            style={widgetStyles.btnStyle}
+            style={{
+              marginLeft: 1,
+              alignSelf: 'center',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
             onPress={() => Linking.openURL(c.path ? c.path : c.url)}>
-            <FastImage
-              source={{
-                uri: c.thumb,
-                priority: FastImage.priority.normal,
-              }}
-              loadingIndicatorSource={images.logo}
-              style={{width: width - 5, height: '100%'}}
-              resizeMode="contain"
+            <ImageLoaderContainer
+              img={c.thumb}
+              style={{width, height: '100%'}}
+              resizeMode="stretch"
             />
           </TouchableOpacity>
         ))}

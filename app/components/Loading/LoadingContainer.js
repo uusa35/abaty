@@ -9,7 +9,7 @@ const LoadingContainer = () => {
   const {settings, isLoading, bootStrapped} = useSelector((state) => state);
 
   useEffect(() => {}, [isLoading]);
-  console.log(isLoading && bootStrapped);
+
   return (
     <View
       style={{

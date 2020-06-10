@@ -633,6 +633,8 @@
   "classified_filter" : "بحث الإعلانات",
   "app_build" : "الرقم الفرعي للإصدار",
   "client_id" : "الرقم التعريفي للنسخة",
+  "company_favorite_success" : "تم الإضافة إلى قائمة المفضلة بنجاح",
+  "company_favorite_failure" : "لم تتم الاضافة إلى قائمة المفضلة بنجاح",
   "validations" : {
     "price_at_least_one_number_or_max_six" : "السعر يتكون من رقم واحد او ستة ارقام بحد اقصى",
     "mobile_at_least_size_numbers_or_max_eleven" : "رقم الهاتف يتكون من ستة ارقام بحد ادنى أو ١١ رقم بحد اقصى",
