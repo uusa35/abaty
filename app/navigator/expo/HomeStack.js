@@ -160,7 +160,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
         ),
-        headerTitle: (
+        headerTitle: () => (
           <HeaderMiddle
             title={
               navigation.state.params &&
@@ -439,7 +439,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={false} />
         ),
-        headerTitle: (
+        headerTitle: () => (
           <HeaderMiddle title={I18n.t('homekey')} showLogo={false} />
         ),
         headerBackTitle: () => null,
@@ -625,7 +625,7 @@ export const HomeStack = createStackNavigator(
             // headerRight: (
             //   <HeaderRight displayShare={false} showCountry={true} />
             // ),
-            headerTitle: (
+            headerTitle: () => (
               <HeaderMiddle showLogo={true} title={I18n.t('home')} />
             ),
             headerBackTitle: () => null,

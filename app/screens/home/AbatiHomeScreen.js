@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -17,21 +17,24 @@ import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const AbatiHomeScreen = ({
-  homeCategories,
-  commercials,
-  slides,
-  brands,
-  homeDesigners,
-  homeCelebrities,
-  homeProducts,
-  splashes,
-  show_commercials,
-  services,
-  showIntroduction,
-  dispatch,
-}) => {
+const AbatiHomeScreen = () => {
+  const {
+    homeCategories,
+    commercials,
+    slides,
+    brands,
+    homeDesigners,
+    homeCelebrities,
+    homeProducts,
+    splashes,
+    show_commercials,
+    services,
+    showIntroduction,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
   };
@@ -110,42 +113,10 @@ const AbatiHomeScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeCategories: state.homeCategories,
-    brands: state.brands,
-    homeDesigners: state.homeDesigners,
-    homeCelebrities: state.homeCelebrities,
-    homeProducts: state.homeProducts,
-    commercials: state.commercials,
-    slides: state.slides,
-    splashes: state.splashes,
-    logo: state.settings.logo,
-    splash_on: state.settings.splash_on,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors,
-    lang: state.lang,
-    services: state.homeServices,
-    showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies,
-    bootStrapped: state.bootStrapped,
-    linking: state.linking,
-  };
-}
-
-export default connect(mapStateToProps)(AbatiHomeScreen);
+export default AbatiHomeScreen;
 
 AbatiHomeScreen.propTypes = {
-  homeCategories: PropTypes.array,
-  brands: PropTypes.array,
-  homeDesigners: PropTypes.array,
-  homeProducts: PropTypes.array,
-  commercials: PropTypes.array,
-  slides: PropTypes.array,
-  splashes: PropTypes.array,
-  show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool,
-  bootStrapped: PropTypes.bool,
+  // homeCategories: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

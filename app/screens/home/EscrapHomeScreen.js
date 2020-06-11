@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo, useState, Fragment} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {
   RefreshControl,
   ScrollView,
@@ -165,18 +165,7 @@ EscrapHomeScreen.navigationOptions = ({navigation}) => ({
 });
 
 EscrapHomeScreen.propTypes = {
-  categories: PropTypes.array,
-  homeCategories: PropTypes.array,
-  homeUserCategories: PropTypes.array,
-  homeClassifiedCategories: PropTypes.array,
-  brands: PropTypes.array,
-  homeDesigners: PropTypes.array,
-  homeProducts: PropTypes.array,
-  commercials: PropTypes.array,
-  slides: PropTypes.array,
-  splashes: PropTypes.array,
-  show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool,
+  // categories: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

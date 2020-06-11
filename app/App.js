@@ -1,33 +1,17 @@
-import React, {useCallback, useEffect, useState, Fragment} from 'react';
-import {View, AppState, useColorScheme, StatusBar} from 'react-native';
+import React, {useEffect, useState, Fragment} from 'react';
+import {AppState, useColorScheme, StatusBar} from 'react-native';
 import codePush from 'react-native-code-push';
-import {connect, useDispatch, useSelector} from 'react-redux';
-import {
-  appBootstrap,
-  refetchHomeElements,
-  resetStore,
-  setApplicationState,
-  toggleBootstrapped,
-  toggleIntroduction,
-  toggleResetApp,
-} from './redux/actions';
+import {useDispatch, useSelector} from 'react-redux';
+import {appBootstrap} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
-import LoadingView from './components/Loading/LoadingView';
-import I18n from './I18n';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
-// import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
-import PropTypes from 'prop-types';
 import {axiosInstance} from './redux/actions/api';
 import LoginScreenModal from './screens/auth/LoginScreenModal';
-import LoadingContentView from './components/Loading/LoadingContentView';
-import LoadingProfileView from './components/Loading/LoadingProfileView';
 import AreasList from './components/Lists/AreasList';
-import LoadingBoxedListView from './components/Loading/LoadingBoxedListView';
 import SimpleSpinner from './components/SimpleSpinner';
-import {isLocal} from './env';
 import ProductFilterModal from './screens/product/ProductFilterModal';
 import ClassifiedFilterModal from './screens/search/ClassifiedFilterModal';
 
@@ -77,14 +61,11 @@ const App = () => {
     axiosInstance.defaults.headers.common['country'] = country.name;
   }, [lang]);
 
-  const handleAppStateChange = useCallback(
-    (nextAppState) => {
-      if (appState.match(/inactive|background/) && nextAppState === 'active') {
-      }
-      setAppState(nextAppState);
-    },
-    [appState],
-  );
+  const handleAppStateChange = (nextAppState) => {
+    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+    }
+    setAppState(nextAppState);
+  };
 
   useEffect(() => {
     if (appState === 'background' && resetApp) {
@@ -128,38 +109,36 @@ const App = () => {
           <React.Suspense fallback={<SimpleSpinner />}>
             <AppNavigator />
           </React.Suspense>
-          {validate.isBoolean(loginModal) ? (
+          {validate.isBoolean(loginModal) && (
             <LoginScreenModal
               logo={logo}
               loginModal={loginModal}
               mainBg={settings.main_bg}
             />
-          ) : null}
-          {validate.isBoolean(countryModal) && countryModal && country ? (
+          )}
+          {validate.isBoolean(countryModal) && countryModal && country && (
             <CountriesList
               country={country}
               countries={countries}
               countryModal={countryModal}
             />
-          ) : null}
-          {validate.isBoolean(areaModal) && !validate.isEmpty(areas) ? (
+          )}
+          {validate.isBoolean(areaModal) && !validate.isEmpty(areas) && (
             <AreasList area={area} areas={areas} areaModal={areaModal} />
-          ) : null}
+          )}
         </GlobalValuesContext.Provider>
       )}
       {!validate.isEmpty(message) &&
-      message.visible &&
-      validate.isString(message.content) &&
-      isConnected &&
-      bootStrapped ? (
-        <AlertMessage message={message} />
-      ) : null}
-      {bootStrapped ? (
+        message.visible &&
+        validate.isString(message.content) &&
+        isConnected &&
+        bootStrapped && <AlertMessage message={message} />}
+      {bootStrapped && (
         <Fragment>
           <ProductFilterModal />
           <ClassifiedFilterModal />
         </Fragment>
-      ) : null}
+      )}
     </Fragment>
   );
 };

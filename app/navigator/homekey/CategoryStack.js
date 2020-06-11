@@ -16,7 +16,7 @@ export const CategoryStack = createStackNavigator(
       screen: gestureHandlerRootHOC(CategoryIndexScreen),
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
-        headerTitle: (
+        headerTitle: () => (
           <HeaderMiddle
             title={
               !validate.isEmpty(navigation.state.params.name)
