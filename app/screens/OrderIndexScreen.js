@@ -1,12 +1,11 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useState, useContext} from 'react';
 import {
   StyleSheet,
   RefreshControl,
   FlatList,
   ImageBackground,
 } from 'react-native';
-import {connect} from 'react-redux';
-import {View} from 'react-native-animatable';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {isIOS} from '../constants';
 import {height, text, width} from '../constants/sizes';
@@ -14,16 +13,18 @@ import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import {isRTL} from '../I18n';
 import I18n from './../I18n';
-import {ordersSelector} from '../redux/selectors/collections';
-import {map} from 'lodash';
 import OrderWidget from '../components/widgets/order/OrderWidget';
-import {colorsSelector, logoSelector} from '../redux/selectors/collection';
 import {reAuthenticate} from '../redux/actions/user';
 import {ABATI} from '../../app';
 import {images} from '../constants/images';
 import BgContainer from '../components/containers/BgContainer';
+import {GlobalValuesContext} from '../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
+const OrderIndexScreen = ({}) => {
+  const {orders} = useSelector((state) => state.auth);
+  const {colors, logo} = useContext(GlobalValuesContext);
+  const {goBack} = useNavigation();
   const [refresh, setRefresh] = useState(false);
 
   return (
@@ -78,7 +79,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
                 titleStyle={{fontFamily: text.font}}
               />
               <Button
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => goBack()}
                 raised
                 title={I18n.t('shop_now')}
                 type="outline"
@@ -97,15 +98,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    orders: ordersSelector(state),
-    logo: logoSelector(state),
-    colors: colorsSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(OrderIndexScreen);
+export default OrderIndexScreen;
 
 OrderIndexScreen.propTypes = {
   orders: PropTypes.array,

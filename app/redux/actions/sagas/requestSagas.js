@@ -551,26 +551,27 @@ export function* startGetCouponScenario(action) {
 export function* startCreateMyFatorrahPaymentUrlScenario(action) {
   try {
     yield call(enableLoading);
-    const {name, mobile, email, address} = action.payload;
-    const result = validate({name, mobile, email, address}, registerConstrains);
-    if (validate.isEmpty(result)) {
-      yield call(enableLoading, I18n.t('create_payment_url'));
-      const url = yield call(api.makeMyFatoorahPayment, action.payload);
-      if (validate.isObject(url) && url.paymentUrl.includes('https')) {
-        yield put(
-          NavigationActions.navigate({
-            routeName: 'PaymentIndex',
-            params: {
-              paymentUrl: url.paymentUrl,
-            },
-          }),
-        );
-      } else {
-        throw url;
-      }
+    console.log('here');
+    // const {name, mobile, email, address} = action.payload;
+    // const result = validate({name, mobile, email, address}, registerConstrains);
+    // if (validate.isEmpty(result)) {
+    yield call(enableLoading, I18n.t('create_payment_url'));
+    const url = yield call(api.makeMyFatoorahPayment, action.payload);
+    if (validate.isObject(url) && url.paymentUrl.includes('https')) {
+      yield put(
+        NavigationActions.navigate({
+          routeName: 'PaymentIndex',
+          params: {
+            paymentUrl: url.paymentUrl,
+          },
+        }),
+      );
     } else {
-      throw I18n.t('information_you_entered_not_correct');
+      throw url;
     }
+    // } else {
+    //   throw I18n.t('information_you_entered_not_correct');
+    // }
   } catch (e) {
     if (__DEV__) {
       // console.log('the e', e);

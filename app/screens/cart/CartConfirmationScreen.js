@@ -53,7 +53,7 @@ const CartConfirmationScreen = () => {
             grossTotal={grossTotal}
             shipmentFees={shipmentFees}
             discount={coupon ? coupon.value : null}
-            shipment_notes={shipment_notes}
+            shipment_notes={settings.shipment_notes}
             editModeDefault={false}
             coupon={coupon ? coupon : null}
             COD={settings.cash_on_delivery && country.is_local}

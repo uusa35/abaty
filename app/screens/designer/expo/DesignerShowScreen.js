@@ -1,6 +1,6 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -21,38 +21,43 @@ import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../../app';
 import UserImageProfileRounded from '../../../components/widgets/user/UserImageProfileRounded';
 import ElementsVerticalList from '../../../components/Lists/ElementsVerticalList';
 import {uniqBy, take} from 'lodash';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const DesignerShowScreen = ({
-  element,
-  commentModal,
-  comments,
-  dispatch,
-  colors,
-  logo,
-  guest,
-  searchParams,
-  navigation,
-}) => {
+const DesignerShowScreen = () => {
+  const {designer, comments, commentModal, searchParams, guest} = useSelector(
+    (state) => state,
+  );
+  const {colors, logo} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
-  const [routes, setRoutes] = useState([
-    {key: 'products', title: I18n.t('products')},
-    {key: 'info', title: I18n.t('information').substring(0, 10)},
-    {key: 'videos', title: I18n.t('videos')},
-  ]);
+  const [routes, setRoutes] = useState([]);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
 
   useMemo(() => {
+    const currentRoutes = [
+      {key: 'products', title: I18n.t('products')},
+      {key: 'info', title: I18n.t('information').substring(0, 10)},
+    ];
+    if (!isEmpty(designer.videoGroup.video_url_one)) {
+      currentRoutes.push({key: 'videos', title: I18n.t('videos')});
+    }
+    setRoutes(currentRoutes);
+  }, [designer]);
+
+  useMemo(() => {
     if (element) {
       const filteredCategories = uniqBy(
-        element.productCategories.concat(element.productGroupCategories),
+        designer.productCategories.concat(designer.productGroupCategories),
         'id',
       );
       const filteredProducts = uniqBy(
-        element.products.concat(element.productGroup),
+        designer.products.concat(designer.productGroup),
         'id',
       );
       setProducts(filteredProducts);
@@ -70,8 +75,8 @@ const DesignerShowScreen = ({
   const handleRefresh = useCallback(() => {
     return dispatch(
       getDesigner({
-        id: element.id,
-        searchParams: {user_id: element.id},
+        id: designer.id,
+        searchParams: {user_id: designer.id},
       }),
     );
   }, [refresh]);
@@ -87,7 +92,7 @@ const DesignerShowScreen = ({
       containerStyle={{flex: 1}}
       overlayColor="white"
       headerImage={{
-        uri: element.banner ? element.banner : logo,
+        uri: designer.banner ? designer.banner : logo,
       }}
       refreshControl={
         <RefreshControl
@@ -100,35 +105,35 @@ const DesignerShowScreen = ({
         // onHide={() => console.log('text hidden')}
         >
           <UserImageProfileRounded
-            member_id={element.id}
+            member_id={designer.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
             showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
             guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
+            isFanned={designer.isFanned}
+            totalFans={designer.totalFans}
+            currentRating={designer.rating}
+            medium={designer.medium}
             logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            commentsCount={element.commentsCount}
-            mobile={element.mobile}
-            phone={element.phone}
-            whatsapp={element.whatsapp}
-            twitter={element.twitter}
-            facebook={element.facebook}
-            instagram={element.instagram}
-            youtube={element.youtube}
-            website={element.website}
-            description={element.description}
-            latitude={element.latitude}
-            longitude={element.longitude}
+            slug={designer.slug}
+            type={designer.role.slug}
+            views={designer.views}
+            commentsCount={designer.commentsCount}
+            mobile={designer.mobile}
+            phone={designer.phone}
+            whatsapp={designer.whatsapp}
+            twitter={designer.twitter}
+            facebook={designer.facebook}
+            instagram={designer.instagram}
+            youtube={designer.youtube}
+            website={designer.website}
+            description={designer.description}
+            latitude={designer.latitude}
+            longitude={designer.longitude}
           />
-          {!validate.isEmpty(element.slides) ? (
+          {!validate.isEmpty(designer.slides) ? (
             <View style={{width: width}}>
-              <MainSliderWidget slides={element.slides} />
+              <MainSliderWidget slides={designer.slides} />
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
@@ -180,28 +185,28 @@ const DesignerShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  has_map={element.has_map}
-                  mobile={element.mobile}
-                  phone={element.phone}
-                  slug={element.slug}
-                  whatsapp={element.whatsapp}
-                  twitter={element.twitter}
-                  facebook={element.facebook}
-                  instagram={element.instagram}
-                  android={element.android}
-                  youtube={element.youtube}
-                  website={element.website}
-                  description={element.description}
-                  service={element.service}
-                  address={element.address}
-                  images={element.images}
-                  latitude={element.latitude}
-                  longitude={element.longitude}
-                  thumb={element.thumb}
+                  has_map={designer.has_map}
+                  mobile={designer.mobile}
+                  phone={designer.phone}
+                  slug={designer.slug}
+                  whatsapp={designer.whatsapp}
+                  twitter={designer.twitter}
+                  facebook={designer.facebook}
+                  instagram={designer.instagram}
+                  android={designer.android}
+                  youtube={designer.youtube}
+                  website={designer.website}
+                  description={designer.description}
+                  service={designer.service}
+                  address={designer.address}
+                  images={designer.images}
+                  latitude={designer.latitude}
+                  longitude={designer.longitude}
+                  thumb={designer.thumb}
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget videos={element.videoGroup} />
+                <VideosVerticalWidget videos={designer.videoGroup} />
               ),
             })}
             style={{backgroundColor: 'white', minHeight: height / 2}}
@@ -213,7 +218,7 @@ const DesignerShowScreen = ({
           commentModal={commentModal}
           elements={comments}
           model="user"
-          id={element.id}
+          id={designer.id}
         />
       </View>
     </HeaderImageScrollView>

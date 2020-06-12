@@ -15,6 +15,7 @@ import validate from 'validate.js';
 import {useNavigation} from 'react-navigation-hooks';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
+import {CREATE_MYFATOORAH_PAYMENT_URL} from '../../../redux/actions/types';
 
 const CartList = ({
   cart,
@@ -610,7 +611,7 @@ const CartList = ({
                 }}
                 onPress={() =>
                   dispatch({
-                    type: actions.CREATE_MYFATOORAH_PAYMENT_URL,
+                    type: CREATE_MYFATOORAH_PAYMENT_URL,
                     payload: {
                       name,
                       email,
@@ -622,7 +623,7 @@ const CartList = ({
                       total,
                       grossTotal,
                       shipment_fees: shipmentCountry.fixed_shipment_charge,
-                      discount,
+                      discount: coupon.value,
                       payment_method: isIOS
                         ? 'IOS - My Fatoorah'
                         : 'Android - My Fatoorah',

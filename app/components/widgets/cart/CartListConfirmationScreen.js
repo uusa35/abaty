@@ -36,6 +36,7 @@ const CartListConfirmationScreen = ({
 }) => {
   const dispatch = useDispatch();
   const {colors, total} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
   const {
     cName,
     cEmail,
@@ -51,7 +52,6 @@ const CartListConfirmationScreen = ({
   const [notes, setNotes] = useState(cNotes);
   const [area, setArea] = useState(cArea);
   const [editMode, setEditMode] = useState(editModeDefault);
-  const navigation = useNavigation();
 
   const handleCashOnDelivery = useCallback(() => {
     return Alert.alert(

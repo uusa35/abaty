@@ -23,20 +23,17 @@ export const registerConstrains = {
     length: {
       minimum: 3,
       maximum: 50,
-      message: I18n.t('validations.name_at_least_three_max'),
     },
     presence: true,
   },
   email: {
     email: true,
     presence: true,
-    message: I18n.t('validations.email_required'),
   },
   mobile: {
     length: {
       minimum: 6,
-      maximum: 11,
-      message: I18n.t('validations.mobile_at_least_size_numbers_or_max_eleven'),
+      maximum: 15,
     },
     presence: true,
   },
