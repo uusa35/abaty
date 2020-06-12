@@ -17,7 +17,6 @@ import LoadingBoxedListView from './LoadingBoxedListView';
 
 const LoadingView = ({
   loadingText = null,
-  color,
   type = 'Arc',
   showLogo = false,
   shuffle = false,

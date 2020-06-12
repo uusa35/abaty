@@ -175,6 +175,7 @@ const ProductList = ({
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             alignSelf: 'center',
+            marginTop: '10%',
           }}
           ListHeaderComponentStyle={{
             backgroundColor: 'white',
@@ -182,11 +183,10 @@ const ProductList = ({
           ListHeaderComponent={
             <View
               style={{
-                marginTop: '2%',
-                marginBottom: '2%',
                 alignSelf: 'center',
                 width: '100%',
                 backgroundColor: 'transparent',
+                marginTop: showSearch ? '2%' : 0,
               }}>
               {showSearch ? (
                 <TopSearchInput search={search} setSearch={setSearch} />

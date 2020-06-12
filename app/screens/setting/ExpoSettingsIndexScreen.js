@@ -8,9 +8,9 @@ import {
   Linking,
   RefreshControl,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text, touchOpacity} from '../../constants/sizes';
+import {iconSizes, text, touchOpacity} from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
@@ -21,17 +21,14 @@ import {getMyClassifieds} from '../../redux/actions/classified';
 import {reAuthenticate} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ExpoSettingsIndexScreen = ({
-  guest,
-  lang,
-  pages,
-  dispatch,
-  colors,
-  navigation,
-  version,
-}) => {
+const ExpoSettingsIndexScreen = ({}) => {
+  const {guest, lang, settings, version} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const {colors, pages} = settings;
   const [refresh, setRefresh] = useState(false);
+  const navigation = useNavigation();
 
   const handleRefresh = () => {
     if (!guest) {
@@ -62,8 +59,13 @@ const ExpoSettingsIndexScreen = ({
             <TouchableOpacity
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('FavoriteProductIndex')}
-              style={styles.btnWrapper}>
-              <Icon name="staro" type="antdesign" size={45} />
+              style={[styles.btnWrapper]}>
+              <Icon
+                name="staro"
+                type="antdesign"
+                size={iconSizes.medium}
+                color={colors.icon_theme_color}
+              />
               <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -73,7 +75,7 @@ const ExpoSettingsIndexScreen = ({
                 activeOpacity={touchOpacity}
                 onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
                 style={styles.btnWrapper}>
-                <Icon name="staro" type="antdesign" size={45} />
+                <Icon name="staro" type="antdesign" size={iconSizes.medium} />
                 <Text style={styles.btnTitle}>
                   {I18n.t('classified_favorites')}
                 </Text>
@@ -82,7 +84,7 @@ const ExpoSettingsIndexScreen = ({
                 activeOpacity={touchOpacity}
                 onPress={() => dispatch(getMyClassifieds({redirect: true}))}
                 style={styles.btnWrapper}>
-                <Icon name="profile" type="antdesign" size={45} />
+                <Icon name="profile" type="antdesign" size={iconSizes.medium} />
                 <Text style={styles.btnTitle}>{I18n.t('my_classifieds')}</Text>
               </TouchableOpacity>
             </Fragment>
@@ -94,7 +96,11 @@ const ExpoSettingsIndexScreen = ({
                 navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
               }
               style={styles.btnWrapper}>
-              <Icon name="face-profile" type="material-community" size={45} />
+              <Icon
+                name="face-profile"
+                type="material-community"
+                size={iconSizes.medium}
+              />
               <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -103,7 +109,11 @@ const ExpoSettingsIndexScreen = ({
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('OrderIndex')}
               style={styles.btnWrapper}>
-              <Icon name="history" type="material-community" size={45} />
+              <Icon
+                name="history"
+                type="material-community"
+                size={iconSizes.medium}
+              />
               <Text style={styles.btnTitle}>{I18n.t('order_history')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -111,7 +121,7 @@ const ExpoSettingsIndexScreen = ({
             activeOpacity={touchOpacity}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
             style={styles.btnWrapper}>
-            <Icon name="language" type="entypo" size={45} />
+            <Icon name="language" type="entypo" size={iconSizes.medium} />
             <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
           </TouchableOpacity>
         </View>
@@ -168,21 +178,8 @@ const ExpoSettingsIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    guest: state.guest,
-    lang: state.lang,
-    colors: state.settings.colors,
-    pages: state.pages,
-    version: state.version,
-  };
-}
+export default ExpoSettingsIndexScreen;
 
-export default connect(mapStateToProps)(ExpoSettingsIndexScreen);
-
-ExpoSettingsIndexScreen.propTypes = {
-  guest: PropTypes.bool.isRequired,
-};
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -195,8 +192,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'lightgrey',
     borderRadius: 20,
-    width: '45%',
-    height: 150,
+    width: '40%',
+    height: 120,
+    padding: 20,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 10,

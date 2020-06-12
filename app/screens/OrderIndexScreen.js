@@ -21,12 +21,13 @@ import {colorsSelector, logoSelector} from '../redux/selectors/collection';
 import {reAuthenticate} from '../redux/actions/user';
 import {ABATI} from '../../app';
 import {images} from '../constants/images';
+import BgContainer from '../components/containers/BgContainer';
 
 const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
   const [refresh, setRefresh] = useState(false);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <BgContainer>
       {!validate.isEmpty(orders) ? (
         <FlatList
           contentContainerStyle={{
@@ -92,7 +93,7 @@ const OrderIndexScreen = ({orders, colors, logo, dispatch}) => {
           ) : null}
         </ImageBackground>
       )}
-    </View>
+    </BgContainer>
   );
 };
 

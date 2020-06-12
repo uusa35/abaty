@@ -611,7 +611,7 @@ export const HomeStack = createStackNavigator(
               borderColor: 'lightgrey',
             },
             tabStyle: {
-              backgroundColor: 'transparent',
+              backgroundColor: 'white',
               width: width / 3,
             },
             indicatorStyle: {
