@@ -1,6 +1,6 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -19,24 +19,25 @@ import BgContainer from '../../components/containers/BgContainer';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
-const ExpoHomeScreen = ({
-  homeCategories,
-  commercials,
-  slides,
-  brands,
-  homeDesigners,
-  homeCelebrities,
-  homeProducts,
-  homeCompanies,
-  splashes,
-  splash_on,
-  show_commercials,
-  colors,
-  services,
-  showIntroduction,
-  dispatch,
-  mainBg,
-}) => {
+const ExpoHomeScreen = () => {
+  const {
+    homeCategories,
+    commercials,
+    slides,
+    brands,
+    homeDesigners,
+    homeCelebrities,
+    homeProducts,
+    homeCompanies,
+    splashes,
+    splash_on,
+    show_commercials,
+    services,
+    showIntroduction,
+    mainBg,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
   };
@@ -94,45 +95,7 @@ const ExpoHomeScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeCategories: state.homeCategories,
-    brands: state.brands,
-    homeDesigners: state.homeDesigners,
-    homeCelebrities: state.homeCelebrities,
-    homeProducts: state.homeProducts,
-    homeCompanies: state.homeCompanies,
-    commercials: state.commercials,
-    slides: state.slides,
-    splashes: state.splashes,
-    logo: state.settings.logo,
-    mainBg: state.settings.main_bg,
-    splash_on: state.settings.splash_on,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors,
-    lang: state.lang,
-    services: state.homeServices,
-    showIntroduction: state.showIntroduction,
-    bootStrapped: state.bootStrapped,
-    linking: state.linking,
-  };
-}
-
-export default connect(mapStateToProps)(ExpoHomeScreen);
-
-ExpoHomeScreen.propTypes = {
-  homeCategories: PropTypes.array,
-  homeCompanies: PropTypes.array,
-  homeDesigners: PropTypes.array,
-  homeProducts: PropTypes.array,
-  commercials: PropTypes.array,
-  brands: PropTypes.array,
-  slides: PropTypes.array,
-  splashes: PropTypes.array,
-  show_commercials: PropTypes.bool,
-  splash_on: PropTypes.bool,
-  bootStrapped: PropTypes.bool,
-};
+export default ExpoHomeScreen;
 
 const styles = StyleSheet.create({
   safeContainer: {

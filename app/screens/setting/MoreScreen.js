@@ -8,7 +8,6 @@ import BgContainer from '../../components/containers/BgContainer';
 import {bottomContentInset} from '../../constants/sizes';
 
 const MoreScreen = () => {
-  const {settings} = useSelector((state) => state);
   return (
     <BgContainer>
       <ScrollView
@@ -21,12 +20,10 @@ const MoreScreen = () => {
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
         }}>
-        {!validate.isEmpty(settings) && (
-          <Fragment>
-            <SocialRowWidget settings={settings} />
-            <ContactInformationWidget settings={settings} />
-          </Fragment>
-        )}
+        <Fragment>
+          <SocialRowWidget />
+          <ContactInformationWidget />
+        </Fragment>
       </ScrollView>
     </BgContainer>
   );

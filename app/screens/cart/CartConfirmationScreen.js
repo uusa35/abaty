@@ -1,26 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import {text, width} from '../../constants/sizes';
 import I18n from '../../I18n';
 import CartListConfirmationScreen from '../../components/widgets/cart/CartListConfirmationScreen';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const CartConfirmationScreen = ({
-  cart,
-  shipment_notes,
-  shipmentFees,
-  navigation,
-  auth,
-  guest,
-  coupon,
-  colors,
-  grossTotal,
-  country,
-  COD,
-}) => {
+const CartConfirmationScreen = () => {
+  const {
+    cart,
+    country,
+    shipmentFees,
+    settings,
+    auth,
+    guest,
+    coupon,
+  } = useSelector((state) => state);
+  const {grossTotal, colors} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -54,8 +56,7 @@ const CartConfirmationScreen = ({
             shipment_notes={shipment_notes}
             editModeDefault={false}
             coupon={coupon ? coupon : null}
-            navigation={navigation}
-            COD={COD && country.is_local}
+            COD={settings.cash_on_delivery && country.is_local}
           />
         ) : (
           <View
@@ -89,34 +90,6 @@ const CartConfirmationScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cart,
-    colors: state.settings.colors,
-    total: state.total,
-    shipment_notes: state.settings.shipment_notes,
-    auth: state.auth,
-    country: state.country,
-    guest: state.guest,
-    coupon: state.coupon,
-    grossTotal: state.grossTotal,
-    shipmentFees: state.shipmentFees,
-    COD: state.settings.cash_on_delivery,
-  };
-}
-
-export default connect(mapStateToProps)(CartConfirmationScreen);
-
-CartConfirmationScreen.propTypes = {
-  cart: PropTypes.array.isRequired,
-  shipment_notes: PropTypes.string,
-  total: PropTypes.number,
-  colors: PropTypes.object,
-  country: PropTypes.object,
-  auth: PropTypes.object,
-  guest: PropTypes.bool,
-  coupon: PropTypes.object,
-  shipmentFees: PropTypes.number,
-};
+export default CartConfirmationScreen;
 
 const styles = StyleSheet.create({});

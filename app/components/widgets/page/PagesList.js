@@ -11,12 +11,13 @@ import {Icon} from 'react-native-elements';
 import {isRTL} from '../../../I18n';
 import {isIOS} from '../../../constants';
 import {bottomContentInset, text} from '../../../constants/sizes';
-import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useSelector} from 'react-redux';
 
-const PagesList = ({elements, showTitle = true, showArrow = true, title}) => {
+const PagesList = ({showTitle = true, showArrow = true, title}) => {
+  const {pages} = useSelector((state) => state.settings);
   const {colors} = useContext(GlobalValuesContext);
   return (
     <ScrollView
@@ -26,7 +27,7 @@ const PagesList = ({elements, showTitle = true, showArrow = true, title}) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       contentInset={{bottom: bottomContentInset}}>
-      {!validate.isEmpty(elements) ? (
+      {!validate.isEmpty(pages) && (
         <View
           key={elements.length}
           style={{width: '100%', alignSelf: 'center'}}>
@@ -92,16 +93,12 @@ const PagesList = ({elements, showTitle = true, showArrow = true, title}) => {
             }
           })}
         </View>
-      ) : null}
+      )}
     </ScrollView>
   );
 };
 
 export default PagesList;
-
-PagesList.propTypes = {
-  elements: PropTypes.array.isRequired,
-};
 
 const styles = StyleSheet.create({
   mainTitle: {

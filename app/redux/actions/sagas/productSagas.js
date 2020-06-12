@@ -192,7 +192,7 @@ export function* startGetProductScenario(action) {
       element.id
     ) {
       if (__DEV__) {
-        console.log('the product', element);
+        // console.log('the product', element);
       }
       yield all([put({type: actions.SET_PRODUCT, payload: element})]);
       if (!validate.isEmpty(redirect) && redirect) {

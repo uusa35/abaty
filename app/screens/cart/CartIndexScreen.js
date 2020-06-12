@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import CartList from '../../components/widgets/cart/CartList';
@@ -8,20 +8,23 @@ import {text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import BgContainer from '../../components/containers/BgContainer';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const CartIndexScreen = ({
-  cart,
-  country,
-  shipmentFees,
-  shipment_notes,
-  navigation,
-  auth,
-  guest,
-  coupon,
-  colors,
-  grossTotal,
-  area,
-}) => {
+const CartIndexScreen = () => {
+  const {
+    cart,
+    country,
+    shipmentFees,
+    settings,
+    auth,
+    guest,
+    coupon,
+    area,
+  } = useSelector((state) => state);
+  const {grossTotal, colors} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+
   return (
     <BgContainer showImage={false}>
       <View
@@ -52,7 +55,7 @@ const CartIndexScreen = ({
               guest={guest}
               grossTotal={grossTotal}
               discount={coupon.value}
-              shipment_notes={shipment_notes}
+              shipment_notes={settings.shipment_notes}
               editModeDefault={true}
               coupon={coupon}
             />
@@ -89,33 +92,6 @@ const CartIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cart,
-    colors: state.settings.colors,
-    total: state.total,
-    grossTotal: state.grossTotal,
-    shipment_notes: state.settings.shipment_notes,
-    auth: state.auth,
-    country: state.country,
-    shipmentFees: state.shipmentFees,
-    area: state.area,
-    guest: state.guest,
-    coupon: state.coupon,
-  };
-}
-
-export default connect(mapStateToProps)(CartIndexScreen);
-
-CartIndexScreen.propTypes = {
-  cart: PropTypes.array.isRequired,
-  shipment_notes: PropTypes.string,
-  total: PropTypes.number,
-  colors: PropTypes.object,
-  country: PropTypes.object,
-  auth: PropTypes.object,
-  guest: PropTypes.bool,
-  coupon: PropTypes.object,
-};
+export default CartIndexScreen;
 
 const styles = StyleSheet.create({});

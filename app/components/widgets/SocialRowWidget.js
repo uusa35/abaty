@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {View} from 'react-native-animatable';
 import {APP_CASE} from './../../../app';
 import {iconSizes} from '../../constants/sizes';
+import {useSelector} from 'react-redux';
 
-const SocialRowWidget = ({settings}) => {
+const SocialRowWidget = () => {
+  const {settings} = useSelector((state) => state);
   return (
-    <View animation="bounceIn" easing="ease-out" style={styles.container}>
+    <View
+      animation="bounceIn"
+      easing="ease-out"
+      style={styles.container}
+      useNativeDriver={true}>
       {settings.facebook ? (
         <Icon
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}

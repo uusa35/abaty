@@ -41,7 +41,7 @@ const SideMeu = ({showLogo = true}) => {
   return (
     <ImageBackground
       source={{
-        uri: menu_bg ? menu_bg : 'http://placehold.it/10/FFFFFF/FFFFFF',
+        uri: menu_bg ? menu_bg : images.whiteBgUrl,
       }}
       style={{width: '100%', flex: 1, opacity: 1}}
       resizeMode="cover">
@@ -92,7 +92,7 @@ const SideMeu = ({showLogo = true}) => {
           </Text>
           <View style={{width: '100%'}}>
             <Divider style={{marginTop: 10}} />
-            {__DEV__ ? (
+            {__DEV__ && (
               <Fragment>
                 <TouchableOpacity onPress={() => navigation.navigate('Mallr')}>
                   <Text>Mallr</Text>
@@ -108,8 +108,11 @@ const SideMeu = ({showLogo = true}) => {
                   onPress={() => navigation.navigate('ClassifiedIndex')}>
                   <Text>Classifieds</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Expo')}>
+                  <Text>MyExpo</Text>
+                </TouchableOpacity>
               </Fragment>
-            ) : null}
+            )}
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={styles.menuBtn}>

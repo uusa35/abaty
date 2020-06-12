@@ -20,6 +20,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {MALLR, ABATI, HOMEKEY, PAYMENT} from './../../../../app';
 import validate from 'validate.js';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
 const CartListConfirmationScreen = ({
   cart,
@@ -31,7 +32,6 @@ const CartListConfirmationScreen = ({
   discount = 0,
   editModeDefault = true,
   coupon = {},
-  navigation,
   COD,
 }) => {
   const dispatch = useDispatch();
@@ -51,6 +51,7 @@ const CartListConfirmationScreen = ({
   const [notes, setNotes] = useState(cNotes);
   const [area, setArea] = useState(cArea);
   const [editMode, setEditMode] = useState(editModeDefault);
+  const navigation = useNavigation();
 
   const handleCashOnDelivery = useCallback(() => {
     return Alert.alert(

@@ -51,6 +51,7 @@ import SearchProductIndexScreen from '../../screens/product/SearchProductIndexSc
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
+import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -111,6 +112,31 @@ export const HomeStack = createStackNavigator(
         ),
         headerTitle: () => <HeaderMiddle title={'homekey'} showLogo={true} />,
         headerBackTitle: () => null,
+      }),
+    },
+    Expo: {
+      screen: ExpoHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: () => (
+          <HeaderLeft showCart={false} enableProductFilter={true} />
+        ),
+        headerRight: (
+          <HeaderRight
+            displayShare={false}
+            showCountry={true}
+            showClassifiedsFilter={false}
+            showProductsSearch={false}
+            showExpoSearch={true}
+          />
+        ),
+        headerTitle: () => (
+          <HeaderMiddle title={I18n.t('home')} showLogo={true} />
+        ),
+        headerBackTitle: () => null,
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'transparent',
+        },
       }),
     },
     CartIndex: {

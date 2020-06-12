@@ -10,11 +10,7 @@ import LoadingOfflineView from '../Loading/LoadingOfflineView';
 import {isNull} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const BgContainer = ({
-  children,
-  showImage = true,
-  img = 'https://via.placeholder.com/100/fffffff/fffffff?text=text',
-}) => {
+const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
   const {
     isLoading,
     isConnected,
@@ -26,6 +22,9 @@ const BgContainer = ({
   const [currentLoading, setCurrentLoading] = useState(
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
+  const [bg, setBg] = useState(
+    !showImage ? images.whiteBg : !isNull(mainBg) ? mainBg : img,
+  );
 
   useMemo(() => {
     setCurrentLoading(
@@ -36,9 +35,7 @@ const BgContainer = ({
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        source={
-          !showImage ? images.whiteBg : {uri: !isNull(mainBg) ? mainBg : img}
-        }
+        source={img.includes('http') ? {uri: img} : img}
         style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
         resizeMode="cover">
         {isConnected ? (

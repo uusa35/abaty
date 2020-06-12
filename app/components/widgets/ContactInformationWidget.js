@@ -8,8 +8,10 @@ import MapViewWidget from './MapViewWidget';
 import validate from 'validate.js';
 import {APP_CASE} from './../../../app';
 import ImageLoaderContainer from './ImageLoaderContainer';
+import {useSelector} from 'react-redux';
 
-const ContactInformationWidget = ({settings}) => {
+const ContactInformationWidget = () => {
+  const {settings} = useSelector((state) => state);
   const {longitude, latitude} = settings;
   const {colors} = settings;
   return (

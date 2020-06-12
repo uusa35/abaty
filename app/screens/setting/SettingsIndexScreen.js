@@ -168,7 +168,7 @@ const SettingsIndexScreen = () => {
             />
           </Fragment>
         ) : null}
-        <PagesList elements={settings.pages} title={I18n.t('our_support')} />
+        <PagesList title={I18n.t('our_support')} />
       </ScrollView>
       <CopyRightInfo version={version} />
     </BgContainer>

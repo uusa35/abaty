@@ -10,6 +10,7 @@ export const images = {
   loading: require('./../../assets/images/loading.gif'),
   loadingSm: require('./../../assets/images/loading_sm.gif'),
   whiteBg: require('./../../assets/images/whiteBg.png'),
+  whiteBgUrl: 'https://via.placeholder.com/100/fffffff/fffffff?text=text',
 };
 
 export const icons = {
