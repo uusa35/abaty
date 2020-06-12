@@ -11,10 +11,11 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
+import {map, first} from 'lodash';
 
-const RegisterFormWidget = ({player_id}) => {
+const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {country} = useSelector((state) => state);
+  const {country, playerId, role, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -211,8 +212,11 @@ const RegisterFormWidget = ({player_id}) => {
               mobile,
               country_id: country.id,
               address,
-              player_id,
+              player_id: playerId,
               description,
+              role_id: role
+                ? role.id
+                : first(filter(roles, (r) => r.name === 'Client')).id,
             }),
           )
         }

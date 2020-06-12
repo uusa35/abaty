@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
@@ -9,7 +9,7 @@ import {
 } from '../../redux/selectors/collection';
 import BgContainer from '../../components/containers/BgContainer';
 
-const RegisterScreen = ({playerId}) => {
+const RegisterScreen = () => {
   const [userCountryId, setUserCountryId] = useState('');
   // const [visible, setVisible] = useState(false);
   // const {goBack, navigate, dangerouslyGetParent} = useNavigation();
@@ -33,24 +33,12 @@ const RegisterScreen = ({playerId}) => {
       {/*      : navigate('Home');*/}
       {/*  }}*/}
       {/*/>*/}
-      <RegisterFormWidget userCountryId={userCountryId} player_id={playerId} />
+      <RegisterFormWidget userCountryId={userCountryId} />
     </BgContainer>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    token: tokenSelector(state),
-    playerId: playerIdSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(React.memo(RegisterScreen));
-
-RegisterScreen.propTypes = {
-  playerId: PropTypes.string,
-};
-
+export default React.memo(RegisterScreen);
 const styles = StyleSheet.create({
   iconContainer: {
     flex: 0.1,

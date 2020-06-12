@@ -1,23 +1,23 @@
 import React, {useState, useContext} from 'react';
-import FastImage from 'react-native-fast-image';
 import {text} from '../../constants/sizes';
-import {images} from '../../constants/images';
 import {appUrlIos} from './../../env';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {googleLogin, submitAuth} from '../../redux/actions/user';
+import {googleLogin, setRole, submitAuth} from '../../redux/actions/user';
 import {View, Linking} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import BgContainer from '../containers/BgContainer';
 import ImageLoaderContainer from './ImageLoaderContainer';
+import {map, first, filter} from 'lodash';
 
 const LoginForm = ({showBtns = false}) => {
+  const {roles} = useSelector((state) => state);
+  const {logo, colors} = useContext(GlobalValuesContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
-  const {logo, colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
 
@@ -32,6 +32,11 @@ const LoginForm = ({showBtns = false}) => {
   //   //iosClientId:
   //   //'166842560446-to76ga276m1dihshq8tl92bfbttj1i5h.apps.googleusercontent.com', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   // });
+
+  const handleRegisterClick = () => {
+    dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
+    navigate('Register');
+  };
 
   return (
     <BgContainer>
@@ -123,7 +128,7 @@ const LoginForm = ({showBtns = false}) => {
                 fontFamily: text.font,
                 color: colors.btn_text_theme_color,
               }}
-              onPress={() => navigate('Register')}
+              onPress={() => handleRegisterClick()}
             />
           ) : null}
           {showBtns ? (

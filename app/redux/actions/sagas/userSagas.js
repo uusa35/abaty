@@ -622,12 +622,6 @@ export function* startAuthenticatedScenario() {
 
 export function* startRegisterScenario(action) {
   try {
-    const {name, mobile, email, address} = action.payload;
-    const result = validate(
-      {name, mobile, email, address},
-      () => registerConstrains,
-    );
-    // if (validate.isEmpty(result)) {
     const element = yield call(api.register, action.payload);
     if (validate.isObject(element) && !validate.isEmpty(element)) {
       const {email, password} = action.payload;
@@ -646,9 +640,6 @@ export function* startRegisterScenario(action) {
     } else {
       throw element;
     }
-    // } else {
-    //   throw first(values(result))[0];
-    // }
   } catch (e) {
     yield call(enableErrorMessage, e);
   } finally {

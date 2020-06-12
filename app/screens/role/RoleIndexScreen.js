@@ -10,10 +10,11 @@ import {text} from '../../constants/sizes';
 import BgContainer from '../../components/containers/BgContainer';
 
 const RoleIndexScreen = ({roles, dispatch, navigation}) => {
-  const handleClick = useCallback((r) => {
+  const handleClick = (r) => {
     dispatch(setRole(r));
     navigation.navigate('Register');
-  });
+  };
+
   return (
     <BgContainer>
       <ScrollView

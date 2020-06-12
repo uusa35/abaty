@@ -23,7 +23,7 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
   const [bg, setBg] = useState(
-    !showImage ? images.whiteBg : !isNull(mainBg) ? mainBg : img,
+    !showImage ? images.whiteBg : !isNull(mainBg) && showImage ? mainBg : img,
   );
 
   useMemo(() => {
@@ -35,7 +35,7 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        source={img.includes('http') ? {uri: img} : img}
+        source={!showImage ? images.whiteBg : {uri: bg}}
         style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
         resizeMode="cover">
         {isConnected ? (
