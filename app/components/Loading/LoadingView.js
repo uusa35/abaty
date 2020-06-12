@@ -29,6 +29,7 @@ const LoadingView = ({
     isLoadingProfile,
     isLoadingBoxedList,
   } = useSelector((state) => state);
+  const {colors} = settings;
   const [moveRand, setMoveRand] = useState([
     'CircleFlip',
     'Bounce',
@@ -54,12 +55,12 @@ const LoadingView = ({
       isLoadingBoxedList ? (
         <RadialGradient
           style={styles.itemContainerStyle}
-          colors={['grey', 'lightgrey', 'white']}
+          colors={[colors.btn_bg_theme_color, 'lightgrey', 'white']}
           center={[width / 2, 0]}
           radius={width}>
           <Spinner
             type={shuffle ? first(shuffle(moveRand)) : type}
-            color={color}
+            color={colors.btn_bg_theme_color}
             size={iconSizes.medium}
           />
           {showLogo && (

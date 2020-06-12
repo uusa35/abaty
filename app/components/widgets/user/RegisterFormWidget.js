@@ -11,7 +11,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FastImage from 'react-native-fast-image';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
-import {map, first} from 'lodash';
+import {filter, first} from 'lodash';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);

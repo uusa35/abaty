@@ -20,7 +20,7 @@ import VideosVerticalWidget from '../../../components/widgets/video/VideosVertic
 import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../../app';
 import UserImageProfileRounded from '../../../components/widgets/user/UserImageProfileRounded';
 import ElementsVerticalList from '../../../components/Lists/ElementsVerticalList';
-import {uniqBy} from 'lodash';
+import {uniqBy, take} from 'lodash';
 
 const DesignerShowScreen = ({
   element,
@@ -56,7 +56,7 @@ const DesignerShowScreen = ({
         'id',
       );
       setProducts(filteredProducts);
-      setCollectedCategories(filteredCategories);
+      setCollectedCategories(take(filteredCategories, 5));
     } else {
       dispatch(enableWarningMessage(I18n.t('element_does_not_exist')));
       return dispatch(navigation.goBack());
