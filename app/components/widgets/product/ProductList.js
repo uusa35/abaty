@@ -6,6 +6,7 @@ import {
   Text,
   KeyboardAvoidingView,
   FlatList,
+  Image,
 } from 'react-native';
 import ProductWidget from './ProductWidget';
 import PropTypes from 'prop-types';
@@ -27,6 +28,7 @@ import TopSearchInput from '../TopSearchInput';
 import SearchSort from '../search/SearchSort';
 import SortByModal from '../search/SortByModal';
 import {useDispatch, useSelector} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ProductList = ({
   products = [],
@@ -43,6 +45,7 @@ const ProductList = ({
   showSortPrice = true,
   showSortAlpha = true,
   searchElements,
+  emptyImage = null,
 }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -144,120 +147,128 @@ const ProductList = ({
 
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
-      {!validate.isEmpty(items) ? (
-        <FlatList
-          scrollEnabled={showFooter}
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={true}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={TheHold}
-          onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: bottomContentInset}}
-          numColumns={2}
-          data={uniqBy(items, 'id')}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => (showRefresh ? handleRefresh() : null)}
-            />
-          }
-          contentContainerStyle={styles.container}
-          disableVirtualization={false}
-          columnWrapperStyle={{
-            flexWrap: 'wrap',
-            justifyContent: 'flex-start',
-            alignItems: 'flex-start',
-            alignSelf: 'center',
-          }}
-          ListHeaderComponentStyle={{
-            backgroundColor: 'white',
-          }}
-          ListHeaderComponent={
-            <View
-              style={{
-                alignSelf: 'center',
-                width: '100%',
-                backgroundColor: 'transparent',
-                marginTop: showSearch ? '3%' : 0,
-              }}>
-              {showSearch ? (
-                <TopSearchInput search={search} setSearch={setSearch} />
-              ) : null}
-              {showSortSearch && (
-                <SearchSort
-                  sort={sort}
-                  sortModal={sortModal}
-                  setSortModal={setSortModal}
-                  setSort={setSort}
-                  showProductsFilter={showProductsFilter}
-                />
-              )}
-              {showTitle ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginTop: 10,
-                    padding: 5,
-                    paddingRight: 25,
-                  }}>
-                  <Text
-                    style={[
-                      styles.mainTitle,
-                      {color: colors.header_one_theme_color},
-                    ]}>
-                    {title ? title : I18n.t('products')}
-                  </Text>
-                  {showTitleIcons ? (
-                    <Icon
-                      type="entypo"
-                      name="select-arrows"
-                      size={iconSizes.smaller}
-                      onPress={() => setSortModal(true)}
-                    />
-                  ) : null}
-                </View>
-              ) : null}
-            </View>
-          }
-          ListFooterComponentStyle={{
-            marginBottom: bottomContentInset,
-          }}
-          ListFooterComponent={() =>
-            showFooter ? (
-              <NoMoreElements
-                title={I18n.t('no_more_products')}
-                isLoading={refresh}
+      <FlatList
+        ListEmptyComponent={
+          <View style={styles.emptyCaseBtn}>
+            {emptyImage ? (
+              <Image
+                source={emptyImage}
+                style={{width, height: width}}
+                resizeMode="contain"
               />
-            ) : null
-          }
-          renderItem={({item}) => (
-            <ProductWidget
-              element={item}
-              showName={showName}
-              key={item.id}
-              handleClickProductWidget={handleClickProductWidget}
-            />
-          )}
-        />
-      ) : (
-        <View style={styles.emptyCaseBtn}>
-          <Button
-            raised
-            title={I18n.t('no_products')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
+            ) : (
+              <Button
+                raised
+                title={I18n.t('no_products')}
+                type="outline"
+                buttonStyle={{width: '100%'}}
+                titleStyle={{fontFamily: text.font}}
+              />
+            )}
+          </View>
+        }
+        scrollEnabled={showFooter}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        automaticallyAdjustContentInsets={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReachedThreshold={TheHold}
+        onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset}}
+        numColumns={2}
+        data={uniqBy(items, 'id')}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => (showRefresh ? handleRefresh() : null)}
           />
-        </View>
-      )}
+        }
+        contentContainerStyle={styles.container}
+        disableVirtualization={false}
+        columnWrapperStyle={{
+          flexWrap: 'wrap',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          alignSelf: 'center',
+        }}
+        ListHeaderComponentStyle={{
+          backgroundColor: 'white',
+        }}
+        ListHeaderComponent={
+          <View
+            style={{
+              alignSelf: 'center',
+              width: '100%',
+              backgroundColor: 'transparent',
+              marginTop: showSearch ? '3%' : 0,
+            }}>
+            {showSearch ? (
+              <TopSearchInput search={search} setSearch={setSearch} />
+            ) : null}
+            {showSortSearch && (
+              <SearchSort
+                sort={sort}
+                sortModal={sortModal}
+                setSortModal={setSortModal}
+                setSort={setSort}
+                showProductsFilter={showProductsFilter}
+              />
+            )}
+            {showTitle ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginTop: 10,
+                  padding: 5,
+                  paddingRight: 25,
+                }}>
+                <Text
+                  style={[
+                    styles.mainTitle,
+                    {color: colors.header_one_theme_color},
+                  ]}>
+                  {title ? title : I18n.t('products')}
+                </Text>
+                {showTitleIcons ? (
+                  <Icon
+                    type="entypo"
+                    name="select-arrows"
+                    size={iconSizes.smaller}
+                    onPress={() => setSortModal(true)}
+                  />
+                ) : null}
+              </View>
+            ) : null}
+          </View>
+        }
+        ListFooterComponentStyle={{
+          marginBottom: bottomContentInset,
+        }}
+        ListFooterComponent={() =>
+          showFooter && !validate.isEmpty(products) ? (
+            <NoMoreElements
+              title={I18n.t('no_more_products')}
+              isLoading={refresh}
+            />
+          ) : null
+        }
+        renderItem={({item}) => (
+          <ProductWidget
+            element={item}
+            showName={showName}
+            key={item.id}
+            handleClickProductWidget={handleClickProductWidget}
+          />
+        )}
+      />
       <SortByModal
         setSortModal={setSortModal}
         sortModal={sortModal}
@@ -298,12 +309,11 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   emptyCaseBtn: {
-    paddingTop: '20%',
-    minHeight: '100%',
-    // borderWidth : 10,
-    width: width - 50,
+    marginTop: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
     alignSelf: 'center',
-    // justifyContent: 'center',
   },
   sortModalContainer: {
     position: 'absolute',

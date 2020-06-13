@@ -28,6 +28,7 @@ const LoadingProfileView = () => {
         padding: 0,
       }}>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={250}
         width={width}
         style={{marginBottom: 10, alignSelf: 'center'}}>
@@ -43,6 +44,7 @@ const LoadingProfileView = () => {
       </SvgAnimatedLinearGradient>
       {isRTL ? (
         <SvgAnimatedLinearGradient
+          useNativeDriver={true}
           height={150}
           width={width - 50}
           style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -65,10 +67,12 @@ const LoadingProfileView = () => {
         </SvgAnimatedLinearGradient>
       ) : (
         <SvgAnimatedLinearGradient
+          useNativeDriver={true}
           height={150}
           width={width - 50}
           style={{marginBottom: 5, alignSelf: 'center'}}>
           <Rect
+            useNativeDriver={true}
             x="0"
             y="0"
             width={120}
@@ -85,10 +89,12 @@ const LoadingProfileView = () => {
         </SvgAnimatedLinearGradient>
       )}
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={200}
         width={width}
         style={{marginBottom: 10, alignSelf: 'center'}}>
         <Rect
+          useNativeDriver={true}
           x="0"
           y="0"
           width={width}
@@ -99,6 +105,7 @@ const LoadingProfileView = () => {
         />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={50}
         width={width - 50}
         style={{alignSelf: 'center'}}>
@@ -113,6 +120,7 @@ const LoadingProfileView = () => {
         />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={150}
         width={width - 50}
         style={{marginBottom: 5, alignSelf: 'center'}}>
@@ -124,6 +132,7 @@ const LoadingProfileView = () => {
         <Rect x="0" y="140" rx="3" ry="3" width="800" height="10" />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={250}
         width={width - 50}
         style={{marginBottom: 5, alignSelf: 'center'}}>

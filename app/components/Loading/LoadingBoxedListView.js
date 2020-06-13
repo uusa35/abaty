@@ -28,6 +28,7 @@ const LoadingBoxedListView = () => {
         padding: 0,
       }}>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={150}
         width={width}
         style={{marginBottom: 10, alignSelf: 'center'}}>
@@ -42,6 +43,7 @@ const LoadingBoxedListView = () => {
         />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={320}
         width="98%"
         style={{margin: 5, alignSelf: 'center'}}>
@@ -73,6 +75,7 @@ const LoadingBoxedListView = () => {
         <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={320}
         width="98%"
         style={{margin: 5, alignSelf: 'center'}}>
@@ -104,6 +107,7 @@ const LoadingBoxedListView = () => {
         <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
       </SvgAnimatedLinearGradient>
       <SvgAnimatedLinearGradient
+        useNativeDriver={true}
         height={320}
         width="98%"
         style={{margin: 5, alignSelf: 'center'}}>

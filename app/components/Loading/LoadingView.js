@@ -48,10 +48,7 @@ const LoadingView = ({
 
   return (
     <Fragment>
-      {isLoading ||
-      isLoadingContent ||
-      isLoadingProfile ||
-      isLoadingBoxedList ? (
+      {isLoading && (
         <RadialGradient
           style={styles.itemContainerStyle}
           colors={[colors.btn_bg_theme_color, 'lightgrey', 'white']}
@@ -73,22 +70,22 @@ const LoadingView = ({
             <Text style={styles.loadingText}>{loadingText}</Text>
           )}
         </RadialGradient>
-      ) : null}
-      {/*{isLoadingContent && (*/}
-      {/*  <LoadingContentView loadingText={I18n.t('loading')} />*/}
-      {/*)}*/}
-      {/*{isLoadingProfile && (*/}
-      {/*  <LoadingProfileView*/}
-      {/*    loadingText={I18n.t('loading')}*/}
-      {/*    logo={settings.logo}*/}
-      {/*  />*/}
-      {/*)}*/}
-      {/*{isLoadingBoxedList && (*/}
-      {/*  <LoadingBoxedListView*/}
-      {/*    loadingText={I18n.t('loading')}*/}
-      {/*    logo={settings.logo}*/}
-      {/*  />*/}
-      {/*)}*/}
+      )}
+      {isLoadingContent && (
+        <LoadingContentView loadingText={I18n.t('loading')} />
+      )}
+      {isLoadingProfile && (
+        <LoadingProfileView
+          loadingText={I18n.t('loading')}
+          logo={settings.logo}
+        />
+      )}
+      {isLoadingBoxedList && (
+        <LoadingBoxedListView
+          loadingText={I18n.t('loading')}
+          logo={settings.logo}
+        />
+      )}
     </Fragment>
   );
 };

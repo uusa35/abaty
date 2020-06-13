@@ -1,36 +1,28 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../../components/widgets/product/ProductList';
 import BgContainer from '../../components/containers/BgContainer';
+import {images} from '../../constants/images';
 
-const FavoriteProductIndexScreen = ({favorites}) => {
-  useEffect(() => {}, [favorites]);
+const FavoriteProductIndexScreen = () => {
+  const {productFavorites} = useSelector((state) => state);
 
   return (
-    <BgContainer>
+    <BgContainer showImage={false}>
       <ProductList
-        products={favorites}
+        products={productFavorites}
         searchElements={{}}
         showMore={false}
         showSearch={false}
         showProductsFilter={false}
+        emptyImage={images.emptyProductFavorite}
       />
     </BgContainer>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    favorites: state.productFavorites,
-  };
-}
-
-export default connect(mapStateToProps)(FavoriteProductIndexScreen);
-
-FavoriteProductIndexScreen.propTypes = {
-  favorites: PropTypes.array.isRequired,
-};
+export default FavoriteProductIndexScreen;
 
 const styles = StyleSheet.create({});

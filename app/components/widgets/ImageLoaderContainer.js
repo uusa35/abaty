@@ -4,13 +4,14 @@ import {images} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {isNull} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import FastImage from 'react-native-fast-image';
 
 const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
   const [imageLoading, setImageLoading] = useState(true);
   const {logo} = useContext(GlobalValuesContext);
 
   return (
-    <Image
+    <FastImage
       source={
         imageLoading && !isNull(img)
           ? images.loadingSm

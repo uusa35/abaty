@@ -52,10 +52,10 @@ const AppHomeConfigComponent = () => {
     OneSignal.addEventListener('ids', onIds);
     Linking.addEventListener('url', handleOpenURL);
     return () => {
-      OneSignal.removeEventListener('received', onReceived);
-      OneSignal.removeEventListener('opened', onOpened);
+      //   OneSignal.removeEventListener('received', onReceived);
+      //   OneSignal.removeEventListener('opened', onOpened);
       OneSignal.removeEventListener('ids', onIds);
-      Linking.removeEventListener('url', handleOpenURL);
+      //   Linking.removeEventListener('url', handleOpenURL);
     };
   }, [bootStrapped]);
 

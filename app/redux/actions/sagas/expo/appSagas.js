@@ -18,6 +18,7 @@ import {
   startGetHomeCelebrities,
   startGetHomeCompaniesScenario,
   startGetHomeDesigners,
+  startGetRolesScenario,
 } from '../userSagas';
 import {
   setDeviceId,
@@ -55,7 +56,7 @@ export function* expoBootStrap() {
     call(setHomeSplashes),
     call(startGetColorsScenario),
     call(startGetSizesScenario),
-    put({type: GET_ROLES, payload: {}}),
+    call(startGetRolesScenario),
     call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
     call(startGetParentCategoriesScenario),
     call(startGetHomeCategoriesScenario),

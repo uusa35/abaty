@@ -18,6 +18,7 @@ import {
   startGetHomeCelebrities,
   startGetHomeCompaniesScenario,
   startGetHomeDesigners,
+  startGetRolesScenario,
 } from '../userSagas';
 import {
   setDeviceId,
@@ -37,6 +38,7 @@ import {
 import {getHomeServicesScenario, getServiceIndex} from '../serviceSagas';
 import {getHomeUserCategories} from '../categorySagas';
 import * as actions from '../../types';
+import {GET_ROLES} from '../../types';
 
 export function* abatiBootStrap() {
   yield all([
@@ -74,6 +76,7 @@ export function* abatiBootStrap() {
     call(startGetHomeCelebrities, {
       payload: {searchParams: {on_home: 1, is_celebrity: 1}},
     }),
+    call(startGetRolesScenario),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),
   ]);
   yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true});

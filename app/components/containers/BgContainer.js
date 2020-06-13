@@ -7,7 +7,6 @@ import AppGlobalConfig from './AppGlobalConfig';
 import {useSelector} from 'react-redux';
 import LoadingView from '../Loading/LoadingView';
 import LoadingOfflineView from '../Loading/LoadingOfflineView';
-import {isNull} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
@@ -23,7 +22,7 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
   const [bg, setBg] = useState(
-    !showImage ? images.whiteBg : !isNull(mainBg) && showImage ? mainBg : img,
+    !showImage ? images.whiteBg : mainBg.includes('.') ? mainBg : img,
   );
 
   useMemo(() => {
