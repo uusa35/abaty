@@ -23,9 +23,10 @@ const FavoriteCompanyIndexScreen = () => {
       <View
         animation="bounceIn"
         easing="ease-out"
+        useNativeDriver={true}
         style={{flex: 1, marginTop: '5%'}}>
         <ElementsVerticalList
-          elements={auth.myFannedList}
+          elements={!guest ? auth.myFannedList : []}
           searchParams={{}}
           showMore={true}
           type="favoriteCompanies"

@@ -69,7 +69,11 @@ const UserImageProfileRounded = ({
   );
 
   return (
-    <View animation="bounceInLeft" easing="ease-out" style={styles.elementRow}>
+    <View
+      animation="bounceInLeft"
+      easing="ease-out"
+      style={styles.elementRow}
+      useNativeDriver={true}>
       <View
         style={{
           flexDirection: 'row',

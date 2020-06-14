@@ -202,12 +202,6 @@ EscrapCompanyShowScreen.navigationOptions = ({navigation}) => ({
 
 export default EscrapCompanyShowScreen;
 
-EscrapCompanyShowScreen.propTypes = {
-  company: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired,
-  commentModal: PropTypes.bool.isRequired,
-};
-
 const styles = StyleSheet.create({
   mainTitle: {
     fontFamily: text.font,

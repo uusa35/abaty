@@ -102,10 +102,7 @@ const ClassifiedShowScreen = ({
           {!validate.isEmpty(element.items) ? (
             <PropertiesWidget elements={element.items} />
           ) : null}
-          <View
-            animation="bounceInLeft"
-            easing="ease-out"
-            style={{marginTop: 15}}>
+          <View style={{marginTop: 15}}>
             {element.description ? (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>

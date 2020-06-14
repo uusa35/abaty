@@ -245,7 +245,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: () => <HeaderCustom navigation={navigation} />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,
@@ -256,7 +256,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: () => <HeaderCustom navigation={navigation} />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,
@@ -267,7 +267,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: () => <HeaderCustom navigation={navigation} />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,
@@ -278,7 +278,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom navigation={navigation} />,
+        headerRight: () => <HeaderCustom navigation={navigation} />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,

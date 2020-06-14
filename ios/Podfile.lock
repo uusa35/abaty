@@ -186,7 +186,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - OneSignal (2.14.2)
+  - OneSignal (2.13.1)
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
@@ -382,14 +382,14 @@ PODS:
     - React
   - react-native-netinfo (5.9.2):
     - React
-  - react-native-onesignal (3.8.0):
-    - OneSignal (= 2.14.2)
+  - react-native-onesignal (3.7.3):
+    - OneSignal (= 2.13.1)
     - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (6.1.2):
     - React
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.0.3):
+  - react-native-safe-area-context (3.0.5):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -400,7 +400,7 @@ PODS:
     - React
   - react-native-viewpager (4.0.1):
     - React
-  - react-native-webview (10.2.3):
+  - react-native-webview (10.3.1):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -828,7 +828,7 @@ SPEC CHECKSUMS:
   lottie-react-native: a664f59f1f298c2696dd0ae07b15cbdfc433cb02
   Mixpanel: 446b6e7713aa34a9a3516ff7648d56551384fc94
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  OneSignal: 1dcb1fd96f9c15a5c352dcfcab9106a7c15eced7
+  OneSignal: fa98eaa90372bb367b6a4a1c1622ffb9832c7600
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
@@ -847,14 +847,14 @@ SPEC CHECKSUMS:
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-mixpanel: d644efe1ca33d2646d5cba29e24a13ebc9b37209
   react-native-netinfo: cb74e17062b2af5a16a4b137f32495f241df1a8e
-  react-native-onesignal: 525e12a78bde6c128ed1934866ef7dab99260e2c
+  react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 7d76a6619f76a6ebfb2f82a4f2feeb17826ba8b4
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: 45e98227f3d65b31d384a5d0950aec4bf73a884c
+  react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: 1af972f5a745647b51250285f4da26d3fb3d5f0f
-  react-native-webview: 0bacc79175bc44869e4c1a015b9bc21df8cf4feb
+  react-native-webview: 40bbeb6d011226f34cb83f845aeb0fdf515cfc5f
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71

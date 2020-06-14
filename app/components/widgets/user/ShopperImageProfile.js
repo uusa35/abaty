@@ -14,6 +14,7 @@ import {Badge, Icon, Button} from 'react-native-elements';
 import {MALLR} from './../../../../app';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 const ShopperImageProfile = ({
   medium,
   logo,
@@ -62,7 +63,7 @@ const ShopperImageProfile = ({
       animation="bounceInLeft"
       easing="ease-out"
       style={styles.elementRow}>
-      <FastImage source={{uri: medium ? medium : logo}} style={styles.logo} />
+      <ImageLoaderContainer img={medium} style={styles.logo} />
       <View
         style={{
           justifyContent: 'flex-start',

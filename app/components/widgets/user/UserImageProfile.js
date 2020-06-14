@@ -173,11 +173,9 @@ export default UserImageProfile;
 
 UserImageProfile.propTypes = {
   medium: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   showFans: PropTypes.bool.isRequired,
   showRating: PropTypes.bool.isRequired,
-  guest: PropTypes.bool.isRequired,
   showComments: PropTypes.bool.isRequired,
 };
 

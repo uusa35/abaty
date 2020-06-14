@@ -154,9 +154,10 @@ export const HomeStack = createStackNavigator(
     CompanyShow: {
       screen: EscrapCompanyShowScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
+        // headerTitle: () => (
+        //   <HeaderMiddle title={navigation.state.params.name} />
+        // ),
+        headerTitle: () => null,
         headerRight: <HeaderCustom />,
         headerBackTitle: () => null,
       }),

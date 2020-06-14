@@ -87,7 +87,7 @@ const ProductShowScreen = ({
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
-          <View animation="bounceInLeft" easing="ease-out">
+          <View>
             {product.description ? (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>

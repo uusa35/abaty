@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import BgContainer from '../../components/containers/BgContainer';
@@ -19,10 +19,7 @@ const ParentCategoryIndexScreen = () => {
 
   return (
     <BgContainer>
-      <View
-        animation="bounceIn"
-        easing="ease-out"
-        style={{flex: settings.show_commercials ? 0.8 : 1}}>
+      <View style={{flex: settings.show_commercials ? 0.8 : 1}}>
         <CategoriesList
           elements={homeUserCategories}
           type="company"

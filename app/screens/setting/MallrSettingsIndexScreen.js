@@ -41,6 +41,7 @@ const MallrSettingsIndexScreen = ({
       <View
         animation="bounceInRight"
         easing="ease-out"
+        useNativeDriver={true}
         style={styles.container}>
         {!guest ? (
           <TouchableOpacity

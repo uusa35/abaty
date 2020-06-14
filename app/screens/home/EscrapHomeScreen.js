@@ -20,7 +20,7 @@ import EscrapSearchTab from '../../components/widgets/search/EscrapSearchTab';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import widgetStyles from '../../components/widgets/widgetStyles';
-import {text} from '../../constants/sizes';
+import {text, width} from '../../constants/sizes';
 import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer';
 import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
 import {map} from 'lodash';
@@ -92,33 +92,35 @@ const EscrapHomeScreen = () => {
           {/*) : null}*/}
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
+              // flexDirection: 'row',
+              justifyContent: 'center',
               alignItems: 'center',
-              paddingTop: 20,
+              // paddingTop: 20,
               paddingBottom: 10,
             }}>
             {map(homeUserCategories, (c, i) => (
               <TouchableOpacity
                 activeOpacity={touchOpacity}
                 key={i}
-                style={widgetStyles.btnStyle}
+                style={{width: '100%'}}
                 onPress={() => dispatch(setCategoryAndGoToNavChildren(c))}>
                 <ImageLoaderContainer
                   img={c.thumb}
-                  style={{width: 150, height: 140, borderRadius: 20}}
+                  style={{width: width, height: 180}}
                   resizeMode="cover"
                 />
-                <Text
-                  style={[
-                    widgetStyles.elementName,
-                    {
-                      color: colors.header_tow_theme_color,
-                      fontSize: text.large,
-                    },
-                  ]}>
-                  {c.name}
-                </Text>
+                {c.is_featured && (
+                  <Text
+                    style={[
+                      widgetStyles.elementName,
+                      {
+                        color: colors.header_tow_theme_color,
+                        fontSize: text.large,
+                      },
+                    ]}>
+                    {c.name}
+                  </Text>
+                )}
               </TouchableOpacity>
             ))}
           </View>

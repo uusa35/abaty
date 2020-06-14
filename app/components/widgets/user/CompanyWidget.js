@@ -13,7 +13,7 @@ const CompanyWidget = ({element, showName = true}) => {
   const {colors} = useContext(GlobalValuesContext);
 
   return (
-    <View animation="pulse" easing="ease-out" key={element.id}>
+    <View key={element.id}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
         style={widgetStyles.btnStyle}

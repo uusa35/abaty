@@ -13,7 +13,11 @@ const BrandList = ({elements, showName = false}) => {
       showsHorizontalScrollIndicator={false}
       endFillColor="white"
       showsVerticalScrollIndicator={false}>
-      <View animation="bounceInLeft" easing="ease-out" style={styles.wrapper}>
+      <View
+        animation="bounceInLeft"
+        easing="ease-out"
+        style={styles.wrapper}
+        useNativeDriver={true}>
         {map(elements, (b, i) => (
           <BrandWidget
             element={b}

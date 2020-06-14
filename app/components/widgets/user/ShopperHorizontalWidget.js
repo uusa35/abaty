@@ -58,7 +58,11 @@ const ShopperHorizontalWidget = ({
         showsHorizontalScrollIndicator={false}
         style={widgetStyles.wrapper}>
         {map(elements, (c, i) => (
-          <View animation="pulse" easing="ease-out" key={c.id}>
+          <View
+            animation="pulse"
+            easing="ease-out"
+            key={c.id}
+            useNativeDriver={true}>
             <TouchableOpacity
               activeOpacity={touchOpacity}
               key={i}

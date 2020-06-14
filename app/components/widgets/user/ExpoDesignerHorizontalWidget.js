@@ -106,7 +106,11 @@ const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
               }}
               data={elements}
               renderItem={({item}) => (
-                <View animation="pulse" easing="ease-out" key={item.id}>
+                <View
+                  animation="pulse"
+                  easing="ease-out"
+                  key={item.id}
+                  useNativeDriver={true}>
                   <TouchableOpacity
                     activeOpacity={touchOpacity}
                     style={widgetStyles.btnStyle}

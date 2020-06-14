@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import validate from 'validate.js';
-const SubCategoryIndexScreen = ({
-  homeUserCategories,
-  category,
-  commercials,
-  show_commercials,
-  dispatch,
-  navigation,
-}) => {
+import {useNavigation} from 'react-navigation-hooks';
+const SubCategoryIndexScreen = () => {
+  const {category, commercials, show_commercials} = useSelector(
+    (state) => state,
+  );
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   useEffect(() => {
     if (validate.isEmpty(category)) {
       dispatch(navigation.navigate('Home'));
@@ -23,8 +23,6 @@ const SubCategoryIndexScreen = ({
     <BgContainer showImage={false}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
         <View
-          animation="bounceIn"
-          easing="ease-out"
           style={{flex: show_commercials ? 0.8 : 1, backgroundColor: 'white'}}>
           <CategoriesList
             elements={category.children}
@@ -43,13 +41,4 @@ const SubCategoryIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    category: state.category,
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-    homeUserCategories: state.homeUserCategories,
-  };
-}
-
-export default connect(mapStateToProps)(SubCategoryIndexScreen);
+export default SubCategoryIndexScreen;

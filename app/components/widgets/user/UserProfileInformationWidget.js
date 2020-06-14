@@ -13,7 +13,7 @@ import {isNull} from 'lodash';
 const UserProfileInformationWidget = ({auth}) => {
   const {logo, colors} = useContext(GlobalValuesContext);
   return (
-    <View animation="bounceInLeft" easing="ease-out">
+    <View animation="bounceInLeft" easing="ease-out" useNativeDriver={true}>
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
         <FastImage
           source={{

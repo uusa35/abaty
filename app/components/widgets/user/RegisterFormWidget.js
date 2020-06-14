@@ -1,17 +1,16 @@
 import React, {useState, useContext} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants/sizes';
-import {images} from '../../../constants/images';
+import {bottomContentInset, text, height} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';
 import {register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import FastImage from 'react-native-fast-image';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
 import {filter, first} from 'lodash';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
@@ -30,19 +29,18 @@ const RegisterFormWidget = () => {
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 180}}
+      contentInset={{bottom: bottomContentInset}}
       contentContainerStyle={{
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        minHeight: height,
         alignSelf: 'center',
       }}>
-      <FastImage
-        source={{uri: logo}}
-        style={{width: 50, height: 50, marginTop: 10, marginBottom: 10}}
+      <ImageLoaderContainer
+        img={logo}
+        style={{width: 50, height: 50, marginTop: 10, marginBottom: '5%'}}
         resizeMode="contain"
-        loadingIndicatorSource={images.logo}
       />
       <Input
         placeholder={I18n.t('name') + '*'}

@@ -334,34 +334,7 @@ const SideMeu = ({showLogo = true}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    menuBg: state.settings.menu_bg,
-    logo: state.settings.logo,
-    company: state.settings.company,
-    images: state.settings.images,
-    youtube: state.settings.youtube,
-    colors: state.settings.colors,
-    guest: state.guest,
-    lang: state.lang,
-    name: state.auth.name,
-    terms: state.settings.terms,
-    policy: state.settings.policy,
-  };
-}
-
 export default SideMeu;
-
-SideMeu.propTypes = {
-  menuBg: PropTypes.string,
-  logo: PropTypes.string,
-  company: PropTypes.string,
-  images: PropTypes.array,
-  youtube: PropTypes.string,
-  colors: PropTypes.object.isRequired,
-  guest: PropTypes.bool,
-  lang: PropTypes.string,
-};
 
 const styles = StyleSheet.create({
   container: {

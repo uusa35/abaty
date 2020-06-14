@@ -48,6 +48,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
       key={element.id}
       animation="pulse"
       easing="ease-out"
+      useNativeDriver={true}
       style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
@@ -59,7 +60,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
           resizeMode="cover"
           img={element.thumb}
         />
-        {showBtn ? (
+        {showBtn && element.is_featured ? (
           <Button
             onPress={() => handleClick(element)}
             raised

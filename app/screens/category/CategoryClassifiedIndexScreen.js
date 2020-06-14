@@ -16,6 +16,7 @@ const CategoryClassifiedIndexScreen = ({
       <View
         animation="bounceIn"
         easing="ease-out"
+        useNativeDriver={true}
         style={{flex: show_commercials ? 0.8 : 1, backgroundColor: 'white'}}>
         <CategoriesList
           elements={homeClassifiedCategories}
