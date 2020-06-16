@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';

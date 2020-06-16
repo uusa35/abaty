@@ -44,14 +44,14 @@ const DesignerShowScreen = () => {
       {key: 'products', title: I18n.t('products')},
       {key: 'info', title: I18n.t('information').substring(0, 10)},
     ];
-    if (!isEmpty(designer.videoGroup.video_url_one)) {
+    if (!validate.isEmpty(designer.videoGroup.video_url_one)) {
       currentRoutes.push({key: 'videos', title: I18n.t('videos')});
     }
     setRoutes(currentRoutes);
   }, [designer]);
 
   useMemo(() => {
-    if (element) {
+    if (designer) {
       const filteredCategories = uniqBy(
         designer.productCategories.concat(designer.productGroupCategories),
         'id',
@@ -64,9 +64,9 @@ const DesignerShowScreen = () => {
       setCollectedCategories(take(filteredCategories, 5));
     } else {
       dispatch(enableWarningMessage(I18n.t('element_does_not_exist')));
-      return dispatch(navigation.goBack());
+      dispatch(navigation.goBack());
     }
-  }, [element]);
+  }, [designer]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});

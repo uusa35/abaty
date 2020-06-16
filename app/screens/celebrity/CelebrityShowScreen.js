@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -19,18 +19,20 @@ import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
+import {useNavigation} from 'react-navigation-hooks';
 
-const CelebrityShowScreen = ({
-  element,
-  commentModal,
-  comments,
-  dispatch,
-  colors,
-  logo,
-  guest,
-  searchParams,
-  navigation,
-}) => {
+const CelebrityShowScreen = () => {
+  const {
+    celebrity,
+    commentModal,
+    comments,
+    guest,
+    searchParams,
+    settings,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const {logo, colors} = settings;
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
@@ -44,19 +46,19 @@ const CelebrityShowScreen = ({
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (!validate.isEmpty(element.products)) {
+    if (!validate.isEmpty(celebrity.products)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productCategories),
+        collectedCategories.concat(celebrity.productCategories),
       );
-      setProducts(products.concat(element.products));
+      setProducts(products.concat(celebrity.products));
     }
-    if (!validate.isEmpty(element.productGroup)) {
+    if (!validate.isEmpty(celebrity.productGroup)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productGroupCategories),
+        collectedCategories.concat(celebrity.productGroupCategories),
       );
-      setProducts(products.concat(element.productGroup));
+      setProducts(products.concat(celebrity.productGroup));
     }
-  }, [element]);
+  }, [celebrity]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -65,8 +67,8 @@ const CelebrityShowScreen = ({
   const handleRefresh = useCallback(() => {
     return dispatch(
       getCelebrity({
-        id: element.id,
-        searchParams: {user_id: element.id},
+        id: celebrity.id,
+        searchParams: {user_id: celebrity.id},
       }),
     );
   }, [refresh]);
@@ -82,7 +84,7 @@ const CelebrityShowScreen = ({
       containerStyle={{flex: 1}}
       overlayColor="white"
       headerImage={{
-        uri: element.banner ? element.banner : logo,
+        uri: celebrity.banner ? celebrity.banner : logo,
       }}
       refreshControl={
         <RefreshControl
@@ -95,24 +97,24 @@ const CelebrityShowScreen = ({
         // onHide={() => console.log('text hidden')}
         >
           <UserImageProfile
-            member_id={element.id}
+            member_id={celebrity.id}
             showFans={true}
             showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
             showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
             guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
+            isFanned={celebrity.isFanned}
+            totalFans={celebrity.totalFans}
+            currentRating={celebrity.rating}
+            medium={celebrity.medium}
             logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            commentsCount={element.commentsCount}
+            slug={celebrity.slug}
+            type={celebrity.role.slug}
+            views={celebrity.views}
+            commentsCount={celebrity.commentsCount}
           />
-          {!validate.isEmpty(element.slides) ? (
+          {!validate.isEmpty(celebrity.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={element.slides} />
+              <MainSliderWidget slides={celebrity.slides} />
             </View>
           ) : null}
           {!validate.isEmpty(collectedCategories) ? (
@@ -159,28 +161,28 @@ const CelebrityShowScreen = ({
               ),
               info: () => (
                 <UserInfoWidget
-                  has_map={element.has_map}
-                  mobile={element.mobile}
-                  phone={element.phone}
-                  slug={element.slug}
-                  whatsapp={element.whatsapp}
-                  twitter={element.twitter}
-                  facebook={element.facebook}
-                  instagram={element.instagram}
-                  android={element.android}
-                  youtube={element.youtube}
-                  website={element.website}
-                  description={element.description}
-                  service={element.service}
-                  address={element.address}
-                  images={element.images}
-                  latitude={element.latitude}
-                  longitude={element.longitude}
-                  thumb={element.thumb}
+                  has_map={celebrity.has_map}
+                  mobile={celebrity.mobile}
+                  phone={celebrity.phone}
+                  slug={celebrity.slug}
+                  whatsapp={celebrity.whatsapp}
+                  twitter={celebrity.twitter}
+                  facebook={celebrity.facebook}
+                  instagram={celebrity.instagram}
+                  android={celebrity.android}
+                  youtube={celebrity.youtube}
+                  website={celebrity.website}
+                  description={celebrity.description}
+                  service={celebrity.service}
+                  address={celebrity.address}
+                  images={celebrity.images}
+                  latitude={celebrity.latitude}
+                  longitude={celebrity.longitude}
+                  thumb={celebrity.thumb}
                 />
               ),
               videos: () => (
-                <VideosVerticalWidget videos={element.videoGroup} />
+                <VideosVerticalWidget videos={celebrity.videoGroup} />
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
@@ -192,24 +194,12 @@ const CelebrityShowScreen = ({
           commentModal={commentModal}
           elements={comments}
           model="user"
-          id={element.id}
+          id={celebrity.id}
         />
       </View>
     </HeaderImageScrollView>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    element: state.celebrity,
-    comments: state.comments,
-    commentModal: state.commentModal,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    guest: state.guest,
-  };
-}
 
 CelebrityShowScreen.navigationOptions = ({navigation}) => ({
   // headerTransparent: navigation.state.params.headerBg,
@@ -218,7 +208,7 @@ CelebrityShowScreen.navigationOptions = ({navigation}) => ({
   // }
 });
 
-export default connect(mapStateToProps)(CelebrityShowScreen);
+export default CelebrityShowScreen;
 
 CelebrityShowScreen.propTypes = {
   element: PropTypes.object.isRequired,

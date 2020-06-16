@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height, bottomContentInset} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
@@ -15,19 +15,13 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useNavigation} from 'react-navigation-hooks';
 
-const NormalProductShowScreen = ({
-  product,
-  dispatch,
-  phone,
-  mobile,
-  shipment_prices,
-  size_chart,
-  homeProducts,
-  token,
-  navigation,
-  settings,
-}) => {
+const NormalProductShowScreen = () => {
+  const {product, token, settings} = useSelector((state) => state);
+  const {phone, mobile, shipment_prices, size_chart} = settings;
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
@@ -183,20 +177,6 @@ const NormalProductShowScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    product: state.product,
-    phone: state.settings.phone,
-    shipment_prices: state.settings.shipment_prices,
-    size_chart: state.settings.size_chart,
-    mobile: state.settings.mobile,
-    homeProducts: state.homeProducts,
-    token: state.token,
-    cart: state.cart,
-    settings: state.settings,
-  };
-}
-
 NormalProductShowScreen.navigationOptions = ({navigation}) => ({
   // headerTransparent: navigation.state.params.headerBg,
   // headerStyle: {
@@ -204,7 +184,7 @@ NormalProductShowScreen.navigationOptions = ({navigation}) => ({
   // }
 });
 
-export default connect(mapStateToProps)(NormalProductShowScreen);
+export default NormalProductShowScreen;
 
 NormalProductShowScreen.propTypes = {
   product: PropTypes.object.isRequired,

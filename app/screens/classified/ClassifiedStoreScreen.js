@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect, Fragment} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {text, touchOpacity} from '../../constants/sizes';
@@ -23,17 +23,16 @@ import ClassifiedStorePropertiesWidget from '../../components/widgets/property/C
 import {convertNumberToEnglish} from '../../helpers';
 import {HOMEKEY} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
+import {useNavigation} from 'react-navigation-hooks';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const ClassifiedStoreScreen = ({
-  auth,
-  category,
-  colors,
-  country,
-  area,
-  dispatch,
-  classifiedProps,
-  navigation,
-}) => {
+const ClassifiedStoreScreen = () => {
+  const {auth, category, country, area, classifiedProps} = useSelector(
+    (state) => state,
+  );
+  const {colors} = useContext(GlobalValuesContext);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {params} = navigation.state;
   const [name, setName] = useState();
   const [mobile, setMobile] = useState(
@@ -432,20 +431,7 @@ const ClassifiedStoreScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    category: state.category,
-    auth: state.auth,
-    country: state.country,
-    area: state.area,
-    colors: state.settings.colors,
-    newClassified: state.newClassified,
-    classifiedProps: state.classifiedProps,
-    categoryName: state.category.name,
-  };
-}
-
-export default connect(mapStateToProps)(React.memo(ClassifiedStoreScreen));
+export default React.memo(ClassifiedStoreScreen);
 
 ClassifiedStoreScreen.propTypes = {
   auth: PropTypes.object.isRequired,

@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -22,7 +22,6 @@ import ProductCategoryVerticalWidget from '../../../components/widgets/category/
 import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../../app';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
-import {isEmpty} from 'lodash';
 
 const DesignerShowScreen = () => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
@@ -44,7 +43,7 @@ const DesignerShowScreen = () => {
       {key: 'products', title: I18n.t('products')},
       {key: 'info', title: I18n.t('information').substring(0, 10)},
     ];
-    if (!isEmpty(designer.videoGroup.video_url_one)) {
+    if (!validate.isEmpty(designer.videoGroup.video_url_one)) {
       currentRoutes.push({key: 'videos', title: I18n.t('videos')});
     }
     setRoutes(currentRoutes);

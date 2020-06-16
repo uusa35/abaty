@@ -18,6 +18,7 @@ const CategoryIndexScreen = () => {
     <BgContainer showImage={false}>
       <View style={{flex: 1}}>
         <View
+          useNativeDriver={true}
           animation="bounceIn"
           easing="ease-out"
           style={{flex: show_commercials ? 0.8 : 1, backgroundColor: 'white'}}>

@@ -10,6 +10,9 @@ import I18n from '../../I18n';
 import BgContainer from '../../components/containers/BgContainer';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import LottieView from 'lottie-react-native';
+import {animations} from '../../constants/animations';
+import {View as Animated} from 'react-native-animatable';
 
 const CartIndexScreen = () => {
   const {
@@ -62,28 +65,57 @@ const CartIndexScreen = () => {
           ) : (
             <View
               style={{
-                marginTop: 300,
+                marginTop: '40%',
                 width: width - 50,
                 alignSelf: 'center',
+                flex: 1,
               }}>
-              <Button
-                raised
-                title={I18n.t('no_items')}
-                type="outline"
-                containerStyle={{marginBottom: 20}}
-                titleStyle={{fontFamily: text.font}}
-              />
-              <Button
-                onPress={() => navigation.navigate('Home')}
-                raised
-                title={I18n.t('shop_now')}
-                type="outline"
-                containerStyle={{marginBottom: 20}}
-                titleStyle={{
-                  fontFamily: text.font,
-                  color: colors.main_text_theme_color,
+              <LottieView
+                source={animations.emptyCart}
+                autoPlay
+                loop
+                resizeMode="cover"
+                style={{
+                  alignSelf: 'center',
+                  width: width / 3,
+                  height: width / 3,
                 }}
+                enableMergePathsAndroidForKitKatAndAbove
               />
+              <Animated
+                animation="bounceIn"
+                easing="ease-out"
+                useNativeDriver={true}>
+                <Button
+                  raised
+                  title={I18n.t('no_items')}
+                  type="outline"
+                  containerStyle={{marginBottom: 20}}
+                  titleStyle={{
+                    fontFamily: text.font,
+                    color: colors.normal_text_theme_color,
+                  }}
+                  buttonStyle={{
+                    borderColor: colors.btn_bg_theme_color,
+                    color: colors.btn_bg_theme_color,
+                  }}
+                />
+                <Button
+                  onPress={() => navigation.navigate('Home')}
+                  raised
+                  title={I18n.t('shop_now')}
+                  type="outline"
+                  containerStyle={{marginBottom: 20}}
+                  titleStyle={{
+                    fontFamily: text.font,
+                    color: colors.normal_text_theme_color,
+                  }}
+                  buttonStyle={{
+                    borderColor: colors.btn_bg_theme_color,
+                    color: colors.btn_bg_theme_color,
+                  }}
+                />
+              </Animated>
             </View>
           )}
         </ScrollView>

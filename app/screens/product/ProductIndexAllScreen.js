@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ProductIndexAllScreen = ({dispatch, products}) => {
+const ProductIndexAllScreen = () => {
+  const {products} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
@@ -27,18 +30,6 @@ const ProductIndexAllScreen = ({dispatch, products}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    products: state.products,
-    searchParams: state.searchParams,
-    isLoadingContent: state.isLoadingContent,
-  };
-}
-
-export default connect(mapStateToProps)(ProductIndexAllScreen);
-
-ProductIndexAllScreen.propTypes = {
-  products: PropTypes.array.isRequired,
-};
+export default ProductIndexAllScreen;
 
 const styles = StyleSheet.create({});

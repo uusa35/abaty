@@ -13,6 +13,8 @@ export const animations = {
   circleLoading_2: require('./../../assets/animations/circle-animation.json'),
   offline: require('./../../assets/animations/offline.json'),
   car: require('./../../assets/animations/car.json'),
+  emptyCart: require('./../../assets/animations/empty_cart.json'),
+  expoLoading: require('./../../assets/animations/expo_loading.json'),
   animationCollection: [
     'bounceIn',
     'bounceInDown',

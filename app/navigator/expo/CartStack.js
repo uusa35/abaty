@@ -17,7 +17,7 @@ import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
 export const CartStack = createStackNavigator(
   {
     CartIndex: {
-      screen: gestureHandlerRootHOC(CartIndexScreen),
+      screen: CartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
@@ -28,7 +28,7 @@ export const CartStack = createStackNavigator(
       }),
     },
     CartConfirmation: {
-      screen: gestureHandlerRootHOC(CartConfirmationScreen),
+      screen: CartConfirmationScreen,
       navigationOptions: () => ({
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
@@ -38,7 +38,7 @@ export const CartStack = createStackNavigator(
       }),
     },
     PaymentIndex: {
-      screen: gestureHandlerRootHOC(PaymentIndexScreen),
+      screen: PaymentIndexScreen,
       navigationOptions: () => ({
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
@@ -50,7 +50,7 @@ export const CartStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(TransparentProductShowScreen),
+      screen: TransparentProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -63,7 +63,7 @@ export const CartStack = createStackNavigator(
       path: `product/:id`,
     },
     SearchProductIndex: {
-      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -74,7 +74,7 @@ export const CartStack = createStackNavigator(
       }),
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

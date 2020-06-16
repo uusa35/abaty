@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {Icon} from 'react-native-elements';
@@ -7,12 +7,12 @@ import I18n from '../../../I18n';
 import {colors as col} from '../../../constants/colors';
 import {useNavigation} from 'react-navigation-hooks';
 import {useSelector} from 'react-redux';
-
+import {View as Animated} from 'react-native-animatable';
 const ExpoHomeScreenBtns = () => {
   const {guest} = useSelector((state) => state);
   const {navigate} = useNavigation();
   return (
-    <Fragment>
+    <Animated animation="bounceIn" easing="ease-out" useNativeDriver={true}>
       <TouchableOpacity
         onPress={() => navigate('CalendarIndex')}
         style={[
@@ -140,7 +140,7 @@ const ExpoHomeScreenBtns = () => {
           </TouchableOpacity>
         </View>
       )}
-    </Fragment>
+    </Animated>
   );
 };
 
