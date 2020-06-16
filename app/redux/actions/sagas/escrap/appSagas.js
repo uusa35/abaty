@@ -16,6 +16,7 @@ import {
   setHomeBrands,
   startAuthenticatedScenario,
   startGetHomeCompaniesScenario,
+  startGetRolesScenario,
 } from '../userSagas';
 import {setDeviceId, setVersion} from '../settingSagas';
 import {
@@ -43,6 +44,7 @@ export function* escrapBootStrap() {
     call(getVideos),
     call(getClassifiedIndex),
     call(setHomeSplashes),
+    call(startGetRolesScenario),
     call(getHomeClassifiedCategories, {
       on_home: true,
       type: 'is_classified',

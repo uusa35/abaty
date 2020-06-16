@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {SafeAreaView} from 'react-navigation';
 
-const PageFourScreen = ({brands}) => {
+const PageFourScreen = () => {
+  const {brands} = useSelector((state) => state);
   return (
     <View>
       <Text>Test 3 Screen</Text>
@@ -12,13 +13,7 @@ const PageFourScreen = ({brands}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    brands: state.brands,
-  };
-}
-
-export default connect(mapStateToProps)(PageFourScreen);
+export default PageFourScreen;
 
 PageFourScreen.propTypes = {
   brands: PropTypes.array.isRequired,

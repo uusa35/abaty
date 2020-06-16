@@ -150,12 +150,6 @@ export function* setClassifiedFavorites(classifiedFavorites) {
 
 export function* startStoreClassifiedScenario(action) {
   try {
-    const {name, mobile, description, images, image, price} = action.payload;
-    // const result = validate(
-    //   {name, mobile, images, image, description, price},
-    //   storeClassifiedConstrains,
-    // );
-    // if (validate.isEmpty(result)) {
     yield call(enableLoading);
     const element = yield call(api.storeClassified, action.payload);
     if (
@@ -168,13 +162,9 @@ export function* startStoreClassifiedScenario(action) {
         call(enableSuccessMessage, I18n.t('update_information_success')),
         put(NavigationActions.navigate({routeName: 'Home'})),
       ]);
-      // }
     } else {
       throw element;
     }
-    // } else {
-    //   throw first(values(result))[0];
-    // }
   } catch (e) {
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }

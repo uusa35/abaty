@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import VideoList from '../../components/Lists/VideoList';
 import {videosSelector} from '../../redux/selectors/collections';
 import BgContainer from '../../components/containers/BgContainer';
 
-const VideoIndexScreen = ({videos}) => {
+const VideoIndexScreen = () => {
+  const {videos} = useSelector((state) => state);
   return (
     <BgContainer>
       <VideoList elements={videos} />
@@ -14,16 +15,6 @@ const VideoIndexScreen = ({videos}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    videos: videosSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(VideoIndexScreen);
-
-VideoIndexScreen.propTypes = {
-  videos: PropTypes.array.isRequired,
-};
+export default VideoIndexScreen;
 
 const styles = StyleSheet.create({});

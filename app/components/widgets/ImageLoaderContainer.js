@@ -11,7 +11,7 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
   const {logo} = useContext(GlobalValuesContext);
 
   return (
-    <FastImage
+    <Image
       source={
         imageLoading && !isNull(img)
           ? images.loadingSm

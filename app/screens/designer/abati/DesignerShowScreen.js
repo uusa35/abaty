@@ -213,18 +213,6 @@ const DesignerShowScreen = () => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    element: state.designer,
-    comments: state.comments,
-    commentModal: state.commentModal,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    guest: state.guest,
-  };
-}
-
 DesignerShowScreen.navigationOptions = ({navigation}) => ({
   // headerTransparent: navigation.state.params.headerBg,
   // headerStyle: {
@@ -232,13 +220,7 @@ DesignerShowScreen.navigationOptions = ({navigation}) => ({
   // }
 });
 
-export default connect(mapStateToProps)(DesignerShowScreen);
-
-DesignerShowScreen.propTypes = {
-  element: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired,
-  commentModal: PropTypes.bool.isRequired,
-};
+export default DesignerShowScreen;
 
 const styles = StyleSheet.create({
   mainTitle: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {ImageBackground, ScrollView} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {settingsSelector} from '../redux/selectors/collection';
 import {width, height} from './../constants/sizes';
 import {images} from './../constants/images';
@@ -9,8 +9,8 @@ import validate from 'validate.js';
 import NoMoreElements from '../components/widgets/NoMoreElements';
 import I18n from '../I18n';
 
-const TermAndConditionScreen = ({settings}) => {
-  const {terms, main_bg} = settings;
+const TermAndConditionScreen = () => {
+  const {terms, main_bg} = useSelector((state) => state.settings);
   return (
     <ImageBackground
       source={{
@@ -45,10 +45,4 @@ const TermAndConditionScreen = ({settings}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    settings: settingsSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(React.memo(TermAndConditionScreen));
+export default TermAndConditionScreen;

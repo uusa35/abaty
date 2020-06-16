@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import {
@@ -9,7 +9,10 @@ import {
 } from '../../redux/actions/classified';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ClassifiedIndexAllScreen = ({classifieds, dispatch}) => {
+const ClassifiedIndexAllScreen = () => {
+  const {classifieds} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllClassifieds());
   }, []);
@@ -29,19 +32,6 @@ const ClassifiedIndexAllScreen = ({classifieds, dispatch}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    classifieds: state.classifieds,
-    searchParams: state.searchParams,
-    isLoadingContent: state.isLoadingContent,
-  };
-}
-
-export default connect(mapStateToProps)(ClassifiedIndexAllScreen);
-
-ClassifiedIndexAllScreen.propTypes = {
-  classifieds: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired,
-};
+export default ClassifiedIndexAllScreen;
 
 const styles = StyleSheet.create({});

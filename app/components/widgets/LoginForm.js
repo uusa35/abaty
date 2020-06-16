@@ -11,7 +11,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import BgContainer from '../containers/BgContainer';
 import ImageLoaderContainer from './ImageLoaderContainer';
-import {map, first, filter} from 'lodash';
+import {map, first, filter, isEmpty} from 'lodash';
 
 const LoginForm = ({showBtns = false}) => {
   const {roles} = useSelector((state) => state);
@@ -34,8 +34,10 @@ const LoginForm = ({showBtns = false}) => {
   // });
 
   const handleRegisterClick = () => {
-    dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
-    navigate('Register');
+    if (!isEmpty(roles)) {
+      dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
+    }
+    return navigate('Register');
   };
 
   return (

@@ -1,12 +1,15 @@
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ServiceIndexAllScreen = ({services, dispatch}) => {
+const ServiceIndexAllScreen = () => {
+  const {services} = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getSearchServices({searchParams: {}}));
   }, []);
@@ -18,14 +21,7 @@ const ServiceIndexAllScreen = ({services, dispatch}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    services: state.services,
-    isLoadingContent: state.isLoadingContent,
-  };
-}
-
-export default connect(mapStateToProps)(ServiceIndexAllScreen);
+export default ServiceIndexAllScreen;
 
 ServiceIndexAllScreen.propTypes = {
   services: PropTypes.array.isRequired,

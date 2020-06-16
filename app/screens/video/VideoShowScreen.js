@@ -1,11 +1,12 @@
 import React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../../components/widgets/product/ProductList';
 import VideoWidget from '../../components/widgets/video/VideoWidget';
 
-const VideoShowScreen = ({video}) => {
+const VideoShowScreen = () => {
+  const {video} = useSelector((state) => state);
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
@@ -23,15 +24,6 @@ const VideoShowScreen = ({video}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    video: state.video,
-  };
-}
+export default VideoShowScreen;
 
-export default connect(mapStateToProps)(VideoShowScreen);
-
-VideoShowScreen.propTypes = {
-  video: PropTypes.object.isRequired,
-};
 const styles = StyleSheet.create({});

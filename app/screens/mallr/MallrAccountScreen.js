@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, ScrollView, Linking, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from './../../constants/sizes';
 import {Button} from 'react-native-elements';
@@ -10,16 +10,13 @@ import PagesList from '../../components/widgets/page/PagesList';
 import validate from 'validate.js';
 import ShopperImageProfile from '../../components/widgets/user/ShopperImageProfile';
 import CollectionGridWidget from '../../components/widgets/collection/CollectionGridWidget';
+import {useNavigation} from 'react-navigation-hooks';
 
-const MallrAccountScreen = ({
-  guest,
-  dispatch,
-  navigation,
-  colors,
-  pages,
-  element,
-  logo,
-}) => {
+const MallrAccountScreen = () => {
+  const {guest, auth, settings} = useSelector((state) => state);
+  const {colors, pages, logo} = settings;
+  const navigation = useNavigation();
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -31,25 +28,25 @@ const MallrAccountScreen = ({
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      {!validate.isEmpty(element) ? (
+      {!validate.isEmpty(auth) ? (
         <ShopperImageProfile
-          member_id={element.id}
+          member_id={auth.id}
           showFans={true}
           showRating={false}
           showComments={false}
           showLike={false}
-          isFanned={element.isFanned}
-          totalFans={element.totalFans}
-          currentRating={element.rating}
-          medium={element.medium}
+          isFanned={auth.isFanned}
+          totalFans={auth.totalFans}
+          currentRating={auth.rating}
+          medium={auth.medium}
           logo={logo}
-          slug={element.slug}
-          views={element.views}
-          commentsCount={element.commentsCount}
+          slug={auth.slug}
+          views={auth.views}
+          commentsCount={auth.commentsCount}
         />
       ) : null}
-      {!validate.isEmpty(element.collections) ? (
-        <CollectionGridWidget elements={element.collections} />
+      {!validate.isEmpty(auth.collections) ? (
+        <CollectionGridWidget elements={auth.collections} />
       ) : null}
       {guest ? (
         <View
@@ -108,21 +105,8 @@ const MallrAccountScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    guest: state.guest,
-    colors: state.settings.colors,
-    pages: state.pages,
-    element: state.auth,
-    logo: state.settings.logo,
-  };
-}
+export default MallrAccountScreen;
 
-export default connect(mapStateToProps)(MallrAccountScreen);
-
-MallrAccountScreen.propTypes = {
-  guest: PropTypes.bool.isRequired,
-};
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

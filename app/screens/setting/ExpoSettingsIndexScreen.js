@@ -18,13 +18,14 @@ import {HOMEKEY, MALLR, ABATI, ESCRAP, EXPO} from './../../../app';
 import {appUrlIos} from '../../env';
 import PagesList from '../../components/widgets/page/PagesList';
 import {getMyClassifieds} from '../../redux/actions/classified';
-import {reAuthenticate} from '../../redux/actions/user';
+import {reAuthenticate, setRole} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
 import {useNavigation} from 'react-navigation-hooks';
+import {isEmpty, first, filter} from 'lodash';
 
 const ExpoSettingsIndexScreen = ({}) => {
-  const {guest, lang, settings, version} = useSelector((state) => state);
+  const {guest, lang, settings, version, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors, pages} = settings;
   const [refresh, setRefresh] = useState(false);
@@ -35,6 +36,13 @@ const ExpoSettingsIndexScreen = ({}) => {
       dispatch(reAuthenticate());
     }
     dispatch(refetchHomeElements());
+  };
+
+  const handleRegisterClick = () => {
+    if (!isEmpty(roles)) {
+      dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
+    }
+    return navigation.navigate('Register');
   };
 
   return (
@@ -153,7 +161,7 @@ const ExpoSettingsIndexScreen = ({}) => {
                 fontFamily: text.font,
                 color: colors.btn_text_theme_color,
               }}
-              onPress={() => navigation.navigate('Register')}
+              onPress={() => handleRegisterClick()}
             />
             <Button
               raised

@@ -27,7 +27,6 @@ const App = () => {
     areas,
     areaModal,
     logo,
-    app_logo,
     cart,
     total,
     grossTotal,

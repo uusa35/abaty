@@ -1,10 +1,11 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductList from '../../components/widgets/product/ProductList';
 
-const BrandShowScreen = ({brand, searchParams}) => {
+const BrandShowScreen = () => {
+  const {brand, searchParams} = useSelector((state) => state);
   return (
     <ProductList
       products={brand.products}
@@ -14,17 +15,6 @@ const BrandShowScreen = ({brand, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    brand: state.brand,
-    searchParams: state.searchParams,
-  };
-}
+export default BrandShowScreen;
 
-export default connect(mapStateToProps)(BrandShowScreen);
-
-BrandShowScreen.propTypes = {
-  brand: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired,
-};
 const styles = StyleSheet.create({});

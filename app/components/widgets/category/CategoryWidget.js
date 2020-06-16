@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch} from 'react-redux';
+import {ABATI} from './../../../../app';
 
 const CategoryWidget = ({element, columns, showBtn = false, type}) => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
           resizeMode="cover"
           img={element.thumb}
         />
-        {showBtn && element.is_featured ? (
+        {(showBtn && element.is_featured) || ABATI ? (
           <Button
             onPress={() => handleClick(element)}
             raised

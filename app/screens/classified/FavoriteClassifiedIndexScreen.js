@@ -1,16 +1,17 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import BgContainer from '../../components/containers/BgContainer';
 import I18n from './../../I18n';
+import {useSelector} from 'react-redux';
 
-const FavoriteClassifiedIndexScreen = ({classifieds}) => {
+const FavoriteClassifiedIndexScreen = () => {
+  const {classifiedFavorites} = useSelector((state) => state);
   return (
     <BgContainer showImage={false}>
       <ClassifiedList
-        classifieds={classifieds}
+        classifieds={classifiedFavorites}
         showName={true}
         showMore={false}
         searchElements={{}}
@@ -20,18 +21,6 @@ const FavoriteClassifiedIndexScreen = ({classifieds}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    classifieds: state.classifiedFavorites,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-  };
-}
-
-export default connect(mapStateToProps)(FavoriteClassifiedIndexScreen);
-
-FavoriteClassifiedIndexScreen.propTypes = {
-  classifieds: PropTypes.array.isRequired,
-};
+export default FavoriteClassifiedIndexScreen;
 
 const styles = StyleSheet.create({});

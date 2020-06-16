@@ -1,12 +1,13 @@
 import React, {useState, useMemo} from 'react';
 import {StyleSheet, FlatList, View, ScrollView} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {text} from '../../constants/sizes';
 import ChooseCategoryItem from '../../components/widgets/category/ChooseCategoryItem';
 import {filter} from 'lodash';
 
-const ChooseCategoryScreen = ({categories}) => {
+const ChooseCategoryScreen = () => {
+  const {categories} = useSelector((state) => state);
   const [classifiedCategories, setClassifiedCategories] = useState([]);
 
   useMemo(() => {
@@ -29,17 +30,8 @@ const ChooseCategoryScreen = ({categories}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories,
-  };
-}
+export default ChooseCategoryScreen;
 
-export default connect(mapStateToProps)(ChooseCategoryScreen);
-
-ChooseCategoryScreen.propTypes = {
-  categories: PropTypes.array.isRequired,
-};
 const styles = StyleSheet.create({
   container: {
     width: '100%',

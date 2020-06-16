@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {map, first, filter, shuffle, uniqBy} from 'lodash';
 import {text} from './../../constants/sizes';
@@ -25,14 +25,14 @@ import ClassifiedStorePropertiesWidget from '../../components/widgets/property/C
 import {addToProperties} from '../../redux/actions/classified';
 import {HIDE_PROPERTIES_MODAL} from '../../redux/actions/types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const CategoryGroupsScreen = ({
-  category,
-  dispatch,
-  classifiedProps,
-  propertiesModal,
-  navigation,
-}) => {
+const CategoryGroupsScreen = () => {
+  const {category, classifiedProps, propertiesModal} = useSelector(
+    (state) => state,
+  );
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
     !validate.isEmpty(category) ? first(category.categoryGroups) : [],
@@ -296,19 +296,8 @@ const CategoryGroupsScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    category: state.category,
-    classifiedProps: state.classifiedProps,
-    propertiesModal: state.propertiesModal,
-  };
-}
+export default CategoryGroupsScreen;
 
-export default connect(mapStateToProps)(CategoryGroupsScreen);
-
-CategoryGroupsScreen.propTypes = {
-  category: PropTypes.object.isRequired,
-};
 const styles = StyleSheet.create({
   iconModalWrapper: {
     flexDirection: 'row',

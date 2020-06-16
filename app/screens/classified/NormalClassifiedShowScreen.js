@@ -13,7 +13,7 @@ import {
   RefreshControl,
   View,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import I18n from './../../I18n';
@@ -36,17 +36,13 @@ import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import {useNavigation} from 'react-navigation-hooks';
 
-const NormalClassifiedShowScreen = ({
-  element,
-  classifieds,
-  commentModal,
-  dispatch,
-  token,
-  auth,
-  navigation,
-}) => {
+const NormalClassifiedShowScreen = () => {
+  const {classified, commentModal, token, auth} = useSelector((state) => state);
   const {exchange_rate} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
@@ -54,7 +50,7 @@ const NormalClassifiedShowScreen = ({
   const handleRefresh = useCallback(() => {
     return dispatch(
       getClassified({
-        id: element.id,
+        id: classified.id,
         api_token: token ? token : null,
         redirect: false,
       }),
@@ -81,56 +77,56 @@ const NormalClassifiedShowScreen = ({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        {element.images ? (
+        {classified.images ? (
           <ImagesWidget
             resizeMode="cover"
-            elements={element.images
-              .concat({id: element.id, large: element.large})
+            elements={classified.images
+              .concat({id: classified.id, large: classified.large})
               .reverse()}
             width={width}
             height={height / 1.5}
-            name={element.name}
-            isFeatured={element.is_featured}
+            name={classified.name}
+            isFeatured={classified.is_featured}
           />
         ) : null}
         <View style={{flex: 1, padding: '5%'}}>
-          {element.user ? (
+          {classified.user ? (
             <ClassifiedInfoWidgetMainTitle
-              element={element}
-              editMode={auth && auth.id === element.user_id && token}
+              element={classified}
+              editMode={auth && auth.id === classified.user_id && token}
             />
           ) : null}
-          {!validate.isEmpty(element.items) ? (
-            <PropertiesWidget elements={element.items} />
+          {!validate.isEmpty(classified.items) ? (
+            <PropertiesWidget elements={classified.items} />
           ) : null}
           <View
             animation="bounceInLeft"
             easing="ease-out"
             style={{marginTop: 15}}>
-            {element.description ? (
+            {classified.description ? (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>
-                <Text style={styles.normalText}>{element.description}</Text>
+                <Text style={styles.normalText}>{classified.description}</Text>
               </View>
             ) : null}
-            {element.user ? (
+            {classified.user ? (
               <ClassifiedInfoWidgetElement
                 elementName="user_name"
-                name={element.user.slug}
+                name={classified.user.slug}
                 showIcon={false}
                 // link={() =>
                 //   dispatch(
                 //     getDesigner({
-                //       id: element.user.id,
-                //       searchElements: {user_id: element.user.id}
+                //       id: classified.user.id,
+                //       searchElements: {user_id: classified.user.id}
                 //     })
                 //   )
                 // }
               />
             ) : null}
-            {element.has_items && element.items ? (
+            {classified.has_items && classified.items ? (
               <Fragment>
-                {map(element.items, (p, i) => (
+                {map(classified.items, (p, i) => (
                   <ClassifiedInfoWidgetElement
                     key={i}
                     elementName={p.categoryGroup.name}
@@ -148,23 +144,23 @@ const NormalClassifiedShowScreen = ({
                 ))}
               </Fragment>
             ) : null}
-            {element.address ? (
+            {classified.address ? (
               <ClassifiedInfoWidgetElement
                 elementName="address"
-                name={element.address}
+                name={classified.address}
                 showIcon={false}
               />
             ) : null}
-            {element.category ? (
+            {classified.category ? (
               <ClassifiedInfoWidgetElement
                 elementName="categories"
-                name={element.category.name}
+                name={classified.category.name}
                 link={() =>
                   dispatch(
                     getSearchClassifieds({
-                      name: element.name,
+                      name: classified.name,
                       searchParams: {
-                        classified_category_id: element.category.id,
+                        classified_category_id: classified.category.id,
                       },
                       redirect: true,
                     }),
@@ -172,81 +168,73 @@ const NormalClassifiedShowScreen = ({
                 }
               />
             ) : null}
-            {element.only_whatsapp ? (
+            {classified.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
-                name={element.mobile}
+                name={classified.mobile}
                 link={() =>
                   Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${element.mobile}&text=`,
+                    `https://api.whatsapp.com/send?phone=${classified.mobile}&text=`,
                   )
                 }
               />
             ) : (
               <Fragment>
-                {element.user ? (
+                {classified.user ? (
                   <ClassifiedInfoWidgetElement
                     elementName="mobile"
-                    name={element.mobile}
-                    link={() => Linking.openURL(`tel:${element.user.mobile}`)}
+                    name={classified.mobile}
+                    link={() =>
+                      Linking.openURL(`tel:${classified.user.mobile}`)
+                    }
                   />
                 ) : null}
               </Fragment>
             )}
-            {element.has_map ? (
+            {classified.has_map ? (
               <MapViewWidget
-                element={element}
-                latitude={element.latitude}
-                longitude={element.longitude}
-                image={element.large}
-                title={element.name}
+                element={classified}
+                latitude={classified.latitude}
+                longitude={classified.longitude}
+                image={classified.large}
+                title={classified.name}
                 showTitle={true}
                 height={350}
-                description={element.description}
+                description={classified.description}
                 price={round(
-                  getProductConvertedFinalPrice(element.price, exchange_rate),
+                  getProductConvertedFinalPrice(
+                    classified.price,
+                    exchange_rate,
+                  ),
                   2,
                 )}
               />
             ) : null}
           </View>
         </View>
-        {validate.isObject(element.videoGroup) &&
-        !validate.isEmpty(element.videoGroup) ? (
-          <VideosHorizontalWidget videos={element.videoGroup} />
+        {validate.isObject(classified.videoGroup) &&
+        !validate.isEmpty(classified.videoGroup) ? (
+          <VideosHorizontalWidget videos={classified.videoGroup} />
         ) : null}
         {/*{!validate.isEmpty(classifieds) ? (*/}
         {/*  <ClassifiedListHorizontal*/}
         {/*    classifieds={classifieds}*/}
         {/*    showName={true}*/}
         {/*    title={I18n.t('related_classifieds')}*/}
-        {/*    searchElements={{classified_category_id: element.category_id}}*/}
+        {/*    searchElements={{classified_category_id: classified.category_id}}*/}
         {/*  />*/}
         {/*) : null}*/}
       </ScrollView>
-      <QuickCallActionBtnWidget mobile={element.mobile} />
+      <QuickCallActionBtnWidget mobile={classified.mobile} />
       <CommentScreenModal
         commentModal={commentModal}
-        elements={element.comments}
+        elements={classified.comments}
         model="classified"
-        id={element.id}
+        id={classified.id}
       />
     </BgContainer>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    element: state.classified,
-    classifieds: state.classifieds,
-    commentModal: state.commentModal,
-    token: state.token,
-    cart: state.cart,
-    auth: state.auth,
-    colors: state.settings.colors,
-    searchParams: state.searchParams,
-  };
-}
 
 NormalClassifiedShowScreen.navigationOptions = ({navigation}) => ({
   // headerTransparent: navigation.state.params.headerBg,
@@ -255,13 +243,7 @@ NormalClassifiedShowScreen.navigationOptions = ({navigation}) => ({
   // }
 });
 
-export default connect(mapStateToProps)(NormalClassifiedShowScreen);
-
-NormalClassifiedShowScreen.propTypes = {
-  element: PropTypes.object.isRequired,
-  classifieds: PropTypes.array.isRequired,
-  token: PropTypes.string,
-};
+export default NormalClassifiedShowScreen;
 
 const styles = StyleSheet.create({
   container: {},

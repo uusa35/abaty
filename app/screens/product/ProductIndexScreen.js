@@ -1,11 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ProductIndexScreen = ({searchProducts, searchParams}) => {
+const ProductIndexScreen = () => {
+  const {searchProducts, searchParams} = useSelector((state) => state);
   return (
     <BgContainer showImage={false}>
       <ProductList
@@ -21,18 +22,6 @@ const ProductIndexScreen = ({searchProducts, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    searchProducts: state.searchProducts,
-    searchParams: state.searchParams,
-  };
-}
-
-export default connect(mapStateToProps)(ProductIndexScreen);
-
-ProductIndexScreen.propTypes = {
-  products: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired,
-};
+export default ProductIndexScreen;
 
 const styles = StyleSheet.create({});

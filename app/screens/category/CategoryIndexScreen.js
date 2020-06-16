@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
@@ -7,12 +7,13 @@ import {View} from 'react-native-animatable';
 import {ABATI, MALLR, EXPO} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 
-const CategoryIndexScreen = ({
-  homeCategories,
-  commercials,
-  show_commercials,
-}) => {
+const CategoryIndexScreen = () => {
+  const {homeCategories, commercials, show_commercials} = useSelector(
+    (state) => state,
+  );
+
   useEffect(() => {}, [homeCategories]);
+
   return (
     <BgContainer showImage={false}>
       <View style={{flex: 1}}>
@@ -37,18 +38,4 @@ const CategoryIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeCategories: state.homeCategories,
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-  };
-}
-
-export default connect(mapStateToProps)(CategoryIndexScreen);
-
-CategoryIndexScreen.propTypes = {
-  categories: PropTypes.array,
-  commercials: PropTypes.array,
-  show_commercials: PropTypes.bool,
-};
+export default CategoryIndexScreen;

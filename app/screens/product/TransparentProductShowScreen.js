@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
@@ -16,19 +16,13 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import {useNavigation} from 'react-navigation-hooks';
 
-const TransparentProductShowScreen = ({
-  product,
-  phone,
-  mobile,
-  shipment_prices,
-  size_chart,
-  weight,
-  homeProducts,
-  token,
-  navigation,
-  colors,
-}) => {
+const TransparentProductShowScreen = () => {
+  const {product, token, settings} = useSelector((state) => state);
+  const {phone, shipment_prices, size_chart, mobile, weight} = settings;
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');

@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {FlatList, RefreshControl, ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../I18n';
 import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../../app';
@@ -9,15 +9,9 @@ import ClassifiedCategoryVerticalWidget from '../components/widgets/category/Cla
 import {refetchHomeElements} from '../redux/actions';
 import BgContainer from '../components/containers/BgContainer';
 
-const PageOneScreen = ({
-  categories,
-  commercials,
-  show_commercials,
-  dispatch,
-  colors,
-  showRefresh = true,
-  navigation,
-}) => {
+const PageOneScreen = () => {
+  const {categories} = useSelector((state) => state);
+  const dispatch = useDispatch();
   [title, setTitle] = useState('');
   [refresh, setRefresh] = useState(false);
 
@@ -60,25 +54,10 @@ const PageOneScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories,
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors,
-  };
-}
-
 PageOneScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
   title: I18n.t('categories'),
 });
 
-export default connect(mapStateToProps)(PageOneScreen);
-
-PageOneScreen.propTypes = {
-  categories: PropTypes.array,
-  commercials: PropTypes.array,
-  show_commercials: PropTypes.bool,
-};
+export default PageOneScreen;

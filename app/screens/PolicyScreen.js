@@ -1,14 +1,14 @@
 import React from 'react';
 import {ImageBackground, ScrollView} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {settingsSelector} from '../redux/selectors/collection';
 import {width, height} from './../constants/sizes';
 import {images} from './../constants/images';
 import validate from 'validate.js';
 
-const PolicyScreen = ({settings}) => {
-  const {policy, main_bg} = settings;
+const PolicyScreen = () => {
+  const {policy, main_bg} = useSelector((state) => state.settings);
   return (
     <ImageBackground
       source={{
@@ -36,10 +36,4 @@ const PolicyScreen = ({settings}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    settings: settingsSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(PolicyScreen);
+export default PolicyScreen;

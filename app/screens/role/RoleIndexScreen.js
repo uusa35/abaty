@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, Text} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {isIOS} from '../../constants';
 import {map} from 'lodash';
@@ -8,8 +8,13 @@ import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer'
 import {setRole} from '../../redux/actions/user';
 import {text} from '../../constants/sizes';
 import BgContainer from '../../components/containers/BgContainer';
+import {useNavigation} from 'react-navigation-hooks';
 
-const RoleIndexScreen = ({roles, dispatch, navigation}) => {
+const RoleIndexScreen = () => {
+  const {roles} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const handleClick = (r) => {
     dispatch(setRole(r));
     navigation.navigate('Register');
@@ -66,17 +71,7 @@ const RoleIndexScreen = ({roles, dispatch, navigation}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    roles: state.roles,
-  };
-}
-
-export default connect(mapStateToProps)(RoleIndexScreen);
-
-RoleIndexScreen.propTypes = {
-  roles: PropTypes.array,
-};
+export default RoleIndexScreen;
 
 const styles = StyleSheet.create({
   btnStyle: {

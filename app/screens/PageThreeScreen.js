@@ -1,13 +1,14 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from '../I18n';
 import {iconSizes, text} from '../constants/sizes';
 import ElementsVerticalList from '../components/Lists/ElementsVerticalList';
 import BgContainer from '../components/containers/BgContainer';
 
-const PageThreeScreen = ({homeCompanies}) => {
+const PageThreeScreen = () => {
+  const {homeCompanies} = useSelector((state) => state);
   return (
     <BgContainer>
       <ElementsVerticalList
@@ -23,21 +24,12 @@ const PageThreeScreen = ({homeCompanies}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeCompanies: state.homeCompanies,
-  };
-}
-
 PageThreeScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : has(navigation.state,'params') ? navigation.state.params.title : I18n.t('categories')
   title: I18n.t('companies'),
 });
 
-export default connect(mapStateToProps)(PageThreeScreen);
+export default PageThreeScreen;
 
-PageThreeScreen.propTypes = {
-  companies: PropTypes.array.isRequired,
-};
 const styles = StyleSheet.create({});

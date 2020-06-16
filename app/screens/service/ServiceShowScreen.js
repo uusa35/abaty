@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
@@ -16,16 +16,13 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ServiceShowScreen = ({
-  service,
-  services,
-  phone,
-  mobile,
-  dispatch,
-  token,
-  navigation,
-}) => {
+const ServiceShowScreen = () => {
+  const {service, services, settings, token} = useSelector((state) => state);
+  const {phone, mobile} = settings;
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [scrollVal, setScrollVal] = useState(0);
   const [btnVisible, setBtnVisible] = useState(false);
@@ -176,16 +173,6 @@ const ServiceShowScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    service: state.service,
-    services: state.services,
-    phone: state.settings.phone,
-    mobile: state.settings.mobile,
-    token: state.token,
-  };
-}
-
 ServiceShowScreen.navigationOptions = ({navigation}) => ({
   // headerTransparent: navigation.state.params.headerBg,
   // headerStyle: {
@@ -193,12 +180,6 @@ ServiceShowScreen.navigationOptions = ({navigation}) => ({
   // }
 });
 
-export default connect(mapStateToProps)(ServiceShowScreen);
-
-ServiceShowScreen.propTypes = {
-  services: PropTypes.array.isRequired,
-  service: PropTypes.object.isRequired,
-  token: PropTypes.string,
-};
+export default ServiceShowScreen;
 
 const styles = StyleSheet.create({});

@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from '../components/widgets/splash/SplashWidget';
 import {useNavigation} from 'react-navigation-hooks';
-import I18n from '../../I18n';
 
-const IntroductionScreen = ({splashes}) => {
+const IntroductionScreen = () => {
+  const {splashes} = useSelector((state) => state);
   const {navigate} = useNavigation();
 
   return (
@@ -22,16 +22,6 @@ const IntroductionScreen = ({splashes}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    splashes: state.splashes,
-  };
-}
-
-export default connect(mapStateToProps)(React.memo(IntroductionScreen));
-
-IntroductionScreen.propTypes = {
-  splashes: PropTypes.array.isRequired,
-};
+export default React.memo(IntroductionScreen);
 
 const styles = StyleSheet.create({});

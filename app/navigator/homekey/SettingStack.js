@@ -96,7 +96,7 @@ export const SettingStack = createStackNavigator(
       screen: gestureHandlerRootHOC(OrderIndexScreen),
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('order_history')} />,
-        headerRight: null,
+        headerRight: () => null,
         headerBackTitle: () => null,
       }),
       path: `product/:id`,

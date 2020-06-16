@@ -28,7 +28,7 @@ export const ProductStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight displayShare={true} showCountry={true} display={true} />
         ),
         headerBackTitle: () => null,

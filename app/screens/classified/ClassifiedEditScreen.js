@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect, Fragment} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -7,10 +7,9 @@ import {
   View,
   ImageBackground,
 } from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {images} from '../../constants/images';
 import {text, touchOpacity} from '../../constants/sizes';
 import {showCountryModal} from '../../redux/actions';
 import {editClassified} from '../../redux/actions/classified';
@@ -21,29 +20,32 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ClassifiedEditScreen = ({
-  element,
-  auth,
-  category,
-  colors,
-  country,
-  area,
-  dispatch,
-  classifiedProps,
-  navigation,
-}) => {
-  const [name, setName] = useState(element.name);
-  const [mobile, setMobile] = useState(element.mobile);
-  const [price, setPrice] = useState(String(element.price));
+const ClassifiedEditScreen = () => {
+  const {
+    classified,
+    auth,
+    category,
+    country,
+    area,
+    classifiedProps,
+  } = useSelector((state) => state);
+  const {colors} = useContext(GlobalValuesContext);
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const [name, setName] = useState(classified.name);
+  const [mobile, setMobile] = useState(classified.mobile);
+  const [price, setPrice] = useState(String(classified.price));
   const {params} = navigation.state;
-  const [address, setAddress] = useState(element.address);
-  const [longitude, setLongitude] = useState(element.longitude);
-  const [latitude, setLatitude] = useState(element.latitude);
-  const [description, setDescription] = useState(element.description);
-  const [images, setImages] = useState(element.images);
-  const [image, setImage] = useState({path: element.large});
-  const [onlyWhatsapp, setOnlyWhatsapp] = useState(element.only_whatsapp);
+  const [address, setAddress] = useState(classified.address);
+  const [longitude, setLongitude] = useState(classified.longitude);
+  const [latitude, setLatitude] = useState(classified.latitude);
+  const [description, setDescription] = useState(classified.description);
+  const [images, setImages] = useState(classified.images);
+  const [image, setImage] = useState({path: classified.large});
+  const [onlyWhatsapp, setOnlyWhatsapp] = useState(classified.only_whatsapp);
   const [sampleLogo, setSampleLogo] = useState('');
 
   const openPicker = useCallback(() => {
@@ -411,29 +413,6 @@ const ClassifiedEditScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    element: state.classified,
-    category: state.category,
-    auth: state.auth,
-    country: state.country,
-    area: state.area,
-    colors: state.settings.colors,
-    newClassified: state.newClassified,
-    classifiedProps: state.classifiedProps,
-    categoryName: state.category.name,
-  };
-}
-
-export default connect(mapStateToProps)(ClassifiedEditScreen);
-
-ClassifiedEditScreen.propTypes = {
-  element: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
-  country: PropTypes.object.isRequired,
-  colors: PropTypes.object.isRequired,
-  category: PropTypes.object.isRequired,
-  classifiedProps: PropTypes.array.isRequired,
-};
+export default ClassifiedEditScreen;
 
 const styles = StyleSheet.create({});

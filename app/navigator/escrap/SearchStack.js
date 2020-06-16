@@ -20,7 +20,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('search_classifieds')} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight showCountry={true} showClassifiedsFilter={true} />
         ),
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
@@ -34,7 +34,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight showCountry={true} showClassifiedsFilter={true} />
         ),
         headerBackTitle: () => null,
@@ -46,7 +46,7 @@ export const SearchStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: (
+        headerRight: () => (
           <HeaderRight
             navigation={navigation}
             displayShare={true}

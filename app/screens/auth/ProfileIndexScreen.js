@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import {bottomContentInset, text} from '../../constants/sizes';
@@ -12,7 +12,9 @@ import UserProfileBtns from '../../components/widgets/user/UserProfileBtns';
 import {authSelector} from '../../redux/selectors/collection';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ProfileIndexScreen = ({auth}) => {
+const ProfileIndexScreen = () => {
+  const {auth} = useSelector((state) => state);
+
   return (
     <BgContainer>
       <ScrollView
@@ -34,17 +36,7 @@ const ProfileIndexScreen = ({auth}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    auth: authSelector(state),
-  };
-}
-
-export default connect(mapStateToProps)(ProfileIndexScreen);
-
-ProfileIndexScreen.propTypes = {
-  auth: PropTypes.object.isRequired,
-};
+export default ProfileIndexScreen;
 
 const styles = StyleSheet.create({
   mainTitle: {
