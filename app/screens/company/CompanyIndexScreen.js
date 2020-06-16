@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import CompaniesList from '../../components/Lists/CompaniesList';
@@ -7,7 +7,8 @@ import BgContainer from '../../components/containers/BgContainer';
 import {shuffle} from 'lodash';
 import {ESCRAP} from './../../../app.json';
 
-const CompanyIndexScreen = ({companies, searchParams}) => {
+const CompanyIndexScreen = () => {
+  const {companies, searchParams} = useSelector((state) => state);
   return (
     <BgContainer showImage={false}>
       <CompaniesList
@@ -19,17 +20,6 @@ const CompanyIndexScreen = ({companies, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    companies: state.companies,
-    searchParams: state.searchParams,
-  };
-}
-
-export default connect(mapStateToProps)(CompanyIndexScreen);
-
-CompanyIndexScreen.propTypes = {
-  companies: PropTypes.array.isRequired,
-};
+export default CompanyIndexScreen;
 
 const styles = StyleSheet.create({});

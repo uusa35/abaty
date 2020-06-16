@@ -1,9 +1,9 @@
 import React, {useState, useCallback} from 'react';
-import {FlatList, RefreshControl, ScrollView, View} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {RefreshControl, ScrollView, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../I18n';
-import {ABATI, MALLR, ESCRAP, HOMEKEY} from './../../app';
+import {ESCRAP, HOMEKEY} from './../../app';
 import ProductCategoryVerticalWidget from '../components/widgets/category/ProductCategoryVerticalWidget';
 import ClassifiedCategoryVerticalWidget from '../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import {refetchHomeElements} from '../redux/actions';

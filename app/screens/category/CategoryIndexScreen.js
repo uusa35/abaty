@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {connect, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';

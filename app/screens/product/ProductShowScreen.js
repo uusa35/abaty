@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
@@ -15,19 +15,15 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import {getDesigner} from '../../redux/actions/user';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ProductShowScreen = ({
-  product,
-  dispatch,
-  phone,
-  mobile,
-  shipment_prices,
-  size_chart,
-  weight,
-  homeProducts,
-  token,
-  navigation,
-}) => {
+const ProductShowScreen = () => {
+  const {product, settings, token, homeProducts} = useSelector(
+    (state) => state,
+  );
+  const {phone, mobile, shipment_prices, size_chart, weight} = settings;
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
@@ -185,20 +181,6 @@ const ProductShowScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    product: state.product,
-    phone: state.settings.phone,
-    shipment_prices: state.settings.shipment_prices,
-    size_chart: state.settings.size_chart,
-    mobile: state.settings.mobile,
-    weight: state.settings.weight,
-    homeProducts: state.homeProducts,
-    token: state.token,
-    cart: state.cart,
-  };
-}
-
 ProductShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
   headerStyle: {
@@ -206,13 +188,7 @@ ProductShowScreen.navigationOptions = ({navigation}) => ({
   },
 });
 
-export default connect(mapStateToProps)(ProductShowScreen);
-
-ProductShowScreen.propTypes = {
-  product: PropTypes.object.isRequired,
-  homeProducts: PropTypes.array.isRequired,
-  token: PropTypes.string,
-};
+export default ProductShowScreen;
 
 const styles = StyleSheet.create({
   container: {},

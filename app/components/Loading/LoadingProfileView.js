@@ -33,6 +33,7 @@ const LoadingProfileView = () => {
         width={width}
         style={{marginBottom: 10, alignSelf: 'center'}}>
         <Rect
+          useNativeDriver={true}
           x="0"
           y="0"
           width={width}
@@ -110,6 +111,7 @@ const LoadingProfileView = () => {
         width={width - 50}
         style={{alignSelf: 'center'}}>
         <Rect
+          useNativeDriver={true}
           x="0"
           y="0"
           width={width}

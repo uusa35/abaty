@@ -23,7 +23,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
 import {useNavigation} from 'react-navigation-hooks';
 import {isEmpty, first, filter} from 'lodash';
-import {View as Animated} from 'react-native-animatable';
+import {View as Animating} from 'react-native-animatable';
 
 const ExpoSettingsIndexScreen = ({}) => {
   const {guest, lang, settings, version, roles} = useSelector((state) => state);
@@ -135,7 +135,7 @@ const ExpoSettingsIndexScreen = ({}) => {
           </TouchableOpacity>
         </View>
         {guest ? (
-          <Animated
+          <Animating
             animation="bounceIn"
             easing="ease-out"
             useNativeDriver={true}
@@ -182,7 +182,7 @@ const ExpoSettingsIndexScreen = ({}) => {
               }}
               onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
             />
-          </Animated>
+          </Animating>
         ) : null}
         <PagesList elements={pages} title={I18n.t('important_links')} />
       </ScrollView>

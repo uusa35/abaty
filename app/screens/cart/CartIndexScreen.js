@@ -12,7 +12,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import LottieView from 'lottie-react-native';
 import {animations} from '../../constants/animations';
-import {View as Animated} from 'react-native-animatable';
+import {View as Animating} from 'react-native-animatable';
 
 const CartIndexScreen = () => {
   const {
@@ -82,7 +82,7 @@ const CartIndexScreen = () => {
                 }}
                 enableMergePathsAndroidForKitKatAndAbove
               />
-              <Animated
+              <Animating
                 animation="bounceIn"
                 easing="ease-out"
                 useNativeDriver={true}>
@@ -115,7 +115,7 @@ const CartIndexScreen = () => {
                     color: colors.btn_bg_theme_color,
                   }}
                 />
-              </Animated>
+              </Animating>
             </View>
           )}
         </ScrollView>

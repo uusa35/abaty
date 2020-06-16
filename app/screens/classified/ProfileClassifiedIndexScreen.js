@@ -10,7 +10,7 @@ const ProfileClassifiedIndexScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSearchClassifieds({searchParams: {user_id}}));
+    dispatch(getSearchClassifieds({searchParams: {user_id: auth.id}}));
   }, []);
 
   return (

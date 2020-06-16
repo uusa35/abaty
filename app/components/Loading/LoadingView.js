@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet, View} from 'react-native';
 import {text, width, height, iconSizes} from './../../constants/sizes';
 import {isIOS} from './../../constants';
 import FastImage from 'react-native-fast-image';
@@ -14,7 +14,9 @@ import I18n from '../../I18n';
 import LoadingProfileView from './LoadingProfileView';
 import LoadingContentView from './LoadingContentView';
 import LoadingBoxedListView from './LoadingBoxedListView';
-
+import LottieView from 'lottie-react-native';
+import {animations} from '../../constants/animations';
+import {EXPO} from './../../../app';
 const LoadingView = ({
   loadingText = null,
   type = 'Arc',
@@ -54,11 +56,26 @@ const LoadingView = ({
           colors={[colors.btn_bg_theme_color, 'lightgrey', 'white']}
           center={[width / 2, 0]}
           radius={width}>
-          <Spinner
-            type={shuffle ? first(shuffle(moveRand)) : type}
-            color={colors.btn_bg_theme_color}
-            size={iconSizes.medium}
-          />
+          {EXPO ? (
+            <LottieView
+              source={animations.expoLoading}
+              autoPlay
+              loop
+              resizeMode="cover"
+              style={{
+                alignSelf: 'center',
+                width: width / 8,
+                height: width / 8,
+              }}
+              enableMergePathsAndroidForKitKatAndAbove
+            />
+          ) : (
+            <Spinner
+              type={shuffle ? first(shuffle(moveRand)) : type}
+              color={colors.btn_bg_theme_color}
+              size={iconSizes.medium}
+            />
+          )}
           {showLogo && (
             <ImageLoaderContainer
               img={settings.logo}

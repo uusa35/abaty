@@ -1,10 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import CelebritiesList from '../../components/Lists/CelebritiesList';
 
-const CelebrityIndexScreen = ({celebrities, searchParams}) => {
+const CelebrityIndexScreen = () => {
+  const {celebrities, searchParams} = useSelector((state) => state);
   return (
     <CelebritiesList
       elements={celebrities}
@@ -14,17 +15,6 @@ const CelebrityIndexScreen = ({celebrities, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    celebrities: state.celebrities,
-    searchParams: state.searchParams,
-  };
-}
-
-export default connect(mapStateToProps)(CelebrityIndexScreen);
-
-CelebrityIndexScreen.propTypes = {
-  users: PropTypes.array,
-};
+export default CelebrityIndexScreen;
 
 const styles = StyleSheet.create({});
