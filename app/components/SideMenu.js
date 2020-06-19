@@ -130,7 +130,7 @@ const SideMeu = ({showLogo = true}) => {
                 {I18n.t('home')}
               </Text>
             </TouchableOpacity>
-            {HOMEKEY || ESCRAP ? (
+            {HOMEKEY ? (
               <TouchableOpacity
                 onPress={() =>
                   !guest
