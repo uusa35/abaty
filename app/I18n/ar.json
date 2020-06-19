@@ -421,6 +421,7 @@
   "shipment_fees" : "مصاريف الشحن/التوصيل",
   "shipment_fees_per_piece" : "مصاريف الشحن(التوصيل)",
   "grossTotal" : "الإجمالي",
+  "gross_total_in" : "الإجمالي بـ",
   "size_chart" : "جدول المقاسات",
   "coupon_is_empty" : "كود الكوبون الذي ادخلته غير صحيح",
   "coupon_is_added_and_applied" : "تم إدخال رقم الكوبون بنجاح .. وتم تفعيل الكوبون.",

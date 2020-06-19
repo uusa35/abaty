@@ -47,7 +47,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          // borderRadius: 10,
+          borderRadius: 5,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -71,7 +71,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          // borderRadius: 10,
+          borderRadius: 5,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -94,7 +94,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          // borderRadius: 10,
+          borderRadius: 5,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -119,7 +119,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          // borderRadius: 10,
+          borderRadius: 5,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -156,7 +156,7 @@ const RegisterFormWidget = () => {
           style={{
             borderWidth: 1,
             borderColor: 'lightgrey',
-            // borderRadius: 10,
+            borderRadius: 5,
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
@@ -182,7 +182,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          // borderRadius: 10,
+          borderRadius: 5,
           paddingLeft: 15,
           paddingRight: 15,
           height: 80,
@@ -208,7 +208,7 @@ const RegisterFormWidget = () => {
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',
-            // borderRadius: 10,
+            borderRadius: 5,
             paddingLeft: 15,
             paddingRight: 15,
             height: 80,

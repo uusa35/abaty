@@ -16,6 +16,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
 import {CREATE_MYFATOORAH_PAYMENT_URL} from '../../../redux/actions/types';
+import {getConvertedFinalPrice} from '../../../helpers';
 
 const CartList = ({
   cart,
@@ -29,7 +30,13 @@ const CartList = ({
   shipmentFees,
 }) => {
   const dispatch = useDispatch();
-  const {colors, total, grossTotal} = useContext(GlobalValuesContext);
+  const {
+    colors,
+    total,
+    grossTotal,
+    exchange_rate,
+    currency_symbol,
+  } = useContext(GlobalValuesContext);
   const {country} = useSelector((state) => state);
   const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
@@ -226,18 +233,45 @@ const CartList = ({
                 fontSize: text.medium,
                 color: colors.header_one_theme_color,
               }}>
-              {round(grossTotal, 2)}
+              {`${round(grossTotal, 2)} ${I18n.t('kwd')}`}
             </Text>
+          </View>
+        </View>
+        {!country.is_local && (
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignText: 'center',
+              marginTop: 10,
+              paddingTop: 20,
+              paddingBottom: 20,
+              borderTopWidth: 0.5,
+              borderTopColor: 'lightgrey',
+            }}>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 color: colors.header_one_theme_color,
               }}>
-              {I18n.t('kwd')}
+              {`${I18n.t('gross_total_in')} ${currency_symbol}`}
             </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                }}>
+                {`${getConvertedFinalPrice(
+                  round(grossTotal, 2),
+                  exchange_rate,
+                )} ${currency_symbol}`}
+              </Text>
+            </View>
           </View>
-        </View>
+        )}
         {guest ? (
           <View
             style={{

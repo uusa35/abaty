@@ -70,6 +70,7 @@ const LoginForm = ({showBtns = false}) => {
             placeholder={I18n.t('email')}
             inputContainerStyle={{
               borderWidth: 1,
+              borderRadius: 5,
               borderColor: 'lightgrey',
               paddingLeft: 15,
               paddingRight: 15,
@@ -92,6 +93,7 @@ const LoginForm = ({showBtns = false}) => {
             secureTextEntry={true}
             inputContainerStyle={{
               borderWidth: 1,
+              borderRadius: 5,
               borderColor: 'lightgrey',
               paddingLeft: 15,
               paddingRight: 15,

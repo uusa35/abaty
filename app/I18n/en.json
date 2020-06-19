@@ -400,6 +400,7 @@
   "product_weight" : "Product Weight",
   "contactus_order_by_phone" : " Order by Phone",
   "grossTotal" : "Gross Total",
+  "gross_total_in" : "Gross Total in ",
   "shipment_fees" : "Shipment Fees",
   "shipment_prices" : "Shipment Fees",
   "color" : "color",
