@@ -4,7 +4,7 @@ import {appUrlIos} from './../../env';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {googleLogin, setRole, submitAuth} from '../../redux/actions/user';
-import {View, Linking} from 'react-native';
+import {View, Linking, StyleSheet} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
@@ -71,15 +71,18 @@ const LoginForm = ({showBtns = false}) => {
             inputContainerStyle={{
               borderWidth: 1,
               borderColor: 'lightgrey',
-              borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
-              marginBottom: 20,
             }}
             inputStyle={{
               fontFamily: text.font,
               textAlign: isRTL ? 'right' : 'left',
             }}
+            label={I18n.t('email')}
+            labelStyle={[
+              styles.titleLabelStyle,
+              {color: colors.main_theme_color, paddingBottom: 10},
+            ]}
             shake={true}
             keyboardType="email-address"
             onChangeText={(email) => setEmail(email)}
@@ -90,15 +93,18 @@ const LoginForm = ({showBtns = false}) => {
             inputContainerStyle={{
               borderWidth: 1,
               borderColor: 'lightgrey',
-              borderRadius: 10,
               paddingLeft: 15,
               paddingRight: 15,
-              marginBottom: 20,
             }}
             inputStyle={{
               fontFamily: text.font,
               textAlign: isRTL ? 'right' : 'left',
             }}
+            label={I18n.t('password')}
+            labelStyle={[
+              styles.titleLabelStyle,
+              {color: colors.main_theme_color, paddingBottom: 10},
+            ]}
             shake={true}
             keyboardType="default"
             onChangeText={(password) => setPassword(password)}
@@ -164,3 +170,12 @@ const LoginForm = ({showBtns = false}) => {
 };
 
 export default LoginForm;
+
+const styles = StyleSheet.create({
+  titleLabelStyle: {
+    fontFamily: text.font,
+    fontSize: text.medium,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+});

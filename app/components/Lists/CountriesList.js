@@ -25,7 +25,7 @@ const CountriesList = ({country, countries, countryModal}) => {
   const [visible, setVisible] = useState(false);
 
   const handleClick = useCallback((country) => {
-    dispatch(chooseCountry({country, redirect: EXPO}));
+    dispatch(chooseCountry({country, redirect: false}));
   });
 
   useEffect(() => {
