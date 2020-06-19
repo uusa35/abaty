@@ -14,7 +14,6 @@ import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import validate from 'validate.js';
 import I18n from '../../I18n';
-import {ClassifiedListHorizontal} from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 import EscrapSearchTab from '../../components/widgets/search/EscrapSearchTab';
 import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
@@ -28,6 +27,7 @@ import AppHomeConfigComponent from '../../components/containers/AppHomeConfigCom
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ClassifiedCategoryHorizontalRoundedWidget from '../../components/widgets/category/ClassifiedCategoryHorizontalRoundedWidget';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
+import ClassifiedListHorizontal from '../../components/widgets/classified/ClassifiedListHorizontal';
 
 const EscrapHomeScreen = () => {
   const {
@@ -92,22 +92,19 @@ const EscrapHomeScreen = () => {
           {/*) : null}*/}
           <View
             style={{
-              // flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center',
-              // paddingTop: 20,
               paddingBottom: 10,
             }}>
             {map(homeUserCategories, (c, i) => (
               <TouchableOpacity
                 activeOpacity={touchOpacity}
                 key={i}
-                style={{width: '100%'}}
                 onPress={() => dispatch(setCategoryAndGoToNavChildren(c))}>
                 <ImageLoaderContainer
+                  style={{width: width, height: width / 1.5, paddingBottom: 3}}
+                  resizeMode="stretch"
                   img={c.thumb}
-                  style={{width: width, height: 180}}
-                  resizeMode="cover"
                 />
                 {c.is_featured && (
                   <Text
@@ -124,8 +121,7 @@ const EscrapHomeScreen = () => {
               </TouchableOpacity>
             ))}
           </View>
-          {!validate.isEmpty(homeClassifieds) &&
-          validate.isArray(homeClassifieds) ? (
+          {!validate.isEmpty(homeClassifieds) && (
             <Fragment>
               {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
               {/*  validate.isArray(homeClassifiedCategories) && (*/}
@@ -142,11 +138,11 @@ const EscrapHomeScreen = () => {
                 showSearch={false}
                 showTitle={true}
                 title={I18n.t('recent_classifieds')}
-                searchElements={{on_home: true}}
+                searchElements={{on_home: 1}}
               />
               <NewClassifiedHomeBtn />
             </Fragment>
-          ) : null}
+          )}
         </ScrollView>
         {settings.show_commercials ? (
           <View style={{flex: 0.2}}>

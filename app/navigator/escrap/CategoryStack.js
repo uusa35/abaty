@@ -62,7 +62,7 @@ export const CategoryStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight display={false} />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -72,7 +72,7 @@ export const CategoryStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -82,7 +82,7 @@ export const CategoryStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -97,9 +97,10 @@ export const CategoryStack = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
+    animation: 'spring',
   },
 );
 

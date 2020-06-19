@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {bottomContentInset, text, height} from '../../../constants/sizes';
@@ -50,8 +50,13 @@ const RegisterFormWidget = () => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
+        label={I18n.t('name')}
+        labelStyle={[
+          styles.titleLabelStyle,
+          {color: colors.main_theme_color, paddingBottom: 10},
+        ]}
         inputStyle={{
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left',
@@ -69,12 +74,17 @@ const RegisterFormWidget = () => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left',
         }}
+        label={I18n.t('password')}
+        labelStyle={[
+          styles.titleLabelStyle,
+          {color: colors.main_theme_color, paddingBottom: 10},
+        ]}
         shake={true}
         keyboardType="default"
         onChangeText={(text) => setPassword(text)}
@@ -87,12 +97,17 @@ const RegisterFormWidget = () => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left',
         }}
+        label={I18n.t('email')}
+        labelStyle={[
+          styles.titleLabelStyle,
+          {color: colors.main_theme_color, paddingBottom: 10},
+        ]}
         shake={true}
         keyboardType="email-address"
         onChangeText={(text) => setEmail(text)}
@@ -107,43 +122,61 @@ const RegisterFormWidget = () => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20,
+          // marginBottom: 20,
         }}
         inputStyle={{
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left',
         }}
+        label={I18n.t('mobile')}
+        labelStyle={[
+          styles.titleLabelStyle,
+          {color: colors.main_theme_color, paddingBottom: 10},
+        ]}
         shake={true}
         keyboardType="number-pad"
         onChangeText={(text) => setMobile(text)}
       />
-      <TouchableOpacity
-        onPress={() => {
-          dispatch(showCountryModal());
-        }}
-        style={{
-          borderWidth: 1,
-          borderColor: 'lightgrey',
-          borderRadius: 10,
-          paddingLeft: 15,
-          paddingRight: 15,
-          marginBottom: 20,
-          height: 45,
-          width: '95%',
-          alignSelf: 'center',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={{width: '100%'}}>
         <Text
-          style={{
-            fontFamily: text.font,
-            fontSize: text.large,
-            textAlign: isRTL ? 'right' : 'left',
-            color: colors.main_theme_color,
-          }}>
-          {country.slug}
+          style={[
+            styles.titleLabelStyle,
+            {
+              color: colors.main_theme_color,
+              paddingBottom: 10,
+              paddingLeft: 20,
+            },
+          ]}>
+          {I18n.t('country')}
         </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(showCountryModal());
+          }}
+          style={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 10,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: 20,
+            height: 45,
+            width: '95%',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
+            style={{
+              fontFamily: text.font,
+              fontSize: text.large,
+              textAlign: isRTL ? 'right' : 'left',
+              color: colors.main_theme_color,
+            }}>
+            {country.slug}
+          </Text>
+        </TouchableOpacity>
+      </View>
       <Input
         placeholder={I18n.t('address')}
         inputContainerStyle={{
@@ -152,7 +185,6 @@ const RegisterFormWidget = () => {
           borderRadius: 10,
           paddingLeft: 15,
           paddingRight: 15,
-          marginBottom: 20,
           height: 80,
         }}
         inputStyle={{
@@ -162,6 +194,11 @@ const RegisterFormWidget = () => {
         }}
         numberOfLines={3}
         shake={true}
+        label={I18n.t('address')}
+        labelStyle={[
+          styles.titleLabelStyle,
+          {color: colors.main_theme_color, paddingBottom: 10},
+        ]}
         keyboardType="default"
         onChangeText={(text) => setAddress(text)}
       />
@@ -174,7 +211,6 @@ const RegisterFormWidget = () => {
             borderRadius: 10,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: 20,
             height: 80,
           }}
           inputStyle={{
@@ -184,6 +220,11 @@ const RegisterFormWidget = () => {
           }}
           numberOfLines={3}
           shake={true}
+          label={I18n.t('description')}
+          labelStyle={[
+            styles.titleLabelStyle,
+            {color: colors.main_theme_color, paddingBottom: 10},
+          ]}
           keyboardType="default"
           onChangeText={(text) => setDescription(text)}
         />
@@ -197,10 +238,10 @@ const RegisterFormWidget = () => {
           borderRadius: 0,
         }}
         title={I18n.t('register')}
-        titleStyle={{
-          fontFamily: text.font,
-          color: colors.btn_text_theme_color,
-        }}
+        titleStyle={[
+          styles.titleLabelStyle,
+          {color: colors.btn_text_theme_color},
+        ]}
         onPress={() =>
           dispatch(
             register({
@@ -227,4 +268,11 @@ export default React.memo(RegisterFormWidget);
 
 RegisterFormWidget.propTypes = {};
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  titleLabelStyle: {
+    fontFamily: text.font,
+    fontSize: text.medium,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+});

@@ -34,8 +34,6 @@ const ClassifiedListHorizontal = ({
   title,
   searchElements,
 }) => {
-  const [items, setItems] = useState(classifieds);
-  const [elements, setElements] = useState(classifieds);
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [currentShowMore, setCurrentShowMore] = useState(showMore);
@@ -74,13 +72,13 @@ const ClassifiedListHorizontal = ({
           color={colors.header_one_theme_color}
         />
       </TouchableOpacity>
-      {!validate.isEmpty(elements) ? (
+      {!validate.isEmpty(classifieds) ? (
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentInset={{right: rightHorizontalContentInset}}
           style={[widgetStyles.wrapper, {}]}>
-          {map(elements, (c, i) => (
+          {map(classifieds, (c, i) => (
             <ClassifiedWidgetHorizontal
               widthVal={width / 2}
               heightVal={280}

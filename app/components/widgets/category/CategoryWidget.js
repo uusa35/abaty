@@ -50,15 +50,23 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
       animation="pulse"
       easing="ease-out"
       useNativeDriver={true}
-      style={[styles.categoriesContainer, {width: columns ? '50%' : '100%'}]}>
+      style={[
+        styles.categoriesContainer,
+        {width: columns ? '50%' : '100%', paddingBottom: 10},
+      ]}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
+        // style={{ backgroundColor : 'blue'}}
         onPress={() => {
           handleClick(element);
         }}>
         <ImageLoaderContainer
-          style={{width: columns ? width / 2 : width, height: width / 2}}
-          resizeMode="cover"
+          style={{
+            width: columns ? width / 2 : width,
+            height: columns ? width / 2 : width / 1.5,
+            marginBottom: '1%',
+          }}
+          resizeMode="stretch"
           img={element.thumb}
         />
         {(showBtn && element.is_featured) || ABATI ? (
@@ -96,8 +104,8 @@ CategoryWidget.propTypes = {
 const styles = StyleSheet.create({
   categoriesContainer: {
     justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
+    // alignItems: 'center',
+    // backgroundColor: 'white',
   },
   mainCategoryBg: {
     width: '100%',

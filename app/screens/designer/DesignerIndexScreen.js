@@ -13,7 +13,7 @@ const DesignerIndexScreen = () => {
     <BgContainer showImage={false}>
       <DesignersList
         elements={designers}
-        searchElements={searchParams}
+        searchParams={searchParams}
         showMore={true}
         showSearch={true}
       />

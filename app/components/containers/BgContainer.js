@@ -30,26 +30,26 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
       isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
     );
   }, [isLoading, isLoadingBoxedList, isLoadingProfile, isLoadingContent]);
-
+  {
+    /*<SafeAreaView style={{flex: 1}}>*/
+  }
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        source={!showImage ? images.whiteBg : {uri: bg}}
-        style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
-        resizeMode="cover">
-        {isConnected ? (
-          currentLoading ? (
-            <LoadingView />
-          ) : (
-            <Fragment>{children}</Fragment>
-          )
+    <ImageBackground
+      source={!showImage ? images.whiteBg : {uri: bg}}
+      style={{height, width, backgroundColor: 'white', flexGrow: 1, flex: 1}}
+      resizeMode="cover">
+      {isConnected ? (
+        currentLoading ? (
+          <LoadingView />
         ) : (
-          <LoadingOfflineView />
-        )}
-        <AndroidBackHandlerComponent />
-        <AppGlobalConfig />
-      </ImageBackground>
-    </SafeAreaView>
+          <Fragment>{children}</Fragment>
+        )
+      ) : (
+        <LoadingOfflineView />
+      )}
+      <AndroidBackHandlerComponent />
+      <AppGlobalConfig />
+    </ImageBackground>
   );
 };
 

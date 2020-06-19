@@ -117,7 +117,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -127,7 +127,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -147,7 +147,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight showHome={true} />,
         headerBackTitle: () => null,
       }),
     },
@@ -436,6 +436,7 @@ export const HomeStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
+    animation: 'spring',
   },
 );
 

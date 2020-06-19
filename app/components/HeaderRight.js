@@ -25,6 +25,7 @@ export const HeaderRight = ({
   showClassifiedsFilter = false,
   showProductsSearch = false,
   showExpoSearch = false,
+  showHome = false,
 }) => {
   const {country} = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export const HeaderRight = ({
   };
   return (
     <View style={widgetStyles.safeContainer}>
-      {showCountry ? (
+      {showCountry && (
         <TouchableOpacity
           onPress={() => dispatch(showCountryModal())}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
@@ -65,8 +66,8 @@ export const HeaderRight = ({
             resizeMode="stretch"
           />
         </TouchableOpacity>
-      ) : null}
-      {displayShare ? (
+      )}
+      {displayShare && (
         <Icon
           onPress={() =>
             shareLink(
@@ -79,8 +80,8 @@ export const HeaderRight = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
-      ) : null}
-      {showClassifiedsFilter ? (
+      )}
+      {showClassifiedsFilter && (
         <Icon
           onPress={() => {
             dispatch(showClassifiedFilter());
@@ -92,8 +93,8 @@ export const HeaderRight = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
-      ) : null}
-      {showProductsSearch ? (
+      )}
+      {showProductsSearch && (
         <Icon
           onPress={() => {
             dispatch(showProductFilter());
@@ -105,8 +106,8 @@ export const HeaderRight = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
-      ) : null}
-      {showExpoSearch ? (
+      )}
+      {showExpoSearch && (
         <Icon
           onPress={() => {
             navigation.navigate('Search');
@@ -118,7 +119,20 @@ export const HeaderRight = ({
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           color="black"
         />
-      ) : null}
+      )}
+      {showHome && (
+        <Icon
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+          name="home"
+          type="antdesign"
+          size={iconSizes.smaller}
+          underlayColor="transparent"
+          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+          color="black"
+        />
+      )}
     </View>
   );
 };

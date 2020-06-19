@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo, useCallback, useEffect} from 'react';
 import {
   View,
   FlatList,
@@ -16,7 +16,7 @@ import {
   TheHold,
   width,
 } from './../../constants/sizes';
-import {filter} from 'lodash';
+import {filter, uniqBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import TopSearchInput from '../widgets/TopSearchInput';
@@ -31,49 +31,45 @@ const DesignersList = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const [currentShowMore, setCurrentShowMore] = useState(showMore);
   const [items, setItems] = useState(elements);
-  const [params, setParams] = useState(searchParams);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
 
-  const loadMore = useCallback(() => {
-    setCurrentShowMore(true);
+  const loadMore = () => {
     setPage(page + 1);
-  });
+  };
 
   useMemo(() => {
     if (showMore && page > 1 && page <= 20) {
       setIsLoading(true);
       setIsLoading(false);
       setRefresh(false);
-      setCurrentShowMore(false);
-      return axiosInstance(`user?page=${page}`, {
-        params,
+      axiosInstance(`search/user?page=${page}`, {
+        params: searchParams,
       })
         .then((r) => {
-          const userGroup = uniqBy(items.concat(r.data), 'id');
-          setItems(userGroup);
-          setItems(userGroup);
+          if (!validate.isEmpty(r.data)) {
+            const userGroup = uniqBy(items.concat(r.data), 'id');
+            setItems(userGroup);
+          }
         })
         .catch((e) => e);
     }
   }, [page]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     if (showMore) {
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchDesigners({searchParams: params}));
     }
-  }, [refresh]);
+  };
 
   useMemo(() => {
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      setCurrentShowMore(false);
       let filtered = filter(elements, (i) =>
         i.slug.includes(search) ? i : null,
       );
@@ -86,6 +82,10 @@ const DesignersList = ({
       setItems(elements);
     }
   }, [search]);
+
+  useEffect(() => {
+    setItems(elements);
+  }, [elements]);
 
   return (
     <KeyboardAvoidingView

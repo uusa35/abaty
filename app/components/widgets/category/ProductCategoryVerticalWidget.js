@@ -11,6 +11,7 @@ import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useDispatch} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ProductCategoryVerticalWidget = ({
   elements,
@@ -120,8 +121,8 @@ const ProductCategoryVerticalWidget = ({
                                 flex: 1,
                               }}>
                               {c.thumb ? (
-                                <FastImage
-                                  source={{uri: c.thumb}}
+                                <ImageLoaderContainer
+                                  img={c.thumb}
                                   style={{width: 50, height: 50, margin: 5}}
                                 />
                               ) : (

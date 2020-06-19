@@ -83,7 +83,7 @@ export function* startGetHomeClassifiedsScenario(action) {
     } else {
       yield all([
         put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
-        put({type: actions.SET_CLASSIFIEDS, payload: []}),
+        put({type: actions.SET_HOME_CLASSIFIEDS, payload: []}),
       ]);
       throw 'no_classifieds';
     }

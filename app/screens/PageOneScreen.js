@@ -37,8 +37,7 @@ const PageOneScreen = () => {
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 200}}
-        style={{marginBottom: 150}}>
+        contentInset={{bottom: 200}}>
         <ProductCategoryVerticalWidget
           elements={categories}
           title={I18n.t('product_categories')}

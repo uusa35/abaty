@@ -1,15 +1,15 @@
-import React, {useContext, Fragment} from 'react';
+import React, {useContext, Fragment, useCallback} from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map, isEmpty} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
-import {getSearchProducts} from '../../../redux/actions/product';
+import {getProduct, getSearchProducts} from '../../../redux/actions/product';
 import {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {rightHorizontalContentInset} from '../../../constants/sizes';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ProductHorizontalWidget = ({
   elements,
@@ -19,6 +19,18 @@ const ProductHorizontalWidget = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
+  const {token} = useSelector((state) => state);
+
+  const handleClickProductWidget = useCallback((id) => {
+    dispatch(
+      getProduct({
+        id,
+        api_token: token ? token : null,
+        redirect: true,
+      }),
+    );
+  }, []);
+
   return (
     <Fragment>
       {!isEmpty(elements) && (
@@ -61,7 +73,12 @@ const ProductHorizontalWidget = ({
             contentInset={{right: rightHorizontalContentInset}}
             style={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
-              <ProductWidget element={c} showName={showName} key={i} />
+              <ProductWidget
+                element={c}
+                showName={showName}
+                key={i}
+                handleClickProductWidget={handleClickProductWidget}
+              />
             ))}
           </ScrollView>
         </View>

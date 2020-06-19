@@ -271,7 +271,7 @@ const UserImageProfileRounded = ({
               />
             ) : null}
           </View>
-          <View style={{width: '100%'}}>
+          <View style={{width: '100%', paddingRight: 5, paddingLeft: 5}}>
             <Text
               style={{
                 fontFamily: text.font,

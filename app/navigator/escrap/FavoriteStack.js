@@ -57,9 +57,7 @@ export const FavoriteStack = createStackNavigator(
     CompanyShow: {
       screen: EscrapCompanyShowScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
+        headerTitle: () => null,
         headerRight: <HeaderCustom />,
         headerBackTitle: () => null,
       }),

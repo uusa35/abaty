@@ -14,7 +14,7 @@ const EscrapSearchTab = () => {
   return (
     <ImageBackground
       source={{uri: mainBg}}
-      style={{width, alignSelf: 'center', height: 120}}
+      style={{width, alignSelf: 'center', height: 250}}
       resizeMode="cover">
       {companySearchTextInputModal && (
         <View
@@ -27,7 +27,7 @@ const EscrapSearchTab = () => {
             width: '90%',
             alignSelf: 'center',
             paddingTop: '10%',
-            // marginTop: '15%',
+            marginTop: '15%',
           }}>
           <CompanySearchForm search={search} setSearch={setSearch} />
         </View>
