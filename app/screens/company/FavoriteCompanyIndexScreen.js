@@ -19,7 +19,7 @@ const FavoriteCompanyIndexScreen = () => {
   }, []);
 
   return (
-    <BgContainer>
+    <BgContainer enableMargin={true} marginVal="21%">
       <View
         animation="bounceIn"
         easing="ease-out"

@@ -46,7 +46,7 @@ const SettingsIndexScreen = () => {
   };
 
   return (
-    <BgContainer>
+    <BgContainer enableMargin={true} marginVal="21%">
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{paddingTop: 20}}

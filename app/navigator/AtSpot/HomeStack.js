@@ -136,7 +136,7 @@ export const HomeStack = createStackNavigator(
             headerRight: (
               <HeaderRight displayShare={false} showCountry={true} />
             ),
-            headerTitle: (
+            headerTitle: () => (
               <HeaderMiddle showLogo={true} title={I18n.t('home')} />
             ),
             headerBackTitle: () => null,

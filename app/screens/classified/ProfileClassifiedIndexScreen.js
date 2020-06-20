@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getSearchClassifieds} from '../../redux/actions/classified';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
+import BgContainer from '../../components/containers/BgContainer';
 
 const ProfileClassifiedIndexScreen = () => {
   const {searchClassifieds, auth} = useSelector((state) => state);
@@ -14,11 +15,13 @@ const ProfileClassifiedIndexScreen = () => {
   }, []);
 
   return (
-    <ClassifiedList
-      classifieds={searchClassifieds}
-      showName={true}
-      searchElements={{user_id: auth.id}}
-    />
+    <BgContainer>
+      <ClassifiedList
+        classifieds={searchClassifieds}
+        showName={true}
+        searchElements={{user_id: auth.id}}
+      />
+    </BgContainer>
   );
 };
 

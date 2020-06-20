@@ -78,6 +78,7 @@ const ProductHorizontalWidget = ({
                 showName={showName}
                 key={i}
                 handleClickProductWidget={handleClickProductWidget}
+                width={180}
               />
             ))}
           </ScrollView>

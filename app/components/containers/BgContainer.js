@@ -1,5 +1,5 @@
-import React, {Fragment, useState, useMemo, useContext} from 'react';
-import {ImageBackground, SafeAreaView} from 'react-native';
+import React, {Fragment, useState, useMemo, useContext, useEffect} from 'react';
+import {ImageBackground, SafeAreaView, View} from 'react-native';
 import {height, width} from '../../constants/sizes';
 import {images} from '../../constants/images';
 import AndroidBackHandlerComponent from './AndroidBackHandlerComponent';
@@ -8,8 +8,15 @@ import {useSelector} from 'react-redux';
 import LoadingView from '../Loading/LoadingView';
 import LoadingOfflineView from '../Loading/LoadingOfflineView';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
-const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
+const BgContainer = ({
+  children,
+  showImage = true,
+  img = images.whiteBgUrl,
+  enableMargin = false,
+  marginVal,
+}) => {
   const {
     isLoading,
     isConnected,
@@ -17,10 +24,11 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
     isLoadingProfile,
     isLoadingBoxedList,
   } = useSelector((state) => state);
-  const {mainBg} = useContext(GlobalValuesContext);
+  const {mainBg, colors} = useContext(GlobalValuesContext);
   const [currentLoading, setCurrentLoading] = useState(
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
+  const navigation = useNavigation();
   const [bg, setBg] = useState(
     !showImage ? images.whiteBg : mainBg.includes('.') ? mainBg : img,
   );
@@ -30,9 +38,7 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
       isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
     );
   }, [isLoading, isLoadingBoxedList, isLoadingProfile, isLoadingContent]);
-  {
-    /*<SafeAreaView style={{flex: 1}}>*/
-  }
+
   return (
     <ImageBackground
       source={!showImage ? images.whiteBg : {uri: bg}}
@@ -42,7 +48,9 @@ const BgContainer = ({children, showImage = true, img = images.whiteBgUrl}) => {
         currentLoading ? (
           <LoadingView />
         ) : (
-          <Fragment>{children}</Fragment>
+          <View style={{flex: 1, paddingTop: enableMargin ? marginVal : 0}}>
+            {children}
+          </View>
         )
       ) : (
         <LoadingOfflineView />

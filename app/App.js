@@ -1,8 +1,12 @@
 import React, {useEffect, useState, Fragment} from 'react';
-import {AppState, useColorScheme, StatusBar} from 'react-native';
+import {AppState, useColorScheme, StatusBar, SafeAreaView} from 'react-native';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
-import {appBootstrap} from './redux/actions';
+import {
+  appBootstrap,
+  refetchHomeElements,
+  toggleBootstrapped,
+} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
@@ -43,11 +47,6 @@ const App = () => {
   const [appState, setAppState] = useState(AppState.currentState);
 
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    dispatch(appBootstrap());
-  }, [bootStrapped]);
-
-  useEffect(() => {
     if (token.length > 5) {
       axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
     }
@@ -60,17 +59,11 @@ const App = () => {
     axiosInstance.defaults.headers.common['country'] = country.name;
   }, [lang]);
 
-  const handleAppStateChange = (nextAppState) => {
-    if (appState.match(/inactive|background/) && nextAppState === 'active') {
-    }
-    setAppState(nextAppState);
-  };
-
-  useEffect(() => {
-    if (appState === 'background' && resetApp) {
-    } else {
-    }
-  }, [appState]);
+  // useEffect(() => {
+  //   if (appState === 'background' && resetApp) {
+  //   } else {
+  //   }
+  // }, [appState]);
 
   useEffect(() => {
     codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});
@@ -83,8 +76,19 @@ const App = () => {
         }
       }
     });
+    AppState.addEventListener('change', handleAppStateChange);
+    dispatch(appBootstrap());
+    // dispatch(refetchHomeElements());
   }, []);
 
+  const handleAppStateChange = (nextAppState) => {
+    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+    }
+    setAppState(nextAppState);
+  };
+  {
+    /*<SafeAreaView style={{ backgroundColor : 'blue', height : 10, borderWidth : 10}}/>*/
+  }
   return (
     <Fragment>
       <StatusBar barStyle={`${colorScheme}-content`} />

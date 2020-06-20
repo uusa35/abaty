@@ -22,7 +22,7 @@ export const CategoryStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showFilter={false} showCountry={false} />
         ),
-        headerTitle: (
+        headerTitle: () => (
           <HeaderMiddle
             title={
               !validate.isEmpty(navigation.state.params.name)

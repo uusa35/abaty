@@ -13,6 +13,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import LottieView from 'lottie-react-native';
 import {animations} from '../../constants/animations';
 import {View as Animating} from 'react-native-animatable';
+import {EXPO, ABATI} from './../../../app';
 
 const CartIndexScreen = () => {
   const {
@@ -71,7 +72,7 @@ const CartIndexScreen = () => {
                 flex: 1,
               }}>
               <LottieView
-                source={animations.emptyCart}
+                source={EXPO ? animations.emptyCart : animations.cart}
                 autoPlay
                 loop
                 resizeMode="cover"

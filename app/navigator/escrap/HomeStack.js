@@ -70,7 +70,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={I18n.t(APP_CASE)} showLogo={true} />
         ),
         headerBackTitle: () => null,
-        // headerTransparent: true,
+        headerTransparent: true,
         //   headerStyle : {
         //     backgroundColor : 'blue'
         //     }
@@ -432,11 +432,22 @@ export const HomeStack = createStackNavigator(
       }),
     },
   },
+
   {
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    defaultNavigationOptions: ({navigation}) => ({
+      headerTransparent: false,
+      // headerStyle: {
+      //     backgroundColor: 'green'
+      // },
+      // headerTintColor: 'orange',
+      // headerTitleStyle: {
+      //     fontWeight: 'bold'
+      // },
+    }),
   },
 );
 

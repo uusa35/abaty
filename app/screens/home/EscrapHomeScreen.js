@@ -42,129 +42,106 @@ const EscrapHomeScreen = () => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  // useEffect(() => {
-  //   navigation.setParams({mainBg});
-  // },[])
-
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
   };
 
   return (
-    <BgContainer showImage={false}>
+    <BgContainer enableMargin={true} marginVal="21%">
       <AppHomeConfigComponent />
-      <View
-        style={{
-          margin: 0,
-          padding: 0,
-          flex: 1,
-          height: '100%',
-          backgroundColor: colors.main_theme_bg_color,
-        }}>
-        <ScrollView
-          contentContainerStyle={{
-            backgroundColor: colors.main_theme_bg_color,
-          }}
-          contentInset={{bottom: bottomContentInset}}
-          refreshControl={
-            <RefreshControl
-              refreshing={false}
-              onRefresh={() => handleRefresh()}
-            />
-          }
-          showsHorizontalScrollIndicator={false}
-          endFillColor="white"
-          showsVerticalScrollIndicator={false}
-          style={{flex: 0.8}}>
-          <EscrapSearchTab
-            elements={categories}
-            onlyCompanySearchTextInput={true}
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            onRefresh={() => handleRefresh()}
           />
-          {/*{!validate.isEmpty(homeUserCategories) &&*/}
-          {/*validate.isArray(homeUserCategories) ? (*/}
-          {/*  <NavCategoryHorizontalRoundedWidget*/}
-          {/*    elements={homeUserCategories}*/}
-          {/*    showName={true}*/}
-          {/*    showTitle={true}*/}
-          {/*    showLink={true}*/}
-          {/*    title={I18n.t('shops')}*/}
-          {/*  />*/}
-          {/*) : null}*/}
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingBottom: 10,
-            }}>
-            {map(homeUserCategories, (c, i) => (
-              <TouchableOpacity
-                activeOpacity={touchOpacity}
-                key={i}
-                onPress={() => dispatch(setCategoryAndGoToNavChildren(c))}>
-                <ImageLoaderContainer
-                  style={{width: width, height: width / 1.5, paddingBottom: 3}}
-                  resizeMode="stretch"
-                  img={c.thumb}
-                />
-                {c.is_featured && (
-                  <Text
-                    style={[
-                      widgetStyles.elementName,
-                      {
-                        color: colors.header_tow_theme_color,
-                        fontSize: text.large,
-                      },
-                    ]}>
-                    {c.name}
-                  </Text>
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
-          {!validate.isEmpty(homeClassifieds) && (
-            <Fragment>
-              {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
-              {/*  validate.isArray(homeClassifiedCategories) && (*/}
-              {/*    <ClassifiedCategoryHorizontalRoundedWidget*/}
-              {/*      elements={homeClassifiedCategories}*/}
-              {/*      showName={true}*/}
-              {/*      showLink={true}*/}
-              {/*      title={I18n.t('for_sale')}*/}
-              {/*    />*/}
-              {/*  )}*/}
-              <ClassifiedListHorizontal
-                classifieds={homeClassifieds}
-                showName={true}
-                showSearch={false}
-                showTitle={true}
-                title={I18n.t('recent_classifieds')}
-                searchElements={{on_home: 1}}
+        }
+        showsHorizontalScrollIndicator={false}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{paddingTop: '30%'}}
+        style={{flex: settings.show_commercials ? 0.8 : 1}}
+        contentInset={{bottom: bottomContentInset}}>
+        <EscrapSearchTab
+          elements={categories}
+          onlyCompanySearchTextInput={true}
+        />
+        {/*{!validate.isEmpty(homeUserCategories) &&*/}
+        {/*validate.isArray(homeUserCategories) ? (*/}
+        {/*  <NavCategoryHorizontalRoundedWidget*/}
+        {/*    elements={homeUserCategories}*/}
+        {/*    showName={true}*/}
+        {/*    showTitle={true}*/}
+        {/*    showLink={true}*/}
+        {/*    title={I18n.t('shops')}*/}
+        {/*  />*/}
+        {/*) : null}*/}
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingBottom: 10,
+          }}>
+          {map(homeUserCategories, (c, i) => (
+            <TouchableOpacity
+              activeOpacity={touchOpacity}
+              key={i}
+              onPress={() => dispatch(setCategoryAndGoToNavChildren(c))}>
+              <ImageLoaderContainer
+                style={{width: width, height: width / 1.5, paddingBottom: 3}}
+                resizeMode="stretch"
+                img={c.thumb}
               />
-              <NewClassifiedHomeBtn />
-            </Fragment>
+              {c.is_featured && (
+                <Text
+                  style={[
+                    widgetStyles.elementName,
+                    {
+                      color: colors.header_tow_theme_color,
+                      fontSize: text.large,
+                    },
+                  ]}>
+                  {c.name}
+                </Text>
+              )}
+            </TouchableOpacity>
+          ))}
+        </View>
+        {!validate.isEmpty(homeClassifieds) && (
+          <Fragment>
+            {/*{!validate.isEmpty(homeClassifiedCategories) &&*/}
+            {/*  validate.isArray(homeClassifiedCategories) && (*/}
+            {/*    <ClassifiedCategoryHorizontalRoundedWidget*/}
+            {/*      elements={homeClassifiedCategories}*/}
+            {/*      showName={true}*/}
+            {/*      showLink={true}*/}
+            {/*      title={I18n.t('for_sale')}*/}
+            {/*    />*/}
+            {/*  )}*/}
+            <ClassifiedListHorizontal
+              classifieds={homeClassifieds}
+              showName={true}
+              showSearch={false}
+              showTitle={true}
+              title={I18n.t('recent_classifieds')}
+              searchElements={{on_home: 1}}
+            />
+            <NewClassifiedHomeBtn />
+          </Fragment>
+        )}
+      </ScrollView>
+      {settings.show_commercials && (
+        <View style={{flex: 0.2}}>
+          {!validate.isEmpty(commercials) && (
+            <CommercialSliderWidget commercials={commercials} />
           )}
-        </ScrollView>
-        {settings.show_commercials ? (
-          <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
-              <CommercialSliderWidget commercials={commercials} />
-            ) : null}
-          </View>
-        ) : null}
-      </View>
+        </View>
+      )}
     </BgContainer>
   );
 };
 
 export default EscrapHomeScreen;
-
-EscrapHomeScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: true,
-});
-
-EscrapHomeScreen.propTypes = {
-  // categories: PropTypes.array,
-};
 
 const styles = StyleSheet.create({
   safeContainer: {

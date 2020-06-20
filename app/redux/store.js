@@ -34,6 +34,7 @@ const persistConfig = {
     'isLoadingBoxedList',
     'showIntroduction',
     'isConnected',
+    'bootStrapped',
   ], // navigation will not be persisted
   //whitelist: ['navigation', 'auth','isLoading','nav','roles','token','notification','notifications'] // only navigation will be persisted
   // throttle: 1000,

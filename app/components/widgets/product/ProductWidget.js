@@ -17,6 +17,7 @@ const ProductWidget = ({
   element,
   showName = false,
   handleClickProductWidget,
+  width = '48%',
 }) => {
   const {currency_symbol, exchange_rate, colors} = useContext(
     GlobalValuesContext,
@@ -27,7 +28,7 @@ const ProductWidget = ({
     <TouchableOpacity
       activeOpacity={touchOpacity}
       key={element.id}
-      style={widgetStyles.productServiceWidget}
+      style={[widgetStyles.productServiceWidget, {width: width}]}
       onPress={() => handleClickProductWidget(element.id)}>
       <ImageBackground
         imageStyle={styles.imageContainerStyle}

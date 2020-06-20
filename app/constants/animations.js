@@ -14,6 +14,7 @@ export const animations = {
   offline: require('./../../assets/animations/offline.json'),
   car: require('./../../assets/animations/car.json'),
   emptyCart: require('./../../assets/animations/empty_cart.json'),
+  cart: require('./../../assets/animations/cart.json'),
   expoLoading: require('./../../assets/animations/expo_loading.json'),
   animationCollection: [
     'bounceIn',

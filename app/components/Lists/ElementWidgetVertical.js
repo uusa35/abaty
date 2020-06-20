@@ -1,4 +1,4 @@
-import React, {useContext, useCallback, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {ListItem} from 'react-native-elements';
 import {iconSizes, text} from './../../constants/sizes';
 import {isRTL} from '../../I18n';
@@ -60,7 +60,7 @@ const ElementWidgetVertical = ({
 export default React.memo(ElementWidgetVertical);
 
 ElementWidgetVertical.propTypes = {
-  user: PropTypes.object,
+  // user: PropTypes.object,
   type: PropTypes.string.isRequired,
-  searchParams: PropTypes.object.isRequired,
+  // searchParams: PropTypes.object.isRequired,
 };

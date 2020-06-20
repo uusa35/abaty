@@ -34,7 +34,7 @@ const CompanySearchForm = ({title = 'search'}) => {
           }
         />
       }
-      containerStyle={{marginTop: 5, marginBottom: 5}}
+      containerStyle={{paddingTop: '8%'}}
       inputContainerStyle={{
         backgroundColor: '#E4E4E5',
         paddingRight: 15,

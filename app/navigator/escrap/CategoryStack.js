@@ -37,7 +37,7 @@ export const CategoryStack = createStackNavigator(
           />
         ),
         headerBackTitle: () => null,
-        headerTransparent: false,
+        headerTransparent: true,
       }),
       params: {
         category: null,
@@ -101,6 +101,12 @@ export const CategoryStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    defaultNavigationOptions: ({navigation}) => ({
+      // headerStyle: {
+      //   backgroundColor: 'green'
+      // }
+      headerTransparent: false,
+    }),
   },
 );
 

@@ -28,6 +28,7 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
     <ScrollView
       contentContainerStyle={styles.container}
       horizontal={false}
+      scrollEnabled={true}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}

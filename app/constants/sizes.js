@@ -12,7 +12,7 @@ export const {height, width} = Dimensions.get('window');
 export const touchOpacity = 0.8;
 export const rightHorizontalContentInset = 200;
 export const bottomVerticalContentInset = 200;
-export const bottomContentInset = 180;
+export const bottomContentInset = 200;
 export const TheHold = 0.5;
 export const productWidget = {
   x4Small: {

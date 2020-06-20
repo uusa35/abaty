@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, Fragment} from 'react';
 import {ImageBackground} from 'react-native';
 import {View} from 'react-native-animatable';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -7,32 +7,31 @@ import CompanySearchForm from './CompanySearchForm';
 import {useSelector} from 'react-redux';
 
 const EscrapSearchTab = () => {
-  const {mainBg} = useContext(GlobalValuesContext);
   const {companySearchTextInputModal} = useSelector((state) => state);
   const [search, setSearch] = useState('');
 
   return (
-    <ImageBackground
-      source={{uri: mainBg}}
-      style={{width, alignSelf: 'center', height: 250}}
-      resizeMode="cover">
+    <View
+      style={{
+        height: 80,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
       {companySearchTextInputModal && (
         <View
           animation="bounceInLeft"
           easing="ease-in"
           useNativeDriver={true}
           style={{
-            backgroundColor: 'transparent',
-            opacity: 1,
             width: '90%',
-            alignSelf: 'center',
-            paddingTop: '10%',
-            marginTop: '15%',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
           <CompanySearchForm search={search} setSearch={setSearch} />
         </View>
       )}
-    </ImageBackground>
+    </View>
   );
 };
 

@@ -30,6 +30,7 @@ export const SettingStack = createStackNavigator(
         headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('me')} />,
         headerBackTitle: () => null,
+        headerTransparent: true,
       }),
     },
     Login: {
@@ -150,6 +151,9 @@ export const SettingStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    defaultNavigationOptions: {
+      headerTransparent: false,
+    },
     config: {
       stiffness: 1000,
       damping: 500,

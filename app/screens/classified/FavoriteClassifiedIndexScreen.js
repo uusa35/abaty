@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 const FavoriteClassifiedIndexScreen = () => {
   const {classifiedFavorites} = useSelector((state) => state);
   return (
-    <BgContainer showImage={false}>
+    <BgContainer>
       <ClassifiedList
         classifieds={classifiedFavorites}
         showName={true}

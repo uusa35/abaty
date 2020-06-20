@@ -60,9 +60,11 @@ const AlertMessage = ({message}) => {
         ),
         styles,
         duration: 2000,
+        useNativeDriver: true,
       }}
       style={styles.content}
       onHide={() => setMessageVisible(false)}
+      useNativeDriver={true}
     />
   );
 };

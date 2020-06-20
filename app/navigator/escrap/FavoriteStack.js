@@ -26,6 +26,7 @@ export const FavoriteStack = createStackNavigator(
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: () => null,
+        headerTransparent: true,
       }),
     },
     ClassifiedIndex: {
@@ -69,6 +70,9 @@ export const FavoriteStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    defaultNavigationOptions: {
+      headerTransparent: false,
+    },
   },
 );
 FavoriteStack.navigationOptions = ({navigation}) => {

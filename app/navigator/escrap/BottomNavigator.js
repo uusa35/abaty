@@ -41,17 +41,6 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
       }),
     },
-    // VideoIndexAll: {
-    //   screen: VideoStack,
-    //   navigationOptions: () => ({
-    //     tabBarIcon: ({focused}) => (
-    //       <IconTabBar focused={focused} name="play-video" type="foundation" />
-    //     ),
-    //     tabBarLabel: ({focused}) => (
-    //       <TextTabBar title={I18n.t('videos')} focused={focused} />
-    //     ),
-    //   }),
-    // },
     Setting: {
       screen: SettingStack,
       navigationOptions: () => ({
@@ -66,17 +55,6 @@ export const BottomTabsStack = createBottomTabNavigator(
         // headerTitle: () => <HeaderMiddle title={I18n.t('home')}/>,
       }),
     },
-    // Search: {
-    //   screen: SearchStack,
-    //   navigationOptions: () => ({
-    //     tabBarIcon: ({focused}) => (
-    //       <IconTabBar focused={focused} name="ios-search" type="ionicon" />
-    //     ),
-    //     tabBarLabel: ({focused}) => (
-    //       <TextTabBar title={I18n.t('search')} focused={focused} />
-    //     ),
-    //   }),
-    // },
     Favorite: {
       screen: FavoriteStack,
       navigationOptions: () => ({
@@ -88,36 +66,6 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
       }),
     },
-    // ProductIndexAll: {
-    //   screen: ProductStack,
-    //   navigationOptions: () => ({
-    //     tabBarIcon: ({focused}) => (
-    //       <IconTabBar
-    //         focused={focused}
-    //         name="sort-by-alpha"
-    //         type="material-icon"
-    //       />
-    //     ),
-    //     tabBarLabel: ({focused}) => (
-    //       <TextTabBar title={I18n.t('all_products')} focused={focused} />
-    //     ),
-    //   }),
-    // },
-    // ServiceIndexAll: {
-    //   screen: ServiceStack,
-    //   navigationOptions: () => ({
-    //     tabBarIcon: ({focused}) => (
-    //       <IconTabBar
-    //         focused={focused}
-    //         name="customerservice"
-    //         type="antdesign"
-    //       />
-    //     ),
-    //     tabBarLabel: ({focused}) => (
-    //       <TextTabBar title={I18n.t('services')} focused={focused} />
-    //     ),
-    //   }),
-    // },
     ClassifiedIndexAll: {
       screen: ClassifiedStack,
       navigationOptions: () => ({
@@ -151,15 +99,6 @@ export const BottomTabsStack = createBottomTabNavigator(
       tabBarVisible: true,
     },
     initialRouteName: 'Home',
-    order: [
-      'Home',
-      'CategoryIndexScreen',
-      // 'ProductIndexAll',
-      // 'VideoIndexAll',
-      // 'ServiceIndexAll',
-      // 'Search',
-      'Favorite',
-      'Setting',
-    ],
+    order: ['Home', 'CategoryIndexScreen', 'Favorite', 'Setting'],
   },
 );

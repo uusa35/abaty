@@ -11,6 +11,7 @@ const ParentCategoryIndexScreen = () => {
     (state) => state,
   );
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (validate.isEmpty(homeUserCategories)) {
       dispatch(navigation.navigate('Home'));
@@ -18,7 +19,7 @@ const ParentCategoryIndexScreen = () => {
   }, [homeUserCategories]);
 
   return (
-    <BgContainer>
+    <BgContainer enableMargin={true} marginVal="21%">
       <View style={{flex: settings.show_commercials ? 0.8 : 1}}>
         <CategoriesList
           elements={homeUserCategories}
