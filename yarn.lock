@@ -7639,10 +7639,10 @@ react-native-step-indicator@^0.0.11:
   dependencies:
     prop-types "^15.6.0"
 
-react-native-svg-animated-linear-gradient@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/react-native-svg-animated-linear-gradient/-/react-native-svg-animated-linear-gradient-0.3.4.tgz#a4cc43c49e9f0ae2d3764e9013aaf6a2e33e0603"
-  integrity sha512-WO+LInsXjSuNLFXoRG/hhfhT6ZYRHEgIrRVbz8XVShAZct6cs/1g6nOa6P0+NdxJVAKDvqTAtUT3dmA/pzrQ+A==
+react-native-svg-animated-linear-gradient@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg-animated-linear-gradient/-/react-native-svg-animated-linear-gradient-0.4.0.tgz#5faf65d7576f3d9cf3419f29a25c60495ad547e6"
+  integrity sha512-0KQy6Es+YcwvERwaUR3giTaawyY/Rh1Ew7T3NCWP0j8VoZmIlERX5i2FOwGJTbBij6ehboPzPQvJdW6lFS4JKg==
   dependencies:
     d3-interpolate "^1.1.5"
 

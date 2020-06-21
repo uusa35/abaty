@@ -66,6 +66,7 @@
 		E7B75AFFADE84825A784BAD1 /* cairo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 723096D63CA2405C8230D6DE /* cairo.ttf */; };
 		F78CD37819904852B20346CF /* Changa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F10D54BA69AC4EF7A5E83E46 /* Changa-Regular.ttf */; };
 		F89769F8D1B249C292861BC1 /* Tajawal-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E011DDDAA86743869DF3F871 /* Tajawal-ExtraLight.ttf */; };
+		AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +178,7 @@
 		F10D54BA69AC4EF7A5E83E46 /* Changa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Changa-Regular.ttf"; path = "../assets/fonts/Changa-Regular.ttf"; sourceTree = "<group>"; };
 		F14B0696045740B685598D17 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		FB7112A6A6F244FFAC12FE9A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */ = {isa = PBXFileReference; name = "sst-arabic-bold.ttf"; path = "../assets/fonts/sst-arabic-bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +377,7 @@
 				0FF55BB6F1AC4E97B5AD0A88 /* bein-ar-black_0.ttf */,
 				991F123719444373AE8E08DF /* bein-ar-normal_0.ttf */,
 				723096D63CA2405C8230D6DE /* cairo.ttf */,
+				5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				75D3C6358E314BB5BED5C8E7 /* bein-ar-black_0.ttf in Resources */,
 				6EA2FF434AC443F9A0E6A8BF /* bein-ar-normal_0.ttf in Resources */,
 				E7B75AFFADE84825A784BAD1 /* cairo.ttf in Resources */,
+				AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

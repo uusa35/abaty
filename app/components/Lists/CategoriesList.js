@@ -1,4 +1,10 @@
-import React, {useState, useMemo, useContext, useEffect} from 'react';
+import React, {
+  useState,
+  useMemo,
+  useContext,
+  useEffect,
+  useCallback,
+} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import CategoryWidget from '../widgets/category/CategoryWidget';
 import {refetchHomeElements} from '../../redux/actions';
@@ -10,6 +16,9 @@ import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch} from 'react-redux';
+import {getSearchProducts} from '../../redux/actions/product';
+import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
+import {getSearchClassifieds} from '../../redux/actions/classified';
 
 const CategoriesList = ({elements, columns, type, showBtn = false}) => {
   const dispatch = useDispatch();
@@ -23,6 +32,34 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
   }, [refresh]);
 
   useEffect(() => {}, [elements]);
+
+  const handleClick = useCallback((c) => {
+    switch (type) {
+      case 'product':
+        dispatch(
+          getSearchProducts({
+            name: c.name,
+            searchParams: {product_category_id: c.id},
+            redirect: true,
+          }),
+        );
+        break;
+      case 'company':
+        dispatch(setCategoryAndGoToNavChildren(c));
+        break;
+      case 'classified':
+        dispatch(
+          getSearchClassifieds({
+            name: c.name,
+            searchParams: {classified_category_id: element.id},
+            redirect: true,
+          }),
+        );
+        break;
+      default:
+        null;
+    }
+  });
 
   return (
     <ScrollView
@@ -44,6 +81,7 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
         {!validate.isEmpty(elements) ? (
           map(elements, (c, i) => (
             <CategoryWidget
+              handleClick={handleClick}
               element={c}
               key={i}
               columns={columns}

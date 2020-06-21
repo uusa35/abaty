@@ -15,7 +15,7 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
       source={
         imageLoading && !isNull(img)
           ? images.loadingSm
-          : {uri: img ? img : logo}
+          : {uri: img ? img : logo, cache: 'force-cache'}
       }
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'white'}]}

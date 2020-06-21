@@ -17,12 +17,13 @@ import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import {bottomContentInset, text, TheHold} from './../../constants/sizes';
-import {filter, uniqBy} from 'lodash';
+import {filter, uniqBy, shuffle} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {useNavigation} from 'react-navigation-hooks';
 import TopSearchInput from '../widgets/TopSearchInput';
 import {useDispatch} from 'react-redux';
+import {ESCRAP} from './../../../app.json';
 
 const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +64,7 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
   };
 
   useEffect(() => {
-    setItems(elements);
+    setItems(ESCRAP ? shuffle(elements) : elements);
   }, [elements]);
 
   useMemo(() => {
@@ -82,10 +83,6 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
       setItems(elements);
     }
   }, [search]);
-
-  useEffect(() => {
-    setItems(elements);
-  }, [elements]);
 
   return (
     <KeyboardAvoidingView

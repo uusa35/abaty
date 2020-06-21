@@ -12,7 +12,7 @@ import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 export const ClassifiedStack = createStackNavigator(
   {
     HomeKey: {
-      screen: gestureHandlerRootHOC(HomeKeyScreen),
+      screen: HomeKeyScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -21,7 +21,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
+      screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -30,7 +30,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      screen: ClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -52,7 +52,7 @@ export const ClassifiedStack = createStackNavigator(
       path: `classified/:id`,
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

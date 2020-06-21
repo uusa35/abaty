@@ -90,7 +90,7 @@ export const CategoryStack = createStackNavigator(
       screen: EscrapCompanyShowScreen,
       navigationOptions: () => ({
         headerTitle: () => null,
-        headerRight: <HeaderCustom />,
+        headerRight: () => <HeaderCustom />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,

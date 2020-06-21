@@ -12,7 +12,7 @@ import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 export const ServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
-      screen: gestureHandlerRootHOC(ServiceIndexAllScreen),
+      screen: ServiceIndexAllScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -21,7 +21,7 @@ export const ServiceStack = createStackNavigator(
       }),
     },
     Service: {
-      screen: gestureHandlerRootHOC(ServiceShowScreen),
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -42,7 +42,7 @@ export const ServiceStack = createStackNavigator(
       path: `service/:id`,
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

@@ -18,7 +18,7 @@ import MallrCollectionCreateScreen from '../../screens/mallr/MallrCollectionCrea
 export const SettingStack = createStackNavigator(
   {
     Account: {
-      screen: gestureHandlerRootHOC(MallrAccountScreen),
+      screen: MallrAccountScreen,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -30,7 +30,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     CollectionCreate: {
-      screen: gestureHandlerRootHOC(MallrCollectionCreateScreen),
+      screen: MallrCollectionCreateScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('new_collection')} />,
         headerRight: () => <HeaderRight display={false} />,
@@ -38,7 +38,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Login: {
-      screen: gestureHandlerRootHOC(LoginScreen),
+      screen: LoginScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
@@ -46,7 +46,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Register: {
-      screen: gestureHandlerRootHOC(RegisterScreen),
+      screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,
@@ -54,7 +54,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: gestureHandlerRootHOC(UserEditScreen),
+      screen: UserEditScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight display={false} />,
@@ -62,7 +62,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     ProductIndex: {
-      screen: gestureHandlerRootHOC(ProductIndexScreen),
+      screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight displayShare={false} display={true} />,
@@ -73,7 +73,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     SearchProductIndex: {
-      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -84,7 +84,7 @@ export const SettingStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(ProductShowScreen),
+      screen: ProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

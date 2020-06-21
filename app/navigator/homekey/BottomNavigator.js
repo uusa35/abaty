@@ -134,8 +134,8 @@ export const BottomTabsStack = createBottomTabNavigator(
       }),
     },
     Classified: {
-      // screen: gestureHandlerRootHOC(ClassifiedShowScreen),
-      screen: gestureHandlerRootHOC(NormalClassifiedShowScreen),
+      // screen: ClassifiedShowScreen,
+      screen: NormalClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

@@ -176,6 +176,10 @@
     {
       "path": "assets/fonts/cairo.ttf",
       "sha1": "775ca60f44bcf9369b75a542acfcf58d4e5fa5d2"
+    },
+    {
+      "path": "assets/fonts/sst-arabic-bold.ttf",
+      "sha1": "5f4069260d5d694d859577313cdd2cc286d35ead"
     }
   ]
 }

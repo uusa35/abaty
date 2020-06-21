@@ -12,7 +12,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const VideoStack = createStackNavigator(
   {
     VideoIndex: {
-      screen: gestureHandlerRootHOC(VideoIndexScreen),
+      screen: VideoIndexScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerTitle: () => <HeaderMiddle title={I18n.t('videos')} />,
@@ -21,7 +21,7 @@ export const VideoStack = createStackNavigator(
       }),
     },
     VideoShow: {
-      screen: gestureHandlerRootHOC(VideoShowScreen),
+      screen: VideoShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

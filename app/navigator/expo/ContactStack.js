@@ -10,7 +10,7 @@ import ContactusScreen from '../../screens/ContactusScreen';
 export const ContactStack = createStackNavigator(
   {
     MoreScreen: {
-      screen: gestureHandlerRootHOC(MoreScreen),
+      screen: MoreScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
@@ -21,7 +21,7 @@ export const ContactStack = createStackNavigator(
       }),
     },
     Contactus: {
-      screen: gestureHandlerRootHOC(ContactusScreen),
+      screen: ContactusScreen,
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,

@@ -101,7 +101,7 @@ const ServiceWidget = ({element, showName = false, minWidth = 150}) => {
   );
 };
 
-export default ServiceWidget;
+export default React.memo(ServiceWidget);
 
 ServiceWidget.propTypes = {
   element: PropTypes.object.isRequired,

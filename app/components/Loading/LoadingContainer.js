@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Modal, Text, View} from 'react-native';
+import {Modal, View} from 'react-native';
 import Spinner from 'react-native-spinkit';
 import {whitesmoke} from 'color-name';
 import {useSelector} from 'react-redux';

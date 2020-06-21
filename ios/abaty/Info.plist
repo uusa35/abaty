@@ -117,6 +117,7 @@
 		<string>bein-ar-black_0.ttf</string>
 		<string>bein-ar-normal_0.ttf</string>
 		<string>cairo.ttf</string>
+		<string>sst-arabic-bold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

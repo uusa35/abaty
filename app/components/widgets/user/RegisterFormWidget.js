@@ -274,5 +274,6 @@ const styles = StyleSheet.create({
     fontSize: text.medium,
     paddingLeft: 10,
     paddingRight: 10,
+    textAlign: 'left',
   },
 });

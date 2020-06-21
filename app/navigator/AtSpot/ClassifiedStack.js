@@ -11,7 +11,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const ClassifiedStack = createStackNavigator(
   {
     HomeKey: {
-      screen: gestureHandlerRootHOC(HomeKeyScreen),
+      screen: HomeKeyScreen,
       navigationOptions: ({navigation}) => ({
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -20,7 +20,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexScreen),
+      screen: ClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -29,7 +29,7 @@ export const ClassifiedStack = createStackNavigator(
       }),
     },
     Classified: {
-      screen: gestureHandlerRootHOC(ClassifiedShowScreen),
+      screen: ClassifiedShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

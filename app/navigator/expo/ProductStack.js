@@ -14,7 +14,7 @@ import TransparentProductShowScreen from '../../screens/product/TransparentProdu
 export const ProductStack = createStackNavigator(
   {
     ProductIndexAll: {
-      screen: gestureHandlerRootHOC(ProductIndexAllScreen),
+      screen: ProductIndexAllScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -23,7 +23,7 @@ export const ProductStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(TransparentProductShowScreen),
+      screen: TransparentProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -36,7 +36,7 @@ export const ProductStack = createStackNavigator(
       path: `product/:id`,
     },
     SearchProductIndex: {
-      screen: gestureHandlerRootHOC(SearchProductIndexScreen),
+      screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => <HeaderRight showCountry={true} />,
@@ -47,7 +47,7 @@ export const ProductStack = createStackNavigator(
       }),
     },
     ImageZoom: {
-      screen: gestureHandlerRootHOC(ImageZoomWidget),
+      screen: ImageZoomWidget,
       navigationOptions: ({navigation}) => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => (

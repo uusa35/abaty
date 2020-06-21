@@ -17,7 +17,7 @@ import CelebrityIndexScreen from '../../screens/celebrity/CelebrityIndexScreen';
 const DesignerTopTabs = createMaterialTopTabNavigator(
   {
     TopDesignerIndex: {
-      screen: gestureHandlerRootHOC(DesignerIndexScreen),
+      screen: DesignerIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerTitle: () => <HeaderMiddle title={navigation.state.params.name} />,
         headerRight: () => <HeaderRight />,
@@ -25,7 +25,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
       }),
     },
     CompanyIndex: {
-      screen: gestureHandlerRootHOC(CompanyIndexScreen),
+      screen: CompanyIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -35,7 +35,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
       }),
     },
     CelebrityIndex: {
-      screen: gestureHandlerRootHOC(CelebrityIndexScreen),
+      screen: CelebrityIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -45,7 +45,7 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
       }),
     },
     CategoryIndex: {
-      screen: gestureHandlerRootHOC(CategoryIndexScreen),
+      screen: CategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
@@ -66,23 +66,23 @@ const DesignerTopTabs = createMaterialTopTabNavigator(
       path: 'category/:id',
     },
     DesignerShow: {
-      screen: gestureHandlerRootHOC(DesignerShowScreen),
+      screen: DesignerShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom />,
+        headerRight: () => <HeaderCustom />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,
     },
     CelebrityShow: {
-      screen: gestureHandlerRootHOC(CelebrityShowScreen),
+      screen: CelebrityShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: <HeaderCustom />,
+        headerRight: () => <HeaderCustom />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,

@@ -9,7 +9,7 @@ import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAl
 export const SearchStack = createStackNavigator(
   {
     ClassifiedFilter: {
-      screen: gestureHandlerRootHOC(ClassifiedIndexAllScreen),
+      screen: ClassifiedIndexAllScreen,
       navigationOptions: () => ({
         // header: null,
         headerTitle: () => (

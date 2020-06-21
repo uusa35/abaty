@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import {getSearchServices} from '../../redux/actions/service';
@@ -22,10 +22,5 @@ const ServiceIndexAllScreen = () => {
 };
 
 export default ServiceIndexAllScreen;
-
-ServiceIndexAllScreen.propTypes = {
-  services: PropTypes.array.isRequired,
-  colors: PropTypes.object,
-};
 
 const styles = StyleSheet.create({});

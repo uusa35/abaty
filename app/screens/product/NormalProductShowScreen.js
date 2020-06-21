@@ -186,11 +186,7 @@ NormalProductShowScreen.navigationOptions = ({navigation}) => ({
 
 export default NormalProductShowScreen;
 
-NormalProductShowScreen.propTypes = {
-  product: PropTypes.object.isRequired,
-  homeProducts: PropTypes.array.isRequired,
-  token: PropTypes.string,
-};
+NormalProductShowScreen.propTypes = {};
 
 const styles = StyleSheet.create({
   container: {},

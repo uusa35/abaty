@@ -13,7 +13,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const CategoryStack = createStackNavigator(
   {
     CategoryIndex: {
-      screen: gestureHandlerRootHOC(CategoryIndexScreen),
+      screen: CategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
         headerTitle: () => (
@@ -35,7 +35,7 @@ export const CategoryStack = createStackNavigator(
       path: 'category/:id',
     },
     ProductIndex: {
-      screen: gestureHandlerRootHOC(ProductIndexScreen),
+      screen: ProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,
@@ -46,7 +46,7 @@ export const CategoryStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: gestureHandlerRootHOC(NormalProductShowScreen),
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -64,7 +64,7 @@ export const CategoryStack = createStackNavigator(
       path: `product/:id`,
     },
     SubCategoryIndex: {
-      screen: gestureHandlerRootHOC(SubCategoryIndexScreen),
+      screen: SubCategoryIndexScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

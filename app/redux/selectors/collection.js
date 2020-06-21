@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {useSelector} from 'react-redux';
 
 const token = (state) => state.token;
 const colors = (state) => state.settings.colors;

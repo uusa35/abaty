@@ -59,7 +59,7 @@ export const FavoriteStack = createStackNavigator(
       screen: EscrapCompanyShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => null,
-        headerRight: <HeaderCustom />,
+        headerRight: () => <HeaderCustom />,
         headerBackTitle: () => null,
       }),
       path: `user/:id`,

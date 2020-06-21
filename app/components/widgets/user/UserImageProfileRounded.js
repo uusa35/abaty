@@ -92,6 +92,8 @@ const UserImageProfileRounded = ({
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
+              flexWrap: 'wrap',
+              width: '100%',
             }}>
             <TouchableOpacity>
               <Icon

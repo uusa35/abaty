@@ -11,14 +11,14 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const LoginStack = createStackNavigator(
   {
     Login: {
-      screen: gestureHandlerRootHOC(LoginScreen),
+      screen: LoginScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
       }),
     },
     Register: {
-      screen: gestureHandlerRootHOC(RegisterScreen),
+      screen: RegisterScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,
@@ -26,7 +26,7 @@ export const LoginStack = createStackNavigator(
       }),
     },
     UserEdit: {
-      screen: gestureHandlerRootHOC(UserEditScreen),
+      screen: UserEditScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('edit_information')} />,
         headerRight: () => <HeaderRight display={false} />,

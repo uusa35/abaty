@@ -125,7 +125,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             titleStyle={{
               fontFamily: text.font,
               color: 'black',
-              fontSize: text.medium,
+              fontSize: text.small,
             }}
           />
           <Button
@@ -134,16 +134,16 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
                 ? setColorVisible(true)
                 : dispatch(enableWarningMessage(I18n.t('choose_size')))
             }
-            iconRight
-            icon={
-              <Icon
-                name="circle"
-                type="font-awesome"
-                size={iconSizes.smaller}
-                // color={colorItem ? colorItem.code : 'transparent'}
-                color="black"
-              />
-            }
+            // iconRight
+            // icon={
+            //   <Icon
+            //     name="circle"
+            //     type="font-awesome"
+            //     size={iconSizes.smaller}
+            //     // color={colorItem ? colorItem.code : 'transparent'}
+            //     color="black"
+            //   />
+            // }
             containerStyle={{flex: 0.45}}
             buttonStyle={{
               backgroundColor: 'whitesmoke',
@@ -159,7 +159,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             titleStyle={{
               fontFamily: text.font,
               color: 'black',
-              fontSize: text.medium,
+              fontSize: text.small,
             }}
           />
         </View>

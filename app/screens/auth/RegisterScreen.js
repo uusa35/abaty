@@ -1,12 +1,7 @@
 import React, {useState} from 'react';
-import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
-import {
-  playerIdSelector,
-  tokenSelector,
-} from '../../redux/selectors/collection';
 import BgContainer from '../../components/containers/BgContainer';
 
 const RegisterScreen = () => {

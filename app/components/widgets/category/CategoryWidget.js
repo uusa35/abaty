@@ -3,46 +3,19 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Button} from 'react-native-elements';
 import {text, touchOpacity, width} from '../../../constants/sizes';
-import {setCategoryAndGoToNavChildren} from '../../../redux/actions/category';
-import {getSearchProducts} from '../../../redux/actions/product';
-import {getSearchClassifieds} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
-import {useDispatch} from 'react-redux';
 import {ABATI} from './../../../../app';
 
-const CategoryWidget = ({element, columns, showBtn = false, type}) => {
-  const dispatch = useDispatch();
+const CategoryWidget = ({
+  element,
+  columns,
+  showBtn = false,
+  type,
+  handleClick,
+}) => {
   const {colors} = useContext(GlobalValuesContext);
-
-  const handleClick = (c) => {
-    switch (type) {
-      case 'product':
-        dispatch(
-          getSearchProducts({
-            name: c.name,
-            searchParams: {product_category_id: c.id},
-            redirect: true,
-          }),
-        );
-        break;
-      case 'company':
-        dispatch(setCategoryAndGoToNavChildren(c));
-        break;
-      case 'classified':
-        dispatch(
-          getSearchClassifieds({
-            name: c.name,
-            searchParams: {classified_category_id: element.id},
-            redirect: true,
-          }),
-        );
-        break;
-      default:
-        null;
-    }
-  };
 
   return (
     <View
@@ -93,7 +66,7 @@ const CategoryWidget = ({element, columns, showBtn = false, type}) => {
   );
 };
 
-export default CategoryWidget;
+export default React.memo(CategoryWidget);
 
 CategoryWidget.propTypes = {
   element: PropTypes.object,

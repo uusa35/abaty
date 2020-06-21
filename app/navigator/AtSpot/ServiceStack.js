@@ -11,7 +11,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 export const ServiceStack = createStackNavigator(
   {
     ServiceIndexAll: {
-      screen: gestureHandlerRootHOC(ServiceIndexAllScreen),
+      screen: ServiceIndexAllScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight display={true} />,
@@ -20,7 +20,7 @@ export const ServiceStack = createStackNavigator(
       }),
     },
     Service: {
-      screen: gestureHandlerRootHOC(ServiceShowScreen),
+      screen: ServiceShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
