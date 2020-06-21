@@ -1,33 +1,37 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, {useContext} from 'react';
+import {StyleSheet} from 'react-native';
 import {height, width} from './../../constants/sizes';
-import {images as imgs} from '../../constants/images';
 import {map} from 'lodash';
 import Swiper from 'react-native-swiper';
+import ImageLoaderContainer from './ImageLoaderContainer';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import BgContainer from '../containers/BgContainer';
 
 const ImageZoomWidget = (props) => {
   const {images, index} = props.navigation.state.params;
-  const [imageLoading, setImageLoading] = useState(true);
+  const {colors} = useContext(GlobalValuesContext);
+
   return (
-    <Swiper
-      showsButtons={false}
-      dotColor="white"
-      index={index}
-      removeClippedSubviews={true}>
-      {map(images, (c, i) => {
-        return (
-          <View style={styles.slide} key={c.id}>
-            <Image
+    <BgContainer showImage={false}>
+      <Swiper
+        showsButtons={false}
+        dotColor={colors.btn_bg_theme_color}
+        activeDotColor={colors.normal_text_theme_color}
+        index={index}
+        containerStyle={{backgroundColor: 'black'}}
+        removeClippedSubviews={true}>
+        {map(images, (c, i) => {
+          return (
+            <ImageLoaderContainer
               key={i}
-              source={imageLoading ? imgs.loading : {uri: c.large}}
-              onLoadEnd={() => setImageLoading(false)}
+              img={c.large}
               style={{width: '100%', height: '100%'}}
               resizeMode="contain"
             />
-          </View>
-        );
-      })}
-    </Swiper>
+          );
+        })}
+      </Swiper>
+    </BgContainer>
   );
 };
 

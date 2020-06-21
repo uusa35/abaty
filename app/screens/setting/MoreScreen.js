@@ -1,9 +1,7 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {ScrollView} from 'react-native';
-import {useSelector} from 'react-redux';
 import SocialRowWidget from '../../components/widgets/SocialRowWidget';
 import ContactInformationWidget from '../../components/widgets/ContactInformationWidget';
-import validate from 'validate.js';
 import BgContainer from '../../components/containers/BgContainer';
 import {bottomContentInset} from '../../constants/sizes';
 
@@ -20,10 +18,8 @@ const MoreScreen = () => {
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
         }}>
-        <Fragment>
-          <SocialRowWidget />
-          <ContactInformationWidget />
-        </Fragment>
+        <SocialRowWidget />
+        <ContactInformationWidget />
       </ScrollView>
     </BgContainer>
   );
