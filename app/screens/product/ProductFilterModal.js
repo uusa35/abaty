@@ -10,7 +10,7 @@ import {width, text} from '../../constants/sizes';
 import {isIOS} from '../../constants';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
 import {hideProductFilter, setColor, setSize} from '../../redux/actions';
 import I18n from './../../I18n';
@@ -23,17 +23,18 @@ import {ABATI} from './../../../app';
 import ProductFilterHeightsWidget from '../../components/widgets/product/ProductFilterHeightsWidget';
 import ModalBackContainer from '../../components/containers/ModalBackContainer';
 
-const ProductFilterModal = ({
-  productColors,
-  sizes,
-  color,
-  size,
-  productcategories,
-  productFilterModal,
-  colors,
-  dispatch,
-  categories,
-}) => {
+const ProductFilterModal = () => {
+  const {
+    productColors,
+    sizes,
+    color,
+    size,
+    productFilterModal,
+    settings,
+    categories,
+  } = useSelector((state) => state);
+  const {colors} = settings;
+  const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [min, setMin] = useState(0);
   const [max, setMax] = useState(1000);
@@ -253,20 +254,7 @@ const ProductFilterModal = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    productColors: state.colors,
-    sizes: state.sizes,
-    color: state.color,
-    size: state.size,
-    productCategories: state.productCategories,
-    productFilterModal: state.productFilterModal,
-    colors: state.settings.colors,
-    categories: state.categories,
-  };
-}
-
-export default connect(mapStateToProps)(React.memo(ProductFilterModal));
+export default React.memo(ProductFilterModal);
 
 ProductFilterModal.propTypes = {
   colors: PropTypes.object.isRequired,

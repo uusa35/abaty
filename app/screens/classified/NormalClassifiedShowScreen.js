@@ -47,7 +47,7 @@ const NormalClassifiedShowScreen = () => {
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     return dispatch(
       getClassified({
         id: classified.id,
@@ -55,13 +55,13 @@ const NormalClassifiedShowScreen = () => {
         redirect: false,
       }),
     );
-  }, [refresh]);
+  };
 
-  useMemo(() => {
-    if (headerBg && headerBgColor) {
-      navigation.setParams({headerBg, headerBgColor});
-    }
-  }, [headerBg]);
+  // useMemo(() => {
+  //   if (headerBg && headerBgColor) {
+  //     navigation.setParams({headerBg, headerBgColor});
+  //   }
+  // }, [headerBg]);
 
   return (
     <BgContainer showImage={false}>
@@ -191,7 +191,7 @@ const NormalClassifiedShowScreen = () => {
                 ) : null}
               </Fragment>
             )}
-            {classified.has_map ? (
+            {classified.has_map && (
               <MapViewWidget
                 element={classified}
                 latitude={classified.latitude}
@@ -209,13 +209,13 @@ const NormalClassifiedShowScreen = () => {
                   2,
                 )}
               />
-            ) : null}
+            )}
           </View>
         </View>
         {validate.isObject(classified.videoGroup) &&
-        !validate.isEmpty(classified.videoGroup) ? (
-          <VideosHorizontalWidget videos={classified.videoGroup} />
-        ) : null}
+          !validate.isEmpty(classified.videoGroup) && (
+            <VideosHorizontalWidget videos={classified.videoGroup} />
+          )}
         {/*{!validate.isEmpty(classifieds) ? (*/}
         {/*  <ClassifiedListHorizontal*/}
         {/*    classifieds={classifieds}*/}
@@ -236,12 +236,12 @@ const NormalClassifiedShowScreen = () => {
   );
 };
 
-NormalClassifiedShowScreen.navigationOptions = ({navigation}) => ({
-  // headerTransparent: navigation.state.params.headerBg,
-  // headerStyle: {
-  //   backgroundColor: navigation.state.params.headerBgColor
-  // }
-});
+// NormalClassifiedShowScreen.navigationOptions = ({navigation}) => ({
+// headerTransparent: navigation.state.params.headerBg,
+// headerStyle: {
+//   backgroundColor: navigation.state.params.headerBgColor
+// }
+// });
 
 export default NormalClassifiedShowScreen;
 

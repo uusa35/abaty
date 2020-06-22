@@ -16,6 +16,7 @@ import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import TopSearchInput from '../widgets/TopSearchInput';
 import {useDispatch} from 'react-redux';
+import EmptyListWidget from './EmptyListWidget';
 
 const UsersList = ({elements, searchElements, showMore}) => {
   [isLoading, setIsLoading] = useState(false);
@@ -86,71 +87,61 @@ const UsersList = ({elements, searchElements, showMore}) => {
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(elements) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: bottomContentInset}}
-          numColumns={2}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReached={() => loadMore()}
-          onEndReachedThreshold={1}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => handleRefresh()}
-            />
-          }
-          contentContainerStyle={{
-            width: width - 20,
-          }}
-          columnWrapperStyle={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-          renderItem={({item}) => (
-            <UserWidgetHorizontal user={item} showName={true} />
-          )}
-          ListFooterComponent={
-            <View style={{width: '100%', minHeight: 100}}>
-              <Button
-                loading={isLoading}
-                raised
-                title={I18n.t('no_more_elements')}
-                type="outline"
-                titleStyle={{fontFamily: text.font}}
-              />
-            </View>
-          }
-          ListHeaderComponentStyle={{
-            width: '100%',
-            padding: 10,
-            backgroundColor: 'white',
-          }}
-          ListHeaderComponent={
-            <View style={{paddingTop: 5, paddingBottom: 5}}>
-              <TopSearchInput setSearch={setSearch} />
-            </View>
-          }
-        />
-      ) : (
-        <View style={{marginTop: 300, width: width - 50, alignSelf: 'center'}}>
-          <Button
-            raised
-            title={I18n.t('no_users')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
+      <FlatList
+        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_users')} />}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset}}
+        numColumns={2}
+        data={items}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={() => loadMore()}
+        onEndReachedThreshold={1}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
           />
-        </View>
-      )}
+        }
+        contentContainerStyle={{
+          width: width - 20,
+        }}
+        columnWrapperStyle={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+        renderItem={({item}) => (
+          <UserWidgetHorizontal user={item} showName={true} />
+        )}
+        ListFooterComponent={
+          <View style={{width: '100%', minHeight: 100}}>
+            <Button
+              loading={isLoading}
+              raised
+              title={I18n.t('no_more_elements')}
+              type="outline"
+              titleStyle={{fontFamily: text.font}}
+            />
+          </View>
+        }
+        ListHeaderComponentStyle={{
+          width: '100%',
+          padding: 10,
+          backgroundColor: 'white',
+        }}
+        ListHeaderComponent={
+          <View style={{paddingTop: 5, paddingBottom: 5}}>
+            <TopSearchInput setSearch={setSearch} />
+          </View>
+        }
+      />
     </KeyboardAvoidingView>
   );
 };

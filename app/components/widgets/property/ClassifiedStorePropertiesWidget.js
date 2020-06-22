@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
 import validate from 'validate.js';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
   return (
@@ -25,8 +26,8 @@ const ClassifiedStorePropertiesWidget = ({elements, name = ''}) => {
             return (
               <View style={styles.propertiesWrapper} key={i}>
                 {!validate.isEmpty(e.category_group.thumb) ? (
-                  <FastImage
-                    source={{uri: e.category_group.thumb}}
+                  <ImageLoaderContainer
+                    img={e.category_group.thumb}
                     style={{width: 30, height: 30}}
                   />
                 ) : (

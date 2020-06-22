@@ -24,6 +24,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import TopSearchInput from '../widgets/TopSearchInput';
 import {useDispatch} from 'react-redux';
 import {ESCRAP} from './../../../app.json';
+import EmptyListWidget from './EmptyListWidget';
 
 const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -94,83 +95,67 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(elements) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: bottomContentInset}}
-          numColumns={2}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={TheHold}
-          onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => handleRefresh()}
-            />
+      <FlatList
+        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_companies')} />}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset}}
+        numColumns={2}
+        data={items}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReachedThreshold={TheHold}
+        onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        contentContainerStyle={
+          {
+            // width : '100%'
           }
-          contentContainerStyle={
-            {
-              // width : '100%'
-            }
-          }
-          columnWrapperStyle={{
-            alignItems: 'flex-start',
-            alignSelf: 'center',
-          }}
-          renderItem={({item}) => (
-            <CompanyHorizontalWidget
-              user={item}
-              showRating={true}
-              showName={true}
-            />
-          )}
-          ListFooterComponent={
-            <Button
-              loading={isLoading}
-              raised
-              title={I18n.t('no_more_companies')}
-              type="outline"
-              titleStyle={{fontFamily: text.font}}
-              onPress={() => goBack()}
-            />
-          }
-          ListHeaderComponentStyle={{
-            width: '100%',
-            padding: 10,
-            backgroundColor: 'white',
-          }}
-          ListFooterComponentStyle={{}}
-          ListHeaderComponent={
-            <View style={{paddingTop: 5, paddingBottom: 5}}>
-              <TopSearchInput setSearch={setSearch} search={search} />
-            </View>
-          }
-        />
-      ) : (
-        <Button
-          onPress={() => goBack()}
-          raised
-          title={I18n.t('no_companies')}
-          type="outline"
-          titleStyle={{fontFamily: text.font}}
-          containerStyle={{
-            borderWidth: 10,
-            marginTop: 300,
-            alignSelf: 'center',
-            position: 'absolute',
-            bottom: 10,
-          }}
-        />
-      )}
+        }
+        columnWrapperStyle={{
+          alignItems: 'flex-start',
+          alignSelf: 'center',
+        }}
+        renderItem={({item}) => (
+          <CompanyHorizontalWidget
+            user={item}
+            showRating={true}
+            showName={true}
+          />
+        )}
+        ListFooterComponent={
+          <Button
+            loading={isLoading}
+            raised
+            title={I18n.t('no_more_companies')}
+            type="outline"
+            titleStyle={{fontFamily: text.font}}
+            onPress={() => goBack()}
+          />
+        }
+        ListHeaderComponentStyle={{
+          width: '100%',
+          padding: 10,
+          backgroundColor: 'white',
+        }}
+        ListFooterComponentStyle={{}}
+        ListHeaderComponent={
+          <View style={{paddingTop: 5, paddingBottom: 5}}>
+            <TopSearchInput setSearch={setSearch} search={search} />
+          </View>
+        }
+      />
     </KeyboardAvoidingView>
   );
 };

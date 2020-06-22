@@ -123,8 +123,8 @@ const CategoryGroupsScreen = () => {
 
   return (
     <Fragment>
-      {propertiesModal ? (
-        <Fragment>
+      {propertiesModal && (
+        <View>
           {map(remainingGroups, (group, i) => {
             return (
               <Modal
@@ -284,8 +284,8 @@ const CategoryGroupsScreen = () => {
               </Modal>
             );
           })}
-        </Fragment>
-      ) : null}
+        </View>
+      )}
       {!validate.isEmpty(classifiedProps) ? (
         <ClassifiedStorePropertiesWidget
           elements={classifiedProps}

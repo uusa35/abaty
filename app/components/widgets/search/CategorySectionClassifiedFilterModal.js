@@ -9,6 +9,7 @@ import {
 import {map} from 'lodash';
 import {text} from '../../../constants/sizes';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useSelector} from 'react-redux';
 
 const CategorySectionClassifiedFilterModal = ({
   parentCategories,
@@ -17,8 +18,8 @@ const CategorySectionClassifiedFilterModal = ({
   selectedSubCategory,
   setSelectedSubCategory,
   handleParent,
-  colors,
 }) => {
+  const {colors} = useSelector((state) => state.settings);
   return (
     <View
       style={{
@@ -88,7 +89,7 @@ const CategorySectionClassifiedFilterModal = ({
   );
 };
 
-export default CategorySectionClassifiedFilterModal;
+export default React.memo(CategorySectionClassifiedFilterModal);
 
 const styles = StyleSheet.create({
   btnStyle: {

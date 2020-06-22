@@ -87,26 +87,26 @@ const AbatiHomeScreen = () => {
           showName={true}
           title={I18n.t('featured_products')}
         />
-        {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+        {!validate.isEmpty(brands) && validate.isArray(brands) && (
           <BrandHorizontalWidget
             elements={brands}
             showName={false}
             title={I18n.t('brands')}
           />
-        ) : null}
-        {!validate.isEmpty(services) ? (
+        )}
+        {!validate.isEmpty(services) && (
           <ServiceHorizontalWidget
             elements={services}
             showName={true}
             title={I18n.t('our_services')}
           />
-        ) : null}
+        )}
       </ScrollView>
       {show_commercials ? (
         <View style={{flex: 0.2}}>
-          {!validate.isEmpty(commercials) ? (
+          {!validate.isEmpty(commercials) && (
             <FixedCommercialSliderWidget sliders={commercials} />
-          ) : null}
+          )}
         </View>
       ) : null}
     </BgContainer>

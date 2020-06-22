@@ -29,6 +29,7 @@ import SearchSort from '../search/SearchSort';
 import SortByModal from '../search/SortByModal';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import EmptyListWidget from '../../Lists/EmptyListWidget';
 
 const ProductList = ({
   products = [],
@@ -148,25 +149,7 @@ const ProductList = ({
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <FlatList
-        ListEmptyComponent={
-          <View style={styles.emptyCaseBtn}>
-            {emptyImage ? (
-              <Image
-                source={emptyImage}
-                style={{width, height: width}}
-                resizeMode="contain"
-              />
-            ) : (
-              <Button
-                raised
-                title={I18n.t('no_products')}
-                type="outline"
-                buttonStyle={{width: '100%'}}
-                titleStyle={{fontFamily: text.font}}
-              />
-            )}
-          </View>
-        }
+        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_products')} />}
         scrollEnabled={showFooter}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"

@@ -5,12 +5,22 @@ import React, {
   useEffect,
   Fragment,
 } from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  Modal,
+} from 'react-native';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import ClassifiedSearchForm from '../../components/widgets/search/ClassifiedSearchForm';
-import {HIDE_SEARCH_MODAL} from '../../redux/actions/types';
+import {
+  HIDE_SEARCH_MODAL,
+  SHOW_PROPERTIES_MODAL,
+} from '../../redux/actions/types';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import {isIOS} from './../../constants';
 import {width, text} from './../../constants/sizes';
@@ -23,18 +33,21 @@ import ModalBackContainer from '../../components/containers/ModalBackContainer';
 import {hideClassifiedFilter} from '../../redux/actions';
 import {HOMEKEY} from './../../../app';
 import CategorySectionClassifiedFilterModal from '../../components/widgets/search/CategorySectionClassifiedFilterModal';
+import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer';
 
-const ClassifiedFilterModal = ({
-  category,
-  subCategory,
-  dispatch,
-  searchModal,
-  colors,
-  categories,
-  country,
-  area,
-  classifiedFilterModal,
-}) => {
+const ClassifiedFilterModal = () => {
+  const {
+    category,
+    subCategory,
+    searchModal,
+    settings,
+    categories,
+    country,
+    area,
+    classifiedFilterModal,
+  } = useSelector((state) => state);
+  const {colors} = settings;
+  const dispatch = useDispatch();
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
   const [search, setSearch] = useState('');
   const [price, setPrice] = useState();
@@ -60,12 +73,12 @@ const ClassifiedFilterModal = ({
     }
   }, [categories]);
 
-  const showPropsModal = useCallback((g) => {
+  const showPropsModal = (g) => {
     setPropsModalVisible(!propsModalVisible);
     setSelectedGroup(g);
     const currentItems = filter(items, (i) => i.category_group_id !== g.id);
     setItems(currentItems);
-  });
+  };
 
   useMemo(() => {
     setPrice(priceRange[0]);
@@ -94,7 +107,7 @@ const ClassifiedFilterModal = ({
     setItems([]);
   }, [category, selectedCategory]);
 
-  const handleSetItems = useCallback((p) => {
+  const handleSetItems = (p) => {
     setPropsModalVisible(false);
     const currentItems = items.concat({
       category_group: selectedGroup,
@@ -112,13 +125,13 @@ const ClassifiedFilterModal = ({
     });
     setProps(currentProps);
     setItems(currentItems);
-  });
+  };
 
-  const handleShowSearchModal = useCallback(() => {
+  const handleShowSearchModal = () => {
     setSearchModalVisible(false);
     setPropsModalVisible(false);
     dispatch({type: HIDE_SEARCH_MODAL});
-  });
+  };
 
   useEffect(() => {
     if (!searchModal) {
@@ -175,23 +188,16 @@ const ClassifiedFilterModal = ({
     dispatch(setSubCategory(selectedSubCategory));
   }, [selectedSubCategory]);
 
-  const handleHideModal = useCallback(() => {
+  const handleHideModal = () => {
     dispatch(hideClassifiedFilter());
-  });
+  };
+
   return (
     <ModalBackContainer
       toggleVisible={classifiedFilterModal}
       setToggleVisible={handleHideModal}
       title={I18n.t('classified_filter')}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          width: '100%',
-          backgroundColor: 'white',
-        }}>
-        <ClassifiedSearchForm search={search} setSearch={setSearch} />
-      </View>
+      <ClassifiedSearchForm search={search} setSearch={setSearch} />
 
       <CategorySectionClassifiedFilterModal
         parentCategories={parentCategories}
@@ -200,7 +206,6 @@ const ClassifiedFilterModal = ({
         selectedSubCategory={selectedSubCategory}
         setSelectedSubCategory={setSelectedSubCategory}
         handleParent={handleParent}
-        colors={colors}
       />
       <View
         style={{
@@ -272,7 +277,7 @@ const ClassifiedFilterModal = ({
           {I18n.t('price')} : {priceRange[0]} - {priceRange[1]}
         </Text>
       </View>
-      {!validate.isEmpty(category) ? (
+      {!validate.isEmpty(category) && (
         <View
           style={{
             alignItems: 'flex-start',
@@ -297,8 +302,8 @@ const ClassifiedFilterModal = ({
                   alignItems: 'center',
                   margin: 10,
                 }}>
-                <FastImage
-                  source={{uri: g.thumb}}
+                <ImageLoaderContainer
+                  img={g.thumb}
                   style={{
                     width: 50,
                     height: 50,
@@ -336,7 +341,7 @@ const ClassifiedFilterModal = ({
             </View>
           ))}
         </View>
-      ) : null}
+      )}
       <View
         style={{
           margin: 10,
@@ -374,26 +379,28 @@ const ClassifiedFilterModal = ({
               </Text>
             </View>
           ) : null}
-          {currentArea ? (
+          {!currentArea && (
             <View>
               <Text style={styles.title}>
                 {I18n.t('area')} : {currentArea.slug}
               </Text>
             </View>
-          ) : null}
+          )}
         </View>
-        {!validate.isEmpty(items) ? (
+        {!validate.isEmpty(items) && (
           <Fragment>
             {map(items, (item, i) => (
               <View key={i} style={{flexDirection: 'row'}}>
-                <Text style={styles.subTitle}>{item.category_group.name}</Text>
+                <Text style={styles.subTitle}>
+                  {item.category_selectedGroup.name}
+                </Text>
                 <Text style={styles.subTitle}>
                   {item.property.name} {item.property.value}
                 </Text>
               </View>
             ))}
           </Fragment>
-        ) : null}
+        )}
       </View>
       <View
         style={{
@@ -431,24 +438,154 @@ const ClassifiedFilterModal = ({
           }}
         />
       </View>
+
+      <Modal
+        transparent={false}
+        animationType={'slide'}
+        presentationStyle="fullScreen"
+        visible={propsModalVisible}>
+        <View
+          style={{
+            width: '95%',
+            alignSelf: 'center',
+            minHeight: 50,
+            marginTop: '15%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row-reverse',
+            // paddingRight : 25, paddingLeft : 20 ,
+            // borderWidth : 10
+          }}>
+          <Icon
+            containerStyle={{position: 'absolute', left: 0}}
+            name="close"
+            type="evil-icons"
+            size={25}
+            style={{zIndex: 999}}
+            onPress={() => setPropsModalVisible(false)}
+            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              // justifyContent: 'center',
+            }}>
+            <ImageLoaderContainer
+              img={selectedGroup.thumb}
+              style={{
+                width: 35,
+                height: 35,
+                marginRight: 3,
+                marginLeft: 3,
+              }}
+            />
+            {/*<Icon type="font-awesome" name={selectedGroup.icon} />*/}
+            <Text
+              style={{
+                textAlign: 'center',
+                fontFamily: text.font,
+                fontSize: text.large,
+              }}>
+              {selectedGroup.name}
+            </Text>
+          </View>
+          <Icon
+            containerStyle={{position: 'absolute', right: 0}}
+            name={isRTL ? 'chevron-thin-right' : 'chevron-thin-left'}
+            type="entypo"
+            size={25}
+            style={{zIndex: 999}}
+            onPress={() => setPropsModalVisible(false)}
+            hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+          />
+        </View>
+        <ScrollView
+          contentInset={{bottom: 150}}
+          contentContainerStyle={{
+            flex: 1,
+            paddingTop: 10,
+            width: '100%',
+            padding: '5%',
+            justifyContent: 'space-between',
+          }}>
+          <View>
+            {map(selectedGroup.properties, (property, i) => {
+              return (
+                <TouchableOpacity
+                  style={styles.propertiesWrapper}
+                  onPress={() => handleClick(property)}
+                  key={i}>
+                  {!validate.isEmpty(property.thumb) ? (
+                    <ImageLoaderContainer
+                      img={property.thumb}
+                      style={{width: 30, height: 30}}
+                    />
+                  ) : (
+                    <Icon type="font-awesome" name={property.icon} />
+                  )}
+                  <View
+                    style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      alignItems: 'baseline',
+                      justifyContent: 'space-between',
+                    }}>
+                    <Text style={styles.title}>{property.name}</Text>
+                    {selectedGroup.is_multi ? (
+                      !validate.isEmpty(
+                        filter(
+                          selectedGroup.properties,
+                          (p) => p.property.id === property.id,
+                        ),
+                      ) ? (
+                        <Icon
+                          type="antdesign"
+                          name="checkcircleo"
+                          color="green"
+                        />
+                      ) : (
+                        <Icon
+                          type="antdesign"
+                          name="minuscircleo"
+                          color="lightgrey"
+                        />
+                      )
+                    ) : null}
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+          <View>
+            {selectedGroup.is_multi ? (
+              <Button
+                // onPress={() => goToNextGroup()}
+                raised
+                containerStyle={{
+                  width: '100%',
+                  marginBottom: 10,
+                  marginTop: 10,
+                }}
+                buttonStyle={{
+                  backgroundColor: colors.btn_bg_theme_color,
+                }}
+                title={I18n.t('skip_next')}
+                titleStyle={{
+                  fontFamily: text.font,
+                  color: colors.btn_text_theme_color,
+                  fontSize: text.medium,
+                }}
+              />
+            ) : null}
+          </View>
+        </ScrollView>
+      </Modal>
     </ModalBackContainer>
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    category: state.category,
-    subCategory: state.subCategory,
-    categories: state.categories,
-    searchModal: state.searchModal,
-    colors: state.settings.colors,
-    country: state.country,
-    area: state.area,
-    classifiedFilterModal: state.classifiedFilterModal,
-  };
-}
-
-export default connect(mapStateToProps)(ClassifiedFilterModal);
+export default React.memo(ClassifiedFilterModal);
 
 const styles = StyleSheet.create({
   iconModalWrapper: {

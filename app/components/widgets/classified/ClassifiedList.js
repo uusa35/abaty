@@ -20,12 +20,11 @@ import I18n, {isRTL} from './../../../I18n';
 import {
   bottomContentInset,
   height,
-  text,
   TheHold,
   width,
 } from '../../../constants/sizes';
-import {Button, Icon, Input} from 'react-native-elements';
-import {filter, uniqBy} from 'lodash';
+import {Icon} from 'react-native-elements';
+import {filter, uniqBy, isEmpty} from 'lodash';
 import validate from 'validate.js';
 import {getSearchClassifieds} from '../../../redux/actions/classified';
 import ClassifiedWidget from './ClassifiedWidget';
@@ -38,6 +37,7 @@ import NoMoreElements from '../NoMoreElements';
 import {HOMEKEY} from './../../../../app';
 import SortByModal from '../search/SortByModal';
 import {useDispatch} from 'react-redux';
+import EmptyListWidget from '../../Lists/EmptyListWidget';
 
 const ClassifiedList = ({
   classifieds,
@@ -68,11 +68,11 @@ const ClassifiedList = ({
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  const loadMore = useCallback(() => {
+  const loadMore = () => {
     if (currentShowMore) {
       setPage(page + 1);
     }
-  });
+  };
 
   useMemo(() => {
     switch (sort) {
@@ -101,10 +101,7 @@ const ClassifiedList = ({
   }, [sort]);
 
   useMemo(() => {
-    if (currentShowMore && page > 1 && page <= 20) {
-      setIsLoading(true);
-      setIsLoading(false);
-      setRefresh(false);
+    if (showMore && page > 1 && page <= 20) {
       return axiosInstance(`search/classified?page=${page}`, {
         params,
       })
@@ -114,22 +111,17 @@ const ClassifiedList = ({
           const classifiedGroup = uniqBy(items.concat(r.data), 'id');
           setItems(classifiedGroup);
         })
-        .catch((e) => {
-          setIsLoading(false);
-          setRefresh(false);
-        });
+        .catch((e) => e);
     }
   }, [page]);
 
-  const handleRefresh = useCallback(() => {
-    if (currentShowMore) {
+  const handleRefresh = () => {
+    if (showMore) {
       setRefresh(false);
       setIsLoading(false);
-      return dispatch(
-        getSearchClassifieds({searchParams: params, redirect: false}),
-      );
+      dispatch(getSearchClassifieds({searchParams: params, redirect: false}));
     }
-  }, [refresh]);
+  };
 
   useMemo(() => {
     if (search.length > 0) {
@@ -158,133 +150,116 @@ const ClassifiedList = ({
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(classifieds) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={TheHold}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: bottomContentInset}}
-          data={uniqBy(items, 'id')}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => (showRefresh ? handleRefresh() : null)}
-            />
-          }
-          onEndReached={() => loadMore()}
-          contentContainerStyle={{
-            marginBottom: 15,
-            justifyContent: 'flex-start',
-            alignSelf: 'center',
-            minHeight: height,
-            minWidth: '100%',
-            flexGrow: 1,
-          }}
-          // disableVirtualization={false}
-          ListHeaderComponentStyle={{
-            backgroundColor: 'white',
-          }}
-          ListHeaderComponent={
-            <View
-              style={{
-                marginTop: 5,
-                marginBottom: 5,
-                alignSelf: 'center',
-                width: '100%',
-              }}>
-              {showSearch ? (
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    // width: '100%',
-                    // backgroundColor: 'white',
-                  }}>
-                  {showSortSearch ? (
-                    <SearchSort
-                      sort={sort}
-                      sortModal={sortModal}
-                      setSortModal={setSortModal}
-                      setSort={setSort}
-                      showClassifiedsFilter={showClassifiedsFilter}
-                    />
-                  ) : null}
-                  {!validate.isEmpty(elementsWithMap) && HOMEKEY ? (
-                    <ClassifiedsMapView
-                      mapModal={mapModal}
-                      setMapModal={setMapModal}
-                      elements={elementsWithMap}
-                    />
-                  ) : null}
-                </View>
-              ) : null}
-              {showTitle ? (
-                <TouchableOpacity
-                  style={widgetStyles.titleContainer}
-                  onPress={() => navigate('CategoryIndex')}>
-                  <View style={widgetStyles.titleWrapper}>
-                    <Text
-                      style={[
-                        widgetStyles.title,
-                        {color: colors.header_one_theme_color},
-                      ]}>
-                      {I18n.t(title)}
-                    </Text>
-                  </View>
-                  <Icon
-                    type="entypo"
-                    name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                    size={20}
-                    color={colors.header_one_theme_color}
-                  />
-                </TouchableOpacity>
-              ) : null}
-            </View>
-          }
-          ListFooterComponent={() =>
-            showFooter ? (
-              <NoMoreElements
-                title={
-                  noMoreElementsTitle
-                    ? noMoreElementsTitle
-                    : I18n.t('no_more_classifieds')
-                }
-                isLoading={refresh}
-              />
-            ) : null
-          }
-          ListFooterComponentStyle={{
-            marginBottom: bottomContentInset,
-          }}
-          renderItem={({item}) => (
-            <ClassifiedWidget element={item} showName={showName} />
-          )}
-        />
-      ) : (
-        <View
-          style={{
-            minHeight: '100%',
-            width: width - 50,
-            alignSelf: 'center',
-            justifyContent: 'center',
-          }}>
-          <Button
-            raised
-            title={noElementsTitle ? noElementsTitle : I18n.t('no_classifieds')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
+      <FlatList
+        ListEmptyComponent={<EmptyListWidget title={noElementsTitle} />}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReachedThreshold={TheHold}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset}}
+        data={uniqBy(items, 'id')}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => (showRefresh ? handleRefresh() : null)}
           />
-        </View>
-      )}
+        }
+        onEndReached={() => loadMore()}
+        contentContainerStyle={{
+          marginBottom: 15,
+          justifyContent: 'flex-start',
+          alignSelf: 'center',
+          minHeight: height,
+          minWidth: '100%',
+          flexGrow: 1,
+        }}
+        // disableVirtualization={false}
+        ListHeaderComponentStyle={{
+          backgroundColor: 'white',
+        }}
+        ListHeaderComponent={
+          <View
+            style={{
+              marginTop: 5,
+              marginBottom: 5,
+              alignSelf: 'center',
+              width: '100%',
+            }}>
+            {showSearch ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                {showSortSearch ? (
+                  <SearchSort
+                    sort={sort}
+                    sortModal={sortModal}
+                    setSortModal={setSortModal}
+                    setSort={setSort}
+                    showClassifiedsFilter={showClassifiedsFilter}
+                  />
+                ) : null}
+                {!validate.isEmpty(elementsWithMap) && HOMEKEY ? (
+                  <ClassifiedsMapView
+                    mapModal={mapModal}
+                    setMapModal={setMapModal}
+                    elements={elementsWithMap}
+                  />
+                ) : null}
+              </View>
+            ) : null}
+            {showTitle ? (
+              <TouchableOpacity
+                style={widgetStyles.titleContainer}
+                onPress={() => navigate('CategoryIndex')}>
+                <View style={widgetStyles.titleWrapper}>
+                  <Text
+                    style={[
+                      widgetStyles.title,
+                      {color: colors.header_one_theme_color},
+                    ]}>
+                    {I18n.t(title)}
+                  </Text>
+                </View>
+                <Icon
+                  type="entypo"
+                  name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                  size={20}
+                  color={colors.header_one_theme_color}
+                />
+              </TouchableOpacity>
+            ) : null}
+          </View>
+        }
+        ListFooterComponent={() =>
+          showFooter &&
+          !isEmpty(items) && (
+            <NoMoreElements
+              title={
+                noMoreElementsTitle
+                  ? noMoreElementsTitle
+                  : I18n.t('no_more_classifieds')
+              }
+              isLoading={refresh}
+            />
+          )
+        }
+        ListFooterComponentStyle={{
+          marginBottom: bottomContentInset,
+        }}
+        renderItem={({item}) => (
+          <ClassifiedWidget element={item} showName={showName} />
+        )}
+      />
       <SortByModal
         setSortModal={setSortModal}
         sortModal={sortModal}

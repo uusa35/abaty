@@ -8,6 +8,7 @@ import {
   getSearchClassifieds,
 } from '../../redux/actions/classified';
 import BgContainer from '../../components/containers/BgContainer';
+import I18n from './../../I18n';
 
 const ClassifiedIndexAllScreen = () => {
   const {classifieds} = useSelector((state) => state);
@@ -27,6 +28,7 @@ const ClassifiedIndexAllScreen = () => {
         showClassifiedsFilter={true}
         showSortSearch={true}
         showMore={true}
+        noElementsTitle={I18n.t('no_classifieds')}
       />
     </BgContainer>
   );
