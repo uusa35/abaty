@@ -128,9 +128,6 @@ const ClassifiedFilterModal = () => {
     setItems(currentItems);
   };
 
-  console.log('props', props);
-  console.log('items', items);
-
   const handleShowSearchModal = () => {
     setSearchModalVisible(false);
     setPropsModalVisible(false);

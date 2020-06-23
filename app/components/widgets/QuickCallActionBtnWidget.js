@@ -5,7 +5,7 @@ import {Linking, StyleSheet, View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
-import {text} from './../../constants/sizes';
+import {iconSizes, text} from './../../constants/sizes';
 import PropTypes from 'prop-types';
 
 const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
@@ -22,15 +22,17 @@ const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
         zIndex: 99,
       }}>
       <ActionButton
+        useNativeFeedback={true}
         style={{opacity: 0.6}}
         renderIcon={() => <Icon name="ios-call" type="ionicon" color="white" />}
-        size={50}
+        size={iconSizes.large}
         spacing={20}
         position="left"
         verticalOrientation="up"
         buttonColor={colors.btn_bg_theme_color}>
-        {mobile ? (
+        {mobile && (
           <ActionButton.Item
+            useNativeFeedback={true}
             buttonColor={colors.btn_bg_theme_color}
             title={I18n.t('call_user')}
             onPress={() => Linking.openURL(`tel:${mobile}`)}
@@ -41,8 +43,6 @@ const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
               color={colors.btn_text_theme_color}
             />
           </ActionButton.Item>
-        ) : (
-          <Fragment></Fragment>
         )}
         <ActionButton.Item
           buttonColor={colors.btn_bg_theme_color}
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: text.font,
-    fontSize: text.medium,
+    fontSize: text.small,
   },
 });

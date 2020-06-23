@@ -140,9 +140,9 @@ const ChooseCategoryItem = ({category}) => {
           onPress={() =>
             dispatch({type: 'START_NEW_CLASSIFIED', payload: category})
           }>
-          <FastImage
+          <ImageLoaderContainer
             style={{width: 80, height: 80}}
-            source={{uri: category.thumb}}
+            img={category.thumb}
             resizeMode="contain"
           />
           <Text style={styles.categoryTitle}>{category.name}</Text>

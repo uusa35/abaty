@@ -58,7 +58,7 @@ const ClassifiedStoreScreen = () => {
     dispatch(toggleResetApp(false));
   }, []);
 
-  const openPicker = useCallback(() => {
+  const openPicker = () => {
     return ImagePicker.openPicker({
       compressImageMaxWidth: 1080,
       compressImageMaxHeight: 1440,
@@ -73,12 +73,12 @@ const ClassifiedStoreScreen = () => {
       setImage(first(images));
       setImages(images);
     });
-  });
+  };
 
-  const removeImage = useCallback((i) => {
+  const removeImage = (i) => {
     const newImages = remove(images, (img, index) => i !== index);
     setImages(newImages);
-  });
+  };
 
   useEffect(() => {
     if (validate.isEmpty(category)) {

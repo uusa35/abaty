@@ -1,10 +1,4 @@
-import React, {
-  Fragment,
-  useState,
-  useMemo,
-  useCallback,
-  useContext,
-} from 'react';
+import React, {Fragment, useState, useMemo, useContext} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -13,7 +7,7 @@ import {
   RefreshControl,
   View,
 } from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height, iconSizes} from './../../constants/sizes';
 import I18n from './../../I18n';
@@ -23,7 +17,7 @@ import {
 } from '../../redux/actions/classified';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
-import {map} from 'lodash';
+import {map, round, filter, first} from 'lodash';
 import ClassifiedInfoWidgetElement from '../../components/widgets/classified/ClassifiedInfoWidgetElement';
 import ClassifiedListHorizontal from '../../components/widgets/classified/ClassifiedListHorizontal';
 import MapViewWidget from '../../components/widgets/MapViewWidget';
@@ -32,7 +26,6 @@ import QuickCallActionBtnWidget from '../../components/widgets/QuickCallActionBt
 import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './../CommentScreenModal';
 import {getProductConvertedFinalPrice} from '../../helpers';
-import {round} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
@@ -46,6 +39,8 @@ const NormalClassifiedShowScreen = () => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [multiItems, setMultiItems] = useState([]);
+  const [nonMultiItems, setNonMultiItems] = useState([]);
 
   const handleRefresh = () => {
     return dispatch(
@@ -57,11 +52,20 @@ const NormalClassifiedShowScreen = () => {
     );
   };
 
+  useMemo(() => {
+    setMultiItems(filter(classified.items, (i) => i.categoryGroup.is_multi));
+    setNonMultiItems(
+      filter(classified.items, (i) => !i.categoryGroup.is_multi),
+    );
+  }, [classified]);
+
   // useMemo(() => {
   //   if (headerBg && headerBgColor) {
   //     navigation.setParams({headerBg, headerBgColor});
   //   }
   // }, [headerBg]);
+
+  console.log('items', classified.items);
 
   return (
     <BgContainer showImage={false}>
@@ -96,19 +100,21 @@ const NormalClassifiedShowScreen = () => {
               editMode={auth && auth.id === classified.user_id && token}
             />
           ) : null}
-          {!validate.isEmpty(classified.items) ? (
-            <PropertiesWidget elements={classified.items} />
-          ) : null}
-          <View
-            animation="bounceInLeft"
-            easing="ease-out"
-            style={{marginTop: 15}}>
-            {classified.description ? (
+          {!validate.isEmpty(classified.items) && (
+            <PropertiesWidget
+              elements={filter(
+                classified.items,
+                (i) => !i.categoryGroup.is_multi,
+              )}
+            />
+          )}
+          <View style={{marginTop: 15}}>
+            {classified.description && (
               <View>
                 <Text style={styles.title}>{I18n.t('description')}</Text>
                 <Text style={styles.normalText}>{classified.description}</Text>
               </View>
-            ) : null}
+            )}
             {classified.user && (
               <ClassifiedInfoWidgetElement
                 elementName="user_name"
@@ -126,7 +132,7 @@ const NormalClassifiedShowScreen = () => {
             )}
             {classified.has_items && classified.items && (
               <Fragment>
-                {map(classified.items, (p, i) => (
+                {map(nonMultiItems, (p, i) => (
                   <ClassifiedInfoWidgetElement
                     key={i}
                     elementName={p.categoryGroup.name}
@@ -138,14 +144,46 @@ const NormalClassifiedShowScreen = () => {
                     properties={p.property}
                     showIcon={false}
                     translate={false}
-                    properties={
-                      p.categoryGroup.is_multi
-                        ? p.categoryGroup.properties
-                        : null
-                    }
+                    properties={p.categoryGroup.properties}
                     iconName={p.categoryGroup.icon}
                   />
                 ))}
+                {!validate.isEmpty(multiItems) && (
+                  <Fragment>
+                    <Text
+                      style={[
+                        styles.normalText,
+                        {padding: 0, paddingBottom: 10},
+                      ]}>
+                      {first(multiItems).categoryGroup.name}
+                    </Text>
+                    <View style={{flexDirection: 'row', flex: 1}}>
+                      {map(multiItems, (p, i) => (
+                        <View
+                          style={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginRight: 3,
+                            marginLeft: 3,
+                            backgroundColor: '#f7f7f7',
+                            borderWidth: 0.5,
+                            borderColor: 'lightgrey',
+                            width: '20%',
+                            padding: 8,
+                            borderRadius: 5,
+                          }}>
+                          <Text
+                            style={{
+                              fontSize: text.small,
+                              fontFamily: text.font,
+                            }}>
+                            {p.property.name}
+                          </Text>
+                        </View>
+                      ))}
+                    </View>
+                  </Fragment>
+                )}
               </Fragment>
             )}
             {classified.address ? (
@@ -216,10 +254,10 @@ const NormalClassifiedShowScreen = () => {
             )}
           </View>
         </View>
-        {validate.isObject(classified.videoGroup) &&
-          !validate.isEmpty(classified.videoGroup) && (
-            <VideosHorizontalWidget videos={classified.videoGroup} />
-          )}
+        {/*{validate.isObject(classified.videoGroup) &&*/}
+        {/*  !validate.isEmpty(classified.videoGroup) && (*/}
+        {/*    <VideosHorizontalWidget videos={classified.videoGroup} />*/}
+        {/*  )}*/}
         {/*{!validate.isEmpty(classifieds) ? (*/}
         {/*  <ClassifiedListHorizontal*/}
         {/*    classifieds={classifieds}*/}

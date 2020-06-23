@@ -1,12 +1,10 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
-import {map, first} from 'lodash';
+import {View, Text} from 'react-native';
+import {map} from 'lodash';
 import {text} from './../../../constants/sizes';
-import I18n from '../../../I18n';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const PropertiesWidget = ({elements}) => {
-  console.log('ele', elements);
   return (
     <View
       style={{

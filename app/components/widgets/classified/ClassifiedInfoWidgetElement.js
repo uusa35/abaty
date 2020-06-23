@@ -39,7 +39,7 @@ const ClassifiedInfoWidgetElement = ({
           }}>
           {translate ? I18n.t(elementName) : elementName}
         </Text>
-        {properties ? (
+        {properties && (
           <View style={{flexDirection: 'row', paddingTop: 10}}>
             {map(properties, (p) => (
               <Text
@@ -60,7 +60,7 @@ const ClassifiedInfoWidgetElement = ({
                 key={p.id}>{`${p.name}`}</Text>
             ))}
           </View>
-        ) : null}
+        )}
       </View>
       {!properties ? (
         <View style={{flexDirection: 'row'}}>
