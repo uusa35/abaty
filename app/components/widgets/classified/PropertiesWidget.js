@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {map} from 'lodash';
+import {map, first} from 'lodash';
 import {text} from './../../../constants/sizes';
 import I18n from '../../../I18n';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const PropertiesWidget = ({elements}) => {
+  console.log('ele', elements);
   return (
     <View
       style={{
@@ -32,8 +34,8 @@ const PropertiesWidget = ({elements}) => {
               width: '25%',
               // minHeight: 85,
             }}>
-            <Image
-              source={{uri: item.categoryGroup.thumb}}
+            <ImageLoaderContainer
+              img={item.categoryGroup.thumb}
               style={{width: 25, height: 25, marginBottom: 5}}
             />
             {/*<Icon*/}
@@ -58,7 +60,7 @@ const PropertiesWidget = ({elements}) => {
                 fontSize: text.small,
               }}>
               {item.categoryGroup.is_multi
-                ? I18n.t('exists')
+                ? item.property.name
                 : item.property.value}
             </Text>
           </View>

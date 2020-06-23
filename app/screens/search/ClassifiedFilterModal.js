@@ -105,9 +105,10 @@ const ClassifiedFilterModal = () => {
       }
     }
     setItems([]);
+    setProps([]);
   }, [category, selectedCategory]);
 
-  const handleSetItems = (p) => {
+  const handleSetProperty = (p) => {
     setPropsModalVisible(false);
     const currentItems = items.concat({
       category_group: selectedGroup,
@@ -127,6 +128,9 @@ const ClassifiedFilterModal = () => {
     setItems(currentItems);
   };
 
+  console.log('props', props);
+  console.log('items', items);
+
   const handleShowSearchModal = () => {
     setSearchModalVisible(false);
     setPropsModalVisible(false);
@@ -140,7 +144,7 @@ const ClassifiedFilterModal = () => {
     }
   }, [searchModal]);
 
-  const handleSubmitFilter = useCallback(() => {
+  const handleSubmitFilter = () => {
     return dispatch(
       getSearchClassifieds({
         searchParams: {
@@ -160,19 +164,19 @@ const ClassifiedFilterModal = () => {
           : I18n.t('search_results'),
       }),
     );
-  });
+  };
 
-  const handleClearFilter = useCallback(() => {
+  const handleClearFilter = () => {
     setItems([]);
     setProps([]);
     setCurrentArea({});
-  });
+  };
 
   useMemo(() => {
     setCurrentArea(area);
   }, [area]);
 
-  const handleParent = useCallback((p) => {
+  const handleParent = (p) => {
     setSelectedCategory(p);
     // if(p.max - p.min > 500) {
     //   setMin(p.min);
@@ -182,10 +186,12 @@ const ClassifiedFilterModal = () => {
     if (!validate.isEmpty(p.children) && p.has_children) {
       setSelectedSubCategory(first(p.children));
     }
-  });
+  };
 
   useMemo(() => {
     dispatch(setSubCategory(selectedSubCategory));
+    setItems([]);
+    setProps([]);
   }, [selectedSubCategory]);
 
   const handleHideModal = () => {
@@ -373,10 +379,11 @@ const ClassifiedFilterModal = () => {
             </View>
           ) : null}
           {country ? (
-            <View>
-              <Text style={styles.title}>
-                {I18n.t('country')} : {country.slug}
+            <View style={{flex: 1, flexDirection: 'row'}}>
+              <Text style={[styles.title, {width: 100}]}>
+                {I18n.t('country')}
               </Text>
+              <Text style={[styles.title, {width: 100}]}>{country.slug}</Text>
             </View>
           ) : null}
           {!currentArea && (
@@ -391,11 +398,12 @@ const ClassifiedFilterModal = () => {
           <Fragment>
             {map(items, (item, i) => (
               <View key={i} style={{flexDirection: 'row'}}>
-                <Text style={styles.subTitle}>
-                  {item.category_selectedGroup.name}
+                <Text
+                  style={[styles.subTitle, {width: 100, paddingBottom: 10}]}>
+                  {item.category_group.name}
                 </Text>
                 <Text style={styles.subTitle}>
-                  {item.property.name} {item.property.value}
+                  {`${item.property.name} ( ${item.property.value} )`}
                 </Text>
               </View>
             ))}
@@ -510,52 +518,48 @@ const ClassifiedFilterModal = () => {
             justifyContent: 'space-between',
           }}>
           <View>
-            {map(selectedGroup.properties, (property, i) => {
-              return (
-                <TouchableOpacity
-                  style={styles.propertiesWrapper}
-                  onPress={() => handleClick(property)}
-                  key={i}>
-                  {!validate.isEmpty(property.thumb) ? (
-                    <ImageLoaderContainer
-                      img={property.thumb}
-                      style={{width: 30, height: 30}}
-                    />
-                  ) : (
-                    <Icon type="font-awesome" name={property.icon} />
-                  )}
-                  <View
-                    style={{
-                      flex: 1,
-                      flexDirection: 'row',
-                      alignItems: 'baseline',
-                      justifyContent: 'space-between',
-                    }}>
-                    <Text style={styles.title}>{property.name}</Text>
-                    {selectedGroup.is_multi ? (
-                      !validate.isEmpty(
+            {map(selectedGroup.properties, (property, i) => (
+              <TouchableOpacity
+                style={styles.propertiesWrapper}
+                onPress={() => handleSetProperty(property)}
+                key={i}>
+                {!validate.isEmpty(property.thumb) ? (
+                  <ImageLoaderContainer
+                    img={property.thumb}
+                    style={{width: 30, height: 30}}
+                  />
+                ) : (
+                  <Icon type="font-awesome" name={property.icon} />
+                )}
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                  }}>
+                  <Text style={styles.title}>{property.name}</Text>
+                  <Icon
+                    type="antdesign"
+                    name={
+                      selectedGroup.is_multi ? 'minuscircleo' : 'checkcircleo'
+                    }
+                    color={
+                      first(
                         filter(
-                          selectedGroup.properties,
-                          (p) => p.property.id === property.id,
+                          props,
+                          (p) =>
+                            p.property_id === property.id &&
+                            p.category_group_id === selectedGroup.id,
                         ),
-                      ) ? (
-                        <Icon
-                          type="antdesign"
-                          name="checkcircleo"
-                          color="green"
-                        />
-                      ) : (
-                        <Icon
-                          type="antdesign"
-                          name="minuscircleo"
-                          color="lightgrey"
-                        />
                       )
-                    ) : null}
-                  </View>
-                </TouchableOpacity>
-              );
-            })}
+                        ? 'green'
+                        : 'grey'
+                    }
+                  />
+                </View>
+              </TouchableOpacity>
+            ))}
           </View>
           <View>
             {selectedGroup.is_multi ? (

@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, height} from './../../constants/sizes';
+import {width, text, height, iconSizes} from './../../constants/sizes';
 import I18n from './../../I18n';
 import {
   getClassified,
@@ -109,7 +109,7 @@ const NormalClassifiedShowScreen = () => {
                 <Text style={styles.normalText}>{classified.description}</Text>
               </View>
             ) : null}
-            {classified.user ? (
+            {classified.user && (
               <ClassifiedInfoWidgetElement
                 elementName="user_name"
                 name={classified.user.slug}
@@ -123,14 +123,18 @@ const NormalClassifiedShowScreen = () => {
                 //   )
                 // }
               />
-            ) : null}
-            {classified.has_items && classified.items ? (
+            )}
+            {classified.has_items && classified.items && (
               <Fragment>
                 {map(classified.items, (p, i) => (
                   <ClassifiedInfoWidgetElement
                     key={i}
                     elementName={p.categoryGroup.name}
-                    name={p.property.value}
+                    name={
+                      p.categoryGroup.is_multi
+                        ? p.property.name
+                        : p.property.value
+                    }
                     properties={p.property}
                     showIcon={false}
                     translate={false}
@@ -143,7 +147,7 @@ const NormalClassifiedShowScreen = () => {
                   />
                 ))}
               </Fragment>
-            ) : null}
+            )}
             {classified.address ? (
               <ClassifiedInfoWidgetElement
                 elementName="address"
@@ -262,5 +266,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: text.font,
     padding: 10,
+    lineHeight: iconSizes.small,
   },
 });
