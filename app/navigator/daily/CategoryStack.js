@@ -28,7 +28,7 @@ export const CategoryStack = createStackNavigator(
           />
         ),
         headerBackTitle: () => null,
-        headerTransparent: true,
+        // headerTransparent: true,
       }),
       params: {
         category: null,

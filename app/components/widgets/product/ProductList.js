@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   FlatList,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 import ProductWidget from './ProductWidget';
 import PropTypes from 'prop-types';
@@ -94,27 +95,32 @@ const ProductList = ({
   }, [sort]);
 
   useMemo(() => {
-    setIsLoading(true);
     if (showMore && page > 1 && page <= 20) {
       axiosInstance(`search/product?page=${page}`, {
         params,
       })
         .then((r) => {
           if (!validate.isEmpty(r.data)) {
+            setIsLoading(true);
             const productsGroup = uniqBy(items.concat(r.data), 'id');
             setItems(productsGroup);
-            setIsLoading(false);
-            setRefresh(false);
           }
         })
         .catch((e) => e);
     }
   }, [page]);
 
+  useMemo(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+  }, [items]);
+
   const handleRefresh = () => {
     if (currentShowMore) {
       setRefresh(false);
-      setIsLoading(false);
       dispatch(getSearchProducts({searchParams: params, redirect: false}));
     }
   };
@@ -236,12 +242,14 @@ const ProductList = ({
           marginBottom: bottomContentInset,
         }}
         ListFooterComponent={() =>
-          showFooter && !validate.isEmpty(products) ? (
+          showFooter && !validate.isEmpty(products) && !isLoading ? (
             <NoMoreElements
               title={I18n.t('no_more_products')}
               isLoading={refresh}
             />
-          ) : null
+          ) : (
+            <ActivityIndicator size={iconSizes.larger} />
+          )
         }
         renderItem={({item}) => (
           <ProductWidget
