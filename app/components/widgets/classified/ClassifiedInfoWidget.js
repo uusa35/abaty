@@ -7,6 +7,7 @@ import validate from 'validate.js';
 import PropertiesWidget from './PropertiesWidget';
 import I18n from './../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {filter} from 'lodash';
 
 const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -67,12 +68,17 @@ const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
               <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
             </View>
             <Text style={{fontFamily: text.font}}>
-              {element.views} {I18n.t('views')}
+              {`${element.views} ${I18n.t('views')}`}
             </Text>
           </View>
         </View>
         {!validate.isEmpty(element.items) ? (
-          <PropertiesWidget elements={element.items} />
+          <PropertiesWidget
+            elements={filter(
+              element.items,
+              (item) => !item.categoryGroup.is_multi,
+            )}
+          />
         ) : null}
       </Fragment>
     </View>

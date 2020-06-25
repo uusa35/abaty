@@ -11,6 +11,8 @@ import {
   ESCRAP_ONE_SIGNAL_APP_ID,
   EXPO,
   EXPO_ONE_SIGNAL_APP_ID,
+  DAILY,
+  DAILY_ONE_SIGNAL_APP_ID,
 } from '../../../app';
 import OneSignal from 'react-native-onesignal';
 import {getPathForDeepLinking} from './../../helpers';
@@ -42,6 +44,8 @@ const AppHomeConfigComponent = () => {
       setSignalId(ESCRAP_ONE_SIGNAL_APP_ID);
     } else if (EXPO) {
       setSignalId(EXPO_ONE_SIGNAL_APP_ID);
+    } else if (DAILY) {
+      setSignalId(DAILY_ONE_SIGNAL_APP_ID);
     }
   }, [bootStrapped]);
 

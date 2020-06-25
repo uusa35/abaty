@@ -4,7 +4,7 @@ import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
-import {ABATI, MALLR, EXPO} from './../../../app';
+import {ABATI, MALLR, EXPO, DAILY} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 
 const CategoryIndexScreen = () => {
@@ -26,7 +26,7 @@ const CategoryIndexScreen = () => {
             elements={homeCategories}
             columns={2}
             showBtn={true}
-            type={ABATI || MALLR || EXPO ? 'product' : 'classified'}
+            type={ABATI || MALLR || EXPO || DAILY ? 'product' : 'classified'}
           />
         </View>
         {show_commercials ? (

@@ -65,8 +65,6 @@ const NormalClassifiedShowScreen = () => {
   //   }
   // }, [headerBg]);
 
-  console.log('items', classified.items);
-
   return (
     <BgContainer showImage={false}>
       <ScrollView

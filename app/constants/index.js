@@ -1,7 +1,5 @@
 import React from 'react';
 import {Platform, Dimensions} from 'react-native';
-import {appUrlIos, appUrlAndroid} from './../env';
-import {isRTL} from './../I18n';
 import {
   AR_FONT,
   EN_FONT,

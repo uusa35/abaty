@@ -66,7 +66,7 @@ const ProductWidget = ({
                 color: colors.header_tow_theme_color,
               },
             ]}>
-            {element.name.substring(0, 25)}
+            {element.name.substring(0, 20)}
           </Text>
           <Text
             style={[

@@ -1,7 +1,7 @@
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {BackHandler, Alert, DevSettings} from 'react-native';
 import * as actions from '../types';
-import {ABATI, MALLR, ESCRAP, EXPO, HOMEKEY} from './../../../../app';
+import {ABATI, MALLR, ESCRAP, EXPO, HOMEKEY, DAILY} from './../../../../app';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
 import {NavigationActions} from 'react-navigation';
@@ -18,6 +18,7 @@ import {mallrBootStrap} from './mallr/appSagas';
 import {escrapBootStrap} from './escrap/appSagas';
 import {homeKeyBootStrap} from './homekey/appSagas';
 import {expoBootStrap} from './expo/appSagas';
+import {dailyBootStrap} from './daily/appSagas';
 
 export function* startAppBootStrap() {
   try {
@@ -35,6 +36,8 @@ export function* startAppBootStrap() {
         yield call(homeKeyBootStrap);
       } else if (EXPO) {
         yield call(expoBootStrap);
+      } else if (DAILY) {
+        yield call(dailyBootStrap);
       }
     }
   } catch (e) {
