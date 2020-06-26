@@ -29,7 +29,7 @@ const ProductWidget = ({
       activeOpacity={touchOpacity}
       key={element.id}
       style={[widgetStyles.productServiceWidget, {width: width}]}
-      onPress={() => handleClickProductWidget(element.id)}>
+      onPress={() => handleClickProductWidget(element)}>
       <ImageBackground
         imageStyle={styles.imageContainerStyle}
         source={{uri: element.thumb}}

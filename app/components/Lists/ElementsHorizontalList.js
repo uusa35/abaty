@@ -11,6 +11,7 @@ import {
   RefreshControl,
   KeyboardAvoidingView,
   Text,
+  ActivityIndicator,
 } from 'react-native';
 import {
   getCompany,
@@ -28,7 +29,7 @@ import {
   text,
   width,
 } from './../../constants/sizes';
-import {filter, orderBy} from 'lodash';
+import {filter, orderBy, uniqBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import TopSearchInput from '../widgets/TopSearchInput';
@@ -36,19 +37,28 @@ import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
 import ElementWidgetVertical from './ElementWidgetVertical';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import SearchSort from '../widgets/search/SearchSort';
-import {useDispatch} from 'react-redux';
-import {getSearchProducts} from '../../redux/actions/product';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProduct, getSearchProducts} from '../../redux/actions/product';
 import {useNavigation} from 'react-navigation-hooks';
 import ElementWidgetHorizontal from './ElementWidgetHorizontal';
+import SortByModal from '../widgets/search/SortByModal';
+import EmptyListWidget from './EmptyListWidget';
+import ProductWidget from '../widgets/product/ProductWidget';
+import ServiceWidget from '../widgets/service/ServiceWidget';
+import {getService} from '../../redux/actions/service';
+import NoMoreElements from '../widgets/NoMoreElements';
 
 const ElementsHorizontalList = ({
   elements,
   searchParams,
+  showName = true,
   showMore = false,
   showSearch = false,
   showFooter = false,
   showTitle = false,
   showSortSearch = false,
+  showProductsFilter = false,
+  showTitleIcons = false,
   title,
   type,
   iconSize = iconSizes.small,
@@ -63,17 +73,15 @@ const ElementsHorizontalList = ({
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
+  const {token} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
 
-  console.log('elementsVerticalList');
   const loadMore = (d) => {
-    if (__DEV__) {
-      console.log('distance from ', d);
-    }
     if (showMore) {
       setPage(page + 1);
+      setIsLoading(true);
     }
   };
 
@@ -86,10 +94,8 @@ const ElementsHorizontalList = ({
           })
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
-                const productsGroup = uniqBy(items.concat(r.data), 'id');
-                setItems(productsGroup);
-                setIsLoading(false);
-                setRefresh(false);
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
               }
             })
             .catch((e) => e);
@@ -99,8 +105,8 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const userGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(userGroup);
+              const elementsGroup = uniqBy(items.concat(r.data), 'id');
+              setItems(elementsGroup);
             })
             .catch((e) => {
               if (__DEV__) {
@@ -113,8 +119,8 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const userGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(userGroup);
+              const elementsGroup = uniqBy(items.concat(r.data), 'id');
+              setItems(elementsGroup);
             })
             .catch((e) => {
               if (__DEV__) {
@@ -164,6 +170,7 @@ const ElementsHorizontalList = ({
           break;
         case 'product':
           dispatch(getSearchProducts({searchParams: params, redirect: false}));
+          break;
         case 'company':
           dispatch(getSearchCompanies({searchParams: params}));
           break;
@@ -177,14 +184,10 @@ const ElementsHorizontalList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(elements, (i) =>
-        i.slug.includes(search) ? i : null,
-      );
-      if (filtered.length > 0 || search.length > 0) {
-        setItems(filtered);
-      } else {
-        setItems([]);
-      }
+      let filtered = filter(items, (i) => (i.name.includes(search) ? i : null));
+      filtered.length > 0 || search.length > 0
+        ? setItems(filtered)
+        : setItems([]);
     } else {
       setItems(elements);
     }
@@ -194,10 +197,11 @@ const ElementsHorizontalList = ({
     setItems(elements);
   }, [elements]);
 
-  const handleClick = useCallback((type, searchParams, element) => {
+  const handleClick = (element) => {
+    console.log('type', type);
     switch (type) {
       case 'designer':
-        dispatch(
+        return dispatch(
           getDesigner({
             id: element.id,
             searchParams,
@@ -206,7 +210,7 @@ const ElementsHorizontalList = ({
         );
         break;
       case 'category':
-        dispatch(
+        return dispatch(
           getSearchProducts({
             name: element.name,
             searchParams,
@@ -215,7 +219,7 @@ const ElementsHorizontalList = ({
         );
         break;
       case 'company':
-        dispatch(
+        return dispatch(
           getCompany({
             id: element.id,
             searchParams,
@@ -223,10 +227,66 @@ const ElementsHorizontalList = ({
           }),
         );
         break;
+      case 'product':
+        return dispatch(
+          getProduct({
+            id: element.id,
+            api_token: token ? token : null,
+            redirect: true,
+          }),
+        );
+        break;
+      case 'service':
+        return dispatch(
+          getService({
+            id: element.id,
+            api_token: token ? token : null,
+            redirect: true,
+          }),
+        );
+        break;
       default:
         null;
     }
-  });
+  };
+
+  const renderItem = (item) => {
+    switch (type) {
+      case 'product':
+        return (
+          <ProductWidget
+            element={item}
+            showName={showName}
+            key={item.id}
+            handleClickProductWidget={handleClick}
+          />
+        );
+        break;
+      case 'service':
+        return (
+          <ServiceWidget
+            element={item}
+            showName={showName}
+            handleClick={handleClick}
+          />
+        );
+        break;
+      default:
+        return (
+          <ElementWidgetHorizontal
+            element={item}
+            title={item.slug ? item.slug : item.name}
+            showName={showName}
+            showSearch={false}
+            thumb={item.thumb}
+            iconSize={iconSize}
+            textSize={textSize}
+            type={type}
+            handleClick={handleClick}
+          />
+        );
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -239,112 +299,110 @@ const ElementsHorizontalList = ({
       }}
       behavior="padding"
       enabled>
-      {!validate.isEmpty(elements) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          scrollEnabled={showMore}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          stickyHeaderIndices={[0]}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: showFooter ? bottomContentInset : 10}}
-          numColumns={columns}
-          data={items}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-          onEndReachedThreshold={1}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => handleRefresh()}
+      <FlatList
+        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_products')} />}
+        scrollEnabled={showFooter}
+        keyboardShouldPersistTaps="always"
+        keyboardDismissMode="none"
+        horizontal={false}
+        scrollEnabled={showMore}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[0]}
+        contentInset={{bottom: bottomContentInset}}
+        style={{paddingBottom: showFooter ? bottomContentInset : 10}}
+        numColumns={columns}
+        data={uniqBy(items, 'id')}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        onEndReachedThreshold={1}
+        refreshing={refresh}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
+          />
+        }
+        contentContainerStyle={{
+          flex: 1,
+        }}
+        // columnWrapperStyle={{
+        //   justifyContent: 'space-between',
+        //   alignItems: 'center',
+        // }}
+        renderItem={({item}) => renderItem(item)}
+        ListFooterComponent={() =>
+          showFooter || !validate.isEmpty(items) || !isLoading ? (
+            <NoMoreElements
+              title={I18n.t('no_more_products')}
+              isLoading={isLoading}
             />
-          }
-          contentContainerStyle={{
-            width: width - 30,
-          }}
-          // columnWrapperStyle={{
-          //   justifyContent: 'space-between',
-          //   alignItems: 'center',
-          // }}
-          renderItem={({item}) => (
-            <ElementWidgetHorizontal
-              element={item}
-              title={item.slug ? item.slug : item.name}
-              showName={true}
-              showSearch={false}
-              thumb={item.thumb}
-              iconSize={iconSize}
-              textSize={textSize}
-              type={type}
-              handleClick={handleClick}
-            />
-          )}
-          ListFooterComponent={
-            showFooter ? (
+          ) : (
+            <ActivityIndicator size={iconSizes.larger} />
+          )
+        }
+        ListFooterComponentStyle={{
+          marginBottom: bottomContentInset,
+        }}
+        ListHeaderComponentStyle={{
+          backgroundColor: 'white',
+        }}
+        ListHeaderComponent={
+          <View
+            style={{
+              alignSelf: 'center',
+              width: '100%',
+              backgroundColor: 'transparent',
+              marginTop: showSearch ? '3%' : 0,
+            }}>
+            {showSearch ? (
+              <TopSearchInput search={search} setSearch={setSearch} />
+            ) : null}
+            {showSortSearch && (
+              <SearchSort
+                sort={sort}
+                sortModal={sortModal}
+                setSortModal={setSortModal}
+                setSort={setSort}
+                showProductsFilter={showProductsFilter}
+              />
+            )}
+            {showTitle ? (
               <View
                 style={{
-                  width: '100%',
-                  minHeight: 100,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  flex: 1,
+                  marginTop: 10,
+                  padding: 5,
+                  paddingRight: 25,
                 }}>
-                <Button
-                  loading={isLoading}
-                  raised
-                  onPress={() => dispatch(navigation.navigate('Home'))}
-                  containerStyle={{width: '100%'}}
-                  title={I18n.t(`no_more_${type}`)}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
-            ) : null
-          }
-          ListFooterComponentStyle={{
-            marginBottom: bottomContentInset,
-          }}
-          ListHeaderComponentStyle={{
-            backgroundColor: 'white',
-          }}
-          ListHeaderComponent={
-            <View style={{paddingTop: 5, paddingBottom: 5}}>
-              {showSearch ? <TopSearchInput setSearch={setSearch} /> : null}
-              {showSortSearch ? (
-                <SearchSort
-                  sort={sort}
-                  sortModal={sortModal}
-                  setSortModal={setSortModal}
-                  setSort={setSort}
-                />
-              ) : null}
-              {showTitle ? (
                 <Text
-                  style={{
-                    fontFamily: text.font,
-                    fontSize: text.large,
-                    textAlign: 'left',
-                    color: colors.header_one_theme_color,
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 1,
-                    },
-                    shadowOpacity: 0.18,
-                    shadowRadius: 1.0,
-                    elevation: 1,
-                  }}>
-                  {title}
+                  style={[
+                    styles.mainTitle,
+                    {color: colors.header_one_theme_color},
+                  ]}>
+                  {title ? title : I18n.t('products')}
                 </Text>
-              ) : null}
-            </View>
-          }
-        />
-      ) : null}
+                {showTitleIcons ? (
+                  <Icon
+                    type="entypo"
+                    name="select-arrows"
+                    size={iconSizes.smaller}
+                    onPress={() => setSortModal(true)}
+                  />
+                ) : null}
+              </View>
+            ) : null}
+          </View>
+        }
+      />
+      <SortByModal
+        setSortModal={setSortModal}
+        sortModal={sortModal}
+        setSort={setSort}
+      />
     </KeyboardAvoidingView>
   );
 };

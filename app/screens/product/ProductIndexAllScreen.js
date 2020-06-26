@@ -5,6 +5,7 @@ import {ProductList} from '../../components/LazyLoadingComponents/productCompone
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import BgContainer from '../../components/containers/BgContainer';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProductIndexAllScreen = () => {
   const {products} = useSelector((state) => state);
@@ -16,15 +17,16 @@ const ProductIndexAllScreen = () => {
 
   return (
     <BgContainer>
-      <ProductList
-        products={products}
-        showName={true}
-        searchElements={{}}
-        showSearch={true}
+      <ElementsHorizontalList
+        elements={products}
+        searchParams={{}}
+        type="product"
+        columns={2}
         showFooter={true}
-        showRefresh={true}
+        showSearch={false}
         showSortSearch={true}
         showProductsFilter={true}
+        showTitleIcons={true}
       />
     </BgContainer>
   );
@@ -33,3 +35,34 @@ const ProductIndexAllScreen = () => {
 export default ProductIndexAllScreen;
 
 const styles = StyleSheet.create({});
+
+{
+  /*<ProductList*/
+}
+{
+  /*    products={products}*/
+}
+{
+  /*    showName={true}*/
+}
+{
+  /*    searchElements={{}}*/
+}
+{
+  /*    showSearch={true}*/
+}
+{
+  /*    showFooter={true}*/
+}
+{
+  /*    showRefresh={true}*/
+}
+{
+  /*    showSortSearch={true}*/
+}
+{
+  /*    showProductsFilter={true}*/
+}
+{
+  /*/>*/
+}

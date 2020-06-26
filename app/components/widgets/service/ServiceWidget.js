@@ -16,23 +16,28 @@ import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import {useDispatch, useSelector} from 'react-redux';
 
-const ServiceWidget = ({element, showName = false, minWidth = 150}) => {
+const ServiceWidget = ({
+  element,
+  showName = false,
+  minWidth = 150,
+  handleClick,
+}) => {
   const {colors, currency_symbol, exchange_rate} = useContext(
     GlobalValuesContext,
   );
-  const {token} = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const [imageLoading, setImageLoading] = useState(true);
+  // const {token} = useSelector((state) => state);
+  // const dispatch = useDispatch();
+  // const [imageLoading, setImageLoading] = useState(true);
 
-  const handleClick = () => {
-    dispatch(
-      getService({
-        id: element.id,
-        api_token: token ? token : null,
-        redirect: true,
-      }),
-    );
-  };
+  // const handleClick = () => {
+  //   dispatch(
+  //     getService({
+  //       id: element.id,
+  //       api_token: token ? token : null,
+  //       redirect: true,
+  //     }),
+  //   );
+  // };
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}
