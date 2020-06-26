@@ -97,6 +97,10 @@ const SideMeu = ({showLogo = true}) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Mallr')}>
                   <Text>Mallr</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('ServiceIndex')}>
+                  <Text>Service Index</Text>
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Escrap')}>
                   <Text>Escrap</Text>
                 </TouchableOpacity>

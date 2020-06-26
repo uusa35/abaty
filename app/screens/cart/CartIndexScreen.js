@@ -16,16 +16,9 @@ import {View as Animating} from 'react-native-animatable';
 import {EXPO, ABATI} from './../../../app';
 
 const CartIndexScreen = () => {
-  const {
-    cart,
-    country,
-    shipmentFees,
-    settings,
-    auth,
-    guest,
-    coupon,
-    area,
-  } = useSelector((state) => state);
+  const {cart, country, shipmentFees, settings, coupon, area} = useSelector(
+    (state) => state,
+  );
   const {grossTotal, colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
 
@@ -51,12 +44,9 @@ const CartIndexScreen = () => {
           contentInset={{bottom: 50}}>
           {!validate.isEmpty(cart) ? (
             <CartList
-              cart={cart}
               shipmentCountry={country}
               shipmentFees={shipmentFees}
               selectedArea={area}
-              auth={auth}
-              guest={guest}
               grossTotal={grossTotal}
               discount={coupon.value}
               shipment_notes={settings.shipment_notes}

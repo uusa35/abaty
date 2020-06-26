@@ -19,11 +19,8 @@ import {CREATE_MYFATOORAH_PAYMENT_URL} from '../../../redux/actions/types';
 import {getConvertedFinalPrice} from '../../../helpers';
 
 const CartList = ({
-  cart,
   shipmentCountry,
-  auth,
-  shipment_notes,
-  guest,
+  shipment_notes = null,
   editModeDefault = true,
   coupon,
   selectedArea,
@@ -37,7 +34,7 @@ const CartList = ({
     exchange_rate,
     currency_symbol,
   } = useContext(GlobalValuesContext);
-  const {country} = useSelector((state) => state);
+  const {cart, auth, guest, country} = useSelector((state) => state);
   const {navigate} = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -724,11 +721,9 @@ const CartList = ({
 export default CartList;
 
 CartList.propTypes = {
-  cart: PropTypes.array.isRequired,
   coupon: PropTypes.object,
-  auth: PropTypes.object,
   grossTotal: PropTypes.number.isRequired,
-  shipment_notes: PropTypes.string.isRequired,
+  shipment_notes: PropTypes.string,
   shipmentCountry: PropTypes.object.isRequired,
   editModeDefault: PropTypes.bool.isRequired,
 };

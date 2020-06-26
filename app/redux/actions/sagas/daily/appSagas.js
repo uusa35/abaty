@@ -60,7 +60,7 @@ export function* dailyBootStrap() {
     call(getVideos),
     // call(getProductIndex),
     // call(getHomeServicesScenario),
-    // call(getServiceIndex),
+    call(getServiceIndex),
     call(setHomeSplashes),
     call(startGetColorsScenario),
     call(startGetSizesScenario),

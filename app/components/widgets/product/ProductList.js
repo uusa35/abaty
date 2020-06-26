@@ -65,6 +65,7 @@ const ProductList = ({
   const loadMore = (e) => {
     if (currentShowMore) {
       setPage(parseInt(page + 1));
+      setIsLoading(true);
     }
   };
 
@@ -101,7 +102,6 @@ const ProductList = ({
       })
         .then((r) => {
           if (!validate.isEmpty(r.data)) {
-            setIsLoading(true);
             const productsGroup = uniqBy(items.concat(r.data), 'id');
             setItems(productsGroup);
           }

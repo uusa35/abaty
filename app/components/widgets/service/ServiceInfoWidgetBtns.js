@@ -9,18 +9,18 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useDispatch} from 'react-redux';
 
 const ServiceInfoWidgetBtns = ({element}) => {
-  const {timings} = element;
+  const {range} = element;
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
-  const [days, setDays] = useState(_.keys(timings));
-  const [day, setDay] = useState(_.first(_.keys(timings)));
+  const [days, setDays] = useState(_.keys(range));
+  const [day, setDay] = useState(_.first(_.keys(range)));
   const [selectedDay, setSelectedDay] = useState([]);
   const [selectedTiming, setSelectedTiming] = useState(null);
   const [timeData, setTimeData] = useState({});
   const [notes, setNotes] = useState('');
 
   useMemo(() => {
-    setSelectedDay(timings[day]);
+    setSelectedDay(range[day]);
     setSelectedTiming(null);
     setTimeData(null);
   }, [day]);
@@ -48,7 +48,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           onValueChange={(itemValue, itemIndex) => setDay(itemValue)}>
           <Picker.Item key={0} label={I18n.t('choose_day')} value={null} />
           {_.map(days, (d, i) => {
-            const dayAndTime = _.filter(timings, (v, k) => {
+            const dayAndTime = _.filter(range, (v, k) => {
               if (v[0].date === d) {
                 return v[0];
               }
