@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
+import ServiceList from '../../components/widgets/service/ServiceList';
 
 const ServiceIndexAllScreen = () => {
   const {services} = useSelector((state) => state);

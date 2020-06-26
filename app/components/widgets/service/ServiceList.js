@@ -34,6 +34,7 @@ import NoMoreElements from '../NoMoreElements';
 import TopSearchInput from '../TopSearchInput';
 import {useDispatch} from 'react-redux';
 import EmptyListWidget from '../../Lists/EmptyListWidget';
+import {animations} from '../../../constants/animations';
 
 const ServiceList = ({
   services,
@@ -58,14 +59,12 @@ const ServiceList = ({
   const loadMore = useCallback(() => {
     if (currentShowMore) {
       setPage(page + 1);
+      setIsLoading(true);
     }
   });
 
   useMemo(() => {
     if (currentShowMore && page > 1 && page <= 20) {
-      setIsLoading(true);
-      setIsLoading(false);
-      setRefresh(false);
       return axiosInstance(`search/service?page=${page}`, {
         params,
       })
@@ -77,13 +76,13 @@ const ServiceList = ({
     }
   }, [page]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     if (currentShowMore) {
       setRefresh(false);
       setIsLoading(false);
       dispatch(getSearchServices({searchElements: params}));
     }
-  }, [refresh]);
+  };
 
   useMemo(() => {
     setIsLoading(false);
@@ -102,10 +101,23 @@ const ServiceList = ({
     setItems(services);
   }, [services]);
 
+  useMemo(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+  }, [items]);
+
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <FlatList
-        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_services')} />}
+        ListEmptyComponent={
+          <EmptyListWidget
+            title={I18n.t('no_services')}
+            emptyAnimation={animations.emptyShape}
+          />
+        }
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
         horizontal={false}
@@ -172,7 +184,7 @@ const ServiceList = ({
           </View>
         }
         ListFooterComponent={() =>
-          showFooter ? (
+          showFooter && !validate.isEmpty(services) ? (
             <NoMoreElements
               title={I18n.t('no_more_services')}
               isLoading={refresh}

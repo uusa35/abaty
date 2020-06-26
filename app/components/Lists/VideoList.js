@@ -1,13 +1,15 @@
 import React, {useState, useMemo, useContext} from 'react';
 import validate from 'validate.js';
 import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
-import {bottomContentInset, text, width} from '../../constants/sizes';
+import {bottomContentInset, height, text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import PropTypes from 'prop-types';
 import VideoWidget from '../widgets/video/VideoWidget';
 import {refetchHomeElements} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
+import EmptyListWidget from './EmptyListWidget';
+import {animations} from '../../constants/animations';
 
 const VideoList = ({
   elements,
@@ -32,79 +34,71 @@ const VideoList = ({
   }, [refresh]);
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      {!validate.isEmpty(elements) ? (
-        <FlatList
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          // stickyHeaderIndices={[0]}
-          keyExtractor={(item, index) => index.toString()}
-          contentInset={{bottom: bottomContentInset}}
-          style={{paddingBottom: bottomContentInset}}
-          onEndReachedThreshold={1}
-          numColumns={1}
-          data={elements}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => setRefresh(true)}
-            />
-          }
-          onEndReached={() => {
-            search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
-            setEndList(false);
-          }}
-          contentContainerStyle={{
-            width: width - 20,
-          }}
-          ListFooterComponent={() =>
-            showFooter ? (
-              <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
-                <Button
-                  loading={endList}
-                  raised
-                  title={I18n.t('no_more_videos')}
-                  type="outline"
-                  titleStyle={{fontFamily: text.font}}
-                />
-              </View>
-            ) : null
-          }
-          ListFooterComponentStyle={{
-            marginBottom: bottomContentInset,
-          }}
-          renderItem={({item}) => (
-            <VideoWidget
-              key={item.id}
-              element={item}
-              showName={true}
-              width={width}
-              showImage={true}
-            />
-          )}
+    <FlatList
+      ListEmptyComponent={
+        <EmptyListWidget
+          title={I18n.t('no_videos')}
+          emptyAnimation={animations.emptyShape}
         />
-      ) : (
-        <View
-          style={{
-            flex: 1,
-            width: width - 50,
-            alignSelf: 'center',
-            justifyContent: 'center',
-          }}>
-          <Button
-            raised
-            title={I18n.t('no_videos')}
-            type="outline"
-            titleStyle={{fontFamily: text.font}}
-          />
-        </View>
+      }
+      keyboardShouldPersistTaps="always"
+      keyboardDismissMode="none"
+      horizontal={false}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      // stickyHeaderIndices={[0]}
+      keyExtractor={(item, index) => index.toString()}
+      contentInset={{bottom: bottomContentInset}}
+      style={{paddingBottom: bottomContentInset}}
+      onEndReachedThreshold={1}
+      numColumns={1}
+      data={elements}
+      refreshing={refresh}
+      refreshControl={
+        <RefreshControl
+          refreshing={refresh}
+          onRefresh={() => setRefresh(true)}
+        />
+      }
+      onEndReached={() => {
+        search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
+        setEndList(false);
+      }}
+      contentContainerStyle={{
+        marginBottom: 15,
+        alignSelf: 'center',
+        minHeight: height,
+        minWidth: '100%',
+        flexGrow: 1,
+        paddingBottom: 200,
+      }}
+      ListFooterComponent={() =>
+        showFooter && !validate.isEmpty(elements) ? (
+          <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
+            <Button
+              loading={endList}
+              raised
+              title={I18n.t('no_more_videos')}
+              type="outline"
+              titleStyle={{fontFamily: text.font}}
+            />
+          </View>
+        ) : null
+      }
+      ListFooterComponentStyle={{
+        marginBottom: bottomContentInset,
+      }}
+      renderItem={({item}) => (
+        <VideoWidget
+          key={item.id}
+          element={item}
+          showName={true}
+          width={width}
+          showImage={true}
+        />
       )}
-    </View>
+    />
   );
 };
 

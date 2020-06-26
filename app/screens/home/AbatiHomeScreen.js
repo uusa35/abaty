@@ -35,9 +35,7 @@ const AbatiHomeScreen = () => {
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const handleRefresh = () => {
-    dispatch(refetchHomeElements());
-  };
+  const handleRefresh = () => dispatch(refetchHomeElements());
 
   return (
     <BgContainer>

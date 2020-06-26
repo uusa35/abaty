@@ -65,7 +65,6 @@ const ProductList = ({
   const loadMore = (e) => {
     if (currentShowMore) {
       setPage(parseInt(page + 1));
-      setIsLoading(true);
     }
   };
 
@@ -109,14 +108,6 @@ const ProductList = ({
         .catch((e) => e);
     }
   }, [page]);
-
-  useMemo(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }
-  }, [items]);
 
   const handleRefresh = () => {
     if (currentShowMore) {
@@ -242,10 +233,10 @@ const ProductList = ({
           marginBottom: bottomContentInset,
         }}
         ListFooterComponent={() =>
-          showFooter && !validate.isEmpty(products) && !isLoading ? (
+          showFooter || !validate.isEmpty(products) || !isLoading ? (
             <NoMoreElements
               title={I18n.t('no_more_products')}
-              isLoading={refresh}
+              isLoading={isLoading}
             />
           ) : (
             <ActivityIndicator size={iconSizes.larger} />
