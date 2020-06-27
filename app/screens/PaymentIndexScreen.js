@@ -1,9 +1,11 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {WebView} from 'react-native-webview';
 import {useNavigation} from 'react-navigation-hooks';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {isEmpty} from 'lodash';
 
 const PaymentIndexScreen = () => {
+  const {cart} = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -13,7 +15,9 @@ const PaymentIndexScreen = () => {
       source={{uri: navigation.state.params.paymentUrl}}
       style={{marginTop: 20}}
       injectedJavaScript={'(function(){ return "test"}());'}
-      onNavigationStateChange={(navEvent) => dispatch({type: 'CLEAR_CART'})}
+      onNavigationStateChange={(navEvent) =>
+        !isEmpty(cart) ? dispatch({type: 'CLEAR_CART'}) : null
+      }
     />
   );
 };
