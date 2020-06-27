@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Text,
   ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import {
   getCompany,
@@ -78,17 +79,16 @@ const ElementsHorizontalList = ({
   const {token} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
 
   const loadMore = (d) => {
-    if (showMore && page <= 15) {
+    if (showMore && d >= 300) {
       setPage(page + 1);
       setIsLoading(showMore);
     }
   };
 
   useMemo(() => {
-    if (showMore && page > 1 && page <= 15) {
+    if (showMore && page > 1 && page <= 20) {
       switch (type) {
         case 'product':
           return axiosInstance(`search/product?page=${page}`, {
@@ -143,10 +143,10 @@ const ElementsHorizontalList = ({
         setItems(orderBy(items, ['name'], ['desc']));
         break;
       case 3:
-        setItems(orderBy(items, ['price'], ['desc']));
+        setItems(orderBy(items, ['finalPrice'], ['desc']));
         break;
       case 4:
-        setItems(orderBy(items, ['price'], ['asc']));
+        setItems(orderBy(items, ['finalPrice'], ['asc']));
         break;
       case 5:
         setItems(orderBy(items, ['id'], ['desc']));
@@ -413,3 +413,98 @@ ElementsHorizontalList.propTypes = {
   category: PropTypes.object,
   searchParams: PropTypes.object,
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 15,
+    alignSelf: 'center',
+    // minHeight: height,
+    minWidth: '100%',
+    flexGrow: 1,
+  },
+  mainTitle: {
+    fontFamily: text.font,
+    fontSize: text.large,
+    paddingLeft: 20,
+    paddingRight: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+  },
+  emptyCaseBtn: {
+    marginTop: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    alignSelf: 'center',
+  },
+  sortModalContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 10,
+    paddingTop: 15,
+  },
+  wrapper: {
+    flexDirection: 'row',
+    borderWidth: 0.5,
+    borderColor: 'lightgrey',
+    backgroundColor: 'white',
+    paddingTop: 15,
+    height: 50,
+  },
+  phoneNo: {
+    fontFamily: text.font,
+    fontSize: text.large,
+    paddingLeft: 20,
+    margin: 0,
+    padding: 0,
+    textAlign: 'center',
+  },
+  countryFlag: {
+    width: 45,
+    height: 25,
+    marginLeft: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    padding: 15,
+  },
+  btnTitle: {
+    fontFamily: text.font,
+    fontSize: text.small,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  btnStyle: {
+    flexDirection: 'row',
+    borderWidth: 0.5,
+    borderRadius: 4,
+    width: width / 2.1,
+    minHeight: 40,
+    borderColor: 'lightgrey',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'whitesmoke',
+    marginTop: 4,
+    marginBottom: 4,
+    marginLeft: 4,
+    marginRight: 4,
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0.1,
+      height: 0.2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2.0,
+    elevation: 1,
+  },
+});

@@ -23,6 +23,7 @@ import ElementsVerticalList from '../../../components/Lists/ElementsVerticalList
 import {uniqBy, take} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementsHorizontalList from '../../../components/Lists/ElementsHorizontalList';
 
 const DesignerShowScreen = () => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
@@ -173,14 +174,16 @@ const DesignerShowScreen = () => {
             }}
             renderScene={SceneMap({
               products: () => (
-                <ProductList
-                  products={products}
+                <ElementsHorizontalList
+                  elements={products}
+                  searchParams={searchParams}
+                  type="product"
+                  columns={2}
                   showSearch={false}
                   showTitle={true}
                   showTitleIcons={true}
                   showFooter={false}
                   showMore={false}
-                  searchElements={searchParams}
                 />
               ),
               info: () => (

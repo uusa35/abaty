@@ -32,7 +32,7 @@ import country from './country';
 import area from './area';
 import areas from './areas';
 import color from './color';
-import colors from './colors';
+import productColors from './productColors';
 import size from './size';
 import sizes from './sizes';
 import currency from './currency';
@@ -153,7 +153,7 @@ let reducers = combineReducers({
   area,
   areas,
   color,
-  colors,
+  productColors,
   size,
   sizes,
   galleries,

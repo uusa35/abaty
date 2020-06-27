@@ -8,6 +8,7 @@ import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {EXPO} from '../../../app';
 import {animations} from '../../constants/animations';
 import LottieView from 'lottie-react-native';
+import {adjustColor} from '../../helpers';
 
 const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -32,6 +33,16 @@ const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
                 width: width / 3,
                 height: width / 3,
               }}
+              colorFilters={[
+                {
+                  keypath: 'Folder Front 3',
+                  color: adjustColor(colors.btn_bg_theme_color, 250),
+                },
+                {
+                  keypath: 'Folder back 2',
+                  color: adjustColor(colors.btn_bg_theme_color, 250),
+                },
+              ]}
               enableMergePathsAndroidForKitKatAndAbove
             />
           )}
@@ -40,14 +51,14 @@ const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
             title={title}
             type="outline"
             buttonStyle={{
-              width: '100%',
-              borderColor: colors.btn_bg_theme_color,
+              width: width - 50,
+              borderColor: adjustColor(colors.btn_bg_theme_color, 100),
               justifyContent: 'center',
               alignItems: 'center',
             }}
             titleStyle={{
               fontFamily: text.font,
-              color: colors.btn_theme_color,
+              color: adjustColor(colors.btn_bg_theme_color, 100),
               alignSelf: 'center',
               justifyContent: 'center',
               alignItems: 'center',

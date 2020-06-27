@@ -23,9 +23,9 @@ const NoMoreElements = ({
         raised
         title={title}
         type="outline"
-        buttonStyle={{borderColor: 'black', borderWidth: 0.3}}
+        buttonStyle={{borderColor: colors.btn_bg_theme_color, borderWidth: 0.3}}
         containerStyle={{minWidth: width / 1.5}}
-        titleStyle={{fontFamily: text.font, color: 'black'}}
+        titleStyle={{fontFamily: text.font, color: colors.btn_bg_theme_color}}
       />
     </View>
   );

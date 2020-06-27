@@ -20,6 +20,7 @@ import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../app';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const DesignerShowScreen = ({
   element,
@@ -155,14 +156,16 @@ const DesignerShowScreen = ({
             }}
             renderScene={SceneMap({
               products: () => (
-                <ProductList
-                  products={products}
+                <ElementsHorizontalList
+                  elements={products}
+                  searchParams={searchParams}
+                  type="product"
+                  columns={2}
                   showSearch={false}
                   showTitle={true}
                   showTitleIcons={true}
                   showFooter={false}
                   showMore={false}
-                  searchElements={searchParams}
                 />
               ),
               info: () => (

@@ -48,6 +48,7 @@ export const REFETCH_HOME_CATEGORIES = 'REFETCH_HOME_CATEGORIES';
 export const SET_GALLERIES = 'SET_GALLERIES';
 export const SET_COUNTRIES = 'SET_COUNTRIES';
 export const SET_COLOR = 'SET_COLOR';
+export const SET_PRODUCT_COLORS = 'SET_PRODUCT_COLORS';
 export const SET_COLORS = 'SET_COLORS';
 export const GET_COLORS = 'GET_COLORS';
 export const SET_SIZE = 'SET_SIZE';

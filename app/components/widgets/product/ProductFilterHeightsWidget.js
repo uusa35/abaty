@@ -5,12 +5,13 @@ import {rightHorizontalContentInset, text} from '../../../constants/sizes';
 import I18n from './../../../I18n';
 import PropTypes from 'prop-types';
 import {setColor, setSize} from '../../../redux/actions';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import EmptyListWidget from '../../Lists/EmptyListWidget';
 
 const ProductFilterHeightsWidget = ({elements, type, color}) => {
   const [currentElement, setCurrentElement] = useState({});
-  const {colors} = useContext(GlobalValuesContext);
+  const {colors} = useSelector((state) => state.settings);
   const dispatch = useDispatch();
 
   const handleSetElement = useCallback((item) => {
@@ -53,9 +54,9 @@ const ProductFilterHeightsWidget = ({elements, type, color}) => {
         disableVirtualization={false}
         // ListHeaderComponent={
         // }
-        ListEmptyComponent={() => (
-          <NoMoreElements title={`${I18n.t('no_available')}`} />
-        )}
+        ListEmptyComponent={
+          <EmptyListWidget title={`${I18n.t('no_available')}`} />
+        }
         style={{
           flexDirection: 'row',
           width: '100%',

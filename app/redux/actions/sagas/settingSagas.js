@@ -15,6 +15,7 @@ import {SET_SIZES} from '../types';
 import codePush from 'react-native-code-push';
 import {buildVersion} from './../../../../app';
 import {TOGGLE_IS_CONNECTED} from '../types';
+import {SET_PRODUCT_COLORS} from '../types';
 
 export function* enableLoading() {
   yield put({type: actions.TOGGLE_LOADING, payload: true});
@@ -239,7 +240,7 @@ export function* startGetColorsScenario() {
   try {
     const elements = yield call(getColors);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
-      yield put({type: SET_COLORS, payload: elements});
+      yield put({type: SET_PRODUCT_COLORS, payload: elements});
     }
   } catch (e) {
     if (isLocal) {

@@ -22,6 +22,7 @@ import ProductCategoryVerticalWidget from '../../../components/widgets/category/
 import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../../app';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementsHorizontalList from '../../../components/Lists/ElementsHorizontalList';
 
 const DesignerShowScreen = () => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
@@ -160,14 +161,16 @@ const DesignerShowScreen = () => {
             }}
             renderScene={SceneMap({
               products: () => (
-                <ProductList
-                  products={products}
+                <ElementsHorizontalList
+                  elements={products}
+                  searchParams={searchParams}
+                  type="product"
+                  columns={2}
                   showSearch={false}
                   showTitle={true}
                   showTitleIcons={true}
                   showFooter={false}
                   showMore={false}
-                  searchElements={searchParams}
                 />
               ),
               info: () => (

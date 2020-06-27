@@ -22,6 +22,7 @@ const ProductIndexAllScreen = () => {
         searchParams={{}}
         type="product"
         columns={2}
+        showRefresh={true}
         showFooter={true}
         showSearch={true}
         showSortSearch={true}
