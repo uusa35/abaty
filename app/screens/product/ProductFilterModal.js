@@ -33,6 +33,7 @@ const ProductFilterModal = () => {
     settings,
     categories,
   } = useSelector((state) => state);
+  console.log('productColors', productColors);
   const {colors} = settings;
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 1000]);

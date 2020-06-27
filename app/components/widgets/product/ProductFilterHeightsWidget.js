@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect, useContext} from 'react';
 import {TouchableOpacity, FlatList, Text, View, StyleSheet} from 'react-native';
 import NoMoreElements from '../NoMoreElements';
 import {rightHorizontalContentInset, text} from '../../../constants/sizes';
@@ -6,9 +6,11 @@ import I18n from './../../../I18n';
 import PropTypes from 'prop-types';
 import {setColor, setSize} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
-const ProductFilterHeightsWidget = ({elements, type, colors, color}) => {
+const ProductFilterHeightsWidget = ({elements, type, color}) => {
   const [currentElement, setCurrentElement] = useState({});
+  const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
 
   const handleSetElement = useCallback((item) => {

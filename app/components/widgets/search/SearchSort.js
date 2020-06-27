@@ -1,15 +1,8 @@
 import React, {Fragment, useCallback, useContext} from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  Modal,
-  View,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import {TouchableOpacity, Text, Modal, View, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
-import {iconSizes, text, width} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import {showClassifiedFilter, showProductFilter} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
 

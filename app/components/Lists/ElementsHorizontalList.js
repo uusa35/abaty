@@ -27,6 +27,7 @@ import {
   bottomContentInset,
   iconSizes,
   text,
+  TheHold,
   width,
 } from './../../constants/sizes';
 import {filter, orderBy, uniqBy} from 'lodash';
@@ -59,6 +60,7 @@ const ElementsHorizontalList = ({
   showSortSearch = false,
   showProductsFilter = false,
   showTitleIcons = false,
+  showRefresh = false,
   title,
   type,
   iconSize = iconSizes.small,
@@ -79,29 +81,27 @@ const ElementsHorizontalList = ({
   const navigation = useNavigation();
 
   const loadMore = (d) => {
-    if (showMore) {
+    if (showMore && page <= 15) {
       setPage(page + 1);
-      setIsLoading(true);
+      setIsLoading(showMore);
     }
   };
 
   useMemo(() => {
-    if (showMore && page > 1 && page <= 20) {
+    if (showMore && page > 1 && page <= 15) {
       switch (type) {
         case 'product':
-          axiosInstance(`search/product?page=${page}`, {
+          return axiosInstance(`search/product?page=${page}`, {
             params,
           })
             .then((r) => {
-              if (!validate.isEmpty(r.data)) {
-                const elementsGroup = uniqBy(items.concat(r.data), 'id');
-                setItems(elementsGroup);
-              }
+              const elementsGroup = uniqBy(items.concat(r.data), 'id');
+              setItems(elementsGroup);
             })
             .catch((e) => e);
           break;
         case 'designer':
-          axiosInstance(`search/user?page=${page}`, {
+          return axiosInstance(`search/user?page=${page}`, {
             params,
           })
             .then((r) => {
@@ -115,7 +115,7 @@ const ElementsHorizontalList = ({
             });
           break;
         case 'company':
-          axiosInstance(`search/user?page=${page}`, {
+          return axiosInstance(`search/user?page=${page}`, {
             params,
           })
             .then((r) => {
@@ -197,8 +197,15 @@ const ElementsHorizontalList = ({
     setItems(elements);
   }, [elements]);
 
+  useMemo(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+  }, [isLoading]);
+
   const handleClick = (element) => {
-    console.log('type', type);
     switch (type) {
       case 'designer':
         return dispatch(
@@ -289,48 +296,40 @@ const ElementsHorizontalList = ({
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: width,
-        // marginTop: '5%',
-        flex: 1,
-      }}
-      behavior="padding"
-      enabled>
+    <KeyboardAvoidingView behavior="padding" enabled>
       <FlatList
         ListEmptyComponent={<EmptyListWidget title={I18n.t('no_products')} />}
         scrollEnabled={showFooter}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
         horizontal={false}
-        scrollEnabled={showMore}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[0]}
         contentInset={{bottom: bottomContentInset}}
-        style={{paddingBottom: showFooter ? bottomContentInset : 10}}
+        style={{paddingBottom: bottomContentInset}}
         numColumns={columns}
         data={uniqBy(items, 'id')}
         keyExtractor={(item, index) => index.toString()}
         onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-        onEndReachedThreshold={1}
+        onEndReachedThreshold={TheHold}
         refreshing={refresh}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
-            onRefresh={() => handleRefresh()}
+            onRefresh={() => (showRefresh ? handleRefresh() : null)}
           />
         }
-        contentContainerStyle={{
-          flex: 1,
+        columnWrapperStyle={{
+          flexWrap: 'wrap',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          alignSelf: 'center',
         }}
-        // columnWrapperStyle={{
-        //   justifyContent: 'space-between',
-        //   alignItems: 'center',
-        // }}
+        ListHeaderComponentStyle={{
+          backgroundColor: 'white',
+        }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() =>
           showFooter || !validate.isEmpty(items) || !isLoading ? (
@@ -356,9 +355,9 @@ const ElementsHorizontalList = ({
               backgroundColor: 'transparent',
               marginTop: showSearch ? '3%' : 0,
             }}>
-            {showSearch ? (
+            {showSearch && (
               <TopSearchInput search={search} setSearch={setSearch} />
-            ) : null}
+            )}
             {showSortSearch && (
               <SearchSort
                 sort={sort}
@@ -368,7 +367,7 @@ const ElementsHorizontalList = ({
                 showProductsFilter={showProductsFilter}
               />
             )}
-            {showTitle ? (
+            {showTitle && (
               <View
                 style={{
                   flexDirection: 'row',
@@ -385,16 +384,16 @@ const ElementsHorizontalList = ({
                   ]}>
                   {title ? title : I18n.t('products')}
                 </Text>
-                {showTitleIcons ? (
+                {showTitleIcons && (
                   <Icon
                     type="entypo"
                     name="select-arrows"
                     size={iconSizes.smaller}
                     onPress={() => setSortModal(true)}
                   />
-                ) : null}
+                )}
               </View>
-            ) : null}
+            )}
           </View>
         }
       />

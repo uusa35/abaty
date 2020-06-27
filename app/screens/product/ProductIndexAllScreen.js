@@ -23,10 +23,11 @@ const ProductIndexAllScreen = () => {
         type="product"
         columns={2}
         showFooter={true}
-        showSearch={false}
+        showSearch={true}
         showSortSearch={true}
         showProductsFilter={true}
         showTitleIcons={true}
+        showMore={true}
       />
     </BgContainer>
   );
