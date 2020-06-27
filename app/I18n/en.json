@@ -90,6 +90,7 @@
   "cart_details": "Cart Details",
   "total": "Total",
   "no_products": "No Products To Preview",
+  "no_product": "No Products To Preview",
   "cart": "Cart",
   "shopping_cart": "Shopping Cart",
   "continue": "Continue",
@@ -613,5 +614,7 @@
     "images_tow_only" : "Images must be at least 2 images.",
     "name_at_least_three_max": "Name is required. Min is 3 letters and max is 50 letters only.",
     "email_required" : "Email is required and must be in correct form"
-  }
+  },
+  "no_" : "No %{item}",
+  "no_more_" : "No More %{item}"
 }

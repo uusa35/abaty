@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  Fragment,
 } from 'react';
 import {
   View,
@@ -47,8 +48,9 @@ import SortByModal from '../widgets/search/SortByModal';
 import EmptyListWidget from './EmptyListWidget';
 import ProductWidget from '../widgets/product/ProductWidget';
 import ServiceWidget from '../widgets/service/ServiceWidget';
-import {getService} from '../../redux/actions/service';
+import {getSearchServices, getService} from '../../redux/actions/service';
 import NoMoreElements from '../widgets/NoMoreElements';
+import {animations} from '../../constants/animations';
 
 const ElementsHorizontalList = ({
   elements,
@@ -170,6 +172,9 @@ const ElementsHorizontalList = ({
           break;
         case 'product':
           dispatch(getSearchProducts({searchParams: params, redirect: false}));
+          break;
+        case 'service':
+          dispatch(getSearchServices({searchParams: params}));
           break;
         case 'company':
           dispatch(getSearchCompanies({searchParams: params}));
@@ -298,7 +303,12 @@ const ElementsHorizontalList = ({
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
       <FlatList
-        ListEmptyComponent={<EmptyListWidget title={I18n.t('no_products')} />}
+        ListEmptyComponent={
+          <EmptyListWidget
+            emptyAnimation={animations.emptyShape}
+            title={I18n.t('no_', {item: type})}
+          />
+        }
         scrollEnabled={showFooter}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
@@ -332,13 +342,13 @@ const ElementsHorizontalList = ({
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() =>
-          showFooter || !validate.isEmpty(items) || !isLoading ? (
+          showFooter && !validate.isEmpty(items) ? (
             <NoMoreElements
-              title={I18n.t('no_more_products')}
+              title={I18n.t('no_more_', {item: type})}
               isLoading={isLoading}
             />
           ) : (
-            <ActivityIndicator size={iconSizes.larger} />
+            isLoading && <ActivityIndicator size={iconSizes.larger} />
           )
         }
         ListFooterComponentStyle={{
@@ -348,53 +358,57 @@ const ElementsHorizontalList = ({
           backgroundColor: 'white',
         }}
         ListHeaderComponent={
-          <View
-            style={{
-              alignSelf: 'center',
-              width: '100%',
-              backgroundColor: 'transparent',
-              marginTop: showSearch ? '3%' : 0,
-            }}>
-            {showSearch && (
-              <TopSearchInput search={search} setSearch={setSearch} />
-            )}
-            {showSortSearch && (
-              <SearchSort
-                sort={sort}
-                sortModal={sortModal}
-                setSortModal={setSortModal}
-                setSort={setSort}
-                showProductsFilter={showProductsFilter}
-              />
-            )}
-            {showTitle && (
+          <Fragment>
+            {!validate.isEmpty(items) && (
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginTop: 10,
-                  padding: 5,
-                  paddingRight: 25,
+                  alignSelf: 'center',
+                  width: '100%',
+                  backgroundColor: 'transparent',
+                  marginTop: showSearch ? '3%' : 0,
                 }}>
-                <Text
-                  style={[
-                    styles.mainTitle,
-                    {color: colors.header_one_theme_color},
-                  ]}>
-                  {title ? title : I18n.t('products')}
-                </Text>
-                {showTitleIcons && (
-                  <Icon
-                    type="entypo"
-                    name="select-arrows"
-                    size={iconSizes.smaller}
-                    onPress={() => setSortModal(true)}
+                {showSearch && (
+                  <TopSearchInput search={search} setSearch={setSearch} />
+                )}
+                {showSortSearch && (
+                  <SearchSort
+                    sort={sort}
+                    sortModal={sortModal}
+                    setSortModal={setSortModal}
+                    setSort={setSort}
+                    showProductsFilter={showProductsFilter}
                   />
+                )}
+                {showTitle && (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginTop: 10,
+                      padding: 5,
+                      paddingRight: 25,
+                    }}>
+                    <Text
+                      style={[
+                        styles.mainTitle,
+                        {color: colors.header_one_theme_color},
+                      ]}>
+                      {title ? title : I18n.t('products')}
+                    </Text>
+                    {showTitleIcons && (
+                      <Icon
+                        type="entypo"
+                        name="select-arrows"
+                        size={iconSizes.smaller}
+                        onPress={() => setSortModal(true)}
+                      />
+                    )}
+                  </View>
                 )}
               </View>
             )}
-          </View>
+          </Fragment>
         }
       />
       <SortByModal

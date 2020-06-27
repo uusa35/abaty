@@ -22,20 +22,20 @@ PODS:
     - React-Core (= 0.62.2)
     - React-jsi (= 0.62.2)
     - ReactCommon/turbomodule/core (= 0.62.2)
-  - FBSDKCoreKit (7.1.0):
-    - FBSDKCoreKit/Basics (= 7.1.0)
-    - FBSDKCoreKit/Core (= 7.1.0)
-  - FBSDKCoreKit/Basics (7.1.0)
-  - FBSDKCoreKit/Core (7.1.0):
+  - FBSDKCoreKit (7.1.1):
+    - FBSDKCoreKit/Basics (= 7.1.1)
+    - FBSDKCoreKit/Core (= 7.1.1)
+  - FBSDKCoreKit/Basics (7.1.1)
+  - FBSDKCoreKit/Core (7.1.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (7.1.0):
-    - FBSDKLoginKit/Login (= 7.1.0)
-  - FBSDKLoginKit/Login (7.1.0):
-    - FBSDKCoreKit (~> 7.1.0)
-  - FBSDKShareKit (7.1.0):
-    - FBSDKShareKit/Share (= 7.1.0)
-  - FBSDKShareKit/Share (7.1.0):
-    - FBSDKCoreKit (~> 7.1.0)
+  - FBSDKLoginKit (7.1.1):
+    - FBSDKLoginKit/Login (= 7.1.1)
+  - FBSDKLoginKit/Login (7.1.1):
+    - FBSDKCoreKit (~> 7.1.1)
+  - FBSDKShareKit (7.1.1):
+    - FBSDKShareKit/Share (= 7.1.1)
+  - FBSDKShareKit/Share (7.1.1):
+    - FBSDKCoreKit (~> 7.1.1)
   - Firebase/Analytics (6.13.0):
     - Firebase/Core
   - Firebase/Core (6.13.0):
@@ -389,7 +389,7 @@ PODS:
     - React
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.0.6):
+  - react-native-safe-area-context (3.0.7):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -400,7 +400,7 @@ PODS:
     - React
   - react-native-viewpager (4.0.1):
     - React
-  - react-native-webview (10.3.1):
+  - react-native-webview (10.3.2):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -501,7 +501,7 @@ PODS:
     - React
   - RNScreens (2.9.0):
     - React
-  - RNSentry (1.4.5):
+  - RNSentry (1.5.0):
     - React
     - Sentry (~> 5.1.4)
   - RNShare (3.5.0):
@@ -518,9 +518,9 @@ PODS:
   - SDWebImageWebPCoder (0.4.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.5)
-  - Sentry (5.1.5):
-    - Sentry/Core (= 5.1.5)
-  - Sentry/Core (5.1.5)
+  - Sentry (5.1.6):
+    - Sentry/Core (= 5.1.6)
+  - Sentry/Core (5.1.6)
   - SRSRadialGradient (1.0.0):
     - React
   - SSZipArchive (2.2.3)
@@ -797,9 +797,9 @@ SPEC CHECKSUMS:
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   FBLazyVector: 4aab18c93cd9546e4bfed752b4084585eca8b245
   FBReactNativeSpec: 5465d51ccfeecb7faa12f9ae0024f2044ce4044e
-  FBSDKCoreKit: 78929d105d244f8fddfe03c44afc55d97ec12e9f
-  FBSDKLoginKit: 5536004bb84805391e7d089508386c3dba02128d
-  FBSDKShareKit: 9d1d2dd0089a29c1ee5081977dd3b70d8116bc24
+  FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
+  FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
+  FBSDKShareKit: 00a055c1999b099596e00212dd1c0600c6697019
   Firebase: 458d109512200d1aca2e1b9b6cf7d68a869a4a46
   FirebaseAnalytics: 45f36d9c429fc91d206283900ab75390cd05ee8a
   FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
@@ -850,11 +850,11 @@ SPEC CHECKSUMS:
   react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 909cd849e6a806731b2135263189fea39494b55e
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: e22a8ca00f758273d2408953965cb8db67da7925
+  react-native-safe-area-context: ef6f16c66b0797ecae1bf86c103dfb3dc16fc33d
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: 1af972f5a745647b51250285f4da26d3fb3d5f0f
-  react-native-webview: 40bbeb6d011226f34cb83f845aeb0fdf515cfc5f
+  react-native-webview: 679b6f400176e2ea8a785acf7ae16cf282e7d1eb
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -878,14 +878,14 @@ SPEC CHECKSUMS:
   RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
-  RNSentry: 0a70359ddacbfb9b1cbbb0971e54065b9f70ac57
+  RNSentry: edba19169f665609fb092ba5eaf4be3c0776f50a
   RNShare: 9e0ab1939761051b074c8eb5e7d746f4d5a8ee0e
   RNSnackbar: 8694815358c8a7fa0b75d0698d7bbfaa4d8babf2
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8
-  Sentry: e73af5462d1e7978c571aa2fdb861053938d7efd
+  Sentry: e5796ec31a481474d2f94553213278470f9e302d
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   TOCropViewController: 20a14b6a7a098308bf369e7c8d700dc983a974e6

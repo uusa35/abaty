@@ -50,23 +50,30 @@ export function* startGetServiceScenario(action) {
 
 export function* startGetSearchServicesScenario(action) {
   try {
-    const {element, searchElements, redirect} = action.payload;
-    const services = yield call(api.getSearchServices, searchElements);
+    const {searchParams, redirect} = action.payload;
+    const services = yield call(api.getSearchServices, searchParams);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield all([
         put({type: actions.SET_SERVICES, payload: services}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: searchElements}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
           NavigationActions.navigate({
             routeName: 'ServiceIndex',
-            params: {name: element ? element.name : I18n.t('services')},
+            params: I18n.t('services'),
           }),
         );
       }
+    } else {
+      yield all([
+        put({type: actions.SET_SERVICES, payload: []}),
+        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
+      ]);
+      throw services;
     }
   } catch (e) {
+  } finally {
     yield all([
       call(disableLoading),
       // call(enableWarningMessage, I18n.t('no_services')),

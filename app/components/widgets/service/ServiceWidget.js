@@ -43,7 +43,7 @@ const ServiceWidget = ({
       activeOpacity={touchOpacity}
       key={element.id}
       style={[widgetStyles.productServiceWidget, {minWidth}]}
-      onPress={() => handleClick()}>
+      onPress={() => handleClick(element)}>
       <ImageBackground
         source={{
           uri: element.thumb,

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
 import ServiceList from '../../components/widgets/service/ServiceList';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
+import I18n from '../../I18n';
 
 const ServiceIndexAllScreen = () => {
   const {services} = useSelector((state) => state);
@@ -16,7 +18,20 @@ const ServiceIndexAllScreen = () => {
 
   return (
     <BgContainer>
-      <ServiceList services={services} searchElements={{}} showName={true} />
+      <ElementsHorizontalList
+        elements={services}
+        type="service"
+        searchElements={{}}
+        columns={2}
+        showRefresh={true}
+        showFooter={true}
+        showSearch={true}
+        showSortSearch={false}
+        showProductsFilter={true}
+        showTitleIcons={true}
+        showMore={true}
+        showName={true}
+      />
     </BgContainer>
   );
 };

@@ -93,6 +93,7 @@
   "cart_details" : "تفاصيل عربة التسوق",
   "total" : "المجموع",
   "no_products" : "لا توجد منتجات",
+  "no_product" : "لا توجد منتجات",
   "cart" : "عربة التسوق",
   "continue" : "متابعة",
   "checkout" : "إكمال عملية الدفع",
@@ -462,6 +463,7 @@
   "color_or_height" : "اللون / الطول",
   "add_notes_shoulders_height_and_other_notes" : "ملاحظات (الطول ـ طول الكتف ـ الصدر)",
   "no_services" : "لا توجد خدمات",
+  "no_service" : "لا توجد خدمات",
   "no_more_services" : "لا توجد مزيد من الخدمات",
   "add_notes_to_your_service" : "أضف أية ملاحظات خاصة بطلب الخدمة",
   "individuals_served" : "العدد المناسب للخدمة",
@@ -480,8 +482,10 @@
   "content" : "المحتوى",
   "submit_comment" : "أضف تعليق",
   "no_comments" : "لا توجد تعليقات",
+  "no_comment" : "لا توجد تعليقات",
   "order_history" : "قائمة طلباتي السابقة",
   "no_orders" : "لا توجد طلبات حاليا",
+  "no_order" : "لا توجد طلبات حاليا",
   "register_with_us" : "سجل معنا",
   "agree_on_conditions_and_terms" : "الموافقة على الشروط والأحكام",
   "terms_and_conditions" : "الشروط والأحكام",
@@ -644,5 +648,7 @@
     "images_tow_only" : "عدد الصور لا يقل عن صورتين",
     "name_at_least_three_max": "الاسم مطلوب ولا يجب أن يزيد عن خمسين حرف",
     "email_required" : "البريد الإلكتروني مطلوب ويجب أن يكون صحيح"
-  }
+  },
+  "no_" : "%{item} لا يوجد",
+  "no_more_" : "%{item} لا يوجد المزيد من"
 }
