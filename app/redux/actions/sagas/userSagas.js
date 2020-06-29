@@ -370,18 +370,7 @@ export function* startSubmitAuthScenario(action) {
   try {
     const {email, password} = action.payload;
     const {player_id, loginModal} = yield select();
-    // const result = validate(
-    //   {
-    //     email,
-    //     password,
-    //   },
-    //   submitLogin,
-    // );
-    // if (!validate.isEmpty(result)) {
-    //   throw I18n.t('invalid_email_or_password');
-    // }
     const element = yield call(api.authenticate, {email, password, player_id});
-    console.log('element', element);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
         put({type: actions.SET_AUTH, payload: element}),
@@ -409,6 +398,7 @@ export function* startSubmitAuthScenario(action) {
         }
       }
     } else {
+      yield call(startLogoutScenario);
       throw element;
     }
   } catch (e) {

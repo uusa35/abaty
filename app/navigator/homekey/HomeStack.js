@@ -50,6 +50,7 @@ import CategoryClassifiedIndexScreen from '../../screens/category/CategoryClassi
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
 import {isIOS} from '../../constants';
+import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -487,6 +488,16 @@ export const HomeStack = createStackNavigator(
       screen: RegisterScreen,
       navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: () => <HeaderRight display={false} />,
+        headerBackTitle: () => null,
+      }),
+    },
+    ClassifiedFilterModal: {
+      screen: ClassifiedFilterModalScreen,
+      navigationOptions: () => ({
+        headerTitle: () => (
+          <HeaderMiddle title={I18n.t('search_classifieds')} />
+        ),
         headerRight: () => <HeaderRight display={false} />,
         headerBackTitle: () => null,
       }),

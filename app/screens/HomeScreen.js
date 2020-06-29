@@ -34,7 +34,7 @@ import ProductHorizontalWidget from '../components/widgets/product/ProductHorizo
 import IntroductionWidget from '../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../components/widgets/service/ServiceHorizontalWidget';
 import CollectionHorizontalWidget from '../components/widgets/collection/CollectionHorizontalWidget';
-import DesignerHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../components/widgets/user/DesignerHorizontalWidget';
 import CompanyHorizontalWidget from '../components/widgets/user/CompanyHorizontalWidget';
 import CelebrityHorizontalWidget from '../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
@@ -155,7 +155,7 @@ const HomeScreen = ({
         {!validate.isEmpty(homeDesigners) &&
         validate.isArray(homeDesigners) &&
         (ABATI || MALLR) ? (
-          <DesignerHorizontalWidget
+          <DesignersHorizontalWidget
             elements={homeDesigners}
             showName={true}
             name="designers"

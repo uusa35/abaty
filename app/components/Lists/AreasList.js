@@ -12,9 +12,10 @@ import {text} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import {isRTL} from './../../I18n';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
-const AreasList = ({area, areas, areaModal}) => {
+const AreasList = () => {
+  const {area, areas, areaModal} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(areaModal);
   const [currentArea, setCurrentArea] = useState(area);

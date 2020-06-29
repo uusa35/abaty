@@ -47,7 +47,7 @@ import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizo
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 
 const MallrHomeScreen = ({
@@ -112,7 +112,7 @@ const MallrHomeScreen = ({
           ) : null}
           {!validate.isEmpty(homeCompanies) &&
           validate.isArray(homeCompanies) ? (
-            <DesignerHorizontalWidget
+            <DesignersHorizontalWidget
               elements={homeCompanies}
               showName={true}
               name={I18n.t('our_joined_companies')}

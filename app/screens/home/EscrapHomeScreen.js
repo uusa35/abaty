@@ -16,7 +16,7 @@ import validate from 'validate.js';
 import I18n from '../../I18n';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 import EscrapSearchTab from '../../components/widgets/search/EscrapSearchTab';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import {text, width} from '../../constants/sizes';

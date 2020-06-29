@@ -16,7 +16,7 @@ import ExpoMainSliderWidget from '../../components/widgets/slider/ExpoMainSlider
 import ExpoDesignerHorizontalWidget from '../../components/widgets/user/ExpoDesignerHorizontalWidget';
 import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns';
 import BgContainer from '../../components/containers/BgContainer';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const ExpoHomeScreen = () => {

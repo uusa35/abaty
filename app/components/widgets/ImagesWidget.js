@@ -16,6 +16,8 @@ import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import ImageLoaderContainer from './ImageLoaderContainer';
+import {HOMEKEY} from './../../../app';
 
 const ImagesWidget = ({
   elements,
@@ -99,13 +101,15 @@ const ImagesWidget = ({
                     alignItems: 'flex-end',
                   }}>
                   {qr ? (
-                    <Image
-                      source={{uri: qr}}
+                    <ImageLoaderContainer
+                      img={qr}
+                      resizeMode="contain"
                       style={{
-                        width: 80,
-                        height: 80,
+                        width: 120,
+                        height: 120,
                         marginTop: 10,
                         marginBottom: 10,
+                        opacity: HOMEKEY ? 0.5 : 1,
                       }}
                     />
                   ) : null}

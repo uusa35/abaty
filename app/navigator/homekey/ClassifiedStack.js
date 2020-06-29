@@ -10,6 +10,7 @@ import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
+import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -68,6 +69,16 @@ export const ClassifiedStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
+        headerBackTitle: () => null,
+      }),
+    },
+    ClassifiedFilterModal: {
+      screen: ClassifiedFilterModalScreen,
+      navigationOptions: () => ({
+        headerTitle: () => (
+          <HeaderMiddle title={I18n.t('search_classifieds')} />
+        ),
+        headerRight: () => <HeaderRight display={false} />,
         headerBackTitle: () => null,
       }),
     },

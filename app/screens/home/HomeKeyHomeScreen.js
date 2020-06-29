@@ -14,9 +14,10 @@ import {
 } from '../../components/LazyLoadingComponents/classifiedComponents';
 import NewClassifiedHomeBtn from '../../components/widgets/classified/NewClassifiedHomeBtn';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
+import UsersHorizontalWidget from '../../components/widgets/user/UsersHorizontalWidget';
 
 const HomeKeyHomeScreen = () => {
   const {
@@ -95,7 +96,8 @@ const HomeKeyHomeScreen = () => {
             )}
           {!validate.isEmpty(homeCompanies) &&
             validate.isArray(homeCompanies) && (
-              <DesignerHorizontalWidget
+              <UsersHorizontalWidget
+                type="company"
                 elements={homeCompanies}
                 showName={true}
                 name={I18n.t('companies')}

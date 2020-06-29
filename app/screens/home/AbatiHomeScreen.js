@@ -10,7 +10,7 @@ import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizonta
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
-import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
@@ -60,7 +60,7 @@ const AbatiHomeScreen = () => {
         style={{flex: 0.8}}>
         <ProductSearchForm />
         <MainSliderWidget elements={slides} />
-        <DesignerHorizontalWidget
+        <DesignersHorizontalWidget
           elements={homeDesigners}
           showName={true}
           name={I18n.t('designers')}

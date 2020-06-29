@@ -32,7 +32,9 @@ import BgContainer from '../../components/containers/BgContainer';
 import {useNavigation} from 'react-navigation-hooks';
 
 const NormalClassifiedShowScreen = () => {
-  const {classified, commentModal, token, auth} = useSelector((state) => state);
+  const {classified, commentModal, token, auth, settings} = useSelector(
+    (state) => state,
+  );
   const {exchange_rate} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -89,6 +91,7 @@ const NormalClassifiedShowScreen = () => {
             height={height / 1.5}
             name={classified.name}
             isFeatured={classified.is_featured}
+            qr={settings.logo}
           />
         ) : null}
         <View style={{flex: 1, padding: '5%'}}>

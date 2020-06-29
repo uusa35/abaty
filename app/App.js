@@ -17,7 +17,6 @@ import LoginScreenModal from './screens/auth/LoginScreenModal';
 import AreasList from './components/Lists/AreasList';
 import SimpleSpinner from './components/SimpleSpinner';
 import ProductFilterModal from './screens/product/ProductFilterModal';
-import ClassifiedFilterModal from './screens/search/ClassifiedFilterModal';
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -139,7 +138,7 @@ const App = () => {
       {bootStrapped && (
         <Fragment>
           <ProductFilterModal />
-          <ClassifiedFilterModal />
+          {/*<ClassifiedFilterModal />*/}
         </Fragment>
       )}
     </Fragment>

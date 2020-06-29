@@ -33,15 +33,14 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
 
-  const handleClick = (c) => {
-    return dispatch(
+  const handleClick = (c) =>
+    dispatch(
       getSearchClassifieds({
         name: c.name,
         searchParams: {classified_category_id: c.id},
         redirect: true,
       }),
     );
-  };
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>

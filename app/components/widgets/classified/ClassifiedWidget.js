@@ -25,7 +25,7 @@ const ClassifiedWidget = ({element, showName = false, handleClick}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '100%',
+          width: '98%',
           height: 400,
           borderWidth: 1,
           borderColor: 'lightgrey',
@@ -45,7 +45,7 @@ const ClassifiedWidget = ({element, showName = false, handleClick}) => {
         loadingIndicatorSource={images.logo}
         style={styles.image}
         imageStyle={{
-          width,
+          width: '100%',
           height: 400,
           // borderRadius: 20
         }}

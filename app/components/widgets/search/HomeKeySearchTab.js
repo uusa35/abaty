@@ -9,6 +9,7 @@ import {startClassifiedSearching} from '../../../redux/actions/classified';
 import ClassifiedSearchForm from './ClassifiedSearchForm';
 import {showClassifiedFilter} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
 const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
     }
   });
   const [routes, setRoutes] = useState(parentCategories);
+  const {navigate} = useNavigation();
 
   useMemo(() => {
     const parentCategories = map(take(elements, 3), (e, i) => {
@@ -45,7 +47,8 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
         activeOpacity={touchOpacity}
         onPress={() => {
           dispatch(startClassifiedSearching(element.category));
-          dispatch(showClassifiedFilter());
+          // dispatch(showClassifiedFilter());
+          navigate('ClassifiedFilterModal');
         }}
         style={{
           padding: 20,

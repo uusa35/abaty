@@ -192,8 +192,6 @@ const ElementsHorizontalList = ({
     setSortModal(false);
   }, [sort]);
 
-  console.log('elements', elements);
-
   const handleRefresh = () => {
     if (showMore) {
       setRefresh(false);

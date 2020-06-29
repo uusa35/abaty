@@ -19,7 +19,7 @@ import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalW
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
-import {filter, uniqBy} from 'lodash';
+import {filter, uniqBy, map} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
@@ -46,7 +46,7 @@ const CompanyClassifiedShowScreen = () => {
   useMemo(() => {
     if (!validate.isEmpty(company.classifieds)) {
       const categories = uniqBy(
-        filter(company.classifieds, (c) => c.category),
+        map(company.classifieds, (c) => c.category),
         'id',
       );
       setCollectedCategories(categories);
@@ -103,19 +103,19 @@ const CompanyClassifiedShowScreen = () => {
             views={company.views}
             commentsCount={company.commentsCount}
           />
-          {!validate.isEmpty(company.slides) ? (
+          {!validate.isEmpty(company.slides) && (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
               <MainSliderWidget slides={company.slides} />
             </View>
-          ) : null}
-          {!validate.isEmpty(collectedCategories) ? (
+          )}
+          {!validate.isEmpty(collectedCategories) && (
             <ClassifiedCategoryVerticalWidget
               user_id={company.id}
               elements={collectedCategories}
               showImage={false}
               title={I18n.t('categories')}
             />
-          ) : null}
+          )}
           <TabView
             lazy={true}
             renderTabBar={(props) => (
