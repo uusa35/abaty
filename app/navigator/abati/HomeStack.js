@@ -52,6 +52,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
+import {isIOS} from '../../constants';
 
 export const HomeStack = createStackNavigator(
   {
@@ -561,8 +562,10 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
     animation: 'spring',
+    gesturesEnabled: false,
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

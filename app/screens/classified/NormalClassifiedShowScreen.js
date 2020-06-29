@@ -25,7 +25,7 @@ import PropertiesWidget from '../../components/widgets/classified/PropertiesWidg
 import QuickCallActionBtnWidget from '../../components/widgets/QuickCallActionBtnWidget';
 import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './../CommentScreenModal';
-import {getProductConvertedFinalPrice} from '../../helpers';
+import {getProductConvertedFinalPrice, getWhatsappLink} from '../../helpers';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
@@ -184,14 +184,7 @@ const NormalClassifiedShowScreen = () => {
                 )}
               </Fragment>
             )}
-            {classified.address ? (
-              <ClassifiedInfoWidgetElement
-                elementName="address"
-                name={classified.address}
-                showIcon={false}
-              />
-            ) : null}
-            {classified.category ? (
+            {classified.category && (
               <ClassifiedInfoWidgetElement
                 elementName="categories"
                 name={classified.category.name}
@@ -207,16 +200,12 @@ const NormalClassifiedShowScreen = () => {
                   )
                 }
               />
-            ) : null}
+            )}
             {classified.only_whatsapp ? (
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
                 name={classified.mobile}
-                link={() =>
-                  Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${classified.mobile}&text=`,
-                  )
-                }
+                link={() => getWhatsappLink(classified.mobile)}
               />
             ) : (
               <Fragment>
@@ -230,6 +219,20 @@ const NormalClassifiedShowScreen = () => {
                   />
                 ) : null}
               </Fragment>
+            )}
+            {classified.address && (
+              <ClassifiedInfoWidgetElement
+                elementName="address"
+                name={classified.address}
+                showIcon={false}
+              />
+            )}
+            {classified.country && (
+              <ClassifiedInfoWidgetElement
+                elementName="country"
+                name={classified.country.slug}
+                showIcon={false}
+              />
             )}
             {classified.has_map && (
               <MapViewWidget

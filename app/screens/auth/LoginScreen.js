@@ -1,36 +1,14 @@
-import React, {Fragment, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import LoginForm from '../../components/widgets/LoginForm';
 import BgContainer from '../../components/containers/BgContainer';
-
+import {HOMEKEY} from './../../../app';
 const LoginScreen = () => {
-  // const [visible, setVisible] = useState(false);
   // const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   // const parent = dangerouslyGetParent();
 
-  return (
-    <BgContainer>
-      {/*<Icon*/}
-      {/*  name="close"*/}
-      {/*  size={25}*/}
-      {/*  containerStyle={{*/}
-      {/*    zIndex: 99,*/}
-      {/*    position: 'absolute',*/}
-      {/*    top: 50,*/}
-      {/*    left: 50*/}
-      {/*  }}*/}
-      {/*  hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}*/}
-      {/*  onPress={() => {*/}
-      {/*    setVisible(false);*/}
-      {/*    return parent.state.index && parent.state.index > 0*/}
-      {/*      ? goBack()*/}
-      {/*      : navigate('Home');*/}
-      {/*  }}*/}
-      {/*/>*/}
-      <LoginForm showBtns={true} />
-    </BgContainer>
-  );
+  return <LoginForm />;
 };
 
 export default LoginScreen;
@@ -48,3 +26,55 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 });
+
+{
+  /*<Icon*/
+}
+{
+  /*  name="close"*/
+}
+{
+  /*  size={25}*/
+}
+{
+  /*  containerStyle={{*/
+}
+{
+  /*    zIndex: 99,*/
+}
+{
+  /*    position: 'absolute',*/
+}
+{
+  /*    top: 50,*/
+}
+{
+  /*    left: 50*/
+}
+{
+  /*  }}*/
+}
+{
+  /*  hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}*/
+}
+{
+  /*  onPress={() => {*/
+}
+{
+  /*    setVisible(false);*/
+}
+{
+  /*    return parent.state.index && parent.state.index > 0*/
+}
+{
+  /*      ? goBack()*/
+}
+{
+  /*      : navigate('Home');*/
+}
+{
+  /*  }}*/
+}
+{
+  /*/>*/
+}

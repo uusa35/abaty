@@ -5,6 +5,8 @@ import {View} from 'react-native-animatable';
 import {APP_CASE} from './../../../app';
 import {iconSizes} from '../../constants/sizes';
 import {useSelector} from 'react-redux';
+import {getWhatsappLink} from '../../helpers';
+import I18n from './../../I18n';
 
 const SocialRowWidget = () => {
   const {settings} = useSelector((state) => state);
@@ -77,11 +79,7 @@ const SocialRowWidget = () => {
           name="whatsapp"
           type="font-awesome"
           color="#25d366"
-          onPress={() =>
-            Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_CASE}`,
-            )
-          }
+          onPress={() => getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE))}
         />
       ) : null}
       {settings.phone ? (

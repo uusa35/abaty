@@ -18,6 +18,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import TransparentProductShowScreen from '../../screens/product/TransparentProductShowScreen';
 import ExpoSettingsIndexScreen from '../../screens/setting/ExpoSettingsIndexScreen';
+import {isIOS} from '../../constants';
 
 export const SettingStack = createStackNavigator(
   {
@@ -161,7 +162,17 @@ export const SettingStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    animation: 'spring',
+    animationEnabled: isIOS,
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01,
+    },
   },
 );
 

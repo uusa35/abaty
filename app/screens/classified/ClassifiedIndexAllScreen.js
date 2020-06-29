@@ -9,6 +9,7 @@ import {
 } from '../../redux/actions/classified';
 import BgContainer from '../../components/containers/BgContainer';
 import I18n from './../../I18n';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ClassifiedIndexAllScreen = () => {
   const {classifieds} = useSelector((state) => state);
@@ -20,15 +21,15 @@ const ClassifiedIndexAllScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      <ClassifiedList
-        classifieds={classifieds}
+      <ElementsHorizontalList
+        elements={classifieds}
         showName={true}
         searchElements={{}}
         showSearch={true}
         showClassifiedsFilter={true}
         showSortSearch={true}
-        showMore={true}
-        noElementsTitle={I18n.t('no_classifieds')}
+        showFooter={true}
+        type="classified"
       />
     </BgContainer>
   );

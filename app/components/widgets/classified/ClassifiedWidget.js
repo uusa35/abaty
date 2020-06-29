@@ -15,10 +15,8 @@ import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
 import {useDispatch, useSelector} from 'react-redux';
 
-const ClassifiedWidget = ({element, showName = false}) => {
+const ClassifiedWidget = ({element, showName = false, handleClick}) => {
   const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
-  const dispatch = useDispatch();
-  const {token} = useSelector((state) => state);
 
   return (
     <TouchableOpacity
@@ -39,15 +37,7 @@ const ClassifiedWidget = ({element, showName = false}) => {
           alignSelf: 'center',
         },
       ]}
-      onPress={() =>
-        dispatch(
-          getClassified({
-            id: element.id,
-            api_token: token ? token : null,
-            redirect: true,
-          }),
-        )
-      }>
+      onPress={() => handleClick(element)}>
       <ImageBackground
         source={{
           uri: element.thumb,
@@ -79,6 +69,7 @@ export default ClassifiedWidget;
 
 ClassifiedWidget.propTypes = {
   element: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
   exchange_rate: PropTypes.number,
   currency_symbol: PropTypes.string,
   showName: PropTypes.bool,

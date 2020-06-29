@@ -5,17 +5,21 @@ import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import BgContainer from '../../components/containers/BgContainer';
 import I18n from './../../I18n';
 import {useSelector} from 'react-redux';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const FavoriteClassifiedIndexScreen = () => {
   const {classifiedFavorites} = useSelector((state) => state);
   return (
     <BgContainer showImage={false}>
-      <ClassifiedList
-        classifieds={classifiedFavorites}
+      <ElementsHorizontalList
+        elements={classifiedFavorites}
         showName={true}
-        showMore={false}
         searchElements={{}}
-        noElementsTitle={I18n.t('no_classifieds_favorites')}
+        showSearch={true}
+        showClassifiedsFilter={true}
+        showSortSearch={true}
+        showFooter={true}
+        type="classified"
       />
     </BgContainer>
   );

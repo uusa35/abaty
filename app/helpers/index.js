@@ -97,9 +97,8 @@ export function getConvertedFinalPrice(price, rate) {
   return _.round(price * rate, 2);
 }
 
-export function getWhatsappLink(number, text = '') {
-  return `https://api.whatsapp.com/send?phone=${number}&text=${text}`;
-}
+export const getWhatsappLink = (number, text = '') =>
+  `https://api.whatsapp.com/send?phone=${number}&text=${text}`;
 
 export function adjustColor(color, amount) {
   return (

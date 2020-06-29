@@ -18,6 +18,7 @@ const SortByModal = ({
   sortModal = false,
   showSortPrice = true,
   showSortAlpha = true,
+  type,
 }) => {
   return (
     <Modal
@@ -59,7 +60,7 @@ const SortByModal = ({
             style={styles.wrapper}>
             <Text style={styles.phoneNo}>{I18n.t('oldest')}</Text>
           </TouchableOpacity>
-          {showSortPrice ? (
+          {showSortPrice && type === 'product' && (
             <Fragment>
               <TouchableOpacity
                 activeOpacity={1}
@@ -76,7 +77,25 @@ const SortByModal = ({
                 <Text style={styles.phoneNo}>{I18n.t('low_high')}</Text>
               </TouchableOpacity>
             </Fragment>
-          ) : null}
+          )}
+          {showSortPrice && type === 'classified' && (
+            <Fragment>
+              <TouchableOpacity
+                activeOpacity={1}
+                hitSlop={{left: 15, right: 15}}
+                onPress={() => setSort(7)}
+                style={styles.wrapper}>
+                <Text style={styles.phoneNo}>{I18n.t('high_low')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={1}
+                hitSlop={{left: 15, right: 15}}
+                onPress={() => setSort(8)}
+                style={styles.wrapper}>
+                <Text style={styles.phoneNo}>{I18n.t('low_high')}</Text>
+              </TouchableOpacity>
+            </Fragment>
+          )}
           {showSortAlpha ? (
             <Fragment>
               <TouchableOpacity
@@ -105,6 +124,7 @@ export default SortByModal;
 
 SortByModal.propTypes = {
   sortModal: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
   setSortModal: PropTypes.func.isRequired,
   setSort: PropTypes.func.isRequired,
 };

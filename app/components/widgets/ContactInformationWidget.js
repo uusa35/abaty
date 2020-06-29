@@ -9,6 +9,7 @@ import validate from 'validate.js';
 import {APP_CASE} from './../../../app';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {useSelector} from 'react-redux';
+import {getWhatsappLink} from '../../helpers';
 
 const ContactInformationWidget = () => {
   const {settings} = useSelector((state) => state);
@@ -56,11 +57,7 @@ const ContactInformationWidget = () => {
         <TouchableOpacity
           activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
-          onPress={() =>
-            Linking.openURL(
-              `https://api.whatsapp.com/send?phone=${settings.whatsapp}&text=${APP_CASE}`,
-            )
-          }
+          onPress={() => getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE))}
           style={styles.container}>
           <View style={styles.wrapper}>
             <Icon

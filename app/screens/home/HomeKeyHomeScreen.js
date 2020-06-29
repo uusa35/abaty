@@ -18,7 +18,7 @@ import DesignerHorizontalWidget from '../../components/widgets/user/DesignerHori
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
-const HomeKeyHomeScreen = ({}) => {
+const HomeKeyHomeScreen = () => {
   const {
     homeCategories,
     categories,
@@ -100,7 +100,7 @@ const HomeKeyHomeScreen = ({}) => {
                 showName={true}
                 name={I18n.t('companies')}
                 title={I18n.t('companies')}
-                searchElements={{is_company: true}}
+                searchParams={{is_company: 1}}
               />
             )}
           <NewClassifiedHomeBtn />

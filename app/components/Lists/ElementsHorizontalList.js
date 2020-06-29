@@ -51,6 +51,13 @@ import ServiceWidget from '../widgets/service/ServiceWidget';
 import {getSearchServices, getService} from '../../redux/actions/service';
 import NoMoreElements from '../widgets/NoMoreElements';
 import {animations} from '../../constants/animations';
+import {
+  getClassified,
+  getSearchClassifieds,
+} from '../../redux/actions/classified';
+import {HOMEKEY} from '../../../app';
+import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
+import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
 
 const ElementsHorizontalList = ({
   elements,
@@ -62,22 +69,25 @@ const ElementsHorizontalList = ({
   showTitle = false,
   showSortSearch = false,
   showProductsFilter = false,
+  showClassifiedsFilter = false,
   showTitleIcons = false,
   showRefresh = false,
   title,
   type,
   iconSize = iconSizes.small,
   textSize = text.small,
-  columns = 1,
+  columns = 2,
 }) => {
+  const [items, setItems] = useState(elements);
+  const [elementsWithMap, setElementsWithMap] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const [items, setItems] = useState(elements);
   const [params, setParams] = useState(searchParams);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
+  const [mapModal, setMapModal] = useState(false);
   const {token} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
@@ -130,6 +140,20 @@ const ElementsHorizontalList = ({
               }
             });
           break;
+        case 'classified':
+          return axiosInstance(`search/classified?page=${page}`, {
+            params,
+          })
+            .then((r) => {
+              const elementsGroup = uniqBy(items.concat(r.data), 'id');
+              setItems(elementsGroup);
+            })
+            .catch((e) => {
+              if (__DEV__) {
+                console.log('the e ElementsHorizontalList', e);
+              }
+            });
+          break;
         default:
           null;
       }
@@ -156,11 +180,19 @@ const ElementsHorizontalList = ({
       case 6:
         setItems(orderBy(items, ['id'], ['asc']));
         break;
+      case 7:
+        setItems(orderBy(items, ['price'], ['desc']));
+        break;
+      case 8:
+        setItems(orderBy(items, ['price'], ['asc']));
+        break;
       default:
         items;
     }
     setSortModal(false);
   }, [sort]);
+
+  console.log('elements', elements);
 
   const handleRefresh = () => {
     if (showMore) {
@@ -178,6 +210,11 @@ const ElementsHorizontalList = ({
           break;
         case 'company':
           dispatch(getSearchCompanies({searchParams: params}));
+          break;
+        case 'classified':
+          dispatch(
+            getSearchClassifieds({searchParams: params, redirect: false}),
+          );
           break;
         default:
           null;
@@ -200,6 +237,9 @@ const ElementsHorizontalList = ({
 
   useEffect(() => {
     setItems(elements);
+    if (type === 'classified') {
+      setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
+    }
   }, [elements]);
 
   useMemo(() => {
@@ -257,6 +297,15 @@ const ElementsHorizontalList = ({
           }),
         );
         break;
+      case 'classified':
+        return dispatch(
+          getClassified({
+            id: element.id,
+            api_token: token ? token : null,
+            redirect: true,
+          }),
+        );
+        break;
       default:
         null;
     }
@@ -277,6 +326,15 @@ const ElementsHorizontalList = ({
       case 'service':
         return (
           <ServiceWidget
+            element={item}
+            showName={showName}
+            handleClick={handleClick}
+          />
+        );
+        break;
+      case 'classified':
+        return (
+          <ClassifiedWidget
             element={item}
             showName={showName}
             handleClick={handleClick}
@@ -377,6 +435,14 @@ const ElementsHorizontalList = ({
                     setSortModal={setSortModal}
                     setSort={setSort}
                     showProductsFilter={showProductsFilter}
+                    showClassifiedsFilter={showClassifiedsFilter}
+                  />
+                )}
+                {!validate.isEmpty(elementsWithMap) && HOMEKEY && (
+                  <ClassifiedsMapView
+                    mapModal={mapModal}
+                    setMapModal={setMapModal}
+                    elements={elementsWithMap}
                   />
                 )}
                 {showTitle && (
@@ -415,6 +481,7 @@ const ElementsHorizontalList = ({
         setSortModal={setSortModal}
         sortModal={sortModal}
         setSort={setSort}
+        type={type}
       />
     </KeyboardAvoidingView>
   );

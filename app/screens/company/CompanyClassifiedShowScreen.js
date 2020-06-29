@@ -22,6 +22,7 @@ import ClassifiedDoubleList from '../../components/widgets/classified/Classified
 import {filter, uniqBy} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const CompanyClassifiedShowScreen = () => {
   const {company, comments, commentModal, searchParams} = useSelector(
@@ -141,12 +142,14 @@ const CompanyClassifiedShowScreen = () => {
             }}
             renderScene={SceneMap({
               classifieds: () => (
-                <ClassifiedDoubleList
-                  classifieds={company.classifieds}
+                <ElementsHorizontalList
+                  type="classified"
+                  elements={company.classifieds}
                   showSearch={false}
                   showTitle={false}
                   showFooter={false}
                   showMore={false}
+                  columns={2}
                   searchElements={searchParams}
                 />
               ),

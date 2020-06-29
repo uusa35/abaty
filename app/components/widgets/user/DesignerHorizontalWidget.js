@@ -3,7 +3,11 @@ import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
-import {getDesigner, getSearchDesigners} from '../../../redux/actions/user';
+import {
+  getDesigner,
+  getSearchCompanies,
+  getSearchDesigners,
+} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
 import {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
@@ -29,7 +33,7 @@ const DesignerHorizontalWidget = ({
 
   const handleClick = () =>
     dispatch(
-      getSearchDesigners({
+      getSearchCompanies({
         searchParams,
         name,
         redirect: true,

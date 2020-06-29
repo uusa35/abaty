@@ -259,6 +259,7 @@ const ClassifiedStoreScreen = () => {
             }}
           />
           <Input
+            leftIcon={() => <Text>+{country.calling_code}</Text>}
             inputContainerStyle={{
               borderWidth: 1,
               borderColor: 'lightgrey',

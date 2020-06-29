@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Button, Input} from 'react-native-elements';
+import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {bottomContentInset, text, height} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';

@@ -53,6 +53,7 @@ import PolicyScreen from '../../screens/PolicyScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import DailyHomeScreen from '../../screens/home/DailyHomeScreen';
+import {isIOS} from '../../constants';
 
 export const HomeStack = createStackNavigator(
   {
@@ -566,8 +567,10 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
     animation: 'spring',
+    gesturesEnabled: false,
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

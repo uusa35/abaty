@@ -41,6 +41,7 @@ import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryInde
 import CategoryClassifiedIndexScreen from '../../screens/category/CategoryClassifiedIndexScreen';
 import PolicyScreen from '../../screens/PolicyScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
+import {isIOS} from '../../constants';
 
 export const HomeStack = createStackNavigator(
   {
@@ -432,12 +433,21 @@ export const HomeStack = createStackNavigator(
       }),
     },
   },
-
   {
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    gesturesEnabled: false,
+    animationEnabled: isIOS,
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01,
+    },
     defaultNavigationOptions: ({navigation}) => ({
       headerTransparent: false,
       // headerStyle: {

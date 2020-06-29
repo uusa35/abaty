@@ -49,6 +49,7 @@ import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
+import {isIOS} from '../../constants';
 
 export const HomeStack = createStackNavigator(
   {
@@ -553,6 +554,17 @@ export const HomeStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: false,
+    animation: 'spring',
+    gesturesEnabled: false,
+    animationEnabled: isIOS,
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01,
+    },
   },
 );
 

@@ -26,22 +26,22 @@ const SearchSort = ({
         <Icon type="entypo" name="select-arrows" size={iconSizes.smaller} />
         <Text style={styles.btnTitle}>{I18n.t('sort')}</Text>
       </TouchableOpacity>
-      {showProductsFilter ? (
+      {showProductsFilter && (
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => dispatch(showProductFilter())}>
           <Icon type="antdesign" name="filter" size={iconSizes.smaller} />
           <Text style={styles.btnTitle}>{I18n.t('filter')}</Text>
         </TouchableOpacity>
-      ) : null}
-      {showClassifiedsFilter ? (
+      )}
+      {showClassifiedsFilter && (
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => dispatch(showClassifiedFilter())}>
           <Icon type="antdesign" name="filter" size={iconSizes.smaller} />
           <Text style={styles.btnTitle}>{I18n.t('filter')}</Text>
         </TouchableOpacity>
-      ) : null}
+      )}
     </View>
   );
 };

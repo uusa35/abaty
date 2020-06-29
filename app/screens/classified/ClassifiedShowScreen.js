@@ -25,7 +25,7 @@ import QuickCallActionBtnWidget from '../../components/widgets/QuickCallActionBt
 import ClassifiedInfoWidgetMainTitle from '../../components/widgets/classified/ClassifiedInfoWidgetMainTitle';
 import CommentScreenModal from './../CommentScreenModal';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
-import {getProductConvertedFinalPrice} from '../../helpers';
+import {getProductConvertedFinalPrice, getWhatsappLink} from '../../helpers';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
@@ -153,8 +153,8 @@ const ClassifiedShowScreen = () => {
                 elementName="whatsapp"
                 name={classified.mobile}
                 link={() =>
-                  Linking.openURL(
-                    `https://api.whatsapp.com/send?phone=${classified.mobile}&text=`,
+                  getWhatsappLink(
+                    classified.user.country.calling_code.classified.mobile,
                   )
                 }
               />

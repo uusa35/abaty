@@ -19,6 +19,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import ContactusScreen from '../../screens/ContactusScreen';
+import {isIOS} from '../../constants';
 
 export const SettingStack = createStackNavigator(
   {
@@ -171,7 +172,17 @@ export const SettingStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    animation: 'spring',
+    animationEnabled: isIOS,
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 0.01,
+      restSpeedThreshold: 0.01,
+    },
   },
 );
 

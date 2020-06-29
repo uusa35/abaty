@@ -23,6 +23,7 @@ import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import {APP_CASE} from '../../../app';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import ContactusScreen from '../../screens/ContactusScreen';
+import {isIOS} from '../../constants';
 
 export const SettingStack = createStackNavigator(
   {
@@ -167,6 +168,7 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,
+        headerBackTitle: () => null,
       }),
       path: 'contactus',
     },
@@ -176,6 +178,7 @@ export const SettingStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

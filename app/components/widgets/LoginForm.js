@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
-import {text} from '../../constants/sizes';
+import {iconSizes, text} from '../../constants/sizes';
 import {appUrlIos} from './../../env';
-import {Button, Input} from 'react-native-elements';
+import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {googleLogin, setRole, submitAuth} from '../../redux/actions/user';
 import {View, Linking, StyleSheet} from 'react-native';
@@ -12,12 +12,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import BgContainer from '../containers/BgContainer';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {map, first, filter, isEmpty} from 'lodash';
+import {HOMEKEY} from './../../../app';
 
 const LoginForm = ({showBtns = false}) => {
   const {roles} = useSelector((state) => state);
   const {logo, colors} = useContext(GlobalValuesContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('password');
+  const [visiblePassword, setVisiblePassword] = useState(true);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
 
@@ -41,7 +43,7 @@ const LoginForm = ({showBtns = false}) => {
   };
 
   return (
-    <BgContainer>
+    <BgContainer showImage={!HOMEKEY}>
       <KeyboardAwareScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
@@ -89,8 +91,16 @@ const LoginForm = ({showBtns = false}) => {
             onChangeText={(email) => setEmail(email)}
           />
           <Input
+            rightIcon={() => (
+              <Icon
+                name="eye"
+                type="font-awesome"
+                size={iconSizes.smallest}
+                onPress={() => setVisiblePassword(!visiblePassword)}
+              />
+            )}
             placeholder={I18n.t('password')}
-            secureTextEntry={true}
+            secureTextEntry={visiblePassword}
             inputContainerStyle={{
               borderWidth: 1,
               borderRadius: 5,
