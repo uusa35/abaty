@@ -5,6 +5,7 @@ import I18n from '../../../I18n';
 import {iconSizes, text} from '../../../constants/sizes';
 import {showClassifiedFilter, showProductFilter} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
 const SearchSort = ({
   showProductsFilter = false,
@@ -12,6 +13,7 @@ const SearchSort = ({
   setSortModal,
 }) => {
   const dispatch = useDispatch();
+  const {navigate} = useNavigation();
 
   return (
     <View
@@ -37,7 +39,7 @@ const SearchSort = ({
       {showClassifiedsFilter && (
         <TouchableOpacity
           style={styles.btnStyle}
-          onPress={() => dispatch(showClassifiedFilter())}>
+          onPress={() => navigate('ClassifiedFilterModal')}>
           <Icon type="antdesign" name="filter" size={iconSizes.smaller} />
           <Text style={styles.btnTitle}>{I18n.t('filter')}</Text>
         </TouchableOpacity>

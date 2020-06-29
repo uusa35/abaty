@@ -5,6 +5,7 @@ import I18n from '../../I18n';
 import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
+import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -18,6 +19,16 @@ export const SearchStack = createStackNavigator(
         headerRight: () => <HeaderRight showCountry={true} />,
         headerBackTitle: () => null,
       }),
+      ClassifiedFilterModal: {
+        screen: ClassifiedFilterModalScreen,
+        navigationOptions: () => ({
+          headerTitle: () => (
+            <HeaderMiddle title={I18n.t('search_classifieds')} />
+          ),
+          headerRight: () => <HeaderRight display={false} />,
+          headerBackTitle: () => null,
+        }),
+      },
     },
   },
   {

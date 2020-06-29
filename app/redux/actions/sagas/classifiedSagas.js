@@ -30,6 +30,7 @@ import {SET_CLASSIFIED} from '../types';
 export function* startGetClassifiedsScenario(action) {
   try {
     const {searchParams, redirect, name} = action.payload;
+    console.log('searchParams', searchParams);
     yield put({type: HIDE_CLASSIFIED_FILTER_MODAL});
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);
@@ -101,9 +102,7 @@ export function* startGetClassifiedScenario(action) {
   try {
     yield call(enableLoadingContent);
     const {id, api_token, redirect} = action.payload;
-    console.log('id', id);
     const element = yield call(api.getClassified, {id, api_token});
-    console.log('element', element);
     if (
       !validate.isEmpty(element) &&
       validate.isObject(element) &&

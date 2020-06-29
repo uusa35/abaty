@@ -508,16 +508,22 @@ export const HomeStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
-    gesturesEnabled: false,
+    gesturesEnabled: isIOS,
     animationEnabled: isIOS,
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 0,
+        timing: 0,
+      },
+    }),
+    // config: {
+    //   stiffness: 1000,
+    //   damping: 500,
+    //   mass: 3,
+    //   overshootClamping: true,
+    //   restDisplacementThreshold: 0.01,
+    //   restSpeedThreshold: 0.01,
+    // },
   },
 );
 

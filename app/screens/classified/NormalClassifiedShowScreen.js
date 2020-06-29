@@ -237,6 +237,13 @@ const NormalClassifiedShowScreen = () => {
                 showIcon={false}
               />
             )}
+            {classified.area && (
+              <ClassifiedInfoWidgetElement
+                elementName="area"
+                name={classified.area}
+                showIcon={false}
+              />
+            )}
             {classified.has_map && (
               <MapViewWidget
                 element={classified}

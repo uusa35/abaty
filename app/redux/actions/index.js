@@ -347,3 +347,8 @@ export const toggleCompanySearchTextInputModal = (payload) => ({
   type: actions.TOGGLE_COMPANY_SEARCH_TEXT_INPUT_MODAL,
   payload,
 });
+
+export const setElementType = (payload) => ({
+  type: actions.SET_ELEMENT_TYPE,
+  payload,
+});

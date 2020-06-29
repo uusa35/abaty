@@ -11,7 +11,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {text, touchOpacity} from '../../constants/sizes';
-import {showCountryModal, toggleResetApp} from '../../redux/actions';
+import {
+  showAreaModal,
+  showCountryModal,
+  toggleResetApp,
+} from '../../redux/actions';
 import {storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
@@ -358,9 +362,9 @@ const ClassifiedStoreScreen = () => {
               {country.slug}
             </Text>
           </TouchableOpacity>
-          {!validate.isEmpty(area) && HOMEKEY && false ? (
+          {!validate.isEmpty(area) && HOMEKEY ? (
             <TouchableOpacity
-              // onPress={() => dispatch(showAreaModal())}
+              onPress={() => dispatch(showAreaModal())}
               style={{
                 borderWidth: 1,
                 borderColor: 'lightgrey',

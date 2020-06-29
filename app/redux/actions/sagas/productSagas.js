@@ -14,6 +14,7 @@ import {
 } from './settingSagas';
 import I18n from '../../../I18n';
 import {NavigationActions} from 'react-navigation';
+import {SET_ELEMENT_TYPE} from '../types';
 
 export function* setHomeProducts() {
   try {
@@ -268,6 +269,7 @@ export function* startGetSearchProductsScenario(action) {
 export function* startGetAllProductsScenario(action) {
   try {
     const products = yield call(api.getSearchProducts, action.payload);
+    yield put({type: SET_ELEMENT_TYPE, payload: 'product'});
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: products}),

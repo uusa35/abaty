@@ -23,8 +23,8 @@ import {
 } from '../../redux/actions/user';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {Button, Input, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
+import {Icon} from 'react-native-elements';
+import I18n from './../../I18n';
 import {
   bottomContentInset,
   iconSizes,
@@ -34,15 +34,11 @@ import {
 } from './../../constants/sizes';
 import {filter, orderBy, uniqBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
-import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import TopSearchInput from '../widgets/TopSearchInput';
-import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
-import ElementWidgetVertical from './ElementWidgetVertical';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import SearchSort from '../widgets/search/SearchSort';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
-import {useNavigation} from 'react-navigation-hooks';
 import ElementWidgetHorizontal from './ElementWidgetHorizontal';
 import SortByModal from '../widgets/search/SortByModal';
 import EmptyListWidget from './EmptyListWidget';
@@ -55,9 +51,11 @@ import {
   getClassified,
   getSearchClassifieds,
 } from '../../redux/actions/classified';
-import {HOMEKEY} from '../../../app';
+import {HOMEKEY, EXPO} from '../../../app';
 import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
 import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
+import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
+import {setElementType} from '../../redux/actions';
 
 const ElementsHorizontalList = ({
   elements,
@@ -88,7 +86,7 @@ const ElementsHorizontalList = ({
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
   const [mapModal, setMapModal] = useState(false);
-  const {token} = useSelector((state) => state);
+  const {token, elementType} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
@@ -235,10 +233,10 @@ const ElementsHorizontalList = ({
 
   useEffect(() => {
     setItems(elements);
-    if (type === 'classified') {
-      setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
-    }
-  }, [elements]);
+    // if (type === 'classified') {
+    setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
+    // }
+  }, [elementType]);
 
   useMemo(() => {
     if (isLoading) {
@@ -249,6 +247,7 @@ const ElementsHorizontalList = ({
   }, [isLoading]);
 
   const handleClick = (element) => {
+    dispatch(setElementType(type));
     switch (type) {
       case 'designer':
         return dispatch(
@@ -272,7 +271,7 @@ const ElementsHorizontalList = ({
         return dispatch(
           getCompany({
             id: element.id,
-            searchParams,
+            searchParams: {user_id: element.id},
             redirect: true,
           }),
         );
@@ -335,6 +334,16 @@ const ElementsHorizontalList = ({
           <ClassifiedWidget
             element={item}
             showName={showName}
+            handleClick={handleClick}
+          />
+        );
+        break;
+      case 'company':
+        return (
+          <CompanyHorizontalWidget
+            user={item}
+            showRating={true}
+            showName={true}
             handleClick={handleClick}
           />
         );
@@ -421,28 +430,35 @@ const ElementsHorizontalList = ({
                   alignSelf: 'center',
                   width: '100%',
                   backgroundColor: 'transparent',
-                  marginTop: showSearch ? '3%' : 0,
+                  margin: showSearch ? '2%' : 0,
                 }}>
                 {showSearch && (
                   <TopSearchInput search={search} setSearch={setSearch} />
                 )}
-                {showSortSearch && (
-                  <SearchSort
-                    sort={sort}
-                    sortModal={sortModal}
-                    setSortModal={setSortModal}
-                    setSort={setSort}
-                    showProductsFilter={showProductsFilter}
-                    showClassifiedsFilter={showClassifiedsFilter}
-                  />
-                )}
-                {!validate.isEmpty(elementsWithMap) && HOMEKEY && (
-                  <ClassifiedsMapView
-                    mapModal={mapModal}
-                    setMapModal={setMapModal}
-                    elements={elementsWithMap}
-                  />
-                )}
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
+                  {showSortSearch && (
+                    <SearchSort
+                      sort={sort}
+                      sortModal={sortModal}
+                      setSortModal={setSortModal}
+                      setSort={setSort}
+                      showProductsFilter={showProductsFilter}
+                      showClassifiedsFilter={showClassifiedsFilter}
+                    />
+                  )}
+                  {!validate.isEmpty(elementsWithMap) && (HOMEKEY || EXPO) && (
+                    <ClassifiedsMapView
+                      mapModal={mapModal}
+                      setMapModal={setMapModal}
+                      elements={elementsWithMap}
+                    />
+                  )}
+                </View>
                 {showTitle && (
                   <View
                     style={{

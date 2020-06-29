@@ -9,6 +9,7 @@ import I18n from '../../I18n';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -48,6 +49,16 @@ export const FavoriteStack = createStackNavigator(
         },
       }),
       path: `classified/:id`,
+    },
+    ClassifiedFilterModal: {
+      screen: ClassifiedFilterModalScreen,
+      navigationOptions: () => ({
+        headerTitle: () => (
+          <HeaderMiddle title={I18n.t('search_classifieds')} />
+        ),
+        headerRight: () => <HeaderRight display={false} />,
+        headerBackTitle: () => null,
+      }),
     },
   },
   {

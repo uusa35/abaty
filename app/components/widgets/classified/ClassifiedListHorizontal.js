@@ -22,6 +22,7 @@ import widgetStyles from '../widgetStyles';
 import ClassifiedWidgetHorizontal from './ClassifiedWidgetHorizontal';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useDispatch} from 'react-redux';
+import {setElementType} from '../../../redux/actions';
 
 const ClassifiedListHorizontal = ({
   classifieds,
@@ -42,19 +43,23 @@ const ClassifiedListHorizontal = ({
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
+  const handleClick = () => {
+    dispatch(setElementType('classified'));
+    dispatch(
+      getSearchClassifieds({
+        searchParams: {},
+        redirect: true,
+        name: I18n.t('related_classifieds'),
+      }),
+    );
+  };
   return (
     <View style={widgetStyles.container}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
         style={widgetStyles.titleContainer}
         onPress={() => {
-          dispatch(
-            getSearchClassifieds({
-              searchParams: {},
-              redirect: true,
-              name: I18n.t('related_classifieds'),
-            }),
-          );
+          handleClick();
         }}>
         <View style={widgetStyles.titleWrapper}>
           <Text

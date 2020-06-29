@@ -11,7 +11,12 @@ import {Rating} from 'react-native-ratings';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch} from 'react-redux';
 
-const CompanyHorizontalWidget = ({user, showName, showRating = false}) => {
+const CompanyHorizontalWidget = ({
+  user,
+  showName,
+  showRating = false,
+  handleClick,
+}) => {
   const {colors, logo} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
 
@@ -32,15 +37,7 @@ const CompanyHorizontalWidget = ({user, showName, showRating = false}) => {
           height: 260,
         },
       ]}
-      onPress={() =>
-        dispatch(
-          getCompany({
-            id: user.id,
-            searchParams: {user_id: user.id},
-            redirect: true,
-          }),
-        )
-      }>
+      onPress={() => handleClick(user)}>
       <ImageLoaderContainer
         img={user.thumb ? user.thumb : logo}
         imageStyle={styles.imageStyling}
@@ -89,7 +86,8 @@ const CompanyHorizontalWidget = ({user, showName, showRating = false}) => {
 export default CompanyHorizontalWidget;
 
 CompanyHorizontalWidget.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
+  handleClick: PropTypes.func.isRequired,
   showName: PropTypes.bool,
 };
 

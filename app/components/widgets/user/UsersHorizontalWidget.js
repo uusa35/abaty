@@ -24,6 +24,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {getProduct, getSearchProducts} from '../../../redux/actions/product';
 import {getService} from '../../../redux/actions/service';
 import {getClassified} from '../../../redux/actions/classified';
+import {setElementType} from '../../../redux/actions';
 
 const UsersHorizontalWidget = ({
   elements,
@@ -37,6 +38,7 @@ const UsersHorizontalWidget = ({
   const {colors} = useContext(GlobalValuesContext);
 
   const handleClick = () => {
+    dispatch(setElementType(type));
     switch (type) {
       case 'designer':
         return dispatch(
@@ -61,6 +63,7 @@ const UsersHorizontalWidget = ({
   };
 
   const handleElementClick = (element) => {
+    dispatch(setElementType(type));
     switch (type) {
       case 'designer':
         return dispatch(
