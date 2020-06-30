@@ -8,6 +8,7 @@ import VideoShowScreen from '../../screens/video/VideoShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import {HeaderRight} from '../../components/HeaderRight';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {isIOS} from '../../constants';
 
 export const VideoStack = createStackNavigator(
   {
@@ -36,6 +37,7 @@ export const VideoStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

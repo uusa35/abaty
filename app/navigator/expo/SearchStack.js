@@ -11,6 +11,7 @@ import NormalProductShowScreen from '../../screens/product/NormalProductShowScre
 import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {isIOS} from '../../constants';
 
 export const SearchStack = createStackNavigator(
   {
@@ -92,6 +93,7 @@ export const SearchStack = createStackNavigator(
   {
     mode: 'modal',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    animationEnabled: isIOS,
   },
 );

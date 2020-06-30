@@ -65,7 +65,7 @@ const ClassifiedWidget = ({element, showName = false, handleClick}) => {
   );
 };
 
-export default ClassifiedWidget;
+export default React.memo(ClassifiedWidget);
 
 ClassifiedWidget.propTypes = {
   element: PropTypes.object.isRequired,

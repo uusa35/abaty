@@ -14,6 +14,7 @@ import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassified
 import HeaderCustom from '../../components/HeaderCustom';
 import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
+import {isIOS} from '../../constants';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -69,6 +70,7 @@ export const FavoriteStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
+    animationEnabled: isIOS,
     animation: 'spring',
     defaultNavigationOptions: {
       headerTransparent: false,

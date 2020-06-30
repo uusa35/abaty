@@ -56,6 +56,7 @@ import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
 import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {setElementType} from '../../redux/actions';
+import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 
 const ElementsHorizontalList = ({
   elements,
@@ -86,12 +87,12 @@ const ElementsHorizontalList = ({
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
   const [mapModal, setMapModal] = useState(false);
-  const {token, elementType} = useSelector((state) => state);
+  const {token} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = (d) => {
-    if (showMore && d >= 300) {
+    if (showMore && d >= 200) {
       setPage(page + 1);
       setIsLoading(showMore);
     }
@@ -231,13 +232,6 @@ const ElementsHorizontalList = ({
     }
   }, [search]);
 
-  useEffect(() => {
-    setItems(elements);
-    // if (type === 'classified') {
-    setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
-    // }
-  }, [elementType]);
-
   useMemo(() => {
     if (isLoading) {
       setTimeout(() => {
@@ -246,7 +240,7 @@ const ElementsHorizontalList = ({
     }
   }, [isLoading]);
 
-  const handleClick = (element) => {
+  const handleClick = useCallback((element) => {
     dispatch(setElementType(type));
     switch (type) {
       case 'designer':
@@ -306,9 +300,9 @@ const ElementsHorizontalList = ({
       default:
         null;
     }
-  };
+  });
 
-  const renderItem = (item) => {
+  const renderItem = useCallback((item) => {
     switch (type) {
       case 'product':
         return (
@@ -348,6 +342,9 @@ const ElementsHorizontalList = ({
           />
         );
         break;
+      case 'designer':
+        return <UserWidgetHorizontal user={item} showName={true} />;
+        break;
       default:
         return (
           <ElementWidgetHorizontal
@@ -363,7 +360,13 @@ const ElementsHorizontalList = ({
           />
         );
     }
-  };
+  });
+
+  useEffect(() => {
+    setItems(elements);
+    dispatch(setElementType(type));
+    setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
+  }, [elements]);
 
   return (
     <KeyboardAvoidingView behavior="padding" enabled>
@@ -371,7 +374,7 @@ const ElementsHorizontalList = ({
         ListEmptyComponent={
           <EmptyListWidget
             emptyAnimation={animations.emptyShape}
-            title={I18n.t('no_', {item: type})}
+            title={I18n.t('no_', {item: I18n.t(type)})}
           />
         }
         scrollEnabled={showFooter}
@@ -409,7 +412,7 @@ const ElementsHorizontalList = ({
         ListFooterComponent={() =>
           showFooter && !validate.isEmpty(items) ? (
             <NoMoreElements
-              title={I18n.t('no_more_', {item: type})}
+              title={I18n.t('no_more_', {item: I18n.t(type)})}
               isLoading={isLoading}
             />
           ) : (

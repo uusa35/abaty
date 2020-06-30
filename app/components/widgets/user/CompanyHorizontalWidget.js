@@ -83,7 +83,7 @@ const CompanyHorizontalWidget = ({
   );
 };
 
-export default CompanyHorizontalWidget;
+export default React.memo(CompanyHorizontalWidget);
 
 CompanyHorizontalWidget.propTypes = {
   user: PropTypes.object.isRequired,

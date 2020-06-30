@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
-import {images} from '../../constants/images';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const FavoriteProductIndexScreen = () => {
@@ -15,12 +14,11 @@ const FavoriteProductIndexScreen = () => {
         elements={productFavorites}
         searchParams={{}}
         type="product"
-        columns={2}
         searchElements={{}}
         showMore={false}
+        showFooter={true}
         showSearch={false}
         showProductsFilter={false}
-        emptyImage={images.emptyProductFavorite}
       />
     </BgContainer>
   );

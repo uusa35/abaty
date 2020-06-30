@@ -17,6 +17,7 @@ import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
+import {isIOS} from '../../constants';
 
 export const CategoryStack = createStackNavigator(
   {
@@ -101,6 +102,7 @@ export const CategoryStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     defaultNavigationOptions: ({navigation}) => ({
       // headerStyle: {
       //   backgroundColor: 'green'

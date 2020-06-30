@@ -1,4 +1,10 @@
-import React, {Fragment, useEffect, useState, useMemo} from 'react';
+import React, {
+  Fragment,
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import {Linking} from 'react-native';
 import {
   ABATI,
@@ -27,7 +33,9 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const AppHomeConfigComponent = () => {
   const dispatch = useDispatch();
-  const {bootStrapped, resetApp, playerId} = useSelector((state) => state);
+  const {bootStrapped, resetApp, playerId, linking} = useSelector(
+    (state) => state,
+  );
   const [deviceId, setDeviceId] = useState('');
   const [device, setDevice] = useState('');
   const [signalId, setSignalId] = useState();
@@ -63,16 +71,16 @@ const AppHomeConfigComponent = () => {
     };
   }, [bootStrapped]);
 
-  const handleOpenURL = (event) => {
+  const handleOpenURL = useCallback((event) => {
     const {type, id} = getPathForDeepLinking(event.url);
     return dispatch(goDeepLinking({type, id}));
-  };
+  });
 
   const onReceived = (notification) => {
     // __DEV__ ? console.log('Notification received: ', notification) : null;
   };
 
-  const onOpened = (openResult) => {
+  const onOpened = useCallback((openResult) => {
     if (__DEV__) {
       // console.log('the whole thing', openResult.notification.payload);
       // console.log('Message: ', openResult.notification.payload.body);
@@ -87,16 +95,16 @@ const AppHomeConfigComponent = () => {
     setTimeout(() => {
       dispatch(goDeepLinking(notification));
     }, 1000);
-  };
+  });
 
-  const onIds = (device) => {
+  const onIds = useCallback((device) => {
     if (!validate.isEmpty(device.userId) && playerId !== device.userId) {
       setDeviceId(device.userId);
       if (device.userId !== deviceId) {
         dispatch(setPlayerId(device.userId));
       }
     }
-  };
+  });
 
   return <Fragment></Fragment>;
 };

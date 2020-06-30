@@ -20,6 +20,7 @@ import ClassifiedEditScreen from '../../screens/classified/ClassifiedEditScreen'
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import TextTabBar from '../../components/TextTabBar';
 import ContactusScreen from '../../screens/ContactusScreen';
+import {isIOS} from '../../constants';
 
 export const SettingStack = createStackNavigator(
   {
@@ -151,6 +152,7 @@ export const SettingStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     defaultNavigationOptions: {
       headerTransparent: false,
     },

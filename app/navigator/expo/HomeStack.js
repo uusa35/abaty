@@ -597,7 +597,6 @@ export const HomeStack = createStackNavigator(
             activeTintColor: 'black',
             inactiveTintColor: '#b2b2b2',
             activeBackgroundColor: 'transparent',
-            animationEnabled: true,
             labelStyle: {
               fontFamily: text.font,
             },

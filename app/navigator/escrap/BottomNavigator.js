@@ -82,6 +82,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     tabBarOptions: {
       allowRTL: true,
       lazy: true,
+      backBehavior: 'order',
       showIcon: true,
       showLabel: false,
       scrollEnabled: true,
@@ -89,7 +90,6 @@ export const BottomTabsStack = createBottomTabNavigator(
       activeTintColor: '#DD0900',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
-      animationEnabled: true,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white',

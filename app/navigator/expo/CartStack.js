@@ -13,6 +13,7 @@ import TransparentProductShowScreen from '../../screens/product/TransparentProdu
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
 import CartConfirmationScreen from '../../screens/cart/CartConfirmationScreen';
 import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
+import {isIOS} from '../../constants';
 
 export const CartStack = createStackNavigator(
   {
@@ -87,7 +88,8 @@ export const CartStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    animationEnabled: isIOS,
   },
 );
 

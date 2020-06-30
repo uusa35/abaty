@@ -6,6 +6,7 @@ import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import MoreScreen from '../../screens/setting/MoreScreen';
 import ContactusScreen from '../../screens/ContactusScreen';
+import {isIOS} from '../../constants';
 
 export const ContactStack = createStackNavigator(
   {
@@ -33,7 +34,8 @@ export const ContactStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    animationEnabled: isIOS,
   },
 );
 

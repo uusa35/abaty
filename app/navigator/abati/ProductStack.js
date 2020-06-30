@@ -10,6 +10,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
+import {isIOS} from '../../constants';
 
 export const ProductStack = createStackNavigator(
   {
@@ -73,6 +74,7 @@ export const ProductStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

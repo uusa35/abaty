@@ -4,10 +4,11 @@ import SocialRowWidget from '../components/widgets/SocialRowWidget';
 import ContactInformationWidget from '../components/widgets/ContactInformationWidget';
 import {bottomContentInset} from '../constants/sizes';
 import BgContainer from '../components/containers/BgContainer';
+import {HOMEKEY} from './../../app';
 
 const ContactusScreen = () => {
   return (
-    <BgContainer>
+    <BgContainer showImage={!HOMEKEY}>
       <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={true}

@@ -10,6 +10,7 @@ import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
+import {isIOS} from '../../constants';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -81,7 +82,8 @@ export const ClassifiedStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    animationEnabled: isIOS,
+    swipeEnabled: true,
   },
 );
 ClassifiedStack.navigationOptions = ({navigation}) => {

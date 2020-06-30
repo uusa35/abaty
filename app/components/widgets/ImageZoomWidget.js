@@ -20,22 +20,20 @@ const ImageZoomWidget = (props) => {
         index={index}
         containerStyle={{backgroundColor: 'black'}}
         removeClippedSubviews={true}>
-        {map(images, (c, i) => {
-          return (
-            <ImageLoaderContainer
-              key={i}
-              img={c.large}
-              style={{width: '100%', height: '100%'}}
-              resizeMode="contain"
-            />
-          );
-        })}
+        {map(images, (c, i) => (
+          <ImageLoaderContainer
+            key={i}
+            img={c.large}
+            style={{width: width, height: '100%'}}
+            resizeMode="contain"
+          />
+        ))}
       </Swiper>
     </BgContainer>
   );
 };
 
-export default ImageZoomWidget;
+export default React.memo(ImageZoomWidget);
 
 const styles = StyleSheet.create({
   slide: {

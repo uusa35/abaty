@@ -20,6 +20,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
+import {isIOS} from '../../constants';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
@@ -157,6 +158,7 @@ export const BottomTabsStack = createBottomTabNavigator(
   {
     tabBarOptions: {
       lazy: false,
+      backBehavior: 'order',
       showIcon: true,
       showLabel: false,
       scrollEnabled: true,
@@ -164,7 +166,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       activeTintColor: '#DD0900',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
-      animationEnabled: true,
+      animationEnabled: isIOS,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white',

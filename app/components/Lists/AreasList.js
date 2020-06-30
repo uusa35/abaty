@@ -8,17 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {hideAreaModal, setArea} from '../../redux/actions';
-import {text} from '../../constants/sizes';
+import {bottomContentInset, text} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import {isRTL} from './../../I18n';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 
 const AreasList = () => {
-  const {area, areas, areaModal} = useSelector((state) => state);
+  const {areas, areaModal} = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [visible, setVisible] = useState(areaModal);
-  const [currentArea, setCurrentArea] = useState(area);
 
   const handleClick = useCallback((area) => {
     dispatch(setArea(area));
@@ -34,6 +32,8 @@ const AreasList = () => {
         onRequestClose={() => dispatch(hideAreaModal())}>
         <View style={styles.container}>
           <FlatList
+            contentInset={{bottom: bottomContentInset}}
+            style={{paddingBottom: bottomContentInset}}
             automaticallyAdjustContentInsets={false}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}

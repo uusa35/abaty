@@ -8,6 +8,7 @@ import I18n from '../../I18n';
 import ServiceShowScreen from '../../screens/service/ServiceShowScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
+import {isIOS} from '../../constants';
 
 export const ServiceStack = createStackNavigator(
   {
@@ -57,6 +58,7 @@ export const ServiceStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
+    animationEnabled: isIOS,
     config: {
       stiffness: 1000,
       damping: 500,

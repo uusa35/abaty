@@ -308,8 +308,6 @@ const UserEditFormWidget = ({showIcon = true}) => {
 
 export default UserEditFormWidget;
 
-UserEditFormWidget.propTypes = {
-  auth: PropTypes.object.isRequired,
-};
+UserEditFormWidget.propTypes = {};
 
 const styles = StyleSheet.create({});

@@ -562,8 +562,8 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: true,
     animation: 'spring',
+    swipeEnabled: true,
     gesturesEnabled: isIOS,
     animationEnabled: isIOS,
     transitionConfig: () => ({

@@ -6,7 +6,7 @@ import I18n from '../../I18n';
 import {Icon} from 'react-native-elements';
 import MapViewWidget from './MapViewWidget';
 import validate from 'validate.js';
-import {APP_CASE} from './../../../app';
+import {APP_CASE, HOMEKEY} from './../../../app';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {useSelector} from 'react-redux';
 import {getWhatsappLink} from '../../helpers';
@@ -17,25 +17,26 @@ const ContactInformationWidget = () => {
   const {colors} = settings;
   return (
     <View style={{flex: 1, backgroundColor: 'transparent', marginTop: '5%'}}>
-      {settings.logo ? (
+      {settings.logo && (
         <ImageLoaderContainer
           img={settings.logo}
           resizeMode="contain"
           style={styles.logo}
         />
-      ) : null}
+      )}
       {!validate.isEmpty(longitude) &&
-      !validate.isEmpty(latitude) &&
-      longitude.toString().length > 5 ? (
-        <MapViewWidget
-          logo={settings.logo}
-          longitude={settings.longitude}
-          latitude={settings.latitude}
-          title={`${settings.company} - ${settings.address}`}
-          height={250}
-        />
-      ) : null}
-      {settings.mobile ? (
+        !validate.isEmpty(latitude) &&
+        longitude.toString().length > 5 &&
+        !HOMEKEY && (
+          <MapViewWidget
+            logo={settings.logo}
+            longitude={settings.longitude}
+            latitude={settings.latitude}
+            title={`${settings.company} - ${settings.address}`}
+            height={250}
+          />
+        )}
+      {settings.mobile && (
         <TouchableOpacity
           activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
@@ -52,8 +53,8 @@ const ContactInformationWidget = () => {
           </View>
           <Text style={styles.phoneNo}>{settings.mobile}</Text>
         </TouchableOpacity>
-      ) : null}
-      {settings.whatsapp ? (
+      )}
+      {settings.whatsapp && (
         <TouchableOpacity
           activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
@@ -71,8 +72,8 @@ const ContactInformationWidget = () => {
           </View>
           <Text style={styles.phoneNo}>{settings.whatsapp}</Text>
         </TouchableOpacity>
-      ) : null}
-      {settings.address ? (
+      )}
+      {settings.address && (
         <View style={styles.container}>
           <View style={styles.wrapper}>
             <Icon
@@ -87,30 +88,31 @@ const ContactInformationWidget = () => {
             {settings.address}
           </Text>
         </View>
-      ) : null}
-      {!validate.isEmpty(settings.longitude) || !validate.isEmpty(latitude) ? (
-        <TouchableOpacity
-          activeOpacity={touchOpacity}
-          hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          onPress={() =>
-            Linking.openURL(
-              `${links.googleMapUrl}${settings.latitude},${settings.longitude}`,
-            )
-          }
-          style={styles.container}>
-          <View style={styles.wrapper}>
-            <Icon
-              name="location-on"
-              color="grey"
-              iconStyle={{paddingLeft: 10}}
-              color={colors.icon_theme_color}
-            />
-            <Text style={styles.phoneNo}>{I18n.t('location')}</Text>
-          </View>
-          <Text style={styles.phoneNo}>{settings.company}</Text>
-        </TouchableOpacity>
-      ) : null}
-      {settings.email ? (
+      )}
+      {!validate.isEmpty(settings.longitude) ||
+        (!validate.isEmpty(latitude) && (
+          <TouchableOpacity
+            activeOpacity={touchOpacity}
+            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+            onPress={() =>
+              Linking.openURL(
+                `${links.googleMapUrl}${settings.latitude},${settings.longitude}`,
+              )
+            }
+            style={styles.container}>
+            <View style={styles.wrapper}>
+              <Icon
+                name="location-on"
+                color="grey"
+                iconStyle={{paddingLeft: 10}}
+                color={colors.icon_theme_color}
+              />
+              <Text style={styles.phoneNo}>{I18n.t('location')}</Text>
+            </View>
+            <Text style={styles.phoneNo}>{settings.company}</Text>
+          </TouchableOpacity>
+        ))}
+      {settings.email && (
         <TouchableOpacity
           activeOpacity={touchOpacity}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -127,7 +129,7 @@ const ContactInformationWidget = () => {
           </View>
           <Text style={styles.phoneNo}>{settings.email}</Text>
         </TouchableOpacity>
-      ) : null}
+      )}
     </View>
   );
 };
