@@ -51,6 +51,7 @@
 		9E367F657E6843328342EA22 /* Changa-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95FE8BE9E4E94AA4A73330E8 /* Changa-ExtraBold.ttf */; };
 		9F71BB95A16B404CB54E5E7E /* Varela-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B594FC379D90435D932A1F8A /* Varela-Regular.ttf */; };
 		A04587AAE7F5452DB668C582 /* Almarai-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07DA9A406283436A83185981 /* Almarai-ExtraBold.ttf */; };
+		AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */; };
 		B84B5A16E16A4B66926473A0 /* Cairo_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 797468A1188344E495E6D8AC /* Cairo_Black.ttf */; };
 		B916FE7455F14C2D9E0AEB3B /* ArchivoNarrow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7803AECEC1740B499EAB224 /* ArchivoNarrow-Regular.ttf */; };
 		C4CD10B42AB04B71BF9C3183 /* Changa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC2114BDCAC41C0AD12BE0B /* Changa-Medium.ttf */; };
@@ -66,7 +67,6 @@
 		E7B75AFFADE84825A784BAD1 /* cairo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 723096D63CA2405C8230D6DE /* cairo.ttf */; };
 		F78CD37819904852B20346CF /* Changa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F10D54BA69AC4EF7A5E83E46 /* Changa-Regular.ttf */; };
 		F89769F8D1B249C292861BC1 /* Tajawal-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E011DDDAA86743869DF3F871 /* Tajawal-ExtraLight.ttf */; };
-		AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +128,7 @@
 		569A3BF61D2440E7ADB23526 /* ArchivoNarrow-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-SemiBold.ttf"; path = "../assets/fonts/ArchivoNarrow-SemiBold.ttf"; sourceTree = "<group>"; };
 		5D75578371844E99BD5B078D /* ArchivoNarrow-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-BoldItalic.ttf"; path = "../assets/fonts/ArchivoNarrow-BoldItalic.ttf"; sourceTree = "<group>"; };
 		5D9EF50B9E14476E8A591775 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "sst-arabic-bold.ttf"; path = "../assets/fonts/sst-arabic-bold.ttf"; sourceTree = "<group>"; };
 		6149C50E33FD495299B56F91 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		69D6046D892D792C006E31B8 /* Pods-abaty-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-abaty-tvOSTests/Pods-abaty-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EF26496A2DF43F8A2622E98 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -178,7 +179,6 @@
 		F10D54BA69AC4EF7A5E83E46 /* Changa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Changa-Regular.ttf"; path = "../assets/fonts/Changa-Regular.ttf"; sourceTree = "<group>"; };
 		F14B0696045740B685598D17 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		FB7112A6A6F244FFAC12FE9A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */ = {isa = PBXFileReference; name = "sst-arabic-bold.ttf"; path = "../assets/fonts/sst-arabic-bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
