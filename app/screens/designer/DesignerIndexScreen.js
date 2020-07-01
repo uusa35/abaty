@@ -10,7 +10,6 @@ const DesignerIndexScreen = () => {
 
   useEffect(() => {}, [designers]);
 
-  console.log('here');
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
@@ -20,6 +19,7 @@ const DesignerIndexScreen = () => {
         searchParams={searchParams}
         showMore={true}
         showSearch={true}
+        showFooter={true}
       />
     </BgContainer>
   );

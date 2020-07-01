@@ -19,7 +19,8 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
       }
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'transparent'}]}
-      resizeMode={imageLoading ? 'contain' : resizeMode}
+      // resizeMode={imageLoading ? 'contain' : resizeMode}
+      resizeMode="contain"
     />
   );
 };

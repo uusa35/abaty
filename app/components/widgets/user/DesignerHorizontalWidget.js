@@ -20,6 +20,7 @@ import {isIOS} from '../../../constants';
 import {useDispatch} from 'react-redux';
 import {isEmpty} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {HOMEKEY, ABATI} from './../../../../app';
 
 const DesignerHorizontalWidget = ({
   elements,
@@ -31,14 +32,26 @@ const DesignerHorizontalWidget = ({
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  const handleClick = () =>
-    dispatch(
-      getSearchCompanies({
-        searchParams,
-        name,
-        redirect: true,
-      }),
-    );
+  const handleClick = () => {
+    if (ABATI) {
+      return dispatch(
+        getSearchDesigners({
+          searchParams,
+          name,
+          redirect: true,
+        }),
+      );
+    } else {
+      return dispatch(
+        getSearchCompanies({
+          searchParams,
+          name,
+          redirect: true,
+        }),
+      );
+    }
+  };
+
   return (
     <Fragment>
       {!isEmpty(elements) && (

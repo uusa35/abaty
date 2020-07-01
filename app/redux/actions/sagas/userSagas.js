@@ -1,10 +1,12 @@
 import {call, put, all, takeLatest, select} from 'redux-saga/effects';
 import {
   disableLoading,
+  disableLoadingBoxedList,
   disableLoadingContent,
   disableLoadingProfile,
   enableErrorMessage,
   enableLoading,
+  enableLoadingBoxedList,
   enableLoadingContent,
   enableLoadingProfile,
   enableSuccessMessage,
@@ -474,6 +476,9 @@ export function* startUpdateUserScenario(action) {
 export function* startGetSearchCompaniesScenario(action) {
   try {
     const {searchParams, redirect} = action.payload;
+    if (!validate.isEmpty(redirect) && redirect) {
+      yield call(enableLoadingBoxedList);
+    }
     const elements = yield call(api.getUsers, searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
@@ -496,9 +501,9 @@ export function* startGetSearchCompaniesScenario(action) {
       throw elements;
     }
   } catch (e) {
-    yield call(enableWarningMessage, e);
+    // yield call(enableWarningMessage, e);
   } finally {
-    yield call(disableLoading);
+    yield call(disableLoadingBoxedList);
   }
 }
 
@@ -536,6 +541,9 @@ export function* startGetCelebritiesScenario(action) {
 export function* startGetDesignersScenario(action) {
   try {
     const {searchParams, redirect} = action.payload;
+    if (!validate.isEmpty(redirect) && redirect) {
+      yield call(enableLoadingBoxedList);
+    }
     const elements = yield call(api.getUsers, searchParams);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
@@ -560,7 +568,7 @@ export function* startGetDesignersScenario(action) {
   } catch (e) {
     yield call(enableWarningMessage, e);
   } finally {
-    yield call(disableLoading);
+    yield call(disableLoadingBoxedList);
   }
 }
 

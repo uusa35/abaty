@@ -369,7 +369,7 @@ const ElementsHorizontalList = ({
   }, [elements]);
 
   return (
-    <KeyboardAvoidingView behavior="padding" enabled>
+    <Fragment>
       <FlatList
         ListEmptyComponent={
           <EmptyListWidget
@@ -500,7 +500,7 @@ const ElementsHorizontalList = ({
         setSort={setSort}
         type={type}
       />
-    </KeyboardAvoidingView>
+    </Fragment>
   );
 };
 
