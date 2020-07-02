@@ -33,15 +33,24 @@ const CompanyClassifiedShowScreen = () => {
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
-  const [routes, setRoutes] = useState([
-    {key: 'info', title: I18n.t('information').substring(0, 10)},
-    {key: 'classifieds', title: I18n.t('classifieds')},
-    {key: 'videos', title: I18n.t('videos')},
-  ]);
+  const [routes, setRoutes] = useState([]);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [classifieds, setClassifieds] = useState([]);
+
+  useMemo(() => {
+    const currentRoutes = [
+      {key: 'info', title: I18n.t('information').substring(0, 10)},
+    ];
+    if (!validate.isEmpty(company.classifieds)) {
+      currentRoutes.push({key: 'classifieds', title: I18n.t('classifieds')});
+    }
+    if (!validate.isEmpty(company.videoGroup.video_url_one)) {
+      currentRoutes.push({key: 'videos', title: I18n.t('videos')});
+    }
+    setRoutes(currentRoutes);
+  }, [company]);
 
   useMemo(() => {
     if (!validate.isEmpty(company.classifieds)) {

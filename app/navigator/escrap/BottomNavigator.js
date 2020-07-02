@@ -80,8 +80,7 @@ export const BottomTabsStack = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      allowRTL: true,
-      lazy: true,
+      lazy: false,
       backBehavior: 'order',
       showIcon: true,
       showLabel: false,

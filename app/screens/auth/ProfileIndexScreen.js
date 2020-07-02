@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
-import {connect, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import {bottomContentInset, text} from '../../constants/sizes';
@@ -9,14 +9,14 @@ import validate from 'validate.js';
 import {isRTL} from '../../I18n';
 import UserProfileInformationWidget from '../../components/widgets/user/UserProfileInformationWidget';
 import UserProfileBtns from '../../components/widgets/user/UserProfileBtns';
-import {authSelector} from '../../redux/selectors/collection';
 import BgContainer from '../../components/containers/BgContainer';
+import {HOMEKEY} from './../../../app';
 
 const ProfileIndexScreen = () => {
   const {auth} = useSelector((state) => state);
 
   return (
-    <BgContainer>
+    <BgContainer showImage={!HOMEKEY}>
       <ScrollView
         contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
         horizontal={false}

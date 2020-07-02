@@ -100,9 +100,6 @@ export const CategoryStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: true,
-    animation: 'spring',
-    animationEnabled: isIOS,
     defaultNavigationOptions: ({navigation}) => ({
       // headerStyle: {
       //   backgroundColor: 'green'

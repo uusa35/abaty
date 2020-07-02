@@ -18,6 +18,7 @@ import {EXPO} from './../../../app';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch} from 'react-redux';
+import {isIOS} from '../../constants';
 
 const CountriesList = ({country, countries, countryModal}) => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const CountriesList = ({country, countries, countryModal}) => {
                     <ImageLoaderContainer
                       img={c.thumb}
                       style={styles.countryFlag}
-                      resizeMode="cover"
+                      resizeMode={isIOS ? 'stretch' : 'cover'}
                     />
                     <Text style={styles.phoneNo}>{c.slug}</Text>
                   </TouchableOpacity>

@@ -11,6 +11,7 @@ import {Icon} from 'react-native-elements';
 import {toggleProductFavorite} from '../../../redux/actions/product';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
+import {isIOS} from '../../../constants';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           height: 60,
           borderRadius: 60 / 2,
         }}
+        resizeMode={isIOS ? 'contain' : 'cover'}
       />
       <View style={{width: '75%'}}>
         <Text

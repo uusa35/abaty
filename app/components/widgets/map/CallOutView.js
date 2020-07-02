@@ -6,6 +6,7 @@ import {Callout} from 'react-native-maps';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropertiesWidget from '../classified/PropertiesWidget';
 import validate from 'validate.js';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const CallOutView = ({
   latitude,
@@ -34,7 +35,11 @@ const CallOutView = ({
         alignItems: 'flex-start',
       }}>
       <View style={{flexDirection: 'row'}}>
-        <Image style={styles.image} source={{uri: image}} resizeMode="cover" />
+        <ImageLoaderContainer
+          style={styles.image}
+          img={image}
+          resizeMode="cover"
+        />
         <View
           style={{flexWrap: 'nowrap', flexDirection: 'column', padding: 10}}>
           <View
@@ -62,9 +67,9 @@ const CallOutView = ({
         </View>
       </View>
       <View>
-        {!validate.isEmpty(element.items) ? (
+        {!validate.isEmpty(element.items) && (
           <PropertiesWidget elements={element.items} />
-        ) : null}
+        )}
       </View>
     </Callout>
   );

@@ -18,6 +18,8 @@ import {useNavigation} from 'react-navigation-hooks';
 import {APP_CASE, HOMEKEY, EXPO} from '../../app';
 import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
+import ImageLoaderContainer from './widgets/ImageLoaderContainer';
+import {isIOS} from '../constants';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -54,8 +56,8 @@ export const HeaderRight = ({
         <TouchableOpacity
           onPress={() => dispatch(showCountryModal())}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
-          <FastImage
-            source={{uri: country.thumb}}
+          <ImageLoaderContainer
+            img={country.thumb}
             style={{
               width: 25,
               height: 25,
@@ -63,7 +65,7 @@ export const HeaderRight = ({
               borderWidth: 0.4,
               borderColor: '#cdcdcd',
             }}
-            resizeMode="stretch"
+            resizeMode={isIOS ? 'stretch' : 'cover'}
           />
         </TouchableOpacity>
       )}

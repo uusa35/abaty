@@ -7,6 +7,7 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 
 const CompanyIndexScreen = () => {
   const {companies, searchParams} = useSelector((state) => state);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList

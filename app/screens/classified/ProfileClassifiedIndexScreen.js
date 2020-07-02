@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {getSearchClassifieds} from '../../redux/actions/classified';
 import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import BgContainer from '../../components/containers/BgContainer';
+import {HOMEKEY} from './../../../app';
 
 const ProfileClassifiedIndexScreen = () => {
   const {searchClassifieds, auth} = useSelector((state) => state);
@@ -15,7 +16,7 @@ const ProfileClassifiedIndexScreen = () => {
   }, []);
 
   return (
-    <BgContainer>
+    <BgContainer showImage={!HOMEKEY}>
       <ClassifiedList
         classifieds={searchClassifieds}
         showName={true}
