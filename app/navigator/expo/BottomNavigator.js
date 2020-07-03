@@ -1,28 +1,24 @@
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {createSwitchNavigator} from 'react-navigation';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
-import {VideoStack} from './VideoStack';
 import {SettingStack} from './SettingStack';
 import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
-import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
 import {CartStack} from './CartStack';
-import {Icon} from 'react-native-elements';
 import {ContactStack} from './ContactStack';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="home" type="antdesign" />
         ),
@@ -55,7 +51,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     // },
     Cart: {
       screen: CartStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-cart" type="ionicon" />
         ),
@@ -66,7 +62,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     Contact: {
       screen: ContactStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar
             focused={focused}
@@ -95,7 +91,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     Search: {
       screen: SearchStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
@@ -106,7 +102,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     ProductIndexAll: {
       screen: ProductStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="shop" type="entypo" />
         ),

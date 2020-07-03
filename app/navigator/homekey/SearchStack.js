@@ -6,6 +6,7 @@ import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
+import {isIOS} from '../../constants';
 
 export const SearchStack = createStackNavigator(
   {
@@ -35,5 +36,8 @@ export const SearchStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'screen',
     swipeEnabled: true,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );

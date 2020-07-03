@@ -154,7 +154,7 @@ export const HomeStack = createStackNavigator(
     },
     CompanyShow: {
       screen: EscrapCompanyShowScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         // headerTitle: () => (
         //   <HeaderMiddle title={navigation.state.params.name} />
         // ),
@@ -418,7 +418,7 @@ export const HomeStack = createStackNavigator(
     },
     Login: {
       screen: LoginScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
         headerBackTitle: () => null,
@@ -426,7 +426,7 @@ export const HomeStack = createStackNavigator(
     },
     Register: {
       screen: RegisterScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,
         headerBackTitle: () => null,
@@ -434,10 +434,11 @@ export const HomeStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: () => ({
       headerTransparent: false,
+      animationEnabled: isIOS,
       // headerStyle: {
       //     backgroundColor: 'green'
       // },

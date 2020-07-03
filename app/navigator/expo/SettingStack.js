@@ -164,7 +164,9 @@ export const SettingStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
-    animationEnabled: isIOS,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
     config: {
       stiffness: 1000,
       damping: 500,

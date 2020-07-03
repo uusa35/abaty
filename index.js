@@ -7,14 +7,14 @@ import {AppRegistry} from 'react-native';
 const {Root} = require('./app/Root');
 import {name as appName} from './app.json';
 import * as Sentry from '@sentry/react-native';
-import {isLocal} from "./app/env";
 import { enableScreens } from 'react-native-screens';
 enableScreens();
-if(!isLocal && !__DEV__) {
+
+if(!__DEV__) {
     Sentry.init({
         dsn: 'https://0a8ea15434774637bcde5997faa353ea@sentry.io/1793310',
+        deactivateStacktraceMerging : false,
     });
-        console.log = () => {};
 }
 AppRegistry.registerComponent(appName, () => gestureHandlerRootHOC(Root));
 

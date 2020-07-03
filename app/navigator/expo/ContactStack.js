@@ -35,7 +35,9 @@ export const ContactStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
-    animationEnabled: isIOS,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 

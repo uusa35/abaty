@@ -8,7 +8,6 @@ import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifie
 import I18n from '../../I18n';
 import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import {isIOS} from '../../constants';
 
@@ -16,7 +15,7 @@ export const ClassifiedStack = createStackNavigator(
   {
     ClassifiedIndexAll: {
       screen: ClassifiedIndexAllScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerLeft: () => <HeaderLeft showSideMenu={false} showCart={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: (
@@ -31,7 +30,7 @@ export const ClassifiedStack = createStackNavigator(
     },
     ClassifiedIndex: {
       screen: ClassifiedIndexScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
         headerBackTitle: () => null,
@@ -80,8 +79,11 @@ export const ClassifiedStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 ClassifiedStack.navigationOptions = ({navigation}) => {

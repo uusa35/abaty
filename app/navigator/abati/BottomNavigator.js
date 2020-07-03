@@ -7,13 +7,11 @@ import {text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
 import {VideoStack} from './VideoStack';
 import {SettingStack} from './SettingStack';
-import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
 import {ServiceStack} from './ServiceStack';
 import I18n from '../../I18n';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {

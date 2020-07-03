@@ -564,13 +564,8 @@ export const HomeStack = createStackNavigator(
     headerMode: 'screen',
     animation: 'spring',
     swipeEnabled: true,
-    gesturesEnabled: isIOS,
-    animationEnabled: isIOS,
-    transitionConfig: () => ({
-      transitionSpec: {
-        duration: 0,
-        timing: 0,
-      },
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
     }),
     // config: {
     //   stiffness: 1000,

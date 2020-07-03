@@ -9,6 +9,7 @@ import {HeaderRight} from '../../components/HeaderRight';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {isIOS} from '../../constants';
 
 export const CategoryStack = createStackNavigator(
   {
@@ -77,6 +78,9 @@ export const CategoryStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'float',
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 

@@ -30,7 +30,6 @@ import {SET_CLASSIFIED} from '../types';
 export function* startGetClassifiedsScenario(action) {
   try {
     const {searchParams, redirect, name} = action.payload;
-    console.log('searchParams', searchParams);
     yield put({type: HIDE_CLASSIFIED_FILTER_MODAL});
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);

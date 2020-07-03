@@ -10,6 +10,7 @@ import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import FavoriteClassifiedIndexScreen from '../../screens/classified/FavoriteClassifiedIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
+import {isIOS} from '../../constants';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -65,6 +66,9 @@ export const FavoriteStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     swipeEnabled: true,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 FavoriteStack.navigationOptions = ({navigation}) => {

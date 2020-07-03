@@ -639,10 +639,12 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
     animation: 'spring',
-    gesturesEnabled: false,
-    animationEnabled: isIOS,
+    gesturesEnabled: true,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
     config: {
       stiffness: 1000,
       damping: 500,

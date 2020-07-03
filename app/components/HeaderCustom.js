@@ -14,7 +14,6 @@ const HeaderCustom = () => {
   const navigation = useNavigation();
   const {params} = navigation.state;
   const shareLink = (link) => {
-    __DEV__ ? console.log('the link', link) : null;
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
@@ -23,10 +22,10 @@ const HeaderCustom = () => {
       subject: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
     })
       .then((res) => {
-        __DEV__ ? console.log(res) : null;
+        // __DEV__ ? console.log(res) : null;
       })
       .catch((err) => {
-        err && console.log(err);
+        // err && console.log(err);
       });
   };
   return (

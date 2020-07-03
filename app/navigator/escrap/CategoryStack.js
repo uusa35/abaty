@@ -18,6 +18,7 @@ import HeaderCustom from '../../components/HeaderCustom';
 import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 import {isIOS} from '../../constants';
+import {Animated, Easing} from 'react-native';
 
 export const CategoryStack = createStackNavigator(
   {
@@ -98,13 +99,14 @@ export const CategoryStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
-    defaultNavigationOptions: ({navigation}) => ({
+    defaultNavigationOptions: () => ({
       // headerStyle: {
       //   backgroundColor: 'green'
       // }
       headerTransparent: false,
+      animationEnabled: isIOS,
     }),
   },
 );

@@ -15,6 +15,7 @@ import HeaderCustom from '../../components/HeaderCustom';
 import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 import {isIOS} from '../../constants';
+import {Animated, Easing} from 'react-native';
 
 export const FavoriteStack = createStackNavigator(
   {
@@ -67,11 +68,12 @@ export const FavoriteStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
-    defaultNavigationOptions: {
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
       headerTransparent: false,
-    },
+    }),
   },
 );
 FavoriteStack.navigationOptions = ({navigation}) => {

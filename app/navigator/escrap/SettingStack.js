@@ -21,6 +21,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import TextTabBar from '../../components/TextTabBar';
 import ContactusScreen from '../../screens/ContactusScreen';
 import {isIOS} from '../../constants';
+import {Animated, Easing} from 'react-native';
 
 export const SettingStack = createStackNavigator(
   {
@@ -148,8 +149,11 @@ export const SettingStack = createStackNavigator(
     },
   },
   {
-    mode: 'card',
+    mode: 'modal',
     headerMode: 'screen',
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 

@@ -7,6 +7,7 @@ import I18n from '../../I18n';
 import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import React from 'react';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {isIOS} from '../../constants';
 
 export const ProductStack = createStackNavigator(
   {
@@ -40,6 +41,9 @@ export const ProductStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'float',
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 

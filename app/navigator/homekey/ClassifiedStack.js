@@ -11,6 +11,7 @@ import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAl
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import ClassifiedFilterModalScreen from '../../screens/search/ClassifiedFilterModalScreen';
+import {isIOS} from '../../constants';
 
 export const ClassifiedStack = createStackNavigator(
   {
@@ -86,7 +87,10 @@ export const ClassifiedStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
+    swipeEnabled: true,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 ClassifiedStack.navigationOptions = ({navigation}) => {

@@ -5,7 +5,6 @@ import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
 import {text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
-import {VideoStack} from './VideoStack';
 import {SettingStack} from './SettingStack';
 import {SearchStack} from './SearchStack';
 import {ProductStack} from './ProductStack';
@@ -16,17 +15,13 @@ import {CategoryStack} from './CategoryStack';
 import IconTabBar from '../../components/IconTabBar';
 import TextTabBar from '../../components/TextTabBar';
 import {FavoriteStack} from './FavoriteStack';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
-import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
-import {HeaderMiddle} from '../../components/HeaderMiddle';
-import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import {isIOS} from '../../constants';
 
 export const BottomTabsStack = createBottomTabNavigator(
   {
     Home: {
       screen: HomeStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="home" type="octicon" />
         ),
@@ -37,7 +32,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     Favorite: {
       screen: FavoriteStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="star" type="entypo" />
         ),
@@ -48,7 +43,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     CategoryIndexScreen: {
       screen: CategoryStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="layers" type="simplelineicons" />
         ),
@@ -70,7 +65,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     // },
     Setting: {
       screen: SettingStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-person" type="ionicon" />
         ),
@@ -84,7 +79,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     Search: {
       screen: SearchStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="ios-search" type="ionicon" />
         ),
@@ -95,7 +90,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     ProductIndexAll: {
       screen: ProductStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar
             focused={focused}
@@ -110,7 +105,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     ServiceIndexAll: {
       screen: ServiceStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar
             focused={focused}
@@ -125,7 +120,7 @@ export const BottomTabsStack = createBottomTabNavigator(
     },
     ClassifiedIndexAll: {
       screen: ClassifiedStack,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
           <IconTabBar focused={focused} name="news" type="entypo" />
         ),
@@ -133,26 +128,6 @@ export const BottomTabsStack = createBottomTabNavigator(
           <TextTabBar title={I18n.t('classifieds')} focused={focused} />
         ),
       }),
-    },
-    Classified: {
-      // screen: ClassifiedShowScreen,
-      screen: NormalClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
-        headerRight: () => (
-          <HeaderRight showCountry={true} displayShare={true} />
-        ),
-        headerBackTitle: () => null,
-        //   headerTransparent: true,
-        // headerStyle: {
-        // backgroundColor: 'white',
-        // borderColor: 'transparent',
-        // zIndex: 100
-        // }
-      }),
-      path: `classified/:id`,
     },
   },
   {
