@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import MapViewWidget from '../MapViewWidget';
 import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import ImagesWidget from '../ImagesWidget';
 import {getWhatsappLink} from '../../../helpers';
 import {ESCRAP} from './../../../../app';
 import ImagesGridWidget from '../ImagesGridWidget';

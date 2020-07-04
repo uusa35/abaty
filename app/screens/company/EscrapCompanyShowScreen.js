@@ -22,6 +22,7 @@ import ClassifiedDoubleList from '../../components/widgets/classified/Classified
 import {filter, uniqBy} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import BgContainer from '../../components/containers/BgContainer';
 
 const EscrapCompanyShowScreen = () => {
   const {company, comments, commentModal, searchParams} = useSelector(
@@ -66,130 +67,132 @@ const EscrapCompanyShowScreen = () => {
   };
 
   return (
-    <HeaderImageScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      maxHeight={150}
-      minHeight={90}
-      containerStyle={{flex: 1}}
-      overlayColor="white"
-      headerImage={{
-        uri: company.banner ? company.banner : logo,
-      }}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh()}
-        />
-      }>
-      <View style={styles.wrapper}>
-        <TriggeringView
-        // onHide={() => console.log('text hidden')}
-        >
-          <UserImageProfile
-            member_id={company.id}
-            showFans={true}
-            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
-            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
-            isFanned={company.isFanned}
-            totalFans={company.totalFans}
-            currentRating={company.rating}
-            medium={company.medium}
-            slug={company.slug}
-            type={company.role.slug}
-            views={company.views}
-            commentsCount={company.commentsCount}
+    <BgContainer showImage={false}>
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={150}
+        minHeight={90}
+        containerStyle={{flex: 1}}
+        overlayColor="white"
+        headerImage={{
+          uri: company.banner ? company.banner : logo,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
           />
-          {!validate.isEmpty(company.slides) ? (
-            <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={company.slides} />
-            </View>
-          ) : null}
-          {!validate.isEmpty(collectedCategories) ? (
-            <ClassifiedCategoryVerticalWidget
-              user_id={company.id}
-              elements={collectedCategories}
-              showImage={false}
-              title={I18n.t('categories')}
+        }>
+        <View style={styles.wrapper}>
+          <TriggeringView
+          // onHide={() => console.log('text hidden')}
+          >
+            <UserImageProfile
+              member_id={company.id}
+              showFans={true}
+              showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+              showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
+              isFanned={company.isFanned}
+              totalFans={company.totalFans}
+              currentRating={company.rating}
+              medium={company.medium}
+              slug={company.slug}
+              type={company.role.slug}
+              views={company.views}
+              commentsCount={company.commentsCount}
             />
-          ) : null}
-          <TabView
-            lazy={true}
-            renderTabBar={(props) => (
-              <TabBar
-                {...props}
-                // tabStyle={{ backgroundColor: 'white'}}
-                // indicatorContainerStyle={{backgroundColor: 'white'}}
-                // contentContainerStyle={{backgroundColor: 'white'}}
-                indicatorStyle={{
-                  backgroundColor: colors.btn_bg_theme_color,
-                }}
-                activeColor={colors.header_one_theme_color}
-                inactiveColor={colors.header_tow_theme_color}
-                style={{backgroundColor: 'white'}}
-                labelStyle={{
-                  fontFamily: text.font,
-                  fontSize: text.small,
-                }}
+            {!validate.isEmpty(company.slides) ? (
+              <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
+                <MainSliderWidget slides={company.slides} />
+              </View>
+            ) : null}
+            {!validate.isEmpty(collectedCategories) ? (
+              <ClassifiedCategoryVerticalWidget
+                user_id={company.id}
+                elements={collectedCategories}
+                showImage={false}
+                title={I18n.t('categories')}
               />
-            )}
-            navigationState={{
-              index,
-              routes,
-            }}
-            renderScene={SceneMap({
-              classifieds: () => (
-                <ClassifiedDoubleList
-                  classifieds={company.classifieds}
-                  showSearch={false}
-                  showTitle={false}
-                  showFooter={false}
-                  showMore={false}
-                  searchElements={searchParams}
+            ) : null}
+            <TabView
+              lazy={true}
+              renderTabBar={(props) => (
+                <TabBar
+                  {...props}
+                  // tabStyle={{ backgroundColor: 'white'}}
+                  // indicatorContainerStyle={{backgroundColor: 'white'}}
+                  // contentContainerStyle={{backgroundColor: 'white'}}
+                  indicatorStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                  }}
+                  activeColor={colors.header_one_theme_color}
+                  inactiveColor={colors.header_tow_theme_color}
+                  style={{backgroundColor: 'white'}}
+                  labelStyle={{
+                    fontFamily: text.font,
+                    fontSize: text.small,
+                  }}
                 />
-              ),
-              info: () => (
-                <UserInfoWidget
-                  has_map={company.has_map}
-                  mobile={company.mobile}
-                  phone={company.phone}
-                  slug={company.slug}
-                  whatsapp={company.whatsapp}
-                  twitter={company.twitter}
-                  facebook={company.facebook}
-                  instagram={company.instagram}
-                  android={company.android}
-                  youtube={company.youtube}
-                  website={company.website}
-                  description={company.description}
-                  service={company.service}
-                  address={company.address}
-                  images={company.images}
-                  latitude={company.latitude}
-                  longitude={company.longitude}
-                  thumb={company.thumb}
-                  showMainTitle={false}
-                />
-              ),
-              videos: () => (
-                <VideosVerticalWidget videos={company.videoGroup} />
-              ),
-            })}
-            style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={(i) => setIndex(i)}
-            initialLayout={{width: width}}
+              )}
+              navigationState={{
+                index,
+                routes,
+              }}
+              renderScene={SceneMap({
+                classifieds: () => (
+                  <ClassifiedDoubleList
+                    classifieds={company.classifieds}
+                    showSearch={false}
+                    showTitle={false}
+                    showFooter={false}
+                    showMore={false}
+                    searchElements={searchParams}
+                  />
+                ),
+                info: () => (
+                  <UserInfoWidget
+                    has_map={company.has_map}
+                    mobile={company.mobile}
+                    phone={company.phone}
+                    slug={company.slug}
+                    whatsapp={company.whatsapp}
+                    twitter={company.twitter}
+                    facebook={company.facebook}
+                    instagram={company.instagram}
+                    android={company.android}
+                    youtube={company.youtube}
+                    website={company.website}
+                    description={company.description}
+                    service={company.service}
+                    address={company.address}
+                    images={company.images}
+                    latitude={company.latitude}
+                    longitude={company.longitude}
+                    thumb={company.thumb}
+                    showMainTitle={false}
+                  />
+                ),
+                videos: () => (
+                  <VideosVerticalWidget videos={company.videoGroup} />
+                ),
+              })}
+              style={{marginTop: 10, backgroundColor: 'white'}}
+              onIndexChange={(i) => setIndex(i)}
+              initialLayout={{width: width}}
+            />
+          </TriggeringView>
+          <CommentScreenModal
+            commentModal={commentModal}
+            elements={comments}
+            model="user"
+            id={company.id}
           />
-        </TriggeringView>
-        <CommentScreenModal
-          commentModal={commentModal}
-          elements={comments}
-          model="user"
-          id={company.id}
-        />
-      </View>
-    </HeaderImageScrollView>
+        </View>
+      </HeaderImageScrollView>
+    </BgContainer>
   );
 };
 

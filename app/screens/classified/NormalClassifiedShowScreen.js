@@ -208,7 +208,7 @@ const NormalClassifiedShowScreen = () => {
               <ClassifiedInfoWidgetElement
                 elementName="whatsapp"
                 name={classified.mobile}
-                link={() => getWhatsappLink(classified.mobile)}
+                link={() => Linking.openURL(getWhatsappLink(classified.mobile))}
               />
             ) : (
               <Fragment>

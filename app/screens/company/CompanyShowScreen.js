@@ -19,6 +19,7 @@ import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
+import BgContainer from '../../components/containers/BgContainer';
 
 const CompanyShowScreen = ({
   element,
@@ -72,131 +73,133 @@ const CompanyShowScreen = ({
   }, [refresh]);
 
   return (
-    <HeaderImageScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      maxHeight={150}
-      minHeight={90}
-      containerStyle={{flex: 1}}
-      overlayColor="white"
-      headerImage={{
-        uri: element.banner ? element.banner : logo,
-      }}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh()}
-        />
-      }>
-      <View style={styles.wrapper}>
-        <TriggeringView
-        // onHide={() => console.log('text hidden')}
-        >
-          <UserImageProfile
-            member_id={element.id}
-            showFans={true}
-            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
-            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
-            guest={guest}
-            isFanned={element.isFanned}
-            totalFans={element.totalFans}
-            currentRating={element.rating}
-            medium={element.medium}
-            logo={logo}
-            slug={element.slug}
-            type={element.role.slug}
-            views={element.views}
-            commentsCount={element.commentsCount}
+    <BgContainer showImage={false}>
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={150}
+        minHeight={90}
+        containerStyle={{flex: 1}}
+        overlayColor="white"
+        headerImage={{
+          uri: element.banner ? element.banner : logo,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
           />
-          {!validate.isEmpty(element.slides) ? (
-            <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={element.slides} />
-            </View>
-          ) : null}
-          {!validate.isEmpty(collectedCategories) ? (
-            <ProductCategoryVerticalWidget
-              user_id={element.id}
-              elements={collectedCategories}
-              showImage={false}
-              title={I18n.t('categories')}
+        }>
+        <View style={styles.wrapper}>
+          <TriggeringView
+          // onHide={() => console.log('text hidden')}
+          >
+            <UserImageProfile
+              member_id={element.id}
+              showFans={true}
+              showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+              showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
+              guest={guest}
+              isFanned={element.isFanned}
+              totalFans={element.totalFans}
+              currentRating={element.rating}
+              medium={element.medium}
+              logo={logo}
+              slug={element.slug}
+              type={element.role.slug}
+              views={element.views}
+              commentsCount={element.commentsCount}
             />
-          ) : null}
-          <TabView
-            lazy={true}
-            renderTabBar={(props) => (
-              <TabBar
-                {...props}
-                // tabStyle={{ backgroundColor: 'white'}}
-                // indicatorContainerStyle={{backgroundColor: 'white'}}
-                // contentContainerStyle={{backgroundColor: 'white'}}
-                indicatorStyle={{
-                  backgroundColor: colors.btn_bg_theme_color,
-                }}
-                activeColor={colors.header_one_theme_color}
-                inactiveColor={colors.header_tow_theme_color}
-                style={{backgroundColor: 'white'}}
-                labelStyle={{
-                  fontFamily: text.font,
-                  fontSize: text.small,
-                }}
+            {!validate.isEmpty(element.slides) ? (
+              <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
+                <MainSliderWidget slides={element.slides} />
+              </View>
+            ) : null}
+            {!validate.isEmpty(collectedCategories) ? (
+              <ProductCategoryVerticalWidget
+                user_id={element.id}
+                elements={collectedCategories}
+                showImage={false}
+                title={I18n.t('categories')}
               />
-            )}
-            navigationState={{
-              index,
-              routes,
-            }}
-            renderScene={SceneMap({
-              products: () => (
-                <ProductList
-                  products={products}
-                  showSearch={false}
-                  showTitle={true}
-                  showFooter={false}
-                  showMore={false}
-                  searchElements={searchParams}
+            ) : null}
+            <TabView
+              lazy={true}
+              renderTabBar={(props) => (
+                <TabBar
+                  {...props}
+                  // tabStyle={{ backgroundColor: 'white'}}
+                  // indicatorContainerStyle={{backgroundColor: 'white'}}
+                  // contentContainerStyle={{backgroundColor: 'white'}}
+                  indicatorStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                  }}
+                  activeColor={colors.header_one_theme_color}
+                  inactiveColor={colors.header_tow_theme_color}
+                  style={{backgroundColor: 'white'}}
+                  labelStyle={{
+                    fontFamily: text.font,
+                    fontSize: text.small,
+                  }}
                 />
-              ),
-              info: () => (
-                <UserInfoWidget
-                  has_map={element.has_map}
-                  mobile={element.mobile}
-                  phone={element.phone}
-                  slug={element.slug}
-                  whatsapp={element.whatsapp}
-                  twitter={element.twitter}
-                  facebook={element.facebook}
-                  instagram={element.instagram}
-                  android={element.android}
-                  youtube={element.youtube}
-                  website={element.website}
-                  description={element.description}
-                  service={element.service}
-                  address={element.address}
-                  images={element.images}
-                  latitude={element.latitude}
-                  longitude={element.longitude}
-                  thumb={element.thumb}
-                />
-              ),
-              videos: () => (
-                <VideosVerticalWidget videos={element.videoGroup} />
-              ),
-            })}
-            style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={(i) => setIndex(i)}
-            initialLayout={{width: width}}
+              )}
+              navigationState={{
+                index,
+                routes,
+              }}
+              renderScene={SceneMap({
+                products: () => (
+                  <ProductList
+                    products={products}
+                    showSearch={false}
+                    showTitle={true}
+                    showFooter={false}
+                    showMore={false}
+                    searchElements={searchParams}
+                  />
+                ),
+                info: () => (
+                  <UserInfoWidget
+                    has_map={element.has_map}
+                    mobile={element.mobile}
+                    phone={element.phone}
+                    slug={element.slug}
+                    whatsapp={element.whatsapp}
+                    twitter={element.twitter}
+                    facebook={element.facebook}
+                    instagram={element.instagram}
+                    android={element.android}
+                    youtube={element.youtube}
+                    website={element.website}
+                    description={element.description}
+                    service={element.service}
+                    address={element.address}
+                    images={element.images}
+                    latitude={element.latitude}
+                    longitude={element.longitude}
+                    thumb={element.thumb}
+                  />
+                ),
+                videos: () => (
+                  <VideosVerticalWidget videos={element.videoGroup} />
+                ),
+              })}
+              style={{marginTop: 10, backgroundColor: 'white'}}
+              onIndexChange={(i) => setIndex(i)}
+              initialLayout={{width: width}}
+            />
+          </TriggeringView>
+          <CommentScreenModal
+            commentModal={commentModal}
+            elements={comments}
+            model="user"
+            id={element.id}
           />
-        </TriggeringView>
-        <CommentScreenModal
-          commentModal={commentModal}
-          elements={comments}
-          model="user"
-          id={element.id}
-        />
-      </View>
-    </HeaderImageScrollView>
+        </View>
+      </HeaderImageScrollView>
+    </BgContainer>
   );
 };
 

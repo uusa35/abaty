@@ -79,7 +79,11 @@ const SocialRowWidget = () => {
           name="whatsapp"
           type="font-awesome"
           color="#25d366"
-          onPress={() => getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE))}
+          onPress={() =>
+            Linking.openURL(
+              getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE)),
+            )
+          }
         />
       ) : null}
       {settings.phone ? (

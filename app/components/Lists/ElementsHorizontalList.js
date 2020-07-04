@@ -223,10 +223,10 @@ const ElementsHorizontalList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(items, (i) => (i.name.includes(search) ? i : null));
-      filtered.length > 0 || search.length > 0
-        ? setItems(filtered)
-        : setItems([]);
+      let filtered = filter(items, (i) =>
+        i.name ? i.name.includes(search) : i.slug.includes(search) ? i : null,
+      );
+      filtered.length > 0 ? setItems(filtered) : setItems(elements);
     } else {
       setItems(elements);
     }

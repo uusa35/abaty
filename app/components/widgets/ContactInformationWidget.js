@@ -58,7 +58,11 @@ const ContactInformationWidget = () => {
         <TouchableOpacity
           activeOpacity={touchOpacity}
           hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
-          onPress={() => getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE))}
+          onPress={() =>
+            Linking.openURL(
+              getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE)),
+            )
+          }
           style={styles.container}>
           <View style={styles.wrapper}>
             <Icon
