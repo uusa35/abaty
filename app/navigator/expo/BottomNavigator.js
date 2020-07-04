@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
-import {text} from '../../constants/sizes';
+import {iconSizes, text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
 import {SettingStack} from './SettingStack';
 import {SearchStack} from './SearchStack';
@@ -53,7 +53,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: CartStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="ios-cart" type="ionicon" />
+          <IconTabBar focused={focused} name="cart" type="evilicons" />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('cart')} focused={focused} />
@@ -79,7 +79,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="ios-person" type="ionicon" />
+          <IconTabBar focused={focused} name="person" type="fontisto" />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('me')} focused={focused} />
@@ -93,7 +93,12 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SearchStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="ios-search" type="ionicon" />
+          <IconTabBar
+            focused={focused}
+            name="search1"
+            type="antdesign"
+            size={iconSizes.smaller}
+          />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('search')} focused={focused} />

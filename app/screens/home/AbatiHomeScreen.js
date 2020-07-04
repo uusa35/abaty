@@ -1,6 +1,6 @@
-import React, {useContext, useState} from 'react';
+import React from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -17,7 +17,6 @@ import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
 const AbatiHomeScreen = () => {
   const {

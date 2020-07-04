@@ -19,7 +19,7 @@ export const SearchStack = createStackNavigator(
       screen: SearchScreen,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-search" type="ionicon" color={tintColor} />
+          <Icon name="search1" type="antdesign" color={tintColor} />
         ),
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,

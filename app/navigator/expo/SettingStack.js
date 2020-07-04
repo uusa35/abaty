@@ -26,7 +26,7 @@ export const SettingStack = createStackNavigator(
       screen: ExpoSettingsIndexScreen,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-person" type="ionicon" color={tintColor} />
+          <Icon name="person" type="fontisto" color={tintColor} />
         ),
         headerLeft: () => <HeaderLeft showSideMenu={true} showCart={true} />,
         headerRight: () => (

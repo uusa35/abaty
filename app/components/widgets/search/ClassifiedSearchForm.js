@@ -13,8 +13,8 @@ const ClassifiedSearchForm = ({search, setSearch}) => {
     <Input
       rightIcon={
         <Icon
-          type="ionicon"
-          name="ios-search"
+          type="antdesign"
+          name="search1"
           size={iconSizes.smaller}
           color="#c4c4c4"
           hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}

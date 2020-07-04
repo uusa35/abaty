@@ -5,7 +5,7 @@ import {StyleSheet, View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
-import {text} from './../../constants/sizes';
+import {iconSizes, text} from './../../constants/sizes';
 import PropTypes from 'prop-types';
 
 const ActionBtnWidget = ({visible = false}) => {
@@ -23,7 +23,14 @@ const ActionBtnWidget = ({visible = false}) => {
       }}>
       <ActionButton
         style={{opacity: 0.6}}
-        renderIcon={() => <Icon name="ios-menu" type="ionicon" color="white" />}
+        renderIcon={() => (
+          <Icon
+            name="menu"
+            type="feather"
+            color="white"
+            size={iconSizes.small}
+          />
+        )}
         size={50}
         spacing={20}
         position="left"
@@ -46,8 +53,8 @@ const ActionBtnWidget = ({visible = false}) => {
           onPress={() => navigate('CartIndex')}
           textStyle={styles.title}>
           <Icon
-            name="ios-cart"
-            type="ionicon"
+            name="cart"
+            type="material-community"
             style={styles.actionButtonIcon}
             color={colors.btn_text_theme_color}
           />

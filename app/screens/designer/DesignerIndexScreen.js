@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {StyleSheet} from 'react-native';
-import DesignersList from '../../components/Lists/DeisgnersList';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 

@@ -4,9 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
-import ServiceList from '../../components/widgets/service/ServiceList';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
-import I18n from '../../I18n';
 
 const ServiceIndexAllScreen = () => {
   const {services} = useSelector((state) => state);

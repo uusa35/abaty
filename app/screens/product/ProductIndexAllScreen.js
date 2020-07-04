@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
-import {ProductList} from '../../components/LazyLoadingComponents/productComponents';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import BgContainer from '../../components/containers/BgContainer';

@@ -17,6 +17,7 @@ import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHor
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import {useNavigation} from 'react-navigation-hooks';
+import BgContainer from '../../components/containers/BgContainer';
 
 const ServiceShowScreen = () => {
   const {service, services, settings, token} = useSelector((state) => state);
@@ -34,7 +35,7 @@ const ServiceShowScreen = () => {
   }, [headerBg]);
 
   return (
-    <Fragment>
+    <BgContainer showImage={false}>
       <HeaderImageScrollView
         vertical={false}
         automaticallyAdjustContentInsets={false}
@@ -169,7 +170,7 @@ const ServiceShowScreen = () => {
         ) : null}
       </HeaderImageScrollView>
       <ActionBtnWidget />
-    </Fragment>
+    </BgContainer>
   );
 };
 

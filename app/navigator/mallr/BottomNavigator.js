@@ -5,7 +5,7 @@ import I18n from '../../I18n';
 import {HeaderLeft} from './../../components/HeaderLeft';
 import {HeaderRight} from './../../components/HeaderRight';
 import {navLabelStyle} from '../../globalStyles';
-import {text} from '../../constants/sizes';
+import {iconSizes, text} from '../../constants/sizes';
 import {HomeStack} from './HomeStack';
 import {CategoryStack} from './CategoryStack';
 import {VideoStack} from './VideoStack';
@@ -72,7 +72,12 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SearchStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar name="ios-search" type="ionicon" focused={focused} />
+          <IconTabBar
+            name="search1"
+            type="antdesign"
+            focused={focused}
+            size={iconSizes.smaller}
+          />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('search')} focused={focused} />

@@ -11,6 +11,7 @@ import ProductShowScreen from '../../screens/product/ProductShowScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
+import {iconSizes} from '../../constants/sizes';
 
 export const SearchStack = createStackNavigator(
   {
@@ -18,7 +19,12 @@ export const SearchStack = createStackNavigator(
       screen: SearchScreen,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
-          <Icon name="ios-search" type="ionicon" color={tintColor} />
+          <Icon
+            name="search1"
+            type="ionicon"
+            color={tintColor}
+            size={iconSizes.smaller}
+          />
         ),
         headerLeft: () => <HeaderLeft {...navigation} />,
         headerRight: () => <HeaderRight {...navigation} display={true} />,

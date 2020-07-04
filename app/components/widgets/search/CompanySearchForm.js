@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import I18n, {isRTL} from '../../../I18n';
 import {Icon, Input} from 'react-native-elements';
 import {iconSizes, text} from '../../../constants/sizes';
@@ -13,8 +13,8 @@ const CompanySearchForm = ({title = 'search'}) => {
       placeholder={I18n.t(title)}
       rightIcon={
         <Icon
-          type="ionicon"
-          name={search.length > 0 ? 'ios-funnel' : 'ios-search'}
+          type="antdesign"
+          name={search.length > 0 ? 'filter' : 'search1'}
           size={iconSizes.smaller}
           color="#c4c4c4"
           hitSlop={{

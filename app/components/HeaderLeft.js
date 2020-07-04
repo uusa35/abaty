@@ -30,9 +30,9 @@ export const HeaderLeft = ({
     <View style={widgetStyles.safeContainer}>
       {showSideMenu && (
         <Icon
-          name="ios-menu"
-          type="ionicon"
-          size={iconSizes.medium}
+          name="menu"
+          type="feather"
+          size={iconSizes.small}
           onPress={() => openDrawer()}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -46,9 +46,9 @@ export const HeaderLeft = ({
               toggleCompanySearchTextInputModal(!companySearchTextInputModal),
             )
           }
-          name="ios-search"
-          type="ionicon"
-          size={iconSizes.small}
+          name="search1"
+          type="antdesign"
+          size={iconSizes.small - 6}
           underlayColor="transparent"
           hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
           color={colors.icon_theme_color}
@@ -69,7 +69,7 @@ export const HeaderLeft = ({
         <View>
           <Icon
             onPress={() => navigate('CartIndex')}
-            name="ios-cart"
+            name="md-cart"
             type="ionicon"
             size={iconSizes.small}
             underlayColor="transparent"
@@ -80,7 +80,12 @@ export const HeaderLeft = ({
             <Badge
               status="error"
               value={cartLength}
-              containerStyle={{position: 'absolute', top: -10, right: -4}}
+              containerStyle={{
+                position: 'absolute',
+                top: -4,
+                right: -4,
+                opacity: 0.8,
+              }}
             />
           ) : null}
         </View>

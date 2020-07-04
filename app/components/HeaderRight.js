@@ -101,8 +101,8 @@ export const HeaderRight = ({
           onPress={() => {
             dispatch(showProductFilter());
           }}
-          name="ios-search"
-          type="ionicon"
+          name="search1"
+          type="antdesign"
           size={iconSizes.small}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -114,8 +114,8 @@ export const HeaderRight = ({
           onPress={() => {
             navigation.navigate('Search');
           }}
-          name="ios-search"
-          type="ionicon"
+          name="search1"
+          type="antdesign"
           size={iconSizes.small}
           underlayColor="transparent"
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
