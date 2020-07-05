@@ -19,7 +19,7 @@ import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalW
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
-import {filter, uniqBy, map} from 'lodash';
+import {uniqBy, map} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';

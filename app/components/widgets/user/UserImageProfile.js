@@ -1,8 +1,7 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import FastImage from 'react-native-fast-image';
 import {View} from 'react-native-animatable';
-import {text} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
@@ -152,10 +151,10 @@ const UserImageProfile = ({
           onPress={() => dispatch(showCommentModal())}
           style={{marginTop: 15}}>
           <Icon
-            name="comment-account-outline"
-            type="material-community"
+            name="comment"
+            type="font-awesome"
             color={colors.header_tow_theme_color}
-            size={25}
+            size={iconSizes.smaller}
             hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           />
           <Badge

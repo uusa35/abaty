@@ -14,9 +14,7 @@ const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
   const {settings, showIntroduction} = useSelector((state) => state);
 
-  const handleClick = () => {
-    dispatch(toggleIntroduction(false));
-  };
+  const handleClick = () => dispatch(toggleIntroduction(false));
 
   useEffect(() => {
     if (showIntroduction) {

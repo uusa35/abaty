@@ -53,7 +53,11 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: CartStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="cart" type="evilicons" />
+          <IconTabBar
+            focused={focused}
+            name="cart-arrow-down"
+            type="font-awesome"
+          />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('cart')} focused={focused} />
