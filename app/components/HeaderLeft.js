@@ -69,8 +69,8 @@ export const HeaderLeft = ({
         <View>
           <Icon
             onPress={() => navigate('CartIndex')}
-            name="md-cart"
-            type="ionicon"
+            name="shoppingcart"
+            type="antdesign"
             size={iconSizes.small}
             underlayColor="transparent"
             hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}

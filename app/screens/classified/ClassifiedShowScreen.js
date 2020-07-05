@@ -153,8 +153,10 @@ const ClassifiedShowScreen = () => {
                 elementName="whatsapp"
                 name={classified.mobile}
                 link={() =>
-                  getWhatsappLink(
-                    classified.user.country.calling_code.classified.mobile,
+                  Linking.openURL(
+                    getWhatsappLink(
+                      classified.user.country.calling_code.classified.mobile,
+                    ),
                   )
                 }
               />

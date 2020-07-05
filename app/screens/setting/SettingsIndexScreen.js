@@ -102,7 +102,7 @@ const SettingsIndexScreen = () => {
                 navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
               }
               style={styles.btnWrapper}>
-              <Icon name="face-profile" type="material-community" size={45} />
+              <Icon name="face" type="material" size={45} />
               <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -111,7 +111,7 @@ const SettingsIndexScreen = () => {
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('OrderIndex')}
               style={styles.btnWrapper}>
-              <Icon name="history" type="material-community" size={45} />
+              <Icon name="history" type="material" size={45} />
               <Text style={styles.btnTitle}>{I18n.t('order_history')}</Text>
             </TouchableOpacity>
           ) : null}

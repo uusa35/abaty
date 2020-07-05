@@ -52,7 +52,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar name="ios-person" type="ionicon" focused={focused} />
+          <IconTabBar name="person" type="fontisto" focused={focused} />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('me')} focused={focused} />

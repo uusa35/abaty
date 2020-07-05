@@ -17,6 +17,7 @@ import LoadingBoxedListView from './LoadingBoxedListView';
 import LottieView from 'lottie-react-native';
 import {animations} from '../../constants/animations';
 import {EXPO} from './../../../app';
+
 const LoadingView = ({
   loadingText = null,
   type = 'Arc',

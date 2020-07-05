@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Modal, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {text, height, width} from './../../constants/sizes';
 import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
@@ -7,29 +7,24 @@ import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient
 import Svg, {Circle, Rect} from 'react-native-svg';
 import {isRTL} from '../../I18n';
 import {useSelector} from 'react-redux';
+import Modal from 'react-native-modal';
 
 const LoadingContentView = () => {
   const {isLoadingContent} = useSelector((state) => state);
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: 'transparent'}}>
       <Modal
-        animationType="fade"
+        // animationType="fade"
         visible={isLoadingContent}
-        transparent={false}
+        transparent={true}
+        useNativeDriver={true}
         style={{
-          position: 'absolute',
-          top: '10%',
-          width,
-          height,
-          backgroundColor: 'white',
           alignItems: 'center',
           justifyContent: 'center',
-          // margin: '10%',
-          padding: 0,
         }}>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
-          height={600}
+          height={width}
           width={width}
           style={{marginBottom: 5, alignSelf: 'center'}}>
           <Rect
@@ -46,7 +41,7 @@ const LoadingContentView = () => {
           <SvgAnimatedLinearGradient
             useNativeDriver={true}
             height={150}
-            width={width - 25}
+            width={width}
             style={{marginBottom: 5, alignSelf: 'center'}}>
             <Circle cx="320" cy="30" r="30" />
             <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
@@ -60,7 +55,7 @@ const LoadingContentView = () => {
           <SvgAnimatedLinearGradient
             useNativeDriver={true}
             height={150}
-            width={width - 50}
+            width={width}
             style={{marginBottom: 5, alignSelf: 'center'}}>
             <Circle cx="30" cy="30" r="30" />
             <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />

@@ -1,21 +1,23 @@
 import React, {useContext, Fragment} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import {text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import LottieView from 'lottie-react-native';
 import {adjustColor} from '../../helpers';
+import {ABATI} from './../../../app';
+import {images} from '../../constants/images';
 
 const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={styles.emptyCaseBtn}>
       {emptyImage ? (
-        <ImageLoaderContainer
-          img={emptyImage}
+        <Image
+          source={ABATI ? images.emptyProductFavorite : emptyImage}
           style={{width, height: width}}
-          resizeMode="contain"
+          resizeMode="cover"
         />
       ) : (
         <Fragment>

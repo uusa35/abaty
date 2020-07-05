@@ -51,7 +51,7 @@ import {
   getClassified,
   getSearchClassifieds,
 } from '../../redux/actions/classified';
-import {HOMEKEY, EXPO} from '../../../app';
+import {ABATI, HOMEKEY, EXPO} from '../../../app';
 import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
 import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
@@ -69,6 +69,7 @@ const ElementsHorizontalList = ({
   showSortSearch = false,
   showProductsFilter = false,
   showClassifiedsFilter = false,
+  emptyListImage = '',
   showTitleIcons = false,
   showRefresh = false,
   title,
@@ -374,6 +375,7 @@ const ElementsHorizontalList = ({
         ListEmptyComponent={
           <EmptyListWidget
             emptyAnimation={animations.emptyShape}
+            emptyImage={emptyListImage}
             title={I18n.t('no_', {item: I18n.t(type)})}
           />
         }

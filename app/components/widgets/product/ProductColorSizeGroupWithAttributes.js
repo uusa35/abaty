@@ -125,7 +125,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             titleStyle={{
               fontFamily: text.font,
               color: 'black',
-              fontSize: text.small,
+              fontSize: text.smaller,
             }}
           />
           <Button
@@ -159,7 +159,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             titleStyle={{
               fontFamily: text.font,
               color: 'black',
-              fontSize: text.small,
+              fontSize: text.smaller,
             }}
           />
         </View>

@@ -47,7 +47,11 @@ const ProductColorSizeGroup = ({element}) => {
                 justifyContent: 'space-around',
               }}
               title={size ? size.name : I18n.t('choose_size')}
-              titleStyle={{fontFamily: text.font, color: 'black'}}
+              titleStyle={{
+                fontFamily: text.font,
+                color: 'black',
+                fontSize: text.smaller,
+              }}
             />
           ) : null}
           {!validate.isEmpty(color) && show_attribute ? (
@@ -71,7 +75,11 @@ const ProductColorSizeGroup = ({element}) => {
                 justifyContent: 'space-around',
               }}
               title={color ? color.name : I18n.t('height')}
-              titleStyle={{fontFamily: text.font, color: 'black'}}
+              titleStyle={{
+                fontFamily: text.font,
+                color: 'black',
+                fontSize: text.smaller,
+              }}
             />
           ) : null}
         </View>

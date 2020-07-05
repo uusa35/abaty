@@ -1,144 +1,139 @@
 import React from 'react';
-import {StyleSheet, Modal} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {text, height, width} from './../../constants/sizes';
 import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
-import Svg, {Circle, Rect} from 'react-native-svg';
-import {enableLoadingBoxedList} from '../../redux/actions/sagas/settingSagas';
+import {Rect} from 'react-native-svg';
 import {useSelector} from 'react-redux';
+import Modal from 'react-native-modal';
 
 const LoadingBoxedListView = () => {
   const {isLoadingBoxedList} = useSelector((state) => state);
   return (
-    <Modal
-      animationType="fade"
-      visible={isLoadingBoxedList}
-      transparent={false}
-      style={{
-        position: 'absolute',
-        top: '10%',
-        width,
-        height,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'left',
-        margin: 20,
-        padding: 0,
-      }}>
-      <SvgAnimatedLinearGradient
+    <View style={{flex: 1, backgroundColor: 'transparent'}}>
+      <Modal
+        // animationType="fade"
+        visible={isLoadingBoxedList}
+        transparent={true}
         useNativeDriver={true}
-        height={150}
-        width={width}
-        style={{marginBottom: 10, alignSelf: 'center'}}>
-        <Rect
-          x="0"
-          y="0"
+        style={{
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <SvgAnimatedLinearGradient
+          useNativeDriver={true}
+          height={150}
           width={width}
-          height={550}
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-      </SvgAnimatedLinearGradient>
-      <SvgAnimatedLinearGradient
-        useNativeDriver={true}
-        height={320}
-        width="98%"
-        style={{margin: 5, alignSelf: 'center'}}>
-        <Rect
-          x="10"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
-        <Rect
-          x="205"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
-      </SvgAnimatedLinearGradient>
-      <SvgAnimatedLinearGradient
-        useNativeDriver={true}
-        height={320}
-        width="98%"
-        style={{margin: 5, alignSelf: 'center'}}>
-        <Rect
-          x="10"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
-        <Rect
-          x="205"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
-      </SvgAnimatedLinearGradient>
-      <SvgAnimatedLinearGradient
-        useNativeDriver={true}
-        height={320}
-        width="98%"
-        style={{margin: 5, alignSelf: 'center'}}>
-        <Rect
-          x="10"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
-        <Rect
-          x="205"
-          y="0"
-          width="200"
-          height="250"
-          fill="rgb(0,0,255)"
-          strokeWidth="3"
-          stroke="rgb(0,0,0)"
-        />
-        <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
-        <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
-      </SvgAnimatedLinearGradient>
-    </Modal>
+          style={{marginBottom: 10, alignSelf: 'center'}}>
+          <Rect
+            x="0"
+            y="0"
+            width={width}
+            height={width / 2.5}
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+        </SvgAnimatedLinearGradient>
+        <SvgAnimatedLinearGradient
+          useNativeDriver={true}
+          height={320}
+          width={width}
+          style={{margin: 5, alignSelf: 'center'}}>
+          <Rect
+            x="10"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
+          <Rect
+            x="205"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
+        </SvgAnimatedLinearGradient>
+        <SvgAnimatedLinearGradient
+          useNativeDriver={true}
+          height={320}
+          width={width}
+          style={{margin: 5, alignSelf: 'center'}}>
+          <Rect
+            x="10"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
+          <Rect
+            x="205"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
+        </SvgAnimatedLinearGradient>
+        <SvgAnimatedLinearGradient
+          useNativeDriver={true}
+          height={320}
+          width={width}
+          style={{margin: 5, alignSelf: 'center'}}>
+          <Rect
+            x="10"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="10" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="10" y="290" rx="3" ry="3" width="200" height="5" />
+          <Rect
+            x="205"
+            y="0"
+            width="200"
+            height="250"
+            fill="rgb(0,0,255)"
+            strokeWidth="3"
+            stroke="rgb(0,0,0)"
+          />
+          <Rect x="205" y="260" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="270" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
+          <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
+        </SvgAnimatedLinearGradient>
+      </Modal>
+    </View>
   );
 };
 

@@ -20,7 +20,7 @@ import {
   iconSizes,
   TheHold,
 } from '../../../constants/sizes';
-import {Button, Icon} from 'react-native-elements';
+import {Icon} from 'react-native-elements';
 import {filter, uniqBy, orderBy} from 'lodash';
 import validate from 'validate.js';
 import {getProduct, getSearchProducts} from '../../../redux/actions/product';
@@ -29,7 +29,6 @@ import TopSearchInput from '../TopSearchInput';
 import SearchSort from '../search/SearchSort';
 import SortByModal from '../search/SortByModal';
 import {useDispatch, useSelector} from 'react-redux';
-import ImageLoaderContainer from '../ImageLoaderContainer';
 import EmptyListWidget from '../../Lists/EmptyListWidget';
 
 const ProductList = ({

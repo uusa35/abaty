@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
+import {images} from '../../constants/images';
 
 const FavoriteProductIndexScreen = () => {
   const {productFavorites} = useSelector((state) => state);
@@ -19,6 +20,7 @@ const FavoriteProductIndexScreen = () => {
         showFooter={true}
         showSearch={false}
         showProductsFilter={false}
+        emptyListImage={images.emptyProductFavorite}
       />
     </BgContainer>
   );

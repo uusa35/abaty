@@ -358,7 +358,8 @@ export function* setTotalCartValue(cart) {
 
 export function* setGrossTotalCartValue(values) {
   try {
-    const {total, coupon, country, cart} = values;
+    const {total, coupon, country} = values;
+    const {cart} = yield select();
     const countPieces = sumBy(cart, (i) => i.qty);
     if (__DEV__) {
       // console.log('the total', total);
@@ -372,24 +373,12 @@ export function* setGrossTotalCartValue(values) {
         : country.is_local
         ? country.fixed_shipment_charge
         : country.fixed_shipment_charge * countPieces;
-    // if (__DEV__) {
-    //   console.log('the country', country);
-    //   console.log('the final Shipment', finalShipment);
-    //   console.log('the result', cart.length === 1);
-    //   console.log('the first', first(cart));
-    // }
     const grossTotal = parseFloat(
       total + finalShipment - (!validate.isEmpty(coupon) ? coupon.value : 0),
     );
     yield put({type: actions.SET_GROSS_TOTAL_CART, payload: grossTotal});
     yield put({type: actions.SET_SHIPMENT_FEES, payload: finalShipment});
-    // if (__DEV__) {
-    //   console.log('the grossTotal Now is ::::', grossTotal);
-    // }
   } catch (e) {
-    if (__DEV__) {
-      // console.log('the e', e);
-    }
     yield call(enableErrorMessage, I18n.t('cart_is_empty_gross_total'));
   } finally {
     yield call(disableLoading);
@@ -526,6 +515,7 @@ export function* startSubmitCartScenario(action) {
 export function* startGetCouponScenario(action) {
   try {
     const {total, country} = yield select();
+    console.log('coupon', action.payload);
     if (validate.isEmpty(action.payload)) {
       throw I18n.t('coupon_is_empty');
     }
@@ -544,7 +534,7 @@ export function* startGetCouponScenario(action) {
     if (__DEV__) {
       // console.log('the e', e);
     }
-    yield all([call(disableLoading), call(enableErrorMessage, e)]);
+    yield call(enableErrorMessage, e);
   }
 }
 
@@ -604,9 +594,9 @@ export function* startCreateTapPaymentUrlScenario(action) {
       throw url;
     }
   } catch (e) {
-    if (__DEV__) {
-      // console.log('the e', e);
-    }
+    // if (__DEV__) {
+    // console.log('the e', e);
+    // }
     yield call(enableErrorMessage, e);
     yield put(
       NavigationActions.navigate({

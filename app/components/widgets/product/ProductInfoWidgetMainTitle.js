@@ -132,8 +132,8 @@ const ProductInfoWidgetMainTitle = ({element}) => {
                 }),
               );
             }}
-            name={favorite ? 'ios-heart' : 'ios-heart-empty'}
-            type="ionicon"
+            name={favorite ? 'heart' : 'hearto'}
+            type="antdesign"
             size={25}
             underlayColor="transparent"
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
