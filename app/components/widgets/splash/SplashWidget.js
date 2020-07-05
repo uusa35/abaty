@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {View, StyleSheet, Text, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
-import {width, height, text} from './../../../constants/sizes';
+import {width, height, text, iconSizes} from './../../../constants/sizes';
 import {images} from './../../../constants/images';
 import {Icon} from 'react-native-elements';
 
@@ -20,14 +20,14 @@ const SplashWidget = ({element, index, handleClick}) => {
         resizeMode="contain">
         {index === 0 ? (
           <Icon
-            size={30}
+            size={iconSizes.small}
             name="close"
             type="evil-icons"
             containerStyle={{
               position: 'absolute',
               top: 50,
               alignSelf: 'flex-end',
-              padding: 30,
+              padding: 60,
             }}
             onPress={() => handleClick()}
             hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}

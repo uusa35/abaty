@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {height, width, text} from './../../constants/sizes';
+import {width, height, text} from './../../constants/sizes';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
@@ -12,19 +12,19 @@ import Modal from 'react-native-modal';
 const LoadingProfileView = () => {
   const {isLoadingProfile} = useSelector((state) => state);
   return (
-    <View style={{flex: 1, backgroundColor: 'transparent'}}>
-      <Modal
-        // animationType="fade"
-        visible={isLoadingProfile}
-        transparent={true}
-        useNativeDriver={true}
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+    <Modal
+      visible={isLoadingProfile}
+      transparent={true}
+      useNativeDriver={true}
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 0,
+      }}>
+      <View style={{backgroundColor: 'white'}}>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
-          height={250}
+          height={width / 3}
           width={width}
           style={{marginBottom: 10, alignSelf: 'center'}}>
           <Rect
@@ -148,8 +148,8 @@ const LoadingProfileView = () => {
           <Rect x="0" y="280" rx="3" ry="3" width="800" height="10" />
           <Rect x="0" y="300" rx="3" ry="3" width="800" height="10" />
         </SvgAnimatedLinearGradient>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 

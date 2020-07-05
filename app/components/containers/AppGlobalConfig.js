@@ -25,11 +25,6 @@ const AppGlobalConfig = () => {
       });
       analytics().setCurrentScreen(routeName);
     }
-    if (showIntroduction) {
-      setTimeout(() => {
-        dispatch(toggleIntroduction(false));
-      }, 12000);
-    }
   }, []);
 
   return <Fragment></Fragment>;

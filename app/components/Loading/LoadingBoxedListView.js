@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {text, height, width} from './../../constants/sizes';
+import {text, width} from './../../constants/sizes';
 import {isIOS} from './../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
@@ -11,26 +11,26 @@ import Modal from 'react-native-modal';
 const LoadingBoxedListView = () => {
   const {isLoadingBoxedList} = useSelector((state) => state);
   return (
-    <View style={{flex: 1, backgroundColor: 'transparent'}}>
-      <Modal
-        // animationType="fade"
-        visible={isLoadingBoxedList}
-        transparent={true}
-        useNativeDriver={true}
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+    <Modal
+      visible={isLoadingBoxedList}
+      transparent={true}
+      useNativeDriver={true}
+      style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 0,
+      }}>
+      <View style={{backgroundColor: 'white'}}>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
-          height={150}
           width={width}
+          height={width / 2}
           style={{marginBottom: 10, alignSelf: 'center'}}>
           <Rect
             x="0"
             y="0"
             width={width}
-            height={width / 2.5}
+            height={width}
             fill="rgb(0,0,255)"
             strokeWidth="3"
             stroke="rgb(0,0,0)"
@@ -38,7 +38,6 @@ const LoadingBoxedListView = () => {
         </SvgAnimatedLinearGradient>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
-          height={320}
           width={width}
           style={{margin: 5, alignSelf: 'center'}}>
           <Rect
@@ -132,8 +131,8 @@ const LoadingBoxedListView = () => {
           <Rect x="205" y="280" rx="3" ry="3" width="200" height="5" />
           <Rect x="205" y="290" rx="3" ry="3" width="200" height="5" />
         </SvgAnimatedLinearGradient>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 };
 

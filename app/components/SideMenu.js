@@ -123,7 +123,7 @@ const SideMeu = ({showLogo = true}) => {
               <Icon
                 name="home"
                 type="antdesign"
-                size={20}
+                size={iconSizes.smaller}
                 color={colors.icon_theme_color}
               />
               <Text
@@ -145,7 +145,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="home"
                   type="antdesign"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -162,9 +162,9 @@ const SideMeu = ({showLogo = true}) => {
                 onPress={() => navigation.navigate('SettingIndex')}
                 style={styles.menuBtn}>
                 <Icon
-                  name="ios-settings"
-                  type="ionicon"
-                  size={25}
+                  name="gear"
+                  type="evilicon"
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -183,7 +183,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="login"
                   type="antdesign"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -202,7 +202,7 @@ const SideMeu = ({showLogo = true}) => {
                   <Icon
                     name="login"
                     type="antdesign"
-                    size={20}
+                    size={iconSizes.smaller}
                     color={colors.icon_theme_color}
                   />
                   <Text
@@ -221,7 +221,7 @@ const SideMeu = ({showLogo = true}) => {
               <Icon
                 name="old-phone"
                 type="entypo"
-                size={20}
+                size={iconSizes.smaller}
                 color={colors.icon_theme_color}
               />
               <Text
@@ -239,7 +239,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="handshake-o"
                   type="font-awesome"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -258,7 +258,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="handshake-o"
                   type="font-awesome"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -283,7 +283,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="image"
                   type="entypo"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -302,7 +302,7 @@ const SideMeu = ({showLogo = true}) => {
                 <Icon
                   name="youtube"
                   type="entypo"
-                  size={20}
+                  size={iconSizes.smaller}
                   color={colors.icon_theme_color}
                 />
                 <Text
@@ -320,7 +320,7 @@ const SideMeu = ({showLogo = true}) => {
               <Icon
                 name="language"
                 type="fontawesome"
-                size={20}
+                size={iconSizes.smaller}
                 color={colors.icon_theme_color}
               />
               <Text

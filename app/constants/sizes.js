@@ -67,7 +67,7 @@ export const serviceWidget = {
 export const iconSizes = {
   tiny: 10,
   smallest: 15,
-  smaller: 20,
+  smaller: 25,
   small: 30,
   medium: 40,
   large: 50,

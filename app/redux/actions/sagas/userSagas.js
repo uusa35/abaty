@@ -134,6 +134,9 @@ export function* startGetShopperScenario(action) {
 export function* startGetCompanyScenario(action) {
   try {
     const {id, searchParams, redirect} = action.payload;
+    if (!validate.isEmpty(redirect) && redirect) {
+      yield call(enableLoadingProfile);
+    }
     const element = yield call(api.getUser, id);
     if (
       !validate.isEmpty(element) &&
@@ -188,6 +191,8 @@ export function* startGetCompanyScenario(action) {
     // if (__DEV__) {
     //   console.log('ee', e);
     // }
+  } finally {
+    yield call(disableLoadingProfile);
   }
 }
 

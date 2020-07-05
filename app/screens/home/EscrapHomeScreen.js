@@ -37,7 +37,6 @@ const EscrapHomeScreen = () => {
     homeCompanies,
     homeClassifieds,
     homeUserCategories,
-    homeClassifiedCategories,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
