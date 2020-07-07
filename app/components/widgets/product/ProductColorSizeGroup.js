@@ -11,6 +11,7 @@ import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
+import WrapAsGiftWidget from './WrapAsGiftWidget';
 
 const ProductColorSizeGroup = ({element}) => {
   const {settings} = useSelector((state) => state);
@@ -27,7 +28,7 @@ const ProductColorSizeGroup = ({element}) => {
       style={{
         width: '100%',
       }}>
-      {element.show_attribute ? (
+      {element.show_attribute && (
         <View
           style={{
             flexDirection: 'row',
@@ -35,7 +36,7 @@ const ProductColorSizeGroup = ({element}) => {
             justifyContent: 'space-between',
             marginBottom: 10,
           }}>
-          {!validate.isEmpty(size) && show_attribute ? (
+          {!validate.isEmpty(size) && show_attribute && (
             <Button
               containerStyle={{flex: 0.4}}
               buttonStyle={{
@@ -53,8 +54,8 @@ const ProductColorSizeGroup = ({element}) => {
                 fontSize: text.smaller,
               }}
             />
-          ) : null}
-          {!validate.isEmpty(color) && show_attribute ? (
+          )}
+          {!validate.isEmpty(color) && show_attribute && (
             <Button
               iconRight
               icon={
@@ -81,76 +82,24 @@ const ProductColorSizeGroup = ({element}) => {
                 fontSize: text.smaller,
               }}
             />
-          ) : null}
+          )}
         </View>
-      ) : null}
+      )}
       <ProductWidgetQtyBtns
         qty={qty}
         requestQty={requestQty}
         setRequestQty={setRequestQty}
       />
-      {element.wrap_as_gift ? (
-        <View>
-          <CheckBox
-            title={I18n.t('wrap_as_gift', {item: settings.gift_fee})}
-            titleProps={{
-              style: {
-                fontFamily: text.font,
-                fontSize: text.medium,
-                paddingLeft: 5,
-                paddingRight: 5,
-              },
-            }}
-            textStyle={{fontFamily: text.font, padding: 5}}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
-            checkedColor={colors.btn_bg_theme_color}
-            checked={wrapGift}
-            onPress={() =>
-              requestQty <= 0
-                ? dispatch(enableWarningMessage(I18n.t('choose_size_or_qty')))
-                : setWrapGift(!wrapGift)
-            }
-          />
-          {wrapGift ? (
-            <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-              <ImageLoaderContainer
-                img={settings.gift_image}
-                style={{width: 100, height: 100}}
-              />
-              <Input
-                spellCheck={true}
-                placeholder={
-                  giftMessage
-                    ? giftMessage
-                    : I18n.t('wrap_as_gift_message', {item: settings.gift_fee})
-                }
-                defaultValue={giftMessage ? giftMessage : null}
-                inputContainerStyle={{
-                  borderWidth: 1,
-                  borderColor: 'lightgrey',
-                  borderRadius: 5,
-                  paddingLeft: 15,
-                  marginTop: 5,
-                  height: 80,
-                  width: '72%',
-                }}
-                inputStyle={{
-                  fontFamily: text.font,
-                  fontSize: text.medium,
-                  textAlign: isRTL ? 'right' : 'left',
-                }}
-                disabled={!qty || requestQty <= 0}
-                shake={true}
-                keyboardType="default"
-                multiline={true}
-                numberOfLines={3}
-                onChangeText={(e) => setGiftMessage(e)}
-              />
-            </View>
-          ) : null}
-        </View>
-      ) : null}
+      {element.wrap_as_gift && (
+        <WrapAsGiftWidget
+          wrapGift={element.wrap_as_gift}
+          setWrapGift={setWrapGift}
+          giftMessage={giftMessage}
+          setGiftMessage={setGiftMessage}
+          requestQty={requestQty}
+          productAttribute={null}
+        />
+      )}
       <View style={{width: '105%', alignSelf: 'center', marginTop: 5}}>
         <Input
           spellCheck={true}
@@ -177,7 +126,7 @@ const ProductColorSizeGroup = ({element}) => {
           onChangeText={(notes) => setNotes(notes)}
         />
       </View>
-      {element.has_stock && element.is_available ? (
+      {element.has_stock && element.is_available && (
         <Button
           onPress={() =>
             dispatch(
@@ -189,6 +138,7 @@ const ProductColorSizeGroup = ({element}) => {
                 element,
                 type: 'product',
                 wrapGift,
+                directPurchase: element.directPurchase,
                 notes: wrapGift
                   ? notes.concat(
                       `\n :: (${I18n.t('wrap_as_gift', {
@@ -201,7 +151,7 @@ const ProductColorSizeGroup = ({element}) => {
           }
           disabled={!qty || requestQty <= 0}
           raised
-          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
+          containerStyle={{width: '100%'}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
           title={I18n.t('add_to_cart')}
           titleStyle={{
@@ -209,12 +159,12 @@ const ProductColorSizeGroup = ({element}) => {
             color: colors.btn_text_theme_color,
           }}
         />
-      ) : null}
+      )}
     </View>
   );
 };
 
-export default ProductColorSizeGroup;
+export default React.memo(ProductColorSizeGroup);
 
 ProductColorSizeGroup.propTypes = {
   size: PropTypes.object,

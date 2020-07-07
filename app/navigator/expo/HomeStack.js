@@ -384,6 +384,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('terms_and_conditions')} />
         ),
+        headerBackTitle: () => null,
       }),
     },
     Policy: {

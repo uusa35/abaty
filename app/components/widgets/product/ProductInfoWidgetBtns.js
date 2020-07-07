@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
@@ -29,7 +29,7 @@ const ProductInfoWidgetBtns = ({element}) => {
           alignItems: 'center',
           marginBottom: 10,
         }}>
-        {element.has_attributes ? (
+        {element.has_attributes && (
           <Text
             style={{
               fontFamily: text.font,
@@ -40,22 +40,27 @@ const ProductInfoWidgetBtns = ({element}) => {
             }}>
             {I18n.t('sizes_and_colors_and_length_available')}
           </Text>
-        ) : null}
+        )}
+        {!element.has_stock && (
+          <View style={{width: '100%', marginTop: 5}}>
+            <Button
+              raised
+              title={I18n.t('out_of_stock')}
+              buttonStyle={{backgroundColor: 'red', width: '100%'}}
+              titleStyle={{fontFamily: text.font, fontSize: text.medium}}
+            />
+          </View>
+        )}
       </View>
-      {element.has_attributes ? (
-        <ProductColorSizeGroupWithAttributes element={element} />
-      ) : (
-        <ProductColorSizeGroup element={element} />
+      {element.has_stock && (
+        <Fragment>
+          {element.has_attributes ? (
+            <ProductColorSizeGroupWithAttributes element={element} />
+          ) : (
+            <ProductColorSizeGroup element={element} />
+          )}
+        </Fragment>
       )}
-      {!element.has_stock ? (
-        <Button
-          raised
-          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
-          buttonStyle={{backgroundColor: 'red'}}
-          title={I18n.t('out_of_stock')}
-          titleStyle={{fontFamily: text.font, color: 'white'}}
-        />
-      ) : null}
     </View>
   );
 };

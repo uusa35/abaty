@@ -121,7 +121,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         </View>
       </View>
       <View style={{justifyContent: 'flex-end'}}>
-        {!guest ? (
+        {!guest && (
           <Icon
             onPress={() => {
               setFavorite(!favorite);
@@ -139,7 +139,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
             color="red"
           />
-        ) : null}
+        )}
       </View>
     </View>
   );

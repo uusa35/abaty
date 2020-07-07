@@ -592,8 +592,8 @@ const CartList = ({
               textStyle={{fontFamily: text.font, paddingTop: 5}}
             />
             <Icon
-              name="book-open"
-              type="simple-line-icon"
+              name="book"
+              type="font-awesome"
               size={15}
               onPress={() => navigate('TermAndCondition')}
             />

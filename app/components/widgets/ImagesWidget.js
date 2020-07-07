@@ -34,6 +34,7 @@ const ImagesWidget = ({
   sku = null,
   qr = null,
   hasStock = true,
+  directPurchase = false,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
@@ -113,18 +114,17 @@ const ImagesWidget = ({
                       }}
                     />
                   ) : null}
-                  {isFeatured ? <TagWidget tagName="featured" /> : null}
-                  {exclusive ? <TagWidget tagName="exclusive" /> : null}
-                  {isOnSale ? (
-                    <TagWidget tagName="under_sale" bgColor="red" />
-                  ) : null}
-                  {isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
-                  {sku ? (
-                    <TagWidget tagName={sku} sku={sku} bgColor="black" />
-                  ) : null}
-                  {!hasStock ? (
+                  {isFeatured && <TagWidget tagName="featured" />}
+                  {exclusive && <TagWidget tagName="exclusive" />}
+                  {isOnSale && <TagWidget tagName="under_sale" bgColor="red" />}
+                  {isReallyHot && <TagWidget tagName="hot_deal" />}
+                  {sku && <TagWidget tagName={sku} sku={sku} bgColor="black" />}
+                  {!hasStock && (
                     <TagWidget tagName="out_of_stock" bgColor="red" />
-                  ) : null}
+                  )}
+                  {directPurchase && (
+                    <TagWidget tagName="direct_purchase" bgColor="#b2b07b" />
+                  )}
                 </View>
               ) : null}
             </ImageBackground>

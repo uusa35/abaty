@@ -12,7 +12,7 @@ import {
   enableWarningMessage,
   startGoogleAnalyticsScenario,
 } from './settingSagas';
-import {isNull, uniqBy, remove, map, sumBy, first} from 'lodash';
+import {isNull, uniqBy, remove, map, sumBy, first, filter, last} from 'lodash';
 import {enableResetApp} from './settingSagas';
 import {
   commentStoreConstrains,
@@ -28,7 +28,6 @@ import {
 } from './userSagas';
 import {startGetProductScenario} from './productSagas';
 import {startGetClassifiedScenario} from './classifiedSagas';
-import {GET_COMPANIES} from '../types';
 import {SET_CATEGORY} from '../types';
 import {startResetStoreScenario} from './appSagas';
 import {ABATI, ESCRAP, EXPO, HOMEKEY, MALLR} from '../../../../app';
@@ -307,24 +306,29 @@ export function* startAddToCartScenario(action) {
         'orders_that_include_services_are_not_accepted_out_side_kuwait',
       );
     } else {
-      const filteredCart = yield call(filterCartAnItems, [cart, action]);
-      yield all([
-        call(startGoogleAnalyticsScenario, {
-          payload: {type: 'AddToCart', element: product},
-        }),
-        call(
-          enableSuccessMessage,
-          I18n.t(`${action.payload.type}_added_to_cart_successfully`),
-        ),
-        put({type: actions.FILTER_CART, payload: filteredCart}),
-        put({type: actions.SET_COUPON, payload: {}}),
-        call(setTotalCartValue, filteredCart),
-      ]);
+      const filteredCart = yield call(filterCartAndItems, [cart, action]);
+      if (!validate.isEmpty(filteredCart)) {
+        yield all([
+          call(startGoogleAnalyticsScenario, {
+            payload: {type: 'AddToCart', element: product},
+          }),
+          call(
+            enableSuccessMessage,
+            !action.payload.directPurchase
+              ? I18n.t(`${action.payload.type}_added_to_cart_successfully`)
+              : I18n.t('you_can_add_more_than_one_product_to_cart'),
+          ),
+          put({type: actions.FILTER_CART, payload: filteredCart}),
+          put({type: actions.SET_COUPON, payload: {}}),
+          call(setTotalCartValue, filteredCart),
+        ]);
+      }
     }
   } catch (e) {
     // if (__DEV__) {
     // console.log('the e', e);
     // }
+    console.log('e', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -423,29 +427,51 @@ export function* startRemoveFromCartScenario(action) {
   }
 }
 
-export function* filterCartAnItems([cart, action]) {
-  let cleanCart = map(cart, (e) => {
-    // check if cart_id is available (means this product has_attributes true)
-    if (e.type == 'product') {
-      if (e.product_id === action.payload.product_id) {
-        return action.payload;
+export function* filterCartAndItems([cart, action]) {
+  try {
+    let directPurchaseCart = filter(cart, (e) => e.directPurchase);
+    if (directPurchaseCart.length === 0) {
+      let cleanCart = map(cart, (e) => {
+        // check if cart_id is available (means this product has_attributes true)
+        if (e.type == 'product') {
+          if (e.product_id === action.payload.product_id) {
+            return action.payload;
+          } else {
+            return e;
+          }
+        } else if (e.type == 'service') {
+          if (e.service_id === action.payload.service_id) {
+            return action.payload;
+          }
+          return e;
+        }
+      });
+      const filteredCart =
+        cart.length > 0
+          ? uniqBy(
+              cleanCart,
+              isNull(action.payload.cart_id) ? 'product_id' : 'cart_id',
+            )
+          : [action.payload];
+      return filteredCart;
+    } else {
+      if (action.payload.directPurchase) {
+        const filteredCart = [last(filter(cart, (e) => e.directPurchase))];
+        return filteredCart;
+      } else {
+        const filteredCart = filter(cart, (e) => !e.directPurchase);
+        return filteredCart;
       }
-      return e;
-    } else if (e.type == 'service') {
-      if (e.service_id === action.payload.service_id) {
-        return action.payload;
-      }
-      return e;
     }
-  });
-  const filteredCart =
-    cart.length > 0
-      ? uniqBy(
-          cleanCart,
-          isNull(action.payload.cart_id) ? 'product_id' : 'cart_id',
-        )
-      : [action.payload];
-  return filteredCart;
+  } finally {
+    if (action.payload.directPurchase) {
+      yield call(
+        enableErrorMessage,
+        I18n.t('you_can_add_more_than_one_product_to_cart'),
+      );
+    } else {
+    }
+  }
 }
 
 export function* startClearCartScenario() {

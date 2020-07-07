@@ -1,6 +1,6 @@
-import React, {Fragment, useState, useMemo, useCallback} from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height, bottomContentInset} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
@@ -72,6 +72,7 @@ const NormalProductShowScreen = () => {
           isOnSale={product.isOnSale}
           isReallyHot={product.isReallyHot}
           hasStock={product.has_stock}
+          directPurchase={product.directPurchase}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />

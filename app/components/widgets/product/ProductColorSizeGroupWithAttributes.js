@@ -6,7 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Icon, Input, CheckBox} from 'react-native-elements';
+import {Button, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {iconSizes, text} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
@@ -20,6 +20,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
+import WrapAsGiftWidget from './WrapAsGiftWidget';
 
 const ProductColorSizeGroupWithAttributes = ({element}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -183,110 +184,24 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           colorVisible={colorVisible}
           setColorVisible={setColorVisible}
         />
-        {element.wrap_as_gift ? (
-          <View>
-            <CheckBox
-              title={I18n.t('wrap_as_gift', {item: settings.gift_fee})}
-              titleProps={{
-                style: {
-                  fontFamily: text.font,
-                  fontSize: text.medium,
-                  paddingLeft: 5,
-                  paddingRight: 5,
-                },
-              }}
-              textStyle={{fontFamily: text.font, padding: 5}}
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
-              checkedColor={colors.btn_bg_theme_color}
-              checked={wrapGift}
-              onPress={() =>
-                !productAttribute || requestQty <= 0
-                  ? dispatch(enableWarningMessage(I18n.t('choose_size_or_qty')))
-                  : setWrapGift(!wrapGift)
-              }
-              // disabled={!productAttribute || requestQty <= 0}
-            />
-            {wrapGift ? (
-              <View
-                style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                <ImageLoaderContainer
-                  img={settings.gift_image}
-                  style={{width: 100, height: 100}}
-                />
-                <Input
-                  spellCheck={true}
-                  placeholder={
-                    giftMessage
-                      ? giftMessage
-                      : I18n.t('wrap_as_gift_message', {
-                          item: settings.gift_fee,
-                        })
-                  }
-                  defaultValue={giftMessage ? giftMessage : null}
-                  inputContainerStyle={{
-                    borderWidth: 1,
-                    borderColor: 'lightgrey',
-                    borderRadius: 5,
-                    paddingLeft: 15,
-                    marginTop: 5,
-                    height: 80,
-                    width: '72%',
-                  }}
-                  inputStyle={{
-                    fontFamily: text.font,
-                    fontSize: text.medium,
-                    textAlign: isRTL ? 'right' : 'left',
-                  }}
-                  disabled={!productAttribute || requestQty <= 0}
-                  // editable={!productAttribute || requestQty <= 0}
-                  shake={true}
-                  keyboardType="default"
-                  multiline={true}
-                  numberOfLines={3}
-                  onChangeText={(e) => setGiftMessage(e)}
-                />
-              </View>
-            ) : null}
-          </View>
-        ) : null}
-        <View style={{width: '105%', alignSelf: 'center', marginTop: 5}}>
-          <Input
-            spellCheck={true}
-            placeholder={
-              notes
-                ? notes
-                : I18n.t('add_notes_shoulders_height_and_other_notes')
-            }
-            defaultValue={notes ? notes : null}
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 5,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginTop: 5,
-              height: 80,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            disabled={!productAttribute || requestQty <= 0}
-            shake={true}
-            keyboardType="default"
-            multiline={true}
-            numberOfLines={3}
-            onChangeText={(notes) => setNotes(notes)}
+        {element.wrap_as_gift && (
+          <WrapAsGiftWidget
+            wrapGift={wrapGift}
+            setWrapGift={setWrapGift}
+            giftMessage={giftMessage}
+            setGiftMessage={setGiftMessage}
+            requestQty={requestQty}
+            productAttribute={productAttribute}
           />
-        </View>
+        )}
       </View>
-      {element.has_stock && element.is_available ? (
+      {element.has_stock && element.is_available && (
         <Button
           onPress={() =>
             dispatch(
               addToCart({
                 wrapGift,
+                directPurchase: element.directPurchase,
                 product_attribute_id: productAttribute.id,
                 cart_id: productAttribute.cart_id,
                 product_id: productAttribute.product_id,
@@ -307,7 +222,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           }
           disabled={!productAttribute || requestQty <= 0}
           raised
-          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
+          containerStyle={{width: '100%', marginTop: 10, marginBottom: 10}}
           buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
           title={I18n.t('add_to_cart')}
           titleStyle={{
@@ -315,12 +230,40 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             color: colors.btn_text_theme_color,
           }}
         />
-      ) : null}
+      )}
+      <View style={{width: '105%', alignSelf: 'center'}}>
+        <Input
+          spellCheck={true}
+          placeholder={
+            notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
+          }
+          defaultValue={notes ? notes : null}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            // marginTop: 5,
+            height: 80,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          disabled={!productAttribute || requestQty <= 0}
+          shake={true}
+          keyboardType="default"
+          multiline={true}
+          numberOfLines={3}
+          onChangeText={(notes) => setNotes(notes)}
+        />
+      </View>
     </View>
   );
 };
 
-export default ProductColorSizeGroupWithAttributes;
+export default React.memo(ProductColorSizeGroupWithAttributes);
 
 ProductColorSizeGroupWithAttributes.propTypes = {
   element: PropTypes.object.isRequired,

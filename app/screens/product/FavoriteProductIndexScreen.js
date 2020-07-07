@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 import {images} from '../../constants/images';
+import {ABATI} from './../../../app';
 
 const FavoriteProductIndexScreen = () => {
   const {productFavorites} = useSelector((state) => state);
@@ -20,7 +21,7 @@ const FavoriteProductIndexScreen = () => {
         showFooter={true}
         showSearch={false}
         showProductsFilter={false}
-        emptyListImage={images.emptyProductFavorite}
+        emptyListImage={ABATI ? images.emptyProductFavorite : null}
       />
     </BgContainer>
   );

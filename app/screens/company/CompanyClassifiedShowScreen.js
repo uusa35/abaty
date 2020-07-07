@@ -37,7 +37,6 @@ const CompanyClassifiedShowScreen = () => {
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
-  const [classifieds, setClassifieds] = useState([]);
 
   useMemo(() => {
     const currentRoutes = [

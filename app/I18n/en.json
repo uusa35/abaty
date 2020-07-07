@@ -397,7 +397,7 @@
   "videos" : "Videos",
   "featured_products" : "Featured Products",
   "error_while_loading_product" : "ُError occurred while loading product.",
-  "product_added_to_cart_successfully" : "product added to cart successfully",
+  "product_added_to_cart_successfully" : "Product added to cart successfully",
   "sku" : "SKU",
   "product_weight" : "Product Weight",
   "contactus_order_by_phone" : " Order by Phone",
@@ -616,5 +616,8 @@
     "email_required" : "Email is required and must be in correct form"
   },
   "no_" : "No %{item}",
-  "no_more_" : "No More %{item}"
+  "no_more_" : "No More %{item}",
+  "cart_error_u_cant_add_this_item_now" : "Cart Error, Currently You can not add such item to cart.",
+  "you_can_add_more_than_one_product_to_cart" : "This product can only be directly purchased. You can not add more products to Shopping Cart with this item.",
+  "direct_purchase" : "Direct Purchase"
 }

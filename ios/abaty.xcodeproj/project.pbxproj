@@ -27,8 +27,8 @@
 		3359C50F727C4CC5AB2B90AA /* Changa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 051BFB2FDB904BE58C865C3A /* Changa-Bold.ttf */; };
 		3A9CAB5F28664848BC1841A2 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EBAF13FB2C849A09C3D01D1 /* Almarai-Light.ttf */; };
 		3FE2E1CA6D72ED555938CD8F /* libPods-abaty-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23539816D8A999A8EDAA5394 /* libPods-abaty-tvOS.a */; };
-		501C70082486DFBB0087C1EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 501C70072486DFBB0087C1EC /* GoogleService-Info.plist */; };
 		501C700B2486DFC80087C1EC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C700A2486DFC80087C1EC /* File.swift */; };
+		505E27A724B3237700856CAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505E27A624B3237700856CAC /* GoogleService-Info.plist */; };
 		50EE9939CB4F443597A54D2C /* ArchivoNarrow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD6F31EFE6694780967532CF /* ArchivoNarrow-Bold.ttf */; };
 		51B214500AB24D4381647FA9 /* ArchivoNarrow-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E401FC73E5A74F488157CAB8 /* ArchivoNarrow-SemiBoldItalic.ttf */; };
 		53402EE4F15F44A68BA303B7 /* Comfortaa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26B7694A091246798617CAA3 /* Comfortaa-Medium.ttf */; };
@@ -121,10 +121,10 @@
 		4A84B550956641ACB4944663 /* Tajawal-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Tajawal-Black.ttf"; path = "../assets/fonts/Tajawal-Black.ttf"; sourceTree = "<group>"; };
 		4D487AD48A654413A5FC7C40 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		4F96AADF226C4F76A80DDC8B /* Tajawal-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Tajawal-Regular.ttf"; path = "../assets/fonts/Tajawal-Regular.ttf"; sourceTree = "<group>"; };
-		501C70072486DFBB0087C1EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../abaty_back/ios/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		501C70092486DFC70087C1EC /* abaty-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "abaty-Bridging-Header.h"; sourceTree = "<group>"; };
 		501C700A2486DFC80087C1EC /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		501C700C2486E2590087C1EC /* Abaty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Abaty.entitlements; path = abaty/Abaty.entitlements; sourceTree = "<group>"; };
+		505E27A624B3237700856CAC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Desktop/apps/abati/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		569A3BF61D2440E7ADB23526 /* ArchivoNarrow-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-SemiBold.ttf"; path = "../assets/fonts/ArchivoNarrow-SemiBold.ttf"; sourceTree = "<group>"; };
 		5D75578371844E99BD5B078D /* ArchivoNarrow-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-BoldItalic.ttf"; path = "../assets/fonts/ArchivoNarrow-BoldItalic.ttf"; sourceTree = "<group>"; };
 		5D9EF50B9E14476E8A591775 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
@@ -287,8 +287,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				505E27A624B3237700856CAC /* GoogleService-Info.plist */,
 				501C700A2486DFC80087C1EC /* File.swift */,
-				501C70072486DFBB0087C1EC /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* abaty */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* abatyTests */,
@@ -529,7 +529,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				501C70082486DFBB0087C1EC /* GoogleService-Info.plist in Resources */,
 				DE03901F11A5405B91C6A735 /* AR-Almarai-Font.ttf in Resources */,
 				59FB5304BA9F4F5D801F1B1F /* AR-BBC-Regular.ttf in Resources */,
 				CDD35E8ACEB74C66895D861C /* Actor-Regular.ttf in Resources */,
@@ -569,6 +568,7 @@
 				F89769F8D1B249C292861BC1 /* Tajawal-ExtraLight.ttf in Resources */,
 				910D53828276408DBE700CFB /* Tajawal-Light.ttf in Resources */,
 				53BB1158A5CD4DE68FC8EC2E /* Tajawal-Medium.ttf in Resources */,
+				505E27A724B3237700856CAC /* GoogleService-Info.plist in Resources */,
 				011F9D1FFBFB47808AF37FD6 /* Tajawal-Regular.ttf in Resources */,
 				9F71BB95A16B404CB54E5E7E /* Varela-Regular.ttf in Resources */,
 				75D3C6358E314BB5BED5C8E7 /* bein-ar-black_0.ttf in Resources */,

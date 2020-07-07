@@ -37,6 +37,7 @@ const TagWidget = ({
           fontFamily: text.font,
           fontSize: text.smaller,
           color: textColor,
+          fontWeight: 'bold',
         },
       }}
     />
