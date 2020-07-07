@@ -501,10 +501,10 @@ PODS:
     - React
   - RNScreens (2.9.0):
     - React
-  - RNSentry (1.5.0):
+  - RNSentry (1.6.1):
     - React
-    - Sentry (~> 5.1.4)
-  - RNShare (3.6.0):
+    - Sentry (~> 5.1.8)
+  - RNShare (3.7.0):
     - React
   - RNSnackbar (2.2.3):
     - React
@@ -518,9 +518,9 @@ PODS:
   - SDWebImageWebPCoder (0.4.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.5)
-  - Sentry (5.1.6):
-    - Sentry/Core (= 5.1.6)
-  - Sentry/Core (5.1.6)
+  - Sentry (5.1.8):
+    - Sentry/Core (= 5.1.8)
+  - Sentry/Core (5.1.8)
   - SRSRadialGradient (1.0.0):
     - React
   - SSZipArchive (2.2.3)
@@ -883,14 +883,14 @@ SPEC CHECKSUMS:
   RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
-  RNSentry: edba19169f665609fb092ba5eaf4be3c0776f50a
-  RNShare: 953e60d1a179b214ae50b22a1b1f2e50ec549e6d
+  RNSentry: 57824da1293d03966605d682d5868b11aa1b6e5a
+  RNShare: a1d5064df7a0ebe778d001869b3f0a124bf0a491
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8
-  Sentry: e5796ec31a481474d2f94553213278470f9e302d
+  Sentry: 795e8ffe1c45d9d20b3aa398774d7ea6a443fb05
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   TOCropViewController: 20a14b6a7a098308bf369e7c8d700dc983a974e6

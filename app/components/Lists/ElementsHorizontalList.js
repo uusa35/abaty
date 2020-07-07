@@ -369,16 +369,102 @@ const ElementsHorizontalList = ({
     setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
   }, [elements]);
 
+  const renderFooter = () => {
+    return showFooter && !validate.isEmpty(items) ? (
+      <NoMoreElements
+        title={I18n.t('no_more_', {item: I18n.t(type)})}
+        isLoading={isLoading}
+      />
+    ) : (
+      isLoading && <ActivityIndicator size={iconSizes.larger} />
+    );
+  };
+
+  const renderHeader = () => {
+    return (
+      <Fragment>
+        {!validate.isEmpty(items) && (
+          <View
+            style={{
+              alignSelf: 'center',
+              width: '100%',
+              backgroundColor: 'transparent',
+              margin: showSearch ? '2%' : 0,
+            }}>
+            {showSearch && (
+              <TopSearchInput search={search} setSearch={setSearch} />
+            )}
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              {showSortSearch && (
+                <SearchSort
+                  sort={sort}
+                  sortModal={sortModal}
+                  setSortModal={setSortModal}
+                  setSort={setSort}
+                  showProductsFilter={showProductsFilter}
+                  showClassifiedsFilter={showClassifiedsFilter}
+                />
+              )}
+              {!validate.isEmpty(elementsWithMap) && (HOMEKEY || EXPO) && (
+                <ClassifiedsMapView
+                  mapModal={mapModal}
+                  setMapModal={setMapModal}
+                  elements={elementsWithMap}
+                />
+              )}
+            </View>
+            {showTitle && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginTop: 10,
+                  padding: 5,
+                  paddingRight: 25,
+                }}>
+                <Text
+                  style={[
+                    styles.mainTitle,
+                    {color: colors.header_one_theme_color},
+                  ]}>
+                  {title ? title : I18n.t('products')}
+                </Text>
+                {showTitleIcons && (
+                  <Icon
+                    type="entypo"
+                    name="select-arrows"
+                    size={iconSizes.smaller}
+                    onPress={() => setSortModal(true)}
+                  />
+                )}
+              </View>
+            )}
+          </View>
+        )}
+      </Fragment>
+    );
+  };
+
+  const renderEmptyComponent = () => {
+    return (
+      <EmptyListWidget
+        emptyAnimation={animations.emptyShape}
+        emptyImage={emptyListImage}
+        title={I18n.t('no_', {item: I18n.t(type)})}
+      />
+    );
+  };
+
   return (
     <Fragment>
       <FlatList
-        ListEmptyComponent={
-          <EmptyListWidget
-            emptyAnimation={animations.emptyShape}
-            emptyImage={emptyListImage}
-            title={I18n.t('no_', {item: I18n.t(type)})}
-          />
-        }
+        ListEmptyComponent={() => renderEmptyComponent()}
         scrollEnabled={showFooter}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
@@ -411,90 +497,16 @@ const ElementsHorizontalList = ({
           backgroundColor: 'white',
         }}
         renderItem={({item}) => renderItem(item)}
-        ListFooterComponent={() =>
-          showFooter && !validate.isEmpty(items) ? (
-            <NoMoreElements
-              title={I18n.t('no_more_', {item: I18n.t(type)})}
-              isLoading={isLoading}
-            />
-          ) : (
-            isLoading && <ActivityIndicator size={iconSizes.larger} />
-          )
-        }
+        ListFooterComponent={() => renderFooter()}
+        initialNumToRender={12}
+        maxToRenderPerBatch={12}
         ListFooterComponentStyle={{
           marginBottom: bottomContentInset,
         }}
         ListHeaderComponentStyle={{
           backgroundColor: 'white',
         }}
-        ListHeaderComponent={
-          <Fragment>
-            {!validate.isEmpty(items) && (
-              <View
-                style={{
-                  alignSelf: 'center',
-                  width: '100%',
-                  backgroundColor: 'transparent',
-                  margin: showSearch ? '2%' : 0,
-                }}>
-                {showSearch && (
-                  <TopSearchInput search={search} setSearch={setSearch} />
-                )}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  {showSortSearch && (
-                    <SearchSort
-                      sort={sort}
-                      sortModal={sortModal}
-                      setSortModal={setSortModal}
-                      setSort={setSort}
-                      showProductsFilter={showProductsFilter}
-                      showClassifiedsFilter={showClassifiedsFilter}
-                    />
-                  )}
-                  {!validate.isEmpty(elementsWithMap) && (HOMEKEY || EXPO) && (
-                    <ClassifiedsMapView
-                      mapModal={mapModal}
-                      setMapModal={setMapModal}
-                      elements={elementsWithMap}
-                    />
-                  )}
-                </View>
-                {showTitle && (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      marginTop: 10,
-                      padding: 5,
-                      paddingRight: 25,
-                    }}>
-                    <Text
-                      style={[
-                        styles.mainTitle,
-                        {color: colors.header_one_theme_color},
-                      ]}>
-                      {title ? title : I18n.t('products')}
-                    </Text>
-                    {showTitleIcons && (
-                      <Icon
-                        type="entypo"
-                        name="select-arrows"
-                        size={iconSizes.smaller}
-                        onPress={() => setSortModal(true)}
-                      />
-                    )}
-                  </View>
-                )}
-              </View>
-            )}
-          </Fragment>
-        }
+        ListHeaderComponent={() => renderHeader()}
       />
       <SortByModal
         setSortModal={setSortModal}

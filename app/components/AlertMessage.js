@@ -1,5 +1,5 @@
-import React, {useState, useMemo, useContext} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useMemo} from 'react';
+import {View, Text} from 'react-native';
 import {text, width, height} from './../constants/sizes';
 import {isIOS} from './../constants';
 import PropTypes from 'prop-types';

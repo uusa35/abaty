@@ -1135,7 +1135,7 @@
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.1.0.tgz#0e81ce56b4883b4b2a3001ebe1ab298b84237204"
   integrity sha512-afmTuJrylUU/0OtqzaRkbyYFFNgCF73Bvel/sw90pvGrWIZ+vyoIJqA6eMSoA6+nb443kTmulmBtC9NerXboNg==
 
-"@sentry/browser@^5.16.1":
+"@sentry/browser@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.19.0.tgz#9189b6633fe45e54325e40b39345d9eabd171e4a"
   integrity sha512-Cz8PnzC5NGfpHIGCmHLgA6iDEBVELwo4Il/iFweXjs4+VL4biw62lI32Q4iLCCpmX0t5UvrWBOnju2v8zuFIjA==
@@ -1156,7 +1156,7 @@
     progress "^2.0.3"
     proxy-from-env "^1.1.0"
 
-"@sentry/core@5.19.0", "@sentry/core@^5.16.1":
+"@sentry/core@5.19.0", "@sentry/core@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.19.0.tgz#31b08a0b46ae1ee6863447225b401ac2a777774c"
   integrity sha512-ry1Zms6jrVQPEwmfywItyUhOgabPrykd8stR1x/u2t1YiISWlR813fE5nzdwgW5mxEitXz/ikTwvrfK3egsDWQ==
@@ -1167,7 +1167,7 @@
     "@sentry/utils" "5.19.0"
     tslib "^1.9.3"
 
-"@sentry/hub@5.19.0", "@sentry/hub@^5.16.1":
+"@sentry/hub@5.19.0", "@sentry/hub@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.19.0.tgz#f38e7745a4980d9fa6c5baeca5605e7e6fecd5ac"
   integrity sha512-UFaQLa1XAa02ZcxUmN9GdDpGs3vHK1LpOyYooimX8ttWa4KAkMuP+O5uXH1TJabry6o/cRwYisg2k6PBSy8gxw==
@@ -1176,7 +1176,7 @@
     "@sentry/utils" "5.19.0"
     tslib "^1.9.3"
 
-"@sentry/integrations@^5.16.1":
+"@sentry/integrations@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-5.19.0.tgz#2efe8eaa8d1c26ba92f99af941c9dd922efbb94e"
   integrity sha512-vCmej1zfumVRKnxKw0RlwVjZ/TWBJZTAWIzqoAxXZyo67bKRy3fP408nj0QL5QAWKw+sUelqvzNqvY94cy+b0w==
@@ -1195,24 +1195,24 @@
     tslib "^1.9.3"
 
 "@sentry/react-native@^1.4.2":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-1.5.0.tgz#3ac13d3bbff4c5924cd5ff93d645e949abbbcd60"
-  integrity sha512-SvcS34fRU74nZIcA9VcyCHKcASTvu8+UW5D2tQ/rQ7+mLsevPKTMiFvYc2yOtxu6dktWa9yM85Jg5J74VchjFw==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-1.6.1.tgz#e68bed4b9e0f648a3481d090b92e8edda9512e35"
+  integrity sha512-WVcxUZiv6hv9hLu1QXwXAyMpFCt5XhyvYojEtTuxnPssQ+VBapB+DVuE1RgNa2xbWEyCqjj0MDHwIZ7YFN6y7w==
   dependencies:
-    "@sentry/browser" "^5.16.1"
-    "@sentry/core" "^5.16.1"
-    "@sentry/hub" "^5.16.1"
-    "@sentry/integrations" "^5.16.1"
-    "@sentry/types" "^5.16.1"
-    "@sentry/utils" "^5.16.1"
+    "@sentry/browser" "^5.19.0"
+    "@sentry/core" "^5.19.0"
+    "@sentry/hub" "^5.19.0"
+    "@sentry/integrations" "^5.19.0"
+    "@sentry/types" "^5.19.0"
+    "@sentry/utils" "^5.19.0"
     "@sentry/wizard" "^1.1.4"
 
-"@sentry/types@5.19.0", "@sentry/types@^5.16.1":
+"@sentry/types@5.19.0", "@sentry/types@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.19.0.tgz#30c6a05040b644d90337ef8b50d9d59c0872744d"
   integrity sha512-NlHLS9mwCEimKUA5vClAwVhXFLsqSF3VJEXU+K61fF6NZx8zfJi/HTrIBtoM4iNSAt9o4XLQatC1liIpBC06tg==
 
-"@sentry/utils@5.19.0", "@sentry/utils@^5.16.1":
+"@sentry/utils@5.19.0", "@sentry/utils@^5.19.0":
   version "5.19.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.19.0.tgz#0e01f84aa67a1cf2ec71faab670230918ea7e9aa"
   integrity sha512-EU/T9aJrI8isexRnyDx5InNw/HjSQ0nKI7YWdiwfFrJusqQ/uisnCGK7vw6gGHDgiAHMXW3TJ38NHpNBin6y7Q==
@@ -1263,9 +1263,9 @@
     "@babel/types" "^7.0.0"
 
 "@types/babel__traverse@*", "@types/babel__traverse@^7.0.6":
-  version "7.0.12"
-  resolved "https://registry.yarnpkg.com/@types/babel__traverse/-/babel__traverse-7.0.12.tgz#22f49a028e69465390f87bb103ebd61bd086b8f5"
-  integrity sha512-t4CoEokHTfcyfb4hUaF9oOHu9RmmNWnm1CP0YmMqOOfClKascOmvlEM736vlqeScuGvBDsHkf8R2INd4DWreQA==
+  version "7.0.13"
+  resolved "https://registry.yarnpkg.com/@types/babel__traverse/-/babel__traverse-7.0.13.tgz#1874914be974a492e1b4cb00585cabb274e8ba18"
+  integrity sha512-i+zS7t6/s9cdQvbqKDARrcbrPvtJGlbYsMkazo03nTAK3RX9FNrLllXys22uiTGJapPOTZTQ35nHh4ISph4SLQ==
   dependencies:
     "@babel/types" "^7.3.0"
 
@@ -1318,9 +1318,9 @@
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
 "@types/node@^14.0.5":
-  version "14.0.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.14.tgz#24a0b5959f16ac141aeb0c5b3cd7a15b7c64cbce"
-  integrity sha512-syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==
+  version "14.0.18"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.18.tgz#5111b2285659442f9f95697386a2b42b875bd7e9"
+  integrity sha512-0Z3nS5acM0cIV4JPzrj9g/GH0Et5vmADWtip3YOXOp1NpOLU8V3KoZDc8ny9c1pe/YSYYzQkAWob6dyV/EWg4g==
 
 "@types/prop-types@*":
   version "15.7.3"
@@ -1336,9 +1336,9 @@
     "@types/react-native" "*"
 
 "@types/react-native@*":
-  version "0.62.16"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.62.16.tgz#17b05b37482c70126055172e57f5eb110cff7087"
-  integrity sha512-0f5MF4zzqZpZpDmwTmGS0Pd206k2K3rsVjaz0/iuBPZkpWC9r8+/A6WvTTJXgfP2mhRUcMfAqEY0iyz7Xk75qw==
+  version "0.62.17"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.62.17.tgz#78e630692557ae82a106dab7682560a8b541c49a"
+  integrity sha512-nkWG9oYS0wNiobzY11GOAjG/spV4vCPIbW+u1QIXx+wnQQ4EhkFz6lqqvncO3puXMzwkRhEGawq/bImMReA/vQ==
   dependencies:
     "@types/react" "*"
 
@@ -4105,9 +4105,9 @@ graceful-fs@~4.1.11:
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
 
 graphql@^14.0.0:
-  version "14.6.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.6.0.tgz#57822297111e874ea12f5cd4419616930cd83e49"
-  integrity sha512-VKzfvHEKybTKjQVpTFrA5yUq2S9ihcZvfJAtsDBBCuV6wauPu1xl/f9ehgVf0FcEJJs4vz6ysb/ZMkGigQZseg==
+  version "14.7.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.7.0.tgz#7fa79a80a69be4a31c27dda824dc04dac2035a72"
+  integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
   dependencies:
     iterall "^1.2.2"
 
@@ -7666,9 +7666,9 @@ react-native-scrollable-mixin@^1.0.1:
   integrity sha1-NKMhZ7ZCSFlBVP0NaosD8idAVI4=
 
 react-native-share@^3.3.2:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.6.0.tgz#ea5d13de818683bb301475492dad921a64c97b46"
-  integrity sha512-K++I0u67yNqXMaJdDQq8f6cA1Lm0P4WoGIFEiWj+zP1faot9cQk7hCGtQNrEs80TeTHDDCBYpAT5iqZ94nP5Nw==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-3.7.0.tgz#5b5bcc87530ddaaabcb8b70a9366dce88a6f9495"
+  integrity sha512-MCTGiPcBfelrnX/7n82N5eQAl31F6xljqFK2CWbPDTSt7bbJUZH3Znvy8KYePLYqAr7HVrk621eanQN6vSFMzA==
 
 react-native-snackbar@^2.2.2:
   version "2.2.3"

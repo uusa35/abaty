@@ -54,9 +54,7 @@ const UserInfoWidgetElement = ({
           style={{
             flexDirection: 'row',
             alignItems: 'baseline',
-            marginLeft: isRTL ? 40 : 0,
-            marginRight: isRTL ? 40 : 0,
-            minHeight: 50,
+            minHeight: 35,
           }}>
           <View>
             <Text
@@ -64,6 +62,7 @@ const UserInfoWidgetElement = ({
                 textAlign: 'left',
                 fontFamily: text.font,
                 fontSize: text.medium,
+                paddingLeft: 40,
               }}>
               {element}
             </Text>

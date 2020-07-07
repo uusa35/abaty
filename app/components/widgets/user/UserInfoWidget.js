@@ -334,8 +334,8 @@ const UserInfoWidget = ({
       {!validate.isEmpty(description) ? (
         <UserInfoWidgetElement
           elementName="description"
-          iconName="ios-list-box"
-          type="ionicon"
+          iconName="description"
+          type="material"
           element={description}
         />
       ) : null}
