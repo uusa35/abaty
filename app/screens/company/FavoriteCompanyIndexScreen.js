@@ -28,8 +28,11 @@ const FavoriteCompanyIndexScreen = () => {
         <ElementsVerticalList
           elements={!guest ? auth.myFannedList : []}
           searchParams={{}}
-          showMore={true}
-          type="favoriteCompanies"
+          showMore={false}
+          showRefresh={false}
+          showSearch={true}
+          showFooter={true}
+          type="company"
           noElementsTitle={I18n.t('no_companies_favorites')}
         />
       </View>

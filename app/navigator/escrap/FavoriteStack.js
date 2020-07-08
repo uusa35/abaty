@@ -68,7 +68,7 @@ export const FavoriteStack = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
       animationEnabled: isIOS,

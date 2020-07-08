@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,15 +9,20 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 const ProductIndexAllScreen = () => {
   const {products} = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
 
+  useMemo(() => {
+    setCurrentElements(products);
+  }, []);
+
   return (
     <BgContainer>
       <ElementsHorizontalList
-        elements={products}
+        elements={currentElements}
         searchParams={{}}
         type="product"
         showRefresh={true}

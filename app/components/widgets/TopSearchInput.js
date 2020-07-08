@@ -29,6 +29,8 @@ const TopSearchInput = ({search, setSearch}) => {
         paddingRight: 15,
         paddingLeft: 15,
         borderColor: '#E4E4E5',
+        marginTop: 10,
+        marginBottom: 2,
       }}
       onChangeText={(e) => setSearch(e)}
       value={search}
@@ -36,4 +38,4 @@ const TopSearchInput = ({search, setSearch}) => {
   );
 };
 
-export default TopSearchInput;
+export default React.memo(TopSearchInput);

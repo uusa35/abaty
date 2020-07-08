@@ -1,17 +1,22 @@
-import React from 'react';
+import React, {useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
+
+  useMemo(() => {
+    setCurrentSearchParams(searchParams);
+  }, []);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
         elements={searchProducts}
-        searchParams={searchParams}
+        searchParams={currentSearchParams}
         type="product"
         columns={2}
         showRefresh={true}

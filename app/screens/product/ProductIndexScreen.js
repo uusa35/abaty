@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
-import ProductList from '../../components/widgets/product/ProductList';
 import PropTypes from 'prop-types';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProductIndexScreen = () => {
   const {searchProducts, searchParams} = useSelector((state) => state);
+  const [currentSearchParams, setCurrentSearchParams] = useState([]);
+
+  useEffect(() => {
+    setCurrentSearchParams(searchParams);
+  }, []);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
         elements={searchProducts}
-        searchParams={searchParams}
+        searchParams={currentSearchParams}
         type="product"
         columns={2}
         showRefresh={true}

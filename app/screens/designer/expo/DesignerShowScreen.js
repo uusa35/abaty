@@ -39,6 +39,7 @@ const DesignerShowScreen = () => {
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
 
   useMemo(() => {
     const currentRoutes = [
@@ -67,6 +68,7 @@ const DesignerShowScreen = () => {
       dispatch(enableWarningMessage(I18n.t('element_does_not_exist')));
       dispatch(navigation.goBack());
     }
+    setCurrentSearchParams(searchParams);
   }, [designer]);
 
   useMemo(() => {
@@ -176,7 +178,7 @@ const DesignerShowScreen = () => {
               products: () => (
                 <ElementsHorizontalList
                   elements={products}
-                  searchParams={searchParams}
+                  searchParams={currentSearchParams}
                   type="product"
                   columns={2}
                   showSearch={false}

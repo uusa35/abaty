@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {width, height, text} from './../../constants/sizes';
+import {width, text} from './../../constants/sizes';
 import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
 import SvgAnimatedLinearGradient from 'react-native-svg-animated-linear-gradient';
@@ -24,7 +24,7 @@ const LoadingProfileView = () => {
       <View style={{backgroundColor: 'white'}}>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
-          height={width / 3}
+          height={width}
           width={width}
           style={{marginBottom: 10, alignSelf: 'center'}}>
           <Rect
@@ -32,7 +32,7 @@ const LoadingProfileView = () => {
             x="0"
             y="0"
             width={width}
-            height="250"
+            height={width}
             fill="rgb(0,0,255)"
             strokeWidth="3"
             stroke="rgb(0,0,0)"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,11 +9,16 @@ import {ABATI} from './../../../app';
 
 const FavoriteProductIndexScreen = () => {
   const {productFavorites} = useSelector((state) => state);
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useEffect(() => {
+    setCurrentElements(productFavorites);
+  }, []);
 
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
-        elements={productFavorites}
+        elements={currentElements}
         searchParams={{}}
         type="product"
         searchElements={{}}

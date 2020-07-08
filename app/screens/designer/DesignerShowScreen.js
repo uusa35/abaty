@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import HeaderImageScrollView, {
@@ -44,6 +44,11 @@ const DesignerShowScreen = ({
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
   const [collectedCategories, setCollectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
+
+  useEffect(() => {
+    setCurrentSearchParams(searchParams);
+  }, []);
 
   useMemo(() => {
     if (element) {
@@ -158,7 +163,7 @@ const DesignerShowScreen = ({
               products: () => (
                 <ElementsHorizontalList
                   elements={products}
-                  searchParams={searchParams}
+                  searchParams={currentSearchParams}
                   type="product"
                   columns={2}
                   showSearch={false}

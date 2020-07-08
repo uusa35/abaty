@@ -14,6 +14,8 @@ import {
   Text,
   ActivityIndicator,
   StyleSheet,
+  Keyboard,
+  ScrollView,
 } from 'react-native';
 import {
   getCompany,
@@ -57,6 +59,7 @@ import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {setElementType} from '../../redux/actions';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
+import {isIOS} from '../../constants';
 
 const ElementsHorizontalList = ({
   elements,
@@ -121,9 +124,9 @@ const ElementsHorizontalList = ({
               setItems(elementsGroup);
             })
             .catch((e) => {
-              if (__DEV__) {
-                console.log('the e ElementsHorizontalList', e);
-              }
+              // if (__DEV__) {
+              //   console.log('the e ElementsHorizontalList', e);
+              // }
             });
           break;
         case 'company':
@@ -135,9 +138,9 @@ const ElementsHorizontalList = ({
               setItems(elementsGroup);
             })
             .catch((e) => {
-              if (__DEV__) {
-                console.log('the e ElementsHorizontalList', e);
-              }
+              // if (__DEV__) {
+              //   console.log('the e ElementsHorizontalList', e);
+              // }
             });
           break;
         case 'classified':
@@ -149,9 +152,9 @@ const ElementsHorizontalList = ({
               setItems(elementsGroup);
             })
             .catch((e) => {
-              if (__DEV__) {
-                console.log('the e ElementsHorizontalList', e);
-              }
+              // if (__DEV__) {
+              //   console.log('the e ElementsHorizontalList', e);
+              // }
             });
           break;
         default:
@@ -391,9 +394,6 @@ const ElementsHorizontalList = ({
               backgroundColor: 'transparent',
               margin: showSearch ? '2%' : 0,
             }}>
-            {showSearch && (
-              <TopSearchInput search={search} setSearch={setSearch} />
-            )}
             <View
               style={{
                 flexDirection: 'row',
@@ -463,18 +463,19 @@ const ElementsHorizontalList = ({
 
   return (
     <Fragment>
+      {showSearch && <TopSearchInput search={search} setSearch={setSearch} />}
       <FlatList
         ListEmptyComponent={() => renderEmptyComponent()}
         scrollEnabled={showFooter}
-        keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
+        keyboardShouldPersistTaps="never"
         horizontal={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[0]}
         contentInset={{bottom: bottomContentInset}}
-        style={{paddingBottom: bottomContentInset}}
+        style={{paddingBottom: bottomContentInset, width: '100%'}}
         numColumns={columns}
         data={uniqBy(items, 'id')}
         keyExtractor={(item, index) => index.toString()}
@@ -498,8 +499,8 @@ const ElementsHorizontalList = ({
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() => renderFooter()}
-        initialNumToRender={12}
-        maxToRenderPerBatch={12}
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
         ListFooterComponentStyle={{
           marginBottom: bottomContentInset,
         }}

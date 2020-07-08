@@ -2,7 +2,7 @@ export const images = {
   abati: require('./../../assets/images/abati.jpeg'),
   mallr: require('./../../assets/images/mallr.jpeg'),
   expo: require('./../../assets/images/expo.png'),
-  escrap: require('./../../assets/images/escrap.jpeg'),
+  escrap: require('./../../assets/images/escrap_sm.jpeg'),
   homekey: require('./../../assets/images/homekey.jpeg'),
   pin: require('./../../assets/images/pin.png'),
   emptyProductFavorite: require('./../../assets/images/empty_favorite.jpeg'),

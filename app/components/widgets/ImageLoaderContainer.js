@@ -4,7 +4,6 @@ import {images} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {isNull} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import FastImage from 'react-native-fast-image';
 
 const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
   const [imageLoading, setImageLoading] = useState(true);
@@ -23,6 +22,7 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
     />
   );
 };
+
 export default React.memo(ImageLoaderContainer);
 
 ImageLoaderContainer.propTypes = {

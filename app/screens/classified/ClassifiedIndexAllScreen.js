@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllClassifieds} from '../../redux/actions/classified';
@@ -8,15 +8,20 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 const ClassifiedIndexAllScreen = () => {
   const {classifieds} = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
     dispatch(getAllClassifieds());
   }, []);
 
+  useMemo(() => {
+    setCurrentElements(classifieds);
+  }, []);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
-        elements={classifieds}
+        elements={currentElements}
         showName={true}
         searchElements={{}}
         showSearch={true}

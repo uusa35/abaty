@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,12 +9,20 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 
 const ClassifiedIndexScreen = () => {
   const {searchClassifieds, searchParams} = useSelector((state) => state);
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useEffect(() => {
+    setCurrentSearchParams(searchParams);
+    setCurrentElements(searchClassifieds);
+  }, []);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
-        elements={searchClassifieds}
+        elements={currentElements}
         showName={true}
-        searchParams={searchParams}
+        searchParams={currentSearchParams}
         showSearch={true}
         showClassifiedsFilter={true}
         showSortSearch={true}

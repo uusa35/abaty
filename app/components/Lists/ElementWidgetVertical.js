@@ -17,27 +17,10 @@ const ElementWidgetVertical = ({
   thumb,
   handleClick,
 }) => {
-  const [searchParams, setSearchParams] = useState({});
-
-  useMemo(() => {
-    switch (type) {
-      case 'designer':
-        setSearchParams({user_id: element.id});
-        break;
-      case 'company':
-        setSearchParams({user_id: element.id});
-        break;
-      case 'category':
-        setSearchParams({product_category_id: element.id, user_id});
-      default:
-        null;
-    }
-  }, [type]);
-
   return (
     <ListItem
-      onPress={() => handleClick(type, searchParams, element)}
-      leftAvatar={{size: iconSize, rounded: false, source: {uri: thumb}}}
+      onPress={() => handleClick(element)}
+      leftAvatar={{size: iconSizes.large, rounded: false, source: {uri: thumb}}}
       // rightAvatar={{source: {uri: user.thumb}}}
       title={title}
       chevronColor="white"
