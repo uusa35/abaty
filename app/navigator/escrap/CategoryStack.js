@@ -99,7 +99,7 @@ export const CategoryStack = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
       // headerStyle: {

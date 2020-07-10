@@ -1,22 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import BgContainer from '../../components/containers/BgContainer';
 import {reAuthenticate} from '../../redux/actions/user';
 import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
-import I18n from './../../I18n';
 import {View} from 'react-native-animatable';
 
 const FavoriteCompanyIndexScreen = () => {
   const {auth, guest} = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [currentFannedList, setCurrentFannedList] = useState(auth.myFannedList);
 
   useEffect(() => {
     if (!guest) {
       dispatch(reAuthenticate());
     }
   }, []);
+
+  useEffect(() => {
+    setCurrentFannedList(auth.myFannedList);
+  }, [auth]);
 
   return (
     <BgContainer enableMargin={true} marginVal="21%">
@@ -26,14 +30,13 @@ const FavoriteCompanyIndexScreen = () => {
         useNativeDriver={true}
         style={{flex: 1, marginTop: '5%'}}>
         <ElementsVerticalList
-          elements={!guest ? auth.myFannedList : []}
+          elements={currentFannedList}
           searchParams={{}}
           showMore={false}
-          showRefresh={false}
-          showSearch={true}
+          showRefresh={!guest}
+          showSearch={!guest}
           showFooter={true}
           type="company"
-          noElementsTitle={I18n.t('no_companies_favorites')}
         />
       </View>
     </BgContainer>

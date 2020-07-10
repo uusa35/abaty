@@ -46,7 +46,7 @@ const App = () => {
   const [appState, setAppState] = useState(AppState.currentState);
 
   useEffect(() => {
-    if (token.length > 5) {
+    if (!validate.isEmpty(token) && token.length > 5) {
       axiosInstance.defaults.headers['Authorization'] = `Bearer ${token}`;
     }
   }, [token]);

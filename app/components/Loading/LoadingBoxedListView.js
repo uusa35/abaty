@@ -138,12 +138,6 @@ const LoadingBoxedListView = () => {
 
 export default LoadingBoxedListView;
 
-LoadingBoxedListView.propTypes = {
-  isLoadingContent: PropTypes.bool.isRequired,
-  logo: PropTypes.string,
-  columns: PropTypes.number,
-};
-
 const styles = StyleSheet.create({
   activityContainer: {
     flex: 1,

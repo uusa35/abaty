@@ -434,7 +434,7 @@ export const HomeStack = createStackNavigator(
     },
   },
   {
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
       headerTransparent: false,

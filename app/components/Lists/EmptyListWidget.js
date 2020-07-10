@@ -3,10 +3,8 @@ import {StyleSheet, View, Image} from 'react-native';
 import {text, width} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import LottieView from 'lottie-react-native';
 import {adjustColor} from '../../helpers';
-import {ABATI} from './../../../app';
 import {images} from '../../constants/images';
 
 const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
@@ -15,7 +13,7 @@ const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
     <View style={styles.emptyCaseBtn}>
       {emptyImage ? (
         <Image
-          source={ABATI ? images.emptyProductFavorite : emptyImage}
+          source={images[`${emptyImage}`]}
           style={{width, height: width}}
           resizeMode="cover"
         />
@@ -52,13 +50,14 @@ const EmptyListWidget = ({emptyImage = null, emptyAnimation = null, title}) => {
               type="outline"
               buttonStyle={{
                 width: width - 50,
-                borderColor: adjustColor(colors.btn_bg_theme_color, 100),
+                borderColor: adjustColor(colors.btn_bg_theme_color, 50),
                 justifyContent: 'center',
                 alignItems: 'center',
+                backgroundColor: adjustColor(colors.icon_theme_color, 50),
               }}
               titleStyle={{
                 fontFamily: text.font,
-                color: adjustColor(colors.btn_bg_theme_color, 100),
+                color: adjustColor(colors.btn_bg_theme_color, 80),
                 alignSelf: 'center',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
   emptyCaseBtn: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    width,
     marginTop: '10%',
     alignSelf: 'center',
   },

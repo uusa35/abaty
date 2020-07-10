@@ -9,11 +9,11 @@ import {ABATI} from './../../../app';
 
 const FavoriteProductIndexScreen = () => {
   const {productFavorites} = useSelector((state) => state);
-  const [currentElements, setCurrentElements] = useState([]);
+  const [currentElements, setCurrentElements] = useState(productFavorites);
 
   useEffect(() => {
     setCurrentElements(productFavorites);
-  }, []);
+  }, [productFavorites]);
 
   return (
     <BgContainer showImage={false}>
@@ -23,10 +23,10 @@ const FavoriteProductIndexScreen = () => {
         type="product"
         searchElements={{}}
         showMore={false}
-        showFooter={true}
+        showFooter={false}
         showSearch={false}
         showProductsFilter={false}
-        emptyListImage={ABATI ? images.emptyProductFavorite : null}
+        emptyListImage="emptyProductFavorite"
       />
     </BgContainer>
   );

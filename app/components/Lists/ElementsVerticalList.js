@@ -4,13 +4,11 @@ import React, {
   useCallback,
   useContext,
   Fragment,
-  useEffect,
 } from 'react';
 import {
   View,
   FlatList,
   RefreshControl,
-  KeyboardAvoidingView,
   Text,
   ActivityIndicator,
 } from 'react-native';
@@ -57,7 +55,7 @@ import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import ElementWidgetHorizontal from './ElementWidgetHorizontal';
 import EmptyListWidget from './EmptyListWidget';
 import {animations} from '../../constants/animations';
-import {ABATI, HOMEKEY, EXPO} from '../../../app';
+import {HOMEKEY, EXPO} from '../../../app';
 import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
 import SortByModal from '../widgets/search/SortByModal';
 
@@ -81,9 +79,8 @@ const ElementsVerticalList = ({
   textSize = text.small,
   columns = 1,
 }) => {
-  const [items, setItems] = useState(elements);
+  const [items, setItems] = useState([]);
   const [elementsWithMap, setElementsWithMap] = useState([]);
-  const [currentShowMore, setCurrentShowMore] = useState(showMore);
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [params, setParams] = useState(searchParams);
@@ -93,10 +90,9 @@ const ElementsVerticalList = ({
   const [sortModal, setSortModal] = useState(false);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
 
   const loadMore = (d) => {
-    if (currentShowMore && d >= 50) {
+    if (showMore && d >= 100) {
       setPage(page + 1);
       setIsLoading(showMore);
     }
@@ -113,7 +109,6 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
-                setCurrentShowMore(false);
               }
             })
             .catch((e) => setPage(1));
@@ -126,7 +121,6 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
-                setCurrentShowMore(false);
               }
             })
             .catch((e) => {
@@ -141,7 +135,6 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
-                setCurrentShowMore(false);
               }
             })
             .catch((e) => {
@@ -156,7 +149,6 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
-                setCurrentShowMore(false);
               }
             })
             .catch((e) => {
@@ -260,6 +252,10 @@ const ElementsVerticalList = ({
       isLoading && <ActivityIndicator size={iconSizes.larger} />
     );
   };
+
+  useMemo(() => {
+    setItems(elements);
+  }, [elements]);
 
   const renderHeader = () => {
     return (
@@ -485,7 +481,7 @@ const ElementsVerticalList = ({
         data={uniqBy(items, 'id')}
         keyExtractor={(item, index) => index.toString()}
         onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
-        onMomentumScrollBegin={() => setCurrentShowMore(true)}
+        // onMomentumScrollBegin={() => setCurrentShowMore(true)}
         onEndReachedThreshold={TheHold}
         refreshing={refresh}
         refreshControl={
@@ -500,8 +496,8 @@ const ElementsVerticalList = ({
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() => renderFooter()}
-        initialNumToRender={6}
-        maxToRenderPerBatch={6}
+        initialNumToRender={12}
+        maxToRenderPerBatch={24}
         ListFooterComponentStyle={{
           marginBottom: bottomContentInset,
         }}
@@ -520,7 +516,7 @@ const ElementsVerticalList = ({
   );
 };
 
-export default React.memo(ElementsVerticalList);
+export default ElementsVerticalList;
 
 ElementsVerticalList.propTypes = {
   elements: PropTypes.array,

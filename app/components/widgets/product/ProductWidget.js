@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, touchOpacity} from '../../../constants/sizes';
 import TagWidget from './../TagWidget';
+import I18n from './../../../I18n';
 
 const ProductWidget = ({
   element,
@@ -42,12 +43,12 @@ const ProductWidget = ({
             <TagWidget tagName="under_sale" bgColor="red" />
           ) : null}
           {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
-          {!element.hasStock ? (
+          {!element.hasStock && (
             <TagWidget tagName="out_of_stock" bgColor="red" />
-          ) : null}
+          )}
         </View>
       </ImageBackground>
-      {showName ? (
+      {showName && (
         <View
           style={{
             width: '100%',
@@ -57,32 +58,53 @@ const ProductWidget = ({
             alignItems: 'flex-start',
             justifyContent: 'center',
           }}>
-          <Text
-            style={[
-              widgetStyles.elementName,
-              {
-                textAlign: 'center',
-                fontSize: text.small,
-                color: colors.header_tow_theme_color,
-              },
-            ]}>
-            {element.name.substring(0, 20)}
-          </Text>
-          <Text
-            style={[
-              widgetStyles.elementName,
-              {
-                fontSize: text.medium,
-                color: colors.header_one_theme_color,
-              },
-            ]}>
-            {`${getConvertedFinalPrice(
-              element.finalPrice,
-              exchange_rate,
-            )}  ${currency_symbol}`}
-          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'space-between',
+              alignItems: 'baseline',
+            }}>
+            <Text
+              style={[
+                widgetStyles.elementName,
+                {
+                  textAlign: 'center',
+                  fontSize: text.small,
+                  color: colors.header_tow_theme_color,
+                },
+              ]}>
+              {element.name.substring(0, 20)}
+            </Text>
+            <Text
+              style={[
+                widgetStyles.elementName,
+                {
+                  fontSize: text.medium,
+                  color: colors.header_one_theme_color,
+                },
+              ]}>
+              {`${getConvertedFinalPrice(
+                element.finalPrice,
+                exchange_rate,
+              )}  ${currency_symbol}`}
+            </Text>
+          </View>
+          {element.sku && (
+            <Text
+              style={[
+                widgetStyles.elementName,
+                {
+                  textAlign: 'center',
+                  fontSize: text.small,
+                  color: colors.header_tow_theme_color,
+                },
+              ]}>
+              {`${I18n.t('sku')} :  ${element.sku.substring(0, 20)}`}
+            </Text>
+          )}
         </View>
-      ) : null}
+      )}
     </TouchableOpacity>
   );
 };

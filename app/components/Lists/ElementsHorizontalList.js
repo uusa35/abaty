@@ -10,12 +10,9 @@ import {
   View,
   FlatList,
   RefreshControl,
-  KeyboardAvoidingView,
   Text,
   ActivityIndicator,
   StyleSheet,
-  Keyboard,
-  ScrollView,
 } from 'react-native';
 import {
   getCompany,
@@ -60,6 +57,7 @@ import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {setElementType} from '../../redux/actions';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import {isIOS} from '../../constants';
+import {convertNumberToEnglish} from '../../helpers';
 
 const ElementsHorizontalList = ({
   elements,
@@ -96,9 +94,13 @@ const ElementsHorizontalList = ({
   const {colors} = useContext(GlobalValuesContext);
 
   const loadMore = (d) => {
-    if (showMore && d >= 200) {
+    if (showMore && d >= 100) {
       setPage(page + 1);
       setIsLoading(showMore);
+    } else {
+      if (page > 10) {
+        setPage(1);
+      }
     }
   };
 
@@ -110,8 +112,10 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const elementsGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(elementsGroup);
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
+              }
             })
             .catch((e) => e);
           break;
@@ -120,8 +124,10 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const elementsGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(elementsGroup);
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
+              }
             })
             .catch((e) => {
               // if (__DEV__) {
@@ -134,8 +140,10 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const elementsGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(elementsGroup);
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
+              }
             })
             .catch((e) => {
               // if (__DEV__) {
@@ -148,8 +156,10 @@ const ElementsHorizontalList = ({
             params,
           })
             .then((r) => {
-              const elementsGroup = uniqBy(items.concat(r.data), 'id');
-              setItems(elementsGroup);
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
+              }
             })
             .catch((e) => {
               // if (__DEV__) {
@@ -228,7 +238,12 @@ const ElementsHorizontalList = ({
       setIsLoading(false);
       setRefresh(false);
       let filtered = filter(items, (i) =>
-        i.name ? i.name.includes(search) : i.slug.includes(search) ? i : null,
+        i.name
+          ? i.name.includes(search) ||
+            i.sku.includes(convertNumberToEnglish(search))
+          : i.slug.includes(search)
+          ? i
+          : null,
       );
       filtered.length > 0 ? setItems(filtered) : setItems(elements);
     } else {
@@ -499,8 +514,8 @@ const ElementsHorizontalList = ({
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() => renderFooter()}
-        initialNumToRender={6}
-        maxToRenderPerBatch={6}
+        initialNumToRender={12}
+        maxToRenderPerBatch={24}
         ListFooterComponentStyle={{
           marginBottom: bottomContentInset,
         }}

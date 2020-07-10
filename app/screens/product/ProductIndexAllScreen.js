@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {getAllProducts} from '../../redux/actions/product';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
+import validate from 'validate.js';
 
 const ProductIndexAllScreen = () => {
   const {products} = useSelector((state) => state);
@@ -16,8 +17,10 @@ const ProductIndexAllScreen = () => {
   }, []);
 
   useMemo(() => {
-    setCurrentElements(products);
-  }, []);
+    if (!validate.isEmpty(products)) {
+      setCurrentElements(products);
+    }
+  }, [products]);
 
   return (
     <BgContainer>

@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import validate from 'validate.js';
 import PropTypes from 'prop-types';
 import CartList from '../../components/widgets/cart/CartList';
-import {text, width} from '../../constants/sizes';
+import {text, width, height} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import BgContainer from '../../components/containers/BgContainer';
@@ -14,6 +14,7 @@ import LottieView from 'lottie-react-native';
 import {animations} from '../../constants/animations';
 import {View as Animating} from 'react-native-animatable';
 import {EXPO, ABATI} from './../../../app';
+import EmptyListWidget from '../../components/Lists/EmptyListWidget';
 
 const CartIndexScreen = () => {
   const {cart, country, shipmentFees, settings, coupon, area} = useSelector(
@@ -56,23 +57,26 @@ const CartIndexScreen = () => {
           ) : (
             <View
               style={{
-                marginTop: '40%',
                 width: width - 50,
                 alignSelf: 'center',
-                flex: 1,
+                justifyContent: 'center',
               }}>
-              <LottieView
-                source={EXPO ? animations.emptyCart : animations.cart}
-                autoPlay
-                loop
-                resizeMode="cover"
-                style={{
-                  alignSelf: 'center',
-                  width: width / 3,
-                  height: width / 3,
-                }}
-                enableMergePathsAndroidForKitKatAndAbove
-              />
+              {!ABATI ? (
+                <LottieView
+                  source={EXPO ? animations.emptyCart : animations.cart}
+                  autoPlay
+                  loop
+                  resizeMode="cover"
+                  style={{
+                    alignSelf: 'center',
+                    width: width / 3,
+                    height: width / 3,
+                  }}
+                  enableMergePathsAndroidForKitKatAndAbove
+                />
+              ) : (
+                <EmptyListWidget emptyImage="emptyOrder" />
+              )}
               <Animating
                 animation="bounceIn"
                 easing="ease-out"

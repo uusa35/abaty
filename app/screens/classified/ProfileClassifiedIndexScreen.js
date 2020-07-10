@@ -1,26 +1,35 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getSearchClassifieds} from '../../redux/actions/classified';
-import ClassifiedList from '../../components/widgets/classified/ClassifiedList';
 import BgContainer from '../../components/containers/BgContainer';
-import {HOMEKEY} from './../../../app';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProfileClassifiedIndexScreen = () => {
-  const {searchClassifieds, auth} = useSelector((state) => state);
+  const {searchClassifieds, auth, guest} = useSelector((state) => state);
+  const [currentElements, setCurrentElements] = useState(searchClassifieds);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSearchClassifieds({searchParams: {user_id: auth.id}}));
   }, []);
 
+  useEffect(() => {
+    setCurrentElements(searchClassifieds);
+  }, [searchClassifieds]);
+
   return (
-    <BgContainer showImage={!HOMEKEY}>
-      <ClassifiedList
-        classifieds={searchClassifieds}
+    <BgContainer showImage={false}>
+      <ElementsHorizontalList
+        elements={currentElements}
         showName={true}
-        searchElements={{user_id: auth.id}}
+        searchElements={{}}
+        showSearch={!guest}
+        showClassifiedsFilter={!guest}
+        showSortSearch={!guest}
+        showFooter={true}
+        type="classified"
       />
     </BgContainer>
   );

@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useContext} from 'react';
+import React, {Fragment, useState, useContext, useMemo} from 'react';
 import {
   StyleSheet,
   RefreshControl,
@@ -20,80 +20,33 @@ import {images} from '../constants/images';
 import BgContainer from '../components/containers/BgContainer';
 import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
 
 const OrderIndexScreen = ({}) => {
   const {orders} = useSelector((state) => state.auth);
-  const {colors, logo} = useContext(GlobalValuesContext);
-  const {goBack} = useNavigation();
-  const [refresh, setRefresh] = useState(false);
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useMemo(() => {
+    if (!validate.isEmpty(orders)) {
+      setCurrentElements(orders);
+    }
+  }, [orders]);
 
   return (
     <BgContainer>
-      {!validate.isEmpty(orders) ? (
-        <FlatList
-          contentContainerStyle={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            marginTop: 10,
-            padding: 10,
-          }}
-          style={{alignSelf: 'center'}}
-          keyboardShouldPersistTaps="always"
-          keyboardDismissMode="none"
-          horizontal={false}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item, index) => index.toString()}
-          onEndReachedThreshold={1}
-          numColumns={1}
-          data={orders}
-          refreshing={refresh}
-          refreshControl={
-            <RefreshControl
-              refreshing={refresh}
-              onRefresh={() => dispatch(reAuthenticate())}
-            />
-          }
-          renderItem={({item}) => <OrderWidget element={item} logo={logo} />}
-        />
-      ) : (
-        <ImageBackground
-          style={{
-            width,
-            height: height,
-            alignSelf: 'center',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          resizeMode="contain"
-          source={ABATI ? images.emptyOrder : null}>
-          {!ABATI ? (
-            <Fragment>
-              <Button
-                raised
-                title={I18n.t('no_orders')}
-                type="outline"
-                containerStyle={{marginBottom: 20, width: '90%'}}
-                titleStyle={{fontFamily: text.font}}
-              />
-              <Button
-                onPress={() => goBack()}
-                raised
-                title={I18n.t('shop_now')}
-                type="outline"
-                containerStyle={{marginBottom: 20, width: '90%'}}
-                titleStyle={{
-                  fontFamily: text.font,
-                  color: colors.main_text_theme_color,
-                }}
-                col
-              />
-            </Fragment>
-          ) : null}
-        </ImageBackground>
-      )}
+      <ElementsHorizontalList
+        elements={currentElements}
+        searchParams={{}}
+        type="product"
+        showRefresh={false}
+        showFooter={true}
+        showSearch={false}
+        showSortSearch={false}
+        showProductsFilter={false}
+        showTitleIcons={false}
+        showMore={false}
+        emptyListImage="emptyOrder"
+      />
     </BgContainer>
   );
 };
