@@ -3,19 +3,17 @@ import {StyleSheet, ImageBackground} from 'react-native';
 import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import {text} from './../../constants/sizes';
+import {images} from '../../constants/images';
 import {animations} from './../../constants/animations';
 import LottieView from 'lottie-react-native';
 import PropTypes from 'prop-types';
-import {resetStore} from '../../redux/actions';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
+import RNRestart from 'react-native-restart';
 
 const LoadingOfflineView = () => {
-  const dispatch = useDispatch();
   const {settings} = useSelector((state) => state);
 
-  const handleClick = () => {
-    dispatch(resetStore());
-  };
+  const handleClick = () => RNRestart.Restart();
 
   return (
     <ImageBackground
@@ -26,7 +24,7 @@ const LoadingOfflineView = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      source={{uri: settings.main_bg}}
+      source={settings ? {uri: settings.main_bg} : images.whiteBg}
       resizeMode="cover">
       <LottieView
         source={animations.offline}
@@ -43,12 +41,14 @@ const LoadingOfflineView = () => {
         titleStyle={{
           fontFamily: text.font,
           fontSize: text.medium,
-          color: settings.colors.main_text_theme_color,
+          color: settings.colors
+            ? settings.colors.main_text_theme_color
+            : 'black',
         }}
       />
       <Button
         raised
-        icon={{name: 'ios-repeat', type: 'ionicon', color: 'red'}}
+        icon={{name: 'wifi-off', type: 'feather', color: 'red'}}
         onPress={() => handleClick()}
         title={I18n.t('retry')}
         type="outline"
@@ -58,7 +58,9 @@ const LoadingOfflineView = () => {
           paddingLeft: 10,
           fontFamily: text.font,
           fontSize: text.medium,
-          color: settings.colors.main_text_theme_color,
+          color: settings.colors
+            ? settings.colors.main_text_theme_color
+            : 'black',
         }}
       />
     </ImageBackground>
@@ -89,7 +91,4 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
   },
-  // menuBtn: {
-  //   backgroundColor: settings.colors.main,
-  // },
 });

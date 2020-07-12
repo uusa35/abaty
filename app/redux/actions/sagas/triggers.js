@@ -17,6 +17,8 @@ import * as classifiedSaga from './classifiedSagas';
 import {startChangeLang} from './langSagas';
 import {startStorePlayerIdScenario} from './userSagas';
 import {startGetRolesScenario} from './userSagas';
+import {checkConnectionStatus} from '../api';
+import {checkConnection} from './settingSagas';
 
 export function* triggerGoBackBtn() {
   yield takeLatest(actions.GO_BACK, goBackBtnScenario);
@@ -188,6 +190,10 @@ export function* triggerBecomeFan() {
 
 export function* triggerAppBootstrap() {
   yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);
+}
+
+export function* triggerCheckConnection() {
+  yield takeLatest(actions.CHECK_CONNECTION, checkConnection);
 }
 
 export function* triggerGetUser() {

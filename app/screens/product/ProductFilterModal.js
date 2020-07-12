@@ -256,10 +256,7 @@ const ProductFilterModal = () => {
 
 export default React.memo(ProductFilterModal);
 
-ProductFilterModal.propTypes = {
-  colors: PropTypes.object.isRequired,
-  sizes: PropTypes.array.isRequired,
-};
+ProductFilterModal.propTypes = {};
 
 const styles = StyleSheet.create({
   btnStyle: {

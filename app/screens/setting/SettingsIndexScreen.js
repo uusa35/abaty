@@ -119,7 +119,7 @@ const SettingsIndexScreen = () => {
             activeOpacity={touchOpacity}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
             style={styles.btnWrapper}>
-            <Icon name="language" type="entypo" size={45} />
+            <Icon name="globe" type="font-awesome" size={45} />
             <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
           </TouchableOpacity>
           <TouchableOpacity

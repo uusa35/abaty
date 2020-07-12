@@ -95,6 +95,10 @@ const ElementsVerticalList = ({
     if (showMore && d >= 100) {
       setPage(page + 1);
       setIsLoading(showMore);
+    } else {
+      if (page > 10) {
+        setPage(2);
+      }
     }
   };
 
@@ -109,9 +113,11 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => setPage(1));
+            .catch((e) => e);
           break;
         case 'designer':
           return axiosInstance(`search/user?page=${page}`, {
@@ -121,11 +127,11 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              setPage(1);
-            });
+            .catch((e) => e);
           break;
         case 'company':
           return axiosInstance(`search/user?page=${page}`, {
@@ -135,11 +141,11 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              setPage(1);
-            });
+            .catch((e) => e);
           break;
         case 'classified':
           return axiosInstance(`search/classified?page=${page}`, {
@@ -149,11 +155,11 @@ const ElementsVerticalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              setPage(1);
-            });
+            .catch((e) => e);
           break;
         default:
           null;

@@ -5,6 +5,7 @@ import {REHYDRATE, PURGE} from 'redux-persist/lib/constants';
 export default function* rootSaga() {
   yield all([
     fork(triggers.triggerAppBootstrap),
+    fork(triggers.triggerCheckConnection),
     fork(triggers.triggerRefetchHomeCategories),
     // fork(userSagas.refetchUsers),
     fork(triggers.triggerGetUser),

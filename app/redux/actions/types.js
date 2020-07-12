@@ -21,6 +21,7 @@ export const GET_ROLES = 'GET_ROLES';
 export const SET_ROLES = 'SET_ROLES';
 export const SET_ROLE = 'SET_ROLE';
 export const TOGGLE_GUEST = 'TOGGLE_GUEST';
+export const CHECK_CONNECTION = 'CHECK_CONNECTION';
 export const TOGGLE_SPLASH = 'TOGGLE_SPLASH';
 export const ENABLE_MESSAGE = 'ENABLE_MESSAGE';
 export const DISABLE_MESSAGE = 'DISABLE_MESSAGE';

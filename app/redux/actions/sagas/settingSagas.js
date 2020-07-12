@@ -123,17 +123,14 @@ export function* enableWarningMessage(
 }
 
 export function* checkConnection() {
-  while (true) {
-    const internetStatus = yield call(checkConnectionStatus);
-    if (__DEV__) {
-      // console.log('internetStatus', internetStatus);
-    }
-    yield put({
-      type: TOGGLE_IS_CONNECTED,
-      payload: internetStatus,
-    });
-    yield delay(600000);
-  }
+  const internetStatus = yield call(checkConnectionStatus);
+  // if (__DEV__) {
+  //   console.log('internetStatus', internetStatus);
+  // }
+  yield put({
+    type: TOGGLE_IS_CONNECTED,
+    payload: internetStatus,
+  });
 }
 
 export function* setVersion() {

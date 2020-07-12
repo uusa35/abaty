@@ -1,9 +1,11 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import {AppState, useColorScheme, StatusBar, SafeAreaView} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   appBootstrap,
+  checkConnection,
   refetchHomeElements,
   toggleBootstrapped,
 } from './redux/actions';
@@ -12,11 +14,13 @@ import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
-import {axiosInstance} from './redux/actions/api';
+import {axiosInstance, checkConnectionStatus} from './redux/actions/api';
 import LoginScreenModal from './screens/auth/LoginScreenModal';
 import AreasList from './components/Lists/AreasList';
 import SimpleSpinner from './components/SimpleSpinner';
 import ProductFilterModal from './screens/product/ProductFilterModal';
+import LoadingOfflineView from './components/Loading/LoadingOfflineView';
+import {useNetInfo} from '@react-native-community/netinfo';
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -34,7 +38,6 @@ const App = () => {
     total,
     grossTotal,
     token,
-    isConnected,
     loginModal,
     searchModal,
     lang,
@@ -44,6 +47,7 @@ const App = () => {
   } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [appState, setAppState] = useState(AppState.currentState);
+  const {isConnected} = useNetInfo();
 
   useEffect(() => {
     if (!validate.isEmpty(token) && token.length > 5) {
@@ -76,22 +80,27 @@ const App = () => {
       }
     });
     AppState.addEventListener('change', handleAppStateChange);
-    dispatch(appBootstrap());
-    // dispatch(refetchHomeElements());
+    if (!bootStrapped) {
+      dispatch(appBootstrap());
+    }
   }, []);
+
+  useEffect(() => {
+    if (isConnected) {
+      dispatch(appBootstrap());
+    }
+  }, [isConnected]);
 
   const handleAppStateChange = (nextAppState) => {
     if (appState.match(/inactive|background/) && nextAppState === 'active') {
     }
     setAppState(nextAppState);
   };
-  {
-    /*<SafeAreaView style={{ backgroundColor : 'blue', height : 10, borderWidth : 10}}/>*/
-  }
+
   return (
     <Fragment>
       <StatusBar barStyle={`${colorScheme}-content`} />
-      {bootStrapped && (
+      {isConnected ? (
         <GlobalValuesContext.Provider
           value={{
             cartLength: cart.length,
@@ -109,7 +118,7 @@ const App = () => {
             lang,
           }}>
           <React.Suspense fallback={<SimpleSpinner />}>
-            <AppNavigator />
+            {bootStrapped && <AppNavigator />}
           </React.Suspense>
           {validate.isBoolean(loginModal) && (
             <LoginScreenModal
@@ -129,18 +138,15 @@ const App = () => {
             <AreasList area={area} areas={areas} areaModal={areaModal} />
           )}
         </GlobalValuesContext.Provider>
+      ) : (
+        <LoadingOfflineView />
       )}
       {!validate.isEmpty(message) &&
         message.visible &&
         validate.isString(message.content) &&
         isConnected &&
         bootStrapped && <AlertMessage message={message} />}
-      {bootStrapped && (
-        <Fragment>
-          <ProductFilterModal />
-          {/*<ClassifiedFilterModal />*/}
-        </Fragment>
-      )}
+      {bootStrapped && <ProductFilterModal />}
     </Fragment>
   );
 };

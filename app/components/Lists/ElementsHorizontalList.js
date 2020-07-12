@@ -99,7 +99,7 @@ const ElementsHorizontalList = ({
       setIsLoading(showMore);
     } else {
       if (page > 10) {
-        setPage(1);
+        setPage(2);
       }
     }
   };
@@ -115,6 +115,8 @@ const ElementsHorizontalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
             .catch((e) => e);
@@ -127,13 +129,11 @@ const ElementsHorizontalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              // if (__DEV__) {
-              //   console.log('the e ElementsHorizontalList', e);
-              // }
-            });
+            .catch((e) => e);
           break;
         case 'company':
           return axiosInstance(`search/user?page=${page}`, {
@@ -143,13 +143,11 @@ const ElementsHorizontalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              // if (__DEV__) {
-              //   console.log('the e ElementsHorizontalList', e);
-              // }
-            });
+            .catch((e) => e);
           break;
         case 'classified':
           return axiosInstance(`search/classified?page=${page}`, {
@@ -159,13 +157,11 @@ const ElementsHorizontalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+              } else {
+                setPage(2);
               }
             })
-            .catch((e) => {
-              // if (__DEV__) {
-              //   console.log('the e ElementsHorizontalList', e);
-              // }
-            });
+            .catch((e) => e);
           break;
         default:
           null;

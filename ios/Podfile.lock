@@ -389,7 +389,7 @@ PODS:
     - React
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.0.7):
+  - react-native-safe-area-context (3.1.1):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -467,7 +467,7 @@ PODS:
     - React
   - RNCMaskedView (0.1.10):
     - React
-  - RNDeviceInfo (5.6.1):
+  - RNDeviceInfo (5.6.2):
     - React
   - RNFastImage (8.1.5):
     - React
@@ -855,7 +855,7 @@ SPEC CHECKSUMS:
   react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 909cd849e6a806731b2135263189fea39494b55e
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: ef6f16c66b0797ecae1bf86c103dfb3dc16fc33d
+  react-native-safe-area-context: 344b969c45af3d8464d36e8dea264942992ef033
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: 6f8c102e8081d70259252b254143b4193a9fb4cb
@@ -873,7 +873,7 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNDeviceInfo: b6e650fbd234732c759544218657d549b4339038
+  RNDeviceInfo: ed8557a8bd6443cbc0ab5d375e6808a38a279744
   RNFastImage: 35ae972d6727c84ee3f5c6897e07f84d0a3445e9
   RNFBAnalytics: 29bc4baf70da8dc04238d2e1c050367264d2f440
   RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645

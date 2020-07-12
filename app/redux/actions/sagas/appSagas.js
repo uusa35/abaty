@@ -26,7 +26,9 @@ export function* startAppBootStrap() {
     yield call(defaultLang);
     yield call(setVersion);
     if (!bootStrapped) {
+      console.log('inside if');
       if (ABATI) {
+        console.log('inside abati');
         yield call(abatiBootStrap);
       } else if (MALLR) {
         yield call(mallrBootStrap);
@@ -42,15 +44,10 @@ export function* startAppBootStrap() {
     }
   } catch (e) {
     if (__DEV__) {
-      // console.log('appSaga', e);
       yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
   } finally {
-    yield all([
-      call(disableLoading),
-      call(enableResetApp),
-      call(checkConnection),
-    ]);
+    yield all([call(disableLoading), call(enableResetApp)]);
   }
 }
 

@@ -99,13 +99,13 @@ const AbatiHomeScreen = () => {
           />
         )}
       </ScrollView>
-      {show_commercials ? (
+      {show_commercials && (
         <View style={{flex: 0.2}}>
           {!validate.isEmpty(commercials) && (
             <FixedCommercialSliderWidget sliders={commercials} />
           )}
         </View>
-      ) : null}
+      )}
     </BgContainer>
   );
 };

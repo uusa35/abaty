@@ -1,22 +1,11 @@
-import {I18nManager, DevSettings} from 'react-native';
-import CodePush from 'react-native-code-push';
+import {I18nManager} from 'react-native';
 import * as actions from '../types';
 import {call, put, all, delay, takeLatest, select} from 'redux-saga/effects';
 import I18n from './../../../I18n';
 import validate from 'validate.js/validate';
-import {
-  enableErrorMessage,
-  disableLoading,
-  enableLoading,
-} from './settingSagas';
+import {enableLoading} from './settingSagas';
 import * as helpers from './../../../helpers';
-import axios from 'axios';
-import {resetStore, startResetStoreScenario} from './appSagas';
 import {DrawerActions} from 'react-navigation-drawer';
-import {getLang} from './../../../helpers';
-import {PersistStore} from '../../store';
-import {TOGGLE_BOOTSTRAPPED} from '../types';
-import {toggleBootstrapped} from '../index';
 import RNRestart from 'react-native-restart';
 import {axiosInstance} from '../api';
 
