@@ -29,8 +29,9 @@ const SplashWidget = ({element, index, handleClick}) => {
           style={{
             position: 'absolute',
             top: 50,
+            right: 0,
             alignSelf: 'flex-end',
-            padding: 60,
+            padding: 15,
           }}>
           <View>
             <Icon size={iconSizes.small} name="close" type="evil-icons" />

@@ -18,10 +18,8 @@ import Modal from 'react-native-modal';
 
 const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
-  const {settings, showIntroduction} = useSelector((state) => state);
-  const [currentShowIntroduction, setCurrentShowIntroduction] = useState(
-    showIntroduction,
-  );
+  const {settings} = useSelector((state) => state);
+  const [currentShowIntroduction, setCurrentShowIntroduction] = useState(false);
 
   const handleClick = useCallback(() => {
     setCurrentShowIntroduction(false);
@@ -31,11 +29,9 @@ const IntroductionWidget = ({elements}) => {
     dispatch(toggleIntroduction(currentShowIntroduction));
   }, [currentShowIntroduction]);
 
-  useEffect(() => {
-    if (currentShowIntroduction) {
-      setTimeout(() => {
-        dispatch(toggleIntroduction(false));
-      }, 12000);
+  useMemo(() => {
+    if (!currentShowIntroduction) {
+      setTimeout(() => setCurrentShowIntroduction(true), 2000);
     }
   }, []);
 
@@ -45,43 +41,44 @@ const IntroductionWidget = ({elements}) => {
         <View style={{backgroundColor: 'white'}}>
           <Modal
             transparent={false}
-            visible={currentShowIntroduction}
+            isVisible={currentShowIntroduction}
             animationIn="slideInUp"
-            animationOut="slideOutDown">
-            <View style={{flex: 1}}>
-              <AppIntroSlider
-                buttonStyle={{
-                  backgroundColor: settings.colors.btn_bg_theme_color,
-                  borderRadius: 10,
-                  alignContent: 'center',
-                  justifyContent: 'center',
-                }}
-                keyExtractor={(elements, index) => index.toString()}
-                showSkipButton={true}
-                showPrevButton={true}
-                showDoneButton={true}
-                skipLabel={I18n.t('skip')}
-                doneLabel={I18n.t('done')}
-                nextLabel={I18n.t('next')}
-                prevLabel={I18n.t('back')}
-                activeDotStyle={{
-                  backgroundColor: settings.colors.btn_bg_theme_color,
-                }}
-                buttonTextStyle={{
-                  fontFamily: text.font,
-                  color: settings.colors.btn_text_theme_color,
-                }}
-                renderItem={({item, index}) => (
-                  <SplashWidget
-                    element={item}
-                    index={index}
-                    handleClick={handleClick}
-                  />
-                )}
-                data={elements}
-                onDone={() => handleClick()}
-              />
-            </View>
+            animationOut="slideOutDown"
+            style={{flex: 1, margin: 0, backgroundColor: 'white'}}>
+            <AppIntroSlider
+              buttonStyle={{
+                backgroundColor: settings.colors.btn_bg_theme_color,
+                borderRadius: 10,
+                alignContent: 'center',
+                justifyContent: 'center',
+              }}
+              keyExtractor={(elements, index) => index.toString()}
+              showPrevButton={true}
+              showDoneButton={true}
+              bottomButton={true}
+              showNextButton={true}
+              showSkipButton={true}
+              skipLabel={I18n.t('skip')}
+              doneLabel={I18n.t('done')}
+              nextLabel={I18n.t('next')}
+              prevLabel={I18n.t('back')}
+              activeDotStyle={{
+                backgroundColor: settings.colors.btn_bg_theme_color,
+              }}
+              buttonTextStyle={{
+                fontFamily: text.font,
+                color: settings.colors.btn_bg_theme_color,
+              }}
+              renderItem={({item, index}) => (
+                <SplashWidget
+                  element={item}
+                  index={index}
+                  handleClick={handleClick}
+                />
+              )}
+              data={elements}
+              onDone={() => handleClick()}
+            />
           </Modal>
         </View>
       )}
