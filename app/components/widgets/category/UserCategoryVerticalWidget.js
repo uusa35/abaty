@@ -95,7 +95,7 @@ const UserCategoryVerticalWidget = ({
                       />
                     ) : null}
                   </TouchableOpacity>
-                  {c.has_children && showChildren
+                  {c.has_children && showChildren && c.children
                     ? map(c.children, (child, n) => {
                         return (
                           <TouchableOpacity

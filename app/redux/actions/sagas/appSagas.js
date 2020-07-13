@@ -26,9 +26,7 @@ export function* startAppBootStrap() {
     yield call(defaultLang);
     yield call(setVersion);
     if (!bootStrapped) {
-      console.log('inside if');
       if (ABATI) {
-        console.log('inside abati');
         yield call(abatiBootStrap);
       } else if (MALLR) {
         yield call(mallrBootStrap);

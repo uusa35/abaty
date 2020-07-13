@@ -4,12 +4,8 @@ import analytics from '@react-native-firebase/analytics';
 import {APP_CASE} from '../../../app';
 import moment from 'moment';
 import {isEmpty} from 'lodash';
-import {toggleIntroduction} from '../../redux/actions';
-import {useDispatch, useSelector} from 'react-redux';
 
 const AppGlobalConfig = () => {
-  const {showIntroduction} = useSelector((state) => state);
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   useEffect(() => {

@@ -97,7 +97,7 @@ const ClassifiedCategoryVerticalWidget = ({
                       />
                     ) : null}
                   </TouchableOpacity>
-                  {c.has_children && showChildren
+                  {c.has_children && showChildren && c.children
                     ? map(c.children, (child, n) => {
                         return (
                           <Fragment key={n}>

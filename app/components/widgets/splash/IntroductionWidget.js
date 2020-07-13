@@ -1,4 +1,10 @@
-import React, {Fragment, useCallback, useEffect} from 'react';
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {StyleSheet, View} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from './SplashWidget';
@@ -13,13 +19,20 @@ import Modal from 'react-native-modal';
 const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
   const {settings, showIntroduction} = useSelector((state) => state);
+  const [currentShowIntroduction, setCurrentShowIntroduction] = useState(
+    showIntroduction,
+  );
 
   const handleClick = useCallback(() => {
-    return dispatch(toggleIntroduction(false));
+    setCurrentShowIntroduction(false);
   });
 
+  useMemo(() => {
+    dispatch(toggleIntroduction(currentShowIntroduction));
+  }, [currentShowIntroduction]);
+
   useEffect(() => {
-    if (showIntroduction) {
+    if (currentShowIntroduction) {
       setTimeout(() => {
         dispatch(toggleIntroduction(false));
       }, 12000);
@@ -32,7 +45,7 @@ const IntroductionWidget = ({elements}) => {
         <View style={{backgroundColor: 'white'}}>
           <Modal
             transparent={false}
-            visible={showIntroduction}
+            visible={currentShowIntroduction}
             animationIn="slideInUp"
             animationOut="slideOutDown">
             <View style={{flex: 1}}>
@@ -76,7 +89,7 @@ const IntroductionWidget = ({elements}) => {
   );
 };
 
-export default React.memo(IntroductionWidget);
+export default IntroductionWidget;
 
 IntroductionWidget.propTypes = {
   elements: PropTypes.array.isRequired,

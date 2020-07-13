@@ -1,5 +1,11 @@
 import React, {Fragment} from 'react';
-import {View, StyleSheet, Text, ImageBackground} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import {map} from 'lodash';
 import {width, height, text, iconSizes} from './../../../constants/sizes';
@@ -8,39 +14,36 @@ import {Icon} from 'react-native-elements';
 
 const SplashWidget = ({element, index, handleClick}) => {
   return (
-    <View>
-      <ImageBackground
-        source={{uri: element.large}}
-        style={{
-          width: width,
-          height: height,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        resizeMode="contain">
-        {index === 0 ? (
-          <Icon
-            size={iconSizes.small}
-            name="close"
-            type="evil-icons"
-            containerStyle={{
-              position: 'absolute',
-              top: 50,
-              alignSelf: 'flex-end',
-              padding: 60,
-            }}
-            onPress={() => handleClick()}
-            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          />
-        ) : null}
-        {element.title && (
-          <Fragment>
-            <Text style={styles.title}>{element.title}</Text>
-            <Text style={styles.caption}>{element.caption}</Text>
-          </Fragment>
-        )}
-      </ImageBackground>
-    </View>
+    <ImageBackground
+      source={{uri: element.large}}
+      style={{
+        width: width,
+        height: height,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      resizeMode="contain">
+      {index === 0 && (
+        <TouchableOpacity
+          onPress={() => handleClick()}
+          style={{
+            position: 'absolute',
+            top: 50,
+            alignSelf: 'flex-end',
+            padding: 60,
+          }}>
+          <View>
+            <Icon size={iconSizes.small} name="close" type="evil-icons" />
+          </View>
+        </TouchableOpacity>
+      )}
+      {element.title && (
+        <Fragment>
+          <Text style={styles.title}>{element.title}</Text>
+          <Text style={styles.caption}>{element.caption}</Text>
+        </Fragment>
+      )}
+    </ImageBackground>
   );
 };
 

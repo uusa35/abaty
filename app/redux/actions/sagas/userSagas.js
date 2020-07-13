@@ -290,14 +290,12 @@ export function* startStorePlayerIdScenario(action) {
   try {
     if (action.payload) {
       const result = yield call(api.storePlayerId, action.payload);
-      //console.log('the result from device id', result);
+      console.log('the result from device id', result);
     }
   } catch (e) {
     // if (__DEV__) {
     //   console.log('ee', e);
     // }
-  } finally {
-    yield call(disableLoading);
   }
 }
 
@@ -314,7 +312,7 @@ export function* setHomeBrands() {
     //   console.log('ee', e);
     // }
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 
@@ -451,9 +449,6 @@ export function* startReAuthenticateScenario() {
 export function* startUpdateUserScenario(action) {
   try {
     const {name, mobile, email} = action.payload;
-    // const result = validate({name, mobile, email}, registerConstrains);
-    // if (validate.isEmpty(result)) {
-    //   yield call(enableLoading);
     const element = yield call(api.updateUser, action.payload);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
@@ -465,12 +460,8 @@ export function* startUpdateUserScenario(action) {
     } else {
       throw element;
     }
-    // } else {
-    //   throw element;
-    // }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
       yield call(enableErrorMessage, e);
     }
   } finally {
@@ -672,7 +663,7 @@ export function* startGetRolesScenario() {
     }
   } catch (e) {
     if (isLocal) {
-      console.log('e', e);
+      // console.log('e', e);
     }
   } finally {
   }
