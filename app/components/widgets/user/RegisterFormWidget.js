@@ -11,7 +11,7 @@ import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {bottomContentInset, text, height} from '../../../constants/sizes';
 import {enableErrorMessage, showCountryModal} from '../../../redux/actions';
-import {register} from '../../../redux/actions/user';
+import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ABATI} from './../../../../app';
@@ -106,7 +106,7 @@ const RegisterFormWidget = () => {
         })
         .then((r) => {
           return dispatch(
-            register({
+            companyRegister({
               name,
               email,
               password,

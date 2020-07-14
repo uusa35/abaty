@@ -20,6 +20,7 @@ export default function* rootSaga() {
     fork(triggers.triggerUpdateUser),
     fork(triggers.triggerSubmitLogout),
     fork(triggers.triggerRegister),
+    fork(triggers.triggerCompanyRegister),
     fork(triggers.triggerRateUser),
     fork(triggers.triggerBecomeFan),
     fork(triggers.triggerGetProduct),

@@ -247,6 +247,13 @@ export function* triggerRegister() {
   yield takeLatest(actions.REGISTER, userSaga.startRegisterScenario);
 }
 
+export function* triggerCompanyRegister() {
+  yield takeLatest(
+    actions.COMPANY_REGISTER,
+    userSaga.startCompanyRegisterScenario,
+  );
+}
+
 export function* triggerRateUser() {
   yield takeLatest(actions.RATE_USER, userSaga.startRateUserScenario);
 }

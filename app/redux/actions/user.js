@@ -144,6 +144,13 @@ export function register(payload) {
   };
 }
 
+export function companyRegister(payload) {
+  return {
+    type: actions.COMPANY_REGISTER,
+    payload,
+  };
+}
+
 export function reAuthenticate() {
   return {
     type: actions.REAUTHENTICATE,
