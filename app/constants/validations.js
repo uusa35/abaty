@@ -1,4 +1,5 @@
 import I18n from '../I18n';
+import * as Yup from 'yup';
 
 export const submitLogin = {
   email: {
@@ -166,3 +167,30 @@ export const loginConstrains = {
     },
   },
 };
+
+export const validateSubmitRegister = Yup.object().shape({
+  name: Yup.string()
+    .min(5, {message: 'validations.username_must_be_not_less_than', item: 5})
+    .required('validations.country_is_required'),
+  // .matches(/^[A-Za-z][A-Za-z0-9]*$/, {
+  //   message: 'validations.strings_must_matches_the_expression'
+  // }),
+  email: Yup.string().email('validations.must_be_valid_email').required(),
+  password: Yup.string().min(8, {
+    message: 'validations.password_must_not_be_larger_than',
+    item: 6,
+  }),
+  role_id: Yup.number().required(),
+  logo: Yup.array().required({
+    message: 'validations.language_is_required',
+  }),
+  images: Yup.array().required({
+    message: 'validations.language_is_required',
+  }),
+  // password2: Yup.string()
+  //     .min(6, {
+  //       message: 'validations.password_must_not_be_larger_than',
+  //       item: 6
+  //     })
+  //     .oneOf([Yup.ref('password1'), null], 'validations.password_must_match')
+});

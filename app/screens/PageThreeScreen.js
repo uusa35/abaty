@@ -10,7 +10,7 @@ import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
 
 const PageThreeScreen = () => {
   const {homeCompanies} = useSelector((state) => state);
-  const [currentElements,setCurrentElements] = useState(homeCompanies);
+  const [currentElements, setCurrentElements] = useState(homeCompanies);
 
   return (
     <BgContainer>

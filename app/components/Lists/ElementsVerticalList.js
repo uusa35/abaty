@@ -10,7 +10,8 @@ import {
   FlatList,
   RefreshControl,
   Text,
-  ActivityIndicator, StyleSheet,
+  ActivityIndicator,
+  StyleSheet,
 } from 'react-native';
 import {
   getCompany,
@@ -249,17 +250,17 @@ const ElementsVerticalList = ({
   }, [isLoading]);
 
   const renderFooter = () => {
-    if(showFooter) {
+    if (showFooter) {
       return !validate.isEmpty(items) ? (
-          <NoMoreElements
-              title={I18n.t('no_more_', {item: I18n.t(type)})}
-              isLoading={isLoading}
-          />
+        <NoMoreElements
+          title={I18n.t('no_more_', {item: I18n.t(type)})}
+          isLoading={isLoading}
+        />
       ) : (
-          isLoading && <ActivityIndicator size={iconSizes.larger} />
+        isLoading && <ActivityIndicator size={iconSizes.larger} />
       );
     }
-    return <Fragment></Fragment>
+    return <Fragment></Fragment>;
   };
 
   useMemo(() => {
@@ -480,13 +481,12 @@ const ElementsVerticalList = ({
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
         horizontal={false}
-        contentInsetAdjustmentBehavior={true}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[0]}
         contentInset={{bottom: bottomContentInset}}
-        style={{paddingBottom: bottomContentInset, width: '100%', borderWidth : 10, flex : 1  }}
+        style={{width: '100%'}}
         numColumns={columns}
         data={uniqBy(items, 'id')}
         keyExtractor={(item, index) => index.toString()}
@@ -506,10 +506,10 @@ const ElementsVerticalList = ({
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() => renderFooter()}
-        // initialNumToRender={12}
-        // maxToRenderPerBatch={24}
+        initialNumToRender={12}
+        maxToRenderPerBatch={24}
         ListFooterComponentStyle={{
-          marginBottom: bottomContentInset,
+          marginBottom: showFooter ? bottomContentInset : 0,
         }}
         ListHeaderComponentStyle={{
           backgroundColor: 'white',
@@ -628,4 +628,3 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
 });
-

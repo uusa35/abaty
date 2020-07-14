@@ -393,6 +393,55 @@ export async function updateUser(params) {
     .catch((e) => e.response.data.message);
 }
 
+export async function companyRegister(params) {
+  const {
+    name,
+    email,
+    logo,
+    images,
+    role_id,
+    mobile,
+    address,
+    description,
+    notes,
+    country_id,
+    player_id,
+  } = params;
+  const form = new FormData();
+  if (checkImage(logo)) {
+    form.append('logo', {
+      uri: getImagePath(image),
+      name: getImageName(image),
+      type: getImageExtension(image),
+    });
+  }
+  const filteredImages = filter(images, (img, i) => img.path !== image.path);
+  map(filteredImages, (img, i) => {
+    if (checkImage(img)) {
+      form.append(`images[${i}]`, {
+        uri: getImagePath(img),
+        name: getImageName(img),
+        type: getImageExtension(img),
+      });
+    }
+  });
+  form.append('name', name);
+  form.append('slug_ar', name);
+  form.append('slug_en', name);
+  form.append('email', email);
+  form.append('mobile', mobile);
+  form.append('role_id', role_id);
+  form.append('player_id', player_id);
+  form.append('address', address);
+  form.append('country_id', country_id);
+  form.append('description', description);
+  form.append('notes', notes);
+  return await axiosInstance
+    .post(`register`, params)
+    .then((r) => r.data)
+    .catch((e) => e.response.data.message);
+}
+
 export async function storeClassified(elements) {
   const {
     name,

@@ -654,5 +654,6 @@
   "no_more_" : "لا يوجد المزيد من  %{item} ",
   "cart_error_u_cant_add_this_item_now" : "حدث خطأ لا يمكن إضافة هذا العنصر إلى عربة التسوق الآن",
   "you_can_add_more_than_one_product_to_cart" : "هذا المنتج يتم شراءة بطريقة مباشرة ولا يمكنك إضافة أية منتجات أخرى معه بعربة التسوق ",
-  "direct_purchase" : "شراء مباشر"
+  "direct_purchase" : "شراء مباشر",
+  "product_samples" : "ارفاق عينات من المنتجات"
 }

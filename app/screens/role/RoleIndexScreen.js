@@ -32,6 +32,7 @@ const RoleIndexScreen = () => {
         contentInset={{bottom: 150}}>
         {map(roles, (r, i) => (
           <TouchableOpacity
+            key={i}
             style={[styles.btnStyle, {backgroundColor: r.color}]}
             onPress={() => handleClick(r)}>
             <ImageLoaderContainer

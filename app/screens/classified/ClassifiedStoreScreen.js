@@ -86,7 +86,7 @@ const ClassifiedStoreScreen = () => {
 
   useEffect(() => {
     if (validate.isEmpty(category)) {
-      navigation.navigate('ChooseCategory');
+      dispatch(navigation.navigate('ChooseCategory'));
     }
   }, [category]);
 
@@ -130,7 +130,7 @@ const ClassifiedStoreScreen = () => {
             {I18n.t('add_your_images')}
           </Text>
         </TouchableOpacity>
-        {!validate.isEmpty(images) ? (
+        {!validate.isEmpty(images) && (
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -179,7 +179,7 @@ const ClassifiedStoreScreen = () => {
               </ImageBackground>
             ))}
           </ScrollView>
-        ) : null}
+        )}
         <View style={{width: '90%', alignItems: 'center'}}>
           <Input
             inputContainerStyle={{

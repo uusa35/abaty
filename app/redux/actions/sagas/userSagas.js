@@ -641,6 +641,33 @@ export function* startRegisterScenario(action) {
   }
 }
 
+export function* startCompanyRegisterScenario(action) {
+  try {
+    const element = yield call(api.companyRegister, action.payload);
+    if (validate.isObject(element) && !validate.isEmpty(element)) {
+      const {email, password} = action.payload;
+      yield put({type: actions.SUBMIT_AUTH, payload: {email, password}});
+      yield all([
+        call(startGoogleAnalyticsScenario, {
+          payload: {type: 'UserRegister', element},
+        }),
+        call(enableSuccessMessage, I18n.t('register_success')),
+        put(
+          NavigationActions.navigate({
+            routeName: 'Home',
+          }),
+        ),
+      ]);
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    yield call(enableErrorMessage, e);
+  } finally {
+    yield call(disableLoading);
+  }
+}
+
 export function* startRateUserScenario(action) {
   try {
     const element = yield call(api.rateUser, action.payload);

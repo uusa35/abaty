@@ -1,23 +1,31 @@
-import React, {useState, useContext} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState, useContext, Fragment} from 'react';
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {bottomContentInset, text, height} from '../../../constants/sizes';
-import {showCountryModal} from '../../../redux/actions';
+import {enableErrorMessage, showCountryModal} from '../../../redux/actions';
 import {register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
-import {filter, first, isNull} from 'lodash';
+import {filter, first, map, remove} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
-import FastImage from 'react-native-fast-image';
-import {images} from '../../../constants/images';
 import ImagePicker from 'react-native-image-crop-picker';
+import widgetStyles from '../widgetStyles';
+import validate from 'validate.js';
+import {validateSubmitRegister} from '../../../constants/validations';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {country, playerId, role, roles, auth} = useSelector((state) => state);
+  const {country, playerId, role, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -27,10 +35,9 @@ const RegisterFormWidget = () => {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [sampleLogo, setSampleLogo] = useState(null);
+  const [images, setImages] = useState();
 
-  console.log('role', role);
-
-  const openPicker = () => {
+  const openLogoPicker = () => {
     return ImagePicker.openPicker({
       width: 1000,
       height: 1000,
@@ -42,6 +49,89 @@ const RegisterFormWidget = () => {
       setImage(image);
       setSampleLogo(image.path);
     });
+  };
+
+  const openImagesPicker = () => {
+    return ImagePicker.openPicker({
+      compressImageMaxWidth: 1080,
+      compressImageMaxHeight: 1440,
+      multiple: true,
+      cropping: true,
+      includeBase64: false,
+      includeExif: true,
+      maxFiles: 5,
+      minFiles: 2,
+      compressImageQuality: 0.5,
+    }).then((images) => {
+      setImage(first(images));
+      setImages(images);
+    });
+  };
+
+  const removeImage = (i) => {
+    const newImages = remove(images, (img, index) => i !== index);
+    setImages(newImages);
+  };
+
+  const handleRegister = () => {
+    if (role.isClient) {
+      dispatch(
+        register({
+          name,
+          email,
+          password,
+          mobile,
+          country_id: country.id,
+          address,
+          player_id: playerId,
+          description,
+          logo: image,
+          role_id: role ? role.id : first(filter(roles, (r) => r.isClient)).id,
+        }),
+      );
+    } else {
+      return validateSubmitRegister
+        .validate({
+          name,
+          email,
+          password,
+          mobile,
+          country_id: country.id,
+          address,
+          player_id: playerId,
+          description,
+          logo,
+          images,
+          role_id: role.id,
+        })
+        .then((r) => {
+          return dispatch(
+            register({
+              name,
+              email,
+              password,
+              mobile,
+              country_id: country.id,
+              address,
+              player_id: playerId,
+              description,
+              logo: image,
+              images,
+              role_id: role
+                ? role.id
+                : first(filter(roles, (r) => r.isCompany)).id,
+            }),
+          );
+        })
+        .catch((e) => {
+          const {message, item} = first(e.errors);
+          return dispatch(
+            enableErrorMessage(
+              message ? I18n.t(message, {item}) : I18n.t(first(e.errors)),
+            ),
+          );
+        });
+    }
   };
 
   return (
@@ -65,16 +155,10 @@ const RegisterFormWidget = () => {
       />
       {(role.isDesigner || role.isCompany) && (
         <TouchableOpacity
-          onPress={() => openPicker()}
+          onPress={() => openLogoPicker()}
           style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
-          <FastImage
-            source={{
-              uri: !isNull(sampleLogo)
-                ? sampleLogo
-                : !isNull(auth.thumb)
-                ? auth.thumb
-                : logo,
-            }}
+          <ImageLoaderContainer
+            img={sampleLogo}
             style={{
               width: 120,
               height: 120,
@@ -84,7 +168,6 @@ const RegisterFormWidget = () => {
               borderRadius: 120 / 2,
             }}
             resizeMode="contain"
-            loadingIndicatorSource={images.logo}
           />
         </TouchableOpacity>
       )}
@@ -276,6 +359,90 @@ const RegisterFormWidget = () => {
         />
       )}
 
+      {(role.isDesigner || role.isCompany) && (
+        <Fragment>
+          <Text
+            style={[
+              styles.titleLabelStyle,
+              {
+                color: colors.main_theme_color,
+                paddingBottom: 10,
+                paddingLeft: 20,
+                width: '100%',
+              },
+            ]}>
+            {I18n.t('product_samples')}
+          </Text>
+          <TouchableOpacity
+            onPress={() => openImagesPicker()}
+            style={{width: '100%', marginTop: 0, alignItems: 'center'}}>
+            <ImageLoaderContainer
+              img={sampleLogo}
+              style={{
+                width: 120,
+                height: 120,
+                margin: 20,
+                borderWidth: 1,
+                borderColor: 'lightgrey',
+                borderRadius: 120 / 2,
+              }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </Fragment>
+      )}
+
+      {!validate.isEmpty(images) && (
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: 10,
+          }}
+          style={[
+            widgetStyles.wrapper,
+            {borderWidth: 1, borderColor: 'lightgrey', minHeight: 120},
+          ]}>
+          {map(images, (img, i) => (
+            <ImageBackground
+              key={i}
+              source={{uri: img.path}}
+              style={{
+                width: 100,
+                height: 100,
+                marginRight: 5,
+                marginLeft: 5,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  backgroundColor: 'white',
+                  opacity: 0.7,
+                }}>
+                <Icon
+                  size={40}
+                  name="ios-checkmark-circle"
+                  type="ionicon"
+                  color={img.path == image.path ? 'green' : 'black'}
+                  onPress={() => setImage(img)}
+                />
+                <Icon
+                  size={30}
+                  name="close"
+                  type="evil-icons"
+                  onPress={() => removeImage(i)}
+                />
+              </View>
+            </ImageBackground>
+          ))}
+        </ScrollView>
+      )}
+
       <Button
         raised
         containerStyle={{marginBottom: 10, width: '90%', alignSelf: 'center'}}
@@ -288,24 +455,7 @@ const RegisterFormWidget = () => {
           styles.titleLabelStyle,
           {color: colors.btn_text_theme_color},
         ]}
-        onPress={() =>
-          dispatch(
-            register({
-              name,
-              email,
-              password,
-              mobile,
-              country_id: country.id,
-              address,
-              player_id: playerId,
-              description,
-              logo: image,
-              role_id: role
-                ? role.id
-                : first(filter(roles, (r) => r.name === 'Client')).id,
-            }),
-          )
-        }
+        onPress={() => handleRegister()}
       />
     </KeyboardAwareScrollView>
   );

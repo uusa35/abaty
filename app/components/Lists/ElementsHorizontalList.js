@@ -384,14 +384,17 @@ const ElementsHorizontalList = ({
   }, [elements]);
 
   const renderFooter = () => {
-    return showFooter && !validate.isEmpty(items) ? (
-      <NoMoreElements
-        title={I18n.t('no_more_', {item: I18n.t(type)})}
-        isLoading={isLoading}
-      />
-    ) : (
-      isLoading && <ActivityIndicator size={iconSizes.larger} />
-    );
+    if (showFooter) {
+      return !validate.isEmpty(items) ? (
+        <NoMoreElements
+          title={I18n.t('no_more_', {item: I18n.t(type)})}
+          isLoading={isLoading}
+        />
+      ) : (
+        isLoading && <ActivityIndicator size={iconSizes.larger} />
+      );
+    }
+    return <Fragment></Fragment>;
   };
 
   const renderHeader = () => {
@@ -513,7 +516,7 @@ const ElementsHorizontalList = ({
         initialNumToRender={12}
         maxToRenderPerBatch={24}
         ListFooterComponentStyle={{
-          marginBottom: bottomContentInset,
+          marginBottom: showFooter ? bottomContentInset : 0,
         }}
         ListHeaderComponentStyle={{
           backgroundColor: 'white',

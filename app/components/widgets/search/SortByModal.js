@@ -1,4 +1,4 @@
-import React, {Fragment, useState } from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   Modal,
   ScrollView,
@@ -20,7 +20,7 @@ const SortByModal = ({
   showSortAlpha = true,
   type,
 }) => {
-  const [currentType,setCurrentType] = useState(type);
+  const [currentType, setCurrentType] = useState(type);
 
   return (
     <Modal

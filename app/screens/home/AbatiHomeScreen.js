@@ -112,10 +112,6 @@ const AbatiHomeScreen = () => {
 
 export default AbatiHomeScreen;
 
-AbatiHomeScreen.propTypes = {
-  // homeCategories: PropTypes.array,
-};
-
 const styles = StyleSheet.create({
   safeContainer: {
     paddingRight: 5,
