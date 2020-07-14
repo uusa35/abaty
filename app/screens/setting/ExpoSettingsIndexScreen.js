@@ -130,7 +130,7 @@ const ExpoSettingsIndexScreen = ({}) => {
             activeOpacity={touchOpacity}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
             style={styles.btnWrapper}>
-            <Icon name="language" type="entypo" size={iconSizes.medium} />
+            <Icon name="globe" type="font-awesome" size={iconSizes.medium} />
             <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
           </TouchableOpacity>
         </View>

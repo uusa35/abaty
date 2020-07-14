@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {bottomContentInset, text, touchOpacity} from '../../constants/sizes';
+import {
+  bottomContentInset,
+  iconSizes,
+  text,
+  touchOpacity,
+} from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
@@ -119,7 +124,7 @@ const SettingsIndexScreen = () => {
             activeOpacity={touchOpacity}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
             style={styles.btnWrapper}>
-            <Icon name="globe" type="font-awesome" size={45} />
+            <Icon name="globe" type="font-awesome" size={iconSizes.medium} />
             <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
           </TouchableOpacity>
           <TouchableOpacity

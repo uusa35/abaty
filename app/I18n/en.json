@@ -620,5 +620,6 @@
   "cart_error_u_cant_add_this_item_now" : "Cart Error, Currently You can not add such item to cart.",
   "you_can_add_more_than_one_product_to_cart" : "This product can only be directly purchased. You can not add more products to Shopping Cart with this item.",
   "direct_purchase" : "Direct Purchase",
-  "product_samples" : "Product Samples"
+  "product_samples" : "Product Samples",
+  "order" : "Order"
 }

@@ -58,6 +58,7 @@ import {setElementType} from '../../redux/actions';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import {isIOS} from '../../constants';
 import {convertNumberToEnglish} from '../../helpers';
+import OrderWidget from '../widgets/order/OrderWidget';
 
 const ElementsHorizontalList = ({
   elements,
@@ -359,6 +360,9 @@ const ElementsHorizontalList = ({
         break;
       case 'designer':
         return <UserWidgetHorizontal user={item} showName={true} />;
+        break;
+      case 'order':
+        return <OrderWidget element={item} />;
         break;
       default:
         return (

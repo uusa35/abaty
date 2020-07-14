@@ -26,7 +26,7 @@ const FavoriteProductIndexScreen = () => {
         showFooter={false}
         showSearch={false}
         showProductsFilter={false}
-        emptyListImage="emptyProductFavorite"
+        emptyListImage={ABATI ? 'emptyProductFavorite' : ''}
       />
     </BgContainer>
   );

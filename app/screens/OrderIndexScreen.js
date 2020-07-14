@@ -8,19 +8,12 @@ import {
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {isIOS} from '../constants';
-import {height, text, width} from '../constants/sizes';
+import {text} from '../constants/sizes';
 import validate from 'validate.js';
-import {Button} from 'react-native-elements';
 import {isRTL} from '../I18n';
-import I18n from './../I18n';
-import OrderWidget from '../components/widgets/order/OrderWidget';
-import {reAuthenticate} from '../redux/actions/user';
-import {ABATI} from '../../app';
-import {images} from '../constants/images';
 import BgContainer from '../components/containers/BgContainer';
-import {GlobalValuesContext} from '../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
+import {ABATI} from '../../app';
 
 const OrderIndexScreen = ({}) => {
   const {orders} = useSelector((state) => state.auth);
@@ -37,7 +30,7 @@ const OrderIndexScreen = ({}) => {
       <ElementsHorizontalList
         elements={currentElements}
         searchParams={{}}
-        type="product"
+        type="order"
         showRefresh={false}
         showFooter={true}
         showSearch={false}
@@ -45,7 +38,7 @@ const OrderIndexScreen = ({}) => {
         showProductsFilter={false}
         showTitleIcons={false}
         showMore={false}
-        emptyListImage="emptyOrder"
+        emptyListImage={ABATI ? 'emptyOrder' : ''}
       />
     </BgContainer>
   );

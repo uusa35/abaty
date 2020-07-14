@@ -9,15 +9,14 @@ import {
 } from 'react-native';
 import {appUrlIos} from '../../../env';
 import {text} from '../../../constants/sizes';
-import {images} from '../../../constants/images';
 import {Button, Icon} from 'react-native-elements';
-import FastImage from 'react-native-fast-image';
 import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
-const OrderWidget = ({element, logo}) => {
-  const {colors} = useContext(GlobalValuesContext);
+const OrderWidget = ({element}) => {
+  const {colors, logo} = useContext(GlobalValuesContext);
 
   const writeToClipboard = useCallback((text) => {
     Clipboard.setString(text);
@@ -35,11 +34,10 @@ const OrderWidget = ({element, logo}) => {
         paddingBottom: 10,
       }}>
       <View style={{flexDirection: 'row'}}>
-        <FastImage
-          source={{uri: logo}}
+        <ImageLoaderContainer
+          img={logo}
           style={{width: 80, height: 80, margin: 5}}
           resizeMode="contain"
-          loadingIndicatorSource={images.logo}
         />
         <View style={{flex: 1, paddingRight: 10}}>
           <View style={styles.itemWrapper}>
