@@ -448,7 +448,6 @@ export function* startReAuthenticateScenario() {
 
 export function* startUpdateUserScenario(action) {
   try {
-    const {name, mobile, email} = action.payload;
     const element = yield call(api.updateUser, action.payload);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([

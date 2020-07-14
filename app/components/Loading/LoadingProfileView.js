@@ -156,7 +156,6 @@ const LoadingProfileView = () => {
 export default LoadingProfileView;
 
 LoadingProfileView.propTypes = {
-  logo: PropTypes.string,
   columns: PropTypes.number,
 };
 

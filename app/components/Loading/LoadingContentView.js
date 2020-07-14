@@ -130,7 +130,6 @@ const LoadingContentView = () => {
 export default LoadingContentView;
 
 LoadingContentView.propTypes = {
-  logo: PropTypes.string,
   columns: PropTypes.number,
 };
 

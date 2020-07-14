@@ -33,9 +33,7 @@ const SplashWidget = ({element, index, handleClick}) => {
             alignSelf: 'flex-end',
             padding: 15,
           }}>
-          <View>
-            <Icon size={iconSizes.small} name="close" type="evil-icons" />
-          </View>
+          <Icon size={iconSizes.small} name="close" type="evil-icons" />
         </TouchableOpacity>
       )}
       {element.title && (

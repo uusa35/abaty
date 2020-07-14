@@ -18,7 +18,7 @@ import Modal from 'react-native-modal';
 
 const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
-  const {settings} = useSelector((state) => state);
+  const {settings, showIntroduction} = useSelector((state) => state);
   const [currentShowIntroduction, setCurrentShowIntroduction] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -29,8 +29,8 @@ const IntroductionWidget = ({elements}) => {
     dispatch(toggleIntroduction(currentShowIntroduction));
   }, [currentShowIntroduction]);
 
-  useMemo(() => {
-    if (!currentShowIntroduction) {
+  useEffect(() => {
+    if (showIntroduction) {
       setTimeout(() => setCurrentShowIntroduction(true), 2000);
     }
   }, []);
@@ -55,7 +55,6 @@ const IntroductionWidget = ({elements}) => {
               keyExtractor={(elements, index) => index.toString()}
               showPrevButton={true}
               showDoneButton={true}
-              bottomButton={true}
               showNextButton={true}
               showSkipButton={true}
               skipLabel={I18n.t('skip')}

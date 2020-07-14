@@ -55,7 +55,7 @@ const UserEditFormWidget = ({showIcon = true}) => {
     }
   }, [country]);
 
-  const openPicker = useCallback(() => {
+  const openPicker = () => {
     return ImagePicker.openPicker({
       width: 1000,
       height: 1000,
@@ -67,7 +67,7 @@ const UserEditFormWidget = ({showIcon = true}) => {
       setImage(image);
       setSampleLogo(image.path);
     });
-  });
+  };
 
   return (
     <BgContainer>
@@ -92,7 +92,7 @@ const UserEditFormWidget = ({showIcon = true}) => {
             alignSelf: 'center',
             flex: 1,
           }}>
-          {showIcon ? (
+          {showIcon && (
             <Icon
               name="close"
               size={25}
@@ -109,7 +109,7 @@ const UserEditFormWidget = ({showIcon = true}) => {
                   : navigate('Home');
               }}
             />
-          ) : null}
+          )}
           <TouchableOpacity
             onPress={() => openPicker()}
             style={{width: '90%', marginTop: 0, alignItems: 'center'}}>

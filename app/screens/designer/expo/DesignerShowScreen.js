@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -13,7 +13,6 @@ import {enableWarningMessage} from '../../../redux/actions';
 import {getDesigner} from '../../../redux/actions/user';
 import CommentScreenModal from './../../CommentScreenModal';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import ProductList from '../../../components/widgets/product/ProductList';
 import UserInfoWidget from '../../../components/widgets/user/UserInfoWidget';
 import I18n from '../../../I18n';
 import VideosVerticalWidget from '../../../components/widgets/video/VideosVerticalWidget';

@@ -9,12 +9,15 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
-import {filter, first} from 'lodash';
+import {filter, first, isNull} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import FastImage from 'react-native-fast-image';
+import {images} from '../../../constants/images';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {country, playerId, role, roles} = useSelector((state) => state);
+  const {country, playerId, role, roles, auth} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,6 +25,24 @@ const RegisterFormWidget = () => {
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null);
+  const [sampleLogo, setSampleLogo] = useState(null);
+
+  console.log('role', role);
+
+  const openPicker = () => {
+    return ImagePicker.openPicker({
+      width: 1000,
+      height: 1000,
+      multiple: false,
+      cropping: true,
+      includeBase64: true,
+      includeExif: true,
+    }).then((image) => {
+      setImage(image);
+      setSampleLogo(image.path);
+    });
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -39,9 +60,34 @@ const RegisterFormWidget = () => {
       }}>
       <ImageLoaderContainer
         img={logo}
-        style={{width: 50, height: 50, marginTop: 10, marginBottom: '5%'}}
+        style={{width: 50, height: 50, marginTop: '3%', marginBottom: '3%'}}
         resizeMode="contain"
       />
+      {(role.isDesigner || role.isCompany) && (
+        <TouchableOpacity
+          onPress={() => openPicker()}
+          style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
+          <FastImage
+            source={{
+              uri: !isNull(sampleLogo)
+                ? sampleLogo
+                : !isNull(auth.thumb)
+                ? auth.thumb
+                : logo,
+            }}
+            style={{
+              width: 120,
+              height: 120,
+              margin: 20,
+              borderWidth: 1,
+              borderColor: 'lightgrey',
+              borderRadius: 120 / 2,
+            }}
+            resizeMode="contain"
+            loadingIndicatorSource={images.logo}
+          />
+        </TouchableOpacity>
+      )}
       <Input
         placeholder={I18n.t('name') + '*'}
         inputContainerStyle={{
@@ -202,7 +248,7 @@ const RegisterFormWidget = () => {
         keyboardType="default"
         onChangeText={(text) => setAddress(text)}
       />
-      {!ABATI ? (
+      {!ABATI && (
         <Input
           placeholder={I18n.t('description')}
           inputContainerStyle={{
@@ -228,7 +274,7 @@ const RegisterFormWidget = () => {
           keyboardType="default"
           onChangeText={(text) => setDescription(text)}
         />
-      ) : null}
+      )}
 
       <Button
         raised
@@ -253,6 +299,7 @@ const RegisterFormWidget = () => {
               address,
               player_id: playerId,
               description,
+              logo: image,
               role_id: role
                 ? role.id
                 : first(filter(roles, (r) => r.name === 'Client')).id,

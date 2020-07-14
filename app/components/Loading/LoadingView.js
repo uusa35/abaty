@@ -93,16 +93,10 @@ const LoadingView = ({
         <LoadingContentView loadingText={I18n.t('loading')} />
       )}
       {isLoadingProfile && (
-        <LoadingProfileView
-          loadingText={I18n.t('loading')}
-          logo={settings.logo}
-        />
+        <LoadingProfileView loadingText={I18n.t('loading')} />
       )}
       {isLoadingBoxedList && (
-        <LoadingBoxedListView
-          loadingText={I18n.t('loading')}
-          logo={settings.logo}
-        />
+        <LoadingBoxedListView loadingText={I18n.t('loading')} />
       )}
     </Fragment>
   );

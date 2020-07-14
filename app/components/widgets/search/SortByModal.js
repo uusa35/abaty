@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState } from 'react';
 import {
   Modal,
   ScrollView,
@@ -20,6 +20,8 @@ const SortByModal = ({
   showSortAlpha = true,
   type,
 }) => {
+  const [currentType,setCurrentType] = useState(type);
+
   return (
     <Modal
       transparent={true}
@@ -60,7 +62,7 @@ const SortByModal = ({
             style={styles.wrapper}>
             <Text style={styles.phoneNo}>{I18n.t('oldest')}</Text>
           </TouchableOpacity>
-          {showSortPrice && type === 'product' && (
+          {showSortPrice && currentType === 'product' && (
             <Fragment>
               <TouchableOpacity
                 activeOpacity={1}
@@ -78,7 +80,7 @@ const SortByModal = ({
               </TouchableOpacity>
             </Fragment>
           )}
-          {showSortPrice && type === 'classified' && (
+          {showSortPrice && currentType === 'classified' && (
             <Fragment>
               <TouchableOpacity
                 activeOpacity={1}

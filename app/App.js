@@ -3,18 +3,13 @@ import {AppState, useColorScheme, StatusBar, SafeAreaView} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  appBootstrap,
-  checkConnection,
-  refetchHomeElements,
-  toggleBootstrapped,
-} from './redux/actions';
+import {appBootstrap} from './redux/actions';
 import {AppNavigator} from './AppNavigator';
 import validate from 'validate.js';
 import AlertMessage from './components/AlertMessage';
 import CountriesList from './components/Lists/CountriesList';
 import {GlobalValuesContext} from './redux/GlobalValuesContext';
-import {axiosInstance, checkConnectionStatus} from './redux/actions/api';
+import {axiosInstance} from './redux/actions/api';
 import LoginScreenModal from './screens/auth/LoginScreenModal';
 import AreasList from './components/Lists/AreasList';
 import SimpleSpinner from './components/SimpleSpinner';
@@ -101,43 +96,51 @@ const App = () => {
     <Fragment>
       <StatusBar barStyle={`${colorScheme}-content`} />
       {isConnected ? (
-        <GlobalValuesContext.Provider
-          value={{
-            cartLength: cart.length,
-            countriesLength: countries.length,
-            currency_symbol: country.currency.currency_symbol,
-            exchange_rate: country.currency.exchange_rate,
-            total,
-            grossTotal,
-            colors: settings.colors,
-            logo: settings.logo,
-            app_logo: settings.app_logo,
-            mainBg: settings.main_bg,
-            searchModal,
-            resetApp,
-            lang,
-          }}>
-          <React.Suspense fallback={<SimpleSpinner />}>
-            {bootStrapped && <AppNavigator />}
-          </React.Suspense>
-          {validate.isBoolean(loginModal) && (
-            <LoginScreenModal
-              logo={logo}
-              loginModal={loginModal}
-              mainBg={settings.main_bg}
-            />
+        <Fragment>
+          {bootStrapped ? (
+            <GlobalValuesContext.Provider
+              value={{
+                cartLength: cart.length,
+                countriesLength: countries.length,
+                currency_symbol: country
+                  ? country.currency.currency_symbol
+                  : 'KWD',
+                exchange_rate: country ? country.currency.exchange_rate : '1',
+                total,
+                grossTotal,
+                colors: settings.colors,
+                logo: settings.logo,
+                app_logo: settings.app_logo,
+                mainBg: settings.main_bg,
+                searchModal,
+                resetApp,
+                lang,
+              }}>
+              <React.Suspense fallback={<SimpleSpinner />}>
+                <AppNavigator />
+              </React.Suspense>
+              {validate.isBoolean(loginModal) && (
+                <LoginScreenModal
+                  logo={logo}
+                  loginModal={loginModal}
+                  mainBg={settings.main_bg}
+                />
+              )}
+              {validate.isBoolean(countryModal) && countryModal && country && (
+                <CountriesList
+                  country={country}
+                  countries={countries}
+                  countryModal={countryModal}
+                />
+              )}
+              {validate.isBoolean(areaModal) && !validate.isEmpty(areas) && (
+                <AreasList area={area} areas={areas} areaModal={areaModal} />
+              )}
+            </GlobalValuesContext.Provider>
+          ) : (
+            <SimpleSpinner />
           )}
-          {validate.isBoolean(countryModal) && countryModal && country && (
-            <CountriesList
-              country={country}
-              countries={countries}
-              countryModal={countryModal}
-            />
-          )}
-          {validate.isBoolean(areaModal) && !validate.isEmpty(areas) && (
-            <AreasList area={area} areas={areas} areaModal={areaModal} />
-          )}
-        </GlobalValuesContext.Provider>
+        </Fragment>
       ) : (
         <LoadingOfflineView />
       )}
@@ -152,5 +155,5 @@ const App = () => {
 };
 
 export default codePush({
-  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
 })(App);
