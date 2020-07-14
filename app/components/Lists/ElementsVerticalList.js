@@ -39,7 +39,7 @@ import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
 import ElementWidgetVertical from './ElementWidgetVertical';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import SearchSort from '../widgets/search/SearchSort';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
 import {useNavigation} from 'react-navigation-hooks';
 import NoMoreElements from '../widgets/NoMoreElements';
@@ -91,6 +91,7 @@ const ElementsVerticalList = ({
   const [sortModal, setSortModal] = useState(false);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
+  const {token} = useSelector((state) => state);
 
   const loadMore = (d) => {
     if (showMore && d >= 100) {
@@ -415,6 +416,7 @@ const ElementsVerticalList = ({
             element={item}
             showName={showName}
             handleClick={handleClick}
+            minWidth={width}
           />
         );
         break;

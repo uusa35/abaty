@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import moment from 'moment';
@@ -6,6 +6,10 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {Icon} from 'react-native-elements';
 import {isRTL} from '../../I18n';
 import BgContainer from '../../components/containers/BgContainer';
+import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
+import {useDispatch, useSelector} from 'react-redux';
+import {getSearchServices} from '../../redux/actions/service';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 LocaleConfig.locales['ar'] = {
   monthNames: [
     'يناير',
@@ -105,10 +109,25 @@ LocaleConfig.locales['en'] = {
 const CalendarIndexScreen = () => {
   const {lang} = useContext(GlobalValuesContext);
   LocaleConfig.defaultLocale = lang;
+  const {services, searchParams} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useEffect(() => {
+    dispatch(getSearchServices({searchParams: {}}));
+  }, []);
+
+  useMemo(() => {
+    setCurrentSearchParams(searchParams);
+    setCurrentElements(services);
+  }, []);
+
   return (
     <BgContainer>
       <ScrollView>
         <Calendar
+          style={{height: 500}}
           // Initially visible month. Default = Date()
           current={moment().format('YYYY-MM-DD')}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
@@ -181,6 +200,19 @@ const CalendarIndexScreen = () => {
           }
         />
       </ScrollView>
+      <ElementsVerticalList
+        elements={currentElements}
+        type="service"
+        searchElements={currentSearchParams}
+        showRefresh={true}
+        showFooter={true}
+        showSearch={true}
+        showSortSearch={true}
+        showProductsFilter={false}
+        showTitleIcons={true}
+        showMore={true}
+        showName={true}
+      />
     </BgContainer>
   );
 };

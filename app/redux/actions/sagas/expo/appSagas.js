@@ -31,7 +31,7 @@ import {
   getProductIndex,
   setHomeProducts,
 } from '../productSagas';
-import {getHomeServicesScenario} from '../serviceSagas';
+import {getHomeServicesScenario, getServiceIndex} from '../serviceSagas';
 import {getHomeUserCategories} from '../categorySagas';
 import * as actions from '../../types';
 import {GET_ROLES} from '../../types';
@@ -52,6 +52,7 @@ export function* expoBootStrap() {
     call(getTags),
     // call(getVideos),
     call(getProductIndex),
+    call(getServiceIndex),
     // call(getHomeServicesScenario),
     call(setHomeSplashes),
     call(startGetColorsScenario),
