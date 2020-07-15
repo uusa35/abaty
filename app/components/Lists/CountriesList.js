@@ -5,12 +5,11 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  // Modal,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {map} from 'lodash';
 import {hideCountryModal, setArea, chooseCountry} from '../../redux/actions';
-import {text, width, height} from '../../constants/sizes';
+import {text, width, height, iconSizes} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
@@ -45,7 +44,6 @@ const CountriesList = ({country, countries, countryModal}) => {
         isVisible={visible}
         useNativeDriver={true}
         animationIn="slideInUp"
-        animationOut="slideInUp"
         style={{flex: 1, margin: 0}}>
         <View style={styles.container}>
           <ScrollView
@@ -59,12 +57,16 @@ const CountriesList = ({country, countries, countryModal}) => {
               </Text>
               <Icon
                 name="close"
-                type="evil-icons"
-                // type="ionicon"
-                size={20}
+                type="evilicon"
+                size={iconSizes.smaller}
                 containerStyle={{position: 'absolute', top: 5, right: 5}}
                 onPress={() => hide()}
-                hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+                hitSlop={{
+                  top: iconSizes.large,
+                  bottom: iconSizes.large,
+                  left: iconSizes.large,
+                  right: iconSizes.large,
+                }}
               />
             </View>
             <View

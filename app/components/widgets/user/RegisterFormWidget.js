@@ -9,11 +9,15 @@ import {
 } from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {bottomContentInset, text, height} from '../../../constants/sizes';
+import {
+  bottomContentInset,
+  text,
+  height,
+  iconSizes,
+} from '../../../constants/sizes';
 import {enableErrorMessage, showCountryModal} from '../../../redux/actions';
 import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
 import {filter, first, map, remove} from 'lodash';
@@ -22,6 +26,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import widgetStyles from '../widgetStyles';
 import validate from 'validate.js';
 import {validateSubmitRegister} from '../../../constants/validations';
+import KeyBoardContainer from '../../containers/KeyBoardContainer';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
@@ -135,22 +140,16 @@ const RegisterFormWidget = () => {
   };
 
   return (
-    <KeyboardAwareScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: bottomContentInset}}
-      contentContainerStyle={{
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        minHeight: height,
-        alignSelf: 'center',
-      }}>
+    <KeyBoardContainer>
       <ImageLoaderContainer
         img={logo}
-        style={{width: 50, height: 50, marginTop: '3%', marginBottom: '3%'}}
+        style={{
+          width: 50,
+          height: 50,
+          marginTop: '3%',
+          marginBottom: '3%',
+          alignSelf: 'center',
+        }}
         resizeMode="contain"
       />
       {(role.isDesigner || role.isCompany) && (
@@ -457,7 +456,7 @@ const RegisterFormWidget = () => {
         ]}
         onPress={() => handleRegister()}
       />
-    </KeyboardAwareScrollView>
+    </KeyBoardContainer>
   );
 };
 

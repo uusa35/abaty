@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {text, touchOpacity} from '../../../constants/sizes';
+import {iconSizes, text, touchOpacity} from '../../../constants/sizes';
 import I18n, {isRTL} from '../../../I18n';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
@@ -26,26 +26,30 @@ const ProductInfoWidgetElement = ({
         paddingBottom: 10,
       }}
       onPress={link}>
-      <Text
-        style={{
-          textAlign: 'left',
-          fontSize: text.medium,
-          fontFamily: text.font,
-          color: colors.header_one_theme_color,
-        }}>
-        {I18n.t(elementName)}
-      </Text>
-      <View style={{flexDirection: 'row'}}>
+      {elementName && (
         <Text
           style={{
             textAlign: 'left',
             fontSize: text.medium,
             fontFamily: text.font,
-            paddingLeft: 10,
-            paddingRight: 10,
+            color: colors.header_one_theme_color,
           }}>
-          {name}
+          {I18n.t(elementName)}
         </Text>
+      )}
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        {name && (
+          <Text
+            style={{
+              textAlign: 'left',
+              fontSize: text.medium,
+              fontFamily: text.font,
+              paddingLeft: 10,
+              paddingRight: 10,
+            }}>
+            {name}
+          </Text>
+        )}
         {showIcon ? (
           <Icon
             name={
@@ -59,7 +63,7 @@ const ProductInfoWidgetElement = ({
             }
             type={iconName ? 'font-awesome' : 'entypo'}
             color={colors.header_one_theme_color}
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{}}
           />
         ) : null}

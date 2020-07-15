@@ -31,7 +31,7 @@ const IntroductionWidget = ({elements}) => {
 
   useEffect(() => {
     if (showIntroduction) {
-      setTimeout(() => setCurrentShowIntroduction(true), 2000);
+      setCurrentShowIntroduction(true);
     }
   }, []);
 
@@ -40,10 +40,9 @@ const IntroductionWidget = ({elements}) => {
       {!isEmpty(elements) && (
         <View style={{backgroundColor: 'white'}}>
           <Modal
-            transparent={false}
+            transparent={true}
             isVisible={currentShowIntroduction}
             animationIn="slideInUp"
-            animationOut="slideOutDown"
             style={{flex: 1, margin: 0, backgroundColor: 'white'}}>
             <AppIntroSlider
               buttonStyle={{

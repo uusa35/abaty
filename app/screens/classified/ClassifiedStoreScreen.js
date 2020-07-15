@@ -19,7 +19,6 @@ import {
 import {storeClassified} from '../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-crop-picker';
 import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
@@ -29,6 +28,7 @@ import {HOMEKEY} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 import {useNavigation} from 'react-navigation-hooks';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
 const ClassifiedStoreScreen = () => {
   const {auth, category, country, area, classifiedProps} = useSelector(
@@ -92,19 +92,7 @@ const ClassifiedStoreScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      <KeyboardAwareScrollView
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 150}}
-        contentContainerStyle={{
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          alignSelf: 'center',
-          backgroundColor: 'white',
-        }}>
+      <KeyBoardContainer>
         <TouchableOpacity
           activeOpacity={touchOpacity}
           onPress={() => openPicker()}
@@ -431,7 +419,7 @@ const ClassifiedStoreScreen = () => {
             )
           }
         />
-      </KeyboardAwareScrollView>
+      </KeyBoardContainer>
     </BgContainer>
   );
 };

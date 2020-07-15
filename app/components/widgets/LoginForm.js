@@ -1,10 +1,10 @@
 import React, {useState, useContext} from 'react';
-import {iconSizes, text} from '../../constants/sizes';
+import {iconSizes, text, height} from '../../constants/sizes';
 import {appUrlIos} from './../../env';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {googleLogin, setRole, submitAuth} from '../../redux/actions/user';
-import {View, Linking, StyleSheet} from 'react-native';
+import {View, Linking, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import BgContainer from '../containers/BgContainer';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {map, first, filter, isEmpty} from 'lodash';
-import {HOMEKEY} from './../../../app';
+import KeyBoardContainer from '../containers/KeyBoardContainer';
 
 const LoginForm = ({showBtns = false}) => {
   const {roles} = useSelector((state) => state);
@@ -43,84 +43,89 @@ const LoginForm = ({showBtns = false}) => {
   };
 
   return (
-    <BgContainer showImage={!HOMEKEY}>
-      <KeyboardAwareScrollView
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          flex: 1,
-          width: '100%',
-          padding: 15,
+    <KeyBoardContainer>
+      <View
+        style={{
+          width: '95%',
+          alignSelf: 'center',
+          minHeight: '100%',
+          marginTop: 0,
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <View
-          style={{
-            width: '100%',
-            marginTop: 0,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <ImageLoaderContainer
-            img={logo}
-            style={{width: 100, height: 100, margin: 20}}
-            resizeMode="contain"
-          />
-          <Input
-            placeholder={I18n.t('email')}
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: 'lightgrey',
-              paddingLeft: 15,
-              paddingRight: 15,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            label={I18n.t('email')}
-            labelStyle={[
-              styles.titleLabelStyle,
-              {color: colors.main_theme_color, paddingBottom: 10},
-            ]}
-            shake={true}
-            keyboardType="email-address"
-            onChangeText={(email) => setEmail(email)}
-          />
-          <Input
-            rightIcon={() => (
-              <Icon
-                name="eye"
-                type="font-awesome"
-                size={iconSizes.smallest}
-                onPress={() => setVisiblePassword(!visiblePassword)}
-              />
-            )}
-            placeholder={I18n.t('password')}
-            secureTextEntry={visiblePassword}
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: 'lightgrey',
-              paddingLeft: 15,
-              paddingRight: 15,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            label={I18n.t('password')}
-            labelStyle={[
-              styles.titleLabelStyle,
-              {color: colors.main_theme_color, paddingBottom: 10},
-            ]}
-            shake={true}
-            keyboardType="default"
-            onChangeText={(password) => setPassword(password)}
-          />
+        <ImageLoaderContainer
+          img={logo}
+          style={{width: 100, height: 100, margin: 20}}
+          resizeMode="contain"
+        />
+        <Input
+          placeholder={I18n.t('email')}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderRadius: 5,
+            borderColor: 'lightgrey',
+            paddingLeft: 15,
+            paddingRight: 15,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          label={I18n.t('email')}
+          labelStyle={[
+            styles.titleLabelStyle,
+            {color: colors.main_theme_color, paddingBottom: 10},
+          ]}
+          shake={true}
+          keyboardType="email-address"
+          onChangeText={(email) => setEmail(email)}
+        />
+        <Input
+          rightIcon={() => (
+            <Icon
+              name="eye"
+              type="font-awesome"
+              size={iconSizes.smallest}
+              onPress={() => setVisiblePassword(!visiblePassword)}
+            />
+          )}
+          placeholder={I18n.t('password')}
+          secureTextEntry={visiblePassword}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderRadius: 5,
+            borderColor: 'lightgrey',
+            paddingLeft: 15,
+            paddingRight: 15,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          label={I18n.t('password')}
+          labelStyle={[
+            styles.titleLabelStyle,
+            {color: colors.main_theme_color, paddingBottom: 10},
+          ]}
+          shake={true}
+          keyboardType="default"
+          onChangeText={(password) => setPassword(password)}
+        />
+        <Button
+          raised
+          containerStyle={{marginBottom: 10, width: '100%'}}
+          buttonStyle={{
+            backgroundColor: colors.btn_bg_theme_color,
+            borderRadius: 0,
+          }}
+          title={I18n.t('login')}
+          titleStyle={{
+            fontFamily: text.font,
+            color: colors.btn_text_theme_color,
+          }}
+          onPress={() => dispatch(submitAuth({email, password}))}
+        />
+        {showBtns ? (
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -128,56 +133,40 @@ const LoginForm = ({showBtns = false}) => {
               backgroundColor: colors.btn_bg_theme_color,
               borderRadius: 0,
             }}
-            title={I18n.t('login')}
+            title={I18n.t('new_user')}
             titleStyle={{
               fontFamily: text.font,
               color: colors.btn_text_theme_color,
             }}
-            onPress={() => dispatch(submitAuth({email, password}))}
+            onPress={() => handleRegisterClick()}
           />
-          {showBtns ? (
-            <Button
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0,
-              }}
-              title={I18n.t('new_user')}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color,
-              }}
-              onPress={() => handleRegisterClick()}
-            />
-          ) : null}
-          {showBtns ? (
-            <Button
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0,
-              }}
-              title={I18n.t('forget_password')}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color,
-              }}
-              onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
-            />
-          ) : null}
-          {/*<SocialIcon*/}
-          {/*  title={I18n.t('sign_with_google')}*/}
-          {/*  button*/}
-          {/*  type="google-plus-official"*/}
-          {/*  fontStyle={{fontFamily: text.font, fontSize: text.medium}}*/}
-          {/*  style={{width: '100%', height: 50, borderRadius: 0}}*/}
-          {/*  onPress={() => dispatch(googleLogin())}*/}
-          {/*/>*/}
-        </View>
-      </KeyboardAwareScrollView>
-    </BgContainer>
+        ) : null}
+        {showBtns ? (
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '100%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0,
+            }}
+            title={I18n.t('forget_password')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color,
+            }}
+            onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
+          />
+        ) : null}
+        {/*<SocialIcon*/}
+        {/*  title={I18n.t('sign_with_google')}*/}
+        {/*  button*/}
+        {/*  type="google-plus-official"*/}
+        {/*  fontStyle={{fontFamily: text.font, fontSize: text.medium}}*/}
+        {/*  style={{width: '100%', height: 50, borderRadius: 0}}*/}
+        {/*  onPress={() => dispatch(googleLogin())}*/}
+        {/*/>*/}
+      </View>
+    </KeyBoardContainer>
   );
 };
 

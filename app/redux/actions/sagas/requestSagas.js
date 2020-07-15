@@ -541,7 +541,6 @@ export function* startSubmitCartScenario(action) {
 export function* startGetCouponScenario(action) {
   try {
     const {total, country} = yield select();
-    console.log('coupon', action.payload);
     if (validate.isEmpty(action.payload)) {
       throw I18n.t('coupon_is_empty');
     }
@@ -713,7 +712,6 @@ export function* startGoogleLoginScenario() {
     const signIn = yield call(GoogleSignin.hasPlayServices);
     if (signIn) {
       const userInfo = yield call(GoogleSignin.signIn);
-      console.log('userInfo', userInfo);
       if (!validate.isEmpty(userInfo)) {
         const {email, name} = userInfo.user;
         const user = yield call(api.googleAuthenticate, {email, name});

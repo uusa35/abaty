@@ -73,6 +73,7 @@ export const iconSizes = {
   large: 50,
   larger: 60,
   largest: 70,
+  huge: 100,
 };
 
 export const getFont = () => {

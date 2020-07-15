@@ -16,6 +16,7 @@ import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalW
 import BgContainer from '../../components/containers/BgContainer';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
+import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
 const NormalProductShowScreen = () => {
   const {product, token, settings} = useSelector((state) => state);
@@ -43,22 +44,7 @@ const NormalProductShowScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      <KeyboardAwareScrollView
-        horizontal={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => handleRefresh()}
-          />
-        }
-        automaticallyAdjustContentInsets={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: bottomContentInset}}
-        style={{paddingBottom: bottomContentInset}}
-        ListFooterComponentStyle={{
-          marginBottom: bottomContentInset,
-        }}>
+      <KeyBoardContainer handleRefresh={handleRefresh}>
         <ImagesWidget
           sku={product.sku}
           qr={product.qr}
@@ -77,7 +63,7 @@ const NormalProductShowScreen = () => {
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
           <View>
-            {product.description ? (
+            {product.description && (
               <View>
                 <Text
                   style={[
@@ -88,7 +74,7 @@ const NormalProductShowScreen = () => {
                 </Text>
                 <Text style={styles.normalText}>{product.description}</Text>
               </View>
-            ) : null}
+            )}
             <ProductInfoWidgetElement
               elementName="designer"
               name={product.user.slug}
@@ -123,21 +109,21 @@ const NormalProductShowScreen = () => {
               name={product.sku}
               showIcon={false}
             />
-            {product.weight ? (
+            {product.weight && (
               <ProductInfoWidgetElement
                 elementName="product_weight"
                 name={`${product.weight} ${I18n.t('kg')}`}
                 showIcon={false}
               />
-            ) : null}
+            )}
             <ProductInfoWidgetElement
               elementName="contactus_order_by_phone"
               name={phone}
               link={() => Linking.openURL(`tel:${mobile}`)}
             />
-            {shipment_prices ? (
+            {!validate.isEmpty(shipment_prices) && (
               <ProductInfoWidgetElement
-                elementName="shipment_prices"
+                elementName="shipment_fees"
                 link={() =>
                   navigation.navigate('ImageZoom', {
                     images: [{id: product.id, large: shipment_prices}],
@@ -146,8 +132,8 @@ const NormalProductShowScreen = () => {
                   })
                 }
               />
-            ) : null}
-            {size_chart ? (
+            )}
+            {size_chart && (
               <ProductInfoWidgetElement
                 elementName="size_chart"
                 link={() =>
@@ -158,13 +144,13 @@ const NormalProductShowScreen = () => {
                   })
                 }
               />
-            ) : null}
+            )}
           </View>
         </View>
         {validate.isObject(product.videoGroup) &&
-        !validate.isEmpty(product.videoGroup) ? (
-          <VideosVerticalWidget videos={product.videoGroup} />
-        ) : null}
+          !validate.isEmpty(product.videoGroup) && (
+            <VideosVerticalWidget videos={product.videoGroup} />
+          )}
         {/*{!validate.isEmpty(homeProducts) ? (*/}
         {/*  <ProductHorizontalWidget*/}
         {/*    elements={homeProducts}*/}
@@ -172,7 +158,7 @@ const NormalProductShowScreen = () => {
         {/*    title={I18n.t('related_products')}*/}
         {/*  />*/}
         {/*) : null}*/}
-      </KeyboardAwareScrollView>
+      </KeyBoardContainer>
       <ActionBtnWidget />
     </BgContainer>
   );

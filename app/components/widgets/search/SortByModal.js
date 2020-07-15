@@ -1,12 +1,12 @@
 import React, {Fragment, useState} from 'react';
 import {
-  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import {iconSizes, text, width} from '../../../constants/sizes';
 import I18n from '../../../I18n';
 import {Icon} from 'react-native-elements';
@@ -25,9 +25,9 @@ const SortByModal = ({
   return (
     <Modal
       transparent={true}
-      visible={sortModal}
-      animationType={'slide'}
-      onRequestClose={() => setSortModal(false)}>
+      isVisible={sortModal}
+      useNativeDriver={true}
+      animationIn="slideInUp">
       <View style={styles.sortModalContainer}>
         <ScrollView
           contentContainerStyle={{backgroundColor: 'white'}}
@@ -42,10 +42,15 @@ const SortByModal = ({
             <Icon
               name="close"
               type="evilicon"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               containerStyle={{position: 'absolute', top: 5, right: 5}}
               onPress={() => setSortModal(false)}
-              hitSlop={{top: 30, bottom: 30, left: 30, right: 30}}
+              hitSlop={{
+                top: iconSizes.large,
+                bottom: iconSizes.large,
+                left: iconSizes.large,
+                right: iconSizes.large,
+              }}
             />
           </View>
           <TouchableOpacity
