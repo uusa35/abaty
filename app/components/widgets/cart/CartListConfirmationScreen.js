@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS} from '../../../constants';
-import {text} from '../../../constants/sizes';
+import {text, height} from '../../../constants/sizes';
 import {showCountryModal} from '../../../redux/actions';
 import {
   clearCart,
@@ -93,7 +93,7 @@ const CartListConfirmationScreen = ({
   });
 
   return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%', padding: '5%', alignSelf: 'center'}}>
       <View
         useNativeDriver={true}
         animation="bounceInLeft"

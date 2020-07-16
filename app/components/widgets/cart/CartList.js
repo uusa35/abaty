@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect, Fragment} from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import I18n, {isRTL} from '../../../I18n';
@@ -17,6 +17,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
 import {CREATE_MYFATOORAH_PAYMENT_URL} from '../../../redux/actions/types';
 import {getConvertedFinalPrice} from '../../../helpers';
+import KeyBoardContainer from '../../containers/KeyBoardContainer';
 
 const CartList = ({
   shipmentCountry,
@@ -65,14 +66,7 @@ const CartList = ({
   }, [auth]);
 
   return (
-    <KeyboardAwareScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={{
-        width: '100%',
-      }}>
+    <Fragment>
       <View
         animation="bounceInLeft"
         easing="ease-out"
@@ -714,7 +708,7 @@ const CartList = ({
         }}
         onPress={() => dispatch(clearCart())}
       />
-    </KeyboardAwareScrollView>
+    </Fragment>
   );
 };
 

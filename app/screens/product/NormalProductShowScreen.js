@@ -44,7 +44,7 @@ const NormalProductShowScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      <KeyBoardContainer handleRefresh={handleRefresh}>
+      <KeyBoardContainer behavior="position">
         <ImagesWidget
           sku={product.sku}
           qr={product.qr}

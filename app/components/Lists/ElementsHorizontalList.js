@@ -79,6 +79,7 @@ const ElementsHorizontalList = ({
   iconSize = iconSizes.small,
   textSize = text.small,
   columns = 2,
+  customHeight = 240,
 }) => {
   const [items, setItems] = useState(elements);
   const [elementsWithMap, setElementsWithMap] = useState([]);
@@ -164,6 +165,20 @@ const ElementsHorizontalList = ({
             })
             .catch((e) => e);
           break;
+        case 'service':
+          return axiosInstance(`search/service?page=${page}`, {
+            params,
+          })
+            .then((r) => {
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                setItems(elementsGroup);
+              } else {
+                setPage(2);
+              }
+            })
+            .catch((e) => e);
+          break;
         default:
           null;
       }
@@ -223,6 +238,9 @@ const ElementsHorizontalList = ({
           dispatch(
             getSearchClassifieds({searchParams: params, redirect: false}),
           );
+          break;
+        case 'service':
+          dispatch(getSearchServices({searchParams: params, redirect: false}));
           break;
         default:
           null;

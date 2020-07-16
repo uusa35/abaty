@@ -20,24 +20,13 @@ const ServiceWidget = ({
   element,
   showName = false,
   minWidth = 150,
+  height = 240,
   handleClick,
 }) => {
   const {colors, currency_symbol, exchange_rate} = useContext(
     GlobalValuesContext,
   );
-  // const {token} = useSelector((state) => state);
-  // const dispatch = useDispatch();
-  // const [imageLoading, setImageLoading] = useState(true);
 
-  // const handleClick = () => {
-  //   dispatch(
-  //     getService({
-  //       id: element.id,
-  //       api_token: token ? token : null,
-  //       redirect: true,
-  //     }),
-  //   );
-  // };
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}
@@ -49,7 +38,7 @@ const ServiceWidget = ({
           uri: element.thumb,
         }}
         imageStyle={styles.imageStyling}
-        style={styles.image}
+        style={[styles.image, {height}]}
         resizeMode={'cover'}>
         <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
           {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
@@ -119,6 +108,5 @@ const styles = StyleSheet.create({
   image: {
     // width: 190,
     width: '100%',
-    height: 240,
   },
 });

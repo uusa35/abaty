@@ -3,11 +3,15 @@ import {isIOS} from '../../constants';
 import {bottomContentInset, iconSizes} from '../../constants/sizes';
 import {KeyboardAvoidingView, RefreshControl, ScrollView} from 'react-native';
 
-const KeyBoardContainer = ({children, handleRefresh = null}) => {
+const KeyBoardContainer = ({
+  children,
+  handleRefresh = null,
+  behavior = 'padding',
+}) => {
   const [refresh, setRefresh] = useState(false);
   return (
     <KeyboardAvoidingView
-      behavior={isIOS ? 'padding' : 'height'}
+      behavior={isIOS ? behavior : 'height'}
       keyboardVerticalOffset={iconSizes.largest}
       style={{
         flex: 1,
@@ -26,7 +30,8 @@ const KeyBoardContainer = ({children, handleRefresh = null}) => {
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentInset={{bottom: bottomContentInset}}>
+        contentInset={{bottom: bottomContentInset}}
+        style={{backgroundColor: 'white'}}>
         {children}
       </ScrollView>
     </KeyboardAvoidingView>

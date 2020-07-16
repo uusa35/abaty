@@ -549,7 +549,7 @@ export const HomeStack = createStackNavigator(
       screen: CalendarIndexScreen,
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('calendar')} />,
-        headerRight: () => <HeaderRight display={false} />,
+        headerRight: () => <HeaderRight display={false} showCountry={true} />,
         headerBackTitle: () => null,
       },
     },

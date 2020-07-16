@@ -15,6 +15,7 @@ import {animations} from '../../constants/animations';
 import {View as Animating} from 'react-native-animatable';
 import {EXPO, ABATI} from './../../../app';
 import EmptyListWidget from '../../components/Lists/EmptyListWidget';
+import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
 const CartIndexScreen = () => {
   const {cart, country, shipmentFees, settings, coupon, area} = useSelector(
@@ -30,19 +31,11 @@ const CartIndexScreen = () => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
+          alignSelf: 'center',
           marginTop: '5%',
+          width: '95%',
         }}>
-        <ScrollView
-          style={{width: '95%'}}
-          contentContainerStyle={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 10,
-          }}
-          automaticallyAdjustContentInsets={false}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          contentInset={{bottom: 50}}>
+        <KeyBoardContainer>
           {!validate.isEmpty(cart) ? (
             <CartList
               shipmentCountry={country}
@@ -113,7 +106,7 @@ const CartIndexScreen = () => {
               </Animating>
             </View>
           )}
-        </ScrollView>
+        </KeyBoardContainer>
       </View>
     </BgContainer>
   );
