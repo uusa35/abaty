@@ -27,7 +27,7 @@ const ElementWidgetVertical = ({
       chevron={{
         type: 'entypo',
         name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',
-        size: 20,
+        size: iconSizes.medium,
       }}
       // style={{backgroundColor: '#ededed'}}
       // containerStyle={{margin: 3, borderRadius: 5}}

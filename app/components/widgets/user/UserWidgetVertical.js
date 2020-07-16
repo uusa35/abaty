@@ -6,7 +6,7 @@ import {getDesigner, getUser} from './../../../redux/actions/user';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
 
-const UserWidgetVertical = ({user, size = iconSizes.larger}) => {
+const UserWidgetVertical = ({user, size = iconSizes.large}) => {
   const dispatch = useDispatch();
   return (
     <ListItem
@@ -27,7 +27,7 @@ const UserWidgetVertical = ({user, size = iconSizes.larger}) => {
       chevron={{
         type: 'entypo',
         name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',
-        size: iconSizes.smaller,
+        size: iconSizes.smallest,
       }}
       // style={{backgroundColor: '#ededed'}}
       // containerStyle={{margin: 3, borderRadius: 5}}
