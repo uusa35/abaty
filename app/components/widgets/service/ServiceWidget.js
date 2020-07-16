@@ -15,6 +15,9 @@ import {text, touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import {useDispatch, useSelector} from 'react-redux';
+import I18n from './../../../I18n';
+import ImageLoaderContainer from '../ImageLoaderContainer';
+import {getCompany} from '../../../redux/actions/user';
 
 const ServiceWidget = ({
   element,
@@ -26,6 +29,7 @@ const ServiceWidget = ({
   const {colors, currency_symbol, exchange_rate} = useContext(
     GlobalValuesContext,
   );
+  const dispatch = useDispatch();
 
   return (
     <TouchableOpacity
@@ -48,32 +52,61 @@ const ServiceWidget = ({
           {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
         </View>
       </ImageBackground>
-      {showName ? (
+      {showName && (
         <View
           style={{
             width: '100%',
-            paddingTop: 5,
-            paddingRight: 10,
-            paddingLeft: 10,
-            alignItems: 'flex-start',
-            justifyContent: 'center',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
           }}>
-          <Text
-            style={[
-              widgetStyles.elementName,
-              {
-                textAlign: 'center',
-                fontSize: text.medium,
-                color: colors.header_tow_theme_color,
-              },
-            ]}>
-            {element.name.substring(0, 20)}
-          </Text>
+          {element.user && height < 240 && (
+            <TouchableOpacity
+              onPress={() =>
+                dispatch(
+                  getCompany({
+                    id: element.user.id,
+                    searchParams: {user_id: element.user.id},
+                    redirect: true,
+                  }),
+                )
+              }
+              style={{
+                width: '100%',
+                paddingTop: 5,
+                paddingRight: 10,
+                paddingLeft: 10,
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}>
+              <ImageLoaderContainer
+                img={element.user.thumb}
+                style={{
+                  width: 35,
+                  height: 35,
+                  borderRadius: 35 / 2,
+                  marginRight: 10,
+                }}
+              />
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {
+                    fontSize: text.medium,
+                    color: colors.header_tow_theme_color,
+                  },
+                ]}>{`${element.user.slug}`}</Text>
+            </TouchableOpacity>
+          )}
           <View
             style={{
+              width: '100%',
+              paddingTop: 5,
+              paddingRight: 10,
+              paddingLeft: 10,
+              alignItems: 'flex-start',
+              justifyContent: 'space-between',
               flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
             }}>
             <Text
               style={[
@@ -81,16 +114,34 @@ const ServiceWidget = ({
                 {
                   textAlign: 'center',
                   fontSize: text.medium,
-                  paddingRight: 5,
-                  paddingLeft: 5,
+                  color: colors.header_tow_theme_color,
                 },
               ]}>
-              {getConvertedFinalPrice(element.finalPrice, exchange_rate)}
+              {element.name.substring(0, 20)}
             </Text>
-            <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {
+                    textAlign: 'center',
+                    fontSize: text.medium,
+                    paddingRight: 5,
+                    paddingLeft: 5,
+                  },
+                ]}>
+                {getConvertedFinalPrice(element.finalPrice, exchange_rate)}
+              </Text>
+              <Text style={widgetStyles.elementName}>{currency_symbol}</Text>
+            </View>
           </View>
         </View>
-      ) : null}
+      )}
     </TouchableOpacity>
   );
 };

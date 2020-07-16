@@ -283,6 +283,9 @@ const ElementsVerticalList = ({
   };
 
   useMemo(() => {
+    if (!validate.isEmpty(elements)) {
+      setIsLoading(true);
+    }
     setItems(elements);
   }, [elements]);
 

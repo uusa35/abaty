@@ -15,6 +15,7 @@ import {
   height,
   iconSizes,
 } from '../../../constants/sizes';
+import {icons} from '../../../constants/images';
 import {enableErrorMessage, showCountryModal} from '../../../redux/actions';
 import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -155,19 +156,22 @@ const RegisterFormWidget = () => {
       {(role.isDesigner || role.isCompany) && (
         <TouchableOpacity
           onPress={() => openLogoPicker()}
-          style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
+          style={{width: '100%', marginTop: 0, alignItems: 'center'}}>
           <ImageLoaderContainer
             img={sampleLogo}
             style={{
               width: 120,
               height: 120,
-              margin: 20,
+              margin: 10,
               borderWidth: 1,
               borderColor: 'lightgrey',
               borderRadius: 120 / 2,
             }}
             resizeMode="contain"
           />
+          <Text style={{fontFamily: text.font, fontSize: text.small}}>
+            {I18n.t('add_logo')}
+          </Text>
         </TouchableOpacity>
       )}
       <Input

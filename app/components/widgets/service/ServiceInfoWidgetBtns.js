@@ -19,7 +19,6 @@ const ServiceInfoWidgetBtns = ({element}) => {
   const [timeData, setTimeData] = useState({});
   const [notes, setNotes] = useState('');
 
-  console.log('element', element);
   useMemo(() => {
     setSelectedDay(range[day]);
     setSelectedTiming(null);

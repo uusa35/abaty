@@ -144,6 +144,12 @@ const CalendarIndexScreen = () => {
           // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {
             setCurrentDate(day);
+            dispatch(
+              getSearchServices({
+                searchParams: {date_range: day.dateString},
+                redirect: false,
+              }),
+            );
           }}
           // Handler which gets executed on day long press. Default = undefined
           onDayLongPress={(day) => {
@@ -270,7 +276,7 @@ const CalendarIndexScreen = () => {
         searchElements={currentSearchParams}
         showRefresh={true}
         showFooter={true}
-        showSearch={true}
+        showSearch={false}
         showSortSearch={true}
         showProductsFilter={false}
         showTitleIcons={true}
