@@ -383,7 +383,7 @@ PODS:
   - react-native-mixpanel (1.2.0):
     - Mixpanel (~> 3.6.0)
     - React
-  - react-native-netinfo (5.9.4):
+  - react-native-netinfo (5.9.5):
     - React
   - react-native-onesignal (3.7.3):
     - OneSignal (= 2.13.1)
@@ -473,10 +473,10 @@ PODS:
     - React
   - RNDeviceInfo (5.6.2):
     - React
-  - RNFastImage (8.1.5):
+  - RNFastImage (8.3.2):
     - React
-    - SDWebImage (~> 5.0)
-    - SDWebImageWebPCoder (~> 0.4.1)
+    - SDWebImage (~> 5.8)
+    - SDWebImageWebPCoder (~> 0.6.1)
   - RNFBAnalytics (6.7.2):
     - Firebase/Analytics (~> 6.13.0)
     - Firebase/Core (~> 6.13.0)
@@ -492,12 +492,12 @@ PODS:
     - React
   - RNI18n (2.0.15):
     - React
-  - RNImageCropPicker (0.31.1):
+  - RNImageCropPicker (0.32.2):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.31.1)
+    - RNImageCropPicker/QBImagePickerController (= 0.32.2)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.31.1):
+  - RNImageCropPicker/QBImagePickerController (0.32.2):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -516,12 +516,12 @@ PODS:
     - React
   - RNVectorIcons (6.7.0):
     - React
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
-  - SDWebImageWebPCoder (0.4.1):
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.5)
+    - SDWebImage/Core (~> 5.7)
   - Sentry (5.1.9):
     - Sentry/Core (= 5.1.9)
   - Sentry/Core (5.1.9)
@@ -858,7 +858,7 @@ SPEC CHECKSUMS:
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-mixpanel: d644efe1ca33d2646d5cba29e24a13ebc9b37209
-  react-native-netinfo: cd479ab1b67cdd1cb1403a99ecdb24190a6dd7ef
+  react-native-netinfo: a53b00d949b6456913aaf507d9dba90c4008c611
   react-native-onesignal: 417b2ae5c3148a47a6ef70b6af443186048b2022
   react-native-pdf: 909cd849e6a806731b2135263189fea39494b55e
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
@@ -881,13 +881,13 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNDeviceInfo: ed8557a8bd6443cbc0ab5d375e6808a38a279744
-  RNFastImage: 35ae972d6727c84ee3f5c6897e07f84d0a3445e9
+  RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
   RNFBAnalytics: 29bc4baf70da8dc04238d2e1c050367264d2f440
   RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNGoogleSignin: ccf71ee4b6cfd324fd788a41e457e2043838c0d9
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
+  RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
   RNSentry: 9d68f0ce79608e90e10ac320c409321efc114b8f
@@ -895,8 +895,8 @@ SPEC CHECKSUMS:
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 368d6d8b8301224e5ffb6254191f4f8876c2be0d
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
-  SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Sentry: 81f7f2bd3cb041137ea7efcde3aa5ad0d5a67632
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
@@ -908,4 +908,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 07fd7dd168e0c1ec0d17b80b4d99ab8105d7e3a7
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.beta.1

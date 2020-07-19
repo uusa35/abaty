@@ -59,6 +59,13 @@ import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import {isIOS} from '../../constants';
 import {convertNumberToEnglish} from '../../helpers';
 import OrderWidget from '../widgets/order/OrderWidget';
+import {
+  SET_CLASSIFIEDS,
+  SET_COMPANIES,
+  SET_DESIGNERS,
+  SET_PRODUCTS,
+  SET_SERVICES,
+} from '../../redux/actions/types';
 
 const ElementsHorizontalList = ({
   elements,
@@ -116,6 +123,7 @@ const ElementsHorizontalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_PRODUCTS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);
@@ -130,6 +138,7 @@ const ElementsHorizontalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_DESIGNERS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);
@@ -145,6 +154,7 @@ const ElementsHorizontalList = ({
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
+                dispatch({type: SET_COMPANIES, payload: elementsGroup});
               } else {
                 setPage(2);
               }
@@ -172,6 +182,7 @@ const ElementsHorizontalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_SERVICES, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);

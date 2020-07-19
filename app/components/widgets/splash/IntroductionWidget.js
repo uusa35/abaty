@@ -35,6 +35,10 @@ const IntroductionWidget = ({elements}) => {
     }
   }, []);
 
+  const renderItem = (item, index) => (
+    <SplashWidget element={item} index={index} handleClick={handleClick} />
+  );
+
   return (
     <Fragment>
       {!isEmpty(elements) && (
@@ -67,13 +71,7 @@ const IntroductionWidget = ({elements}) => {
                 fontFamily: text.font,
                 color: settings.colors.btn_bg_theme_color,
               }}
-              renderItem={({item, index}) => (
-                <SplashWidget
-                  element={item}
-                  index={index}
-                  handleClick={handleClick}
-                />
-              )}
+              renderItem={({item, index}) => renderItem(item, index)}
               data={elements}
               onDone={() => handleClick()}
             />

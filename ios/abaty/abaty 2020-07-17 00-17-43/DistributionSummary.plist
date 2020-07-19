@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>abaty.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>bitcode</key>
+			<true/>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>10CB42955280032447A308C9BA922BD93E738871</string>
+				<key>dateExpires</key>
+				<string>7/16/21</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>9YG8XP6U8E.com.ideasowners.abati</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>9YG8XP6U8E</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Abati.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>9e6890dc-97ee-43b8-8a5c-427b9d711d79</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: com.ideasowners.abati</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>9YG8XP6U8E</string>
+				<key>name</key>
+				<string>Malak A F Alhajri</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

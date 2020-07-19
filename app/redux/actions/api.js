@@ -6,6 +6,7 @@ import {
   getImageExtension,
   getImageName,
   getImagePath,
+  getImageUri,
 } from '../../helpers';
 import {map, filter} from 'lodash';
 import {checkInternetConnection} from 'react-native-offline';
@@ -397,19 +398,19 @@ export async function companyRegister(params) {
   const {
     name,
     email,
-    logo,
+    image,
     images,
+    password,
     role_id,
     mobile,
     address,
     description,
-    notes,
     country_id,
     player_id,
   } = params;
-  const form = new FormData();
-  if (checkImage(logo)) {
-    form.append('logo', {
+  const formData = new FormData();
+  if (checkImage(image)) {
+    formData.append('image', {
       uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
@@ -418,26 +419,27 @@ export async function companyRegister(params) {
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
-      form.append(`images[${i}]`, {
+      formData.append(`images[${i}]`, {
         uri: getImagePath(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
     }
   });
-  form.append('name', name);
-  form.append('slug_ar', name);
-  form.append('slug_en', name);
-  form.append('email', email);
-  form.append('mobile', mobile);
-  form.append('role_id', role_id);
-  form.append('player_id', player_id);
-  form.append('address', address);
-  form.append('country_id', country_id);
-  form.append('description', description);
-  form.append('notes', notes);
+  formData.append('name', name);
+  formData.append('password', password);
+  formData.append('slug_ar', name);
+  formData.append('slug_en', name);
+  formData.append('email', email);
+  formData.append('mobile', mobile);
+  formData.append('role_id', role_id);
+  formData.append('player_id', player_id);
+  formData.append('address', address);
+  formData.append('country_id', country_id);
+  formData.append('description', description);
+  console.log('fromData', formData);
   return await axiosInstance
-    .post(`register`, params)
+    .post(`register`, formData)
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }

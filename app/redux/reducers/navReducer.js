@@ -4,7 +4,6 @@
 import RootNavigator from './../../navigator/RootNavigator';
 
 const initialState = RootNavigator.router.getStateForAction(
-  // RootNavigator.router.getActionForPathAndParams('HomeStack'),
   RootNavigator.router.getActionForPathAndParams('DrawerStack'),
 );
 

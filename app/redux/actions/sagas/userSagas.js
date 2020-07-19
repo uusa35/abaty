@@ -1,13 +1,11 @@
-import {call, put, all, takeLatest, select} from 'redux-saga/effects';
+import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import {
   disableLoading,
   disableLoadingBoxedList,
-  disableLoadingContent,
   disableLoadingProfile,
   enableErrorMessage,
   enableLoading,
   enableLoadingBoxedList,
-  enableLoadingContent,
   enableLoadingProfile,
   enableSuccessMessage,
   enableWarningMessage,
@@ -19,13 +17,9 @@ import {setProductFavorites} from './productSagas';
 import * as actions from '../types';
 import {NavigationActions} from 'react-navigation';
 import I18n from '../../../I18n';
-import {registerConstrains, submitLogin} from '../../../constants/validations';
 import validate from 'validate.js';
-import {startBecomeFanScenario, startGoogleLoginScenario} from './requestSagas';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';
-import {first, values} from 'lodash';
 import {isLocal} from '../../../env';
-import {SET_ROLE} from '../types';
 import {SET_ROLES} from '../types';
 
 export function* startGetDesignerScenario(action) {
@@ -635,6 +629,7 @@ export function* startRegisterScenario(action) {
       throw element;
     }
   } catch (e) {
+    console.log('the eeee', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -643,6 +638,7 @@ export function* startRegisterScenario(action) {
 
 export function* startCompanyRegisterScenario(action) {
   try {
+    yield call(enableLoading);
     const element = yield call(api.companyRegister, action.payload);
     if (validate.isObject(element) && !validate.isEmpty(element)) {
       const {email, password} = action.payload;
@@ -662,6 +658,7 @@ export function* startCompanyRegisterScenario(action) {
       throw element;
     }
   } catch (e) {
+    console.log('the error', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);

@@ -4,14 +4,12 @@ import {appUrlIos} from './../../env';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
 import {googleLogin, setRole, submitAuth} from '../../redux/actions/user';
-import {View, Linking, StyleSheet, KeyboardAvoidingView} from 'react-native';
+import {View, Linking, StyleSheet} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
-import BgContainer from '../containers/BgContainer';
 import ImageLoaderContainer from './ImageLoaderContainer';
-import {map, first, filter, isEmpty} from 'lodash';
+import {first, filter, isEmpty} from 'lodash';
 import KeyBoardContainer from '../containers/KeyBoardContainer';
 
 const LoginForm = ({showBtns = false}) => {
@@ -47,8 +45,8 @@ const LoginForm = ({showBtns = false}) => {
       <View
         style={{
           width: '95%',
+          minHeight: height,
           alignSelf: 'center',
-          minHeight: '100%',
           marginTop: 0,
           justifyContent: 'center',
           alignItems: 'center',

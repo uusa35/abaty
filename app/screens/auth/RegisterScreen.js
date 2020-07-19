@@ -1,14 +1,27 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
+import validate from 'validate.js';
 
 const RegisterScreen = () => {
   const [userCountryId, setUserCountryId] = useState('');
+  const {token} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const {navigate} = useNavigation();
   // const [visible, setVisible] = useState(false);
   // const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   // const parent = dangerouslyGetParent();
+
+  useEffect(() => {
+    if (!validate.isEmpty(token) && token) {
+      dispatch(navigate('SettingIndex'));
+    }
+  }, [token]);
+
   return (
     <BgContainer showImage={false}>
       {/*<Icon*/}
@@ -33,7 +46,7 @@ const RegisterScreen = () => {
   );
 };
 
-export default React.memo(RegisterScreen);
+export default RegisterScreen;
 const styles = StyleSheet.create({
   iconContainer: {
     flex: 0.1,

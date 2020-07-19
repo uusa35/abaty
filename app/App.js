@@ -1,6 +1,5 @@
 import React, {useEffect, useState, Fragment} from 'react';
 import {AppState, useColorScheme, StatusBar, SafeAreaView} from 'react-native';
-import NetInfo from '@react-native-community/netinfo';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
 import {appBootstrap} from './redux/actions';
@@ -155,5 +154,5 @@ const App = () => {
 };
 
 export default codePush({
-  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+  checkFrequency: codePush.CheckFrequency.IMMEDIATE,
 })(App);

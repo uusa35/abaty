@@ -21,6 +21,7 @@ import {enableWarningMessage} from '../../../redux/actions';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import WrapAsGiftWidget from './WrapAsGiftWidget';
+import {EXPO} from './../../../../app';
 
 const ProductColorSizeGroupWithAttributes = ({element}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -96,6 +97,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     setColorName(null);
     setWrapGift(false);
   });
+
   return (
     <View
       style={{
@@ -235,7 +237,13 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
         <Input
           spellCheck={true}
           placeholder={
-            notes ? notes : I18n.t('add_notes_shoulders_height_and_other_notes')
+            notes
+              ? notes
+              : I18n.t(
+                  EXPO
+                    ? 'add_notes_shoulders_height_and_other_notes_expo'
+                    : 'add_notes_shoulders_height_and_other_notes',
+                )
           }
           defaultValue={notes ? notes : null}
           inputContainerStyle={{

@@ -51,7 +51,19 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <!-- Accepts URIs that begin with "example://gizmos” -->
                 <data android:scheme="abati"
-                       />
+                      android:host="designer" />
+                <data android:scheme="abati"
+                      android:host="company" />
+                <data android:scheme="abati"
+                      android:host="shopper" />
+                <data android:scheme="abati"
+                      android:host="product" />
+                <data android:scheme="abati"
+                      android:host="service" />
+                <data android:scheme="abati"
+                      android:host="celebrity" />
+                <data android:scheme="abati"
+                      android:host="classified" />
             </intent-filter>
         </activity>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>

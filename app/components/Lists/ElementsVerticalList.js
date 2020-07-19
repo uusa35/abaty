@@ -59,6 +59,12 @@ import {animations} from '../../constants/animations';
 import {HOMEKEY, EXPO} from '../../../app';
 import ClassifiedsMapView from '../widgets/map/ClassifiedsMapView';
 import SortByModal from '../widgets/search/SortByModal';
+import {
+  SET_COMPANIES,
+  SET_DESIGNERS,
+  SET_PRODUCTS,
+  SET_SERVICES,
+} from '../../redux/actions/types';
 
 const ElementsVerticalList = ({
   elements,
@@ -115,6 +121,7 @@ const ElementsVerticalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_PRODUCTS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);
@@ -129,6 +136,7 @@ const ElementsVerticalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_DESIGNERS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);
@@ -143,6 +151,7 @@ const ElementsVerticalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_COMPANIES, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);
@@ -171,6 +180,7 @@ const ElementsVerticalList = ({
             .then((r) => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_SERVICES, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
                 setPage(2);

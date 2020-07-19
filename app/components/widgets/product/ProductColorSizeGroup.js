@@ -1,17 +1,15 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, CheckBox, Icon, Input} from 'react-native-elements';
+import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {text} from '../../../constants/sizes';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
 import {addToCart} from '../../../redux/actions/cart';
 import validate from 'validate.js';
-import {enableWarningMessage} from '../../../redux/actions';
-import ImageLoaderContainer from '../ImageLoaderContainer';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useDispatch, useSelector} from 'react-redux';
 import WrapAsGiftWidget from './WrapAsGiftWidget';
+import {EXPO} from './../../../../app';
 
 const ProductColorSizeGroup = ({element}) => {
   const {settings} = useSelector((state) => state);
@@ -103,7 +101,11 @@ const ProductColorSizeGroup = ({element}) => {
       <View style={{width: '105%', alignSelf: 'center', marginTop: 5}}>
         <Input
           spellCheck={true}
-          placeholder={I18n.t('add_notes_shoulders_height_and_other_notes')}
+          placeholder={I18n.t(
+            EXPO
+              ? 'add_notes_shoulders_height_and_other_notes_expo'
+              : 'add_notes_shoulders_height_and_other_notes',
+          )}
           containerStyle={{flex: 1}}
           inputContainerStyle={{
             borderWidth: 0.5,

@@ -51,10 +51,9 @@ const SettingsIndexScreen = () => {
   };
 
   return (
-    <BgContainer enableMargin={true} marginVal="21%" showImage={!HOMEKEY}>
+    <BgContainer enableMargin={true} showImage={!HOMEKEY}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{paddingTop: 20}}
         contentContainerStyle={{
           width: '100%',
           padding: 20,
@@ -200,6 +199,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
+    marginTop: '5%',
   },
   btnWrapper: {
     borderWidth: 1,

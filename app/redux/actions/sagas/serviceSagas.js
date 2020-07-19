@@ -19,6 +19,7 @@ export function* startGetServiceScenario(action) {
     const {redirect} = action.payload;
     yield call(enableLoadingContent);
     const element = yield call(api.getService, action.payload);
+    console.log('elemeht', element);
     if (!validate.isEmpty(element) && element.id) {
       yield all([
         put({type: actions.SET_SERVICE, payload: element}),
@@ -37,11 +38,13 @@ export function* startGetServiceScenario(action) {
           ),
         ]);
       }
+    } else {
+      throw element;
     }
   } catch (e) {
-    // if (__DEV__) {
-    //   console.log('e', e);
-    // }
+    if (__DEV__) {
+      console.log('e', e);
+    }
     yield call(enableWarningMessage, I18n.t('error_while_loading_service'));
   } finally {
     yield call(disableLoadingContent);

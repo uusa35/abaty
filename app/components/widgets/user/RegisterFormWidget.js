@@ -21,7 +21,7 @@ import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
-import {filter, first, map, remove} from 'lodash';
+import {filter, first, map, remove, random} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import ImagePicker from 'react-native-image-crop-picker';
 import widgetStyles from '../widgetStyles';
@@ -33,12 +33,14 @@ const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
   const {country, playerId, role, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [address, setAddress] = useState('');
-  const [password, setPassword] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState('sdfsdfdsfsafdsf');
+  const [email, setEmail] = useState(
+    'slkdfjdslkjf@ksdjfdlf' + random(999) + '.com',
+  );
+  const [mobile, setMobile] = useState('34esdfdsfd');
+  const [address, setAddress] = useState('sdfsdfdsfdsf');
+  const [password, setPassword] = useState('dsfdsfdsfdsf');
+  const [description, setDescription] = useState('sdfdsfdssdfsdfdsfdsfdsfsdf');
   const [image, setImage] = useState(null);
   const [sampleLogo, setSampleLogo] = useState(null);
   const [images, setImages] = useState();
@@ -49,11 +51,16 @@ const RegisterFormWidget = () => {
       height: 1000,
       multiple: false,
       cropping: true,
+      freeStyleCropEnabled: true,
       includeBase64: true,
       includeExif: true,
+      compressImageQuality: 0.5,
+      storageOptions: {
+        skipBackup: true,
+      },
     }).then((image) => {
       setImage(image);
-      setSampleLogo(image.path);
+      // setSampleLogo(image.path);
     });
   };
 
@@ -63,13 +70,16 @@ const RegisterFormWidget = () => {
       compressImageMaxHeight: 1440,
       multiple: true,
       cropping: true,
+      freeStyleCropEnabled: true,
       includeBase64: false,
       includeExif: true,
       maxFiles: 5,
       minFiles: 2,
       compressImageQuality: 0.5,
+      storageOptions: {
+        skipBackup: true,
+      },
     }).then((images) => {
-      setImage(first(images));
       setImages(images);
     });
   };
@@ -91,7 +101,6 @@ const RegisterFormWidget = () => {
           address,
           player_id: playerId,
           description,
-          logo: image,
           role_id: role ? role.id : first(filter(roles, (r) => r.isClient)).id,
         }),
       );
@@ -106,7 +115,7 @@ const RegisterFormWidget = () => {
           address,
           player_id: playerId,
           description,
-          logo,
+          image,
           images,
           role_id: role.id,
         })
@@ -121,7 +130,7 @@ const RegisterFormWidget = () => {
               address,
               player_id: playerId,
               description,
-              logo: image,
+              image,
               images,
               role_id: role
                 ? role.id
@@ -158,7 +167,7 @@ const RegisterFormWidget = () => {
           onPress={() => openLogoPicker()}
           style={{width: '100%', marginTop: 0, alignItems: 'center'}}>
           <ImageLoaderContainer
-            img={sampleLogo}
+            img={image && image.path ? image.path : sampleLogo}
             style={{
               width: 120,
               height: 120,
@@ -167,7 +176,7 @@ const RegisterFormWidget = () => {
               borderColor: 'lightgrey',
               borderRadius: 120 / 2,
             }}
-            resizeMode="contain"
+            resizeMode="cover"
           />
           <Text style={{fontFamily: text.font, fontSize: text.small}}>
             {I18n.t('add_logo')}
@@ -379,18 +388,20 @@ const RegisterFormWidget = () => {
           <TouchableOpacity
             onPress={() => openImagesPicker()}
             style={{width: '100%', marginTop: 0, alignItems: 'center'}}>
-            <ImageLoaderContainer
-              img={sampleLogo}
-              style={{
-                width: 120,
-                height: 120,
-                margin: 20,
-                borderWidth: 1,
-                borderColor: 'lightgrey',
-                borderRadius: 120 / 2,
-              }}
-              resizeMode="contain"
-            />
+            {validate.isEmpty(first(images)) && (
+              <ImageLoaderContainer
+                img={first(images) ? first(images).path : sampleLogo}
+                style={{
+                  width: 120,
+                  height: 120,
+                  margin: 20,
+                  borderWidth: 1,
+                  borderColor: 'lightgrey',
+                  borderRadius: 120 / 2,
+                }}
+                resizeMode="cover"
+              />
+            )}
           </TouchableOpacity>
         </Fragment>
       )}
@@ -427,13 +438,6 @@ const RegisterFormWidget = () => {
                   backgroundColor: 'white',
                   opacity: 0.7,
                 }}>
-                <Icon
-                  size={40}
-                  name="ios-checkmark-circle"
-                  type="ionicon"
-                  color={img.path == image.path ? 'green' : 'black'}
-                  onPress={() => setImage(img)}
-                />
                 <Icon
                   size={30}
                   name="close"
