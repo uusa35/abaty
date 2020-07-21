@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';

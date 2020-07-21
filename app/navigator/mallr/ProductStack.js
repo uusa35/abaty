@@ -11,6 +11,7 @@ import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 
 export const ProductStack = createStackNavigator(
   {
@@ -24,7 +25,7 @@ export const ProductStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

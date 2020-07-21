@@ -1,9 +1,16 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Linking, View} from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  Linking,
+  View,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {text} from './../../constants/sizes';
-import {Button} from 'react-native-elements';
+import {iconSizes, text, touchOpacity} from './../../constants/sizes';
+import {Button, Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 import {appUrlIos} from '../../env';
 import PagesList from '../../components/widgets/page/PagesList';
@@ -11,6 +18,8 @@ import validate from 'validate.js';
 import ShopperImageProfile from '../../components/widgets/user/ShopperImageProfile';
 import CollectionGridWidget from '../../components/widgets/collection/CollectionGridWidget';
 import {useNavigation} from 'react-navigation-hooks';
+import {changeLang} from '../../redux/actions';
+import BgContainer from '../../components/containers/BgContainer';
 
 const MallrAccountScreen = () => {
   const {guest, auth, settings} = useSelector((state) => state);
@@ -18,16 +27,7 @@ const MallrAccountScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 150}}
-      contentContainerStyle={{
-        width: '100%',
-        padding: 20,
-        alignSelf: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+    <BgContainer>
       {!validate.isEmpty(auth) ? (
         <ShopperImageProfile
           member_id={auth.id}
@@ -56,6 +56,15 @@ const MallrAccountScreen = () => {
             justifyContent: 'center',
             width: '100%',
           }}>
+          {guest && (
+            <TouchableOpacity
+              activeOpacity={touchOpacity}
+              onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
+              style={styles.btnWrapper}>
+              <Icon name="globe" type="font-awesome" size={iconSizes.medium} />
+              <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
+            </TouchableOpacity>
+          )}
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -101,7 +110,7 @@ const MallrAccountScreen = () => {
         </View>
       ) : null}
       <PagesList elements={pages} title={I18n.t('our_support')} />
-    </ScrollView>
+    </BgContainer>
   );
 };
 

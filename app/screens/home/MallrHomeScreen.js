@@ -21,29 +21,14 @@ import {
   goBackBtn,
   goDeepLinking,
   refetchHomeElements,
-  setDeepLinking,
-  setPlayerId,
-  toggleResetApp,
 } from '../../redux/actions';
-import {isIOS} from '../../constants';
 import PropTypes from 'prop-types';
-import OneSignal from 'react-native-onesignal';
-import {
-  MALLR_ONE_SIGNAL_APP_ID,
-  ABATI,
-  MALLR,
-  HOMEKEY,
-  ESCRAP,
-} from './../../../app.json';
-import {getPathForDeepLinking} from '../../helpers';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
 import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
-import CollectionHorizontalWidget from '../../components/widgets/collection/CollectionHorizontalWidget';
-import CompanyHorizontalWidget from '../../components/widgets/user/CompanyHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
@@ -110,8 +95,7 @@ const MallrHomeScreen = ({
               searchElements={{is_designer: true}}
             />
           ) : null}
-          {!validate.isEmpty(homeCompanies) &&
-          validate.isArray(homeCompanies) ? (
+          {homeCompanies && (
             <DesignersHorizontalWidget
               elements={homeCompanies}
               showName={true}
@@ -119,7 +103,7 @@ const MallrHomeScreen = ({
               title={I18n.t('our_joined_companies')}
               searchElements={{is_company: true}}
             />
-          ) : null}
+          )}
           {!validate.isEmpty(homeCategories) &&
           validate.isArray(homeCategories) ? (
             <ProductCategoryHorizontalRoundedWidget

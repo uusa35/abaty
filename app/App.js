@@ -56,11 +56,13 @@ const App = () => {
     axiosInstance.defaults.headers.common['country'] = country.name;
   }, [lang]);
 
-  // useEffect(() => {
-  //   if (appState === 'background' && resetApp) {
-  //   } else {
-  //   }
-  // }, [appState]);
+  useEffect(() => {
+    if (appState === 'background' && resetApp) {
+      console.log('here');
+    } else {
+      console.log('else');
+    }
+  }, [appState]);
 
   useEffect(() => {
     codePush.sync({installMode: codePush.InstallMode.IMMEDIATE});

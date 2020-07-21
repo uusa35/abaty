@@ -373,7 +373,7 @@ export async function updateUser(params) {
   const form = new FormData();
   if (checkImage(image)) {
     form.append('image', {
-      uri: getImagePath(image),
+      uri: getImageUri(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -411,7 +411,7 @@ export async function companyRegister(params) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: getImagePath(image),
+      uri: getImageUri(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -420,7 +420,7 @@ export async function companyRegister(params) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: getImagePath(img),
+        uri: getImageUri(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
@@ -437,7 +437,6 @@ export async function companyRegister(params) {
   formData.append('address', address);
   formData.append('country_id', country_id);
   formData.append('description', description);
-  console.log('fromData', formData);
   return await axiosInstance
     .post(`register`, formData)
     .then((r) => r.data)
@@ -466,7 +465,7 @@ export async function storeClassified(elements) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: getImagePath(image),
+      uri: getImageUri(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -475,7 +474,7 @@ export async function storeClassified(elements) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: getImagePath(img),
+        uri: getImageUri(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
@@ -535,7 +534,7 @@ export async function updateClassified({elements, id}) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: getImagePath(image),
+      uri: getImageUri(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -544,7 +543,7 @@ export async function updateClassified({elements, id}) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: getImagePath(img),
+        uri: getImageUri(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });

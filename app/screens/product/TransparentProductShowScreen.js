@@ -17,10 +17,13 @@ import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import {useNavigation} from 'react-navigation-hooks';
+import {EXPO} from '../../../app';
+import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
+import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
 const TransparentProductShowScreen = () => {
-  const {product, token, settings} = useSelector((state) => state);
-  const {phone, shipment_prices, size_chart, mobile, weight} = settings;
+  const {product, settings, products, token} = useSelector((state) => state);
+  const {phone, shipment_prices, size_chart, mobile} = settings;
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
@@ -31,107 +34,113 @@ const TransparentProductShowScreen = () => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
+  const handleRefresh = () => {
+    setRefresh(false);
+    dispatch(
+      getProduct({
+        id: product.id,
+        api_token: token ? token : null,
+        redirect: false,
+      }),
+    );
+  };
+
   return (
     <BgContainer showImage={false}>
-      <HeaderImageScrollView
-        horizontal={false}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        maxHeight={height / 1.5}
-        minHeight={90}
-        style={{width}}
-        scrollViewBackgroundColor="transparent"
-        overlayColor="white"
-        renderForeground={() => (
-          <ImagesWidget
-            sku={product.sku}
-            qr={product.qr}
-            elements={product.images
-              .concat({id: product.id, large: product.large})
-              .reverse()}
-            width={width}
-            height={height / 1.5}
-            name={product.name}
-            exclusive={product.exclusive}
-            isOnSale={product.isOnSale}
-            isReallyHot={product.isReallyHot}
-            hasStock={product.has_stock}
-          />
-        )}
-        refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => {
-              setRefresh(false);
-              dispatch(
-                getProduct({id: product.id, api_token: token ? token : null}),
-              );
-            }}
-          />
-        }
-        automaticallyAdjustContentInsets={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 50}}>
+      <KeyBoardContainer behavior="position" handleRefresh={handleRefresh}>
+        <ImagesWidget
+          sku={product.sku}
+          qr={product.qr}
+          elements={product.images
+            .concat({id: product.id, large: product.large})
+            .reverse()}
+          width={width}
+          height={height / 1.5}
+          name={product.name}
+          exclusive={product.exclusive}
+          isOnSale={product.isOnSale}
+          isReallyHot={product.isReallyHot}
+          hasStock={product.has_stock}
+          directPurchase={product.directPurchase}
+        />
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
           <View>
-            {product.description ? (
+            {product.description && (
               <View>
-                <Text style={styles.title}>{I18n.t('description')}</Text>
+                <Text
+                  style={[
+                    styles.title,
+                    {color: settings.colors.btn_bg_theme_color},
+                  ]}>
+                  {I18n.t('description')}
+                </Text>
                 <Text style={styles.normalText}>{product.description}</Text>
               </View>
-            ) : null}
-            <ProductInfoWidgetElement
-              elementName="designer"
-              name={product.user.slug}
-              link={() =>
-                dispatch(
-                  getDesigner({
-                    id: product.user_id,
-                    searchParams: {user_id: product.user_id},
-                    redirect: true,
-                  }),
-                )
-              }
-            />
-            <ProductInfoWidgetElement
-              elementName="categories"
-              name={first(product.categories).name}
-              link={() =>
-                dispatch(
-                  getSearchProducts({
-                    element: first(product.categories),
-                    category: first(product.categories),
-                    searchParams: {
-                      product_category_id: first(product.categories).id,
-                    },
-                    redirect: true,
-                  }),
-                )
-              }
-            />
-            <ProductInfoWidgetElement
-              elementName="sku"
-              name={product.sku}
-              showIcon={false}
-            />
-            {weight ? (
+            )}
+            {product.user && (
               <ProductInfoWidgetElement
-                elementName="product_weight"
-                name={weight}
+                elementName="designer"
+                name={product.user.slug}
+                link={() =>
+                  dispatch(
+                    getDesigner({
+                      id: product.user_id,
+                      searchParams: {user_id: product.user_id},
+                      redirect: true,
+                    }),
+                  )
+                }
+              />
+            )}
+            {product.categories && (
+              <ProductInfoWidgetElement
+                elementName="categories"
+                name={first(product.categories).name}
+                link={() =>
+                  dispatch(
+                    getSearchProducts({
+                      element: first(product.categories),
+                      category: first(product.categories),
+                      searchParams: {
+                        product_category_id: first(product.categories).id,
+                      },
+                      redirect: true,
+                    }),
+                  )
+                }
+              />
+            )}
+            {product.sku && (
+              <ProductInfoWidgetElement
+                elementName="sku"
+                name={product.sku}
                 showIcon={false}
               />
-            ) : null}
-            <ProductInfoWidgetElement
-              elementName="contactus_order_by_phone"
-              name={phone}
-              link={() => Linking.openURL(`tel:${mobile}`)}
-            />
-            {shipment_prices ? (
+            )}
+            {product.weight && (
               <ProductInfoWidgetElement
-                elementName="shipment_prices"
+                elementName="product_weight"
+                name={`${product.weight} ${I18n.t('kg')}`}
+                showIcon={false}
+              />
+            )}
+            {(product.user.fullMobile || mobile) && (
+              <ProductInfoWidgetElement
+                elementName="contactus_order_by_phone"
+                name={phone}
+                link={() =>
+                  Linking.openURL(
+                    `tel:${
+                      product.user.fullMobile ? product.user.fullMobile : mobile
+                    }`,
+                  )
+                }
+              />
+            )}
+            {!validate.isEmpty(shipment_prices) && (
+              <ProductInfoWidgetElement
+                elementName="shipment_fees"
                 link={() =>
                   navigation.navigate('ImageZoom', {
                     images: [{id: product.id, large: shipment_prices}],
@@ -140,8 +149,8 @@ const TransparentProductShowScreen = () => {
                   })
                 }
               />
-            ) : null}
-            {size_chart ? (
+            )}
+            {size_chart && (
               <ProductInfoWidgetElement
                 elementName="size_chart"
                 link={() =>
@@ -152,40 +161,25 @@ const TransparentProductShowScreen = () => {
                   })
                 }
               />
-            ) : null}
+            )}
           </View>
         </View>
         {validate.isObject(product.videoGroup) &&
-        !validate.isEmpty(product.videoGroup) ? (
-          <VideosHorizontalWidget videos={product.videoGroup} />
-        ) : null}
-        {/*{!validate.isEmpty(homeProducts) ? (*/}
-        {/*  <ProductHorizontalWidget*/}
-        {/*    elements={homeProducts}*/}
-        {/*    showName={true}*/}
-        {/*    title="related_products"*/}
-        {/*  />*/}
-        {/*) : null}*/}
-      </HeaderImageScrollView>
+          !validate.isEmpty(product.videoGroup) && (
+            <VideosVerticalWidget videos={product.videoGroup} />
+          )}
+        {!validate.isEmpty(products) && EXPO && (
+          <ProductHorizontalWidget
+            elements={shuffle(products)}
+            showName={true}
+            title={I18n.t('related_products')}
+          />
+        )}
+      </KeyBoardContainer>
       <ActionBtnWidget />
     </BgContainer>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    product: state.product,
-    phone: state.settings.phone,
-    shipment_prices: state.settings.shipment_prices,
-    size_chart: state.settings.size_chart,
-    mobile: state.settings.mobile,
-    weight: state.settings.weight,
-    homeProducts: state.homeProducts,
-    token: state.token,
-    cart: state.cart,
-    colors: state.settings.colors,
-  };
-}
 
 TransparentProductShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
@@ -194,13 +188,7 @@ TransparentProductShowScreen.navigationOptions = ({navigation}) => ({
   },
 });
 
-export default connect(mapStateToProps)(TransparentProductShowScreen);
-
-TransparentProductShowScreen.propTypes = {
-  product: PropTypes.object.isRequired,
-  homeProducts: PropTypes.array.isRequired,
-  token: PropTypes.string,
-};
+export default TransparentProductShowScreen;
 
 const styles = StyleSheet.create({
   container: {},

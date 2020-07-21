@@ -505,7 +505,7 @@ PODS:
     - React
   - RNScreens (2.9.0):
     - React
-  - RNSentry (1.6.2):
+  - RNSentry (1.6.3):
     - React
     - Sentry (~> 5.1.8)
   - RNShare (3.7.0):
@@ -528,7 +528,7 @@ PODS:
   - SRSRadialGradient (1.0.0):
     - React
   - SSZipArchive (2.2.3)
-  - TOCropViewController (2.5.3)
+  - TOCropViewController (2.5.4)
   - toolbar-android (0.1.0-rc.2):
     - React
   - Yoga (1.14.0)
@@ -890,7 +890,7 @@ SPEC CHECKSUMS:
   RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
-  RNSentry: 9d68f0ce79608e90e10ac320c409321efc114b8f
+  RNSentry: ae1e005e4f2655775475445a9c49c1d343e8e3a7
   RNShare: a1d5064df7a0ebe778d001869b3f0a124bf0a491
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
@@ -900,7 +900,7 @@ SPEC CHECKSUMS:
   Sentry: 81f7f2bd3cb041137ea7efcde3aa5ad0d5a67632
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  TOCropViewController: 20a14b6a7a098308bf369e7c8d700dc983a974e6
+  TOCropViewController: 2a1ae1242600b1f2d996fd91a5268b2309a33b5c
   toolbar-android: 85f3ef4d691469f2d304e7dee4bca013aa1ba1ff
   Yoga: d5bd05a2b6b94c52323745c2c2b64557c8c66f64
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

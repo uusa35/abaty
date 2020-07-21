@@ -3,15 +3,18 @@ import {StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import CollectionList from '../../components/widgets/collection/CollectionList';
+import BgContainer from '../../components/containers/BgContainer';
 
 const CollectionIndexScreen = ({collections}) => {
   return (
-    <CollectionList
-      collections={collections}
-      showMore={false}
-      showLoading={false}
-      searchElements={{}}
-    />
+    <BgContainer>
+      <CollectionList
+        collections={collections}
+        showMore={false}
+        showLoading={false}
+        searchElements={{}}
+      />
+    </BgContainer>
   );
 };
 

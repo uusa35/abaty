@@ -120,6 +120,13 @@ const RegisterFormWidget = () => {
           role_id: role.id,
         })
         .then((r) => {
+          ImagePicker.clean()
+            .then(() => {
+              console.log('removed all tmp images from tmp directory');
+            })
+            .catch((e) => {
+              console.log('picker error', e);
+            });
           return dispatch(
             companyRegister({
               name,

@@ -50,6 +50,7 @@ import SearchProductIndexScreen from '../../screens/product/SearchProductIndexSc
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import PolicyScreen from '../../screens/PolicyScreen';
 import {isIOS} from '../../constants';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -130,7 +131,7 @@ export const HomeStack = createStackNavigator(
           },
           navigationOptions: () => ({
             tabBarVisible: true,
-            headerLeft: () => <HeaderLeft />,
+            headerLeft: () => <HeaderLeft showCart={true} />,
             headerRight: () => (
               <HeaderRight displayShare={false} showCountry={true} />
             ),
@@ -306,7 +307,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
@@ -552,18 +553,11 @@ export const HomeStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: false,
     animation: 'spring',
-    gesturesEnabled: false,
-    animationEnabled: isIOS,
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
+    swipeEnabled: true,
+    defaultNavigationOptions: () => ({
+      animationEnabled: isIOS,
+    }),
   },
 );
 

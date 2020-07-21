@@ -12,6 +12,7 @@ import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {iconSizes} from '../../constants/sizes';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 
 export const SearchStack = createStackNavigator(
   {
@@ -44,7 +45,7 @@ export const SearchStack = createStackNavigator(
       }),
     },
     Product: {
-      screen: ProductShowScreen,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

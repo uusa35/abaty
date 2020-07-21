@@ -9,16 +9,15 @@ import {View} from 'react-native-animatable';
 import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {isNull} from 'lodash';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const UserProfileInformationWidget = ({auth}) => {
   const {logo, colors} = useContext(GlobalValuesContext);
   return (
     <View animation="bounceInLeft" easing="ease-out" useNativeDriver={true}>
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
-        <FastImage
-          source={{
-            uri: !isNull(auth.thumb) ? auth.thumb : logo,
-          }}
+        <ImageLoaderContainer
+          img={auth.thumb}
           style={{
             width: 120,
             height: 120,
@@ -27,7 +26,7 @@ const UserProfileInformationWidget = ({auth}) => {
             borderWidth: 0.5,
             borderColor: 'lightgrey',
           }}
-          resizeMode="contain"
+          resizeMode="cover"
           loadingIndicatorSource={images.logo}
         />
       </View>
