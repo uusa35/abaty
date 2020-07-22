@@ -15,12 +15,16 @@ import {
 import {
   setHomeBrands,
   startAuthenticatedScenario,
+  startGetDesignerScenario,
   startGetHomeCelebrities,
   startGetHomeCompaniesScenario,
   startGetHomeDesigners,
   startGetRolesScenario,
 } from '../userSagas';
 import {
+  disableLoading,
+  disableLoadingBoxedList,
+  disableLoadingProfile,
   setDeviceId,
   setVersion,
   startGetColorsScenario,
@@ -36,40 +40,54 @@ import {getHomeUserCategories} from '../categorySagas';
 import * as actions from '../../types';
 
 export function* expoBootStrap() {
-  yield all([
-    call(getCountry),
-    call(setSettings),
-    call(setCountries),
-    call(setSlides),
-    // call(setCommercials),
-    // call(setHomeBrands),
-    call(startAuthenticatedScenario),
-    call(setDeviceId),
-    // call(setHomeProducts),
-    // call(getLatestProducts),
-    call(getPages),
-    call(getTags),
-    // call(getVideos),
-    call(getProductIndex),
-    // call(getServiceIndex),
-    // call(getHomeServicesScenario),
-    call(setHomeSplashes),
-    call(startGetColorsScenario),
-    call(startGetSizesScenario),
-    call(startGetRolesScenario),
-    call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-    call(startGetParentCategoriesScenario),
-    call(startGetHomeCategoriesScenario),
-    call(startGetHomeCompaniesScenario, {
-      payload: {searchParams: {on_home: 1, is_company: 1}},
-    }),
-    call(startGetHomeDesigners, {
-      payload: {searchParams: {on_home: 1, is_designer: 1}},
-    }),
-    call(startGetHomeCelebrities, {
-      payload: {searchParams: {on_home: 1, is_celebrity: 1}},
-    }),
-    put({type: actions.TOGGLE_RESET_APP, payload: false}),
-  ]);
-  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true});
+  const {country} = yield select();
+  try {
+    yield all([
+      call(getCountry),
+      call(setSettings),
+      call(setCountries),
+      call(setSlides),
+      // call(setCommercials),
+      // call(setHomeBrands),
+      call(startAuthenticatedScenario),
+      call(setDeviceId),
+      // call(setHomeProducts),
+      // call(getLatestProducts),
+      call(getPages),
+      call(getTags),
+      // call(getVideos),
+      call(getProductIndex),
+      // call(getServiceIndex),
+      // call(getHomeServicesScenario),
+      call(setHomeSplashes),
+      call(startGetColorsScenario),
+      call(startGetSizesScenario),
+      call(startGetRolesScenario),
+      call(getHomeUserCategories, {
+        payload: {on_home: true, type: 'is_user', country_id: country.id},
+      }),
+      call(startGetParentCategoriesScenario),
+      call(startGetHomeCategoriesScenario),
+      call(startGetHomeCompaniesScenario, {
+        payload: {
+          searchParams: {on_home: 1, is_company: 1, country_id: country.id},
+        },
+      }),
+      call(startGetHomeDesigners, {
+        payload: {
+          searchParams: {on_home: 1, is_designer: 1, country_id: country.id},
+          redirect: false,
+        },
+      }),
+      call(startGetHomeCelebrities, {
+        payload: {
+          searchParams: {on_home: 1, is_celebrity: 1, country_id: country.id},
+        },
+      }),
+      put({type: actions.TOGGLE_RESET_APP, payload: false}),
+    ]);
+    yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true});
+  } finally {
+    yield all([call(disableLoading), call(disableLoadingBoxedList)]);
+  }
 }

@@ -7,19 +7,21 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ServiceIndexAllScreen = () => {
-  const {services, searchParams} = useSelector((state) => state);
+  const {services, searchParams, country} = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [currentSearchParams, setCurrentSearchParams] = useState({});
+  const [currentSearchParams, setCurrentSearchParams] = useState({
+    country_id: country.id,
+  });
   const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    dispatch(getSearchServices({searchParams: {}}));
+    dispatch(getSearchServices({searchParams: currentSearchParams}));
   }, []);
 
   useMemo(() => {
     setCurrentSearchParams(searchParams);
     setCurrentElements(services);
-  }, []);
+  }, [services]);
 
   return (
     <BgContainer>

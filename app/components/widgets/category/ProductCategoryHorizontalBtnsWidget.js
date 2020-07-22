@@ -14,6 +14,7 @@ import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants/images';
+import {useSelector} from 'react-redux';
 
 const ProductCategoryHorizontalBtnsWidget = ({
   elements,
@@ -24,11 +25,12 @@ const ProductCategoryHorizontalBtnsWidget = ({
   showName = true,
   showImage = true,
 }) => {
+  const {country} = useSelector((state) => state);
   const handleClick = useCallback((c) => {
     return dispatch(
       getSearchProducts({
         name: c.name,
-        searchParams: {product_category_id: c.id},
+        searchParams: {product_category_id: c.id, country_id: country.id},
         redirect: true,
       }),
     );

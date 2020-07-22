@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -7,11 +7,7 @@ import {
   Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {
-  getCollection,
-  getSearchProducts,
-  setCollection,
-} from '../../../redux/actions/product';
+import {getSearchProducts, setCollection} from '../../../redux/actions/product';
 import PropTypes from 'prop-types';
 import {images} from '../../../constants/images';
 import {text} from '../../../constants/sizes';
@@ -19,7 +15,8 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionWidget = ({element, showName = false}) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {settings, country} = useSelector((state) => state);
+  const {colors} = settings;
   return (
     <TouchableOpacity
       key={element.id}
@@ -41,7 +38,7 @@ const CollectionWidget = ({element, showName = false}) => {
         dispatch(
           getSearchProducts({
             name: element.slug,
-            searchParams: {collection_id: element.id},
+            searchParams: {collection_id: element.id, country_id: country.id},
             redirect: true,
           }),
         );

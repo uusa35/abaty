@@ -126,19 +126,19 @@ const DesignerShowScreen = () => {
               views={designer.views}
               commentsCount={designer.commentsCount}
             />
-            {!validate.isEmpty(designer.slides) ? (
+            {!validate.isEmpty(designer.slides) && (
               <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
                 <MainSliderWidget slides={designer.slides} />
               </View>
-            ) : null}
-            {!validate.isEmpty(collectedCategories) ? (
+            )}
+            {!validate.isEmpty(collectedCategories) && (
               <ProductCategoryVerticalWidget
                 elements={collectedCategories}
                 user_id={designer.id}
                 showImage={false}
                 title={I18n.t('categories')}
               />
-            ) : null}
+            )}
             <TabView
               lazy={true}
               renderTabBar={(props) => (

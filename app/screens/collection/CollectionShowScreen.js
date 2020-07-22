@@ -15,12 +15,13 @@ import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
+import {useSelector} from 'react-redux/src';
 
 const CollectionShowScreen = ({element, dispatch, token, navigation}) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-
+  const {country} = useSelector((state) => state);
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
@@ -101,6 +102,7 @@ const CollectionShowScreen = ({element, dispatch, token, navigation}) => {
                       category: first(product.categories),
                       searchParams: {
                         product_category_id: first(product.categories).id,
+                        country_id: country.id,
                       },
                       redirect: true,
                     }),

@@ -9,8 +9,15 @@ import {
   setHomeSplashes,
   setSettings,
   setSlides,
+  startGetHomeCategoriesScenario,
+  startGetParentCategoriesScenario,
 } from '../requestSagas';
-import {setHomeBrands, startAuthenticatedScenario} from '../userSagas';
+import {
+  setHomeBrands,
+  startAuthenticatedScenario,
+  startGetHomeCompaniesScenario,
+  startGetHomeDesigners,
+} from '../userSagas';
 import {
   setDeviceId,
   setVersion,
@@ -30,6 +37,7 @@ import {getHomeUserCategories} from '../categorySagas';
 import * as actions from '../../types';
 
 export function* mallrBootStrap() {
+  const {country} = yield select();
   yield all([
     call(getCountry),
     call(setSettings),
@@ -39,29 +47,43 @@ export function* mallrBootStrap() {
     call(setHomeBrands),
     call(startAuthenticatedScenario),
     call(setDeviceId),
-    call(setHomeProducts),
-    call(getOnSaleProducts),
-    call(getBestSaleProducts),
-    call(getHotDealsProducts),
-    call(getLatestProducts),
+    call(setHomeProducts, {on_home: 1, country_id: country.id}),
+    call(getOnSaleProducts, {on_home: 1, country_id: country.id, on_sale: 1}),
+    call(getBestSaleProducts, {
+      on_home: 1,
+      country_id: country.id,
+      best_sale: 1,
+    }),
+    call(getHotDealsProducts, {
+      on_home: 1,
+      country_id: country.id,
+      hot_deals: 1,
+    }),
+    call(getLatestProducts, {on_home: 1, country_id: country.id, latest: 1}),
     call(getPages),
     call(getTags),
     call(getVideos),
-    call(getProductIndex),
+    call(getProductIndex, {country_id: country.id}),
     call(setHomeSplashes),
-    call(getHomeCollectionsScenario),
+    call(getHomeCollectionsScenario, {on_home: 1, country_id: country.id}),
     call(startGetColorsScenario),
     call(startGetSizesScenario),
-    call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-    put({type: actions.GET_CATEGORIES}),
-    put({type: actions.GET_HOME_CATEGORIES}),
-    put({
-      type: actions.GET_HOME_COMPANIES,
-      payload: {searchParams: {on_home: 1, is_company: 1}},
+    call(getHomeUserCategories, {
+      on_home: true,
+      type: 'is_user',
+      country_id: country.id,
     }),
-    put({
-      type: actions.GET_HOME_DESIGNERS,
-      payload: {searchParams: {on_home: 1, is_designer: 1}},
+    call(startGetParentCategoriesScenario),
+    call(startGetHomeCategoriesScenario),
+    call(startGetHomeCompaniesScenario, {
+      payload: {
+        searchParams: {on_home: 1, is_company: 1, country_id: country.id},
+      },
+    }),
+    call(startGetHomeDesigners, {
+      payload: {
+        searchParams: {on_home: 1, is_designer: 1, country_id: country.id},
+      },
     }),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),
   ]);

@@ -53,6 +53,7 @@ import PolicyScreen from '../../screens/PolicyScreen';
 import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
 import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import {isIOS} from '../../constants';
+import RoleIndexScreen from '../../screens/role/RoleIndexScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -552,6 +553,14 @@ export const HomeStack = createStackNavigator(
     },
     Register: {
       screen: RegisterScreen,
+      navigationOptions: {
+        headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: () => <HeaderRight display={false} />,
+        headerBackTitle: () => null,
+      },
+    },
+    RoleIndex: {
+      screen: RoleIndexScreen,
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
         headerRight: () => <HeaderRight display={false} />,

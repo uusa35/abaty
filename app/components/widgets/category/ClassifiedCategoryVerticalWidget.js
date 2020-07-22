@@ -11,7 +11,7 @@ import validate from 'validate.js';
 import FastImage from 'react-native-fast-image';
 import ClassifiedCategoryHorizontalRoundedWidget from './ClassifiedCategoryHorizontalRoundedWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedCategoryVerticalWidget = ({
   elements,
@@ -22,6 +22,7 @@ const ClassifiedCategoryVerticalWidget = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
+  const {country} = useSelector((state) => state);
   return (
     <Fragment>
       {!validate.isEmpty(elements) ? (
@@ -58,7 +59,10 @@ const ClassifiedCategoryVerticalWidget = ({
                       dispatch(
                         getSearchClassifieds({
                           name: c.name,
-                          searchParams: {classified_category_id: c.id},
+                          searchParams: {
+                            classified_category_id: c.id,
+                            country_id: country.id,
+                          },
                           redirect: true,
                         }),
                       )

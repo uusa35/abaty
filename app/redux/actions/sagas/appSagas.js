@@ -42,6 +42,7 @@ export function* startAppBootStrap() {
     }
   } catch (e) {
     if (__DEV__) {
+      console.log('the e from appSaga', e);
       yield call(enableErrorMessage, I18n.t('app_general_error'));
     }
   } finally {

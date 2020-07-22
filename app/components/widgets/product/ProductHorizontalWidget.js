@@ -15,7 +15,8 @@ const ProductHorizontalWidget = ({
   elements,
   showName,
   title,
-  showLink = true,
+  showLink = false,
+  searchParams,
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
@@ -31,6 +32,14 @@ const ProductHorizontalWidget = ({
     );
   }, []);
 
+  const handleGetProducts = () =>
+    dispatch(
+      getSearchProducts({
+        searchParams,
+        redirect: true,
+      }),
+    );
+
   return (
     <Fragment>
       {!isEmpty(elements) && (
@@ -39,16 +48,7 @@ const ProductHorizontalWidget = ({
           <TouchableOpacity
             activeOpacity={0.8}
             style={widgetStyles.titleContainer}
-            onPress={() =>
-              showLink
-                ? dispatch(
-                    getSearchProducts({
-                      searchParams: {on_home: true},
-                      redirect: true,
-                    }),
-                  )
-                : null
-            }>
+            onPress={() => (showLink ? handleGetProducts() : null)}>
             <View style={widgetStyles.titleWrapper}>
               <Text
                 style={[
@@ -58,14 +58,14 @@ const ProductHorizontalWidget = ({
                 {title}
               </Text>
             </View>
-            {showLink ? (
+            {showLink && (
               <Icon
                 type="entypo"
                 name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
                 size={20}
                 color={colors.header_one_theme_color}
               />
-            ) : null}
+            )}
           </TouchableOpacity>
           <ScrollView
             horizontal={true}

@@ -1,4 +1,4 @@
-import React, {useCallback, Fragment} from 'react';
+import React, {useCallback, Fragment, useContext} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import {map} from 'lodash';
-import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../../redux/actions/product';
 import {isRTL} from './../../../I18n';
@@ -17,11 +16,11 @@ import {
   rightHorizontalContentInset,
   touchOpacity,
 } from '../../../constants/sizes';
-import {images} from '../../../constants/images';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
@@ -30,12 +29,13 @@ const ProductCategoryHorizontalRoundedWidget = ({
 }) => {
   const {navigate} = useNavigation();
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {country} = useSelector((state) => state);
+  const {colors} = useContext(GlobalValuesContext);
   const handleClick = useCallback((c) => {
     return dispatch(
       getSearchProducts({
         name: c.name,
-        searchParams: {product_category_id: c.id},
+        searchParams: {product_category_id: c.id, country_id: country.id},
         redirect: true,
       }),
     );

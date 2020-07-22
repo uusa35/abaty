@@ -160,7 +160,7 @@ export function* setCountries() {
 export function* getCountry(country_id = null) {
   try {
     const {country} = yield select();
-    if (validate.isEmpty(country) && !country.id) {
+    if (!country.slug) {
       const fetchedCountry = isNull(country_id)
         ? yield call(api.getCountry)
         : yield call(api.getCountry, country_id);
@@ -328,7 +328,6 @@ export function* startAddToCartScenario(action) {
     // if (__DEV__) {
     // console.log('the e', e);
     // }
-    console.log('e', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -566,7 +565,6 @@ export function* startGetCouponScenario(action) {
 export function* startCreateMyFatorrahPaymentUrlScenario(action) {
   try {
     yield call(enableLoading);
-    console.log('here');
     // const {name, mobile, email, address} = action.payload;
     // const result = validate({name, mobile, email, address}, registerConstrains);
     // if (validate.isEmpty(result)) {
@@ -754,12 +752,9 @@ export function* getPages() {
     if (__DEV__) {
       // console.log('the e', e);
     }
-    if (__DEV__) {
-      console.log('the error', e);
-    }
     yield call(enableErrorMessage, I18n.t('no_pages'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 
@@ -775,9 +770,9 @@ export function* getTags() {
     if (__DEV__) {
       // console.log('the e', e);
     }
-    yield call(enableErrorMessage, I18n.t('no_tags'));
+    // yield call(enableErrorMessage, I18n.t('no_tags'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 
@@ -817,6 +812,6 @@ export function* startGetCategoryAndGoToNavChildren(action) {
     }
     yield call(enableErrorMessage, I18n.t('no_items'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }

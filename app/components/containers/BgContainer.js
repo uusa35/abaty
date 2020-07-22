@@ -24,7 +24,7 @@ const BgContainer = ({
     isLoadingProfile,
     isLoadingBoxedList,
   } = useSelector((state) => state);
-  const {mainBg, colors} = useContext(GlobalValuesContext);
+  const {mainBg} = useContext(GlobalValuesContext);
   const [currentLoading, setCurrentLoading] = useState(
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );

@@ -16,91 +16,82 @@ import I18n from '../../../I18n';
 import {NavigationActions} from 'react-navigation';
 import {SET_ELEMENT_TYPE} from '../types';
 
-export function* setHomeProducts() {
+export function* setHomeProducts(action) {
   try {
-    const elements = yield call(api.getHomeProducts, {on_home: 1});
+    const elements = yield call(api.getSearchProducts, action.payload);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_HOME_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_HOME_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield enableErrorMessage(I18n.t('no_home_products'));
+    yield call(enableErrorMessage, I18n.t('no_home_products'));
   } finally {
-    yield call(disableLoading);
   }
 }
 
-export function* getOnSaleProducts() {
+export function* getOnSaleProducts(action) {
   try {
-    const elements = yield call(api.getHomeProducts, {on_sale: 1});
+    const elements = yield call(api.getHomeProducts, action.payload);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_ON_SALE_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_ON_SALE_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('no_on_sale_products')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('no_on_sale_products'));
   }
 }
 
-export function* getBestSaleProducts() {
+export function* getBestSaleProducts(action) {
   try {
-    const elements = yield call(api.getHomeProducts, {best_sale: 1});
+    const elements = yield call(api.getHomeProducts, action.payload);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_BEST_SALE_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_BEST_SALE_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('no_best_sale_products')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('no_best_sale_products'));
   }
 }
 
-export function* getLatestProducts() {
+export function* getLatestProducts(action) {
   try {
-    const elements = yield call(api.getHomeProducts, {latest: 1});
+    const elements = yield call(api.getHomeProducts, action.payload);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_LATEST_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_LATEST_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield all([
-      disableLoading,
-      enableErrorMessage(I18n.t('no_latest_products')),
-    ]);
+    yield call(enableErrorMessage, I18n.t('no_latest_products'));
   }
 }
-export function* getHotDealsProducts() {
+export function* getHotDealsProducts(action) {
   try {
-    const elements = yield call(api.getHomeProducts, {hot_deals: 1});
+    const elements = yield call(api.getHomeProducts, action.payload);
     if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield put({type: actions.SET_HOT_DEALS_PRODUCTS, payload: elements});
     } else {
       yield put({type: actions.SET_HOT_DEALS_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_hot_deals'))]);
+    yield call(enableErrorMessage, I18n.t('no_hot_deals'));
   }
 }
 
-export function* getHomeCollectionsScenario() {
+export function* getHomeCollectionsScenario(action) {
   try {
-    const collections = yield call(api.getHomeCollections);
+    const collections = yield call(api.getHomeCollections, action.payload);
     if (!validate.isEmpty(collections) && validate.isArray(collections)) {
       yield all([
         put({type: actions.SET_HOME_COLLECTIONS, payload: collections}),
       ]);
     }
   } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_home_products'))]);
+    yield call(enableErrorMessage, I18n.t('no_home_products'));
+  } finally {
   }
 }
 
@@ -125,7 +116,7 @@ export function* startGetCollectionsScenario() {
   } catch (e) {
     yield call(enableErrorMessage, I18n.t('no_collections'));
   } finally {
-    yield call(disableLoading);
+    // yield call(disableLoading);
   }
 }
 
@@ -152,31 +143,24 @@ export function* startGetCollectionScenario(action) {
     }
   } catch (e) {
   } finally {
-    yield call(disableLoadingContent);
+    if (action.payload.redirect) {
+      yield call(disableLoadingContent);
+    }
   }
 }
 
-export function* getProductIndex() {
+export function* getProductIndex(action) {
   try {
-    const products = yield call(api.getProducts);
+    const products = yield call(api.getProducts, action.payload);
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield put({type: actions.SET_PRODUCTS, payload: products});
+    } else {
+      yield put({type: actions.SET_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield enableErrorMessage(I18n.t('no_products'));
+    // yield enableErrorMessage(I18n.t('no_products'));
   } finally {
-    yield call(disableLoading);
-  }
-}
-
-export function* setProducts() {
-  try {
-    const elements = yield call(api.getProducts);
-    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
-      yield all([put({type: actions.SET_PRODUCTS, payload: elements})]);
-    }
-  } catch (e) {
-    yield all([disableLoading, enableErrorMessage(I18n.t('no_products'))]);
+    // yield call(disableLoading);
   }
 }
 
@@ -221,13 +205,16 @@ export function* startGetProductScenario(action) {
     // }
     yield call(enableWarningMessage, I18n.t('error_while_loading_product'));
   } finally {
-    yield call(disableLoadingContent);
+    if (action.payload.redirect) {
+      yield call(disableLoadingContent);
+    }
   }
 }
 
 export function* startGetSearchProductsScenario(action) {
   try {
     const {name, searchParams, redirect} = action.payload;
+    console.log('searchParams', searchParams);
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);
     }
@@ -260,7 +247,9 @@ export function* startGetSearchProductsScenario(action) {
       throw products;
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_products'));
+    if (action.payload.redirect) {
+      yield call(enableWarningMessage, I18n.t('no_products'));
+    }
   } finally {
     yield call(disableLoadingBoxedList);
   }

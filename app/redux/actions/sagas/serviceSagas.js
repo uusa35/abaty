@@ -19,7 +19,6 @@ export function* startGetServiceScenario(action) {
     const {redirect} = action.payload;
     yield call(enableLoadingContent);
     const element = yield call(api.getService, action.payload);
-    console.log('elemeht', element);
     if (!validate.isEmpty(element) && element.id) {
       yield all([
         put({type: actions.SET_SERVICE, payload: element}),
@@ -43,7 +42,7 @@ export function* startGetServiceScenario(action) {
     }
   } catch (e) {
     if (__DEV__) {
-      console.log('e', e);
+      // console.log('e', e);
     }
     yield call(enableWarningMessage, I18n.t('error_while_loading_service'));
   } finally {
@@ -84,9 +83,9 @@ export function* startGetSearchServicesScenario(action) {
   }
 }
 
-export function* getServiceIndex() {
+export function* getServiceIndex(action) {
   try {
-    const services = yield call(api.getServices, {page: 1});
+    const services = yield call(api.getServices, action.payload);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield put({type: actions.SET_SERVICES, payload: services});
     } else {
@@ -100,9 +99,9 @@ export function* getServiceIndex() {
   }
 }
 
-export function* getHomeServicesScenario() {
+export function* getHomeServicesScenario(action) {
   try {
-    const services = yield call(api.getServices, {is_home: true, page: 1});
+    const services = yield call(api.getServices, action.payload);
     if (!validate.isEmpty(services) && validate.isArray(services)) {
       yield put({type: actions.SET_HOME_SERVICES, payload: services});
     } else {

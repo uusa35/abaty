@@ -9,9 +9,7 @@ import {
   getImageUri,
 } from '../../helpers';
 import {map, filter} from 'lodash';
-import {checkInternetConnection} from 'react-native-offline';
 import NetInfo from '@react-native-community/netinfo';
-import {isRTL} from '../../I18n';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl,
@@ -49,20 +47,6 @@ export async function getSplashes() {
     .catch((e) => e.response.data.message);
 }
 
-export async function getHomeDesigners() {
-  return await axiosInstance
-    .get(`user`, {params: {on_home: 1, type: 'is_designer'}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
-}
-
-export async function getHomeCelebrities() {
-  return await axiosInstance
-    .get(`user`, {params: {on_home: 1, type: 'is_celebrity'}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
-}
-
 export async function getUsers(params) {
   return await axiosInstance
     .get(`search/user`, {params})
@@ -84,9 +68,9 @@ export async function getSlides(elements) {
     .catch((e) => e.response.data.message);
 }
 
-export async function getProducts(page = 1) {
+export async function getProducts(params) {
   return await axiosInstance
-    .get(`product`, {params: {page}})
+    .get(`product`, {params})
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }
@@ -171,23 +155,16 @@ export async function getSearchServices(params) {
     .catch((e) => e.response.data.message);
 }
 
-export async function getBrand(id) {
-  return await axiosInstance
-    .get(`brand/${id}`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
-}
-
 export async function getHomeProducts(params) {
   return await axiosInstance
-    .get(`product`, {params: params})
+    .get(`product`, {params})
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }
 
-export async function getHomeCollections() {
+export async function getHomeCollections(params) {
   return await axiosInstance
-    .get(`collection`, {params: {on_home: 1}})
+    .get(`collection`, {params})
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }
@@ -370,26 +347,26 @@ export async function updateUser(params) {
     notes,
     country_id,
   } = params;
-  const form = new FormData();
+  const formData = new FormData();
   if (checkImage(image)) {
-    form.append('image', {
+    formData.append('image', {
       uri: getImageUri(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
   }
-  form.append('name', name);
-  form.append('email', email);
-  form.append('mobile', mobile);
-  form.append('address', address);
-  form.append('country_id', country_id);
-  form.append('mobile', mobile);
-  form.append('description', description);
-  form.append('notes', notes);
-  form.append('api_token', api_token);
-  form.append('_method', 'put');
+  formData.append('name', name);
+  formData.append('email', email);
+  formData.append('mobile', mobile);
+  formData.append('address', address);
+  formData.append('country_id', country_id);
+  formData.append('mobile', mobile);
+  formData.append('description', description);
+  formData.append('notes', notes);
+  formData.append('api_token', api_token);
+  formData.append('_method', 'put');
   return await axiosInstance
-    .post(`user/${params.id}`, form)
+    .post(`user/${params.id}`, formData)
     .then((r) => r.data)
     .catch((e) => e.response.data.message);
 }
@@ -576,7 +553,6 @@ export async function updateClassified({elements, id}) {
   return await axiosInstance
     .post(`classified/${id}`, formData)
     .then((r) => r.data)
-    // .catch(e => console.log('error from updateClassified', JSON.stringify(e)));
     .catch((e) => e.response.data.message);
 }
 

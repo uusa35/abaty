@@ -15,8 +15,15 @@ import NoMoreElements from '../NoMoreElements';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
+import {width} from './../../../constants';
 
-const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
+const ExpoDesignerHorizontalWidget = ({
+  elements,
+  showName,
+  title,
+  name,
+  searchElements,
+}) => {
   const dispatch = useDispatch();
   const {colors} = useSelector((state) => state.settings);
 
@@ -38,7 +45,7 @@ const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
             onPress={() =>
               dispatch(
                 getSearchDesigners({
-                  searchParams: {is_designer: 1},
+                  searchParams: searchElements,
                   name,
                   redirect: true,
                 }),
@@ -47,7 +54,7 @@ const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
             <View
               style={{
                 justifyContent: 'space-between',
-                alignItems: 'flex-start',
+                alignItems: 'center',
                 marginRight: 20,
                 marginLeft: 20,
                 marginTop: 10,
@@ -55,7 +62,7 @@ const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
                 backgroundColor: '#f9f9f9',
                 padding: 10,
                 borderRadius: 25,
-                width: '45%',
+                minWidth: width / 2.4,
               }}>
               <Text
                 style={[
@@ -67,7 +74,7 @@ const ExpoDesignerHorizontalWidget = ({elements, showName, title, name}) => {
               <Icon
                 type="entypo"
                 name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                size={iconSizes.smaller}
+                size={iconSizes.smallest}
                 iconStyle={{paddingTop: 3}}
                 color={colors.header_one_theme_color}
               />

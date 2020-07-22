@@ -21,7 +21,7 @@ import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {ABATI} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
-import {filter, first, map, remove, random} from 'lodash';
+import {filter, first, map, remove} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import ImagePicker from 'react-native-image-crop-picker';
 import widgetStyles from '../widgetStyles';
@@ -33,14 +33,12 @@ const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
   const {country, playerId, role, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [name, setName] = useState('sdfsdfdsfsafdsf');
-  const [email, setEmail] = useState(
-    'slkdfjdslkjf@ksdjfdlf' + random(999) + '.com',
-  );
-  const [mobile, setMobile] = useState('34esdfdsfd');
-  const [address, setAddress] = useState('sdfsdfdsfdsf');
-  const [password, setPassword] = useState('dsfdsfdsfdsf');
-  const [description, setDescription] = useState('sdfdsfdssdfsdfdsfdsfdsfsdf');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState();
+  const [mobile, setMobile] = useState();
+  const [address, setAddress] = useState();
+  const [password, setPassword] = useState();
+  const [description, setDescription] = useState();
   const [image, setImage] = useState(null);
   const [sampleLogo, setSampleLogo] = useState(null);
   const [images, setImages] = useState();
@@ -122,10 +120,10 @@ const RegisterFormWidget = () => {
         .then((r) => {
           ImagePicker.clean()
             .then(() => {
-              console.log('removed all tmp images from tmp directory');
+              // console.log('removed all tmp images from tmp directory');
             })
             .catch((e) => {
-              console.log('picker error', e);
+              // console.log('picker error', e);
             });
           return dispatch(
             companyRegister({

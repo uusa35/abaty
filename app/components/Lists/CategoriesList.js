@@ -15,12 +15,13 @@ import {Button} from 'react-native-elements';
 import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 import {useNavigation} from 'react-navigation-hooks';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getSearchProducts} from '../../redux/actions/product';
 import {setCategoryAndGoToNavChildren} from '../../redux/actions/category';
 import {getSearchClassifieds} from '../../redux/actions/classified';
 
 const CategoriesList = ({elements, columns, type, showBtn = false}) => {
+  const {country} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {goBack} = useNavigation();
   const [refresh, setRefresh] = useState(false);
@@ -39,7 +40,7 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
         dispatch(
           getSearchProducts({
             name: c.name,
-            searchParams: {product_category_id: c.id},
+            searchParams: {product_category_id: c.id, country_id: country.id},
             redirect: true,
           }),
         );
@@ -51,7 +52,10 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
         dispatch(
           getSearchClassifieds({
             name: c.name,
-            searchParams: {classified_category_id: element.id},
+            searchParams: {
+              classified_category_id: element.id,
+              country_id: country.id,
+            },
             redirect: true,
           }),
         );

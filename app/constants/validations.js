@@ -186,7 +186,7 @@ export const validateSubmitRegister = Yup.object().shape({
     .required({message: 'validations.password_is_required'}),
   address: Yup.string().min(5, {message: 'validations.address_is_required'}),
   description: Yup.string()
-    .required({message: 'validations.description_is_required'})
+    // .required({message: 'validations.description_is_required'})
     .min(10, {message: 'validations.description_is_very_small'}),
   role_id: Yup.number().required(),
   image: Yup.object()

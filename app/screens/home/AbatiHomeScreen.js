@@ -31,6 +31,7 @@ const AbatiHomeScreen = () => {
     show_commercials,
     services,
     showIntroduction,
+    country,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const AbatiHomeScreen = () => {
           showName={true}
           name={I18n.t('designers')}
           title={I18n.t('designers')}
-          searchParams={{is_designer: 1}}
+          searchParams={{is_designer: 1, country_id: country.id}}
         />
         <ProductCategoryHorizontalRoundedWidget
           elements={homeCategories}
@@ -77,13 +78,20 @@ const AbatiHomeScreen = () => {
           showName={true}
           name="celebrities"
           title={I18n.t('celebrities')}
-          searchParams={{is_celebrity: 1}}
+          searchParams={{
+            is_celebrity: 1,
+            country_id: country.id,
+            on_home: true,
+          }}
         />
-        <ProductHorizontalWidget
-          elements={homeProducts}
-          showName={true}
-          title={I18n.t('featured_products')}
-        />
+        {homeProducts && (
+          <ProductHorizontalWidget
+            elements={homeProducts}
+            showName={true}
+            title={I18n.t('featured_products')}
+            searchParams={{on_home: 1, country_id: country.id}}
+          />
+        )}
         {!validate.isEmpty(brands) && validate.isArray(brands) && (
           <BrandHorizontalWidget
             elements={brands}

@@ -118,7 +118,6 @@ const MallrHomeScreen = ({
               elements={latestProducts}
               showName={true}
               title={I18n.t('latest_products')}
-              showLink={false}
             />
           ) : null}
           {!validate.isEmpty(onSaleProducts) ? (
@@ -126,7 +125,6 @@ const MallrHomeScreen = ({
               elements={onSaleProducts}
               showName={true}
               title={I18n.t('on_sale_products')}
-              showLink={false}
             />
           ) : null}
           {!validate.isEmpty(bestSaleProducts) ? (
@@ -134,7 +132,6 @@ const MallrHomeScreen = ({
               elements={bestSaleProducts}
               showName={true}
               title={I18n.t('best_sale_products')}
-              showLink={false}
             />
           ) : null}
           {!validate.isEmpty(hotDealsProducts) ? (

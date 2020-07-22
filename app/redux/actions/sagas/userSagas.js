@@ -342,7 +342,9 @@ export function* startGetHomeDesigners(action) {
     //   console.log('ee', e);
     // }
   } finally {
-    yield call(disableLoading);
+    if (action.payload.redirect) {
+      yield call(disableLoading);
+    }
   }
 }
 
@@ -454,9 +456,7 @@ export function* startUpdateUserScenario(action) {
       throw element;
     }
   } catch (e) {
-    if (isLocal) {
-      yield call(enableErrorMessage, e);
-    }
+    yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
   }
@@ -529,6 +529,7 @@ export function* startGetCelebritiesScenario(action) {
 
 export function* startGetDesignersScenario(action) {
   try {
+    console.log('here', action.payload);
     const {searchParams, redirect} = action.payload;
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);
@@ -552,7 +553,7 @@ export function* startGetDesignersScenario(action) {
     } else {
       yield put({type: actions.SET_DESIGNERS, payload: []});
       yield put({type: actions.SET_SEARCH_PARAMS, payload: {}});
-      throw I18n.t(elements);
+      throw elements;
     }
   } catch (e) {
     yield call(enableWarningMessage, e);
@@ -629,7 +630,6 @@ export function* startRegisterScenario(action) {
       throw element;
     }
   } catch (e) {
-    console.log('the eeee', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -658,7 +658,6 @@ export function* startCompanyRegisterScenario(action) {
       throw element;
     }
   } catch (e) {
-    console.log('the error', e);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -685,9 +684,6 @@ export function* startGetRolesScenario() {
       yield put({type: SET_ROLES, payload: elements});
     }
   } catch (e) {
-    if (isLocal) {
-      // console.log('e', e);
-    }
   } finally {
   }
 }

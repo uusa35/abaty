@@ -35,6 +35,7 @@ const ExpoHomeScreen = () => {
     services,
     showIntroduction,
     mainBg,
+    country,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -68,29 +69,30 @@ const ExpoHomeScreen = () => {
         style={{flex: 1}}>
         {/*<ProductSearchForm />*/}
         <ExpoMainSliderWidget elements={slides} />
-        <ExpoDesignerHorizontalWidget
-          elements={homeCompanies}
-          showName={true}
-          name={I18n.t('expos')}
-          title={I18n.t('expos')}
-          searchElements={{is_company: 1}}
-        />
+        {/* expo is a designer */}
         <ExpoDesignerHorizontalWidget
           elements={homeDesigners}
           showName={true}
+          name={I18n.t('expos')}
+          title={I18n.t('expos')}
+          searchElements={{is_designer: 1, country_id: country.id}}
+        />
+        <ExpoDesignerHorizontalWidget
+          elements={homeCompanies}
+          showName={true}
           name={I18n.t('small_business')}
           title={I18n.t('small_business')}
-          searchElements={{is_designer: 1}}
+          searchElements={{is_company: 1, country_id: country.id}}
         />
         <ExpoHomeScreenBtns />
       </ScrollView>
-      {show_commercials ? (
+      {show_commercials && (
         <View style={{flex: 0.2, borderWidth: 5, borderColor: 'orange'}}>
           {!validate.isEmpty(commercials) ? (
             <FixedCommercialSliderWidget sliders={commercials} />
           ) : null}
         </View>
-      ) : null}
+      )}
     </BgContainer>
   );
 };

@@ -9,7 +9,7 @@ import {disableLoading} from './settingSagas';
 
 export function* getHomeUserCategories(action) {
   try {
-    const elements = yield call(api.getHomeCategories, action);
+    const elements = yield call(api.getHomeCategories, action.payload);
     if (!validate.isEmpty(elements)) {
       yield put({type: actions.SET_HOME_USER_CATEGORIES, payload: elements});
     } else {
@@ -29,7 +29,7 @@ export function* getHomeUserCategories(action) {
 
 export function* getHomeClassifiedCategories(action) {
   try {
-    const elements = yield call(api.getHomeCategories, action);
+    const elements = yield call(api.getHomeCategories, action.payload);
     if (!validate.isEmpty(elements)) {
       yield put({
         type: actions.SET_HOME_CLASSIFIED_CATEGORIES,

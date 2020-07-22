@@ -8,10 +8,19 @@ import {
   setHomeSplashes,
   setSettings,
   setSlides,
+  startGetHomeCategoriesScenario,
+  startGetParentCategoriesScenario,
 } from '../requestSagas';
-import {setHomeBrands, startAuthenticatedScenario} from '../userSagas';
+import {
+  setHomeBrands,
+  startAuthenticatedScenario,
+  startGetHomeCompaniesScenario,
+} from '../userSagas';
 import {setDeviceId, setVersion} from '../settingSagas';
-import {getClassifiedIndex} from '../classifiedSagas';
+import {
+  getClassifiedIndex,
+  startGetHomeClassifiedsScenario,
+} from '../classifiedSagas';
 import {
   getHomeClassifiedCategories,
   getHomeUserCategories,
@@ -19,6 +28,7 @@ import {
 import * as actions from '../../types';
 
 export function* homeKeyBootStrap() {
+  const {country} = yield select();
   yield all([
     call(getCountry),
     call(setSettings),
@@ -33,19 +43,22 @@ export function* homeKeyBootStrap() {
     call(getClassifiedIndex),
     call(setHomeSplashes),
     call(getHomeClassifiedCategories, {
-      on_home: true,
-      type: 'is_classified',
+      payload: {
+        on_home: true,
+        type: 'is_classified',
+      },
     }),
-    call(getHomeUserCategories, {on_home: true, type: 'is_user'}),
-    put({type: actions.GET_CATEGORIES}),
-    put({type: actions.GET_HOME_CATEGORIES}),
-    put({
-      type: actions.GET_HOME_COMPANIES,
-      payload: {searchParams: {on_home: 1, is_company: 1}},
+    call(getHomeUserCategories, {payload: {on_home: true, type: 'is_user'}}),
+    // put({type: actions.GET_CATEGORIES}),
+    call(startGetParentCategoriesScenario),
+    call(startGetHomeCategoriesScenario),
+    call(startGetHomeCompaniesScenario, {
+      payload: {
+        searchParams: {on_home: 1, is_company: 1, country_id: country.id},
+      },
     }),
-    put({
-      type: actions.GET_HOME_CLASSIFIEDS,
-      payload: {searchParams: {on_home: 1}},
+    yield call(startGetHomeClassifiedsScenario, {
+      payload: {searchParams: {on_home: 1, country_id: country.id}},
     }),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),
   ]);

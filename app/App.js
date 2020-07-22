@@ -1,5 +1,5 @@
-import React, {useEffect, useState, Fragment} from 'react';
-import {AppState, useColorScheme, StatusBar, SafeAreaView} from 'react-native';
+import React, {useEffect, useState, Fragment, useMemo} from 'react';
+import {AppState, useColorScheme, StatusBar} from 'react-native';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
 import {appBootstrap} from './redux/actions';
@@ -15,6 +15,7 @@ import SimpleSpinner from './components/SimpleSpinner';
 import ProductFilterModal from './screens/product/ProductFilterModal';
 import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {useNetInfo} from '@react-native-community/netinfo';
+import {TOGGLE_BOOTSTRAPPED} from './redux/actions/types';
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -58,9 +59,7 @@ const App = () => {
 
   useEffect(() => {
     if (appState === 'background' && resetApp) {
-      console.log('here');
     } else {
-      console.log('else');
     }
   }, [appState]);
 
@@ -80,6 +79,14 @@ const App = () => {
       dispatch(appBootstrap());
     }
   }, []);
+
+  useMemo(() => {
+    if (!bootStrapped) {
+      setTimeout(() => {
+        dispatch({type: TOGGLE_BOOTSTRAPPED, payload: true});
+      }, 5000);
+    }
+  }, [bootStrapped]);
 
   useEffect(() => {
     if (isConnected) {

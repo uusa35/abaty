@@ -17,6 +17,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch} from 'react-redux';
 import {isIOS} from '../../constants';
+import {EXPO} from './../../../app';
 
 const CountriesList = ({country, countries, countryModal}) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const CountriesList = ({country, countries, countryModal}) => {
   const [visible, setVisible] = useState(false);
 
   const handleClick = useCallback((country) => {
-    dispatch(chooseCountry({country, redirect: false}));
+    dispatch(chooseCountry({country, redirect: EXPO}));
   });
 
   useEffect(() => {

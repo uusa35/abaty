@@ -84,7 +84,7 @@ const CompanyShowScreen = ({
         containerStyle={{flex: 1}}
         overlayColor="white"
         headerImage={{
-          uri: element.banner ? element.banner : logo,
+          uri: element.banner ? element.banner : element.thumb,
         }}
         refreshControl={
           <RefreshControl

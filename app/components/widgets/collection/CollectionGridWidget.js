@@ -11,7 +11,8 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionGridWidget = ({elements, showTitle = true}) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {settings, country} = useSelector((state) => state);
+  const {colors} = settings;
   return (
     <Fragment>
       {showTitle ? (
@@ -41,7 +42,7 @@ const CollectionGridWidget = ({elements, showTitle = true}) => {
               dispatch(
                 getSearchProducts({
                   name: e.slug,
-                  searchParams: {collection_id: e.id},
+                  searchParams: {collection_id: e.id, country_id: country.id},
                   redirect: true,
                 }),
               )

@@ -7,7 +7,7 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 
 const ProductIndexScreen = () => {
   const {searchProducts, searchParams} = useSelector((state) => state);
-  const [currentSearchParams, setCurrentSearchParams] = useState([]);
+  const [currentSearchParams, setCurrentSearchParams] = useState({});
 
   useEffect(() => {
     setCurrentSearchParams(searchParams);

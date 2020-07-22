@@ -32,6 +32,7 @@ const ProductFilterModal = () => {
     productFilterModal,
     settings,
     categories,
+    country,
   } = useSelector((state) => state);
   const {colors} = settings;
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ProductFilterModal = () => {
           max,
           color_id: color ? color.id : null,
           size_id: size ? size.id : null,
-          // country_id: country.id,
+          country_id: country.id,
           // area_id: currentArea.id,
         },
         redirect: true,

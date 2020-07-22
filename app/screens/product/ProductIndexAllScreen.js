@@ -8,12 +8,12 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 import validate from 'validate.js';
 
 const ProductIndexAllScreen = () => {
-  const {products} = useSelector((state) => state);
+  const {products, country} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts({country_id: country.id}));
   }, []);
 
   useMemo(() => {

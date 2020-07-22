@@ -8,9 +8,8 @@ import PropTypes from 'prop-types';
 import {map, isNull, uniqBy} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';
 import validate from 'validate.js';
-import FastImage from 'react-native-fast-image';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ProductCategoryVerticalWidget = ({
@@ -23,6 +22,7 @@ const ProductCategoryVerticalWidget = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
+  const {country} = useSelector((state) => state);
   return (
     <Fragment>
       {!validate.isEmpty(elements) ? (
@@ -59,7 +59,11 @@ const ProductCategoryVerticalWidget = ({
                       dispatch(
                         getSearchProducts({
                           name: c.name,
-                          searchParams: {product_category_id: c.id, user_id},
+                          searchParams: {
+                            product_category_id: c.id,
+                            user_id,
+                            country_id: country.id,
+                          },
                           redirect: true,
                         }),
                       )

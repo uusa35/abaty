@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {connect, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {ServiceList} from '../../components/LazyLoadingComponents/serviceComponents';
 import BgContainer from '../../components/containers/BgContainer';
 import {ABATI} from '../../../app';
 import {images} from '../../constants/images';

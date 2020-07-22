@@ -84,7 +84,7 @@ const ServiceShowScreen = () => {
             useNativeDriver={true}
             easing="ease-out"
             style={{marginTop: 15}}>
-            {service.description ? (
+            {service.description && (
               <View>
                 <Text
                   style={{
@@ -105,8 +105,8 @@ const ServiceShowScreen = () => {
                   {service.description}
                 </Text>
               </View>
-            ) : null}
-            {!validate.isEmpty(service.user) ? (
+            )}
+            {!validate.isEmpty(service.user) && (
               <ProductInfoWidgetElement
                 elementName="company"
                 name={service.user.slug}
@@ -120,41 +120,51 @@ const ServiceShowScreen = () => {
                   )
                 }
               />
-            ) : null}
-            <ProductInfoWidgetElement
-              elementName="categories"
-              name={first(service.categories).name}
-              link={() =>
-                dispatch(
-                  getSearchServices({
-                    element: first(service.categories),
-                    searchElements: {
-                      service_category_id: first(service.categories).id,
-                    },
-                    redirect: true,
-                  }),
-                )
-              }
-            />
-            {service.sku ? (
+            )}
+            {service.categories && (
+              <ProductInfoWidgetElement
+                elementName="categories"
+                name={first(service.categories).name}
+                link={() =>
+                  dispatch(
+                    getSearchServices({
+                      element: first(service.categories),
+                      searchElements: {
+                        service_category_id: first(service.categories).id,
+                      },
+                      redirect: true,
+                    }),
+                  )
+                }
+              />
+            )}
+            {service.sku && (
               <ProductInfoWidgetElement
                 elementName="sku"
                 name={service.sku}
                 showArrow={false}
               />
-            ) : null}
-            {service.individuals ? (
+            )}
+            {service.individuals && (
               <ProductInfoWidgetElement
                 elementName="individuals_served"
                 name={service.individuals}
                 showArrow={false}
               />
-            ) : null}
-            <ProductInfoWidgetElement
-              elementName="contactus_order_by_phone"
-              name={phone}
-              link={() => Linking.openURL(`tel:${mobile}`)}
-            />
+            )}
+            {(service.user.fullMobile || mobile) && (
+              <ProductInfoWidgetElement
+                elementName="contactus_order_by_phone"
+                name={phone}
+                link={() =>
+                  Linking.openURL(
+                    `tel:${
+                      service.user.fullMobile ? service.user.fullMobile : mobile
+                    }`,
+                  )
+                }
+              />
+            )}
           </View>
         </View>
         {validate.isObject(service.videoGroup) &&
