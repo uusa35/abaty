@@ -3,7 +3,7 @@ import {Modal, View} from 'react-native';
 import Spinner from 'react-native-spinkit';
 import {whitesmoke} from 'color-name';
 import {useSelector} from 'react-redux';
-import {height} from './../../constants/sizes';
+import {height, iconSizes} from './../../constants/sizes';
 
 const LoadingContainer = () => {
   const {settings, isLoading, bootStrapped} = useSelector((state) => state);

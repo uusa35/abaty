@@ -71,11 +71,22 @@ const LoadingView = ({
               enableMergePathsAndroidForKitKatAndAbove
             />
           ) : (
-            <Spinner
-              type={shuffle ? first(shuffle(moveRand)) : type}
-              color={colors.btn_bg_theme_color}
-              size={iconSizes.medium}
-            />
+            <Fragment>
+              <ImageLoaderContainer
+                img={settings.logo}
+                style={{
+                  width: iconSizes.largest,
+                  height: iconSizes.largest,
+                  margin: 10,
+                }}
+                resizeMode="contain"
+              />
+              <Spinner
+                type={shuffle ? first(shuffle(moveRand)) : type}
+                color={colors.btn_bg_theme_color}
+                size={iconSizes.medium}
+              />
+            </Fragment>
           )}
           {showLogo && (
             <ImageLoaderContainer
