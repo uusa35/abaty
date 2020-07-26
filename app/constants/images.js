@@ -1,5 +1,5 @@
 export const images = {
-  abati: require('./../../assets/images/abati.jpeg'),
+  abati: require('./../../assets/images/abati.png'),
   mallr: require('./../../assets/images/mallr.jpeg'),
   expo: require('./../../assets/images/expo.png'),
   escrap: require('./../../assets/images/escrap_sm.jpeg'),

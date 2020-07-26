@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import {isIOS} from '../../../constants';
 import Collapsible from 'react-native-collapsible';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ const UserInfoWidgetElement = ({
 }) => {
   return (
     <View key={element.length}>
-      {element ? (
+      {element && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           style={styles.itemRow}>
@@ -26,7 +26,7 @@ const UserInfoWidgetElement = ({
               name={iconName}
               type={type}
               color="grey"
-              size={20}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -34,21 +34,21 @@ const UserInfoWidgetElement = ({
             />
             <Text style={styles.subTitle}>{I18n.t(elementName)}</Text>
           </View>
-          {showArrow ? (
+          {showArrow && (
             <Icon
               name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
               type="entypo"
               color="lightgrey"
-              size={15}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: isIOS ? 10 : 0,
                 paddingLeft: isIOS ? 0 : 10,
               }}
             />
-          ) : null}
+          )}
         </TouchableOpacity>
-      ) : null}
-      {element ? (
+      )}
+      {element && (
         <Collapsible
           collapsed={false}
           style={{
@@ -63,12 +63,14 @@ const UserInfoWidgetElement = ({
                 fontFamily: text.font,
                 fontSize: text.medium,
                 paddingLeft: 40,
+                lineHeight: text.large,
+                paddingBottom: 5,
               }}>
               {element}
             </Text>
           </View>
         </Collapsible>
-      ) : null}
+      )}
     </View>
   );
 };

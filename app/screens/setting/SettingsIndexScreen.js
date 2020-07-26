@@ -28,6 +28,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
 import {useNavigation} from 'react-navigation-hooks';
 import {isEmpty, first, filter} from 'lodash';
+import {width} from './../../constants';
 
 const SettingsIndexScreen = () => {
   const {guest, lang, settings, version, roles} = useSelector((state) => state);
@@ -51,7 +52,10 @@ const SettingsIndexScreen = () => {
   };
 
   return (
-    <BgContainer enableMargin={true} showImage={!HOMEKEY}>
+    <BgContainer
+      enableMargin={true}
+      marginVal={width / 15}
+      showImage={!HOMEKEY}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{

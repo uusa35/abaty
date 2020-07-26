@@ -83,7 +83,7 @@ const ElementsVerticalList = ({
   title,
   type,
   iconSize = iconSizes.small,
-  textSize = text.small,
+  textSize = text.medium,
   columns = 1,
   customHeight = 240,
 }) => {
@@ -469,7 +469,7 @@ const ElementsVerticalList = ({
             showName={true}
             showSearch={false}
             thumb={item.thumb}
-            iconSize={iconSize}
+            iconSize={iconSizes.smaller}
             textSize={textSize}
             type={type}
             handleClick={handleClick}

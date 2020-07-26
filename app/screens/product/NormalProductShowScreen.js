@@ -63,7 +63,14 @@ const NormalProductShowScreen = () => {
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ProductInfoWidget element={product} />
-          <View>
+          <View
+            style={{
+              borderWidth: 0.5,
+              padding: 20,
+              margin: 10,
+              borderRadius: 5,
+              borderColor: 'lightgrey',
+            }}>
             {product.description && (
               <View>
                 <Text
@@ -126,7 +133,7 @@ const NormalProductShowScreen = () => {
             {(product.user.fullMobile || mobile) && (
               <ProductInfoWidgetElement
                 elementName="contactus_order_by_phone"
-                name={phone}
+                name={mobile}
                 link={() =>
                   Linking.openURL(
                     `tel:${

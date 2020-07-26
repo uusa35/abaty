@@ -3,7 +3,7 @@ import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {links} from '../../../constants/links';
-import {text} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import {isIOS} from '../../../constants';
 import UserInfoWidgetElement from './UserInfoWidgetElement';
 import PropTypes from 'prop-types';
@@ -120,6 +120,7 @@ const UserInfoWidget = ({
               name="mobile"
               type="foundation"
               color="grey"
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -140,7 +141,7 @@ const UserInfoWidget = ({
               name="whatsapp"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -161,7 +162,7 @@ const UserInfoWidget = ({
               name="twitter"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -191,7 +192,7 @@ const UserInfoWidget = ({
               name="facebook"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -221,7 +222,7 @@ const UserInfoWidget = ({
               name="instagram"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -251,7 +252,7 @@ const UserInfoWidget = ({
               name="android"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -281,7 +282,7 @@ const UserInfoWidget = ({
               name="youtube"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -293,7 +294,7 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.small}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
@@ -311,7 +312,7 @@ const UserInfoWidget = ({
               name="link"
               type="font-awesome"
               color="grey"
-              size={20}
+              size={iconSizes.small}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,

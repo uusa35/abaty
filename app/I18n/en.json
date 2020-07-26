@@ -342,7 +342,8 @@
   "read_more": "Read More",
   "company_profile": "Company Profile",
   "no_notifications_for_this_account": "No Notifications for this account.",
-  "share_file": "Share file from %{name} App",
+  "share_file": "Share from %{name} App \\n\\n\\n Download it now. %{link}",
+  "share_title" : "Share from %{name}.",
   "project_main_cam": "Project Main Cam",
   "android": "Android",
   "no_categories": "No Categories",
@@ -635,3 +636,4 @@
   "order" : "Order",
   "search_services" : "Search Services"
 }
+

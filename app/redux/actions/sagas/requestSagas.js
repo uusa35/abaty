@@ -206,6 +206,7 @@ export function* startChooseCountryScenario(action) {
         call(setGrossTotalCartValue, {total, coupon, country, cart}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
+        yield call(startClearCartScenario);
         yield call(startResetStoreScenario);
       }
     }

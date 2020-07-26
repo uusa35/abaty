@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {map} from 'lodash';
-import {hideCountryModal, setArea, chooseCountry} from '../../redux/actions';
+import {hideCountryModal, chooseCountry} from '../../redux/actions';
 import {text, width, height, iconSizes} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
 import I18n from './../../I18n';

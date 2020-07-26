@@ -20,6 +20,7 @@ import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';
 import {isIOS} from '../constants';
+import {appUrlIos} from '../env';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -40,8 +41,8 @@ export const HeaderRight = ({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
-      subject: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
+      message: I18n.t('share_file', {name: I18n.t(APP_CASE), link: appUrlIos}),
+      subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
     })
       .then((res) => {
         // __DEV__ ? console.log(res) : null;
