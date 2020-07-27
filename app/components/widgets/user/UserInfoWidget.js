@@ -60,7 +60,7 @@ const UserInfoWidget = ({
           {I18n.t('information')}
         </Text>
       )}
-      {longitude && latitude && has_map ? (
+      {longitude && latitude && has_map && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
@@ -82,15 +82,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {mobile ? (
+      )}
+      {mobile && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`tel:${mobile}`)}
@@ -109,8 +109,8 @@ const UserInfoWidget = ({
           </View>
           <Text style={styles.subTitle}>{mobile}</Text>
         </TouchableOpacity>
-      ) : null}
-      {phone ? (
+      )}
+      {phone && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`tel:${phone}`)}
@@ -120,7 +120,7 @@ const UserInfoWidget = ({
               name="mobile"
               type="foundation"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -130,8 +130,8 @@ const UserInfoWidget = ({
           </View>
           <Text style={styles.subTitle}>{phone}</Text>
         </TouchableOpacity>
-      ) : null}
-      {whatsapp ? (
+      )}
+      {whatsapp && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(getWhatsappLink(whatsapp))}
@@ -141,7 +141,7 @@ const UserInfoWidget = ({
               name="whatsapp"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -151,8 +151,8 @@ const UserInfoWidget = ({
           </View>
           <Text style={styles.subTitle}>{whatsapp}</Text>
         </TouchableOpacity>
-      ) : null}
-      {twitter ? (
+      )}
+      {twitter && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${twitter}`)}
@@ -162,7 +162,7 @@ const UserInfoWidget = ({
               name="twitter"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -174,15 +174,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {facebook ? (
+      )}
+      {facebook && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${facebook}`)}
@@ -192,7 +192,7 @@ const UserInfoWidget = ({
               name="facebook"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -204,15 +204,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {instagram ? (
+      )}
+      {instagram && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${instagram}`)}
@@ -222,7 +222,7 @@ const UserInfoWidget = ({
               name="instagram"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -234,15 +234,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {android ? (
+      )}
+      {android && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${android}`)}
@@ -252,7 +252,7 @@ const UserInfoWidget = ({
               name="android"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -264,15 +264,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {youtube ? (
+      )}
+      {youtube && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${youtube}`)}
@@ -282,7 +282,7 @@ const UserInfoWidget = ({
               name="youtube"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -294,15 +294,15 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={iconSizes.small}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {website ? (
+      )}
+      {website && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${website}`)}
@@ -312,7 +312,7 @@ const UserInfoWidget = ({
               name="link"
               type="font-awesome"
               color="grey"
-              size={iconSizes.small}
+              size={iconSizes.smaller}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -324,38 +324,38 @@ const UserInfoWidget = ({
             name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
             type="entypo"
             color="lightgrey"
-            size={15}
+            size={iconSizes.smallest}
             iconStyle={{
               paddingRight: isIOS ? 10 : 0,
               paddingLeft: isIOS ? 0 : 10,
             }}
           />
         </TouchableOpacity>
-      ) : null}
-      {!validate.isEmpty(description) ? (
+      )}
+      {!validate.isEmpty(description) && (
         <UserInfoWidgetElement
           elementName="description"
           iconName="description"
           type="material"
           element={description}
         />
-      ) : null}
-      {!validate.isEmpty(service) ? (
+      )}
+      {!validate.isEmpty(service) && (
         <UserInfoWidgetElement
           elementName="services"
           iconName="customerservice"
           element={service}
           type="antdesign"
         />
-      ) : null}
-      {!validate.isEmpty(address) ? (
+      )}
+      {!validate.isEmpty(address) && (
         <UserInfoWidgetElement
           elementName="address"
           iconName="address"
           element={address}
           type="entypo"
         />
-      ) : null}
+      )}
       {!validate.isEmpty(images) && (
         <ImagesGridWidget
           elements={images}
@@ -366,7 +366,7 @@ const UserInfoWidget = ({
           height={100}
         />
       )}
-      {!validate.isEmpty(longitude || latitude) && has_map && !ESCRAP ? (
+      {!validate.isEmpty(longitude || latitude) && has_map && !ESCRAP && (
         <MapViewWidget
           latitude={latitude}
           longitude={longitude}
@@ -375,7 +375,7 @@ const UserInfoWidget = ({
           showTitle={false}
           height={250}
         />
-      ) : null}
+      )}
     </View>
   );
 };

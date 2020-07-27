@@ -40,7 +40,7 @@ const MapViewWidget = ({
         marginTop: 10,
         marginBottom: 10,
       }}>
-      {showTitle ? (
+      {showTitle && (
         <Text
           style={{
             fontFamily: text.font,
@@ -59,7 +59,7 @@ const MapViewWidget = ({
           }}>
           {I18n.t('location')}
         </Text>
-      ) : null}
+      )}
       <MapView
         style={{
           width: width ? width : customWidth,

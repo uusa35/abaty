@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {map} from 'lodash';
+import {map, take} from 'lodash';
 import {iconSizes, text} from './../../../constants/sizes';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 

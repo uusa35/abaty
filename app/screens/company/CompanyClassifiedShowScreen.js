@@ -164,7 +164,7 @@ const CompanyClassifiedShowScreen = () => {
               info: () => (
                 <UserInfoWidget
                   has_map={company.has_map}
-                  mobile={company.mobile}
+                  mobile={company.fullMobile}
                   phone={company.phone}
                   slug={company.slug}
                   whatsapp={company.whatsapp}

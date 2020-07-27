@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Linking, StyleSheet, Text, View, Image} from 'react-native';
+import {Linking, StyleSheet, Text, View} from 'react-native';
 import {text} from '../../../constants/sizes';
 import {links} from '../../../constants/links';
 import {Callout} from 'react-native-maps';
@@ -7,6 +7,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropertiesWidget from '../classified/PropertiesWidget';
 import validate from 'validate.js';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {take} from 'lodash';
 
 const CallOutView = ({
   latitude,
@@ -68,7 +69,7 @@ const CallOutView = ({
       </View>
       <View style={{alignSelf: 'center', alignItems: 'center'}}>
         {!validate.isEmpty(element.items) && (
-          <PropertiesWidget elements={element.items} />
+          <PropertiesWidget elements={take(element.items, 5)} />
         )}
       </View>
     </Callout>
