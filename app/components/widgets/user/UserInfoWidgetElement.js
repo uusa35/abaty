@@ -26,7 +26,7 @@ const UserInfoWidgetElement = ({
               name={iconName}
               type={type}
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -39,7 +39,7 @@ const UserInfoWidgetElement = ({
               name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
               type="entypo"
               color="lightgrey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: isIOS ? 10 : 0,
                 paddingLeft: isIOS ? 0 : 10,

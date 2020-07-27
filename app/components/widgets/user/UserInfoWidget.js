@@ -71,6 +71,7 @@ const UserInfoWidget = ({
             <Icon
               name="map"
               color="grey"
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -100,6 +101,7 @@ const UserInfoWidget = ({
               name="telephone"
               type="foundation"
               color="grey"
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -120,7 +122,7 @@ const UserInfoWidget = ({
               name="mobile"
               type="foundation"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -141,7 +143,7 @@ const UserInfoWidget = ({
               name="whatsapp"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -162,7 +164,7 @@ const UserInfoWidget = ({
               name="twitter"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -192,7 +194,7 @@ const UserInfoWidget = ({
               name="facebook"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -222,7 +224,7 @@ const UserInfoWidget = ({
               name="instagram"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -252,7 +254,7 @@ const UserInfoWidget = ({
               name="android"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -282,7 +284,7 @@ const UserInfoWidget = ({
               name="youtube"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
@@ -312,7 +314,7 @@ const UserInfoWidget = ({
               name="link"
               type="font-awesome"
               color="grey"
-              size={iconSizes.smaller}
+              size={iconSizes.smallest}
               iconStyle={{
                 paddingRight: 10,
                 paddingLeft: 10,
