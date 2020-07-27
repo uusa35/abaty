@@ -85,57 +85,68 @@ const MapViewWidget = ({
           latitudeDelta: 0.5,
           longitudeDelta: 0.5,
         }}>
-        {!isMulti ? (
-          <Marker
-            title={title}
-            // onPress={() => }
-            scrollEnabled={false}
-            image={images.pin}
-            opacity={1}
-            coordinate={{
-              latitude: latitude,
-              longitude: longitude,
-            }}>
-            {showCallOut && image && (
-              <CallOutView
-                element={element}
-                image={image}
-                description={description}
-                title={title}
-                price={price}
-              />
-            )}
-          </Marker>
-        ) : (
-          map(elements, (element, i) => (
+        <View
+          style={{
+            flex: 1,
+            alignSelf: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          {!isMulti ? (
             <Marker
-              key={i}
-              title={element.title}
-              // onPress={() => console.log('here')}
+              title={title}
+              // onPress={() => }
               scrollEnabled={false}
               image={images.pin}
               opacity={1}
-              element={element}
               coordinate={{
-                latitude: element.latitude,
-                longitude: element.longitude,
+                latitude: latitude,
+                longitude: longitude,
               }}>
-              {showCallOut && (
+              {showCallOut && image && (
                 <CallOutView
                   element={element}
-                  title={element.name}
-                  description={element.description}
-                  address={element.address}
-                  image={element.thumb}
-                  price={round(
-                    getProductConvertedFinalPrice(element.price, exchange_rate),
-                    2,
-                  )}
+                  image={image}
+                  description={description}
+                  title={title}
+                  price={price}
                 />
               )}
             </Marker>
-          ))
-        )}
+          ) : (
+            map(elements, (element, i) => (
+              <Marker
+                key={i}
+                title={element.title}
+                // onPress={() => console.log('here')}
+                scrollEnabled={false}
+                image={images.pin}
+                opacity={1}
+                element={element}
+                coordinate={{
+                  latitude: element.latitude,
+                  longitude: element.longitude,
+                }}>
+                {showCallOut && (
+                  <CallOutView
+                    element={element}
+                    title={element.name}
+                    description={element.description}
+                    address={element.address}
+                    image={element.thumb}
+                    price={round(
+                      getProductConvertedFinalPrice(
+                        element.price,
+                        exchange_rate,
+                      ),
+                      2,
+                    )}
+                  />
+                )}
+              </Marker>
+            ))
+          )}
+        </View>
       </MapView>
     </View>
   );

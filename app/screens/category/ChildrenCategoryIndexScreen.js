@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import validate from 'validate.js';
+import {useNavigation} from 'react-navigation-hooks';
 
-const ChildrenCategoryIndexScreen = ({
-  commercials,
-  show_commercials,
-  subCategory,
-  dispatch,
-  navigation,
-}) => {
+const ChildrenCategoryIndexScreen = () => {
+  const {commercials, settings, subCategory} = useSelector((state) => state);
+  const {show_commercials} = settings;
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (validate.isEmpty(subCategory)) {
       dispatch(navigation.navigate('Home'));
@@ -40,12 +40,4 @@ const ChildrenCategoryIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-    subCategory: state.subCategory,
-  };
-}
-
-export default connect(mapStateToProps)(ChildrenCategoryIndexScreen);
+export default ChildrenCategoryIndexScreen;

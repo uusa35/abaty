@@ -1,16 +1,16 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../app';
 
-const CategoryClassifiedIndexScreen = ({
-  homeClassifiedCategories,
-  commercials,
-  show_commercials,
-}) => {
+const CategoryClassifiedIndexScreen = () => {
+  const {homeClassifiedCategories, commercials, settings} = useSelector(
+    (state) => state,
+  );
+  const {show_commercials} = settings;
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View
@@ -34,18 +34,4 @@ const CategoryClassifiedIndexScreen = ({
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeClassifiedCategories: state.homeClassifiedCategories,
-    commercials: state.commercials,
-    show_commercials: state.settings.show_commercials,
-  };
-}
-
-export default connect(mapStateToProps)(CategoryClassifiedIndexScreen);
-
-CategoryClassifiedIndexScreen.propTypes = {
-  categories: PropTypes.array,
-  commercials: PropTypes.array,
-  show_commercials: PropTypes.bool,
-};
+export default CategoryClassifiedIndexScreen;

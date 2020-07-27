@@ -1,6 +1,6 @@
-import React, {useState, useCallback} from 'react';
+import React, {useMemo, useState} from 'react';
 import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -18,6 +18,7 @@ import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHor
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import UsersHorizontalWidget from '../../components/widgets/user/UsersHorizontalWidget';
+import {useNavigation} from 'react-navigation-hooks';
 
 const HomeKeyHomeScreen = () => {
   const {
@@ -35,6 +36,18 @@ const HomeKeyHomeScreen = () => {
   const {colors, main_bg, splashes} = settings;
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
+  const navigation = useNavigation();
+  const [headerBg, setHeaderBg] = useState(true);
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+
+  useMemo(() => {
+    navigation.navigationOptions = ({navigation}) => ({
+      headerTransparent: navigation.state.params.headerBg,
+      headerStyle: {
+        backgroundColor: navigation.state.params.headerBgColor,
+      },
+    });
+  }, [headerBg]);
 
   const handleRefresh = () => {
     dispatch(refetchHomeElements());
@@ -119,25 +132,7 @@ const HomeKeyHomeScreen = () => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories,
-    homeCategories: state.homeCategories,
-    homeClassifieds: state.homeClassifieds,
-    commercials: state.commercials,
-    splashes: state.splashes,
-    logo: state.settings.logo,
-    main_bg: state.settings.main_bg,
-    show_commercials: state.settings.show_commercials,
-    colors: state.settings.colors,
-    lang: state.lang,
-    showIntroduction: state.showIntroduction,
-    homeCompanies: state.homeCompanies,
-    guest: state.guest,
-  };
-}
-
-export default connect(mapStateToProps)(HomeKeyHomeScreen);
+export default HomeKeyHomeScreen;
 
 HomeKeyHomeScreen.propTypes = {
   categories: PropTypes.array,
@@ -159,12 +154,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-});
-
-HomeKeyHomeScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor,
   },
 });

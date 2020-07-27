@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {View, ScrollView} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from './../../I18n';
 import TagsList from '../../components/widgets/tag/TagsList';
@@ -9,7 +9,8 @@ import ProductCategoryVerticalWidget from '../../components/widgets/category/Pro
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 
-const SearchScreen = ({homeCategories, tags}) => {
+const SearchScreen = ({}) => {
+  const {homeCategories, tags} = useSelector((state) => state);
   return (
     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
       <ProductSearchForm />
@@ -42,21 +43,13 @@ const SearchScreen = ({homeCategories, tags}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    homeCategories: state.homeCategories,
-    tags: state.tags,
-    colors: state.settings.colors,
-  };
-}
-
 SearchScreen.navigationOptions = ({navigation}) => ({
   // headerTitle: navigation.state.params.title
   // title : navigation.state.params.title
   title: I18n.t('search'),
 });
 
-export default connect(mapStateToProps)(SearchScreen);
+export default SearchScreen;
 
 SearchScreen.propTypes = {
   categories: PropTypes.array,

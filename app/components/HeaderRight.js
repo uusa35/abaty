@@ -1,9 +1,8 @@
 /**
  * Created by usamaahmed on 9/28/17.
  */
-import React, {useContext} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import FastImage from 'react-native-fast-image';
 import {
   showClassifiedFilter,
   showCountryModal,
@@ -20,7 +19,6 @@ import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';
 import {isIOS} from '../constants';
-import {appUrlIos} from '../env';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -36,20 +34,22 @@ export const HeaderRight = ({
   const {params} = navigation.state;
 
   const shareLink = (link) => {
-    // __DEV__ ? console.log('the link', link) : null;
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: I18n.t('share_file', {name: I18n.t(APP_CASE), link: appUrlIos}),
+      message: `${I18n.t('download_app')}  ${'\n\n'} ${I18n.t('android')} : ${
+        settings.android
+      } ${'\n'} ${I18n.t('ios')} : ${settings.apple} ${'\n'} ${I18n.t(
+        'share_file',
+        {
+          name: I18n.t(APP_CASE),
+        },
+      )} ${'\n'} `,
       subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
     })
-      .then((res) => {
-        // __DEV__ ? console.log(res) : null;
-      })
-      .catch((err) => {
-        // err && console.log(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
   return (
     <View style={widgetStyles.safeContainer}>

@@ -1,11 +1,11 @@
 import React, {useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import {useSelector} from 'react-redux';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
-const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
+const SearchProductIndexScreen = () => {
+  const {searchProducts, searchParams} = useSelector((state) => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
 
   useMemo(() => {
@@ -31,18 +31,6 @@ const SearchProductIndexScreen = ({searchProducts, searchParams}) => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    searchProducts: state.searchProducts,
-    searchParams: state.searchParams,
-  };
-}
-
-export default connect(mapStateToProps)(SearchProductIndexScreen);
-
-SearchProductIndexScreen.propTypes = {
-  searchProducts: PropTypes.array.isRequired,
-  searchParams: PropTypes.object.isRequired,
-};
+export default SearchProductIndexScreen;
 
 const styles = StyleSheet.create({});

@@ -16,7 +16,7 @@ const ClassifiedIndexAllScreen = () => {
 
   useMemo(() => {
     setCurrentElements(classifieds);
-  }, []);
+  }, [classifieds]);
 
   return (
     <BgContainer showImage={false}>

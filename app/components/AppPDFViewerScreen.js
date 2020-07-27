@@ -1,41 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Pdf from 'react-native-pdf';
-import PropTypes from 'prop-types';
 import {width} from './../constants/sizes';
-import connect from 'react-redux/es/connect/connect';
+import {useNavigation} from 'react-navigation-hooks';
 
-class AppPDFViewerScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {pdfLink} = this.props.navigation.state.params;
-    const source = {uri: pdfLink};
-    return (
-      <View style={styles.container}>
-        <Pdf
-          source={source}
-          style={styles.pdf}
-          fitWidth={true}
-          enableAntialiasing={true}
-          enableRTL={true}
-        />
-      </View>
-    );
-  }
-}
-
-AppPDFViewerScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
+const AppPDFViewerScreen = () => {
+  const navigation = useNavigation();
+  const {pdfLink} = navigation.state.params;
+  const source = {uri: pdfLink};
+  return (
+    <View style={styles.container}>
+      <Pdf
+        source={source}
+        style={styles.pdf}
+        fitWidth={true}
+        enableAntialiasing={true}
+        enableRTL={true}
+      />
+    </View>
+  );
 };
 
-function mapStateToProps(state) {
-  return state;
-}
-
-export default connect(mapStateToProps)(AppPDFViewerScreen);
+export default AppPDFViewerScreen;
 
 const styles = StyleSheet.create({
   container: {

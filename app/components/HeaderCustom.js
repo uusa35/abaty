@@ -9,24 +9,30 @@ import {linkingPrefix} from './../constants/links';
 import I18n from './../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import {APP_CASE} from '../../app';
+import {useSelector} from 'react-redux';
 
 const HeaderCustom = () => {
   const navigation = useNavigation();
   const {params} = navigation.state;
+  const {settings} = useSelector((state) => state);
+
   const shareLink = (link) => {
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
-      subject: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
+      message: `${I18n.t('download_app')}  ${'\n\n'} ${I18n.t('android')} : ${
+        settings.android
+      } ${'\n'} ${I18n.t('ios')} : ${settings.apple} ${'\n'} ${I18n.t(
+        'share_file',
+        {
+          name: I18n.t(APP_CASE),
+        },
+      )} ${'\n'} `,
+      subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
     })
-      .then((res) => {
-        // __DEV__ ? console.log(res) : null;
-      })
-      .catch((err) => {
-        // err && console.log(err);
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
   return (
     <View style={styles.container}>

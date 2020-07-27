@@ -25,16 +25,16 @@ const CallOutView = ({
         Linking.openURL(`${links.googleMapUrl}${latitude},${longitude}`)
       }
       style={{
-        width: 250,
         borderWidth: 0.5,
+        flex: 1,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         borderColor: 'lightgrey',
-        minHeight: 120,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'flex-start',
+        alignSelf: 'center',
       }}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', flex: 1}}>
         <ImageLoaderContainer
           style={styles.image}
           img={image}
@@ -49,24 +49,24 @@ const CallOutView = ({
               alignItems: 'baseline',
               justifyContent: 'flex-start',
             }}>
-            {title ? (
+            {title && (
               <Text style={styles.title}>{title.substring(0, 50)}</Text>
-            ) : null}
-            {address ? (
+            )}
+            {address && (
               <Text style={styles.title}>{address.substring(0, 50)}</Text>
-            ) : null}
-            {price ? (
+            )}
+            {price && (
               <Text style={styles.title}>
                 {price} {currency_symbol}
               </Text>
-            ) : null}
-            {description ? (
+            )}
+            {description && (
               <Text style={styles.title}>{description.substring(0, 50)}</Text>
-            ) : null}
+            )}
           </View>
         </View>
       </View>
-      <View>
+      <View style={{alignSelf: 'center', alignItems: 'center'}}>
         {!validate.isEmpty(element.items) && (
           <PropertiesWidget elements={element.items} />
         )}
@@ -90,7 +90,11 @@ const styles = StyleSheet.create({
     height: 30,
   },
   image: {
-    width: 80,
-    height: 100,
+    width: '100%',
+    maxWidth: 80,
+    height: '100%',
+    maxHeight: 80,
+    alignSelf: 'center',
+    borderRadius: 5,
   },
 });

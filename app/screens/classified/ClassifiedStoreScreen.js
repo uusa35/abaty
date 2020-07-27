@@ -10,7 +10,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {Button, Input, Icon, CheckBox} from 'react-native-elements';
 import I18n, {isRTL} from '../../I18n';
-import {text, touchOpacity} from '../../constants/sizes';
+import {iconSizes, text, touchOpacity} from '../../constants/sizes';
 import {
   showAreaModal,
   showCountryModal,
@@ -96,7 +96,7 @@ const ClassifiedStoreScreen = () => {
         <TouchableOpacity
           activeOpacity={touchOpacity}
           onPress={() => openPicker()}
-          style={{width: '90%', marginTop: 0, alignItems: 'center'}}>
+          style={{flex: 1, alignItems: 'center'}}>
           <Icon
             name="camera"
             type="evilicon"
@@ -168,173 +168,198 @@ const ClassifiedStoreScreen = () => {
             ))}
           </ScrollView>
         )}
-        <View style={{width: '90%', alignItems: 'center'}}>
-          <Input
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            shake={true}
-            keyboardType="default"
-            defaultValue={name}
-            onChangeText={(text) => setName(text)}
-            placeholder={I18n.t('classified_title')}
-            label={`${I18n.t('classified_title')}*`}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              textAlign: 'left',
-            }}
+        <Input
+          inputContainerStyle={{
+            borderWidth: 0.5,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          shake={true}
+          keyboardType="default"
+          defaultValue={name}
+          onChangeText={(text) => setName(text)}
+          placeholder={I18n.t('classified_title')}
+          label={`${I18n.t('classified_title')}*`}
+          labelStyle={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            fontFamily: text.font,
+            textAlign: 'left',
+          }}
+        />
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          shake={true}
+          keyboardType="default"
+          defaultValue={address}
+          onChangeText={(text) => setAddress(text)}
+          placeholder={I18n.t('address')}
+          label={I18n.t('address')}
+          labelStyle={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            fontFamily: text.font,
+            textAlign: 'left',
+          }}
+        />
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+            height: 80,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            fontSize: 14,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          numberOfLines={3}
+          shake={true}
+          defaultValue={description}
+          keyboardType="default"
+          onChangeText={(text) => setDescription(text)}
+          placeholder={description ? description : I18n.t('description')}
+          label={`${I18n.t('description')}*`}
+          labelStyle={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            fontFamily: text.font,
+            textAlign: 'left',
+          }}
+        />
+        <Input
+          leftIcon={() => <Text>+{country.calling_code}</Text>}
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          shake={true}
+          keyboardType="number-pad"
+          onChangeText={(text) => setMobile(text)}
+          defaultValue={mobile}
+          placeholder={mobile ? mobile : I18n.t('mobile')}
+          label={`${I18n.t('mobile')}*`}
+          labelStyle={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            fontFamily: text.font,
+            textAlign: 'left',
+          }}
+        />
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+          }}
+          shake={true}
+          keyboardType="number-pad"
+          onChangeText={(text) => setPrice(convertNumberToEnglish(text))}
+          defaultValue={price}
+          placeholder={I18n.t('price')}
+          label={`${I18n.t('price')}*`}
+          labelStyle={{
+            paddingBottom: 5,
+            paddingTop: 5,
+            fontFamily: text.font,
+            textAlign: 'left',
+          }}
+        />
+        <View
+          style={{
+            // marginTop: 0,
+            marginBottom: 10,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <CheckBox
+            containerStyle={{width: '90%'}}
+            title={I18n.t('only_whatsapp')}
+            iconType="material"
+            checkedIcon="check-box"
+            uncheckedIcon="check-box-outline-blank"
+            checked={onlyWhatsapp}
+            onPress={() => setOnlyWhatsapp(!onlyWhatsapp)}
+            textStyle={{fontFamily: text.font, paddingTop: 5}}
           />
-          <Input
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            shake={true}
-            keyboardType="default"
-            defaultValue={address}
-            onChangeText={(text) => setAddress(text)}
-            placeholder={I18n.t('address')}
-            label={I18n.t('address')}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              textAlign: 'left',
-            }}
-          />
-          <Input
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-              height: 80,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              fontSize: 14,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            numberOfLines={3}
-            shake={true}
-            defaultValue={description}
-            keyboardType="default"
-            onChangeText={(text) => setDescription(text)}
-            placeholder={description ? description : I18n.t('description')}
-            label={`${I18n.t('description')}*`}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              textAlign: 'left',
-            }}
-          />
-          <Input
-            leftIcon={() => <Text>+{country.calling_code}</Text>}
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            shake={true}
-            keyboardType="number-pad"
-            onChangeText={(text) => setMobile(text)}
-            defaultValue={mobile}
-            placeholder={mobile ? mobile : I18n.t('mobile')}
-            label={`${I18n.t('mobile')}*`}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              textAlign: 'left',
-            }}
-          />
-          <Input
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-            }}
-            shake={true}
-            keyboardType="number-pad"
-            onChangeText={(text) => setPrice(convertNumberToEnglish(text))}
-            defaultValue={price}
-            placeholder={I18n.t('price')}
-            label={`${I18n.t('price')}*`}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              textAlign: 'left',
-            }}
-          />
-          <View
+        </View>
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(showCountryModal());
+          }}
+          style={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 5,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: iconSizes.smallest,
+            height: iconSizes.large,
+            width: '95%',
+            alignSelf: 'center',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text
             style={{
-              // marginTop: 0,
-              marginBottom: 10,
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
+              fontFamily: text.font,
+              fontSize: text.large,
+              textAlign: isRTL ? 'right' : 'left',
+              color: colors.main_theme_color,
             }}>
-            <CheckBox
-              containerStyle={{width: '90%'}}
-              title={I18n.t('only_whatsapp')}
-              iconType="material"
-              checkedIcon="check-box"
-              uncheckedIcon="check-box-outline-blank"
-              checked={onlyWhatsapp}
-              onPress={() => setOnlyWhatsapp(!onlyWhatsapp)}
-              textStyle={{fontFamily: text.font, paddingTop: 5}}
-            />
-          </View>
+            {country.slug}
+          </Text>
+        </TouchableOpacity>
+        {!validate.isEmpty(area) && HOMEKEY && (
           <TouchableOpacity
-            onPress={() => {
-              dispatch(showCountryModal());
-            }}
+            onPress={() => dispatch(showAreaModal())}
             style={{
               borderWidth: 1,
               borderColor: 'lightgrey',
-              borderRadius: 10,
+              borderRadius: 5,
               paddingLeft: 15,
               paddingRight: 15,
-              marginBottom: 20,
-              height: 45,
+              marginBottom: iconSizes.smallest,
+              height: iconSizes.large,
               width: '95%',
               alignSelf: 'center',
               justifyContent: 'center',
@@ -347,43 +372,16 @@ const ClassifiedStoreScreen = () => {
                 textAlign: isRTL ? 'right' : 'left',
                 color: colors.main_theme_color,
               }}>
-              {country.slug}
+              {I18n.t('area')} {area ? area.slug : I18n.t('choose_area')}
             </Text>
           </TouchableOpacity>
-          {!validate.isEmpty(area) && HOMEKEY ? (
-            <TouchableOpacity
-              onPress={() => dispatch(showAreaModal())}
-              style={{
-                borderWidth: 1,
-                borderColor: 'lightgrey',
-                borderRadius: 10,
-                paddingLeft: 15,
-                paddingRight: 15,
-                marginBottom: 20,
-                height: 45,
-                width: '95%',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <Text
-                style={{
-                  fontFamily: text.font,
-                  fontSize: text.large,
-                  textAlign: isRTL ? 'right' : 'left',
-                  color: colors.main_theme_color,
-                }}>
-                {I18n.t('area')} {area ? area.slug : I18n.t('choose_area')}
-              </Text>
-            </TouchableOpacity>
-          ) : null}
-          {!validate.isEmpty(classifiedProps) ? (
-            <ClassifiedStorePropertiesWidget
-              elements={classifiedProps}
-              name={category.name}
-            />
-          ) : null}
-        </View>
+        )}
+        {!validate.isEmpty(classifiedProps) && (
+          <ClassifiedStorePropertiesWidget
+            elements={classifiedProps}
+            name={category.name}
+          />
+        )}
         <Button
           raised
           containerStyle={{marginBottom: 10, marginTop: 10, width: '90%'}}

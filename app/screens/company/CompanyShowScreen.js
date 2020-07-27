@@ -1,6 +1,6 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useContext} from 'react';
 import {StyleSheet, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
@@ -8,7 +8,6 @@ import {text, width} from '../../constants/sizes';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import UserImageProfile from '../../components/widgets/user/UserImageProfile';
-import PropTypes from 'prop-types';
 import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import {getCompany} from '../../redux/actions/user';
 import CommentScreenModal from './../CommentScreenModal';
@@ -20,18 +19,13 @@ import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalW
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import BgContainer from '../../components/containers/BgContainer';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 
-const CompanyShowScreen = ({
-  element,
-  commentModal,
-  comments,
-  dispatch,
-  colors,
-  logo,
-  guest,
-  searchParams,
-  navigation,
-}) => {
+const CompanyShowScreen = () => {
+  const {company, commentModal, searchParams, guest} = useSelector(
+    (state) => state,
+  );
+  const {colors, logo} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
@@ -45,19 +39,19 @@ const CompanyShowScreen = ({
   const [products, setProducts] = useState([]);
 
   useMemo(() => {
-    if (!validate.isEmpty(element.products)) {
+    if (!validate.isEmpty(company.products)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productCategories),
+        collectedCategories.concat(company.productCategories),
       );
-      setProducts(products.concat(element.products));
+      setProducts(products.concat(company.products));
     }
-    if (!validate.isEmpty(element.productGroup)) {
+    if (!validate.isEmpty(company.productGroup)) {
       setCollectedCategories(
-        collectedCategories.concat(element.productGroupCategories),
+        collectedCategories.concat(company.productGroupCategories),
       );
-      setProducts(products.concat(element.productGroup));
+      setProducts(products.concat(company.productGroup));
     }
-  }, [element]);
+  }, [company]);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -66,8 +60,8 @@ const CompanyShowScreen = ({
   const handleRefresh = useCallback(() => {
     return dispatch(
       getCompany({
-        id: element.id,
-        searchParams: {user_id: element.id},
+        id: company.id,
+        searchParams: {user_id: company.id},
       }),
     );
   }, [refresh]);
@@ -84,7 +78,7 @@ const CompanyShowScreen = ({
         containerStyle={{flex: 1}}
         overlayColor="white"
         headerImage={{
-          uri: element.banner ? element.banner : element.thumb,
+          uri: company.banner ? company.banner : company.thumb,
         }}
         refreshControl={
           <RefreshControl
@@ -97,29 +91,29 @@ const CompanyShowScreen = ({
           // onHide={() => console.log('text hidden')}
           >
             <UserImageProfile
-              member_id={element.id}
+              member_id={company.id}
               showFans={true}
               showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
               showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
               guest={guest}
-              isFanned={element.isFanned}
-              totalFans={element.totalFans}
-              currentRating={element.rating}
-              medium={element.medium}
+              isFanned={company.isFanned}
+              totalFans={company.totalFans}
+              currentRating={company.rating}
+              medium={company.medium}
               logo={logo}
-              slug={element.slug}
-              type={element.role.slug}
-              views={element.views}
-              commentsCount={element.commentsCount}
+              slug={company.slug}
+              type={company.role.slug}
+              views={company.views}
+              commentsCount={company.commentsCount}
             />
-            {!validate.isEmpty(element.slides) ? (
+            {!validate.isEmpty(company.slides) ? (
               <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-                <MainSliderWidget slides={element.slides} />
+                <MainSliderWidget slides={company.slides} />
               </View>
             ) : null}
             {!validate.isEmpty(collectedCategories) ? (
               <ProductCategoryVerticalWidget
-                user_id={element.id}
+                user_id={company.id}
                 elements={collectedCategories}
                 showImage={false}
                 title={I18n.t('categories')}
@@ -162,28 +156,28 @@ const CompanyShowScreen = ({
                 ),
                 info: () => (
                   <UserInfoWidget
-                    has_map={element.has_map}
-                    mobile={element.mobile}
-                    phone={element.phone}
-                    slug={element.slug}
-                    whatsapp={element.whatsapp}
-                    twitter={element.twitter}
-                    facebook={element.facebook}
-                    instagram={element.instagram}
-                    android={element.android}
-                    youtube={element.youtube}
-                    website={element.website}
-                    description={element.description}
-                    service={element.service}
-                    address={element.address}
-                    images={element.images}
-                    latitude={element.latitude}
-                    longitude={element.longitude}
-                    thumb={element.thumb}
+                    has_map={company.has_map}
+                    mobile={company.mobile}
+                    phone={company.phone}
+                    slug={company.slug}
+                    whatsapp={company.whatsapp}
+                    twitter={company.twitter}
+                    facebook={company.facebook}
+                    instagram={company.instagram}
+                    android={company.android}
+                    youtube={company.youtube}
+                    website={company.website}
+                    description={company.description}
+                    service={company.service}
+                    address={company.address}
+                    images={company.images}
+                    latitude={company.latitude}
+                    longitude={company.longitude}
+                    thumb={company.thumb}
                   />
                 ),
                 videos: () => (
-                  <VideosVerticalWidget videos={element.videoGroup} />
+                  <VideosVerticalWidget videos={company.videoGroup} />
                 ),
               })}
               style={{marginTop: 10, backgroundColor: 'white'}}
@@ -195,25 +189,13 @@ const CompanyShowScreen = ({
             commentModal={commentModal}
             elements={comments}
             model="user"
-            id={element.id}
+            id={company.id}
           />
         </View>
       </HeaderImageScrollView>
     </BgContainer>
   );
 };
-
-function mapStateToProps(state) {
-  return {
-    element: state.company,
-    comments: state.comments,
-    commentModal: state.commentModal,
-    searchParams: state.searchParams,
-    colors: state.settings.colors,
-    logo: state.settings.logo,
-    guest: state.guest,
-  };
-}
 
 CompanyShowScreen.navigationOptions = ({navigation}) => ({
   headerTransparent: navigation.state.params.headerBg,
@@ -222,13 +204,7 @@ CompanyShowScreen.navigationOptions = ({navigation}) => ({
   },
 });
 
-export default connect(mapStateToProps)(CompanyShowScreen);
-
-CompanyShowScreen.propTypes = {
-  element: PropTypes.object.isRequired,
-  searchParams: PropTypes.object.isRequired,
-  commentModal: PropTypes.bool.isRequired,
-};
+export default CompanyShowScreen;
 
 const styles = StyleSheet.create({
   mainTitle: {

@@ -25,9 +25,11 @@ const ClassifiedWidget = ({element, showName = false, handleClick}) => {
       style={[
         widgetStyles.btnStyle,
         {
-          width: '98%',
+          width: '100%',
+          marginLeft: 0,
+          marginRight: 0,
           height: 400,
-          borderWidth: 1,
+          // borderWidth: 1,
           borderColor: 'lightgrey',
           // borderRadius: 20,
           // marginTop: 5,

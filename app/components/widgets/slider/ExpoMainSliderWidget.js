@@ -19,7 +19,7 @@ const ExpoMainSliderWidget = ({elements}) => {
             flex: 1,
             backgroundColor: 'transparent',
           }}>
-          {!validate.isEmpty(elements) ? (
+          {!validate.isEmpty(elements) && (
             <Swiper
               containerStyle={{
                 borderRadius: 20,
@@ -40,7 +40,7 @@ const ExpoMainSliderWidget = ({elements}) => {
                 <ExpoSlideWidget slide={s} key={i} />
               ))}
             </Swiper>
-          ) : null}
+          )}
         </View>
       )}
     </Fragment>

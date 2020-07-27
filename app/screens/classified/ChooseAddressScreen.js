@@ -11,6 +11,7 @@ import {axiosInstance} from '../../redux/actions/api';
 import {useNavigation} from 'react-navigation-hooks';
 import {enableErrorMessage} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
+import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
 const ChooseAddressScreen = () => {
   const [longitude, setLongitude] = useState(47.9323259);
@@ -46,128 +47,114 @@ const ChooseAddressScreen = () => {
   });
 
   return (
-    <KeyboardAwareScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      contentInset={{bottom: 200}}
-      contentContainerStyle={{
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-        minHeight: height,
-      }}>
-      <View style={{width: '100%', flex: 1, marginBottom: 100}}>
-        <MapView
-          style={{
-            width,
-            height: height / 2,
-          }}
-          title={I18n.t('google_map')}
-          zoomEnabled={true}
-          initialRegion={{
+    <KeyBoardContainer>
+      <MapView
+        style={{
+          width,
+          height: height / 2,
+        }}
+        title={I18n.t('google_map')}
+        zoomEnabled={true}
+        initialRegion={{
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude),
+          latitudeDelta: 0.6922,
+          longitudeDelta: 0.0421,
+        }}>
+        <Marker
+          draggable
+          coordinate={{
             latitude: parseFloat(latitude),
             longitude: parseFloat(longitude),
-            latitudeDelta: 0.6922,
-            longitudeDelta: 0.0421,
-          }}>
-          <Marker
-            draggable
-            coordinate={{
-              latitude: parseFloat(latitude),
-              longitude: parseFloat(longitude),
-            }}
-            image={images.pin}
-            onDragEnd={(e) => setLocation(e)}>
-            <View
-              style={{
-                alignSelf: 'center',
-                position: 'relative',
-                left: 30,
-                marginTop: 50,
-                minWidth: 100,
-              }}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: text.font,
-                  fontSize: text.small,
-                }}>
-                {I18n.t('choose_your_location')}
-              </Text>
-            </View>
-          </Marker>
-        </MapView>
-        <View
-          style={{alignItems: 'center', justifyContent: 'center', padding: 20}}>
-          <Button
-            onPress={() => getYourAddress()}
-            raised
-            containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
-            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={I18n.t('get_your_address_from_map')}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color,
-            }}
-          />
-          <Text
+          }}
+          image={images.pin}
+          onDragEnd={(e) => setLocation(e)}>
+          <View
             style={{
-              fontFamily: text.font,
-              fontSize: text.medium,
-              textAlign: 'center',
-              marginTop: 10,
+              alignSelf: 'center',
+              position: 'relative',
+              left: 30,
+              marginTop: 50,
+              minWidth: 100,
             }}>
-            {I18n.t('choose_address_from_map_or_you_can_write_your_map')}
-          </Text>
-          <Input
-            inputContainerStyle={{
-              borderWidth: 1,
-              borderColor: 'lightgrey',
-              borderRadius: 10,
-              paddingLeft: 15,
-              paddingRight: 15,
-              marginBottom: 20,
-            }}
-            inputStyle={{
-              fontFamily: text.font,
-              textAlign: isRTL ? 'right' : 'left',
-              fontSize: text.medium,
-            }}
-            shake={true}
-            keyboardType="default"
-            defaultValue={address}
-            onChangeText={(address) => setAddress(address)}
-            placeholder={I18n.t('address')}
-            label={I18n.t('address')}
-            labelStyle={{
-              paddingBottom: 10,
-              paddingTop: 10,
-              fontFamily: text.font,
-              fontSize: text.medium,
-              textAlign: 'left',
-            }}
-          />
-          <Button
-            onPress={() =>
-              navigate('ClassifiedStore', {address, longitude, latitude})
-            }
-            disabled={address.length < 5}
-            raised
-            containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
-            buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
-            title={I18n.t('save_address_and_continue')}
-            titleStyle={{
-              fontFamily: text.font,
-              color: colors.btn_text_theme_color,
-              fontSize: text.medium,
-            }}
-          />
-        </View>
+            <Text
+              style={{
+                textAlign: 'center',
+                fontFamily: text.font,
+                fontSize: text.small,
+              }}>
+              {I18n.t('choose_your_location')}
+            </Text>
+          </View>
+        </Marker>
+      </MapView>
+      <View
+        style={{alignItems: 'center', justifyContent: 'center', padding: 20}}>
+        <Button
+          onPress={() => getYourAddress()}
+          raised
+          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
+          buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+          title={I18n.t('get_your_address_from_map')}
+          titleStyle={{
+            fontFamily: text.font,
+            color: colors.btn_text_theme_color,
+          }}
+        />
+        <Text
+          style={{
+            fontFamily: text.font,
+            fontSize: text.medium,
+            textAlign: 'center',
+            marginTop: 10,
+          }}>
+          {I18n.t('choose_address_from_map_or_you_can_write_your_map')}
+        </Text>
+        <Input
+          inputContainerStyle={{
+            borderWidth: 1,
+            borderColor: 'lightgrey',
+            borderRadius: 10,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: 20,
+          }}
+          inputStyle={{
+            fontFamily: text.font,
+            textAlign: isRTL ? 'right' : 'left',
+            fontSize: text.medium,
+          }}
+          shake={true}
+          keyboardType="default"
+          defaultValue={address}
+          onChangeText={(address) => setAddress(address)}
+          placeholder={I18n.t('address')}
+          label={I18n.t('address')}
+          labelStyle={{
+            paddingBottom: 10,
+            paddingTop: 10,
+            fontFamily: text.font,
+            fontSize: text.medium,
+            textAlign: 'left',
+          }}
+        />
+        <Button
+          onPress={() =>
+            navigate('ClassifiedStore', {address, longitude, latitude})
+          }
+          disabled={address.length < 5}
+          raised
+          containerStyle={{width: '100%', marginBottom: 10, marginTop: 10}}
+          buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+          title={I18n.t('save_address_and_continue')}
+          titleStyle={{
+            fontFamily: text.font,
+            color: colors.btn_text_theme_color,
+            fontSize: text.medium,
+          }}
+        />
       </View>
-    </KeyboardAwareScrollView>
+    </KeyBoardContainer>
   );
 };
 

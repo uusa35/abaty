@@ -1,24 +1,19 @@
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
-import CategoryIndexScreen from '../../screens/category/CategoryIndexScreen';
 import {HeaderMiddle} from '../../components/HeaderMiddle';
 import validate from 'validate.js';
 import I18n from '../../I18n';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import {HeaderRight} from '../../components/HeaderRight';
-import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 import SubCategoryIndexScreen from '../../screens/category/SubCategoryIndexScreen';
 import ParentCategoryIndexScreen from '../../screens/category/ParentCategoryIndexScreen';
 import {HeaderLeft} from '../../components/HeaderLeft';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategoryIndexScreen';
 import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
-import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
-import CompanyClassifiedShowScreen from '../../screens/company/CompanyClassifiedShowScreen';
 import EscrapCompanyShowScreen from '../../screens/company/EscrapCompanyShowScreen';
 import {isIOS} from '../../constants';
-import {Animated, Easing} from 'react-native';
+import {APP_CASE} from '../../../app';
 
 export const CategoryStack = createStackNavigator(
   {
