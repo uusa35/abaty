@@ -24,8 +24,10 @@ const CountriesList = ({country, countries, countryModal}) => {
   const {colors} = useContext(GlobalValuesContext);
   const [visible, setVisible] = useState(false);
 
-  const handleClick = useCallback((country) => {
-    dispatch(chooseCountry({country, redirect: EXPO}));
+  const handleClick = useCallback((c) => {
+    if (c.id !== country.id) {
+      dispatch(chooseCountry({country: c, redirect: EXPO}));
+    }
   });
 
   useEffect(() => {

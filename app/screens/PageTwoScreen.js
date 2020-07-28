@@ -3,31 +3,31 @@ import {StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from '../I18n';
-import {getAllProducts} from '../redux/actions/product';
+import {getAllProducts, getSearchProducts} from '../redux/actions/product';
 import BgContainer from '../components/containers/BgContainer';
 import validate from 'validate.js';
 import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
 
 const PageTwoScreen = () => {
-  const {products} = useSelector((state) => state);
+  const {products, country} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    dispatch(getAllProducts({country_id: country.id}));
   }, []);
 
   useMemo(() => {
-    if (!validate.isEmpty(products)) {
-      setCurrentElements(products);
-    }
+    // if(!validate.isEmpty(products)) {
+    setCurrentElements(products);
+    // }
   }, [products]);
 
   return (
     <BgContainer>
       <ElementsHorizontalList
         elements={currentElements}
-        searchParams={{}}
+        searchParams={{country_id: country.id}}
         type="product"
         showRefresh={true}
         showFooter={true}

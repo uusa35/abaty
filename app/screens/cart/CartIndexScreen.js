@@ -1,8 +1,7 @@
 import React, {useContext} from 'react';
-import {StyleSheet, ScrollView, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import validate from 'validate.js';
-import PropTypes from 'prop-types';
 import CartList from '../../components/widgets/cart/CartList';
 import {text, width, height} from '../../constants/sizes';
 import {Button} from 'react-native-elements';
@@ -32,8 +31,8 @@ const CartIndexScreen = () => {
           justifyContent: 'center',
           alignItems: 'center',
           alignSelf: 'center',
-          marginTop: '5%',
-          width: '95%',
+          paddingRight: 10,
+          paddingLeft: 10,
         }}>
         <KeyBoardContainer>
           {!validate.isEmpty(cart) ? (
@@ -50,9 +49,8 @@ const CartIndexScreen = () => {
           ) : (
             <View
               style={{
-                width: width - 50,
-                alignSelf: 'center',
-                justifyContent: 'center',
+                paddingTop: '50%',
+                width: width / 1.1,
               }}>
               {!ABATI ? (
                 <LottieView
@@ -104,6 +102,20 @@ const CartIndexScreen = () => {
                   }}
                 />
               </Animating>
+              {EXPO && (
+                <LottieView
+                  source={animations.cart}
+                  autoPlay
+                  loop
+                  resizeMode="cover"
+                  style={{
+                    alignSelf: 'center',
+                    width: width / 1.3,
+                    height: width / 1.3,
+                  }}
+                  enableMergePathsAndroidForKitKatAndAbove
+                />
+              )}
             </View>
           )}
         </KeyBoardContainer>

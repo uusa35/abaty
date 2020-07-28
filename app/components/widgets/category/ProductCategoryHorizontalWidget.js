@@ -70,7 +70,7 @@ const ProductCategoryHorizontalWidget = ({
             key={i}
             style={widgetStyles.btnStyle}
             onPress={() => handleClick(c)}>
-            {showImage ? (
+            {showImage && (
               <FastImage
                 source={{
                   uri: c.thumb,
@@ -80,8 +80,8 @@ const ProductCategoryHorizontalWidget = ({
                 style={styles.image}
                 resizeMode="cover"
               />
-            ) : null}
-            {showName ? (
+            )}
+            {showName && (
               <Text
                 style={[
                   widgetStyles.elementName,
@@ -89,7 +89,7 @@ const ProductCategoryHorizontalWidget = ({
                 ]}>
                 {c.name}
               </Text>
-            ) : null}
+            )}
           </TouchableOpacity>
         ))}
       </ScrollView>

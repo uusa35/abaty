@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
 } from 'react-native-image-header-scroll-view';
-import {text, width, height} from '../../../constants/sizes';
+import {text, width, height, iconSizes} from '../../../constants/sizes';
 import validate from 'validate.js';
 import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
@@ -133,22 +133,23 @@ const DesignerShowScreen = () => {
             latitude={designer.latitude}
             longitude={designer.longitude}
           />
-          {!validate.isEmpty(designer.slides) ? (
+          {!validate.isEmpty(designer.slides) && (
             <View style={{width: width}}>
               <MainSliderWidget slides={designer.slides} />
             </View>
-          ) : null}
-          {!validate.isEmpty(collectedCategories) ? (
+          )}
+          {!validate.isEmpty(collectedCategories) && (
             <ElementsVerticalList
               elements={collectedCategories}
               showMore={false}
               showFooter={false}
               showSearch={false}
               showTitle={true}
+              iconSize={iconSizes.smallest}
               type="category"
               title={I18n.t('categories')}
             />
-          ) : null}
+          )}
           <TabView
             lazy={true}
             renderTabBar={(props) => (

@@ -100,7 +100,7 @@ const ProductWidget = ({
                   color: colors.header_tow_theme_color,
                 },
               ]}>
-              {`${I18n.t('sku')} :  ${element.sku.substring(0, 20)}`}
+              {`${I18n.t('sku')} :  ${element.sku.substring(0, 15)}`}
             </Text>
           )}
         </View>

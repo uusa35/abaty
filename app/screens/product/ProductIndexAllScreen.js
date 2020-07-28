@@ -17,9 +17,9 @@ const ProductIndexAllScreen = () => {
   }, []);
 
   useMemo(() => {
-    if (!validate.isEmpty(products)) {
-      setCurrentElements(products);
-    }
+    // if (!validate.isEmpty(products)) {
+    setCurrentElements(products);
+    // }
   }, [products]);
 
   return (

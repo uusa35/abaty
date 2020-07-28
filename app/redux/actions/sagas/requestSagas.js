@@ -753,7 +753,7 @@ export function* getPages() {
     if (__DEV__) {
       // console.log('the e', e);
     }
-    yield call(enableErrorMessage, I18n.t('no_pages'));
+    // yield call(enableErrorMessage, I18n.t('no_pages'));
   } finally {
     // yield call(disableLoading);
   }

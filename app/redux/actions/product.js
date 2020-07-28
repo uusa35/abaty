@@ -3,6 +3,7 @@ import * as actions from './types';
 export function getAllProducts(payload) {
   return {
     type: actions.GET_ALL_PRODUCTS,
+    payload,
   };
 }
 

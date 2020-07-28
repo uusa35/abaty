@@ -112,14 +112,14 @@ LocaleConfig.locales['en'] = {
 const CalendarIndexScreen = () => {
   const {lang, colors} = useContext(GlobalValuesContext);
   LocaleConfig.defaultLocale = lang;
-  const {services, searchParams} = useSelector((state) => state);
+  const {services, searchParams, country} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
 
   useEffect(() => {
-    dispatch(getSearchServices({searchParams: {}}));
+    dispatch(getSearchServices({searchParams: {country_id: country.id}}));
   }, []);
 
   useMemo(() => {
@@ -130,7 +130,9 @@ const CalendarIndexScreen = () => {
   return (
     <BgContainer>
       <ScrollView
-        style={{alignSelf: 'center', minHeight: '45%', width: '100%'}}>
+        style={{alignSelf: 'center', width: '100%'}}
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}>
         <Calendar
           // style={{flex : 1 , borderWidth : 5 }}
           // Initially visible month. Default = Date()
@@ -269,21 +271,22 @@ const CalendarIndexScreen = () => {
             )
           }
         />
+        <ElementsVerticalList
+          elements={currentElements}
+          type="service"
+          searchElements={currentSearchParams}
+          showRefresh={true}
+          showFooter={true}
+          showSearch={false}
+          showSortSearch={true}
+          showProductsFilter={false}
+          showTitleIcons={true}
+          showMore={true}
+          showName={true}
+          customHeight={150}
+          scrollEnabled={false}
+        />
       </ScrollView>
-      <ElementsVerticalList
-        elements={currentElements}
-        type="service"
-        searchElements={currentSearchParams}
-        showRefresh={true}
-        showFooter={true}
-        showSearch={false}
-        showSortSearch={true}
-        showProductsFilter={false}
-        showTitleIcons={true}
-        showMore={true}
-        showName={true}
-        customHeight={150}
-      />
     </BgContainer>
   );
 };

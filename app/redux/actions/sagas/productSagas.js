@@ -214,7 +214,6 @@ export function* startGetProductScenario(action) {
 export function* startGetSearchProductsScenario(action) {
   try {
     const {name, searchParams, redirect} = action.payload;
-    console.log('searchParams', searchParams);
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);
     }
@@ -274,7 +273,7 @@ export function* startGetAllProductsScenario(action) {
       throw 'no_products';
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_products'));
+    // yield call(enableWarningMessage, I18n.t('no_products'));
   } finally {
     yield call(disableLoading);
   }

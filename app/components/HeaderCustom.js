@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 9/28/17.
  */
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
@@ -15,21 +15,41 @@ const HeaderCustom = () => {
   const navigation = useNavigation();
   const {params} = navigation.state;
   const {settings} = useSelector((state) => state);
+  const [downloadTitleMessage, setDownloadTitleMessage] = useState('');
+  const [androidMessage, setAndroidMessage] = useState('');
+  const [iphoneMessage, setIphoneMessage] = useState('');
+  const [shareMessage, setShareMessage] = useState('');
+
+  useMemo(() => {
+    setDownloadTitleMessage(
+      settings.apple || settings.android
+        ? `${I18n.t('download_app')} ${'\n'}`
+        : '',
+    );
+    setAndroidMessage(
+      settings.android
+        ? `${settings.android ? I18n.t('android') : ''} : ${
+            settings.android ? settings.android : ''
+          } ${'\n'}`
+        : '',
+    );
+    setIphoneMessage(
+      settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
+    );
+    setShareMessage(
+      `${'\n'} ${I18n.t('share_file', {
+        name: I18n.t(APP_CASE),
+      })} ${'\n'}`,
+    );
+  }, []);
 
   const shareLink = (link) => {
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
       type: 'url',
-      message: `${I18n.t('download_app')}  ${'\n\n'} ${I18n.t('android')} : ${
-        settings.android
-      } ${'\n'} ${I18n.t('ios')} : ${settings.apple} ${'\n'} ${I18n.t(
-        'share_file',
-        {
-          name: I18n.t(APP_CASE),
-        },
-      )} ${'\n'} `,
-      subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
+      message: `${downloadTitleMessage} ${androidMessage} ${iphoneMessage} ${shareMessage}`,
+      // subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
     })
       .then((res) => {})
       .catch((err) => {});

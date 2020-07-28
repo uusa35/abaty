@@ -2,7 +2,7 @@ import React, {Fragment, useContext} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text, width} from '../../../constants/sizes';
+import {iconSizes, text, width} from '../../../constants/sizes';
 import {isIOS} from '../../../constants';
 import PropTypes from 'prop-types';
 import {map, isNull} from 'lodash';
@@ -29,7 +29,7 @@ const ClassifiedCategoryVerticalWidget = ({
         <View
           key={elements.length}
           style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
-          {showTitle ? (
+          {showTitle && (
             <Text
               style={{
                 fontFamily: text.font,
@@ -48,7 +48,7 @@ const ClassifiedCategoryVerticalWidget = ({
               }}>
               {title}
             </Text>
-          ) : null}
+          )}
           {map(elements, (c, i) => {
             if (!isNull(c)) {
               return (
@@ -78,7 +78,7 @@ const ClassifiedCategoryVerticalWidget = ({
                         type="entypo"
                         name={isRTL ? 'triangle-left' : 'triangle-right'}
                         color="grey"
-                        size={20}
+                        size={iconSizes.smallest}
                         iconStyle={{
                           paddingRight: 10,
                           paddingLeft: 10,
@@ -86,20 +86,20 @@ const ClassifiedCategoryVerticalWidget = ({
                       />
                       <Text style={styles.subTitle}>{c.name}</Text>
                     </View>
-                    {showArrow ? (
+                    {showArrow && (
                       <Icon
                         type="entypo"
                         name={
                           isRTL ? 'chevron-thin-left' : 'chevron-thin-right'
                         }
                         color="lightgrey"
-                        size={15}
+                        size={iconSizes.smallest}
                         iconStyle={{
                           paddingRight: isIOS ? 10 : 0,
                           paddingLeft: isIOS ? 0 : 10,
                         }}
                       />
-                    ) : null}
+                    )}
                   </TouchableOpacity>
                   {c.has_children && showChildren && c.children
                     ? map(c.children, (child, n) => {

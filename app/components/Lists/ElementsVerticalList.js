@@ -33,7 +33,6 @@ import {
 } from './../../constants/sizes';
 import {filter, orderBy, uniqBy} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
-import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
 import TopSearchInput from '../widgets/TopSearchInput';
 import UserWidgetVertical from '../widgets/user/UserWidgetVertical';
 import ElementWidgetVertical from './ElementWidgetVertical';
@@ -41,7 +40,6 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import SearchSort from '../widgets/search/SearchSort';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
-import {useNavigation} from 'react-navigation-hooks';
 import NoMoreElements from '../widgets/NoMoreElements';
 import {getSearchServices, getService} from '../../redux/actions/service';
 import {
@@ -52,8 +50,6 @@ import {setElementType} from '../../redux/actions';
 import ProductWidget from '../widgets/product/ProductWidget';
 import ServiceWidget from '../widgets/service/ServiceWidget';
 import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
-import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
-import ElementWidgetHorizontal from './ElementWidgetHorizontal';
 import EmptyListWidget from './EmptyListWidget';
 import {animations} from '../../constants/animations';
 import {HOMEKEY, EXPO} from '../../../app';
@@ -86,6 +82,7 @@ const ElementsVerticalList = ({
   textSize = text.medium,
   columns = 1,
   customHeight = 240,
+  scrollEnabled = showFooter,
 }) => {
   const [items, setItems] = useState([]);
   const [elementsWithMap, setElementsWithMap] = useState([]);
@@ -511,7 +508,7 @@ const ElementsVerticalList = ({
       {showSearch && <TopSearchInput search={search} setSearch={setSearch} />}
       <FlatList
         ListEmptyComponent={() => renderEmptyComponent()}
-        scrollEnabled={showFooter}
+        scrollEnabled={scrollEnabled}
         keyboardShouldPersistTaps="always"
         keyboardDismissMode="none"
         horizontal={false}

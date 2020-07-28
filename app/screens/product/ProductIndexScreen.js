@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,15 +8,22 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 const ProductIndexScreen = () => {
   const {searchProducts, searchParams} = useSelector((state) => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
+  const [currentElements, setCurrentElements] = useState([]);
 
   useEffect(() => {
     setCurrentSearchParams(searchParams);
   }, []);
 
+  useMemo(() => {
+    // if (!validate.isEmpty(products)) {
+    setCurrentElements(searchProducts);
+    // }
+  }, [searchProducts]);
+
   return (
     <BgContainer showImage={false}>
       <ElementsHorizontalList
-        elements={searchProducts}
+        elements={currentElements}
         searchParams={currentSearchParams}
         type="product"
         columns={2}

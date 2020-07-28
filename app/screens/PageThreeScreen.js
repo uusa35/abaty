@@ -1,16 +1,28 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import I18n from '../I18n';
 import {iconSizes, text} from '../constants/sizes';
 import ElementsVerticalList from '../components/Lists/ElementsVerticalList';
 import BgContainer from '../components/containers/BgContainer';
-import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
+import {getSearchCompanies} from '../redux/actions/user';
+import validate from 'validate.js';
 
 const PageThreeScreen = () => {
-  const {homeCompanies} = useSelector((state) => state);
-  const [currentElements, setCurrentElements] = useState(homeCompanies);
+  const {companies, country} = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const [currentElements, setCurrentElements] = useState([]);
+
+  useEffect(() => {
+    dispatch(getSearchCompanies({searchParams: {country_id: country.id}}));
+  }, []);
+
+  useMemo(() => {
+    // if (!validate.isEmpty(companies)) {
+    setCurrentElements(companies);
+    // }
+  }, [companies]);
 
   return (
     <BgContainer>
@@ -21,7 +33,7 @@ const PageThreeScreen = () => {
         searchParams={{is_company: 1}}
         iconSize={iconSizes.large}
         textSize={text.medium}
-        type="designer"
+        type="company"
       />
     </BgContainer>
   );

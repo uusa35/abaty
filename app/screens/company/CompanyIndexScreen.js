@@ -6,6 +6,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 import {ESCRAP} from './../../../app';
 import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
+
 const CompanyIndexScreen = () => {
   const {companies, searchParams} = useSelector((state) => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});

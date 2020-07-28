@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
 import {isIOS} from '../../../constants';
-import {text, width} from '../../../constants/sizes';
+import {iconSizes, text, width} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {map, isNull, uniqBy} from 'lodash';
 import {getSearchProducts} from '../../../redux/actions/product';
@@ -29,7 +29,7 @@ const ProductCategoryVerticalWidget = ({
         <View
           key={elements.length}
           style={{width: '90%', alignSelf: 'center', marginTop: 30}}>
-          {showTitle ? (
+          {showTitle && (
             <Text
               style={{
                 fontFamily: text.font,
@@ -48,7 +48,7 @@ const ProductCategoryVerticalWidget = ({
               }}>
               {title}
             </Text>
-          ) : null}
+          )}
           {map(uniqBy(elements, 'id'), (c, i) => {
             if (!isNull(c)) {
               return (
@@ -79,7 +79,7 @@ const ProductCategoryVerticalWidget = ({
                         type="entypo"
                         name={isRTL ? 'triangle-left' : 'triangle-right'}
                         color="grey"
-                        size={20}
+                        size={iconSizes.smallest}
                         iconStyle={{
                           paddingRight: 10,
                           paddingLeft: 10,
@@ -87,20 +87,20 @@ const ProductCategoryVerticalWidget = ({
                       />
                       <Text style={styles.subTitle}>{c.name}</Text>
                     </View>
-                    {showArrow ? (
+                    {showArrow && (
                       <Icon
                         type="entypo"
                         name={
                           isRTL ? 'chevron-thin-left' : 'chevron-thin-right'
                         }
                         color="lightgrey"
-                        size={15}
+                        size={iconSizes.smallest}
                         iconStyle={{
                           paddingRight: isIOS ? 10 : 0,
                           paddingLeft: isIOS ? 0 : 10,
                         }}
                       />
-                    ) : null}
+                    )}
                   </TouchableOpacity>
                   {c.has_children && showChildren
                     ? map(c.children, (c, n) => {
@@ -136,7 +136,7 @@ const ProductCategoryVerticalWidget = ({
                                     isRTL ? 'triangle-left' : 'triangle-right'
                                   }
                                   color="grey"
-                                  size={20}
+                                  size={iconSizes.smallest}
                                   iconStyle={{
                                     paddingRight: 10,
                                     paddingLeft: 10,
