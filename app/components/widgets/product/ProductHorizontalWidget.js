@@ -22,10 +22,11 @@ const ProductHorizontalWidget = ({
   const {colors} = useContext(GlobalValuesContext);
   const {token} = useSelector((state) => state);
 
-  const handleClickProductWidget = useCallback((id) => {
+  const handleClickProductWidget = useCallback((element) => {
     dispatch(
       getProduct({
-        id,
+        element,
+        id: element.id,
         api_token: token ? token : null,
         redirect: true,
       }),

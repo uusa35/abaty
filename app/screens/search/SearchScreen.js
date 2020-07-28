@@ -8,38 +8,45 @@ import {ABATI, ESCRAP, MALLR, HOMEKEY} from '../../../app';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
+import BgContainer from '../../components/containers/BgContainer';
 
 const SearchScreen = ({}) => {
   const {homeCategories, tags} = useSelector((state) => state);
   return (
-    <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-      <ProductSearchForm />
-      <View>
-        {ABATI || MALLR ? (
-          <Fragment>
-            <TagsList title={I18n.t('tags')} elements={tags} type="products" />
-            <ProductCategoryVerticalWidget
-              elements={homeCategories}
-              showChildren={true}
-              title={I18n.t('categories')}
-            />
-          </Fragment>
-        ) : null}
-        {ESCRAP || HOMEKEY ? (
-          <Fragment>
-            <TagsList
-              title={I18n.t('tags')}
-              elements={tags}
-              type="classifieds"
-            />
-            <ClassifiedCategoryVerticalWidget
-              elements={homeCategories}
-              title={I18n.t('categories')}
-            />
-          </Fragment>
-        ) : null}
-      </View>
-    </ScrollView>
+    <BgContainer>
+      <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+        <ProductSearchForm />
+        <View>
+          {ABATI || MALLR ? (
+            <Fragment>
+              <TagsList
+                title={I18n.t('tags')}
+                elements={tags}
+                type="products"
+              />
+              <ProductCategoryVerticalWidget
+                elements={homeCategories}
+                showChildren={true}
+                title={I18n.t('categories')}
+              />
+            </Fragment>
+          ) : null}
+          {ESCRAP || HOMEKEY ? (
+            <Fragment>
+              <TagsList
+                title={I18n.t('tags')}
+                elements={tags}
+                type="classifieds"
+              />
+              <ClassifiedCategoryVerticalWidget
+                elements={homeCategories}
+                title={I18n.t('categories')}
+              />
+            </Fragment>
+          ) : null}
+        </View>
+      </ScrollView>
+    </BgContainer>
   );
 };
 

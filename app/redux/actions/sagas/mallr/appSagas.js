@@ -47,31 +47,43 @@ export function* mallrBootStrap() {
     call(setHomeBrands),
     call(startAuthenticatedScenario),
     call(setDeviceId),
-    call(setHomeProducts, {on_home: 1, country_id: country.id}),
-    call(getOnSaleProducts, {on_home: 1, country_id: country.id, on_sale: 1}),
+    call(setHomeProducts, {payload: {on_home: 1, country_id: country.id}}),
+    call(getOnSaleProducts, {
+      payload: {on_home: 1, country_id: country.id, on_sale: 1},
+    }),
     call(getBestSaleProducts, {
-      on_home: 1,
-      country_id: country.id,
-      best_sale: 1,
+      payload: {
+        on_home: 1,
+        country_id: country.id,
+        best_sale: 1,
+      },
     }),
     call(getHotDealsProducts, {
-      on_home: 1,
-      country_id: country.id,
-      hot_deals: 1,
+      payload: {
+        on_home: 1,
+        country_id: country.id,
+        hot_deals: 1,
+      },
     }),
-    call(getLatestProducts, {on_home: 1, country_id: country.id, latest: 1}),
+    call(getLatestProducts, {
+      payload: {on_home: 1, country_id: country.id, latest: 1},
+    }),
     call(getPages),
     call(getTags),
     call(getVideos),
-    call(getProductIndex, {country_id: country.id}),
+    call(getProductIndex, {payload: {country_id: country.id}}),
     call(setHomeSplashes),
-    call(getHomeCollectionsScenario, {on_home: 1, country_id: country.id}),
+    call(getHomeCollectionsScenario, {
+      payload: {on_home: 1, country_id: country.id},
+    }),
     call(startGetColorsScenario),
     call(startGetSizesScenario),
     call(getHomeUserCategories, {
-      on_home: true,
-      type: 'is_user',
-      country_id: country.id,
+      payload: {
+        on_home: 1,
+        type: 'is_user',
+        country_id: country.id,
+      },
     }),
     call(startGetParentCategoriesScenario),
     call(startGetHomeCategoriesScenario),
@@ -87,5 +99,5 @@ export function* mallrBootStrap() {
     }),
     put({type: actions.TOGGLE_RESET_APP, payload: false}),
   ]);
-  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: true});
+  yield put({type: actions.TOGGLE_BOOTSTRAPPED, payload: 1});
 }

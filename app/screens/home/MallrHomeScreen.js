@@ -34,6 +34,7 @@ import I18n from './../../I18n';
 import ShopperHorizontalWidget from '../../components/widgets/user/ShopperHorizontalWidget';
 import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
+import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 
 const MallrHomeScreen = ({
   homeCategories,
@@ -62,13 +63,14 @@ const MallrHomeScreen = ({
 
   return (
     <BgContainer>
+      <AppHomeConfigComponent />
       <View style={{flex: 1, backgroundColor: colors.main_theme_bg_color}}>
-        {!validate.isEmpty(splashes) && splash_on ? (
+        {!validate.isEmpty(splashes) && splash_on && (
           <IntroductionWidget
             elements={splashes}
             showIntroduction={showIntroduction}
           />
-        ) : null}
+        )}
         <ScrollView
           contentContainerStyle={{backgroundColor: 'transparent'}}
           contentInset={{bottom: 50}}
@@ -82,19 +84,17 @@ const MallrHomeScreen = ({
           endFillColor="white"
           showsVerticalScrollIndicator={false}
           style={{flex: 0.8}}>
-          {!validate.isEmpty(slides) ? (
-            <MainSliderWidget slides={slides} />
-          ) : null}
+          {!validate.isEmpty(slides) && <MainSliderWidget slides={slides} />}
           {!validate.isEmpty(homeDesigners) &&
-          validate.isArray(homeDesigners) ? (
-            <ShopperHorizontalWidget
-              elements={homeDesigners}
-              showName={true}
-              name={I18n.t('mallr.personal_shoppers')}
-              title={I18n.t('mallr.personal_shoppers')}
-              searchElements={{is_designer: true}}
-            />
-          ) : null}
+            validate.isArray(homeDesigners) && (
+              <ShopperHorizontalWidget
+                elements={homeDesigners}
+                showName={true}
+                name={I18n.t('mallr.personal_shoppers')}
+                title={I18n.t('mallr.personal_shoppers')}
+                searchElements={{is_designer: true}}
+              />
+            )}
           {homeCompanies && (
             <DesignersHorizontalWidget
               elements={homeCompanies}
@@ -105,65 +105,65 @@ const MallrHomeScreen = ({
             />
           )}
           {!validate.isEmpty(homeCategories) &&
-          validate.isArray(homeCategories) ? (
-            <ProductCategoryHorizontalRoundedWidget
-              elements={homeCategories}
-              showName={true}
-              title={I18n.t('categories')}
-              type="products"
-            />
-          ) : null}
-          {!validate.isEmpty(latestProducts) ? (
+            validate.isArray(homeCategories) && (
+              <ProductCategoryHorizontalRoundedWidget
+                elements={homeCategories}
+                showName={true}
+                title={I18n.t('categories')}
+                type="products"
+              />
+            )}
+          {!validate.isEmpty(latestProducts) && (
             <ProductHorizontalWidget
               elements={latestProducts}
               showName={true}
               title={I18n.t('latest_products')}
             />
-          ) : null}
-          {!validate.isEmpty(onSaleProducts) ? (
+          )}
+          {!validate.isEmpty(onSaleProducts) && (
             <ProductHorizontalWidget
               elements={onSaleProducts}
               showName={true}
               title={I18n.t('on_sale_products')}
             />
-          ) : null}
-          {!validate.isEmpty(bestSaleProducts) ? (
+          )}
+          {!validate.isEmpty(bestSaleProducts) && (
             <ProductHorizontalWidget
               elements={bestSaleProducts}
               showName={true}
               title={I18n.t('best_sale_products')}
             />
-          ) : null}
-          {!validate.isEmpty(hotDealsProducts) ? (
+          )}
+          {!validate.isEmpty(hotDealsProducts) && (
             <ProductHorizontalWidget
               elements={hotDealsProducts}
               showName={true}
               title={I18n.t('hot_deals_products')}
               showLink={false}
             />
-          ) : null}
-          {!validate.isEmpty(brands) && validate.isArray(brands) ? (
+          )}
+          {!validate.isEmpty(brands) && validate.isArray(brands) && (
             <BrandHorizontalWidget
               elements={brands}
               showName={false}
               title={I18n.t('brands')}
             />
-          ) : null}
-          {/*{!validate.isEmpty(homeCollections) ? (*/}
+          )}
+          {/*{!validate.isEmpty(homeCollections) &&*/}
           {/*  <CollectionHorizontalWidget*/}
           {/*    elements={homeCollections}*/}
           {/*    showName={true}*/}
           {/*    title={I18n.t('our_collections')}*/}
           {/*  />*/}
-          {/*) : null}*/}
+          {/*}*/}
         </ScrollView>
-        {show_commercials ? (
+        {show_commercials && (
           <View style={{flex: 0.2}}>
-            {!validate.isEmpty(commercials) ? (
+            {!validate.isEmpty(commercials) && (
               <FixedCommercialSliderWidget sliders={commercials} />
-            ) : null}
+            )}
           </View>
-        ) : null}
+        )}
       </View>
     </BgContainer>
   );

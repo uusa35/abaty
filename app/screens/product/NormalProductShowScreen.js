@@ -133,7 +133,9 @@ const NormalProductShowScreen = () => {
             {(product.user.fullMobile || mobile) && (
               <ProductInfoWidgetElement
                 elementName="contactus_order_by_phone"
-                name={mobile}
+                name={
+                  product.user.fullMobile ? product.user.fullMobile : mobile
+                }
                 link={() =>
                   Linking.openURL(
                     `tel:${
@@ -155,7 +157,7 @@ const NormalProductShowScreen = () => {
                 }
               />
             )}
-            {size_chart && (
+            {!validate.isEmpty(size_chart) && (
               <ProductInfoWidgetElement
                 elementName="size_chart"
                 link={() =>

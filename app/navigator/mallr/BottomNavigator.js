@@ -39,20 +39,6 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
       }),
     },
-    VideoIndexAll: {
-      screen: VideoStack,
-      navigationOptions: () => ({
-        tabBarIcon: ({focused}) => (
-          <IconTabBar
-            name="play-video"
-            type="foundation"
-            size={30}
-            focused={focused}
-          />
-        ),
-        title: I18n.t('videos'),
-      }),
-    },
     Setting: {
       screen: SettingStack,
       navigationOptions: () => ({
@@ -81,21 +67,6 @@ export const BottomTabsStack = createBottomTabNavigator(
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('search')} focused={focused} />
-        ),
-      }),
-    },
-    ProductIndexAll: {
-      screen: ProductStack,
-      navigationOptions: () => ({
-        tabBarIcon: ({focused}) => (
-          <IconTabBar
-            name="sort-by-alpha"
-            type="material-icon"
-            focused={focused}
-          />
-        ),
-        tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('all_products')} focused={focused} />
         ),
       }),
     },

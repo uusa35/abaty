@@ -27,7 +27,6 @@ const persistConfig = {
     'propertiesModal',
     'searchModal',
     'linking',
-    'searchProducts',
     'resetApp',
     'productFilterModal',
     'classifiedFilterModal',
