@@ -9,15 +9,18 @@ const MoreScreen = () => {
   return (
     <BgContainer>
       <ScrollView
+        contentInset={{bottom: bottomContentInset}}
         horizontal={false}
+        scrollEnabled={true}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentInset={{bottom: bottomContentInset}}
         style={{
+          flex: 1,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
-        }}>
+        }}
+        endFillColor="white">
         <SocialRowWidget />
         <ContactInformationWidget />
       </ScrollView>

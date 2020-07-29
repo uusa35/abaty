@@ -92,10 +92,7 @@ export function* getServiceIndex(action) {
       yield put({type: SET_SERVICES, payload: []});
     }
   } catch (e) {
-    yield all([
-      call(disableLoading),
-      call(enableErrorMessage, I18n.t('no_services')),
-    ]);
+  } finally {
   }
 }
 

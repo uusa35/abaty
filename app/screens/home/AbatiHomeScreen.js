@@ -17,6 +17,7 @@ import I18n from '../../I18n';
 import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
+import {bottomContentInset} from '../../constants/sizes';
 
 const AbatiHomeScreen = () => {
   const {
@@ -54,36 +55,50 @@ const AbatiHomeScreen = () => {
             onRefresh={() => handleRefresh()}
           />
         }
+        contentInset={{bottom: bottomContentInset}}
+        horizontal={false}
+        scrollEnabled={true}
+        automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
-        endFillColor="white"
         showsVerticalScrollIndicator={false}
-        style={{flex: 0.8}}>
+        endFillColor="white"
+        style={{
+          flex: 0.8,
+          paddingBottom: bottomContentInset,
+          backgroundColor: 'transparent',
+        }}>
         <ProductSearchForm />
         <MainSliderWidget elements={slides} />
-        <DesignersHorizontalWidget
-          elements={homeDesigners}
-          showName={true}
-          name={I18n.t('designers')}
-          title={I18n.t('designers')}
-          searchParams={{is_designer: 1, country_id: country.id}}
-        />
-        <ProductCategoryHorizontalRoundedWidget
-          elements={homeCategories}
-          showName={true}
-          title={I18n.t('categories')}
-          type="products"
-        />
-        <CelebrityHorizontalWidget
-          elements={homeCelebrities}
-          showName={true}
-          name="celebrities"
-          title={I18n.t('celebrities')}
-          searchParams={{
-            is_celebrity: 1,
-            country_id: country.id,
-            on_home: true,
-          }}
-        />
+        {homeDesigners && (
+          <DesignersHorizontalWidget
+            elements={homeDesigners}
+            showName={true}
+            name={I18n.t('designers')}
+            title={I18n.t('designers')}
+            searchParams={{is_designer: 1, country_id: country.id}}
+          />
+        )}
+        {homeCategories && (
+          <ProductCategoryHorizontalRoundedWidget
+            elements={homeCategories}
+            showName={true}
+            title={I18n.t('categories')}
+            type="products"
+          />
+        )}
+        {homeCelebrities && (
+          <CelebrityHorizontalWidget
+            elements={homeCelebrities}
+            showName={true}
+            name="celebrities"
+            title={I18n.t('celebrities')}
+            searchParams={{
+              is_celebrity: 1,
+              country_id: country.id,
+              on_home: true,
+            }}
+          />
+        )}
         {homeProducts && (
           <ProductHorizontalWidget
             elements={homeProducts}

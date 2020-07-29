@@ -19,7 +19,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="home" type="feather" />
+          <IconTabBar focused={focused} name="home" type="octicon" />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('home')} focused={focused} />
@@ -32,8 +32,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarIcon: ({focused}) => (
           <IconTabBar
             size={iconSizes.medium}
-            name="briefcase-search-outline"
-            type="material-community"
+            name="layers"
+            type="simplelineicons"
             focused={focused}
           />
         ),
@@ -57,7 +57,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar name="torso-female" type="foundation" focused={focused} />
+          <IconTabBar name="person" type="fontisto" focused={focused} />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('me')} focused={focused} />
@@ -82,7 +82,11 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: ProductStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="female" type="font-awesome" />
+          <IconTabBar
+            focused={focused}
+            name="sort-by-alpha"
+            type="material-icon"
+          />
         ),
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('all_products')} focused={focused} />

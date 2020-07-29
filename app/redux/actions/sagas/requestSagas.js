@@ -30,12 +30,13 @@ import {startGetProductScenario} from './productSagas';
 import {startGetClassifiedScenario} from './classifiedSagas';
 import {SET_CATEGORY} from '../types';
 import {startResetStoreScenario} from './appSagas';
-import {ABATI, ESCRAP, EXPO, HOMEKEY, MALLR} from '../../../../app';
+import {ABATI, ESCRAP, EXPO, HOMEKEY, MALLR, DAILY} from '../../../../app';
 import {abatiBootStrap} from './abati/appSagas';
 import {mallrBootStrap} from './mallr/appSagas';
 import {escrapBootStrap} from './escrap/appSagas';
 import {homeKeyBootStrap} from './homekey/appSagas';
 import {expoBootStrap} from './expo/appSagas';
+import {dailyBootStrap} from './daily/appSagas';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -269,6 +270,8 @@ export function* startRefetchHomeElementsScenario() {
       yield call(homeKeyBootStrap);
     } else if (EXPO) {
       yield call(expoBootStrap);
+    } else if (DAILY) {
+      yield call(dailyBootStrap);
     }
   } catch (e) {
     if (__DEV__) {

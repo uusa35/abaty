@@ -1,9 +1,8 @@
 import React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
-import {connect, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
-import ProductList from '../../components/widgets/product/ProductList';
+import {useSelector} from 'react-redux';
 import VideoWidget from '../../components/widgets/video/VideoWidget';
+import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
 
 const VideoShowScreen = () => {
   const {video} = useSelector((state) => state);
@@ -13,10 +12,14 @@ const VideoShowScreen = () => {
       showsVerticalScrollIndicator={false}>
       <View>
         <VideoWidget element={video} showImage={false} />
-        <ProductList
+        <ElementsVerticalList
           products={video.products}
+          type="product"
           showName={true}
           showSearch={false}
+          showSortSearch={false}
+          showMore={false}
+          showFooter={false}
           searchElements={{}}
         />
       </View>

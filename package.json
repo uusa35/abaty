@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "prettier": "prettier --write --no-bracket-spacing --single-quote --jsx-bracket-same-line --print-width 80 'app/**/**/*.js'"
+    "prettier": "prettier --write --no-bracket-spacing --single-quote --jsx-bracket-same-line --print-width 80 'app/**/**/*.js'",
+    "full-upgrade": "yarn upgrade && npx jetify && cd android && ./gradlew clean && cd .. && cd ios && pod repo update && pod install && pod update"
   },
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "^2.2.2",

@@ -7,6 +7,7 @@ import {
   disableLoadingBoxedList,
   disableLoadingContent,
   enableErrorMessage,
+  enableLoading,
   enableLoadingBoxedList,
   enableLoadingContent,
   enableWarningMessage,
@@ -65,7 +66,7 @@ export function* getLatestProducts(action) {
       yield put({type: actions.SET_LATEST_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_latest_products'));
+    // yield call(enableErrorMessage, I18n.t('no_latest_products'));
   }
 }
 export function* getHotDealsProducts(action) {
@@ -77,7 +78,7 @@ export function* getHotDealsProducts(action) {
       yield put({type: actions.SET_HOT_DEALS_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_hot_deals'));
+    // yield call(enableErrorMessage, I18n.t('no_hot_deals'));
   }
 }
 
@@ -90,7 +91,7 @@ export function* getHomeCollectionsScenario(action) {
       ]);
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_home_products'));
+    // yield call(enableErrorMessage, I18n.t('no_home_products'));
   } finally {
   }
 }
@@ -114,7 +115,7 @@ export function* startGetCollectionsScenario() {
       ]);
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_collections'));
+    // yield call(enableErrorMessage, I18n.t('no_collections'));
   } finally {
     // yield call(disableLoading);
   }
@@ -258,6 +259,7 @@ export function* startGetSearchProductsScenario(action) {
 export function* startGetAllProductsScenario(action) {
   try {
     const products = yield call(api.getSearchProducts, action.payload);
+    yield call(enableLoad);
     yield put({type: SET_ELEMENT_TYPE, payload: 'product'});
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([

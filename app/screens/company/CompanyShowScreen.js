@@ -106,19 +106,19 @@ const CompanyShowScreen = () => {
               views={company.views}
               commentsCount={company.commentsCount}
             />
-            {!validate.isEmpty(company.slides) ? (
+            {!validate.isEmpty(company.slides) && (
               <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
                 <MainSliderWidget slides={company.slides} />
               </View>
-            ) : null}
-            {!validate.isEmpty(collectedCategories) ? (
+            )}
+            {!validate.isEmpty(collectedCategories) && (
               <ProductCategoryVerticalWidget
                 user_id={company.id}
                 elements={collectedCategories}
                 showImage={false}
                 title={I18n.t('categories')}
               />
-            ) : null}
+            )}
             <TabView
               lazy={true}
               renderTabBar={(props) => (
@@ -157,7 +157,7 @@ const CompanyShowScreen = () => {
                 info: () => (
                   <UserInfoWidget
                     has_map={company.has_map}
-                    mobile={company.mobile}
+                    mobile={company.fullMobile ? company.fullMobile : mobile}
                     phone={company.phone}
                     slug={company.slug}
                     whatsapp={company.whatsapp}

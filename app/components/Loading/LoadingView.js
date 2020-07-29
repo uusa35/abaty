@@ -49,6 +49,7 @@ const LoadingView = ({
     'ArcAlt',
   ]);
 
+  console.log('sett', settings.logo);
   return (
     <Fragment>
       {isLoading && (

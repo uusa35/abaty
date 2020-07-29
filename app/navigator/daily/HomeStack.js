@@ -18,7 +18,6 @@ import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import DesignerShowScreen from '../../screens/designer/abati/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/celebrity/CelebrityShowScreen';
-import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
 import ServiceIndexScreen from '../../screens/service/ServiceIndexScreen';
 import CollectionIndexScreen from '../../screens/collection/CollectionIndexScreen';
@@ -54,6 +53,7 @@ import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAl
 import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import DailyHomeScreen from '../../screens/home/DailyHomeScreen';
 import {isIOS} from '../../constants';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -324,7 +324,7 @@ export const HomeStack = createStackNavigator(
     },
 
     Product: {
-      screen: NormalProductShow,
+      screen: NormalProductShowScreen,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />

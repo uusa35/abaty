@@ -401,7 +401,7 @@ PODS:
     - react-native-video/Video (= 4.4.5)
   - react-native-video/Video (4.4.5):
     - React
-  - react-native-viewpager (4.1.2):
+  - react-native-viewpager (4.1.3):
     - React
   - react-native-webview (10.3.2):
     - React
@@ -505,7 +505,7 @@ PODS:
     - React
   - RNScreens (2.9.0):
     - React
-  - RNSentry (1.6.3):
+  - RNSentry (1.7.0):
     - React
     - Sentry (~> 5.1.8)
   - RNShare (3.7.0):
@@ -865,7 +865,7 @@ SPEC CHECKSUMS:
   react-native-safe-area-context: 344b969c45af3d8464d36e8dea264942992ef033
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
-  react-native-viewpager: 005d1ec1f2201fd915c631ae5ef13375934b2e32
+  react-native-viewpager: fdf68386dfb6fc4e702f32d054e662ae9a7f11c2
   react-native-webview: 679b6f400176e2ea8a785acf7ae16cf282e7d1eb
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
@@ -890,7 +890,7 @@ SPEC CHECKSUMS:
   RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
   RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
   RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
-  RNSentry: ae1e005e4f2655775475445a9c49c1d343e8e3a7
+  RNSentry: 05192c14c02562eb7810d6ac3c227b68e76cfb9c
   RNShare: a1d5064df7a0ebe778d001869b3f0a124bf0a491
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e

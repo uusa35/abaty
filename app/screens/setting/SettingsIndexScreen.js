@@ -57,7 +57,6 @@ const SettingsIndexScreen = () => {
       marginVal={width / 15}
       showImage={!HOMEKEY}>
       <ScrollView
-        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           width: '100%',
           padding: 20,
@@ -67,6 +66,15 @@ const SettingsIndexScreen = () => {
           height: '100%',
         }}
         contentInset={{bottom: bottomContentInset}}
+        horizontal={false}
+        scrollEnabled={true}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={{
+          paddingBottom: bottomContentInset,
+          backgroundColor: 'transparent',
+        }}
         refreshControl={
           <RefreshControl
             refreshing={refresh}

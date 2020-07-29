@@ -1,5 +1,11 @@
 import React from 'react';
-import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
+import {
+  RefreshControl,
+  ScrollView,
+  View,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
@@ -18,6 +24,7 @@ import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns
 import BgContainer from '../../components/containers/BgContainer';
 import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
+import {bottomContentInset} from '../../constants/sizes';
 
 const ExpoHomeScreen = () => {
   const {
@@ -39,9 +46,7 @@ const ExpoHomeScreen = () => {
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const handleRefresh = () => {
-    dispatch(refetchHomeElements());
-  };
+  const handleRefresh = () => dispatch(refetchHomeElements());
 
   return (
     <BgContainer>
@@ -56,17 +61,24 @@ const ExpoHomeScreen = () => {
           backgroundColor: 'transparent',
           marginTop: '25%',
         }}
-        contentInset={{bottom: 200}}
+        contentInset={{bottom: bottomContentInset}}
+        horizontal={false}
+        scrollEnabled={true}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        endFillColor="white"
+        style={{
+          flex: 0.8,
+          paddingBottom: bottomContentInset,
+          backgroundColor: 'transparent',
+        }}
         refreshControl={
           <RefreshControl
             refreshing={false}
             onRefresh={() => handleRefresh()}
           />
-        }
-        showsHorizontalScrollIndicator={false}
-        endFillColor="white"
-        showsVerticalScrollIndicator={false}
-        style={{flex: 1}}>
+        }>
         {/*<ProductSearchForm />*/}
         <ExpoMainSliderWidget elements={slides} />
         {/* expo is a designer */}
@@ -84,13 +96,15 @@ const ExpoHomeScreen = () => {
           title={I18n.t('small_business')}
           searchElements={{is_company: 1, country_id: country.id}}
         />
-        <ExpoHomeScreenBtns />
+        <View>
+          <ExpoHomeScreenBtns />
+        </View>
       </ScrollView>
       {show_commercials && (
         <View style={{flex: 0.2, borderWidth: 5, borderColor: 'orange'}}>
-          {!validate.isEmpty(commercials) ? (
+          {!validate.isEmpty(commercials) && (
             <FixedCommercialSliderWidget sliders={commercials} />
-          ) : null}
+          )}
         </View>
       )}
     </BgContainer>

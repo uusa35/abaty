@@ -26,12 +26,16 @@ const KeyBoardContainer = ({
             onRefresh={() => (handleRefresh ? handleRefresh() : null)}
           />
         }
+        contentInset={{bottom: bottomContentInset}}
         horizontal={false}
+        scrollEnabled={true}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentInset={{bottom: bottomContentInset}}
-        style={{backgroundColor: 'white'}}>
+        style={{
+          paddingBottom: bottomContentInset,
+          backgroundColor: 'transparent',
+        }}>
         {children}
       </ScrollView>
     </KeyboardAvoidingView>

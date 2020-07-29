@@ -6,13 +6,12 @@ import {links} from '../../../constants/links';
 import {iconSizes, text} from '../../../constants/sizes';
 import {isIOS} from '../../../constants';
 import UserInfoWidgetElement from './UserInfoWidgetElement';
-import PropTypes from 'prop-types';
 import MapViewWidget from '../MapViewWidget';
-import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {getWhatsappLink} from '../../../helpers';
 import {ESCRAP} from './../../../../app';
 import ImagesGridWidget from '../ImagesGridWidget';
+import {isEmpty} from 'validate.js';
 
 const UserInfoWidget = ({
   mobile,
@@ -60,7 +59,7 @@ const UserInfoWidget = ({
           {I18n.t('information')}
         </Text>
       )}
-      {longitude && latitude && has_map && (
+      {!isEmpty(longitude) && !isEmpty(latitude) && has_map && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() =>
@@ -91,7 +90,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {mobile && (
+      {!isEmpty(mobile) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`tel:${mobile}`)}
@@ -112,7 +111,7 @@ const UserInfoWidget = ({
           <Text style={styles.subTitle}>{mobile}</Text>
         </TouchableOpacity>
       )}
-      {phone && (
+      {!isEmpty(phone) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`tel:${phone}`)}
@@ -133,7 +132,7 @@ const UserInfoWidget = ({
           <Text style={styles.subTitle}>{phone}</Text>
         </TouchableOpacity>
       )}
-      {whatsapp && (
+      {!isEmpty(whatsapp) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(getWhatsappLink(whatsapp))}
@@ -154,7 +153,7 @@ const UserInfoWidget = ({
           <Text style={styles.subTitle}>{whatsapp}</Text>
         </TouchableOpacity>
       )}
-      {twitter && (
+      {!isEmpty(twitter) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${twitter}`)}
@@ -184,7 +183,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {facebook && (
+      {!isEmpty(facebook) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${facebook}`)}
@@ -214,7 +213,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {instagram && (
+      {!isEmpty(instagram) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${instagram}`)}
@@ -244,7 +243,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {android && (
+      {!isEmpty(android) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${android}`)}
@@ -274,7 +273,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {youtube && (
+      {!isEmpty(youtube) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${youtube}`)}
@@ -304,7 +303,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {website && (
+      {!isEmpty(website) && (
         <TouchableOpacity
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
           onPress={() => Linking.openURL(`${website}`)}
@@ -334,7 +333,7 @@ const UserInfoWidget = ({
           />
         </TouchableOpacity>
       )}
-      {!validate.isEmpty(description) && (
+      {!isEmpty(description) && (
         <UserInfoWidgetElement
           elementName="description"
           iconName="description"
@@ -342,7 +341,7 @@ const UserInfoWidget = ({
           element={description}
         />
       )}
-      {!validate.isEmpty(service) && (
+      {!isEmpty(service) && (
         <UserInfoWidgetElement
           elementName="services"
           iconName="customerservice"
@@ -350,7 +349,7 @@ const UserInfoWidget = ({
           type="antdesign"
         />
       )}
-      {!validate.isEmpty(address) && (
+      {!isEmpty(address) && (
         <UserInfoWidgetElement
           elementName="address"
           iconName="address"
@@ -358,7 +357,7 @@ const UserInfoWidget = ({
           type="entypo"
         />
       )}
-      {!validate.isEmpty(images) && (
+      {!isEmpty(images) && (
         <ImagesGridWidget
           elements={images}
           name={slug}
@@ -368,7 +367,7 @@ const UserInfoWidget = ({
           height={100}
         />
       )}
-      {!validate.isEmpty(longitude || latitude) && has_map && !ESCRAP && (
+      {!isEmpty(longitude || latitude) && has_map && !ESCRAP && (
         <MapViewWidget
           latitude={latitude}
           longitude={longitude}
