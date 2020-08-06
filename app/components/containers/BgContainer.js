@@ -15,7 +15,7 @@ const BgContainer = ({
   showImage = true,
   img = images.whiteBgUrl,
   enableMargin = false,
-  marginVal,
+  marginVal = height / 30,
 }) => {
   const {
     isLoading,
@@ -28,7 +28,6 @@ const BgContainer = ({
   const [currentLoading, setCurrentLoading] = useState(
     isLoading || isLoadingProfile || isLoadingContent || isLoadingBoxedList,
   );
-  const navigation = useNavigation();
   const [bg, setBg] = useState(
     !showImage ? images.whiteBg : mainBg.includes('.') ? mainBg : img,
   );

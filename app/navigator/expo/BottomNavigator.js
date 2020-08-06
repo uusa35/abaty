@@ -77,6 +77,8 @@ export const BottomTabsStack = createBottomTabNavigator(
         tabBarLabel: ({focused}) => (
           <TextTabBar title={I18n.t('more')} focused={focused} />
         ),
+        headerLeft: () => <HeaderLeft />,
+        headerRight: () => <HeaderRight display={true} />,
       }),
     },
     Setting: {

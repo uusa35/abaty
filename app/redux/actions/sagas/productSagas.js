@@ -172,7 +172,6 @@ export function* startGetProductScenario(action) {
       yield call(enableLoadingContent);
     }
     const element = yield call(api.getProduct, action.payload);
-    console.log('element', element);
     if (
       !validate.isEmpty(element) &&
       validate.isObject(element) &&
@@ -259,7 +258,7 @@ export function* startGetSearchProductsScenario(action) {
 export function* startGetAllProductsScenario(action) {
   try {
     const products = yield call(api.getSearchProducts, action.payload);
-    yield call(enableLoad);
+    yield call(enableLoading);
     yield put({type: SET_ELEMENT_TYPE, payload: 'product'});
     if (!validate.isEmpty(products) && validate.isArray(products)) {
       yield all([

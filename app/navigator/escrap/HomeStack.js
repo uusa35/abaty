@@ -58,11 +58,7 @@ export const HomeStack = createStackNavigator(
       screen: EscrapHomeScreen,
       navigationOptions: () => ({
         headerLeft: () => (
-          <HeaderLeft
-            showCart={false}
-            showSideMenu={true}
-            showCompanySearchTextInputModal={true}
-          />
+          <HeaderLeft showCart={false} showCompanySearchTextInputModal={true} />
         ),
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={false} />

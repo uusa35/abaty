@@ -23,6 +23,8 @@ import {uniqBy, take} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../../components/Lists/ElementsHorizontalList';
+import BgContainer from '../../../components/containers/BgContainer';
+import ProductCategoryVerticalWidget from '../../../components/widgets/category/ProductCategoryVerticalWidget';
 
 const DesignerShowScreen = () => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
@@ -84,149 +86,147 @@ const DesignerShowScreen = () => {
   }, [refresh]);
 
   return (
-    <HeaderImageScrollView
-      horizontal={false}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      maxHeight={150}
-      minHeight={90}
-      containerStyle={{flex: 1}}
-      overlayColor="white"
-      headerImage={{
-        uri: designer.banner ? designer.banner : logo,
-      }}
-      refreshControl={
-        <RefreshControl
-          refreshing={refresh}
-          onRefresh={() => handleRefresh()}
-        />
-      }>
-      <View style={styles.wrapper}>
-        <TriggeringView
-        // onHide={() => console.log('text hidden')}
-        >
-          <UserImageProfileRounded
-            member_id={designer.id}
-            showFans={true}
-            showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
-            showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
-            guest={guest}
-            isFanned={designer.isFanned}
-            totalFans={designer.totalFans}
-            currentRating={designer.rating}
-            medium={designer.medium}
-            logo={logo}
-            slug={designer.slug}
-            type={designer.role.slug}
-            views={designer.views}
-            commentsCount={designer.commentsCount}
-            mobile={designer.mobile}
-            phone={designer.phone}
-            whatsapp={designer.whatsapp}
-            twitter={designer.twitter}
-            facebook={designer.facebook}
-            instagram={designer.instagram}
-            youtube={designer.youtube}
-            website={designer.website}
-            description={designer.description}
-            latitude={designer.latitude}
-            longitude={designer.longitude}
+    <BgContainer showImage={false}>
+      <HeaderImageScrollView
+        horizontal={false}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        maxHeight={150}
+        minHeight={90}
+        containerStyle={{flex: 1}}
+        overlayColor="white"
+        headerImage={{
+          uri: designer.banner ? designer.banner : logo,
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refresh}
+            onRefresh={() => handleRefresh()}
           />
-          {!validate.isEmpty(designer.slides) && (
-            <View style={{width: width}}>
-              <MainSliderWidget slides={designer.slides} />
-            </View>
-          )}
-          {!validate.isEmpty(collectedCategories) && (
-            <ElementsVerticalList
-              elements={collectedCategories}
-              showMore={false}
-              showFooter={false}
-              showSearch={false}
-              showTitle={true}
-              iconSize={iconSizes.smallest}
-              type="category"
-              title={I18n.t('categories')}
+        }>
+        <View style={styles.wrapper}>
+          <TriggeringView
+          // onHide={() => console.log('text hidden')}
+          >
+            <UserImageProfileRounded
+              member_id={designer.id}
+              showFans={true}
+              showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
+              showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
+              guest={guest}
+              isFanned={designer.isFanned}
+              totalFans={designer.totalFans}
+              currentRating={designer.rating}
+              medium={designer.medium}
+              logo={logo}
+              slug={designer.slug}
+              type={designer.role.slug}
+              views={designer.views}
+              commentsCount={designer.commentsCount}
+              mobile={designer.mobile}
+              phone={designer.phone}
+              whatsapp={designer.whatsapp}
+              twitter={designer.twitter}
+              facebook={designer.facebook}
+              instagram={designer.instagram}
+              youtube={designer.youtube}
+              website={designer.website}
+              description={designer.description}
+              latitude={designer.latitude}
+              longitude={designer.longitude}
             />
-          )}
-          <TabView
-            lazy={true}
-            renderTabBar={(props) => (
-              <TabBar
-                {...props}
-                // tabStyle={{ backgroundColor: 'white'}}
-                // indicatorContainerStyle={{backgroundColor: 'white'}}
-                // contentContainerStyle={{backgroundColor: 'white'}}
-                indicatorStyle={{
-                  backgroundColor: colors.btn_bg_theme_color,
-                }}
-                activeColor={colors.header_one_theme_color}
-                inactiveColor={colors.header_tow_theme_color}
-                style={{backgroundColor: 'white'}}
-                labelStyle={{
-                  fontFamily: text.font,
-                  fontSize: text.small,
-                }}
+            {!validate.isEmpty(designer.slides) && (
+              <View style={{width: width}}>
+                <MainSliderWidget slides={designer.slides} />
+              </View>
+            )}
+            {!validate.isEmpty(collectedCategories) && (
+              <ProductCategoryVerticalWidget
+                elements={collectedCategories}
+                showImage={true}
+                title={I18n.t('categories')}
+                user_id={designer.id}
               />
             )}
-            navigationState={{
-              index,
-              routes,
-            }}
-            renderScene={SceneMap({
-              products: () => (
-                <ElementsHorizontalList
-                  elements={products}
-                  searchParams={currentSearchParams}
-                  type="product"
-                  columns={2}
-                  showSearch={false}
-                  showTitle={true}
-                  showTitleIcons={true}
-                  showFooter={false}
-                  showMore={false}
+            <TabView
+              lazy={true}
+              renderTabBar={(props) => (
+                <TabBar
+                  {...props}
+                  // tabStyle={{ backgroundColor: 'white'}}
+                  // indicatorContainerStyle={{backgroundColor: 'white'}}
+                  // contentContainerStyle={{backgroundColor: 'white'}}
+                  indicatorStyle={{
+                    backgroundColor: colors.btn_bg_theme_color,
+                  }}
+                  activeColor={colors.header_one_theme_color}
+                  inactiveColor={colors.header_tow_theme_color}
+                  style={{backgroundColor: 'white'}}
+                  labelStyle={{
+                    fontFamily: text.font,
+                    fontSize: text.small,
+                  }}
                 />
-              ),
-              info: () => (
-                <UserInfoWidget
-                  has_map={designer.has_map}
-                  mobile={designer.mobile}
-                  phone={designer.phone}
-                  slug={designer.slug}
-                  whatsapp={designer.whatsapp}
-                  twitter={designer.twitter}
-                  facebook={designer.facebook}
-                  instagram={designer.instagram}
-                  android={designer.android}
-                  youtube={designer.youtube}
-                  website={designer.website}
-                  description={designer.description}
-                  service={designer.service}
-                  address={designer.address}
-                  images={designer.images}
-                  latitude={designer.latitude}
-                  longitude={designer.longitude}
-                  thumb={designer.thumb}
-                />
-              ),
-              videos: () => (
-                <VideosVerticalWidget videos={designer.videoGroup} />
-              ),
-            })}
-            style={{backgroundColor: 'white', minHeight: height / 2}}
-            onIndexChange={(i) => setIndex(i)}
-            initialLayout={{width: width}}
+              )}
+              navigationState={{
+                index,
+                routes,
+              }}
+              renderScene={SceneMap({
+                products: () => (
+                  <ElementsHorizontalList
+                    elements={products}
+                    searchParams={currentSearchParams}
+                    type="product"
+                    columns={2}
+                    showSearch={false}
+                    showTitle={true}
+                    showTitleIcons={true}
+                    showFooter={false}
+                    showMore={false}
+                  />
+                ),
+                info: () => (
+                  <UserInfoWidget
+                    has_map={designer.has_map}
+                    mobile={designer.mobile}
+                    phone={designer.phone}
+                    slug={designer.slug}
+                    whatsapp={designer.whatsapp}
+                    twitter={designer.twitter}
+                    facebook={designer.facebook}
+                    instagram={designer.instagram}
+                    android={designer.android}
+                    youtube={designer.youtube}
+                    website={designer.website}
+                    description={designer.description}
+                    service={designer.service}
+                    address={designer.address}
+                    images={designer.images}
+                    latitude={designer.latitude}
+                    longitude={designer.longitude}
+                    thumb={designer.thumb}
+                  />
+                ),
+                videos: () => (
+                  <VideosVerticalWidget videos={designer.videoGroup} />
+                ),
+              })}
+              style={{backgroundColor: 'white', minHeight: height / 2}}
+              onIndexChange={(i) => setIndex(i)}
+              initialLayout={{width: width}}
+            />
+          </TriggeringView>
+          <CommentScreenModal
+            commentModal={commentModal}
+            elements={comments}
+            model="user"
+            id={designer.id}
           />
-        </TriggeringView>
-        <CommentScreenModal
-          commentModal={commentModal}
-          elements={comments}
-          model="user"
-          id={designer.id}
-        />
-      </View>
-    </HeaderImageScrollView>
+        </View>
+      </HeaderImageScrollView>
+    </BgContainer>
   );
 };
 

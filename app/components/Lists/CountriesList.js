@@ -43,7 +43,7 @@ const CountriesList = ({country, countries, countryModal}) => {
         {backgroundColor: 'white', height: height / 2.5, borderTopWidth: 0},
       ]}>
       <Modal
-        transparent={true}
+        transparent={visible}
         isVisible={visible}
         useNativeDriver={true}
         animationIn="slideInUp"

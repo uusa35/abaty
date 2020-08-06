@@ -31,7 +31,7 @@ export const HeaderLeft = ({
       {showSideMenu && (
         <Icon
           name="menu"
-          type="feather"
+          type="material"
           size={iconSizes.small}
           onPress={() => openDrawer()}
           underlayColor="transparent"

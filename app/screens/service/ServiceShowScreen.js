@@ -168,16 +168,16 @@ const ServiceShowScreen = () => {
           </View>
         </View>
         {validate.isObject(service.videoGroup) &&
-        !validate.isEmpty(service.videoGroup) ? (
-          <VideosVerticalWidget videos={service.videoGroup} />
-        ) : null}
-        {validate.isArray(services) && !validate.isEmpty(services) ? (
-          <ServiceHorizontalWidget
-            showName={true}
-            title={I18n.t('our_services')}
-            elements={services}
-          />
-        ) : null}
+          !validate.isEmpty(service.videoGroup) && (
+            <VideosVerticalWidget videos={service.videoGroup} />
+          )}
+        {/*{validate.isArray(services) && !validate.isEmpty(services) &&*/}
+        {/*  <ServiceHorizontalWidget*/}
+        {/*    showName={true}*/}
+        {/*    title={I18n.t('our_services')}*/}
+        {/*    elements={services}*/}
+        {/*  />*/}
+        {/*}*/}
       </HeaderImageScrollView>
       <ActionBtnWidget />
     </BgContainer>

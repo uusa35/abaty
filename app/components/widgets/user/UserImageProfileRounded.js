@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useState, useCallback, useContext, useMemo} from 'react';
 import {Text, StyleSheet, TouchableOpacity, Image, Linking} from 'react-native';
 import {View} from 'react-native-animatable';
 import {iconSizes, text} from '../../../constants/sizes';
@@ -15,6 +15,7 @@ import {getWhatsappLink} from '../../../helpers';
 import {links} from '../../../constants/links';
 import {useDispatch} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import {isIOS} from '../../../constants';
 
 const UserImageProfileRounded = ({
   medium,
@@ -68,6 +69,11 @@ const UserImageProfileRounded = ({
     [fanMe],
   );
 
+  useMemo(() => {
+    setFanMe(isFanned);
+  }, [isFanned]);
+
+  console.log('isFa', isFanned)
   return (
     <View
       animation="bounceInLeft"
@@ -86,7 +92,11 @@ const UserImageProfileRounded = ({
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <ImageLoaderContainer img={medium} style={styles.logo} />
+          <ImageLoaderContainer
+            img={medium}
+            resizeMode={isIOS ? 'stretch' : 'cover'}
+            style={styles.logo}
+          />
           <View
             style={{
               flexDirection: 'row',
@@ -98,11 +108,10 @@ const UserImageProfileRounded = ({
             <TouchableOpacity>
               <Icon
                 onPress={() => dispatch(showCommentModal())}
-                name="comment-account-outline"
-                type="material-community"
+                name="comment"
+                type="material"
                 raised
                 reverse
-                iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
                 color={colors.icon_theme_bg}
                 hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
@@ -114,12 +123,11 @@ const UserImageProfileRounded = ({
               />
             </TouchableOpacity>
             <Icon
-              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-              type="material-community"
+              name={!fanMe ? 'thumbsup' : 'thumb-up'}
+              type={!fanMe? 'octicon' : 'material'}
               onPress={() => handleFan(!fanMe)}
               raised
               reverse
-              iconStyle={{fontSize: iconSizes.smaller}}
               size={iconSizes.smallest}
               color={colors.icon_theme_bg}
             />
@@ -307,6 +315,7 @@ const styles = StyleSheet.create({
     height: 80,
     position: 'relative',
     borderRadius: 80 / 2,
+    marginTop: !isIOS ? 30 : 0,
     // shadowColor: '#000',
     // shadowOffset: {
     //   width: 0,

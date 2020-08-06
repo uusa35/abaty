@@ -1,57 +1,43 @@
 import React, {Fragment} from 'react';
-import {TouchableOpacity, Modal, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
-import {text, width, height} from '../../../constants/sizes';
+import {text, width, height, iconSizes} from '../../../constants/sizes';
 import MapViewWidget from '../MapViewWidget';
 import {first} from 'lodash';
+import ModalBackContainer from '../../containers/ModalBackContainer';
 
 const ClassifiedsMapView = ({mapModal, setMapModal, elements}) => {
   return (
-    <View
-      style={{
-        marginTop: 1,
-        flexDirection: 'row',
-        flex: 1,
-      }}>
-      <TouchableOpacity
-        style={styles.btnStyle}
-        onPress={() => setMapModal(true)}>
-        <Icon typ="font-awesome" name="map" size={30} />
-      </TouchableOpacity>
-      <Modal
-        transparent={true}
+    <Fragment>
+      <View
+        style={{
+          marginTop: 1,
+          flexDirection: 'row',
+          flex: 1,
+        }}>
+        <TouchableOpacity
+          style={styles.btnStyle}
+          onPress={() => setMapModal(true)}>
+          <Icon typ="font-awesome" name="map" size={iconSizes.smaller} />
+        </TouchableOpacity>
+      </View>
+      <ModalBackContainer
+        toggleVisible={mapModal}
         visible={mapModal}
-        animationType={'slide'}
-        onRequestClose={() => setMapModal(false)}>
-        <View style={styles.container}>
-          <Icon
-            size={30}
-            name="close"
-            type="evil-icons"
-            color="black"
-            containerStyle={{
-              position: 'absolute',
-              top: 50,
-              right: 50,
-              alignItems: 'flex-end',
-              zIndex: 999,
-            }}
-            onPress={() => setMapModal(false)}
-            hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-          />
-          <MapViewWidget
-            title={I18n.t('classified_list')}
-            latitude={first(elements).latitude}
-            longitude={first(elements).longitude}
-            isMulti={true}
-            elements={elements}
-            showCallOut={true}
-            height={height}
-          />
-        </View>
-      </Modal>
-    </View>
+        setToggleVisible={setMapModal}
+        title={I18n.t('map')}>
+        <MapViewWidget
+          title={I18n.t('classified_list')}
+          latitude={first(elements).latitude}
+          longitude={first(elements).longitude}
+          isMulti={true}
+          elements={elements}
+          showCallOut={true}
+          height={height}
+        />
+      </ModalBackContainer>
+    </Fragment>
   );
 };
 

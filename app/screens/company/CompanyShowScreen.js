@@ -20,13 +20,15 @@ import ProductCategoryVerticalWidget from '../../components/widgets/category/Pro
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {useNavigation} from 'react-navigation-hooks';
 
 const CompanyShowScreen = () => {
-  const {company, commentModal, searchParams, guest} = useSelector(
+  const {company, commentModal, searchParams, guest, comments} = useSelector(
     (state) => state,
   );
   const {colors, logo} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
+  const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
     {key: 'products', title: I18n.t('products')},
@@ -56,6 +58,13 @@ const CompanyShowScreen = () => {
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
+
+  navigation.navigationOptions = ({navigation}) => ({
+    headerTransparent: navigation.state.params.headerBg,
+    headerStyle: {
+      backgroundColor: navigation.state.params.headerBgColor,
+    },
+  });
 
   const handleRefresh = useCallback(() => {
     return dispatch(
@@ -196,13 +205,6 @@ const CompanyShowScreen = () => {
     </BgContainer>
   );
 };
-
-CompanyShowScreen.navigationOptions = ({navigation}) => ({
-  headerTransparent: navigation.state.params.headerBg,
-  headerStyle: {
-    backgroundColor: navigation.state.params.headerBgColor,
-  },
-});
 
 export default CompanyShowScreen;
 

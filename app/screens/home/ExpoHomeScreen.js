@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  RefreshControl,
-  ScrollView,
-  View,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
@@ -37,12 +31,12 @@ const ExpoHomeScreen = () => {
     homeProducts,
     homeCompanies,
     splashes,
-    splash_on,
     show_commercials,
     services,
     showIntroduction,
     mainBg,
     country,
+    settings,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -51,11 +45,13 @@ const ExpoHomeScreen = () => {
   return (
     <BgContainer>
       <AppHomeConfigComponent />
-      <IntroductionWidget
-        elements={splashes}
-        IntroductionWidget
-        showIntroduction={showIntroduction}
-      />
+      {settings.splash_on && (
+        <IntroductionWidget
+          elements={splashes}
+          IntroductionWidget
+          showIntroduction={showIntroduction}
+        />
+      )}
       <ScrollView
         contentContainerStyle={{
           backgroundColor: 'transparent',
@@ -69,7 +65,7 @@ const ExpoHomeScreen = () => {
         showsVerticalScrollIndicator={false}
         endFillColor="white"
         style={{
-          flex: 0.8,
+          // flex: 1,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
         }}
@@ -96,17 +92,8 @@ const ExpoHomeScreen = () => {
           title={I18n.t('small_business')}
           searchElements={{is_company: 1, country_id: country.id}}
         />
-        <View>
-          <ExpoHomeScreenBtns />
-        </View>
+        <ExpoHomeScreenBtns />
       </ScrollView>
-      {show_commercials && (
-        <View style={{flex: 0.2, borderWidth: 5, borderColor: 'orange'}}>
-          {!validate.isEmpty(commercials) && (
-            <FixedCommercialSliderWidget sliders={commercials} />
-          )}
-        </View>
-      )}
     </BgContainer>
   );
 };

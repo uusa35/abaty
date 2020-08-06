@@ -54,7 +54,7 @@ const SettingsIndexScreen = () => {
   return (
     <BgContainer
       enableMargin={true}
-      marginVal={width / 15}
+      marginVal={width / 20}
       showImage={!HOMEKEY}>
       <ScrollView
         contentContainerStyle={{
@@ -63,7 +63,6 @@ const SettingsIndexScreen = () => {
           alignSelf: 'center',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '100%',
         }}
         contentInset={{bottom: bottomContentInset}}
         horizontal={false}
@@ -87,7 +86,7 @@ const SettingsIndexScreen = () => {
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('FavoriteProductIndex')}
               style={styles.btnWrapper}>
-              <Icon name="staro" type="antdesign" size={45} />
+              <Icon name="staro" type="antdesign" size={iconSizes.medium} />
               <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -97,7 +96,7 @@ const SettingsIndexScreen = () => {
                 activeOpacity={touchOpacity}
                 onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
                 style={styles.btnWrapper}>
-                <Icon name="staro" type="antdesign" size={45} />
+                <Icon name="staro" type="antdesign" size={iconSizes.medium} />
                 <Text style={styles.btnTitle}>
                   {I18n.t('classified_favorites')}
                 </Text>
@@ -106,7 +105,7 @@ const SettingsIndexScreen = () => {
                 activeOpacity={touchOpacity}
                 onPress={() => dispatch(getMyClassifieds({redirect: true}))}
                 style={styles.btnWrapper}>
-                <Icon name="profile" type="antdesign" size={45} />
+                <Icon name="profile" type="antdesign" size={iconSizes.medium} />
                 <Text style={styles.btnTitle}>{I18n.t('my_classifieds')}</Text>
               </TouchableOpacity>
             </Fragment>
@@ -118,7 +117,7 @@ const SettingsIndexScreen = () => {
                 navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
               }
               style={styles.btnWrapper}>
-              <Icon name="face" type="material" size={45} />
+              <Icon name="face" type="material" size={iconSizes.medium} />
               <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -127,7 +126,7 @@ const SettingsIndexScreen = () => {
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('OrderIndex')}
               style={styles.btnWrapper}>
-              <Icon name="history" type="material" size={45} />
+              <Icon name="history" type="material" size={iconSizes.medium} />
               <Text style={styles.btnTitle}>{I18n.t('order_history')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -142,7 +141,7 @@ const SettingsIndexScreen = () => {
             activeOpacity={touchOpacity}
             onPress={() => navigation.navigate('Contactus')}
             style={styles.btnWrapper}>
-            <Icon name="mobile1" type="antdesign" size={45} />
+            <Icon name="mobile1" type="antdesign" size={iconSizes.medium} />
             <Text style={styles.btnTitle}>{I18n.t('contactus')}</Text>
           </TouchableOpacity>
         </View>

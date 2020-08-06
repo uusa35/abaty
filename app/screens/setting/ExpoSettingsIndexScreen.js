@@ -10,7 +10,12 @@ import {
 } from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {iconSizes, text, touchOpacity} from '../../constants/sizes';
+import {
+  bottomContentInset,
+  iconSizes,
+  text,
+  touchOpacity,
+} from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
 import I18n, {isRTL} from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
@@ -49,13 +54,23 @@ const ExpoSettingsIndexScreen = ({}) => {
   return (
     <BgContainer>
       <ScrollView
-        style={{flex: 1, paddingTop: 20}}
+        // style={{flex: 1, paddingTop: 20}}
         contentContainerStyle={{
           width: '100%',
           padding: 20,
           alignSelf: 'center',
           alignItems: 'center',
           justifyContent: 'center',
+        }}
+        contentInset={{bottom: bottomContentInset}}
+        horizontal={false}
+        scrollEnabled={true}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        style={{
+          paddingBottom: bottomContentInset,
+          backgroundColor: 'transparent',
         }}
         refreshControl={
           <RefreshControl
@@ -105,11 +120,7 @@ const ExpoSettingsIndexScreen = ({}) => {
                 navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
               }
               style={styles.btnWrapper}>
-              <Icon
-                name="face-profile"
-                type="material-community"
-                size={iconSizes.medium}
-              />
+              <Icon name="face" type="material" size={iconSizes.medium} />
               <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
             </TouchableOpacity>
           ) : null}
@@ -118,11 +129,7 @@ const ExpoSettingsIndexScreen = ({}) => {
               activeOpacity={touchOpacity}
               onPress={() => navigation.navigate('OrderIndex')}
               style={styles.btnWrapper}>
-              <Icon
-                name="history"
-                type="material-community"
-                size={iconSizes.medium}
-              />
+              <Icon name="history" type="material" size={iconSizes.medium} />
               <Text style={styles.btnTitle}>{I18n.t('order_history')}</Text>
             </TouchableOpacity>
           ) : null}

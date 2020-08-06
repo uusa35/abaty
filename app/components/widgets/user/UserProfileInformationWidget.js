@@ -12,7 +12,7 @@ import {isNull} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const UserProfileInformationWidget = ({auth}) => {
-  const {logo, colors} = useContext(GlobalValuesContext);
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View animation="bounceInLeft" easing="ease-out" useNativeDriver={true}>
       <View style={{width: width, marginTop: 0, alignItems: 'center'}}>
@@ -63,8 +63,8 @@ const UserProfileInformationWidget = ({auth}) => {
             alignItems: 'baseline',
           }}>
           <Icon
-            type="entypo"
-            name="inbox"
+            type="material"
+            name="mail"
             size={20}
             color={colors.header_one_theme_color}
             iconStyle={{

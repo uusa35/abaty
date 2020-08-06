@@ -3,7 +3,7 @@ import {ScrollView} from 'react-native';
 import SocialRowWidget from '../../components/widgets/SocialRowWidget';
 import ContactInformationWidget from '../../components/widgets/ContactInformationWidget';
 import BgContainer from '../../components/containers/BgContainer';
-import {bottomContentInset} from '../../constants/sizes';
+import {bottomContentInset, height} from '../../constants/sizes';
 
 const MoreScreen = () => {
   return (
@@ -16,11 +16,10 @@ const MoreScreen = () => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         style={{
-          flex: 1,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
         }}
-        endFillColor="white">
+        endFillColor="transparent">
         <SocialRowWidget />
         <ContactInformationWidget />
       </ScrollView>

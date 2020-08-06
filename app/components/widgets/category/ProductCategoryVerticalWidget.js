@@ -11,12 +11,14 @@ import validate from 'validate.js';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import Image from 'react-native-image-progress';
 
 const ProductCategoryVerticalWidget = ({
   elements,
   user_id,
   showTitle = true,
   showArrow = true,
+  showImage = false,
   showChildren = true,
   title,
 }) => {
@@ -75,16 +77,29 @@ const ProductCategoryVerticalWidget = ({
                         flexDirection: 'row',
                         alignItems: 'baseline',
                       }}>
-                      <Icon
-                        type="entypo"
-                        name={isRTL ? 'triangle-left' : 'triangle-right'}
-                        color="grey"
-                        size={iconSizes.smallest}
-                        iconStyle={{
-                          paddingRight: 10,
-                          paddingLeft: 10,
-                        }}
-                      />
+                      {showImage ? (
+                        <ImageLoaderContainer
+                          img={c.thumb}
+                          style={{
+                            width: iconSizes.smaller,
+                            height: iconSizes.smaller,
+                            marginRight: 10,
+                            marginLeft: 10,
+                            alignSelf: 'center',
+                          }}
+                        />
+                      ) : (
+                        <Icon
+                          type="entypo"
+                          name={isRTL ? 'triangle-left' : 'triangle-right'}
+                          color="grey"
+                          size={iconSizes.smallest}
+                          iconStyle={{
+                            paddingRight: 10,
+                            paddingLeft: 10,
+                          }}
+                        />
+                      )}
                       <Text style={styles.subTitle}>{c.name}</Text>
                     </View>
                     {showArrow && (

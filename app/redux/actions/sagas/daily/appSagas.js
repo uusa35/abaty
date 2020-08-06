@@ -38,7 +38,6 @@ import {
 import {getHomeServicesScenario, getServiceIndex} from '../serviceSagas';
 import {getHomeUserCategories} from '../categorySagas';
 import * as actions from '../../types';
-import {GET_ROLES} from '../../types';
 
 export function* dailyBootStrap() {
   const {country} = yield select();

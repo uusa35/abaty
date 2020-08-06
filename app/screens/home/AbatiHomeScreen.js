@@ -33,6 +33,7 @@ const AbatiHomeScreen = () => {
     services,
     showIntroduction,
     country,
+    settings,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -41,11 +42,13 @@ const AbatiHomeScreen = () => {
   return (
     <BgContainer>
       <AppHomeConfigComponent />
-      <IntroductionWidget
-        elements={splashes}
-        IntroductionWidget
-        showIntroduction={showIntroduction}
-      />
+      {settings.splash_on && (
+        <IntroductionWidget
+          elements={splashes}
+          IntroductionWidget
+          showIntroduction={showIntroduction}
+        />
+      )}
       <ScrollView
         contentContainerStyle={{backgroundColor: 'transparent'}}
         contentInset={{bottom: 50}}

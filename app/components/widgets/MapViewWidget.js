@@ -37,8 +37,9 @@ const MapViewWidget = ({
       style={{
         flex: 1,
         backgroundColor: 'white',
-        marginTop: 10,
-        marginBottom: 10,
+        // borderWidth : 10
+        // marginTop: 10,
+        // marginBottom: 10,
       }}>
       {showTitle && (
         <Text
