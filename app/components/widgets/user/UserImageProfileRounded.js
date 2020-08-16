@@ -73,7 +73,6 @@ const UserImageProfileRounded = ({
     setFanMe(isFanned);
   }, [isFanned]);
 
-  console.log('isFa', isFanned)
   return (
     <View
       animation="bounceInLeft"
@@ -124,7 +123,7 @@ const UserImageProfileRounded = ({
             </TouchableOpacity>
             <Icon
               name={!fanMe ? 'thumbsup' : 'thumb-up'}
-              type={!fanMe? 'octicon' : 'material'}
+              type={!fanMe ? 'octicon' : 'material'}
               onPress={() => handleFan(!fanMe)}
               raised
               reverse

@@ -14,7 +14,9 @@ const IntroductionScreen = () => {
     <View style={{backgroundColor: 'white'}}>
       <AppIntroSlider
         keyExtractor={(splashes, index) => index.toString()}
-        renderItem={() => <SplashWidget elements={splashes} />}
+        renderItem={({item}) => (
+          <SplashWidget elements={splashes} element={item} />
+        )}
         slides={splashes}
         onDone={() => navigate('Home')}
       />
@@ -22,6 +24,6 @@ const IntroductionScreen = () => {
   );
 };
 
-export default React.memo(IntroductionScreen);
+export default IntroductionScreen;
 
 const styles = StyleSheet.create({});

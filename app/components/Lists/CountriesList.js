@@ -15,14 +15,14 @@ import I18n from './../../I18n';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
 import {EXPO} from './../../../app';
 
-const CountriesList = ({country, countries, countryModal}) => {
+const CountriesList = ({country, countries}) => {
+  const {countryModal} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const [visible, setVisible] = useState(false);
 
   const handleClick = useCallback((c) => {
     if (c.id !== country.id) {
@@ -30,30 +30,33 @@ const CountriesList = ({country, countries, countryModal}) => {
     }
   });
 
-  useEffect(() => {
-    setVisible(countryModal);
-  }, [countryModal]);
-
   const hide = () => dispatch(hideCountryModal());
 
+  useEffect(() => {}, [countryModal]);
+
   return (
-    <View
-      style={[
-        styles.container,
-        {backgroundColor: 'white', height: height / 2.5, borderTopWidth: 0},
-      ]}>
+    <View>
       <Modal
-        transparent={visible}
-        isVisible={visible}
-        useNativeDriver={true}
+        isVisible={countryModal}
+        useNativeDriver={isIOS}
+        hideModalContentWhileAnimating={true}
         animationIn="slideInUp"
-        style={{flex: 1, margin: 0}}>
-        <View style={styles.container}>
+        style={{margin: 0}}
+        deviceWidth={width}
+        deviceHeight={height}>
+        <View style={[styles.container, {backgroundColor: 'white'}]}>
           <ScrollView
             automaticallyAdjustContentInsets={false}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
-            contentInset={{bottom: 150}}>
+            contentInset={{bottom: 150}}
+            contentContainerStyle={{
+              backgroundColor: 'white',
+              width,
+              alignSelf: 'center',
+              margin: 0,
+              padding: 0,
+            }}>
             <View style={styles.titleContainer}>
               <Text style={[styles.phoneNo, {fontSize: text.medium}]}>
                 {I18n.t('choose_country')}
@@ -62,7 +65,7 @@ const CountriesList = ({country, countries, countryModal}) => {
                 name="close"
                 type="evilicon"
                 size={iconSizes.smaller}
-                containerStyle={{position: 'absolute', top: 5, right: 5}}
+                containerStyle={{position: 'absolute', top: 5, right: 35}}
                 onPress={() => hide()}
                 hitSlop={{
                   top: iconSizes.large,
@@ -78,7 +81,7 @@ const CountriesList = ({country, countries, countryModal}) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexWrap: 'wrap',
-                backgroundColor: 'white',
+                // backgroundColor: 'white',
               }}>
               {map(countries, (c, i) => {
                 return (
@@ -123,7 +126,7 @@ CountriesList.propTypes = {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    backgroundColor: 'white',
+    height: height / 2.5,
     bottom: 0,
     width,
     padding: 5,
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     width: '30%',
     height: 100,
     justifyContent: 'space-evenly',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     alignItems: 'center',
     alignSelf: 'center',
     margin: 5,

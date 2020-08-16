@@ -7,6 +7,6 @@ export default function (countryModal = false, action) {
     case HIDE_COUNTRY_MODAL:
       return false;
     default:
-      return countryModal;
+      return false;
   }
 }

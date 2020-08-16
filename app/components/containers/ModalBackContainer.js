@@ -23,10 +23,11 @@ const ModalBackContainer = ({
   title = null,
   toggleVisible = false,
   setToggleVisible,
+  enableTransparent = false,
 }) => {
   return (
     <Modal
-      transparent={toggleVisible}
+      transparent={enableTransparent}
       visible={toggleVisible}
       animationType={'slide'}
       presentationStyle="fullScreen">

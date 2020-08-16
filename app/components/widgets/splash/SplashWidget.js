@@ -46,7 +46,7 @@ const SplashWidget = ({element, index, handleClick}) => {
   );
 };
 
-export default React.memo(SplashWidget);
+export default SplashWidget;
 
 SplashWidget.propTypes = {
   element: PropTypes.object.isRequired,

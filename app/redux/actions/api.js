@@ -351,7 +351,7 @@ export async function updateUser(params) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: isIOS ? getImageUri(image) : getImagePath(image),
+      uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -389,7 +389,7 @@ export async function companyRegister(params) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: isIOS ? getImageUri(image) : getImagePath(image),
+      uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -398,7 +398,7 @@ export async function companyRegister(params) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: isIOS ? getImageUri(image) : getImagePath(image),
+        uri: getImagePath(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
@@ -443,7 +443,7 @@ export async function storeClassified(elements) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: isIOS ? getImageUri(image) : getImagePath(image),
+      uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -452,7 +452,7 @@ export async function storeClassified(elements) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: isIOS ? getImageUri(image) : getImagePath(image),
+        uri: getImagePath(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });
@@ -512,7 +512,7 @@ export async function updateClassified({elements, id}) {
   const formData = new FormData();
   if (checkImage(image)) {
     formData.append('image', {
-      uri: isIOS ? getImageUri(image) : getImagePath(image),
+      uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
     });
@@ -521,7 +521,7 @@ export async function updateClassified({elements, id}) {
   map(filteredImages, (img, i) => {
     if (checkImage(img)) {
       formData.append(`images[${i}]`, {
-        uri: isIOS ? getImageUri(image) : getImagePath(image),
+        uri: getImagePath(img),
         name: getImageName(img),
         type: getImageExtension(img),
       });

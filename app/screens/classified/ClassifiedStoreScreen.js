@@ -384,7 +384,12 @@ const ClassifiedStoreScreen = () => {
         )}
         <Button
           raised
-          containerStyle={{marginBottom: 10, marginTop: 10, width: '90%'}}
+          containerStyle={{
+            marginBottom: 10,
+            marginTop: 10,
+            width: '90%',
+            alignSelf: 'center',
+          }}
           buttonStyle={{
             backgroundColor: colors.btn_bg_theme_color,
             borderRadius: 0,

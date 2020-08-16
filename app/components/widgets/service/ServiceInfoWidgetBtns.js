@@ -7,6 +7,7 @@ import {addToCart} from '../../../redux/actions/cart';
 import I18n, {isRTL} from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useDispatch} from 'react-redux';
+import {isIOS} from '../../../constants';
 
 const ServiceInfoWidgetBtns = ({element}) => {
   const {range} = element;
@@ -38,7 +39,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           mode="dropdown"
           selectedValue={day}
           style={{
-            height: 150,
+            height: isIOS ? 150 : 100,
             width: '50%',
             marginTop: -30,
             marginBottom: -10,
@@ -65,7 +66,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
         <Picker
           selectedValue={selectedTiming}
           style={{
-            height: 200,
+            height: isIOS ? 200 : 100,
             width: '50%',
             marginTop: -30,
             marginBottom: -10,

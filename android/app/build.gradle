@@ -132,8 +132,8 @@ android {
         applicationId "com.abaty"
                 minSdkVersion rootProject.ext.minSdkVersion
                 targetSdkVersion rootProject.ext.targetSdkVersion
-                versionCode 48
-                versionName "48"
+                versionCode 52
+                versionName "52"
                 vectorDrawables.useSupportLibrary = true
                 multiDexEnabled true
     }
@@ -211,6 +211,7 @@ dependencies {
 
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
+         exclude group:'com.squareup.okhttp3', module:'okhttp'
     }
 
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {

@@ -49,7 +49,7 @@ const CartIndexScreen = () => {
           ) : (
             <View
               style={{
-                paddingTop: '50%',
+                paddingTop: '30%',
                 width: width / 1.1,
               }}>
               {!ABATI ? (

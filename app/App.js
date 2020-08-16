@@ -24,7 +24,6 @@ const App = () => {
     message,
     countries,
     country,
-    countryModal,
     area,
     areas,
     areaModal,
@@ -134,12 +133,8 @@ const App = () => {
                   mainBg={settings.main_bg}
                 />
               )}
-              {validate.isBoolean(countryModal) && countryModal && country && (
-                <CountriesList
-                  country={country}
-                  countries={countries}
-                  countryModal={countryModal}
-                />
+              {country && (
+                <CountriesList country={country} countries={countries} />
               )}
               {validate.isBoolean(areaModal) && !validate.isEmpty(areas) && (
                 <AreasList area={area} areas={areas} areaModal={areaModal} />
@@ -157,7 +152,7 @@ const App = () => {
         validate.isString(message.content) &&
         isConnected &&
         bootStrapped && <AlertMessage message={message} />}
-      {bootStrapped && <ProductFilterModal />}
+      {bootStrapped && settings && <ProductFilterModal />}
     </Fragment>
   );
 };

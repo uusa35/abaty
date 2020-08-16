@@ -34,11 +34,11 @@ const RegisterFormWidget = () => {
   const {country, playerId, role, roles} = useSelector((state) => state);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState();
-  const [mobile, setMobile] = useState();
-  const [address, setAddress] = useState();
-  const [password, setPassword] = useState();
-  const [description, setDescription] = useState();
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [address, setAddress] = useState('');
+  const [password, setPassword] = useState('');
+  const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [sampleLogo, setSampleLogo] = useState(null);
   const [images, setImages] = useState();
@@ -118,13 +118,13 @@ const RegisterFormWidget = () => {
           role_id: role.id,
         })
         .then((r) => {
-          ImagePicker.clean()
-            .then(() => {
-              // console.log('removed all tmp images from tmp directory');
-            })
-            .catch((e) => {
-              // console.log('picker error', e);
-            });
+          // ImagePicker.clean()
+          //   .then(() => {
+          // console.log('removed all tmp images from tmp directory');
+          // })
+          // .catch((e) => {
+          // console.log('picker error', e);
+          // });
           return dispatch(
             companyRegister({
               name,

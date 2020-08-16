@@ -4,6 +4,7 @@
 import React, {useMemo, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
+  hideCountryModal,
   showClassifiedFilter,
   showCountryModal,
   showProductFilter,
@@ -28,7 +29,7 @@ export const HeaderRight = ({
   showExpoSearch = false,
   showHome = false,
 }) => {
-  const {country, settings} = useSelector((state) => state);
+  const {country, settings, countryModal} = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {params} = navigation.state;
@@ -72,11 +73,20 @@ export const HeaderRight = ({
       .catch((err) => {});
   };
 
+  const handleCountryModal = () => {
+    if (!countryModal) {
+      dispatch(showCountryModal());
+    } else {
+      dispatch(hideCountryModal());
+    }
+  };
+
   return (
     <View style={widgetStyles.safeContainer}>
       {showCountry && (
         <TouchableOpacity
-          onPress={() => dispatch(showCountryModal())}
+          disabled={countryModal}
+          onPress={() => handleCountryModal()}
           hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
           <ImageLoaderContainer
             img={country.thumb}

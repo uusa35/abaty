@@ -34,7 +34,6 @@ const ProductFilterModal = () => {
     categories,
     country,
   } = useSelector((state) => state);
-  const {colors} = settings;
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [min, setMin] = useState(0);
@@ -119,7 +118,7 @@ const ProductFilterModal = () => {
                   {
                     borderColor:
                       selectedCategory && selectedCategory.id === c.id
-                        ? colors.btn_bg_theme_color
+                        ? settings.colors.btn_bg_theme_color
                         : 'lightgrey',
                   },
                 ]}>
@@ -133,18 +132,21 @@ const ProductFilterModal = () => {
       {!ABATI ? (
         <ProductFilterColorsWidget
           elements={productColors}
-          colors={colors}
+          colors={settings.colors}
           color={color}
         />
       ) : (
         <ProductFilterHeightsWidget
           elements={productColors}
-          colors={colors}
+          colors={settings.colors}
           color={color}
         />
       )}
-      <ProductFilterSizesWidget elements={sizes} colors={colors} size={size} />
-
+      <ProductFilterSizesWidget
+        elements={sizes}
+        colors={settings.colors}
+        size={size}
+      />
       <View
         style={{
           width: '100%',
@@ -161,7 +163,7 @@ const ProductFilterModal = () => {
           style={{
             fontFamily: text.font,
             fontSize: text.medium,
-            color: colors.main_theme_color,
+            color: settings.colors.main_theme_color,
           }}>
           {I18n.t('choose_price_range')}
         </Text>
@@ -186,7 +188,7 @@ const ProductFilterModal = () => {
             // onValuesChangeFinish={() => console.log('end')}
             style={{alignSelf: 'center'}}
             selectedStyle={{
-              backgroundColor: colors.btn_bg_theme_color,
+              backgroundColor: settings.colors.btn_bg_theme_color,
             }}
             unselectedStyle={{
               backgroundColor: 'silver',
@@ -210,7 +212,7 @@ const ProductFilterModal = () => {
           style={{
             fontFamily: text.font,
             fontSize: text.medium,
-            color: colors.main_theme_color,
+            color: settings.colors.main_theme_color,
           }}>
           {I18n.t('price')} : {priceRange[0]} - {priceRange[1]}
         </Text>
@@ -227,11 +229,11 @@ const ProductFilterModal = () => {
           onPress={() => handleSubmitFilter()}
           raised
           containerStyle={{width: '95%', alignSelf: 'center'}}
-          buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
+          buttonStyle={{backgroundColor: settings.colors.btn_bg_theme_color}}
           title={I18n.t('apply_filter')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color,
+            color: settings.colors.btn_text_theme_color,
           }}
         />
         <Button
@@ -247,7 +249,7 @@ const ProductFilterModal = () => {
           title={I18n.t('remove_filter')}
           titleStyle={{
             fontFamily: text.font,
-            color: colors.btn_text_theme_color,
+            color: settings.colors.btn_text_theme_color,
           }}
         />
       </View>

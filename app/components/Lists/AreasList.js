@@ -24,40 +24,38 @@ const AreasList = () => {
   });
 
   return (
-    <View style={{backgroundColor: 'white'}}>
-      <Modal
-        transparent={true}
-        visible={areaModal}
-        animationType={'slide'}
-        onRequestClose={() => dispatch(hideAreaModal())}>
-        <View style={styles.container}>
-          <FlatList
-            contentInset={{bottom: bottomContentInset}}
-            style={{paddingBottom: bottomContentInset}}
-            automaticallyAdjustContentInsets={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            data={areas}
-            renderItem={({item}) => (
-              <TouchableOpacity
-                activeOpacity={1}
-                key={item.id}
-                hitSlop={{left: 15, right: 15}}
-                onPress={() => handleClick(item)}
-                style={styles.wrapper}>
-                <Text style={styles.phoneNo}>{item.slug}</Text>
-                <Icon
-                  name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-                  type="entypo"
-                  size={15}
-                  color="black"
-                />
-              </TouchableOpacity>
-            )}></FlatList>
-        </View>
-      </Modal>
-    </View>
+    <Modal
+      visible={areaModal}
+      animationType={'slide'}
+      style={{backgroundColor: 'transparent'}}
+      onRequestClose={() => dispatch(hideAreaModal())}>
+      <View style={styles.container}>
+        <FlatList
+          contentInset={{bottom: bottomContentInset}}
+          style={{paddingBottom: bottomContentInset}}
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => index.toString()}
+          data={areas}
+          renderItem={({item}) => (
+            <TouchableOpacity
+              activeOpacity={1}
+              key={item.id}
+              hitSlop={{left: 15, right: 15}}
+              onPress={() => handleClick(item)}
+              style={styles.wrapper}>
+              <Text style={styles.phoneNo}>{item.slug}</Text>
+              <Icon
+                name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                type="entypo"
+                size={15}
+                color="black"
+              />
+            </TouchableOpacity>
+          )}></FlatList>
+      </View>
+    </Modal>
   );
 };
 

@@ -403,9 +403,6 @@ export function* startSubmitAuthScenario(action) {
       throw element;
     }
   } catch (e) {
-    // if (__DEV__) {
-    //   console.log('e', e);
-    // }
     yield call(enableErrorMessage, e);
   } finally {
     yield all([
@@ -444,6 +441,7 @@ export function* startReAuthenticateScenario() {
 
 export function* startUpdateUserScenario(action) {
   try {
+    yield call(enableLoading);
     const element = yield call(api.updateUser, action.payload);
     if (!validate.isEmpty(element) && validate.isObject(element)) {
       yield all([
@@ -456,6 +454,7 @@ export function* startUpdateUserScenario(action) {
       throw element;
     }
   } catch (e) {
+    yield call(disableLoading);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);
@@ -529,7 +528,6 @@ export function* startGetCelebritiesScenario(action) {
 
 export function* startGetDesignersScenario(action) {
   try {
-    console.log('here', action.payload);
     const {searchParams, redirect} = action.payload;
     if (!validate.isEmpty(redirect) && redirect) {
       yield call(enableLoadingBoxedList);
@@ -658,6 +656,7 @@ export function* startCompanyRegisterScenario(action) {
       throw element;
     }
   } catch (e) {
+    yield call(disableLoading);
     yield call(enableErrorMessage, e);
   } finally {
     yield call(disableLoading);

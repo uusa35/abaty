@@ -1,24 +1,17 @@
 import React from 'react';
-import {ImageBackground, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {connect, useSelector} from 'react-redux';
-import {settingsSelector} from '../redux/selectors/collection';
-import {width, height} from './../constants/sizes';
-import {images} from './../constants/images';
+import {useSelector} from 'react-redux';
+import {bottomContentInset, height} from './../constants/sizes';
 import validate from 'validate.js';
 import NoMoreElements from '../components/widgets/NoMoreElements';
 import I18n from '../I18n';
+import BgContainer from '../components/containers/BgContainer';
 
 const TermAndConditionScreen = () => {
-  const {terms, main_bg} = useSelector((state) => state.settings);
+  const {terms} = useSelector((state) => state.settings);
   return (
-    <ImageBackground
-      source={{
-        uri: main_bg,
-      }}
-      loadingIndicatorSource={images.logo}
-      style={{width, height}}
-      resizeMode="stretch">
+    <BgContainer>
       <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
@@ -27,10 +20,10 @@ const TermAndConditionScreen = () => {
         contentContainerStyle={{
           flex: 1,
           padding: 10,
-          marginBottom: '5%',
+          paddingBottom: '15%',
           justifyContent: 'center',
         }}
-        contentInset={{bottom: 100}}>
+        contentInset={{bottom: bottomContentInset}}>
         {!validate.isEmpty(terms) && terms.length > 100 ? (
           <WebView
             showsVerticalScrollIndicator={false}
@@ -41,7 +34,7 @@ const TermAndConditionScreen = () => {
           <NoMoreElements title={I18n.t('not_available')} />
         )}
       </ScrollView>
-    </ImageBackground>
+    </BgContainer>
   );
 };
 

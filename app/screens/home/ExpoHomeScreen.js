@@ -18,7 +18,8 @@ import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns
 import BgContainer from '../../components/containers/BgContainer';
 import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
-import {bottomContentInset} from '../../constants/sizes';
+import {bottomContentInset, height} from '../../constants/sizes';
+import {isIOS} from '../../constants';
 
 const ExpoHomeScreen = () => {
   const {
@@ -55,7 +56,7 @@ const ExpoHomeScreen = () => {
       <ScrollView
         contentContainerStyle={{
           backgroundColor: 'transparent',
-          marginTop: '25%',
+          paddingTop: isIOS ? '25%' : '20%',
         }}
         contentInset={{bottom: bottomContentInset}}
         horizontal={false}
@@ -65,7 +66,6 @@ const ExpoHomeScreen = () => {
         showsVerticalScrollIndicator={false}
         endFillColor="white"
         style={{
-          // flex: 1,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
         }}

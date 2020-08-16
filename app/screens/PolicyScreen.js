@@ -1,38 +1,31 @@
 import React from 'react';
-import {ImageBackground, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {connect, useSelector} from 'react-redux';
-import {settingsSelector} from '../redux/selectors/collection';
-import {width, height} from './../constants/sizes';
-import {images} from './../constants/images';
+import {useSelector} from 'react-redux';
+import {bottomContentInset, height} from './../constants/sizes';
 import validate from 'validate.js';
+import BgContainer from '../components/containers/BgContainer';
 
 const PolicyScreen = () => {
-  const {policy, main_bg} = useSelector((state) => state.settings);
+  const {policy} = useSelector((state) => state.settings);
   return (
-    <ImageBackground
-      source={{
-        uri: main_bg,
-      }}
-      loadingIndicatorSource={images.logo}
-      style={{width, height}}
-      resizeMode="stretch">
+    <BgContainer>
       <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{padding: 10, marginBottom: '5%'}}
-        contentInset={{bottom: 100}}>
-        {!validate.isEmpty(policy) && policy.length > 100 ? (
+        contentContainerStyle={{padding: 10, paddingBottom: '15%'}}
+        contentInset={{bottom: bottomContentInset}}>
+        {!validate.isEmpty(policy) && policy.length > 100 && (
           <WebView
             showsVerticalScrollIndicator={false}
             source={{html: policy}}
             style={{width: '100%', height, marginTop: 10}}
           />
-        ) : null}
+        )}
       </ScrollView>
-    </ImageBackground>
+    </BgContainer>
   );
 };
 
