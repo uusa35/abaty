@@ -357,16 +357,6 @@ const UserInfoWidget = ({
           type="entypo"
         />
       )}
-      {!isEmpty(images) && (
-        <ImagesGridWidget
-          elements={images}
-          name={slug}
-          showLabels={false}
-          showTitle={true}
-          width={100}
-          height={100}
-        />
-      )}
       {!isEmpty(longitude || latitude) && has_map && !ESCRAP && (
         <MapViewWidget
           latitude={latitude}
@@ -375,6 +365,16 @@ const UserInfoWidget = ({
           title={slug}
           showTitle={false}
           height={250}
+        />
+      )}
+      {!isEmpty(images) && (
+        <ImagesGridWidget
+          elements={images}
+          name={slug}
+          showLabels={false}
+          showTitle={true}
+          width={100}
+          height={100}
         />
       )}
     </View>

@@ -47,7 +47,17 @@ const ImagesGridWidget = ({
     });
   };
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View
+      style={{
+        borderWidth: 0.5,
+        borderColor: 'lightgrey',
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: '2%',
+        marginTop: '2%',
+        flex: 1,
+        backgroundColor: 'white',
+      }}>
       <View>
         {showTitle ? (
           <Text

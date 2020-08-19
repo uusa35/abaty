@@ -148,9 +148,7 @@ const UserImageProfileRounded = ({
             ) : null}
             {whatsapp ? (
               <Icon
-                onPress={() =>
-                  Linking.openURL(getWhatsappLink(whatsapp, user.slug))
-                }
+                onPress={() => Linking.openURL(getWhatsappLink(whatsapp, slug))}
                 name="whatsapp"
                 type="font-awesome"
                 raised
