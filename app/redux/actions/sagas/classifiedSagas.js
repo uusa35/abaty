@@ -26,6 +26,7 @@ import {
 } from '../types';
 import {first, values} from 'lodash';
 import {SET_CLASSIFIED} from '../types';
+import {startReAuthenticateScenario} from './userSagas';
 
 export function* startGetClassifiedsScenario(action) {
   try {
@@ -131,6 +132,32 @@ export function* startGetClassifiedScenario(action) {
     // yield call(enableErrorMessage, I18n.t('no_classifieds'));
   } finally {
     yield call(disableLoadingContent);
+  }
+}
+
+export function* startDeleteClassifiedScenario(action) {
+  try {
+    const {token} = yield select();
+    const element = yield call(api.deleteClassified, {
+      id: action.payload,
+      api_token: token,
+      _method: 'DELETE',
+    });
+    if (!validate.isEmpty(element) && element.done) {
+      yield all([
+        yield call(enableWarningMessage, element.message),
+        yield call(startReAuthenticateScenario),
+      ]);
+      yield put(NavigationActions.back());
+    } else {
+      throw element.message;
+    }
+  } catch (e) {
+    if (__DEV__) {
+      // console.log('the e', e);
+    }
+    yield call(enableErrorMessage, I18n.t('classified_not_removed'));
+  } finally {
   }
 }
 
@@ -248,7 +275,6 @@ export function* startClassifiedSearchingScenario(action) {
 
 export function* startGetMyClassifiedsScenario(action) {
   try {
-    const {auth} = yield select();
     const {redirect} = action.payload;
     yield call(enableLoadingBoxedList);
     if (!validate.isEmpty(redirect) && redirect) {

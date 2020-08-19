@@ -88,21 +88,7 @@ const RegisterFormWidget = () => {
   };
 
   const handleRegister = () => {
-    if (role.isClient) {
-      dispatch(
-        register({
-          name,
-          email,
-          password,
-          mobile,
-          country_id: country.id,
-          address,
-          player_id: playerId,
-          description,
-          role_id: role ? role.id : first(filter(roles, (r) => r.isClient)).id,
-        }),
-      );
-    } else {
+    if (!validate.isEmpty(role) && !role.isClient) {
       return validateSubmitRegister
         .validate({
           name,
@@ -151,6 +137,20 @@ const RegisterFormWidget = () => {
             ),
           );
         });
+    } else {
+      dispatch(
+        register({
+          name,
+          email,
+          password,
+          mobile,
+          country_id: country.id,
+          address,
+          player_id: playerId,
+          description,
+          role_id: role ? role.id : first(filter(roles, (r) => r.isClient)).id,
+        }),
+      );
     }
   };
 

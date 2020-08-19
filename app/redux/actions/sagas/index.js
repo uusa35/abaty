@@ -36,6 +36,7 @@ export default function* rootSaga() {
     fork(triggers.triggerGetAllClassifieds),
     fork(triggers.triggerGetSearchClassifieds),
     fork(triggers.triggerGetClassified),
+    fork(triggers.triggerDeleteClassified),
     fork(triggers.triggerStartNewClassified),
     fork(triggers.triggerStoreClassified),
     fork(triggers.triggerEditClassified),

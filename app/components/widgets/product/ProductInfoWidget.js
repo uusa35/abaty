@@ -15,7 +15,6 @@ const ProductInfoWidget = ({element}) => {
         alignItems: 'flex-start',
       }}>
       <ProductInfoWidgetMainTitle element={element} />
-      {element.show_attribute && <ProductInfoWidgetBtns element={element} />}
       {element.directPurchase && (
         <Button
           title={I18n.t('you_can_add_more_than_one_product_to_cart')}
@@ -25,9 +24,10 @@ const ProductInfoWidget = ({element}) => {
             fontWeight: 'bold',
           }}
           buttonStyle={{backgroundColor: 'red'}}
-          containerStyle={{top: -30, width: '95%', alignSelf: 'center'}}
+          containerStyle={{width: '95%', alignSelf: 'center'}}
         />
       )}
+      {element.show_attribute && <ProductInfoWidgetBtns element={element} />}
     </View>
   );
 };

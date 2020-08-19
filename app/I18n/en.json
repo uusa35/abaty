@@ -636,6 +636,9 @@
   "direct_purchase" : "Direct Purchase",
   "product_samples" : "Product Samples",
   "order" : "Order",
-  "search_services" : "Search Services"
+  "search_services" : "Search Services",
+  "delete_classified" : "Delete Classified",
+  "are_u_sure_u_want_to_remove_classified" : "Delete Classified Confirmation?",
+  "classified_not_removed" : "Classified was not removed."
 }
 

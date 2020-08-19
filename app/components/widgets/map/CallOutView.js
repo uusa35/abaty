@@ -50,27 +50,27 @@ const CallOutView = ({
               alignItems: 'baseline',
               justifyContent: 'flex-start',
             }}>
-            {title && (
+            {title ? (
               <Text style={styles.title}>{title.substring(0, 50)}</Text>
-            )}
-            {address && (
+            ) : null}
+            {address ? (
               <Text style={styles.title}>{address.substring(0, 50)}</Text>
-            )}
-            {price && (
+            ) : null}
+            {price ? (
               <Text style={styles.title}>
                 {price} {currency_symbol}
               </Text>
-            )}
-            {description && (
+            ) : null}
+            {description ? (
               <Text style={styles.title}>{description.substring(0, 50)}</Text>
-            )}
+            ) : null}
           </View>
         </View>
       </View>
       <View style={{alignSelf: 'center', alignItems: 'center'}}>
-        {!validate.isEmpty(element.items) && (
+        {!validate.isEmpty(element.items) ? (
           <PropertiesWidget elements={take(element.items, 5)} />
-        )}
+        ) : null}
       </View>
     </Callout>
   );

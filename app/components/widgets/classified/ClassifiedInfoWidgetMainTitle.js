@@ -1,14 +1,17 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, Fragment} from 'react';
 import FastImage from 'react-native-fast-image';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {text, touchOpacity} from '../../../constants/sizes';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {iconSizes, text, touchOpacity} from '../../../constants/sizes';
 import {getProductConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {Badge, Icon} from 'react-native-elements';
 import {showCommentModal} from '../../../redux/actions';
-import {toggleClassifiedFavorite} from '../../../redux/actions/classified';
+import {
+  deleteClassified,
+  toggleClassifiedFavorite,
+} from '../../../redux/actions/classified';
 import I18n from './../../../I18n';
 import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
@@ -21,6 +24,26 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
   const {token, guest} = useSelector((state) => state);
   const [favorite, setFavorite] = useState(element.isFavorite);
   const {navigate} = useNavigation();
+
+  const handleDelete = () => {
+    return Alert.alert(
+      I18n.t('delete_classified'),
+      I18n.t('are_u_sure_u_want_to_remove_classified'),
+      [
+        {
+          text: I18n.t('cancel'),
+          // onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: I18n.t('confirm'),
+          onPress: () => dispatch(deleteClassified(element.id)),
+        },
+      ],
+      {cancelable: true},
+    );
+  };
+
   return (
     <View
       style={{
@@ -111,7 +134,7 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
               {currency_symbol}
             </Text>
           </View>
-          {element.isOnSale ? (
+          {element.isOnSale && (
             <View style={{flexDirection: 'row'}}>
               <Text style={[styles.productTitle, {color: 'red'}]}>
                 {round(
@@ -124,7 +147,7 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
               </Text>
               <Text style={styles.productTitle}>{currency_symbol}</Text>
             </View>
-          ) : null}
+          )}
         </View>
       </View>
       <View
@@ -133,24 +156,35 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
           justifyContent: 'space-between',
           flex: 1,
         }}>
-        {editMode ? (
-          <Icon
-            underlayColor="transparent"
-            name="edit"
-            size={25}
-            type="antdesign"
-            title={I18n.t('edit')}
-            hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
-            onPress={() =>
-              navigate({
-                routeName: 'ClassifiedEdit',
-                params: {
-                  name: element.name,
-                },
-              })
-            }
-          />
-        ) : null}
+        {editMode && (
+          <Fragment>
+            <Icon
+              underlayColor="transparent"
+              name="edit"
+              size={iconSizes.smallest}
+              type="antdesign"
+              title={I18n.t('edit')}
+              hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+              onPress={() =>
+                navigate({
+                  routeName: 'ClassifiedEdit',
+                  params: {
+                    name: element.name,
+                  },
+                })
+              }
+            />
+            <Icon
+              underlayColor="transparent"
+              name="delete"
+              size={iconSizes.smallest}
+              type="antdesign"
+              title={I18n.t('delete')}
+              hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+              onPress={() => handleDelete()}
+            />
+          </Fragment>
+        )}
         {!guest ? (
           <Icon
             onPress={() => {
@@ -164,7 +198,7 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
             }}
             name={favorite ? 'star' : 'staro'}
             type="antdesign"
-            size={25}
+            size={iconSizes.smallest}
             underlayColor="transparent"
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
             color="#FCD12A"
@@ -177,7 +211,7 @@ const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
             name="comment-account-outline"
             type="material-community"
             color={colors.header_tow_theme_color}
-            size={25}
+            size={iconSizes.smallest}
             hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
           />
           <Badge

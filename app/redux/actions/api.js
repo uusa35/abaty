@@ -105,6 +105,14 @@ export async function getClassified(params) {
     .catch((e) => e.response.data.message);
 }
 
+export async function deleteClassified(params) {
+  const {id, api_token} = params;
+  return await axiosInstance
+    .delete(`classified/${id}`, {data: {id, api_token}})
+    .then((r) => r.data)
+    .catch((e) => e.response.data.message);
+}
+
 export async function getSearchClassifieds(params) {
   return await axiosInstance
     .get(`search/classified`, {params})

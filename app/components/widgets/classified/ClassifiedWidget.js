@@ -6,18 +6,15 @@ import {
   View,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getClassified} from '../../../redux/actions/classified';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {touchOpacity, width} from '../../../constants/sizes';
+import {touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
-import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedWidget = ({element, showName = false, handleClick}) => {
   const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
-
   return (
     <TouchableOpacity
       activeOpacity={touchOpacity}

@@ -12,17 +12,18 @@ import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {isIOS} from '../../constants';
+import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 
 export const SearchStack = createStackNavigator(
   {
     SearchIndex: {
       screen: SearchScreen,
-      navigationOptions: ({navigation}) => ({
+      navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="search1" type="antdesign" color={tintColor} />
         ),
-        headerLeft: () => <HeaderLeft {...navigation} />,
-        headerRight: () => <HeaderRight {...navigation} display={true} />,
+        headerLeft: () => <HeaderLeft />,
+        headerRight: () => <HeaderRight display={true} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('search')} />,
         headerBackTitle: () => null,
       }),
@@ -77,7 +78,7 @@ export const SearchStack = createStackNavigator(
       path: `service/:id`,
     },
     Home: {
-      screen: AbatiHomeScreen,
+      screen: ExpoHomeScreen,
       navigationOptions: () => ({
         headerLeft: () => <HeaderLeft />,
         headerRight: () => (

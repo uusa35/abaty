@@ -81,7 +81,7 @@ const NormalClassifiedShowScreen = () => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
-        {classified.images ? (
+        {classified.images && (
           <ImagesWidget
             resizeMode="cover"
             elements={classified.images
@@ -93,14 +93,14 @@ const NormalClassifiedShowScreen = () => {
             isFeatured={classified.is_featured}
             qr={settings.logo}
           />
-        ) : null}
-        <View style={{flex: 1, padding: '5%'}}>
-          {classified.user ? (
+        )}
+        <View style={{flex: 1, paddingLeft: '5%', paddingRight: '5%'}}>
+          {classified.user && (
             <ClassifiedInfoWidgetMainTitle
               element={classified}
               editMode={auth && auth.id === classified.user_id && token}
             />
-          ) : null}
+          )}
           {!validate.isEmpty(classified.items) && (
             <PropertiesWidget
               elements={filter(

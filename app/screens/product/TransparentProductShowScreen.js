@@ -161,7 +161,14 @@ const TransparentProductShowScreen = () => {
                 elementName="size_chart"
                 link={() =>
                   navigation.navigate('ImageZoom', {
-                    images: [{id: product.id, large: size_chart}],
+                    images: [
+                      {
+                        id: product.id,
+                        large: product.size_chart_image
+                          ? product.size_chart_image
+                          : size_chart,
+                      },
+                    ],
                     name: product.name,
                     index: 0,
                   })

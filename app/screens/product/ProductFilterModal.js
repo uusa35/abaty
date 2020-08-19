@@ -19,9 +19,10 @@ import {map} from 'lodash';
 import {getSearchProducts} from '../../redux/actions/product';
 import {setCategory} from '../../redux/actions/category';
 import ProductFilterSizesWidget from '../../components/widgets/product/ProductFilterSizesWidget';
-import {ABATI} from './../../../app';
+import {ABATI, EXPO} from './../../../app';
 import ProductFilterHeightsWidget from '../../components/widgets/product/ProductFilterHeightsWidget';
 import ModalBackContainer from '../../components/containers/ModalBackContainer';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 
 const ProductFilterModal = () => {
   const {
@@ -86,6 +87,7 @@ const ProductFilterModal = () => {
       toggleVisible={productFilterModal}
       setToggleVisible={handleHideModal}
       title={I18n.t('product_filter')}>
+      {EXPO && <ProductSearchForm showBtn={EXPO} />}
       {categories ? (
         <View
           style={{
@@ -220,7 +222,7 @@ const ProductFilterModal = () => {
       <View
         style={{
           position: 'relative',
-          bottom: -100,
+          bottom: -50,
           width: '100%',
           alignItems: 'flex-end',
           justifyContent: 'flex-end',

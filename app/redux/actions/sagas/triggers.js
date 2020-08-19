@@ -337,6 +337,13 @@ export function* triggerGetClassified() {
   );
 }
 
+export function* triggerDeleteClassified() {
+  yield takeLatest(
+    actions.DELETE_CLASSIFIED,
+    classifiedSaga.startDeleteClassifiedScenario,
+  );
+}
+
 export function* triggerStoreClassified() {
   yield takeLatest(
     actions.STORE_CLASSIFIED,

@@ -670,5 +670,8 @@
   "direct_purchase" : "شراء مباشر",
   "product_samples" : "ارفاق عينات من المنتجات",
   "order" : "أمر عمل",
-  "search_services" : "بحث الخدمات"
+  "search_services" : "بحث الخدمات",
+  "delete_classified" : "حذف الإعلان",
+  "are_u_sure_u_want_to_remove_classified" : "تأكيد حذف الإعلان ؟",
+  "classified_not_removed" : "لم يتم حذف الإعلان بنجاح"
 }

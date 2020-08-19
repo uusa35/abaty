@@ -41,7 +41,7 @@ const MapViewWidget = ({
         // marginTop: 10,
         // marginBottom: 10,
       }}>
-      {showTitle && (
+      {showTitle ? (
         <Text
           style={{
             fontFamily: text.font,
@@ -60,7 +60,7 @@ const MapViewWidget = ({
           }}>
           {I18n.t('location')}
         </Text>
-      )}
+      ) : null}
       <MapView
         style={{
           width: width ? width : customWidth,
@@ -104,7 +104,7 @@ const MapViewWidget = ({
                 latitude: latitude,
                 longitude: longitude,
               }}>
-              {showCallOut && image && (
+              {showCallOut && image ? (
                 <CallOutView
                   element={element}
                   image={image}
@@ -112,7 +112,7 @@ const MapViewWidget = ({
                   title={title}
                   price={price}
                 />
-              )}
+              ) : null}
             </Marker>
           ) : (
             map(elements, (element, i) => (
@@ -128,7 +128,7 @@ const MapViewWidget = ({
                   latitude: element.latitude,
                   longitude: element.longitude,
                 }}>
-                {showCallOut && (
+                {showCallOut ? (
                   <CallOutView
                     element={element}
                     title={element.name}
@@ -143,7 +143,7 @@ const MapViewWidget = ({
                       2,
                     )}
                   />
-                )}
+                ) : null}
               </Marker>
             ))
           )}

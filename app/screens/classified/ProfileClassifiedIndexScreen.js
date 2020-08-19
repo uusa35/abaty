@@ -7,17 +7,13 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProfileClassifiedIndexScreen = () => {
-  const {searchClassifieds, auth, guest} = useSelector((state) => state);
-  const [currentElements, setCurrentElements] = useState(searchClassifieds);
+  const {auth, guest} = useSelector((state) => state);
+  const [currentElements, setCurrentElements] = useState(auth.classifieds);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSearchClassifieds({searchParams: {user_id: auth.id}}));
-  }, []);
-
-  useEffect(() => {
-    setCurrentElements(searchClassifieds);
-  }, [searchClassifieds]);
+    setCurrentElements(auth.classifieds);
+  }, [auth]);
 
   return (
     <BgContainer showImage={false}>

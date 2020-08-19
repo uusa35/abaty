@@ -18,6 +18,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {HOMEKEY} from './../../../app';
+import {adjustColor} from '../../helpers';
 
 const ImagesWidget = ({
   elements,
@@ -123,7 +124,10 @@ const ImagesWidget = ({
                     <TagWidget tagName="out_of_stock" bgColor="red" />
                   )}
                   {directPurchase && (
-                    <TagWidget tagName="direct_purchase" bgColor="#b2b07b" />
+                    <TagWidget
+                      tagName="direct_purchase"
+                      bgColor={adjustColor(colors.btn_bg_theme_color, 1)}
+                    />
                   )}
                 </View>
               ) : null}
