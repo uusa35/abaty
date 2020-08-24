@@ -284,7 +284,6 @@ export function* startStorePlayerIdScenario(action) {
   try {
     if (action.payload) {
       const result = yield call(api.storePlayerId, action.payload);
-      console.log('the result from device id', result);
     }
   } catch (e) {
     // if (__DEV__) {
