@@ -156,25 +156,29 @@ const TransparentProductShowScreen = () => {
                 }
               />
             )}
-            {!validate.isEmpty(size_chart) && (
+            {product.has_attributes && product.size_chart_image ? (
               <ProductInfoWidgetElement
                 elementName="size_chart"
                 link={() =>
                   navigation.navigate('ImageZoom', {
-                    images: [
-                      {
-                        id: product.id,
-                        large: product.size_chart_image
-                          ? product.size_chart_image
-                          : size_chart,
-                      },
-                    ],
+                    images: [{id: product.id, large: product.size_chart_image}],
                     name: product.name,
                     index: 0,
                   })
                 }
               />
-            )}
+            ) : !validate.isEmpty(size_chart) && product.has_attributes ? (
+              <ProductInfoWidgetElement
+                elementName="size_chart"
+                link={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: [{id: product.id, large: size_chart}],
+                    name: product.name,
+                    index: 0,
+                  })
+                }
+              />
+            ) : null}
           </View>
         </View>
         {validate.isObject(product.videoGroup) &&

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {text, touchOpacity} from './../../../constants/sizes';
+import {iconSizes, text, touchOpacity} from './../../../constants/sizes';
 import {images} from './../../../constants/images';
 import {getCompany} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
@@ -9,16 +9,15 @@ import PropTypes from 'prop-types';
 import I18n from '../../../I18n';
 import {Rating} from 'react-native-ratings';
 import ImageLoaderContainer from '../ImageLoaderContainer';
-import {useDispatch} from 'react-redux';
 
 const CompanyHorizontalWidget = ({
   user,
   showName,
   showRating = false,
+  showDescription = false,
   handleClick,
 }) => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const dispatch = useDispatch();
 
   return (
     <TouchableOpacity
@@ -46,12 +45,19 @@ const CompanyHorizontalWidget = ({
         resizeMode="cover"
       />
       {showName ? (
-        <View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            alignSelf: 'center',
+          }}>
           <Text
             style={[
               widgetStyles.elementName,
               {
-                paddingTop: 15,
+                paddingTop: iconSizes.tiny,
                 color: colors.header_tow_theme_color,
               },
             ]}>
@@ -77,6 +83,22 @@ const CompanyHorizontalWidget = ({
               imageSize={15}
             />
           ) : null}
+          {showDescription && (
+            <Text
+              style={[
+                widgetStyles.elementName,
+                {
+                  color: colors.header_tow_theme_color,
+                  paddingTop: 0,
+                  paddingRight: iconSizes.tiny,
+                  paddingLeft: iconSizes.tiny,
+                  lineHeight: 15,
+                  fontSize: text.smaller,
+                },
+              ]}>
+              {user.description}
+            </Text>
+          )}
         </View>
       ) : null}
     </TouchableOpacity>

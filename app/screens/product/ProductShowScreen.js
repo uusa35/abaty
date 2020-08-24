@@ -150,7 +150,18 @@ const ProductShowScreen = () => {
                 }
               />
             ) : null}
-            {size_chart ? (
+            {product.show_attribute && product.size_chart_image ? (
+              <ProductInfoWidgetElement
+                elementName="size_chart"
+                link={() =>
+                  navigation.navigate('ImageZoom', {
+                    images: [{id: product.id, large: product.size_chart_image}],
+                    name: product.name,
+                    index: 0,
+                  })
+                }
+              />
+            ) : !validate.isEmpty(size_chart) && product.show_attribute ? (
               <ProductInfoWidgetElement
                 elementName="size_chart"
                 link={() =>

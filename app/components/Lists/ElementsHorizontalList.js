@@ -381,14 +381,21 @@ const ElementsHorizontalList = ({
         return (
           <CompanyHorizontalWidget
             user={item}
-            showRating={true}
+            showRating={false}
             showName={true}
+            showDescription={true}
             handleClick={handleClick}
           />
         );
         break;
       case 'designer':
-        return <UserWidgetHorizontal user={item} showName={true} />;
+        return (
+          <UserWidgetHorizontal
+            user={item}
+            showName={true}
+            showDescription={true}
+          />
+        );
         break;
       case 'order':
         return <OrderWidget element={item} />;

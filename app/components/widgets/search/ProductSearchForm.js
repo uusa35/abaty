@@ -1,10 +1,9 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import I18n, {isRTL} from '../../../I18n';
 import {Button, Icon, Input} from 'react-native-elements';
 import {iconSizes, text} from '../../../constants/sizes';
 import {getSearchProducts} from '../../../redux/actions/product';
-import {setSearchParams} from '../../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 
 const ProductSearchForm = ({showBtn = false}) => {

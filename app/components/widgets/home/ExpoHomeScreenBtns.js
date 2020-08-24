@@ -49,7 +49,7 @@ const ExpoHomeScreenBtns = () => {
             paddingLeft: 10,
             paddingRight: 10,
             fontFamily: text.font,
-            fontSize: text.medium,
+            fontSize: text.small,
           }}>
           {I18n.t('calendar')}
         </Text>
@@ -95,7 +95,7 @@ const ExpoHomeScreenBtns = () => {
                 paddingLeft: 10,
                 paddingRight: 10,
                 fontFamily: text.font,
-                fontSize: text.medium,
+                fontSize: text.small,
               }}>
               {I18n.t('login')}
             </Text>
@@ -134,7 +134,7 @@ const ExpoHomeScreenBtns = () => {
                 paddingLeft: 10,
                 paddingRight: 10,
                 fontFamily: text.font,
-                fontSize: text.medium,
+                fontSize: text.small,
               }}>
               {I18n.t('joinus')}
             </Text>
