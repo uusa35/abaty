@@ -13,6 +13,8 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, touchOpacity} from '../../../constants/sizes';
 import TagWidget from './../TagWidget';
 import I18n from './../../../I18n';
+import FastImage from 'react-native-fast-image';
+import {images} from '../../../constants/images';
 
 const ProductWidget = ({
   element,
@@ -31,9 +33,9 @@ const ProductWidget = ({
       key={element.id}
       style={[widgetStyles.productServiceWidget, {width: width}]}
       onPress={() => handleClickProductWidget(element)}>
-      <ImageBackground
+      <FastImage
         imageStyle={styles.imageContainerStyle}
-        source={{uri: element.thumb}}
+        source={imageLoading ? images.loading : {uri: element.thumb}}
         onLoadEnd={() => setImageLoading(false)}
         style={styles.image}
         resizeMode={imageLoading ? 'contain' : 'cover'}>
@@ -47,7 +49,7 @@ const ProductWidget = ({
             <TagWidget tagName="out_of_stock" bgColor="red" />
           )}
         </View>
-      </ImageBackground>
+      </FastImage>
       {showName && (
         <View
           style={{

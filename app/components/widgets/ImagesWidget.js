@@ -19,6 +19,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {HOMEKEY} from './../../../app';
 import {adjustColor} from '../../helpers';
+import FastImage from 'react-native-fast-image';
 
 const ImagesWidget = ({
   elements,
@@ -89,7 +90,7 @@ const ImagesWidget = ({
                 index: item.index,
               })
             }>
-            <ImageBackground
+            <FastImage
               source={imageLoading ? images.loading : {uri: item.item.large}}
               onLoadEnd={() => setImageLoading(false)}
               style={{width, height}}
@@ -131,7 +132,7 @@ const ImagesWidget = ({
                   )}
                 </View>
               ) : null}
-            </ImageBackground>
+            </FastImage>
           </TouchableOpacity>
         )}
       />

@@ -3,29 +3,30 @@ import {Image} from 'react-native';
 import {images} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {isNull} from 'lodash';
-import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import FastImage from 'react-native-fast-image';
+import {useSelector} from 'react-redux';
 
 const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
   const [imageLoading, setImageLoading] = useState(true);
-  const {logo} = useContext(GlobalValuesContext);
+  const {logo} = useSelector((state) => state.settings);
 
   return (
-    <Image
+    <FastImage
       source={
         imageLoading && !isNull(img)
-          ? images.loadingSm
-          : {uri: img ? img : logo, cache: 'force-cache'}
-        // : {uri: img ? img : logo, cache: 'cacheOnly'}
+          ? images.loading
+          : // : {uri: img ? img : logo, cache: 'force-cache'}
+            {uri: img ? img : logo}
       }
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'transparent'}]}
-      resizeMode={imageLoading ? 'center' : resizeMode}
+      resizeMode={imageLoading ? 'contain' : resizeMode}
+      cache={'cacheOnly'}
     />
   );
 };
 
-export default ImageLoaderContainer;
+export default React.memo(ImageLoaderContainer);
 
 ImageLoaderContainer.propTypes = {
   img: PropTypes.string.isRequired,

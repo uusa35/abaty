@@ -36,7 +36,7 @@ const CountriesList = ({country, countries}) => {
 
   useEffect(() => {}, [countryModal]);
 
-  const renderItem = (item,index) => {
+  const renderItem = (item, index) => {
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -79,7 +79,7 @@ const CountriesList = ({country, countries}) => {
             contentInset={{bottom: 150}}
             contentContainerStyle={{
               backgroundColor: 'white',
-              width : '100%',
+              width: '100%',
               alignSelf: 'center',
               margin: 0,
               padding: 0,

@@ -11,6 +11,7 @@ const ImageZoomWidget = (props) => {
   const {images, index} = props.navigation.state.params;
   const {colors} = useContext(GlobalValuesContext);
 
+  console.log('images', images[0].large);
   return (
     <BgContainer showImage={false}>
       <Swiper
@@ -33,7 +34,7 @@ const ImageZoomWidget = (props) => {
   );
 };
 
-export default React.memo(ImageZoomWidget);
+export default ImageZoomWidget;
 
 const styles = StyleSheet.create({
   slide: {
