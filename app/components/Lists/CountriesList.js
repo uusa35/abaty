@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import {map} from 'lodash';
@@ -18,6 +19,7 @@ import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
 import {EXPO} from './../../../app';
+import AppHomeConfigComponent from '../containers/AppHomeConfigComponent';
 
 const CountriesList = ({country, countries}) => {
   const {countryModal} = useSelector((state) => state);
@@ -34,8 +36,33 @@ const CountriesList = ({country, countries}) => {
 
   useEffect(() => {}, [countryModal]);
 
+  const renderItem = (item,index) => {
+    return (
+      <TouchableOpacity
+        activeOpacity={1}
+        key={index}
+        hitSlop={{left: 15, right: 15}}
+        onPress={() => handleClick(item)}
+        style={[
+          styles.wrapper,
+          {
+            borderColor:
+              item.id === country.id ? colors.btn_bg_theme_color : '#cdcdcd',
+          },
+        ]}>
+        <ImageLoaderContainer
+          img={item.thumb}
+          style={styles.countryFlag}
+          resizeMode={isIOS ? 'stretch' : 'cover'}
+        />
+        <Text style={styles.phoneNo}>{item.slug}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View>
+      <AppHomeConfigComponent />
       <Modal
         isVisible={countryModal}
         useNativeDriver={isIOS}
@@ -45,14 +72,14 @@ const CountriesList = ({country, countries}) => {
         deviceWidth={width}
         deviceHeight={height}>
         <View style={[styles.container, {backgroundColor: 'white'}]}>
-          <ScrollView
+          <View
             automaticallyAdjustContentInsets={false}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             contentInset={{bottom: 150}}
             contentContainerStyle={{
               backgroundColor: 'white',
-              width,
+              width : '100%',
               alignSelf: 'center',
               margin: 0,
               padding: 0,
@@ -75,41 +102,20 @@ const CountriesList = ({country, countries}) => {
                 }}
               />
             </View>
-            <View
-              style={{
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{
+                minHeight: height / 2.2,
                 flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
                 flexWrap: 'wrap',
-                // backgroundColor: 'white',
-              }}>
-              {map(countries, (c, i) => {
-                return (
-                  <TouchableOpacity
-                    activeOpacity={1}
-                    key={c.id}
-                    hitSlop={{left: 15, right: 15}}
-                    onPress={() => handleClick(c)}
-                    style={[
-                      styles.wrapper,
-                      {
-                        borderColor:
-                          c.id === country.id
-                            ? colors.btn_bg_theme_color
-                            : '#cdcdcd',
-                      },
-                    ]}>
-                    <ImageLoaderContainer
-                      img={c.thumb}
-                      style={styles.countryFlag}
-                      resizeMode={isIOS ? 'stretch' : 'cover'}
-                    />
-                    <Text style={styles.phoneNo}>{c.slug}</Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </ScrollView>
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}
+              data={countries}
+              renderItem={renderItem}
+            />
+          </View>
         </View>
       </Modal>
     </View>
@@ -126,7 +132,7 @@ CountriesList.propTypes = {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    height: height / 2.5,
+    height: height / 2,
     bottom: 0,
     width,
     padding: 5,
@@ -139,6 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 10,
     width: '30%',
+    minWidth: 100,
     height: 100,
     justifyContent: 'space-evenly',
     // backgroundColor: 'white',

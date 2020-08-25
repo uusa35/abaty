@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import ExpoSlideWidget from './ExpoSlideWidget';
 import {useSelector} from 'react-redux';
+import {EXPO} from './../../../../app';
 
 const ExpoMainSliderWidget = ({elements}) => {
   const {colors} = useSelector((state) => state.settings);
@@ -31,7 +32,7 @@ const ExpoMainSliderWidget = ({elements}) => {
               activeDotColor={colors.btn_bg_theme_color}
               showsButtons={false}
               showsPagination={true}
-              autoplay={true}
+              autoplay={!EXPO}
               dotStyle={{width: 10, height: 10, borderRadius: 10 / 2}}
               activeDotStyle={{width: 10, height: 10, borderRadius: 10 / 2}}
               key={elements.length}

@@ -186,7 +186,7 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - OneSignal (2.14.3)
+  - OneSignal (2.15.2)
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
@@ -385,14 +385,14 @@ PODS:
     - React
   - react-native-netinfo (5.9.6):
     - React
-  - react-native-onesignal (3.9.0):
-    - OneSignal (= 2.14.3)
+  - react-native-onesignal (3.9.1):
+    - OneSignal (= 2.15.2)
     - React (< 1.0.0, >= 0.13.0)
   - react-native-pdf (6.2.0):
     - React
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.1.6):
+  - react-native-safe-area-context (3.1.7):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -403,7 +403,7 @@ PODS:
     - React
   - react-native-viewpager (4.1.6):
     - React
-  - react-native-webview (10.7.0):
+  - react-native-webview (10.8.0):
     - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
@@ -492,12 +492,12 @@ PODS:
     - React
   - RNI18n (2.0.15):
     - React
-  - RNImageCropPicker (0.32.2):
+  - RNImageCropPicker (0.32.3):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.32.2)
+    - RNImageCropPicker/QBImagePickerController (= 0.32.3)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.32.2):
+  - RNImageCropPicker/QBImagePickerController (0.32.3):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -844,7 +844,7 @@ SPEC CHECKSUMS:
   lottie-react-native: 1fb4ce21d6ad37dab8343eaff8719df76035bd93
   Mixpanel: 0a78141d1a073308201f76c55c3e629535e72b47
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  OneSignal: 7dfe466265c05f02b95a274b9c997a0619ad2117
+  OneSignal: 9531e385388565f4d31797ddadbe0fcc786430ec
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
@@ -864,14 +864,14 @@ SPEC CHECKSUMS:
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-mixpanel: 3c875a148e2e5a2a66f7dfcc55e2b77552fe58a1
   react-native-netinfo: 38a1e0b3e89b48e4b5833ed475d8df5f049f6f90
-  react-native-onesignal: 3cd5b9b5a2d151698cab987a364f4cbd51552508
+  react-native-onesignal: ad2eaab1517951e50d19fa3eccd16d3048167181
   react-native-pdf: 909cd849e6a806731b2135263189fea39494b55e
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: 4fb3cdeb4a405ec19f18aca80ef2144381ffc761
+  react-native-safe-area-context: 955ecfce672683b495d9294d2f154a9ad1d9796b
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: f44c9e21c37d4cb76d38841c8a450e3891923461
-  react-native-webview: 6edf4d6f71b9161fc3e96083726a538ee395304d
+  react-native-webview: bbe20ef0e39caf153c1446621f0d56d460c1f1f5
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -892,7 +892,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
   RNGoogleSignin: ccf71ee4b6cfd324fd788a41e457e2043838c0d9
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
+  RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNMagicMove: acc7d9dff86dd68588b01cb3515182e50b50b81c
   RNReanimated: e1251783216c7cb0a395314c9889d6662d86ed73
   RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2

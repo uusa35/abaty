@@ -4,6 +4,7 @@ import {images} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {isNull} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import FastImage from 'react-native-fast-image';
 
 const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
   const [imageLoading, setImageLoading] = useState(true);
@@ -15,15 +16,16 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
         imageLoading && !isNull(img)
           ? images.loadingSm
           : {uri: img ? img : logo, cache: 'force-cache'}
+        // : {uri: img ? img : logo, cache: 'cacheOnly'}
       }
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'transparent'}]}
-      resizeMode={imageLoading ? 'contain' : resizeMode}
+      resizeMode={imageLoading ? 'center' : resizeMode}
     />
   );
 };
 
-export default React.memo(ImageLoaderContainer);
+export default ImageLoaderContainer;
 
 ImageLoaderContainer.propTypes = {
   img: PropTypes.string.isRequired,
