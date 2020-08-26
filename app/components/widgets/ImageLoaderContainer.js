@@ -21,12 +21,11 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'transparent'}]}
       resizeMode={imageLoading ? 'contain' : resizeMode}
-      cache={'cacheOnly'}
     />
   );
 };
 
-export default React.memo(ImageLoaderContainer);
+export default ImageLoaderContainer;
 
 ImageLoaderContainer.propTypes = {
   img: PropTypes.string.isRequired,

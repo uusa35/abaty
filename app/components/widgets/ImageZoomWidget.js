@@ -11,7 +11,6 @@ const ImageZoomWidget = (props) => {
   const {images, index} = props.navigation.state.params;
   const {colors} = useContext(GlobalValuesContext);
 
-  console.log('images', images[0].large);
   return (
     <BgContainer showImage={false}>
       <Swiper

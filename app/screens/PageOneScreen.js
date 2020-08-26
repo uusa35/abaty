@@ -40,6 +40,7 @@ const PageOneScreen = () => {
         contentInset={{bottom: 200}}>
         <ProductCategoryVerticalWidget
           elements={categories}
+          showImage={true}
           title={I18n.t('product_categories')}
         />
         {ESCRAP || HOMEKEY ? (

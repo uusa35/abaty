@@ -71,7 +71,7 @@ const ProductCategoryVerticalWidget = ({
                       )
                     }
                     hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                    style={styles.itemRow}>
+                    style={[styles.itemRow]}>
                     <View
                       style={{
                         flexDirection: 'row',
@@ -100,7 +100,9 @@ const ProductCategoryVerticalWidget = ({
                           }}
                         />
                       )}
-                      <Text style={styles.subTitle}>{c.name}</Text>
+                      <Text style={[styles.subTitle, {color: 'black'}]}>
+                        {c.name}
+                      </Text>
                     </View>
                     {showArrow && (
                       <Icon
@@ -132,7 +134,7 @@ const ProductCategoryVerticalWidget = ({
                               )
                             }
                             hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-                            style={[styles.itemRow, {paddingLeft: 50}]}>
+                            style={[styles.itemRow, {paddingLeft: 30}]}>
                             <View
                               style={{
                                 flexDirection: 'row',
@@ -142,7 +144,11 @@ const ProductCategoryVerticalWidget = ({
                               {c.thumb ? (
                                 <ImageLoaderContainer
                                   img={c.thumb}
-                                  style={{width: 50, height: 50, margin: 5}}
+                                  style={{
+                                    width: iconSizes.smaller,
+                                    height: iconSizes.smaller,
+                                    margin: 5,
+                                  }}
                                 />
                               ) : (
                                 <Icon

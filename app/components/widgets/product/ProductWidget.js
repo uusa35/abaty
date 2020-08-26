@@ -33,7 +33,7 @@ const ProductWidget = ({
       key={element.id}
       style={[widgetStyles.productServiceWidget, {width: width}]}
       onPress={() => handleClickProductWidget(element)}>
-      <FastImage
+      <ImageBackground
         imageStyle={styles.imageContainerStyle}
         source={imageLoading ? images.loading : {uri: element.thumb}}
         onLoadEnd={() => setImageLoading(false)}
@@ -49,7 +49,7 @@ const ProductWidget = ({
             <TagWidget tagName="out_of_stock" bgColor="red" />
           )}
         </View>
-      </FastImage>
+      </ImageBackground>
       {showName && (
         <View
           style={{

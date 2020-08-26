@@ -102,19 +102,17 @@ const ElementsHorizontalList = ({
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  const loadMore = (d) => {
-    if (showMore && d >= 100) {
-      setPage(page + 1);
-      setIsLoading(showMore);
-    } else {
-      if (page > 10) {
-        setPage(2);
+  const loadMore = () => {
+    setTimeout(() => {
+      if (showMore && page < iconSizes.larger) {
+        setPage(page + 1);
+        setIsLoading(true);
       }
-    }
+    }, 2000);
   };
 
   useMemo(() => {
-    if (showMore && page > 1 && page <= 20) {
+    if (showMore && page > 1 && page <= iconSizes.larger) {
       switch (type) {
         case 'product':
           return axiosInstance(`search/product?page=${page}`, {
@@ -126,7 +124,7 @@ const ElementsHorizontalList = ({
                 dispatch({type: SET_PRODUCTS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
-                setPage(2);
+                setIsLoading(false);
               }
             })
             .catch((e) => e);
@@ -141,7 +139,7 @@ const ElementsHorizontalList = ({
                 dispatch({type: SET_DESIGNERS, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
-                setPage(2);
+                setIsLoading(false);
               }
             })
             .catch((e) => e);
@@ -156,7 +154,7 @@ const ElementsHorizontalList = ({
                 setItems(elementsGroup);
                 dispatch({type: SET_COMPANIES, payload: elementsGroup});
               } else {
-                setPage(2);
+                setIsLoading(false);
               }
             })
             .catch((e) => e);
@@ -170,7 +168,7 @@ const ElementsHorizontalList = ({
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
               } else {
-                setPage(2);
+                setIsLoading(false);
               }
             })
             .catch((e) => e);
@@ -185,7 +183,7 @@ const ElementsHorizontalList = ({
                 dispatch({type: SET_SERVICES, payload: elementsGroup});
                 setItems(elementsGroup);
               } else {
-                setPage(2);
+                setIsLoading(false);
               }
             })
             .catch((e) => e);
@@ -515,6 +513,14 @@ const ElementsHorizontalList = ({
     );
   };
 
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 20;
+    return (
+      layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom
+    );
+  };
+
   return (
     <Fragment>
       {showSearch && <TopSearchInput search={search} setSearch={setSearch} />}
@@ -533,7 +539,13 @@ const ElementsHorizontalList = ({
         numColumns={columns}
         data={uniqBy(items, 'id')}
         keyExtractor={(item, index) => index.toString()}
-        onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        // onEndReached={({distanceFromEnd}) => loadMore(distanceFromEnd)}
+        onScroll={({nativeEvent}) => {
+          if (isCloseToBottom(nativeEvent)) {
+            loadMore();
+          }
+        }}
+        scrollEventThrottle={400}
         onEndReachedThreshold={TheHold}
         refreshing={refresh}
         refreshControl={

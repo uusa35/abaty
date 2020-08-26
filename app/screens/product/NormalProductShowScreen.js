@@ -6,7 +6,7 @@ import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';
-import {first, shuffle} from 'lodash';
+import {first, shuffle, take} from 'lodash';
 import {getProduct, getSearchProducts} from '../../redux/actions/product';
 import {getDesigner} from '../../redux/actions/user';
 import validate from 'validate.js';
@@ -188,7 +188,7 @@ const NormalProductShowScreen = () => {
           )}
         {!validate.isEmpty(products) && EXPO && (
           <ProductHorizontalWidget
-            elements={shuffle(products)}
+            elements={take(shuffle(products), 5)}
             showName={true}
             title={I18n.t('related_products')}
           />

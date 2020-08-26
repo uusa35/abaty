@@ -1,14 +1,6 @@
-import React, {useState, useContext, useCallback, useEffect} from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import React, {useContext, useCallback, useEffect} from 'react';
+import {View, StyleSheet, Text, TouchableOpacity, FlatList} from 'react-native';
 import Modal from 'react-native-modal';
-import {map} from 'lodash';
 import {hideCountryModal, chooseCountry} from '../../redux/actions';
 import {text, width, height, iconSizes} from '../../constants/sizes';
 import {Icon} from 'react-native-elements';
@@ -19,7 +11,6 @@ import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
 import {EXPO} from './../../../app';
-import AppHomeConfigComponent from '../containers/AppHomeConfigComponent';
 
 const CountriesList = ({country, countries}) => {
   const {countryModal} = useSelector((state) => state);
@@ -36,7 +27,7 @@ const CountriesList = ({country, countries}) => {
 
   useEffect(() => {}, [countryModal]);
 
-  const renderItem = (item, index) => {
+  const renderItem = ({item, index}) => {
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -62,7 +53,6 @@ const CountriesList = ({country, countries}) => {
 
   return (
     <View>
-      <AppHomeConfigComponent />
       <Modal
         isVisible={countryModal}
         useNativeDriver={isIOS}
@@ -78,8 +68,7 @@ const CountriesList = ({country, countries}) => {
             showsVerticalScrollIndicator={false}
             contentInset={{bottom: 150}}
             contentContainerStyle={{
-              backgroundColor: 'white',
-              width: '100%',
+              backgroundColor: 'green',
               alignSelf: 'center',
               margin: 0,
               padding: 0,
@@ -105,12 +94,13 @@ const CountriesList = ({country, countries}) => {
             <FlatList
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
+              numColumns={3}
+              columnWrapperStyle={{alignSelf: 'center'}}
               contentContainerStyle={{
                 minHeight: height / 2.2,
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                justifyContent: 'space-between',
+                width: '100%',
+                alignSelf: 'center',
+                backgroundColor: 'white',
               }}
               data={countries}
               renderItem={renderItem}
@@ -148,7 +138,7 @@ const styles = StyleSheet.create({
     minWidth: 100,
     height: 100,
     justifyContent: 'space-evenly',
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     alignItems: 'center',
     alignSelf: 'center',
     margin: 5,
