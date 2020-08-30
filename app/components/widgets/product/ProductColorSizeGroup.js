@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
-import {text} from '../../../constants/sizes';
+import {iconSizes, text} from '../../../constants/sizes';
 import ProductWidgetQtyBtns from './ProductWidgetQtyBtns';
 import PropTypes from 'prop-types';
 import {addToCart} from '../../../redux/actions/cart';
@@ -98,21 +98,25 @@ const ProductColorSizeGroup = ({element}) => {
           productAttribute={null}
         />
       )}
-      <View style={{width: '105%', alignSelf: 'center', marginTop: 5}}>
+      <View style={{width: '100%', alignSelf: 'center', marginTop: 5}}>
         <Input
           spellCheck={true}
-          placeholder={I18n.t(
-            EXPO
-              ? 'add_notes_shoulders_height_and_other_notes_expo'
-              : 'add_notes_shoulders_height_and_other_notes',
-          )}
+          placeholder={
+            element.notes
+              ? element.notes
+              : I18n.t(
+                  EXPO
+                    ? 'add_notes_shoulders_height_and_other_notes_expo'
+                    : 'add_notes_shoulders_height_and_other_notes',
+                )
+          }
           containerStyle={{flex: 1}}
           inputContainerStyle={{
             borderWidth: 0.5,
             borderColor: colors.btn_bg_theme_color,
-            borderRadius: 5,
-            paddingLeft: 15,
-            paddingRight: 15,
+            borderRadius: iconSizes.tiny,
+            paddingLeft: 10,
+            paddingRight: 10,
             height: 80,
           }}
           inputStyle={{

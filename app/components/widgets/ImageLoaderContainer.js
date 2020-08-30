@@ -1,5 +1,4 @@
-import React, {useState, useContext} from 'react';
-import {Image} from 'react-native';
+import React, {useState} from 'react';
 import {images} from '../../constants/images';
 import PropTypes from 'prop-types';
 import {isNull} from 'lodash';
@@ -20,7 +19,7 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
       }
       onLoadEnd={() => setImageLoading(false)}
       style={[style, {backgroundColor: 'transparent'}]}
-      resizeMode={imageLoading ? 'contain' : resizeMode}
+      resizeMode={resizeMode}
     />
   );
 };

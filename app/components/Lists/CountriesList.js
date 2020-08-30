@@ -44,7 +44,7 @@ const CountriesList = ({country, countries}) => {
         <ImageLoaderContainer
           img={item.thumb}
           style={styles.countryFlag}
-          resizeMode={isIOS ? 'stretch' : 'cover'}
+          resizeMode={isIOS ? 'cover' : 'stretch'}
         />
         <Text style={styles.phoneNo}>{item.slug}</Text>
       </TouchableOpacity>

@@ -104,15 +104,15 @@ const ElementsHorizontalList = ({
 
   const loadMore = () => {
     setTimeout(() => {
-      if (showMore && page < iconSizes.larger) {
+      if (showMore && page < iconSizes.smaller) {
         setPage(page + 1);
         setIsLoading(true);
       }
-    }, 2000);
+    }, 1000);
   };
 
   useMemo(() => {
-    if (showMore && page > 1 && page <= iconSizes.larger) {
+    if (showMore && page > 1 && page <= iconSizes.smaller) {
       switch (type) {
         case 'product':
           return axiosInstance(`search/product?page=${page}`, {

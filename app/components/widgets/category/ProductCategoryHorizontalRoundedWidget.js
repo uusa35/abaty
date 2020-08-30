@@ -1,11 +1,6 @@
 import React, {useCallback, Fragment, useContext} from 'react';
-import {
-  ScrollView,
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ScrollView, TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../../redux/actions/product';
@@ -72,26 +67,31 @@ const ProductCategoryHorizontalRoundedWidget = ({
             contentInset={{right: rightHorizontalContentInset}}
             style={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
-              <TouchableOpacity
-                activeOpacity={touchOpacity}
+              <View
+                animation="bounceIn"
+                easing="ease-out"
                 key={i}
-                style={widgetStyles.btnStyle}
-                onPress={() => handleClick(c)}>
-                <ImageLoaderContainer
-                  img={c.thumb}
-                  style={styles.image}
-                  resizeMode="cover"
-                />
-                {showName ? (
-                  <Text
-                    style={[
-                      widgetStyles.elementName,
-                      {color: colors.header_tow_theme_color},
-                    ]}>
-                    {c.name}
-                  </Text>
-                ) : null}
-              </TouchableOpacity>
+                useNativeDriver={true}>
+                <TouchableOpacity
+                  activeOpacity={touchOpacity}
+                  style={widgetStyles.btnStyle}
+                  onPress={() => handleClick(c)}>
+                  <ImageLoaderContainer
+                    img={c.thumb}
+                    style={styles.image}
+                    resizeMode="cover"
+                  />
+                  {showName ? (
+                    <Text
+                      style={[
+                        widgetStyles.elementName,
+                        {color: colors.header_tow_theme_color},
+                      ]}>
+                      {c.name}
+                    </Text>
+                  ) : null}
+                </TouchableOpacity>
+              </View>
             ))}
           </ScrollView>
         </View>

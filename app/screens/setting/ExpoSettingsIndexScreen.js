@@ -1,15 +1,14 @@
-import React, {Fragment, useCallback, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
-  View,
   TouchableOpacity,
   Text,
   Linking,
   RefreshControl,
 } from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
-import PropTypes from 'prop-types';
+import {View} from 'react-native-reanimated';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   bottomContentInset,
   iconSizes,
@@ -78,7 +77,11 @@ const ExpoSettingsIndexScreen = ({}) => {
             onRefresh={() => handleRefresh()}
           />
         }>
-        <View style={styles.container}>
+        <View
+          animation="bounceIn"
+          easing="ease-out"
+          useNativeDriver={true}
+          style={styles.container}>
           {!guest ? (
             <TouchableOpacity
               activeOpacity={touchOpacity}

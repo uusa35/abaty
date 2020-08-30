@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {View} from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import ProductInfoWidgetMainTitle from './ProductInfoWidgetMainTitle';
 import ProductInfoWidgetBtns from './ProductInfoWidgetBtns';
@@ -10,6 +11,9 @@ import {text} from '../../../constants/sizes';
 const ProductInfoWidget = ({element}) => {
   return (
     <View
+      useNativeDriver={true}
+      animation="bounceInLeft"
+      easing="ease-out"
       contentContainerStyle={{
         justifyContent: 'flex-start',
         alignItems: 'flex-start',

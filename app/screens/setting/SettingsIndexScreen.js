@@ -2,12 +2,12 @@ import React, {Fragment, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
-  View,
   TouchableOpacity,
   Text,
   Linking,
   RefreshControl,
 } from 'react-native';
+import {View} from 'react-native-animatable';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -80,7 +80,11 @@ const SettingsIndexScreen = () => {
             onRefresh={() => handleRefresh()}
           />
         }>
-        <View style={styles.container}>
+        <View
+          animation="bounceIn"
+          easing="ease-out"
+          useNativeDriver={true}
+          style={styles.container}>
           {!guest && (MALLR || ABATI) ? (
             <TouchableOpacity
               activeOpacity={touchOpacity}

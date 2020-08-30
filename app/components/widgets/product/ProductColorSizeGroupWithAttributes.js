@@ -237,8 +237,8 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
         <Input
           spellCheck={true}
           placeholder={
-            notes
-              ? notes
+            element.notes
+              ? element.notes
               : I18n.t(
                   EXPO
                     ? 'add_notes_shoulders_height_and_other_notes_expo'

@@ -83,7 +83,7 @@ const DesignerHorizontalWidget = ({
             style={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
               <View
-                animation="pulse"
+                animation="bounceIn"
                 easing="ease-out"
                 key={c.id}
                 useNativeDriver={true}>
