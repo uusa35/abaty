@@ -79,23 +79,23 @@ const ImagesWidget = ({
         numColumns={1}
         scrollEnabled={true}
         data={elements}
-        renderItem={(item) => (
+        renderItem={({index, item}) => (
           <TouchableOpacity
             activeOpacity={touchOpacity}
-            key={item.index}
+            key={index}
             onPress={() =>
               navigate('ImageZoom', {
                 images: elements,
                 name,
-                index: item.index,
+                index: index,
               })
             }>
             <FastImage
-              source={imageLoading ? images.loading : {uri: item.item.large}}
+              source={imageLoading ? images.loading : {uri: item.large}}
               onLoadEnd={() => setImageLoading(false)}
               style={{width, height}}
               resizeMode={imageLoading ? 'center' : resizeMode}>
-              {showLabels && item.index === 0 ? (
+              {showLabels && index === 0 ? (
                 <View
                   style={{
                     flex: 1,

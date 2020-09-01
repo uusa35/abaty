@@ -112,7 +112,7 @@ const DesignerShowScreen = () => {
           >
             <UserImageProfile
               member_id={designer.id}
-              showFans={true}
+              showFans={!ABATI}
               showRating={ABATI || MALLR || ESCRAP || HOMEKEY}
               showComments={ABATI || MALLR || ESCRAP || (HOMEKEY && !guest)}
               guest={guest}

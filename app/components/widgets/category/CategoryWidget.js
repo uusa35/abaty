@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {ABATI} from './../../../../app';
+import {animations} from '../../../constants/animations';
 
 const CategoryWidget = ({
   element,
@@ -20,8 +21,7 @@ const CategoryWidget = ({
   return (
     <View
       key={element.id}
-      animation="pulse"
-      easing="ease-out"
+      animation={animations.categoryWidget}
       useNativeDriver={true}
       style={[
         styles.categoriesContainer,

@@ -80,10 +80,13 @@ const ServiceShowScreen = () => {
         <View style={{alignSelf: 'center', width: '95%'}}>
           <ServiceInfoWidget element={service} />
           <View
-            animation="bounceInLeft"
-            useNativeDriver={true}
-            easing="ease-out"
-            style={{marginTop: 15}}>
+            style={{
+              borderWidth: 0.5,
+              padding: 20,
+              margin: 10,
+              borderRadius: 5,
+              borderColor: 'lightgrey',
+            }}>
             {service.description && (
               <View>
                 <Text

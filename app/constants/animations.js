@@ -24,5 +24,7 @@ export const animations = {
     'bounceInLeft',
     'bounceInRight',
   ],
-  animationSingleElement: ['bounceInLeft', 'bounceInRight'],
+  animationSingleElement: ['bounceInLeft', 'bounceInRight', 'pulse'],
+  tagWidget: 'bounceIn',
+  categoryWidget: 'pulse',
 };

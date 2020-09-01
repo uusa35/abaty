@@ -8,6 +8,7 @@ import {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {
+  iconSizes,
   rightHorizontalContentInset,
   touchOpacity,
 } from '../../../constants/sizes';
@@ -57,7 +58,7 @@ const ProductCategoryHorizontalRoundedWidget = ({
             <Icon
               type="entypo"
               name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-              size={20}
+              size={iconSizes.smallest}
               color={colors.header_one_theme_color}
             />
           </TouchableOpacity>

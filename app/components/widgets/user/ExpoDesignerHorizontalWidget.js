@@ -30,7 +30,11 @@ const ExpoDesignerHorizontalWidget = ({
   return (
     <Fragment>
       {!isEmpty(elements) && (
-        <View style={{marginTop: 10, marginBottom: 10}}>
+        <View
+          animation="bounceIn"
+          easing="ease-out"
+          useNativeDriver={true}
+          style={{marginTop: 10, marginBottom: 10}}>
           <TouchableOpacity
             activeOpacity={touchOpacity}
             style={{

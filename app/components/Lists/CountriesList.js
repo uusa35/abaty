@@ -10,7 +10,10 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
+import {animations} from '../../constants/animations';
 import {EXPO} from './../../../app';
+import {View as Animated} from 'react-native-animatable';
+import {shuffle, first} from 'lodash';
 
 const CountriesList = ({country, countries}) => {
   const {countryModal} = useSelector((state) => state);
@@ -29,25 +32,30 @@ const CountriesList = ({country, countries}) => {
 
   const renderItem = ({item, index}) => {
     return (
-      <TouchableOpacity
-        activeOpacity={1}
-        key={index}
-        hitSlop={{left: 15, right: 15}}
-        onPress={() => handleClick(item)}
-        style={[
-          styles.wrapper,
-          {
-            borderColor:
-              item.id === country.id ? colors.btn_bg_theme_color : '#cdcdcd',
-          },
-        ]}>
-        <ImageLoaderContainer
-          img={item.thumb}
-          style={styles.countryFlag}
-          resizeMode={isIOS ? 'cover' : 'stretch'}
-        />
-        <Text style={styles.phoneNo}>{item.slug}</Text>
-      </TouchableOpacity>
+      <Animated
+        animation={animations.tagWidget}
+        easing="ease-out"
+        useNativeDriver={true}>
+        <TouchableOpacity
+          activeOpacity={1}
+          key={index}
+          hitSlop={{left: 15, right: 15}}
+          onPress={() => handleClick(item)}
+          style={[
+            styles.wrapper,
+            {
+              borderColor:
+                item.id === country.id ? colors.btn_bg_theme_color : '#cdcdcd',
+            },
+          ]}>
+          <ImageLoaderContainer
+            img={item.thumb}
+            style={styles.countryFlag}
+            resizeMode={isIOS ? 'cover' : 'stretch'}
+          />
+          <Text style={styles.phoneNo}>{item.slug}</Text>
+        </TouchableOpacity>
+      </Animated>
     );
   };
 
@@ -81,7 +89,13 @@ const CountriesList = ({country, countries}) => {
                 name="close"
                 type="evilicon"
                 size={iconSizes.smaller}
-                containerStyle={{position: 'absolute', top: 5, right: 35}}
+                containerStyle={{
+                  position: 'absolute',
+                  top: 5,
+                  padding: 10,
+                  right: 35,
+                  backgroundColor: 'white',
+                }}
                 onPress={() => hide()}
                 hitSlop={{
                   top: iconSizes.large,
@@ -157,6 +171,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
     padding: 15,
   },
 });

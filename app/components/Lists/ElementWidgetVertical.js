@@ -1,11 +1,8 @@
-import React, {useMemo, useState} from 'react';
+import React from 'react';
 import {ListItem} from 'react-native-elements';
 import {iconSizes, text} from './../../constants/sizes';
 import {isRTL} from '../../I18n';
-import {getDesigner, getUser} from './../../redux/actions/user';
 import PropTypes from 'prop-types';
-import {getSearchProducts} from '../../redux/actions/product';
-import {useDispatch} from 'react-redux';
 
 const ElementWidgetVertical = ({
   title,
@@ -25,7 +22,7 @@ const ElementWidgetVertical = ({
       title={title}
       chevronColor="white"
       chevron={{
-        type: 'entypo',
+        type: 'material',
         name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',
         size: iconSize,
       }}

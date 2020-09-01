@@ -524,7 +524,6 @@
   "mallr" : {
     "designers" : "Shoppers",
     "shoppers" : "Shoppers",
-    "personal_shoppers" : "المتسوقين الشخصيين",
     "personal_shoppers" : "Personal Shoppers",
     "shopper" : "Shopper",
     "designer" : "Shopper",
@@ -533,6 +532,7 @@
     "our_companies" : "Companies",
     "sections" : "Sections"
   },
+  "personal_shoppers" : "Personal Shoppers",
   "sale" : "sale",
   "buy" : "buy",
   "share" : "share",

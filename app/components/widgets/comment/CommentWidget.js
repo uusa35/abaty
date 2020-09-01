@@ -24,33 +24,46 @@ const CommentWidget = ({element}) => {
         leftAvatar={{source: {uri: element.owner ? element.owner.thumb : logo}}}
         title={element.title}
         subtitle={
-          <View>
+          <View style={{width: '100%'}}>
             {element.owner ? (
-              <Text
+              <View
                 style={{
-                  fontFamily: text.font,
-                  fontSize: text.small,
                   paddingTop: 3,
                   paddingBottom: 3,
-                  textAlign: 'left',
+                  marginBottom: 10,
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flex: 1,
+                  borderBottomWidth: 0.5,
+                  borderColor: 'lightgrey',
                 }}>
-                {element.owner.slug}
-              </Text>
+                <Text
+                  style={{
+                    fontFamily: text.font,
+                    fontSize: text.small,
+                    textAlign: 'left',
+                    borderColor: 'lightgrey',
+                  }}>
+                  {element.owner.slug}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: text.font,
+                    fontSize: text.smaller,
+                    textAlign: 'right',
+                  }}>
+                  {element.created_at}
+                </Text>
+              </View>
             ) : null}
-            <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.small,
-                marginBottom: 10,
-                textAlign: 'right',
-              }}>
-              {element.created_at}
-            </Text>
             <Text
               style={{
                 fontFamily: text.font,
                 fontSize: text.medium,
                 textAlign: 'left',
+                width: '100%',
               }}>
               {element.content}
             </Text>

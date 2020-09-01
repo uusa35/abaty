@@ -21,17 +21,22 @@ const UserWidgetVertical = ({user, size = iconSizes.large}) => {
         )
       }
       leftAvatar={{size, rounded: false, source: {uri: user.thumb}}}
-      // rightAvatar={{source: {uri: user.thumb}}}
-      title={user.slug}
-      chevronColor="white"
-      chevron={{
+      rightIcon={{
         type: 'entypo',
         name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',
         size: iconSizes.smallest,
       }}
+      // rightAvatar={{source: {uri: user.thumb}}}
+      title={user.slug}
+      chevronColor="white"
+      // chevron={{
+      //   type: 'evilIcon',
+      //   name: isRTL ? 'chevron-left' : 'chevron-right',
+      //   size: iconSizes.smallest,
+      // }}
       // style={{backgroundColor: '#ededed'}}
       // containerStyle={{margin: 3, borderRadius: 5}}
-      contentContainerStyle={{alignItems: 'baseline', justifyContent: 'center'}}
+      style={{alignItems: 'baseline', justifyContent: 'center'}}
       titleStyle={{fontFamily: text.font, fontSize: text.large}}
       bottomDivider
       // badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}

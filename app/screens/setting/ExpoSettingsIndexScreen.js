@@ -6,8 +6,8 @@ import {
   Text,
   Linking,
   RefreshControl,
+  View,
 } from 'react-native';
-import {View} from 'react-native-reanimated';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   bottomContentInset,
@@ -16,7 +16,7 @@ import {
   touchOpacity,
 } from '../../constants/sizes';
 import {Button, Icon} from 'react-native-elements';
-import I18n, {isRTL} from './../../I18n';
+import I18n from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
 import {HOMEKEY, MALLR, ABATI, ESCRAP, EXPO} from './../../../app';
 import {appUrlIos} from '../../env';
@@ -77,7 +77,7 @@ const ExpoSettingsIndexScreen = ({}) => {
             onRefresh={() => handleRefresh()}
           />
         }>
-        <View
+        <Animating
           animation="bounceIn"
           easing="ease-out"
           useNativeDriver={true}
@@ -143,7 +143,7 @@ const ExpoSettingsIndexScreen = ({}) => {
             <Icon name="globe" type="font-awesome" size={iconSizes.medium} />
             <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
           </TouchableOpacity>
-        </View>
+        </Animating>
         {guest ? (
           <Animating
             animation="bounceIn"

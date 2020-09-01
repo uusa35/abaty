@@ -8,6 +8,7 @@ import ProductCategoryVerticalWidget from '../components/widgets/category/Produc
 import ClassifiedCategoryVerticalWidget from '../components/widgets/category/ClassifiedCategoryVerticalWidget';
 import {refetchHomeElements} from '../redux/actions';
 import BgContainer from '../components/containers/BgContainer';
+import {bottomVerticalContentInset} from '../constants/sizes';
 
 const PageOneScreen = () => {
   const {categories} = useSelector((state) => state);
@@ -37,7 +38,7 @@ const PageOneScreen = () => {
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentInset={{bottom: 200}}>
+        contentInset={{bottom: bottomVerticalContentInset}}>
         <ProductCategoryVerticalWidget
           elements={categories}
           showImage={true}
