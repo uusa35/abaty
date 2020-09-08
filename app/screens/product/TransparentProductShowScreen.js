@@ -1,6 +1,6 @@
 import React, {useState, useMemo} from 'react';
-import {StyleSheet, Text, Linking, RefreshControl, View} from 'react-native';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {StyleSheet, Text, Linking, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
 import {width, text, height} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
@@ -193,7 +193,7 @@ const TransparentProductShowScreen = () => {
           />
         )}
       </KeyBoardContainer>
-      <ActionBtnWidget />
+      {!EXPO && <ActionBtnWidget />}
     </BgContainer>
   );
 };

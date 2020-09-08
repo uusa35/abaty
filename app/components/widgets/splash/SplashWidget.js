@@ -1,20 +1,18 @@
 import React, {Fragment} from 'react';
 import {
-  View,
   StyleSheet,
   Text,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import {map} from 'lodash';
 import {width, height, text, iconSizes} from './../../../constants/sizes';
-import {images} from './../../../constants/images';
 import {Icon} from 'react-native-elements';
+import FastImage from 'react-native-fast-image';
 
 const SplashWidget = ({element, index, handleClick}) => {
   return (
-    <ImageBackground
+    <FastImage
       source={{uri: element.large}}
       style={{
         width: width,
@@ -22,7 +20,7 @@ const SplashWidget = ({element, index, handleClick}) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      resizeMode="contain">
+      resizeMode="stretch">
       {index === 0 && (
         <TouchableOpacity
           onPress={() => handleClick()}
@@ -39,10 +37,12 @@ const SplashWidget = ({element, index, handleClick}) => {
       {element.title && (
         <Fragment>
           <Text style={styles.title}>{element.title}</Text>
-          <Text style={styles.caption}>{element.caption}</Text>
+          {element.caption && (
+            <Text style={styles.caption}>{element.caption}</Text>
+          )}
         </Fragment>
       )}
-    </ImageBackground>
+    </FastImage>
   );
 };
 
@@ -56,11 +56,12 @@ const styles = StyleSheet.create({
   title: {
     marginTop: '80%',
     color: 'black',
-    fontSize: 30,
+    fontSize: text.xlarge,
     fontFamily: text.font,
   },
   caption: {
     color: 'black',
     fontFamily: text.font,
+    fontSize: text.xlarge,
   },
 });

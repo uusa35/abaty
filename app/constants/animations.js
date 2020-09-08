@@ -25,6 +25,8 @@ export const animations = {
     'bounceInRight',
   ],
   animationSingleElement: ['bounceInLeft', 'bounceInRight', 'pulse'],
-  tagWidget: 'bounceIn',
-  categoryWidget: 'pulse',
+  bounceIn: 'bounceIn',
+  pulse: 'pulse',
+  shake: 'shake',
+  flip: 'flipInY',
 };

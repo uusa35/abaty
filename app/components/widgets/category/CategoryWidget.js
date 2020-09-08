@@ -21,7 +21,7 @@ const CategoryWidget = ({
   return (
     <View
       key={element.id}
-      animation={animations.categoryWidget}
+      animation={animations.bounceIn}
       useNativeDriver={true}
       style={[
         styles.categoriesContainer,

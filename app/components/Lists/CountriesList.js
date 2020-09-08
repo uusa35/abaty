@@ -33,7 +33,7 @@ const CountriesList = ({country, countries}) => {
   const renderItem = ({item, index}) => {
     return (
       <Animated
-        animation={animations.tagWidget}
+        animation={animations.pulse}
         easing="ease-out"
         useNativeDriver={true}>
         <TouchableOpacity

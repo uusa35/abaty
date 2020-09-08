@@ -15,7 +15,7 @@ const TagWidget = ({
 }) => {
   return (
     <Animated
-      animation={animations.tagWidget}
+      animation={animations.pulse}
       easing="ease-out"
       useNativeDriver={true}>
       <Button

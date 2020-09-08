@@ -18,6 +18,7 @@ import {
 } from '../../../constants/sizes';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {isIOS} from '../../../constants';
+import {animations} from '../../../constants/animations';
 import {useDispatch} from 'react-redux';
 import {isEmpty} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -84,7 +85,7 @@ const DesignerHorizontalWidget = ({
             style={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
               <View
-                animation="bounceIn"
+                animation={animations.flip}
                 easing="ease-out"
                 key={c.id}
                 useNativeDriver={true}>

@@ -16,6 +16,7 @@ import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 import {width} from './../../../constants';
+import {animations} from '../../../constants/animations';
 
 const ExpoDesignerHorizontalWidget = ({
   elements,
@@ -31,7 +32,7 @@ const ExpoDesignerHorizontalWidget = ({
     <Fragment>
       {!isEmpty(elements) && (
         <View
-          animation="bounceIn"
+          animation={animations.bounceIn}
           easing="ease-out"
           useNativeDriver={true}
           style={{marginTop: 10, marginBottom: 10}}>

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react';
-import {Linking, ScrollView} from 'react-native';
+import {Linking, ScrollView, View, Text} from 'react-native';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import moment from 'moment';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -12,7 +12,7 @@ import {getSearchServices} from '../../redux/actions/service';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 import {iconSizes, text} from '../../constants/sizes';
 import {appUrlIos} from '../../env';
-import {isNull} from 'lodash';
+import {isNull, map, filter, keys, isEmpty} from 'lodash';
 LocaleConfig.locales['ar'] = {
   monthNames: [
     'يناير',
@@ -117,15 +117,58 @@ const CalendarIndexScreen = () => {
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
+  const [marked, setMarked] = useState({});
+  const [currentServices, setCurrentServices] = useState([]);
+
+  useMemo(() => {
+    if (!isEmpty(services)) {
+      const ranges = map(currentServices, (s) => s.range);
+      // console.log('currentDate', moment(currentDate.dateString).format('DD/MM/YYYY'))
+      if (!isNull(currentDate)) {
+        const filteredServices = filter(
+          services,
+          (s) => s.range[moment(currentDate.dateString).format('DD/MM/YYYY')],
+        );
+        setCurrentElements(filteredServices);
+      } else {
+        setCurrentElements(currentServices);
+      }
+      const mark = {};
+      const dateRanges = map(ranges, (r) => {
+        const currentDates = keys(r);
+        if (!isEmpty(currentDates)) {
+          currentDates.forEach((day) => {
+            mark[moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD')] = {
+              selected: true,
+              marked: true,
+              dotColor: 'red',
+            };
+          });
+        }
+      });
+      if (!isEmpty(mark)) {
+        setMarked({...mark});
+      }
+    } else {
+      setCurrentElements(currentServices);
+      setCurrentDate(null);
+    }
+  }, [currentDate]);
 
   useEffect(() => {
     dispatch(getSearchServices({searchParams: {country_id: country.id}}));
+    setCurrentServices(services);
+    setCurrentElements(services);
   }, []);
 
   useMemo(() => {
     setCurrentSearchParams(searchParams);
-    setCurrentElements(services);
   }, [services]);
+
+  const resetServices = () => {
+    dispatch(getSearchServices({searchParams: {country_id: country.id}}));
+    setCurrentDate(null);
+  };
 
   return (
     <BgContainer>
@@ -149,6 +192,7 @@ const CalendarIndexScreen = () => {
             dispatch(
               getSearchServices({
                 searchParams: {date_range: day.dateString},
+                // searchParams: {exact_date: day.dateString},
                 redirect: false,
               }),
             );
@@ -205,20 +249,19 @@ const CalendarIndexScreen = () => {
           // Disable right arrow. Default = false
           disableArrowRight={false}
           markingType={'custom'}
-          markedDates={{
-            '2012-07-16': {
-              selected: true,
-              marked: true,
-              selectedColor: 'green',
-            },
-            '2012-07-17': {marked: true},
-            '2012-07-18': {marked: true, dotColor: 'red', activeOpacity: 0},
-            '2012-07-19': {disabled: true, disableTouchEvent: true},
-          }}
-          style={
-            {
-              // borderWidth: 1,
-            }
+          // markedDates={{
+          //   '2020-09-16': {
+          //     selected: true,
+          //     marked: true,
+          //     selectedColor: 'green',
+          //   },
+          //   '2020-09-17': {marked: true, selected : true },
+          //   '2020-09-18': {marked: true, dotColor: 'red', activeOpacity: 0},
+          //   '2020-09-19': {disabled: true, disableTouchEvent: true},
+          // }}
+          markedDates={marked}
+          selectedDate={
+            currentDate ? currentDate.dateString : moment().format('YYYY-MM-DD')
           }
           // Specify theme properties to override specific styles for calendar parts. Default = {}
           theme={{
@@ -229,6 +272,7 @@ const CalendarIndexScreen = () => {
             selectedDayBackgroundColor: colors.btn_bg_theme_color,
             selectedDayBorderWidth: 5,
             selectedDayTextColor: 'white',
+            selectedDayCircleBackgroundColor: 'blue',
             todayTextColor: colors.btn_bg_theme_color,
             dayTextColor: 'black',
             textDisabledColor: '#d9e1e8',
@@ -249,28 +293,60 @@ const CalendarIndexScreen = () => {
             textDayHeaderFontSize: text.small,
           }}
         />
-        <Button
-          raised
-          containerStyle={{marginBottom: 10, width: '100%'}}
-          buttonStyle={{
-            backgroundColor: colors.btn_bg_theme_color,
-            borderRadius: 0,
-          }}
-          title={I18n.t('search_services')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color,
-          }}
-          disabled={isNull(currentDate)}
-          onPress={() =>
-            dispatch(
-              getSearchServices({
-                searchParams: {date_range: currentDate.dateString},
-                redirect: false,
-              }),
-            )
-          }
-        />
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            margin: 10,
+          }}>
+          {currentDate && (
+            <View
+              style={{
+                flex: 1,
+                height: 40,
+                borderColor: 'lightgrey',
+                borderWidth: 0.5,
+                borderRadius: 3,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'white',
+                marginTop: 1,
+                marginBottom: 10,
+                marginLeft: 10,
+                marginRight: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: text.font,
+                  fontSize: text.small,
+                  padding: 5,
+                }}>
+                {I18n.t('day_selected')}{' '}
+                {moment(currentDate.dateString, 'YYYY-MM-DD').format(
+                  'DD-MM-YYYY',
+                )}
+              </Text>
+            </View>
+          )}
+          <Button
+            raised
+            containerStyle={{marginBottom: 10, width: '45%'}}
+            buttonStyle={{
+              backgroundColor: colors.btn_bg_theme_color,
+              borderRadius: 0,
+            }}
+            title={I18n.t('reset_services')}
+            titleStyle={{
+              fontFamily: text.font,
+              color: colors.btn_text_theme_color,
+            }}
+            disabled={isNull(currentDate)}
+            onPress={() => resetServices()}
+          />
+        </View>
+
         <ElementsVerticalList
           elements={currentElements}
           type="service"
@@ -281,7 +357,7 @@ const CalendarIndexScreen = () => {
           showSortSearch={true}
           showProductsFilter={false}
           showTitleIcons={true}
-          showMore={true}
+          showMore={false}
           showName={true}
           customHeight={150}
           scrollEnabled={false}

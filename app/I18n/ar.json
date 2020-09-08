@@ -673,5 +673,8 @@
   "search_services" : "بحث الخدمات",
   "delete_classified" : "حذف الإعلان",
   "are_u_sure_u_want_to_remove_classified" : "تأكيد حذف الإعلان ؟",
-  "classified_not_removed" : "لم يتم حذف الإعلان بنجاح"
+  "classified_not_removed" : "لم يتم حذف الإعلان بنجاح",
+  "prev" : "السابق",
+  "day_selected" : "اليوم الذي تم اختيارة",
+  "reset_services" : "إعادة تعيين"
 }

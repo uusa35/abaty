@@ -485,7 +485,7 @@ PODS:
   - RNFBApp (6.7.1):
     - Firebase/Core (~> 6.13.0)
     - React
-  - RNGestureHandler (1.7.0):
+  - RNGestureHandler (1.8.0):
     - React
   - RNGoogleSignin (4.0.3):
     - GoogleSignIn (~> 5.0.0)
@@ -510,7 +510,7 @@ PODS:
   - RNSentry (1.7.2):
     - React
     - Sentry (~> 5.2.0)
-  - RNShare (3.7.0):
+  - RNShare (3.7.1):
     - React
   - RNSnackbar (2.2.3):
     - React
@@ -889,7 +889,7 @@ SPEC CHECKSUMS:
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
   RNFBAnalytics: 29bc4baf70da8dc04238d2e1c050367264d2f440
   RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
-  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
   RNGoogleSignin: ccf71ee4b6cfd324fd788a41e457e2043838c0d9
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
@@ -897,7 +897,7 @@ SPEC CHECKSUMS:
   RNReanimated: e1251783216c7cb0a395314c9889d6662d86ed73
   RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
   RNSentry: 2d4a0e18c6dfe93b647c360e0d15c9391d24e9d1
-  RNShare: a1d5064df7a0ebe778d001869b3f0a124bf0a491
+  RNShare: ea0393515826ea8d27a0e17cd3d6f3cc210630d9
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976

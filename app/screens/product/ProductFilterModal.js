@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -34,7 +34,9 @@ const ProductFilterModal = () => {
     settings,
     categories,
     country,
+    searchParams,
   } = useSelector((state) => state);
+  const {product_category_id} = searchParams;
   const dispatch = useDispatch();
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [min, setMin] = useState(0);
@@ -46,7 +48,11 @@ const ProductFilterModal = () => {
     dispatch(
       getSearchProducts({
         searchParams: {
-          product_category_id: selectedCategory ? selectedCategory.id : null,
+          product_category_id: selectedCategory
+            ? selectedCategory.id
+            : product_category_id
+            ? product_category_id
+            : null,
           min,
           max,
           color_id: color ? color.id : null,
@@ -81,6 +87,10 @@ const ProductFilterModal = () => {
   const handleHideModal = useCallback(() => {
     dispatch(hideProductFilter());
   });
+
+  useEffect(() => {
+    setSelectedCategory({id: searchParams.product_category_id});
+  }, [searchParams.product_category_id]);
 
   return (
     <ModalBackContainer
@@ -244,7 +254,7 @@ const ProductFilterModal = () => {
           containerStyle={{
             width: '95%',
             alignSelf: 'center',
-            marginBottom: 10,
+            marginBottom: 50,
             marginTop: 10,
           }}
           buttonStyle={{backgroundColor: 'red'}}

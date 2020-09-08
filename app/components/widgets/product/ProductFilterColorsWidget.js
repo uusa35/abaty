@@ -36,6 +36,7 @@ const ProductFilterColorsWidget = ({elements, type, colors, color}) => {
         padding: 10,
         borderColor: 'lightgrey',
         marginBottom: 10,
+        width: '100%',
       }}>
       <View style={{paddingTop: 5, paddingBottom: 5}}>
         <Text style={{fontFamily: text.font, fontSize: text.medium}}>

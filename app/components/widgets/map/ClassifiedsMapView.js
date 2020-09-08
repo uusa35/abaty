@@ -19,7 +19,7 @@ const ClassifiedsMapView = ({mapModal, setMapModal, elements}) => {
         <TouchableOpacity
           style={styles.btnStyle}
           onPress={() => setMapModal(true)}>
-          <Icon typ="font-awesome" name="map" size={iconSizes.smaller} />
+          <Icon typ="material" name="room" size={iconSizes.smaller} />
         </TouchableOpacity>
       </View>
       <ModalBackContainer

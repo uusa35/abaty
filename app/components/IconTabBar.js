@@ -20,13 +20,13 @@ const IconTabBar = ({type, name, focused}) => {
           borderColor: focused ? colors.btn_bg_theme_color : 'transparent',
         }}
       />
-      {cartLength > 0 && name === 'ios-cart' ? (
+      {cartLength > 0 && name === 'cart-arrow-down' && (
         <Badge
           status="error"
           value={cartLength}
           containerStyle={{position: 'absolute', top: 5, right: -4}}
         />
-      ) : null}
+      )}
     </View>
   );
 };

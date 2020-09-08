@@ -51,7 +51,7 @@ const UserEditFormWidget = ({showIcon = true}) => {
   const [currentCountry, setCurrentCountry] = useState(country);
 
   const handleSelectedCountry = () => {
-    dispatch(showCountryModal());
+    dispatch(showCountryModal({redirect: false}));
   };
 
   useMemo(() => {

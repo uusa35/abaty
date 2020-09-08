@@ -9,12 +9,12 @@ import {StyleSheet, View} from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from './SplashWidget';
 import {height, text} from './../../../constants/sizes';
-import I18n from './../../../I18n';
 import {toggleIntroduction} from '../../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 import PropTypes from 'prop-types';
 import Modal from 'react-native-modal';
+import I18n from './../../../I18n';
 
 const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
@@ -66,14 +66,20 @@ const IntroductionWidget = ({elements}) => {
               prevLabel={I18n.t('back')}
               activeDotStyle={{
                 backgroundColor: settings.colors.btn_bg_theme_color,
+                fontFamily: text.font,
               }}
               buttonTextStyle={{
-                fontFamily: text.font,
                 color: settings.colors.btn_bg_theme_color,
+                fontFamily: text.font,
+                backgroundColor: 'white',
+                borderRadius: 10,
+                fontSize: 18,
+                padding: 8,
               }}
               renderItem={({item, index}) => renderItem(item, index)}
               data={elements}
               onDone={() => handleClick()}
+              onSkip={() => handleClick()}
             />
           </Modal>
         </View>

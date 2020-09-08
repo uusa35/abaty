@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, Fragment} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {View} from 'react-native-animatable';
 import {iconSizes, text} from '../../../constants/sizes';
@@ -138,13 +138,17 @@ const UserImageProfile = ({
               disabled={guest}
             />
           ) : (
-            <Icon
-              name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
-              type="material-community"
-              color={colors.header_tow_theme_color}
-              onPress={() => handleFan(!fanMe)}
-              disabled={guest}
-            />
+            <Fragment>
+              {showFans ? (
+                <Icon
+                  name={fanMe ? 'thumb-up' : 'thumb-up-outline'}
+                  type="material-community"
+                  color={colors.header_tow_theme_color}
+                  onPress={() => handleFan(!fanMe)}
+                  disabled={guest}
+                />
+              ) : null}
+            </Fragment>
           )
         ) : null}
         <TouchableOpacity
