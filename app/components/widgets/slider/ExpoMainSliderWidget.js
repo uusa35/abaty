@@ -23,7 +23,7 @@ const ExpoMainSliderWidget = ({elements}) => {
           {!validate.isEmpty(elements) && (
             <Swiper
               containerStyle={{
-                borderRadius: 20,
+                borderRadius: 10,
                 backgroundColor: 'transparent',
                 alignItems: 'center',
                 justifyContent: 'center',

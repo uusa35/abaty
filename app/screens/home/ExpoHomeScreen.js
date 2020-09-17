@@ -92,6 +92,14 @@ const ExpoHomeScreen = () => {
           title={I18n.t('small_business')}
           searchElements={{is_company: 1, country_id: country.id}}
         />
+        {homeCategories && (
+            <ProductCategoryHorizontalRoundedWidget
+                elements={homeCategories}
+                showName={true}
+                title={I18n.t('categories')}
+                type="products"
+            />
+        )}
         <ExpoHomeScreenBtns />
       </ScrollView>
     </BgContainer>

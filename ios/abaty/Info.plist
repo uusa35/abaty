@@ -129,10 +129,10 @@
 		<string>Tajawal-Medium.ttf</string>
 		<string>Tajawal-Regular.ttf</string>
 		<string>Varela-Regular.ttf</string>
-		<string>bein-ar-black_0.ttf</string>
-		<string>bein-ar-normal_0.ttf</string>
+		<string>Bein-Black.ttf</string>
+		<string>Bein-Normal.ttf</string>
 		<string>cairo.ttf</string>
-		<string>sst-arabic-bold.ttf</string>
+		<string>Sst-Arabicbold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

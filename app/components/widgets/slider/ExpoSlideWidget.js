@@ -16,9 +16,9 @@ const ExpoSlideWidget = ({slide}) => {
             useWebKit={true}
             key={slide.id}
             style={{
-              height: 300,
+              height: 200,
               width: '100%',
-              borderRadius: 20,
+              borderRadius: 15,
               borderColor: 'lightgrey',
             }}
             javaScriptEnabled={true}
@@ -36,9 +36,9 @@ const ExpoSlideWidget = ({slide}) => {
           <ImageLoaderContainer
             img={slide.large}
             style={{
-              width: '99%',
+              width: '100%',
               height: '100%',
-              borderRadius: 20,
+              borderRadius: 10,
               alignSelf: 'center',
             }}
             resizeMode="cover"

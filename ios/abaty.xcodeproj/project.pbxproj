@@ -26,6 +26,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* abatyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* abatyTests.m */; };
 		3359C50F727C4CC5AB2B90AA /* Changa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 051BFB2FDB904BE58C865C3A /* Changa-Bold.ttf */; };
 		3A9CAB5F28664848BC1841A2 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EBAF13FB2C849A09C3D01D1 /* Almarai-Light.ttf */; };
+		45D5012CECE640F2A42BF8ED /* Sst-Arabicbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4917E7A9E554ECA94F65F20 /* Sst-Arabicbold.ttf */; };
+		46D3F3F16F544BBD91DFB17F /* Bein-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F413F950E944C71B5CCEAA2 /* Bein-Black.ttf */; };
 		501C700B2486DFC80087C1EC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C700A2486DFC80087C1EC /* File.swift */; };
 		505E27A724B3237700856CAC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505E27A624B3237700856CAC /* GoogleService-Info.plist */; };
 		50EE9939CB4F443597A54D2C /* ArchivoNarrow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD6F31EFE6694780967532CF /* ArchivoNarrow-Bold.ttf */; };
@@ -36,8 +38,6 @@
 		5A9541E99B5145FB815CEE24 /* Changa-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 096787A2DAAA40C090E91AA9 /* Changa-Light.ttf */; };
 		62C7F8BF9E104A289815852D /* Changa-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2AE8B302DA74A0A857DA5E6 /* Changa-SemiBold.ttf */; };
 		630EA2127C3D4E42A877C45B /* AlMohanad.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAD79B54358240F8A7E149F9 /* AlMohanad.ttf */; };
-		6EA2FF434AC443F9A0E6A8BF /* bein-ar-normal_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 991F123719444373AE8E08DF /* bein-ar-normal_0.ttf */; };
-		75D3C6358E314BB5BED5C8E7 /* bein-ar-black_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FF55BB6F1AC4E97B5AD0A88 /* bein-ar-black_0.ttf */; };
 		7735737721A54A91925DA3BF /* ArchivoNarrow-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D75578371844E99BD5B078D /* ArchivoNarrow-BoldItalic.ttf */; };
 		7BB52A5A1D464500A562A5C2 /* Tajawal-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D63145402C804F05A3725D02 /* Tajawal-Bold.ttf */; };
 		7D1FCC5194EB45958376E5B0 /* ArchivoNarrow-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 863908B509BE470885437926 /* ArchivoNarrow-Italic.ttf */; };
@@ -49,7 +49,7 @@
 		9E367F657E6843328342EA22 /* Changa-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95FE8BE9E4E94AA4A73330E8 /* Changa-ExtraBold.ttf */; };
 		9F71BB95A16B404CB54E5E7E /* Varela-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B594FC379D90435D932A1F8A /* Varela-Regular.ttf */; };
 		A04587AAE7F5452DB668C582 /* Almarai-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07DA9A406283436A83185981 /* Almarai-ExtraBold.ttf */; };
-		AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */; };
+		B0718DEC2173407DB1D8C7E2 /* Bein-Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81459C4716604A11B597826C /* Bein-Normal.ttf */; };
 		B84B5A16E16A4B66926473A0 /* Cairo_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 797468A1188344E495E6D8AC /* Cairo_Black.ttf */; };
 		B916FE7455F14C2D9E0AEB3B /* ArchivoNarrow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7803AECEC1740B499EAB224 /* ArchivoNarrow-Regular.ttf */; };
 		C4CD10B42AB04B71BF9C3183 /* Changa-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC2114BDCAC41C0AD12BE0B /* Changa-Medium.ttf */; };
@@ -96,7 +96,6 @@
 		07DA9A406283436A83185981 /* Almarai-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-ExtraBold.ttf"; path = "../assets/fonts/Almarai-ExtraBold.ttf"; sourceTree = "<group>"; };
 		096787A2DAAA40C090E91AA9 /* Changa-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Changa-Light.ttf"; path = "../assets/fonts/Changa-Light.ttf"; sourceTree = "<group>"; };
 		0CBD174B2DA74E1EA6AE4027 /* Tajawal-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Tajawal-Light.ttf"; path = "../assets/fonts/Tajawal-Light.ttf"; sourceTree = "<group>"; };
-		0FF55BB6F1AC4E97B5AD0A88 /* bein-ar-black_0.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "bein-ar-black_0.ttf"; path = "../assets/fonts/bein-ar-black_0.ttf"; sourceTree = "<group>"; };
 		138C1806978C433C8433ACAB /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Abati.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Abati.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = abaty/AppDelegate.h; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 		5763176C8F0813B9FF8B3894 /* Pods-abaty-abatyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-abatyTests.debug.xcconfig"; path = "Target Support Files/Pods-abaty-abatyTests/Pods-abaty-abatyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D75578371844E99BD5B078D /* ArchivoNarrow-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-BoldItalic.ttf"; path = "../assets/fonts/ArchivoNarrow-BoldItalic.ttf"; sourceTree = "<group>"; };
 		5D9EF50B9E14476E8A591775 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "sst-arabic-bold.ttf"; path = "../assets/fonts/sst-arabic-bold.ttf"; sourceTree = "<group>"; };
 		600F3562FB97B71941007835 /* libPods-abaty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abaty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6149C50E33FD495299B56F91 /* Comfortaa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comfortaa-Regular.ttf"; path = "../assets/fonts/Comfortaa-Regular.ttf"; sourceTree = "<group>"; };
 		6EF26496A2DF43F8A2622E98 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -138,14 +136,15 @@
 		7EF9702FD07F4D32BA6815D3 /* AR-BBC-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "AR-BBC-Regular.ttf"; path = "../assets/fonts/AR-BBC-Regular.ttf"; sourceTree = "<group>"; };
 		8040BB191B8E4C3E8A15BFF4 /* Almarai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Regular.ttf"; path = "../assets/fonts/Almarai-Regular.ttf"; sourceTree = "<group>"; };
 		810AD083FE3E44D6B77FEDA9 /* Actor-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Actor-Regular.ttf"; path = "../assets/fonts/Actor-Regular.ttf"; sourceTree = "<group>"; };
+		81459C4716604A11B597826C /* Bein-Normal.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bein-Normal.ttf"; path = "../assets/fonts/Bein-Normal.ttf"; sourceTree = "<group>"; };
 		81F0B07D2BFE4D059190613D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		863908B509BE470885437926 /* ArchivoNarrow-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ArchivoNarrow-Italic.ttf"; path = "../assets/fonts/ArchivoNarrow-Italic.ttf"; sourceTree = "<group>"; };
 		88700C4E34814371B1B711CB /* Tajawal-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Tajawal-Medium.ttf"; path = "../assets/fonts/Tajawal-Medium.ttf"; sourceTree = "<group>"; };
 		8EBAF13FB2C849A09C3D01D1 /* Almarai-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Light.ttf"; path = "../assets/fonts/Almarai-Light.ttf"; sourceTree = "<group>"; };
 		93050B032906EDBF991ADAE4 /* libPods-abaty-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-abaty-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95FE8BE9E4E94AA4A73330E8 /* Changa-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Changa-ExtraBold.ttf"; path = "../assets/fonts/Changa-ExtraBold.ttf"; sourceTree = "<group>"; };
-		991F123719444373AE8E08DF /* bein-ar-normal_0.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "bein-ar-normal_0.ttf"; path = "../assets/fonts/bein-ar-normal_0.ttf"; sourceTree = "<group>"; };
 		9950A8BBBC6C4A1D84C13C97 /* Ar-Ith.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Ar-Ith.ttf"; path = "../assets/fonts/Ar-Ith.ttf"; sourceTree = "<group>"; };
+		9F413F950E944C71B5CCEAA2 /* Bein-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Bein-Black.ttf"; path = "../assets/fonts/Bein-Black.ttf"; sourceTree = "<group>"; };
 		A3A46B584BFA4C548E4576F8 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		A4736A0A09866421B62C5A0C /* Pods-abaty-abatyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-abaty-abatyTests.release.xcconfig"; path = "Target Support Files/Pods-abaty-abatyTests/Pods-abaty-abatyTests.release.xcconfig"; sourceTree = "<group>"; };
 		A4C872962C6B45949718E488 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -178,6 +177,7 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F10D54BA69AC4EF7A5E83E46 /* Changa-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Changa-Regular.ttf"; path = "../assets/fonts/Changa-Regular.ttf"; sourceTree = "<group>"; };
 		F14B0696045740B685598D17 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
+		F4917E7A9E554ECA94F65F20 /* Sst-Arabicbold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Sst-Arabicbold.ttf"; path = "../assets/fonts/Sst-Arabicbold.ttf"; sourceTree = "<group>"; };
 		FB7112A6A6F244FFAC12FE9A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -374,10 +374,10 @@
 				88700C4E34814371B1B711CB /* Tajawal-Medium.ttf */,
 				4F96AADF226C4F76A80DDC8B /* Tajawal-Regular.ttf */,
 				B594FC379D90435D932A1F8A /* Varela-Regular.ttf */,
-				0FF55BB6F1AC4E97B5AD0A88 /* bein-ar-black_0.ttf */,
-				991F123719444373AE8E08DF /* bein-ar-normal_0.ttf */,
 				723096D63CA2405C8230D6DE /* cairo.ttf */,
-				5E42A956ADAD4F3AA881BBE1 /* sst-arabic-bold.ttf */,
+				9F413F950E944C71B5CCEAA2 /* Bein-Black.ttf */,
+				81459C4716604A11B597826C /* Bein-Normal.ttf */,
+				F4917E7A9E554ECA94F65F20 /* Sst-Arabicbold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -571,10 +571,10 @@
 				505E27A724B3237700856CAC /* GoogleService-Info.plist in Resources */,
 				011F9D1FFBFB47808AF37FD6 /* Tajawal-Regular.ttf in Resources */,
 				9F71BB95A16B404CB54E5E7E /* Varela-Regular.ttf in Resources */,
-				75D3C6358E314BB5BED5C8E7 /* bein-ar-black_0.ttf in Resources */,
-				6EA2FF434AC443F9A0E6A8BF /* bein-ar-normal_0.ttf in Resources */,
 				E7B75AFFADE84825A784BAD1 /* cairo.ttf in Resources */,
-				AB6EAC4FD0F24D7B906BBB72 /* sst-arabic-bold.ttf in Resources */,
+				46D3F3F16F544BBD91DFB17F /* Bein-Black.ttf in Resources */,
+				B0718DEC2173407DB1D8C7E2 /* Bein-Normal.ttf in Resources */,
+				45D5012CECE640F2A42BF8ED /* Sst-Arabicbold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,7 +1078,7 @@
 				INFOPLIST_FILE = abaty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.8;
+				MARKETING_VERSION = 9.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1105,7 +1105,7 @@
 				INFOPLIST_FILE = abaty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 9.8;
+				MARKETING_VERSION = 9.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

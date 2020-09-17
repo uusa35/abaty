@@ -1,11 +1,19 @@
 import {Dimensions} from 'react-native';
 import {isRTL} from '../I18n';
 import {
-  AR_FONT,
-  EN_FONT,
   APP_CASE,
-  ABATI_AR_FONT,
-  ABATI_EN_FONT,
+  FIRST_AR_FONT,
+  SECOND_AR_FONT,
+  THIRD_AR_FONT,
+  FORTH_AR_FONT,
+  FIFTH_AR_FONT,
+  SIXTH_AR_FONT,
+  SEVENTH_AR_FONT,
+  FIRST_EN_FONT,
+  SECOND_EN_FONT,
+  THIRD_EN_FONT,
+  FORTH_EN_FONT,
+  FIFTH_EN_FONT,
 } from '../../app';
 
 export const {height, width} = Dimensions.get('window');
@@ -79,11 +87,11 @@ export const iconSizes = {
 export const getFont = () => {
   switch (APP_CASE) {
     case 'abati':
-      return isRTL ? ABATI_AR_FONT : ABATI_EN_FONT;
+      return isRTL ? SEVENTH_AR_FONT : FIFTH_EN_FONT;
     case 'escrap':
-      return isRTL ? AR_FONT : EN_FONT;
+      return isRTL ? FIRST_AR_FONT : THIRD_EN_FONT;
     default:
-      return isRTL ? AR_FONT : EN_FONT;
+      return isRTL ? FIRST_AR_FONT : THIRD_EN_FONT;
   }
 };
 

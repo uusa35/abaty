@@ -403,7 +403,7 @@ PODS:
     - React
   - react-native-viewpager (4.1.6):
     - React
-  - react-native-webview (10.8.3):
+  - react-native-webview (10.9.0):
     - React
   - React-RCTActionSheet (0.63.2):
     - React-Core/RCTActionSheetHeaders (= 0.63.2)
@@ -505,22 +505,22 @@ PODS:
     - React
   - RNReanimated (1.6.0):
     - React
-  - RNScreens (2.10.1):
+  - RNScreens (2.11.0):
     - React
   - RNSentry (1.7.2):
     - React
     - Sentry (~> 5.2.0)
-  - RNShare (3.7.1):
+  - RNShare (3.8.0):
     - React
   - RNSnackbar (2.2.3):
     - React
   - RNSVG (12.1.0):
     - React
-  - RNVectorIcons (7.0.0):
+  - RNVectorIcons (7.1.0):
     - React
-  - SDWebImage (5.9.0):
-    - SDWebImage/Core (= 5.9.0)
-  - SDWebImage/Core (5.9.0)
+  - SDWebImage (5.9.1):
+    - SDWebImage/Core (= 5.9.1)
+  - SDWebImage/Core (5.9.1)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
@@ -871,7 +871,7 @@ SPEC CHECKSUMS:
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: f44c9e21c37d4cb76d38841c8a450e3891923461
-  react-native-webview: 598605cd213f5096e695f5b33fbee210a47e60ab
+  react-native-webview: bfe5436586b214759bd5043658863549fffc8e92
   React-RCTActionSheet: 910163b6b09685a35c4ebbc52b66d1bfbbe39fc5
   React-RCTAnimation: 9a883bbe1e9d2e158d4fb53765ed64c8dc2200c6
   React-RCTBlob: 39cf0ece1927996c4466510e25d2105f67010e13
@@ -895,13 +895,13 @@ SPEC CHECKSUMS:
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNMagicMove: acc7d9dff86dd68588b01cb3515182e50b50b81c
   RNReanimated: e1251783216c7cb0a395314c9889d6662d86ed73
-  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
   RNSentry: 2d4a0e18c6dfe93b647c360e0d15c9391d24e9d1
-  RNShare: ea0393515826ea8d27a0e17cd3d6f3cc210630d9
+  RNShare: de920edd210de542197f92e88669d864d67c58cb
   RNSnackbar: a08d0d7e1e18c7312cd2b9c6f476211267855bce
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
-  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
+  RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
+  SDWebImage: a990c053fff71e388a10f3357edb0be17929c9c5
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Sentry: 8fa58a051237554f22507fb483b9a1de0171a2dc
   SRSRadialGradient: c8ab040309de2b2c1fc3f5c4804f2436c2df1f1a

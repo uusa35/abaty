@@ -118,7 +118,7 @@ const CalendarIndexScreen = () => {
   const [currentElements, setCurrentElements] = useState([]);
   const [currentDate, setCurrentDate] = useState(null);
   const [marked, setMarked] = useState({});
-  const [currentServices, setCurrentServices] = useState([]);
+  const [currentServices, setCurrentServices] = useState(services);
 
   useMemo(() => {
     if (!isEmpty(services)) {

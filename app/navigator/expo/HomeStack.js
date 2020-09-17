@@ -127,7 +127,7 @@ export const HomeStack = createStackNavigator(
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
-          <HeaderRight showCountry={true} displayShare={false} />
+          <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: () => null,
@@ -308,7 +308,7 @@ export const HomeStack = createStackNavigator(
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => (
-          <HeaderRight displayShare={true} showCountry={true} />
+          <HeaderRight displayShare={true} showCountry={false} showCart={true} />
         ),
         headerBackTitle: () => null,
       }),
@@ -318,7 +318,7 @@ export const HomeStack = createStackNavigator(
       screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
-        headerRight: () => <HeaderRight showCountry={true} />,
+        headerRight: () => <HeaderRight showCountry={false} />,
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),

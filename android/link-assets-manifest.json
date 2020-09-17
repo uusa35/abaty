@@ -70,6 +70,14 @@
       "sha1": "64e6251011da083f2282f2a82f7a01f4185db19c"
     },
     {
+      "path": "assets/fonts/Bein-Black.ttf",
+      "sha1": "d507481e512d28a1072934e5f35d886657036943"
+    },
+    {
+      "path": "assets/fonts/Bein-Normal.ttf",
+      "sha1": "611eda46029c4c097393a8d71ca86ff0d0ccd7cd"
+    },
+    {
       "path": "assets/fonts/Cairo-Black.ttf",
       "sha1": "9a1a828f6bdd39f8446b2a4b1e46f65ccf724bc9"
     },
@@ -134,6 +142,10 @@
       "sha1": "3906425c3caf64aa15ee1ce5575672d5e32932a9"
     },
     {
+      "path": "assets/fonts/Sst-Arabicbold.ttf",
+      "sha1": "5f4069260d5d694d859577313cdd2cc286d35ead"
+    },
+    {
       "path": "assets/fonts/Tajawal-Black.ttf",
       "sha1": "ee4e49edd045a905d40671d48b35cbce15ccb330"
     },
@@ -166,20 +178,8 @@
       "sha1": "4c1336839e046d91ec6bb011bd9a76ce42b5c632"
     },
     {
-      "path": "assets/fonts/bein-ar-black_0.ttf",
-      "sha1": "d507481e512d28a1072934e5f35d886657036943"
-    },
-    {
-      "path": "assets/fonts/bein-ar-normal_0.ttf",
-      "sha1": "611eda46029c4c097393a8d71ca86ff0d0ccd7cd"
-    },
-    {
       "path": "assets/fonts/cairo.ttf",
       "sha1": "775ca60f44bcf9369b75a542acfcf58d4e5fa5d2"
-    },
-    {
-      "path": "assets/fonts/sst-arabic-bold.ttf",
-      "sha1": "5f4069260d5d694d859577313cdd2cc286d35ead"
     }
   ]
 }

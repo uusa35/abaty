@@ -1,7 +1,7 @@
 /**
  * Created by usamaahmed on 9/28/17.
  */
-import React, {useMemo, useState} from 'react';
+import React, {useContext, useMemo, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
   hideCountryModal,
@@ -20,6 +20,7 @@ import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';
 import {isIOS} from '../constants';
+import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 
 export const HeaderRight = ({
   showCountry = false,
@@ -28,8 +29,10 @@ export const HeaderRight = ({
   showProductsSearch = false,
   showExpoSearch = false,
   showHome = false,
+                              showCart = false,
 }) => {
   const {country, settings, countryModal} = useSelector((state) => state);
+  const {cartLength, colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {params} = navigation.state;
@@ -167,6 +170,31 @@ export const HeaderRight = ({
           color="black"
         />
       )}
+      {showCart &&
+          <View>
+            <Icon
+                onPress={() => navigation.navigate('CartIndex')}
+                name="shoppingcart"
+                type="antdesign"
+                size={iconSizes.small}
+                underlayColor="transparent"
+                hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+                color={colors.icon_theme_color}
+            />
+            {cartLength > 0 ? (
+                <Badge
+                    status="error"
+                    value={cartLength}
+                    containerStyle={{
+                      position: 'absolute',
+                      top: -4,
+                      right: -4,
+                      opacity: 0.8,
+                    }}
+                />
+            ) : null}
+          </View>
+      }
     </View>
   );
 };

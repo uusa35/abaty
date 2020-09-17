@@ -323,6 +323,7 @@ export async function makeMyFatoorahPayment(params) {
 }
 
 export async function makeTapPayment(params) {
+  console.log('params', params);
   return await axiosInstance
     .post(`tap/payment`, params)
     .then((r) => r.data)

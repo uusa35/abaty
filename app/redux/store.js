@@ -16,7 +16,7 @@ const persistConfig = {
   // transforms: [networkTransform],
   blacklist: [
     'message',
-    'cart',
+    // 'cart',
     'coupon',
     'shipment_fees',
     'countryModal',
