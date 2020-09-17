@@ -23,6 +23,10 @@ const appUrl = () => {
       return 'http://myexpo.live/';
     case 'daily':
       return 'http://dailydresskw.com/';
+    case 'nashkw':
+      return 'http://nashkw.com/';
+    case 'bits':
+      return 'http://bits.ideasowners.net/';
     default:
       return 'http://mallr.test/';
   }

@@ -1,27 +1,25 @@
 import React from 'react';
-import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
+import {RefreshControl, ScrollView, View, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
 import PropTypes from 'prop-types';
 import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
+import MainSliderWidget from '../../components/widgets/slider/MainSliderWidget';
 import validate from 'validate.js';
 import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
 import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
+import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
-import ExpoMainSliderWidget from '../../components/widgets/slider/ExpoMainSliderWidget';
-import ExpoDesignerHorizontalWidget from '../../components/widgets/user/ExpoDesignerHorizontalWidget';
-import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns';
+import ProductSearchForm from '../../components/widgets/search/ProductSearchForm';
 import BgContainer from '../../components/containers/BgContainer';
-import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
-import {bottomContentInset, height} from '../../constants/sizes';
-import {isIOS} from '../../constants';
+import {bottomContentInset} from '../../constants/sizes';
 
-const ExpoHomeScreen = () => {
+const NashHomeScreen = () => {
   const {
     homeCategories,
     commercials,
@@ -30,12 +28,10 @@ const ExpoHomeScreen = () => {
     homeDesigners,
     homeCelebrities,
     homeProducts,
-    homeCompanies,
     splashes,
     show_commercials,
     services,
     showIntroduction,
-    mainBg,
     country,
     settings,
   } = useSelector((state) => state);
@@ -45,7 +41,6 @@ const ExpoHomeScreen = () => {
 
   return (
     <BgContainer>
-      <AppHomeConfigComponent />
       {settings.splash_on && (
         <IntroductionWidget
           elements={splashes}
@@ -54,10 +49,14 @@ const ExpoHomeScreen = () => {
         />
       )}
       <ScrollView
-        contentContainerStyle={{
-          backgroundColor: 'transparent',
-          paddingTop: isIOS ? '25%' : '20%',
-        }}
+        contentContainerStyle={{backgroundColor: 'transparent'}}
+        contentInset={{bottom: 50}}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            onRefresh={() => handleRefresh()}
+          />
+        }
         contentInset={{bottom: bottomContentInset}}
         horizontal={false}
         scrollEnabled={true}
@@ -66,32 +65,21 @@ const ExpoHomeScreen = () => {
         showsVerticalScrollIndicator={false}
         endFillColor="white"
         style={{
+          flex: 0.8,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
-        }}
-        refreshControl={
-          <RefreshControl
-            refreshing={false}
-            onRefresh={() => handleRefresh()}
+        }}>
+        <ProductSearchForm />
+        <MainSliderWidget elements={slides} />
+        {homeDesigners && (
+          <DesignersHorizontalWidget
+            elements={homeDesigners}
+            showName={true}
+            name={I18n.t('designers')}
+            title={I18n.t('designers')}
+            searchParams={{is_designer: 1, country_id: country.id}}
           />
-        }>
-        {/*<ProductSearchForm />*/}
-        <ExpoMainSliderWidget elements={slides} />
-        {/* expo is a designer */}
-        <ExpoDesignerHorizontalWidget
-          elements={homeDesigners}
-          showName={true}
-          name={I18n.t('expos')}
-          title={I18n.t('expos')}
-          searchElements={{is_designer: 1, country_id: country.id}}
-        />
-        <ExpoDesignerHorizontalWidget
-          elements={homeCompanies}
-          showName={true}
-          name={I18n.t('small_business')}
-          title={I18n.t('small_business')}
-          searchElements={{is_company: 1, country_id: country.id}}
-        />
+        )}
         {homeCategories && (
           <ProductCategoryHorizontalRoundedWidget
             elements={homeCategories}
@@ -100,13 +88,54 @@ const ExpoHomeScreen = () => {
             type="products"
           />
         )}
-        <ExpoHomeScreenBtns />
+        {homeCelebrities && (
+          <CelebrityHorizontalWidget
+            elements={homeCelebrities}
+            showName={true}
+            name="celebrities"
+            title={I18n.t('celebrities')}
+            searchParams={{
+              is_celebrity: 1,
+              country_id: country.id,
+              on_home: true,
+            }}
+          />
+        )}
+        {homeProducts && (
+          <ProductHorizontalWidget
+            elements={homeProducts}
+            showName={true}
+            title={I18n.t('featured_products')}
+            searchParams={{on_home: 1, country_id: country.id}}
+          />
+        )}
+        {!validate.isEmpty(brands) && validate.isArray(brands) && (
+          <BrandHorizontalWidget
+            elements={brands}
+            showName={false}
+            title={I18n.t('brands')}
+          />
+        )}
+        {!validate.isEmpty(services) && (
+          <ServiceHorizontalWidget
+            elements={services}
+            showName={true}
+            title={I18n.t('our_services')}
+          />
+        )}
       </ScrollView>
+      {show_commercials && (
+        <View style={{flex: 0.2}}>
+          {!validate.isEmpty(commercials) && (
+            <FixedCommercialSliderWidget sliders={commercials} />
+          )}
+        </View>
+      )}
     </BgContainer>
   );
 };
 
-export default ExpoHomeScreen;
+export default NashHomeScreen;
 
 const styles = StyleSheet.create({
   safeContainer: {

@@ -16,7 +16,7 @@ import CompanyIndexScreen from '../../screens/company/CompanyIndexScreen';
 import CelebrityIndexScreen from '../../screens/celebrity/CelebrityIndexScreen';
 import CompanyShowScreen from '../../screens/company/CompanyShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
-import DesignerShowScreen from '../../screens/designer/expo/DesignerShowScreen';
+import DesignerShowScreen from '../../screens/designer/abati/DesignerShowScreen';
 import CelebrityShowScreen from '../../screens/celebrity/CelebrityShowScreen';
 import NormalProductShow from '../../screens/product/NormalProductShowScreen';
 import ProductIndexScreen from '../../screens/product/ProductIndexScreen';
@@ -34,8 +34,6 @@ import ProfileIndexScreen from '../../screens/auth/ProfileIndexScreen';
 import OrderIndexScreen from '../../screens/OrderIndexScreen';
 import HomeKeyHomeScreen from '../../screens/home/HomeKeyHomeScreen';
 import EscrapHomeScreen from '../../screens/home/EscrapHomeScreen';
-import ClassifiedIndexScreen from '../../screens/classified/ClassifiedIndexScreen';
-import ClassifiedShowScreen from '../../screens/classified/ClassifiedShowScreen';
 import ClassifiedStoreScreen from '../../screens/classified/ClassifiedStoreScreen';
 import ChooseCategoryScreen from '../../screens/classified/ChooseCategoryScreen';
 import CategoryGroupsScreen from '../../screens/classified/CategoryGroupsScreen';
@@ -48,44 +46,39 @@ import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategory
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
-import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import PolicyScreen from '../../screens/PolicyScreen';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
-import PageOneScreen from '../../screens/PageOneScreen';
-import PageTwoScreen from '../../screens/PageTwoScreen';
-import {text, width} from '../../constants/sizes';
-import PageThreeScreen from '../../screens/PageThreeScreen';
-import PageFourScreen from '../../screens/PageFourScreen';
-import CalendarIndexScreen from '../../screens/calender/CalendarIndexScreen';
-import TransparentProductShowScreen from '../../screens/product/TransparentProductShowScreen';
-import RoleIndexScreen from '../../screens/role/RoleIndexScreen';
+import ClassifiedIndexAllScreen from '../../screens/classified/ClassifiedIndexAllScreen';
+import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import {isIOS} from '../../constants';
+import RoleIndexScreen from '../../screens/role/RoleIndexScreen';
+import NashHomeScreen from '../../screens/home/NashHomeScreen';
+import BitsHomeScreen from '../../screens/home/BitsHomeScreen';
 
 export const HomeStack = createStackNavigator(
   {
+    // Introduction: {
+    //   screen: IntroductionScreen,
+    //   navigationOptions: ) => ({
+    //     header: null,
+    //     showLabel: false,
+    //     showIcon: false,
+    //     tabBarVisible: false
+    //   })
+    // },
     Home: {
-      screen: ExpoHomeScreen,
+      screen: BitsHomeScreen,
       navigationOptions: () => ({
-        headerLeft: () => (
-          <HeaderLeft showCart={false} enableProductFilter={true} />
-        ),
-        headerRight: (
-          <HeaderRight
-            displayShare={false}
-            showCountry={true}
-            showClassifiedsFilter={false}
-            showProductsSearch={false}
-            showExpoSearch={true}
-          />
+        headerLeft: () => <HeaderLeft showCart={true} />,
+        headerRight: () => (
+          <HeaderRight displayShare={false} showCountry={true} />
         ),
         headerTitle: () => (
           <HeaderMiddle title={I18n.t('home')} showLogo={true} />
         ),
         headerBackTitle: () => null,
-        headerTransparent: true,
         headerStyle: {
-          backgroundColor: 'transparent',
+          borderBottomColor: 'lightgrey',
+          borderBottomWidth: 0.5,
         },
       }),
     },
@@ -122,12 +115,37 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
+    Expo: {
+      screen: ExpoHomeScreen,
+      navigationOptions: () => ({
+        headerLeft: () => (
+          <HeaderLeft showCart={false} enableProductFilter={true} />
+        ),
+        headerRight: (
+          <HeaderRight
+            displayShare={false}
+            showCountry={true}
+            showClassifiedsFilter={false}
+            showProductsSearch={false}
+            showExpoSearch={true}
+          />
+        ),
+        headerTitle: () => (
+          <HeaderMiddle title={I18n.t('home')} showLogo={true} />
+        ),
+        headerBackTitle: () => null,
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'transparent',
+        },
+      }),
+    },
     CartIndex: {
       screen: CartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
-          <HeaderRight showCountry={false} displayShare={false} />
+          <HeaderRight showCountry={true} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: () => null,
@@ -161,7 +179,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
         ),
-        headerTitle: () => (
+        headerTitle: (
           <HeaderMiddle
             title={
               navigation.state.params &&
@@ -251,7 +269,6 @@ export const HomeStack = createStackNavigator(
     DesignerShow: {
       screen: DesignerShowScreen,
       navigationOptions: ({navigation}) => ({
-        headerTransparent: true,
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
@@ -302,17 +319,13 @@ export const HomeStack = createStackNavigator(
     },
 
     Product: {
-      screen: TransparentProductShowScreen,
+      screen: NormalProductShow,
       navigationOptions: ({navigation}) => ({
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
         headerRight: () => (
-          <HeaderRight
-            displayShare={true}
-            showCountry={false}
-            showCart={true}
-          />
+          <HeaderRight displayShare={true} showCountry={true} />
         ),
         headerBackTitle: () => null,
       }),
@@ -322,7 +335,7 @@ export const HomeStack = createStackNavigator(
       screen: SearchProductIndexScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
-        headerRight: () => <HeaderRight showCountry={false} />,
+        headerRight: () => <HeaderRight showCountry={true} />,
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
@@ -344,9 +357,7 @@ export const HomeStack = createStackNavigator(
       screen: FavoriteProductIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
-        headerRight: () => (
-          <HeaderRight displayShare={false} showCountry={false} />
-        ),
+        headerRight: () => <HeaderRight displayShare={false} />,
         headerTitle: () => <HeaderMiddle title={I18n.t('wishlist')} />,
         headerBackTitle: () => null,
       }),
@@ -445,7 +456,7 @@ export const HomeStack = createStackNavigator(
         headerRight: () => (
           <HeaderRight showCountry={true} displayShare={false} />
         ),
-        headerTitle: () => (
+        headerTitle: (
           <HeaderMiddle title={I18n.t('homekey')} showLogo={false} />
         ),
         headerBackTitle: () => null,
@@ -467,12 +478,10 @@ export const HomeStack = createStackNavigator(
       }),
     },
     ClassifiedIndex: {
-      screen: ClassifiedIndexScreen,
+      screen: ClassifiedIndexAllScreen,
       navigationOptions: ({navigation}) => ({
         // headerLeft: () => <HeaderLeft  />,
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
+        headerTitle: () => <HeaderMiddle title={I18n.t('classifieds')} />,
         headerRight: () => <HeaderRight showFilter={true} showCountry={true} />,
         headerBackTitle: () => null,
       }),
@@ -549,14 +558,6 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: () => null,
       },
     },
-    CalendarIndex: {
-      screen: CalendarIndexScreen,
-      navigationOptions: {
-        headerTitle: () => <HeaderMiddle title={I18n.t('calendar')} />,
-        headerRight: () => <HeaderRight display={false} showCountry={true} />,
-        headerBackTitle: () => null,
-      },
-    },
     RoleIndex: {
       screen: RoleIndexScreen,
       navigationOptions: {
@@ -565,99 +566,23 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: () => null,
       },
     },
-    Search: {
-      screen: createMaterialTopTabNavigator(
-        {
-          PageOne: {
-            screen: PageOneScreen,
-            navigationOptions: {
-              headerBackTitle: () => null,
-            },
-          },
-          PageTwo: {
-            screen: PageTwoScreen,
-            navigationOptions: {
-              headerBackTitle: () => null,
-            },
-          },
-          PageThree: {
-            screen: PageThreeScreen,
-            navigationOptions: {
-              headerBackTitle: () => null,
-            },
-          },
-          // PageFour: {
-          //   screen: PageFourScreen,
-          //   navigationOptions: {
-          //     headerBackTitle: () => null,
-          //   },
-          // },
-        },
-        {
-          tabBarOptions: {
-            lazy: false,
-            showIcon: false,
-            scrollEnabled: true,
-            allowFontScaling: false,
-            activeTintColor: 'black',
-            inactiveTintColor: '#b2b2b2',
-            activeBackgroundColor: 'transparent',
-            labelStyle: {
-              fontFamily: text.font,
-            },
-            style: {
-              backgroundColor: 'transparent',
-              maxHeight: 50,
-              width: '100%',
-              alignSelf: 'flex-start',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-start',
-              borderBottomWidth: 0.5,
-              borderColor: 'lightgrey',
-            },
-            tabStyle: {
-              backgroundColor: 'white',
-              width: width / 3,
-            },
-            indicatorStyle: {
-              backgroundColor: 'black',
-            },
-          },
-          navigationOptions: () => ({
-            // header : null
-            // tabBarVisible: true,
-            // headerLeft: () => <HeaderLeft />,
-            // headerRight: (
-            //   <HeaderRight displayShare={false} showCountry={true} />
-            // ),
-            headerTitle: () => (
-              <HeaderMiddle showLogo={true} title={I18n.t('home')} />
-            ),
-            headerBackTitle: () => null,
-          }),
-          initialRouteName: 'PageThree',
-          order: ['PageThree', 'PageTwo', 'PageOne'],
-        },
-      ),
-    },
   },
   {
     mode: 'card',
     headerMode: 'screen',
-    swipeEnabled: true,
     animation: 'spring',
-    gesturesEnabled: true,
+    swipeEnabled: true,
     defaultNavigationOptions: () => ({
       animationEnabled: isIOS,
     }),
-    config: {
-      stiffness: 1000,
-      damping: 500,
-      mass: 3,
-      overshootClamping: true,
-      restDisplacementThreshold: 0.01,
-      restSpeedThreshold: 0.01,
-    },
+    // config: {
+    //   stiffness: 1000,
+    //   damping: 500,
+    //   mass: 3,
+    //   overshootClamping: true,
+    //   restDisplacementThreshold: 0.01,
+    //   restSpeedThreshold: 0.01,
+    // },
   },
 );
 

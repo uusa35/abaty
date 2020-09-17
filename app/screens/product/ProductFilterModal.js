@@ -10,7 +10,7 @@ import {width, text} from '../../constants/sizes';
 import {isIOS} from '../../constants';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import PropTypes from 'prop-types';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button} from 'react-native-elements';
 import {hideProductFilter, setColor, setSize} from '../../redux/actions';
 import I18n from './../../I18n';

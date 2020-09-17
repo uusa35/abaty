@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
   image: {
     width: 90,
     height: 90,
-    borderRadius: 15
+    borderRadius: 15,
   },
 });

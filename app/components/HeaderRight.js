@@ -9,7 +9,7 @@ import {
   showCountryModal,
   showProductFilter,
 } from '../redux/actions';
-import {Icon} from 'react-native-elements';
+import {Icon, Badge} from 'react-native-elements';
 import {linkingPrefix} from '../constants/links';
 import Share from 'react-native-share';
 import I18n from '../I18n';
@@ -29,7 +29,7 @@ export const HeaderRight = ({
   showProductsSearch = false,
   showExpoSearch = false,
   showHome = false,
-                              showCart = false,
+  showCart = false,
 }) => {
   const {country, settings, countryModal} = useSelector((state) => state);
   const {cartLength, colors} = useContext(GlobalValuesContext);
@@ -170,31 +170,31 @@ export const HeaderRight = ({
           color="black"
         />
       )}
-      {showCart &&
-          <View>
-            <Icon
-                onPress={() => navigation.navigate('CartIndex')}
-                name="shoppingcart"
-                type="antdesign"
-                size={iconSizes.small}
-                underlayColor="transparent"
-                hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
-                color={colors.icon_theme_color}
+      {showCart && (
+        <View>
+          <Icon
+            onPress={() => navigation.navigate('CartIndex')}
+            name="shoppingcart"
+            type="antdesign"
+            size={iconSizes.small}
+            underlayColor="transparent"
+            hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+            color={colors.icon_theme_color}
+          />
+          {cartLength > 0 ? (
+            <Badge
+              status="error"
+              value={cartLength}
+              containerStyle={{
+                position: 'absolute',
+                top: -4,
+                right: -4,
+                opacity: 0.8,
+              }}
             />
-            {cartLength > 0 ? (
-                <Badge
-                    status="error"
-                    value={cartLength}
-                    containerStyle={{
-                      position: 'absolute',
-                      top: -4,
-                      right: -4,
-                      opacity: 0.8,
-                    }}
-                />
-            ) : null}
-          </View>
-      }
+          ) : null}
+        </View>
+      )}
     </View>
   );
 };
