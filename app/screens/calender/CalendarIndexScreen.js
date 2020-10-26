@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from 'react';
-import {Linking, ScrollView, View, Text} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import moment from 'moment';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -9,9 +9,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSearchServices} from '../../redux/actions/service';
-import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 import {iconSizes, text} from '../../constants/sizes';
-import {appUrlIos} from '../../env';
 import {isNull, map, filter, keys, isEmpty} from 'lodash';
 LocaleConfig.locales['ar'] = {
   monthNames: [
@@ -139,9 +137,17 @@ const CalendarIndexScreen = () => {
         if (!isEmpty(currentDates)) {
           currentDates.forEach((day) => {
             mark[moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD')] = {
-              selected: true,
+              selected:
+                moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD') >
+                moment().format('YYYY-MM-DD'),
               marked: true,
               dotColor: 'red',
+              selectedColor:
+                currentDate &&
+                moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD') ===
+                  currentDate.dateString
+                  ? 'red'
+                  : colors.btn_bg_theme_color,
             };
           });
         }
@@ -248,7 +254,7 @@ const CalendarIndexScreen = () => {
           disableArrowLeft={false}
           // Disable right arrow. Default = false
           disableArrowRight={false}
-          markingType={'custom'}
+          // markingType={'custom'}
           // markedDates={{
           //   '2020-09-16': {
           //     selected: true,

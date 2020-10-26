@@ -301,16 +301,17 @@ const CartList = ({
           </View>
         ) : null}
         <View>
-          {/*<Button*/}
-          {/*  raised*/}
-          {/*  title={shipment_notes}*/}
-          {/*  type="outline"*/}
-          {/*  containerStyle={{marginBottom: 20}}*/}
-          {/*  titleStyle={{*/}
-          {/*    fontFamily: text.font,*/}
-          {/*    color: colors.header_one_theme_color,*/}
-          {/*  }}*/}
-          {/*/>*/}
+          <Button
+            raised
+            title={shipment_notes}
+            type="outline"
+            containerStyle={{marginBottom: 20}}
+            titleStyle={{
+              fontFamily: text.font,
+              fontSize: text.medium,
+              color: colors.header_one_theme_color,
+            }}
+          />
           <View style={{paddingTop: 20, paddingBottom: 20}}>
             <Input
               editable={editMode}

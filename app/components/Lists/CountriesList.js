@@ -63,7 +63,7 @@ const CountriesList = ({country, countries}) => {
     <View>
       <Modal
         isVisible={countryModal}
-        useNativeDriver={isIOS}
+        useNativeDriver={true}
         hideModalContentWhileAnimating={true}
         animationIn="slideInUp"
         style={{margin: 0}}

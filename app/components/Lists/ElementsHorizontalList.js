@@ -56,7 +56,6 @@ import ClassifiedWidget from '../widgets/classified/ClassifiedWidget';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
 import {setElementType} from '../../redux/actions';
 import UserWidgetHorizontal from '../widgets/user/UserWidgetHorizontal';
-import {isIOS} from '../../constants';
 import {convertNumberToEnglish} from '../../helpers';
 import OrderWidget from '../widgets/order/OrderWidget';
 import {
@@ -379,7 +378,6 @@ const ElementsHorizontalList = ({
         return (
           <CompanyHorizontalWidget
             user={item}
-            showRating={false}
             showName={true}
             showDescription={true}
             handleClick={handleClick}
@@ -392,6 +390,7 @@ const ElementsHorizontalList = ({
             user={item}
             showName={true}
             showDescription={true}
+            showRating={ABATI}
           />
         );
         break;

@@ -8,7 +8,7 @@ import Share from 'react-native-share';
 import {linkingPrefix} from './../constants/links';
 import I18n from './../I18n';
 import {useNavigation} from 'react-navigation-hooks';
-import {APP_CASE} from '../../app';
+import {APP_CASE, ABATI} from '../../app';
 import {useSelector} from 'react-redux';
 
 const HeaderCustom = () => {
@@ -21,21 +21,23 @@ const HeaderCustom = () => {
   const [shareMessage, setShareMessage] = useState('');
 
   useMemo(() => {
-    setDownloadTitleMessage(
-      settings.apple || settings.android
-        ? `${I18n.t('download_app')} ${'\n'}`
-        : '',
-    );
-    setAndroidMessage(
-      settings.android
-        ? `${settings.android ? I18n.t('android') : ''} : ${
-            settings.android ? settings.android : ''
-          } ${'\n'}`
-        : '',
-    );
-    setIphoneMessage(
-      settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
-    );
+    if(!ABATI) {
+      setDownloadTitleMessage(
+          settings.apple || settings.android
+              ? `${I18n.t('download_app')} ${'\n'}`
+              : '',
+      );
+      setAndroidMessage(
+          settings.android
+              ? `${settings.android ? I18n.t('android') : ''} : ${
+                  settings.android ? settings.android : ''
+                  } ${'\n'}`
+              : '',
+      );
+      setIphoneMessage(
+          settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
+      );
+    }
     setShareMessage(
       `${'\n'} ${I18n.t('share_file', {
         name: I18n.t(APP_CASE),

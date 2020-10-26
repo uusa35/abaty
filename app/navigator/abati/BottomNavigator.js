@@ -19,10 +19,19 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: HomeStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="home" type="octicon" />
+          <IconTabBar
+            focused={focused}
+            name="home"
+            type="octicon"
+            showLabel={true}
+          />
         ),
         tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('home')} focused={focused} />
+          <TextTabBar
+            title={I18n.t('home')}
+            focused={focused}
+            showLabel={true}
+          />
         ),
       }),
     },
@@ -41,10 +50,19 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: VideoStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar focused={focused} name="play-video" type="foundation" />
+          <IconTabBar
+            focused={focused}
+            name="play-video"
+            type="foundation"
+            showLabel={true}
+          />
         ),
         tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('videos')} focused={focused} />
+          <TextTabBar
+            title={I18n.t('videos')}
+            focused={focused}
+            showLabel={true}
+          />
         ),
       }),
     },
@@ -52,10 +70,15 @@ export const BottomTabsStack = createBottomTabNavigator(
       screen: SettingStack,
       navigationOptions: () => ({
         tabBarIcon: ({focused}) => (
-          <IconTabBar name="person" type="fontisto" focused={focused} />
+          <IconTabBar
+            name="person"
+            type="fontisto"
+            focused={focused}
+            showLabel={true}
+          />
         ),
         tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('me')} focused={focused} />
+          <TextTabBar title={I18n.t('me')} focused={focused} showLabel={true} />
         ),
         headerLeft: () => <HeaderLeft />,
         headerRight: () => <HeaderRight display={true} />,
@@ -81,10 +104,15 @@ export const BottomTabsStack = createBottomTabNavigator(
             focused={focused}
             name="sort-by-alpha"
             type="material-icon"
+            showLabel={true}
           />
         ),
         tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('all_products')} focused={focused} />
+          <TextTabBar
+            title={I18n.t('all_products')}
+            focused={focused}
+            showLabel={true}
+          />
         ),
       }),
     },
@@ -96,10 +124,15 @@ export const BottomTabsStack = createBottomTabNavigator(
             focused={focused}
             name="customerservice"
             type="antdesign"
+            showLabel={true}
           />
         ),
         tabBarLabel: ({focused}) => (
-          <TextTabBar title={I18n.t('services')} focused={focused} />
+          <TextTabBar
+            title={I18n.t('services')}
+            focused={focused}
+            showLabel={true}
+          />
         ),
       }),
     },

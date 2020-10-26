@@ -152,7 +152,7 @@ const App = () => {
         validate.isString(message.content) &&
         isConnected &&
         bootStrapped && <AlertMessage message={message} />}
-      {bootStrapped && settings && <ProductFilterModal />}
+      {bootStrapped && !validate.isEmpty(settings) && <ProductFilterModal />}
     </Fragment>
   );
 };

@@ -97,7 +97,7 @@ const UserWidgetHorizontal = ({
               imageSize={15}
             />
           )}
-          {showDescription && (
+          {showDescription && !showRating ? (
             <Text
               style={[
                 widgetStyles.elementName,
@@ -112,7 +112,7 @@ const UserWidgetHorizontal = ({
               ]}>
               {user.description}
             </Text>
-          )}
+          ) : null}
         </View>
       ) : null}
     </TouchableOpacity>

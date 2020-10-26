@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useCallback} from 'react';
 import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
-import {getSearchServices} from '../../../redux/actions/service';
+import {getSearchServices, getService} from '../../../redux/actions/service';
 import {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import ServiceWidget from './ServiceWidget';
@@ -15,7 +15,18 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const ServiceHorizontalWidget = ({showName, title}) => {
   const dispatch = useDispatch();
-  const {settings, homeServices} = useSelector((state) => state);
+  const {settings, homeServices, token } = useSelector((state) => state);
+
+  const handleClick = useCallback((element) => {
+      return dispatch(
+          getService({
+              id: element.id,
+              api_token: token ? token : null,
+              redirect: true,
+          }),
+      );
+  })
+
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
       <TouchableOpacity
@@ -56,6 +67,7 @@ const ServiceHorizontalWidget = ({showName, title}) => {
             showName={showName}
             key={i}
             minWidth={200}
+            handleClick={handleClick}
           />
         ))}
       </ScrollView>

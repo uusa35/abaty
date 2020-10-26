@@ -91,7 +91,7 @@ export const getFont = () => {
     case 'escrap':
       return isRTL ? FIRST_AR_FONT : THIRD_EN_FONT;
     default:
-      return isRTL ? FIRST_AR_FONT : THIRD_EN_FONT;
+      return isRTL ? FIRST_AR_FONT : FIFTH_EN_FONT;
   }
 };
 

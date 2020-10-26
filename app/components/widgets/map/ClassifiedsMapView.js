@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {TouchableOpacity, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, View, StyleSheet, Text} from 'react-native';
 import {Icon} from 'react-native-elements';
 import I18n from '../../../I18n';
 import {text, width, height, iconSizes} from '../../../constants/sizes';
@@ -20,6 +20,15 @@ const ClassifiedsMapView = ({mapModal, setMapModal, elements}) => {
           style={styles.btnStyle}
           onPress={() => setMapModal(true)}>
           <Icon typ="material" name="room" size={iconSizes.smaller} />
+          <Text
+            style={{
+              fontFamily: text.font,
+              fontSize: text.small,
+              paddingLeft: 10,
+              paddingRight: 10,
+            }}>
+            {I18n.t('map')}
+          </Text>
         </TouchableOpacity>
       </View>
       <ModalBackContainer

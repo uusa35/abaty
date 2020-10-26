@@ -15,7 +15,7 @@ import Share from 'react-native-share';
 import I18n from '../I18n';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
-import {APP_CASE, HOMEKEY, EXPO} from '../../app';
+import {APP_CASE, HOMEKEY, EXPO, ABATI} from '../../app';
 import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';
@@ -42,21 +42,23 @@ export const HeaderRight = ({
   const [shareMessage, setShareMessage] = useState('');
 
   useMemo(() => {
-    setDownloadTitleMessage(
-      settings.apple || settings.android
-        ? `${I18n.t('download_app')} ${'\n'}`
-        : '',
-    );
-    setAndroidMessage(
-      settings.android
-        ? `${settings.android ? I18n.t('android') : ''} : ${
-            settings.android ? settings.android : ''
-          } ${'\n'}`
-        : '',
-    );
-    setIphoneMessage(
-      settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
-    );
+    if (!ABATI) {
+      setDownloadTitleMessage(
+        settings.apple || settings.android
+          ? `${I18n.t('download_app')} ${'\n'}`
+          : '',
+      );
+      setAndroidMessage(
+        settings.android
+          ? `${settings.android ? I18n.t('android') : ''} : ${
+              settings.android ? settings.android : ''
+            } ${'\n'}`
+          : '',
+      );
+      setIphoneMessage(
+        settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
+      );
+    }
     setShareMessage(
       `${'\n'} ${I18n.t('share_file', {
         name: I18n.t(APP_CASE),

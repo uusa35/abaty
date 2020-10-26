@@ -10,7 +10,7 @@ const IconTabBar = ({type, name, focused, showLabel = false}) => {
   return (
     <View>
       <Icon
-        size={showLabel ? iconSizes.smallest : iconSizes.small}
+        size={showLabel ? iconSizes.small : iconSizes.small}
         name={name}
         type={type}
         color={focused ? colors.icon_theme_color : colors.btn_bg_theme_color}

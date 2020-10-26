@@ -5,7 +5,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import App from './App';
 import {isLocal} from './env';
 import SimpleSpinner from './components/SimpleSpinner';
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 export const Root = () => (
   <PersistGate loading={<SimpleSpinner />} persistor={PersistStore}>

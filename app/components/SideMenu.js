@@ -38,6 +38,10 @@ const SideMeu = ({showLogo = true}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const goToHome = () => {
+    navigation.closeDrawer();
+    navigation.navigate('Home');
+  };
   return (
     <ImageBackground
       source={{
@@ -117,22 +121,14 @@ const SideMeu = ({showLogo = true}) => {
                 </TouchableOpacity>
               </Fragment>
             )}
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}
-              style={styles.menuBtn}>
+            <TouchableOpacity onPress={() => goToHome()} style={styles.menuBtn}>
               <Icon
                 name="home"
                 type="antdesign"
                 size={iconSizes.smaller}
                 color={colors.icon_theme_color}
               />
-              <Text
-                style={[
-                  styles.titleStyle,
-                  {color: colors.header_one_theme_color},
-                ]}>
-                {I18n.t('home')}
-              </Text>
+              <Text style={styles.titleStyle}>{I18n.t('home')}</Text>
             </TouchableOpacity>
             {HOMEKEY ? (
               <TouchableOpacity

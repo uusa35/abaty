@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -7,15 +7,12 @@ import {
   Text,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
-import {getService} from '../../../redux/actions/service';
 import {getConvertedFinalPrice} from '../../../helpers';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {text, touchOpacity} from '../../../constants/sizes';
-import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
-import {useDispatch, useSelector} from 'react-redux';
-import I18n from './../../../I18n';
+import {useDispatch} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {getCompany} from '../../../redux/actions/user';
 

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  TouchableHighlight,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getConvertedFinalPrice} from '../../../helpers';
