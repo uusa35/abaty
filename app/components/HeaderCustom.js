@@ -21,21 +21,21 @@ const HeaderCustom = () => {
   const [shareMessage, setShareMessage] = useState('');
 
   useMemo(() => {
-    if(!ABATI) {
+    if (!ABATI) {
       setDownloadTitleMessage(
-          settings.apple || settings.android
-              ? `${I18n.t('download_app')} ${'\n'}`
-              : '',
+        settings.apple || settings.android
+          ? `${I18n.t('download_app')} ${'\n'}`
+          : '',
       );
       setAndroidMessage(
-          settings.android
-              ? `${settings.android ? I18n.t('android') : ''} : ${
-                  settings.android ? settings.android : ''
-                  } ${'\n'}`
-              : '',
+        settings.android
+          ? `${settings.android ? I18n.t('android') : ''} : ${
+              settings.android ? settings.android : ''
+            } ${'\n'}`
+          : '',
       );
       setIphoneMessage(
-          settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
+        settings.apple ? `${I18n.t('ios')} : ${settings.apple} ${'\n'}` : '',
       );
     }
     setShareMessage(

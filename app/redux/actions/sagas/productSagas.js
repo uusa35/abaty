@@ -1,4 +1,4 @@
-import {call, put, all, takeLatest, select} from 'redux-saga/effects';
+import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
 import * as api from '../api';
 import validate from 'validate.js';
 import * as actions from '../types';
@@ -207,6 +207,7 @@ export function* startGetProductScenario(action) {
     yield call(enableWarningMessage, I18n.t('error_while_loading_product'));
   } finally {
     if (action.payload.redirect) {
+      yield delay(1000);
       yield call(disableLoadingContent);
     }
   }

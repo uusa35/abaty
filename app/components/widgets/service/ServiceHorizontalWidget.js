@@ -15,17 +15,17 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const ServiceHorizontalWidget = ({showName, title}) => {
   const dispatch = useDispatch();
-  const {settings, homeServices, token } = useSelector((state) => state);
+  const {settings, homeServices, token} = useSelector((state) => state);
 
   const handleClick = useCallback((element) => {
-      return dispatch(
-          getService({
-              id: element.id,
-              api_token: token ? token : null,
-              redirect: true,
-          }),
-      );
-  })
+    return dispatch(
+      getService({
+        id: element.id,
+        api_token: token ? token : null,
+        redirect: true,
+      }),
+    );
+  });
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>

@@ -82,9 +82,11 @@ const ElementsVerticalList = ({
   textSize = text.medium,
   columns = 1,
   customHeight = 240,
+  pageLimit = 10,
   scrollEnabled = showFooter,
 }) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(elements);
+  const [originalItems, setOriginalItems] = useState(elements);
   const [elementsWithMap, setElementsWithMap] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -99,15 +101,24 @@ const ElementsVerticalList = ({
 
   const loadMore = () => {
     setTimeout(() => {
-      if (showMore && page < iconSizes.smaller) {
+      if (
+        showMore &&
+        page <= pageLimit &&
+        originalItems.length <= items.length
+      ) {
         setPage(page + 1);
         setIsLoading(true);
       }
-    }, 1000);
+    }, 500);
   };
 
   useMemo(() => {
-    if (showMore && page > 1 && page <= iconSizes.smaller) {
+    if (
+      showMore &&
+      page > 1 &&
+      page <= pageLimit &&
+      originalItems.length <= items.length
+    ) {
       switch (type) {
         case 'product':
           return axiosInstance(`search/product?page=${page}`, {

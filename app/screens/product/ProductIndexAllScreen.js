@@ -26,6 +26,7 @@ const ProductIndexAllScreen = () => {
         elements={currentElements}
         searchParams={{}}
         type="product"
+        pageLimit={15}
         showRefresh={true}
         showFooter={true}
         showSearch={true}

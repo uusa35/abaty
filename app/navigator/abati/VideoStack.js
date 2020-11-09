@@ -7,8 +7,8 @@ import React from 'react';
 import VideoShowScreen from '../../screens/video/VideoShowScreen';
 import HeaderCustom from '../../components/HeaderCustom';
 import {HeaderRight} from '../../components/HeaderRight';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {isIOS} from '../../constants';
+import NormalProductShowScreen from '../../screens/product/NormalProductShowScreen';
 
 export const VideoStack = createStackNavigator(
   {
@@ -20,6 +20,19 @@ export const VideoStack = createStackNavigator(
         headerRight: () => <HeaderRight />,
         headerBackTitle: () => null,
       }),
+    },
+    Product: {
+      screen: NormalProductShowScreen,
+      navigationOptions: ({navigation}) => ({
+        headerTitle: () => (
+          <HeaderMiddle title={navigation.state.params.name} />
+        ),
+        headerRight: () => (
+          <HeaderRight displayShare={true} showCountry={true} display={true} />
+        ),
+        headerBackTitle: () => null,
+      }),
+      path: `product/:id`,
     },
     VideoShow: {
       screen: VideoShowScreen,

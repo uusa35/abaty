@@ -71,6 +71,7 @@ export function* startGetDesignerScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoadingProfile);
   }
 }
@@ -121,6 +122,7 @@ export function* startGetShopperScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoadingProfile);
   }
 }
@@ -186,6 +188,7 @@ export function* startGetCompanyScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoadingProfile);
   }
 }
@@ -229,6 +232,7 @@ export function* startGetCelebrityScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoadingProfile);
   }
 }
@@ -255,6 +259,7 @@ export function* startGetUserScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoading);
   }
 }
@@ -276,6 +281,7 @@ export function* startGetVideoScenario(action) {
     //   console.log('ee', e);
     // }
   } finally {
+    yield delay(1000);
     yield call(disableLoading);
   }
 }
@@ -555,6 +561,7 @@ export function* startGetDesignersScenario(action) {
   } catch (e) {
     yield call(enableWarningMessage, e);
   } finally {
+    yield delay(1000);
     yield call(disableLoadingBoxedList);
   }
 }

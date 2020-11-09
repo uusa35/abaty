@@ -46,6 +46,7 @@ export function* startGetServiceScenario(action) {
     }
     yield call(enableWarningMessage, I18n.t('error_while_loading_service'));
   } finally {
+    yield delay(1000);
     yield call(disableLoadingContent);
   }
 }
@@ -76,6 +77,7 @@ export function* startGetSearchServicesScenario(action) {
     }
   } catch (e) {
   } finally {
+    yield delay(1000);
     yield all([
       call(disableLoading),
       // call(enableWarningMessage, I18n.t('no_services')),
@@ -125,6 +127,7 @@ export function* startToggleClassifiedFavoriteScenario(action) {
       throw classifieds;
     }
   } catch (e) {
+    yield delay(1000);
     yield all([call(disableLoading), call(enableErrorMessage, e)]);
   }
 }

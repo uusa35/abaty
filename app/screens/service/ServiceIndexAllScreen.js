@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
+import I18n from './../../I18n';
 
 const ServiceIndexAllScreen = () => {
   const {services, searchParams, country} = useSelector((state) => state);
@@ -28,11 +29,14 @@ const ServiceIndexAllScreen = () => {
       <ElementsHorizontalList
         elements={currentElements}
         type="service"
+        title={I18n.t('services')}
         searchElements={currentSearchParams}
         columns={2}
+        pageLimit={3}
         showRefresh={true}
         showFooter={true}
         showSearch={false}
+        showTitle={true}
         showSortSearch={false}
         showProductsFilter={true}
         showTitleIcons={true}

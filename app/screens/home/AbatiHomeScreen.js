@@ -41,6 +41,7 @@ const AbatiHomeScreen = () => {
 
   return (
     <BgContainer>
+      <AppHomeConfigComponent />
       {settings.splash_on && (
         <IntroductionWidget
           elements={splashes}
