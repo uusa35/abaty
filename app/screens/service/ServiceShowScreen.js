@@ -104,6 +104,7 @@ const ServiceShowScreen = () => {
                     fontSize: 17,
                     fontFamily: text.font,
                     padding: 10,
+                    lineHeight: 25,
                   }}>
                   {service.description}
                 </Text>

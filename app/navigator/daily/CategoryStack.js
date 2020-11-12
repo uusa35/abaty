@@ -101,7 +101,7 @@ export const CategoryStack = createStackNavigator(
   {
     mode: 'card',
     headerMode: 'float',
-    animationEnabled: isIOS,
+    animationEnabled: false,
   },
 );
 

@@ -141,7 +141,7 @@ export const BottomTabsStack = createBottomTabNavigator(
       activeTintColor: '#DD0900',
       inactiveTintColor: '#b2b2b2',
       activeBackgroundColor: 'white',
-      animationEnabled: isIOS,
+      animationEnabled: false,
       labelStyle: [navLabelStyle, {fontFamily: text.font}],
       style: {
         backgroundColor: 'white',

@@ -95,6 +95,7 @@ const VideoList = ({
           element={item}
           showName={true}
           width={width}
+          height={300}
           showImage={true}
         />
       )}

@@ -82,7 +82,7 @@ export const ClassifiedStack = createStackNavigator(
     mode: 'modal',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

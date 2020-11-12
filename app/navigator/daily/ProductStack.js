@@ -74,7 +74,7 @@ export const ProductStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     animation: 'spring',
-    animationEnabled: isIOS,
+    animationEnabled: false,
     config: {
       stiffness: 1000,
       damping: 500,

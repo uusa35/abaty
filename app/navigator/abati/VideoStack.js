@@ -51,7 +51,7 @@ export const VideoStack = createStackNavigator(
     swipeEnabled: true,
     animation: 'spring',
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
     config: {
       stiffness: 1000,

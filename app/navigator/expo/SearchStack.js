@@ -96,7 +96,7 @@ export const SearchStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

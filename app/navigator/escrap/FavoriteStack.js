@@ -71,7 +71,7 @@ export const FavoriteStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
       headerTransparent: false,
     }),
   },

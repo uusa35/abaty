@@ -152,7 +152,7 @@ export const SettingStack = createStackNavigator(
     mode: 'card',
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

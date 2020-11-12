@@ -434,7 +434,7 @@ export const HomeStack = createStackNavigator(
     headerMode: 'screen',
     defaultNavigationOptions: () => ({
       headerTransparent: false,
-      animationEnabled: isIOS,
+      animationEnabled: false,
       // headerStyle: {
       //     backgroundColor: 'green'
       // },

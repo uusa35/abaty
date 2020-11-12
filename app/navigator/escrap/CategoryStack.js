@@ -101,7 +101,7 @@ export const CategoryStack = createStackNavigator(
       //   backgroundColor: 'green'
       // }
       headerTransparent: false,
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

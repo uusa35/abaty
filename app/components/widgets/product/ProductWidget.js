@@ -90,7 +90,7 @@ const ProductWidget = ({
               {`${getConvertedFinalPrice(
                 element.finalPrice,
                 exchange_rate,
-              )}  ${currency_symbol}`}
+              )}`} <Text style={[widgetStyles.elementName, { fontSize : text.smaller}]}>{currency_symbol}</Text>
             </Text>
           </View>
           {element.sku && (

@@ -572,7 +572,7 @@ export const HomeStack = createStackNavigator(
     animation: 'spring',
     swipeEnabled: true,
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
     // config: {
     //   stiffness: 1000,

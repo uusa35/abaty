@@ -90,7 +90,7 @@ export const CartStack = createStackNavigator(
     headerMode: 'screen',
     swipeEnabled: true,
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

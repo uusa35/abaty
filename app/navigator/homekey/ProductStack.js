@@ -42,7 +42,7 @@ export const ProductStack = createStackNavigator(
     mode: 'card',
     headerMode: 'float',
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
   },
 );

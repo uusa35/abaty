@@ -8,6 +8,7 @@ import FastImage from 'react-native-fast-image';
 import {GET_VIDEO} from '../../../redux/actions/types';
 import {toggleLoading} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
+import {isNull} from 'lodash';
 
 const VideoWidget = ({
   element,
@@ -15,10 +16,8 @@ const VideoWidget = ({
   width = 180,
   showImage = false,
 }) => {
-  const [isReady, setIsReady] = useState(false);
-  const [status, setStatus] = useState(false);
-  const [quality, setQuality] = useState('');
   const dispatch = useDispatch();
+
   return (
     <View
       style={{
@@ -31,17 +30,14 @@ const VideoWidget = ({
       {showImage ? (
         <TouchableOpacity
           onPress={() => dispatch({type: GET_VIDEO, payload: element.id})}>
-          <FastImage
-            source={{uri: element.large}}
-            style={{width, height: 300}}
-          />
+          <FastImage source={{uri: element.large}} style={{width, height}} />
         </TouchableOpacity>
-      ) : element.video_id ? (
+      ) : !isNull(element.video_id) ? (
         <YouTube
           apiKey="AIzaSyBAcgq9IHsBSRTTDroMKhHErr6Hya6qFvU"
           videoId={`${element.url}`} // The YouTube video ID
           play={false} // control playback of video with true/false
-          fullscreen // control whether the video should play in fullscreen or inline
+          fullscreen={false} // control whether the video should play in fullscreen or inline
           loop // control whether the video should loop when ended
           onReady={(e) => setIsReady(true)}
           onChangeState={(e) => setStatus(e.status)}
@@ -49,7 +45,7 @@ const VideoWidget = ({
           // onError={(e) => console.log(e.error)}
           style={{
             alignSelf: 'center',
-            height: 300,
+            height,
             width: '100%',
           }}
         />
@@ -59,7 +55,7 @@ const VideoWidget = ({
           key={element.id}
           style={{
             height: 300,
-            width: '100%',
+            width,
           }}
           javaScriptEnabled={true}
           source={{uri: `${appUrlIos}webview?url=${element.url}`}}

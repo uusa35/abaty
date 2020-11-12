@@ -207,7 +207,6 @@ export function* startGetProductScenario(action) {
     yield call(enableWarningMessage, I18n.t('error_while_loading_product'));
   } finally {
     if (action.payload.redirect) {
-      yield delay(1000);
       yield call(disableLoadingContent);
     }
   }

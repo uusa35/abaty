@@ -510,7 +510,7 @@ export const HomeStack = createStackNavigator(
     animation: 'spring',
     gesturesEnabled: isIOS,
     defaultNavigationOptions: () => ({
-      animationEnabled: isIOS,
+      animationEnabled: false,
     }),
     // config: {
     //   stiffness: 1000,

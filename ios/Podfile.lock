@@ -392,7 +392,7 @@ PODS:
     - React-Core
   - react-native-restart (0.0.17):
     - React
-  - react-native-safe-area-context (3.1.8):
+  - react-native-safe-area-context (3.1.9):
     - React-Core
   - react-native-spinkit (1.4.1):
     - React
@@ -505,7 +505,7 @@ PODS:
     - React
   - RNReanimated (1.6.0):
     - React
-  - RNScreens (2.13.0):
+  - RNScreens (2.14.0):
     - React-Core
   - RNSentry (1.9.0):
     - React-Core
@@ -867,7 +867,7 @@ SPEC CHECKSUMS:
   react-native-onesignal: ab5bd48dfc62d6f502ee2087cef317cd1c2b72f7
   react-native-pdf: 4b5a9e4465a6a3b399e91dc4838eb44ddf716d1f
   react-native-restart: d19a0f8d053d065fe64cd2baebb6487111c77149
-  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
+  react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
   react-native-viewpager: c1a686e7b5e164a52387f1522358623c4f52070f
@@ -895,7 +895,7 @@ SPEC CHECKSUMS:
   RNImageCropPicker: 54e5ea3d0e298ed51e1441a2fa0a0e7c90ee256d
   RNMagicMove: acc7d9dff86dd68588b01cb3515182e50b50b81c
   RNReanimated: e1251783216c7cb0a395314c9889d6662d86ed73
-  RNScreens: 13f23e5498fb4aa749d19a5eda7f8792fbb9d01f
+  RNScreens: 2e278a90eb15092ed261d4f2271e3fc9b60d08d4
   RNSentry: 1adaa43b01c6a3ab5091d4d1add66b7c58558898
   RNShare: 7e22ba3bf66294ff7c122a1f2da8a8ec642091a0
   RNSnackbar: 86092381dba7a0ed9fbd7acdb82ebbd5bfd26372
