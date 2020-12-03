@@ -111,6 +111,8 @@ const MapViewWidget = ({
                   description={description}
                   title={title}
                   price={price}
+                  latitude={element.latitude}
+                  longitude={element.longitude}
                 />
               ) : null}
             </Marker>
@@ -131,6 +133,8 @@ const MapViewWidget = ({
                 {showCallOut ? (
                   <CallOutView
                     element={element}
+                    latitude={element.latitude}
+                    longitude={element.longitude}
                     title={element.name}
                     description={element.description}
                     address={element.address}

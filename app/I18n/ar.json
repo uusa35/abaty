@@ -676,5 +676,8 @@
   "classified_not_removed" : "لم يتم حذف الإعلان بنجاح",
   "prev" : "السابق",
   "day_selected" : "اليوم الذي تم اختيارة",
-  "reset_services" : "إعادة تعيين"
+  "reset_services" : "إعادة تعيين",
+  "expo_calender" : "أجندة المعارض",
+  "old_version" : "يرجى تحديث البرنامج من الاستور",
+  "update" : "تحديث"
 }

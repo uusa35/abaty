@@ -642,6 +642,9 @@
   "classified_not_removed" : "Classified was not removed.",
   "prev" : "Prev",
   "day_selected" : "Day Selected",
-  "reset_services" : "Reset Services"
+  "reset_services" : "Reset Services",
+  "expo_calender" : "Expo Calendar",
+  "old_version" : "Please Update your Application from the store.",
+  "update" : "Update"
 }
 

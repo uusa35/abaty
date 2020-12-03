@@ -20,10 +20,12 @@ import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHor
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import {bottomContentInset, height} from '../../constants/sizes';
 import {isIOS} from '../../constants';
+import CompanyCategoryHorizontalWidget from '../../components/widgets/category/CompanyCategoryHorizontalWidget';
 
 const ExpoHomeScreen = () => {
   const {
     homeCategories,
+    homeUserCategories,
     commercials,
     slides,
     brands,
@@ -39,6 +41,7 @@ const ExpoHomeScreen = () => {
     country,
     settings,
   } = useSelector((state) => state);
+  console.log('homeUserCategories', homeUserCategories);
   const dispatch = useDispatch();
 
   const handleRefresh = () => dispatch(refetchHomeElements());
@@ -99,6 +102,14 @@ const ExpoHomeScreen = () => {
             title={I18n.t('categories')}
             type="products"
           />
+        )}
+        {homeUserCategories && (
+            <CompanyCategoryHorizontalWidget
+                elements={homeUserCategories}
+                showName={true}
+                title={I18n.t('categories')}
+                type="users"
+            />
         )}
         <ExpoHomeScreenBtns />
       </ScrollView>

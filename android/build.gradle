@@ -13,7 +13,7 @@ buildscript {
     ext {
         googlePlayServicesVersion = "17.0.0"
         buildToolsVersion = "29.0.3"
-                compileSdkVersion = 29
+        compileSdkVersion = 29
         minSdkVersion = 16
         targetSdkVersion = 29
          androidXCore = "1.0.2"

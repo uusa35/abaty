@@ -6,6 +6,7 @@ import {getSearchServices} from '../../redux/actions/service';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 import I18n from './../../I18n';
+import {isEmpty} from 'lodash';
 
 const ServiceIndexAllScreen = () => {
   const {services, searchParams, country} = useSelector((state) => state);
@@ -20,8 +21,10 @@ const ServiceIndexAllScreen = () => {
   }, []);
 
   useMemo(() => {
-    setCurrentSearchParams(searchParams);
-    setCurrentElements(services);
+    if (!isEmpty(services)) {
+      setCurrentSearchParams(searchParams);
+      setCurrentElements(services);
+    }
   }, [services]);
 
   return (

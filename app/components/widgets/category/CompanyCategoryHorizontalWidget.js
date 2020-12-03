@@ -14,17 +14,21 @@ import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {images} from '../../../constants/images';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from 'react-navigation-hooks';
 
 const CompanyCategoryHorizontalWidget = ({
   elements,
   title,
-  dispatch,
-  colors,
-  navigation,
   showName = true,
   showImage = true,
 }) => {
+    const { colors } = useSelector(state => state.settings);
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+
   const handleClick = useCallback((c) => {
+      console.log('c', c)
     return dispatch(
       getUsers({
         name: c.name,
@@ -99,7 +103,6 @@ export default CompanyCategoryHorizontalWidget;
 
 CompanyCategoryHorizontalWidget.propTypes = {
   elements: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
   showName: PropTypes.bool,
 };
 

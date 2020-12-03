@@ -13,12 +13,10 @@ import {isIOS} from '../../../constants';
 import {bottomContentInset, text} from '../../../constants/sizes';
 import {map, isNull} from 'lodash';
 import validate from 'validate.js';
-import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {useSelector} from 'react-redux';
 
 const PagesList = ({showTitle = true, showArrow = true, title}) => {
-  const {pages} = useSelector((state) => state.settings);
-  const {colors} = useContext(GlobalValuesContext);
+  const {pages, colors} = useSelector((state) => state.settings);
   return (
     <ScrollView
       horizontal={false}

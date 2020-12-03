@@ -128,7 +128,7 @@ const DesignerShowScreen = () => {
             />
             {!validate.isEmpty(designer.slides) && (
               <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-                <MainSliderWidget slides={designer.slides} />
+                <MainSliderWidget elements={designer.slides} />
               </View>
             )}
             {!validate.isEmpty(collectedCategories) && (

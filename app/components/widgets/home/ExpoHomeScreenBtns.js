@@ -8,6 +8,7 @@ import {colors as col} from '../../../constants/colors';
 import {useNavigation} from 'react-navigation-hooks';
 import {useSelector} from 'react-redux';
 import {View as Animating} from 'react-native-animatable';
+import {EXPO} from './../../../../app';
 
 const ExpoHomeScreenBtns = () => {
   const {guest} = useSelector((state) => state);
@@ -51,7 +52,7 @@ const ExpoHomeScreenBtns = () => {
             fontFamily: text.font,
             fontSize: text.small,
           }}>
-          {I18n.t('calendar')}
+          {EXPO ? I18n.t('expo_calender') : I18n.t('calendar')}
         </Text>
       </TouchableOpacity>
       {guest && (

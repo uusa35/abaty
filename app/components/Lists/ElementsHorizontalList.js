@@ -31,7 +31,7 @@ import {
   TheHold,
   width,
 } from './../../constants/sizes';
-import {filter, orderBy, uniqBy} from 'lodash';
+import {filter, orderBy, uniqBy, lowerCase} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import TopSearchInput from '../widgets/TopSearchInput';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
@@ -273,9 +273,9 @@ const ElementsHorizontalList = ({
       setRefresh(false);
       let filtered = filter(items, (i) =>
         i.name
-          ? i.name.includes(search) ||
+          ? lowerCase(i.name).includes(lowerCase(search)) ||
             i.sku.includes(convertNumberToEnglish(search))
-          : i.slug.includes(search)
+          : lowerCase(i.slug).includes(lowerCase(search))
           ? i
           : null,
       );

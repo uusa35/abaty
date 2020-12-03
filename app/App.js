@@ -1,5 +1,5 @@
 import React, {useEffect, useState, Fragment, useMemo} from 'react';
-import {AppState, useColorScheme, StatusBar} from 'react-native';
+import {AppState, useColorScheme, StatusBar, Text} from 'react-native';
 import codePush from 'react-native-code-push';
 import {useDispatch, useSelector} from 'react-redux';
 import {appBootstrap} from './redux/actions';
@@ -16,6 +16,10 @@ import ProductFilterModal from './screens/product/ProductFilterModal';
 import LoadingOfflineView from './components/Loading/LoadingOfflineView';
 import {useNetInfo} from '@react-native-community/netinfo';
 import {TOGGLE_BOOTSTRAPPED} from './redux/actions/types';
+import DeviceInfo from 'react-native-device-info';
+import OldVersionComponent from './components/widgets/OldVersionComponenet';
+import {minOldVersionApple, minOldVersionAndroid} from './../app';
+import {isIOS} from './constants';
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -124,7 +128,12 @@ const App = () => {
                 lang,
               }}>
               <React.Suspense fallback={<SimpleSpinner />}>
-                <AppNavigator />
+                {DeviceInfo.getVersion() >=
+                (isIOS ? minOldVersionApple : minOldVersionAndroid) ? (
+                  <AppNavigator />
+                ) : (
+                  <OldVersionComponent />
+                )}
               </React.Suspense>
               {validate.isBoolean(loginModal) && (
                 <LoginScreenModal
