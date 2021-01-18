@@ -300,7 +300,6 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
-
     Product: {
       screen: TransparentProductShowScreen,
       navigationOptions: ({navigation}) => ({

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -15,6 +15,7 @@ import TagWidget from './../TagWidget';
 import {useDispatch} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {getCompany} from '../../../redux/actions/user';
+import {images} from '../../../constants/images';
 
 const ServiceWidget = ({
   element,
@@ -35,19 +36,22 @@ const ServiceWidget = ({
       style={[widgetStyles.productServiceWidget, {minWidth}]}
       onPress={() => handleClick(element)}>
       <ImageBackground
-        source={{
-          uri: element.thumb,
-        }}
-        imageStyle={styles.imageStyling}
-        style={[styles.image, {height}]}
-        resizeMode={'cover'}>
-        <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
-          {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
-          {element.isOnSale ? (
-            <TagWidget tagName="under_sale" bgColor="red" />
-          ) : null}
-          {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
-        </View>
+        source={images.loading}
+        style={{height: 240, width: '100%'}}>
+        <Fragment>
+          <ImageLoaderContainer
+            img={element.thumb}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
+            {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
+            {element.isOnSale ? (
+              <TagWidget tagName="under_sale" bgColor="red" />
+            ) : null}
+            {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
+          </View>
+        </Fragment>
       </ImageBackground>
       {showName && (
         <View
@@ -154,7 +158,9 @@ ServiceWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    // width: 190,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
     width: '100%',
+    height: 240,
   },
 });

@@ -45,7 +45,10 @@ const ProductHorizontalWidget = ({
     <Fragment>
       {!isEmpty(elements) && (
         <View
-          style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
+          style={[
+            widgetStyles.container,
+            {backgroundColor: 'transparent', marginTop: 0},
+          ]}>
           <TouchableOpacity
             activeOpacity={0.8}
             style={widgetStyles.titleContainer}

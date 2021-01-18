@@ -9,6 +9,7 @@ import {GET_VIDEO} from '../../../redux/actions/types';
 import {toggleLoading} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
 import {isNull} from 'lodash';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const VideoWidget = ({
   element,
@@ -30,7 +31,7 @@ const VideoWidget = ({
       {showImage ? (
         <TouchableOpacity
           onPress={() => dispatch({type: GET_VIDEO, payload: element.id})}>
-          <FastImage source={{uri: element.large}} style={{width, height}} />
+          <ImageLoaderContainer img={element.large} style={{width, height}} />
         </TouchableOpacity>
       ) : !isNull(element.video_id) ? (
         <YouTube
@@ -59,8 +60,6 @@ const VideoWidget = ({
           }}
           javaScriptEnabled={true}
           source={{uri: `${appUrlIos}webview?url=${element.url}`}}
-          onLoadStart={() => dispatch(toggleLoading(true))}
-          onLoad={() => dispatch(toggleLoading(false))}
         />
       )}
       <Text style={styles.title}>{element.name}</Text>

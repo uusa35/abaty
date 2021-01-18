@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, Fragment} from 'react';
 import {
   I18nManager,
   StyleSheet,
@@ -90,11 +90,16 @@ const ImagesWidget = ({
                 index: index,
               })
             }>
-            <FastImage
-              source={imageLoading ? images.loading : {uri: item.large}}
+            <ImageBackground
+              source={images.loading}
               onLoadEnd={() => setImageLoading(false)}
               style={{width, height}}
-              resizeMode={imageLoading ? 'center' : resizeMode}>
+              resizeMode={'center'}>
+              <ImageLoaderContainer
+                img={item.large}
+                resizeMode="cover"
+                style={{width, height, position: 'absolute', top: 0}}
+              />
               {showLabels && index === 0 ? (
                 <View
                   style={{
@@ -132,7 +137,7 @@ const ImagesWidget = ({
                   )}
                 </View>
               ) : null}
-            </FastImage>
+            </ImageBackground>
           </TouchableOpacity>
         )}
       />

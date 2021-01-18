@@ -18,7 +18,14 @@ const ImageLoaderContainer = ({img, style, resizeMode = 'stretch'}) => {
             {uri: img ? img : logo}
       }
       onLoadEnd={() => setImageLoading(false)}
-      style={[style, {backgroundColor: 'transparent'}]}
+      style={[
+        style,
+        {
+          backgroundColor: 'transparent',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+      ]}
       resizeMode={resizeMode}
     />
   );

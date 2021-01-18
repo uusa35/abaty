@@ -18,6 +18,7 @@ import ProductSearchForm from '../../components/widgets/search/ProductSearchForm
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import {bottomContentInset} from '../../constants/sizes';
+import {isIOS} from '../../constants';
 
 const AbatiHomeScreen = () => {
   const {
@@ -50,14 +51,9 @@ const AbatiHomeScreen = () => {
         />
       )}
       <ScrollView
-        contentContainerStyle={{backgroundColor: 'transparent'}}
-        contentInset={{bottom: 50}}
-        refreshControl={
-          <RefreshControl
-            refreshing={false}
-            onRefresh={() => handleRefresh()}
-          />
-        }
+        contentContainerStyle={{
+          backgroundColor: 'transparent',
+        }}
         contentInset={{bottom: bottomContentInset}}
         horizontal={false}
         scrollEnabled={true}
@@ -66,10 +62,15 @@ const AbatiHomeScreen = () => {
         showsVerticalScrollIndicator={false}
         endFillColor="white"
         style={{
-          flex: 0.8,
           paddingBottom: bottomContentInset,
           backgroundColor: 'transparent',
-        }}>
+        }}
+        refreshControl={
+          <RefreshControl
+            refreshing={false}
+            onRefresh={() => handleRefresh()}
+          />
+        }>
         <ProductSearchForm />
         <MainSliderWidget elements={slides} />
         {homeDesigners && (

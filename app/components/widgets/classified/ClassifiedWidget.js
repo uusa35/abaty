@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -12,6 +12,7 @@ import {touchOpacity} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import TagWidget from './../TagWidget';
 import ClassifiedInfoWidget from './ClassifiedInfoWidget';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ClassifiedWidget = ({element, showName = false, handleClick}) => {
   const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
@@ -38,20 +39,30 @@ const ClassifiedWidget = ({element, showName = false, handleClick}) => {
       ]}
       onPress={() => handleClick(element)}>
       <ImageBackground
-        source={{
-          uri: element.thumb,
-        }}
-        loadingIndicatorSource={images.logo}
-        style={styles.image}
-        imageStyle={{
-          width: '100%',
-          height: 400,
-          // borderRadius: 20
-        }}
-        resizeMode="cover">
-        <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
-          {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
-        </View>
+        source={images.loading}
+        style={{height: 400, width: '100%'}}>
+        <Fragment>
+          <ImageLoaderContainer
+            img={element.thumb}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          {/*<ImageBackground*/}
+          {/*  source={{*/}
+          {/*    uri: element.thumb,*/}
+          {/*  }}*/}
+          {/*  loadingIndicatorSource={images.logo}*/}
+          {/*  style={styles.image}*/}
+          {/*  imageStyle={{*/}
+          {/*    width: '100%',*/}
+          {/*    height: 400,*/}
+          {/*    // borderRadius: 20*/}
+          {/*  }}*/}
+          {/*  resizeMode="cover">*/}
+          <View style={{flex: 1, position: 'absolute', top: 20, right: 0}}>
+            {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
+          </View>
+        </Fragment>
       </ImageBackground>
       {showName ? (
         <ClassifiedInfoWidget

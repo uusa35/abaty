@@ -10,6 +10,7 @@ import {refetchHomeElements} from '../../redux/actions';
 import {useDispatch} from 'react-redux';
 import EmptyListWidget from './EmptyListWidget';
 import {animations} from '../../constants/animations';
+import {reAuthenticate} from '../../redux/actions/user';
 
 const VideoList = ({
   elements,
@@ -20,18 +21,11 @@ const VideoList = ({
 }) => {
   const [search, setSearch] = useState('');
   const [refresh, setRefresh] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [endList, setEndList] = useState(false);
   const dispatch = useDispatch();
 
-  useMemo(() => {
-    if (refresh) {
-      setRefresh(false);
-      dispatch(refetchHomeElements());
-    } else {
-      setRefresh(false);
-    }
-  }, [refresh]);
+  const handleRefresh = () => {
+    dispatch(refetchHomeElements());
+  };
 
   return (
     <FlatList
@@ -58,13 +52,9 @@ const VideoList = ({
       refreshControl={
         <RefreshControl
           refreshing={refresh}
-          onRefresh={() => setRefresh(true)}
+          onRefresh={() => handleRefresh()}
         />
       }
-      onEndReached={() => {
-        search.length > 0 ? setIsLoading(false) : setIsLoading(!isLoading);
-        setEndList(false);
-      }}
       contentContainerStyle={{
         marginBottom: 15,
         alignSelf: 'center',
@@ -77,7 +67,6 @@ const VideoList = ({
         showFooter && !validate.isEmpty(elements) ? (
           <View style={{flex: 1, width: '90%', alignSelf: 'center'}}>
             <Button
-              loading={endList}
               raised
               title={I18n.t('no_more_videos')}
               type="outline"

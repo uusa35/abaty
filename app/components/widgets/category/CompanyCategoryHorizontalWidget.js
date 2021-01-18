@@ -1,4 +1,4 @@
-import React, {useContext, useCallback} from 'react';
+import React, {Fragment} from 'react';
 import {
   ScrollView,
   TouchableOpacity,
@@ -7,95 +7,110 @@ import {
   View,
 } from 'react-native';
 import {map} from 'lodash';
-import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
-import {getUsers} from '../../../redux/actions/user';
+import {
+  getSearchCompanies,
+  getSearchDesigners,
+} from '../../../redux/actions/user';
 import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
-import {images} from '../../../constants/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from 'react-navigation-hooks';
+import ImageLoaderContainer from '../ImageLoaderContainer';
+import {
+  iconSizes,
+  rightHorizontalContentInset,
+  touchOpacity,
+} from '../../../constants/sizes';
+import {isEmpty} from 'lodash';
 
 const CompanyCategoryHorizontalWidget = ({
   elements,
-  title,
+  title = '',
   showName = true,
   showImage = true,
+  showArrow = false,
 }) => {
-    const { colors } = useSelector(state => state.settings);
-    const navigation = useNavigation();
-    const dispatch = useDispatch();
+  const {colors} = useSelector((state) => state.settings);
+  const {navigate} = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleClick = useCallback((c) => {
-      console.log('c', c)
-    return dispatch(
-      getUsers({
+  const handleClick = (c) =>
+    dispatch(
+      getSearchDesigners({
         name: c.name,
         searchParams: {user_category_id: c.id},
         redirect: true,
       }),
     );
-  });
 
   return (
-    <View
-      style={[
-        widgetStyles.container,
-        {backgroundColor: 'transparent', alignSelf: 'center'},
-      ]}>
-      <TouchableOpacity
-        style={widgetStyles.titleContainer}
-        onPress={() => navigation.navigate('CategoryIndex')}>
-        <View style={widgetStyles.titleWrapper}>
-          <Text
-            style={[
-              widgetStyles.title,
-              {color: colors.header_one_theme_color},
-            ]}>
-            {I18n.t(title)}
-          </Text>
-        </View>
-        <Icon
-          type="entypo"
-          name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-          size={20}
-          color={colors.header_one_theme_color}
-        />
-      </TouchableOpacity>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        style={widgetStyles.wrapper}>
-        {map(elements, (c, i) => (
+    <Fragment>
+      {!isEmpty(elements) && (
+        <View
+          style={[
+            widgetStyles.container,
+            {backgroundColor: 'transparent', marginTop: 0, marginBottom: 10},
+          ]}>
           <TouchableOpacity
-            key={i}
-            style={widgetStyles.btnStyle}
-            onPress={() => handleClick(c)}>
-            {showImage ? (
-              <FastImage
-                source={{
-                  uri: c.thumb,
-                  priority: FastImage.priority.normal,
-                }}
-                loadingIndicatorSource={images.logo}
-                style={styles.image}
-                resizeMode="cover"
-              />
-            ) : null}
-            {showName ? (
+            activeOpacity={touchOpacity}
+            style={widgetStyles.titleContainer}
+            onPress={() => (showArrow ? navigate('CategoryIndex') : null)}>
+            <View style={widgetStyles.titleWrapper}>
               <Text
                 style={[
-                  widgetStyles.elementName,
-                  {color: colors.header_tow_theme_color},
+                  widgetStyles.title,
+                  {color: colors.header_one_theme_color},
                 ]}>
-                {c.name}
+                {title}
               </Text>
-            ) : null}
+            </View>
+            {showArrow && (
+              <Icon
+                type="entypo"
+                name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                size={iconSizes.smallest}
+                color={colors.header_one_theme_color}
+              />
+            )}
           </TouchableOpacity>
-        ))}
-      </ScrollView>
-    </View>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentInset={{right: rightHorizontalContentInset}}
+            style={widgetStyles.wrapper}>
+            {map(elements, (c, i) => (
+              <View
+                animation="bounceIn"
+                easing="ease-out"
+                key={i}
+                useNativeDriver={true}>
+                <TouchableOpacity
+                  activeOpacity={touchOpacity}
+                  style={widgetStyles.btnStyle}
+                  onPress={() => handleClick(c)}>
+                  <ImageLoaderContainer
+                    img={c.thumb}
+                    style={styles.image}
+                    resizeMode="cover"
+                  />
+                  {showName ? (
+                    <Text
+                      style={[
+                        widgetStyles.elementName,
+                        {color: colors.header_tow_theme_color},
+                      ]}>
+                      {c.name}
+                    </Text>
+                  ) : null}
+                </TouchableOpacity>
+              </View>
+            ))}
+          </ScrollView>
+        </View>
+      )}
+    </Fragment>
   );
 };
 
@@ -108,7 +123,8 @@ CompanyCategoryHorizontalWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: 400,
-    height: 400,
+    width: 90,
+    height: 90,
+    borderRadius: 15,
   },
 });

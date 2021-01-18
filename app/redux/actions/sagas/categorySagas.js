@@ -5,7 +5,6 @@ import validate from 'validate.js';
 import {isLocal} from '../../../env';
 import {SET_CATEGORY} from '../types';
 import {first} from 'lodash';
-import {disableLoading} from './settingSagas';
 
 export function* getHomeUserCategories(action) {
   try {

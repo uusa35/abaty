@@ -63,6 +63,7 @@ LocaleConfig.locales['ar'] = {
 LocaleConfig.locales['en'] = {
   monthNames: [
     'January',
+    'February',
     'March',
     'April',
     'May',
@@ -70,12 +71,13 @@ LocaleConfig.locales['en'] = {
     'July',
     'Augest',
     'Sept',
-    'November',
     'October',
+    'November',
     'December',
   ],
   monthNamesShort: [
     'January',
+    'February',
     'March',
     'April',
     'May',
@@ -83,8 +85,8 @@ LocaleConfig.locales['en'] = {
     'July',
     'Augest',
     'Sept',
-    'November',
     'October',
+    'November',
     'December',
   ],
   dayNames: [

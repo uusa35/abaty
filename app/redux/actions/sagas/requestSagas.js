@@ -12,7 +12,17 @@ import {
   enableWarningMessage,
   startGoogleAnalyticsScenario,
 } from './settingSagas';
-import {isNull, uniqBy, remove, map, sumBy, first, filter, last} from 'lodash';
+import {
+  isNull,
+  uniqBy,
+  remove,
+  map,
+  sumBy,
+  first,
+  filter,
+  last,
+  pickBy,
+} from 'lodash';
 import {enableResetApp} from './settingSagas';
 import {
   commentStoreConstrains,
@@ -304,13 +314,25 @@ export function* setHomeSplashes() {
 
 export function* startAddToCartScenario(action) {
   try {
-    const {cart, country, product} = yield select();
+    const {cart, country, product, settings} = yield select();
     if (!country.is_local && action.payload.type === 'service') {
       throw I18n.t(
         'orders_that_include_services_are_not_accepted_out_side_kuwait',
       );
     } else {
       const filteredCart = yield call(filterCartAndItems, [cart, action]);
+      if (!settings.multiCartMerchant && filteredCart.length >= 1) {
+        let multiMerchantEnabled = filter(
+          map(
+            filteredCart,
+            (e) => e.element.user_id === first(cart).element.user_id,
+          ),
+          (e) => e === false,
+        );
+        if (multiMerchantEnabled.length >= 1) {
+          throw I18n.t('you_can_only_add_to_cart_from_only_single_merchant');
+        }
+      }
       if (!validate.isEmpty(filteredCart)) {
         yield all([
           call(startGoogleAnalyticsScenario, {

@@ -5,6 +5,7 @@ import {isRTL} from '../../../I18n';
 import {getDesigner, getUser} from './../../../redux/actions/user';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const UserWidgetVertical = ({user, size = iconSizes.large}) => {
   const dispatch = useDispatch();
@@ -20,7 +21,18 @@ const UserWidgetVertical = ({user, size = iconSizes.large}) => {
           }),
         )
       }
-      leftAvatar={{size, rounded: false, source: {uri: user.thumb}}}
+      leftAvatar={() => (
+        <ImageLoaderContainer
+          img={user.thumb}
+          style={{
+            width: iconSizes.large,
+            height: iconSizes.large,
+            marginRight: 5,
+            marginLeft: 5,
+            alignSelf: 'center',
+          }}
+        />
+      )}
       rightIcon={{
         type: 'entypo',
         name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',

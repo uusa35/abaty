@@ -64,7 +64,10 @@ export function* expoBootStrap() {
       call(startGetSizesScenario),
       call(startGetRolesScenario),
       call(getHomeUserCategories, {
-        payload: {on_home: true, type: 'is_user', country_id: country.id},
+        payload: {on_home: 1, type: 'is_user', country_id: country.id},
+      }),
+      call(setHomeProducts, {
+        payload: {on_home: 1, country_id: country.id, on_sale: 1},
       }),
       call(startGetParentCategoriesScenario),
       call(startGetHomeCategoriesScenario),

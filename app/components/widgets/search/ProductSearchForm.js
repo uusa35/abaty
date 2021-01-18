@@ -15,7 +15,7 @@ const ProductSearchForm = ({showBtn = false}) => {
     dispatch(getSearchProducts({searchParams: {search}, redirect: true}));
   };
   return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%', minHeight: 120, marginTop: 10}}>
       <Input
         placeholder={I18n.t('search')}
         inputStyle={{
@@ -33,7 +33,7 @@ const ProductSearchForm = ({showBtn = false}) => {
             onPress={() => handleSubmit()}
           />
         }
-        containerStyle={{marginTop: 5, marginBottom: '1%', alignSelf: 'center'}}
+        containerStyle={{alignSelf: 'center', marginBottom: 0}}
         inputContainerStyle={{
           backgroundColor: '#E4E4E5',
           borderRadius: 5,

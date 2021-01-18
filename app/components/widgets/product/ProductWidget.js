@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, Fragment} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -16,6 +16,7 @@ import TagWidget from './../TagWidget';
 import I18n from './../../../I18n';
 import FastImage from 'react-native-fast-image';
 import {images} from '../../../constants/images';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const ProductWidget = ({
   element,
@@ -26,7 +27,6 @@ const ProductWidget = ({
   const {currency_symbol, exchange_rate, colors} = useContext(
     GlobalValuesContext,
   );
-  const [imageLoading, setImageLoading] = useState(true);
 
   return (
     <TouchableOpacity
@@ -35,21 +35,25 @@ const ProductWidget = ({
       style={[widgetStyles.productServiceWidget, {width: width}]}
       onPress={() => handleClickProductWidget(element)}>
       <ImageBackground
-        imageStyle={styles.imageContainerStyle}
-        source={imageLoading ? images.loading : {uri: element.thumb}}
-        onLoadEnd={() => setImageLoading(false)}
-        style={styles.image}
-        resizeMode={imageLoading ? 'contain' : 'cover'}>
-        <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
-          {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
-          {element.isOnSale ? (
-            <TagWidget tagName="under_sale" bgColor="red" />
-          ) : null}
-          {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
-          {!element.hasStock && (
-            <TagWidget tagName="out_of_stock" bgColor="red" />
-          )}
-        </View>
+        source={images.loading}
+        style={{height: 240, width: '100%'}}>
+        <Fragment>
+          <ImageLoaderContainer
+            img={element.thumb}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          <View style={{flex: 1, position: 'absolute', bottom: 20, right: 0}}>
+            {element.exclusive ? <TagWidget tagName="exclusive" /> : null}
+            {element.isOnSale ? (
+              <TagWidget tagName="under_sale" bgColor="red" />
+            ) : null}
+            {element.isReallyHot ? <TagWidget tagName="hot_deal" /> : null}
+            {!element.hasStock && (
+              <TagWidget tagName="out_of_stock" bgColor="red" />
+            )}
+          </View>
+        </Fragment>
       </ImageBackground>
       {showName && (
         <View
@@ -125,11 +129,9 @@ ProductWidget.propTypes = {
 
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
-    height: 240,
-  },
-  imageContainerStyle: {
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
+    width: '100%',
+    height: 240,
   },
 });

@@ -679,5 +679,6 @@
   "reset_services" : "إعادة تعيين",
   "expo_calender" : "أجندة المعارض",
   "old_version" : "يرجى تحديث البرنامج من الاستور",
-  "update" : "تحديث"
+  "update" : "تحديث",
+  "you_can_only_add_to_cart_from_only_single_merchant" : "يمكن فقط إضافة منتجات من تاجر واحد فقط"
 }

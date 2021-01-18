@@ -645,6 +645,7 @@
   "reset_services" : "Reset Services",
   "expo_calender" : "Expo Calendar",
   "old_version" : "Please Update your Application from the store.",
-  "update" : "Update"
+  "update" : "Update",
+  "you_can_only_add_to_cart_from_only_single_merchant" : "You can only buy from single merchant for each order."
 }
 

@@ -2,25 +2,18 @@ import React from 'react';
 import {RefreshControl, ScrollView, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {refetchHomeElements} from '../../redux/actions';
-import PropTypes from 'prop-types';
-import FixedCommercialSliderWidget from '../../components/widgets/FixedCommercialSliderWidget';
-import validate from 'validate.js';
-import BrandHorizontalWidget from '../../components/widgets/brand/BrandHorizontalWidget';
-import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import IntroductionWidget from '../../components/widgets/splash/IntroductionWidget';
-import ServiceHorizontalWidget from '../../components/widgets/service/ServiceHorizontalWidget';
-import CelebrityHorizontalWidget from '../../components/widgets/user/CelebrityHorizontalWidget';
 import ProductCategoryHorizontalRoundedWidget from '../../components/widgets/category/ProductCategoryHorizontalRoundedWidget';
 import I18n from '../../I18n';
 import ExpoMainSliderWidget from '../../components/widgets/slider/ExpoMainSliderWidget';
 import ExpoDesignerHorizontalWidget from '../../components/widgets/user/ExpoDesignerHorizontalWidget';
 import ExpoHomeScreenBtns from '../../components/widgets/home/ExpoHomeScreenBtns';
 import BgContainer from '../../components/containers/BgContainer';
-import DesignersHorizontalWidget from '../../components/widgets/user/DesignerHorizontalWidget';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import {bottomContentInset, height} from '../../constants/sizes';
 import {isIOS} from '../../constants';
 import CompanyCategoryHorizontalWidget from '../../components/widgets/category/CompanyCategoryHorizontalWidget';
+import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 
 const ExpoHomeScreen = () => {
   const {
@@ -41,7 +34,6 @@ const ExpoHomeScreen = () => {
     country,
     settings,
   } = useSelector((state) => state);
-  console.log('homeUserCategories', homeUserCategories);
   const dispatch = useDispatch();
 
   const handleRefresh = () => dispatch(refetchHomeElements());
@@ -99,17 +91,25 @@ const ExpoHomeScreen = () => {
           <ProductCategoryHorizontalRoundedWidget
             elements={homeCategories}
             showName={true}
-            title={I18n.t('categories')}
+            title={I18n.t('product_categories')}
             type="products"
           />
         )}
         {homeUserCategories && (
-            <CompanyCategoryHorizontalWidget
-                elements={homeUserCategories}
-                showName={true}
-                title={I18n.t('categories')}
-                type="users"
-            />
+          <CompanyCategoryHorizontalWidget
+            elements={homeUserCategories}
+            showName={true}
+            title={I18n.t('user_categories')}
+            type="companies"
+          />
+        )}
+        {homeProducts && (
+          <ProductHorizontalWidget
+            elements={homeProducts}
+            showName={true}
+            title={I18n.t('on_sale_products')}
+            searchParams={{on_home: 1, country_id: country.id, on_sale: 1}}
+          />
         )}
         <ExpoHomeScreenBtns />
       </ScrollView>

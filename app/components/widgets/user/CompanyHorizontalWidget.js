@@ -1,9 +1,15 @@
-import React, {useContext} from 'react';
+import React, {Fragment, useContext} from 'react';
 import {iconSizes, text, touchOpacity} from './../../../constants/sizes';
 import {images} from './../../../constants/images';
 import {getCompany} from './../../../redux/actions/user';
 import widgetStyles from '../widgetStyles';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import PropTypes from 'prop-types';
 import I18n from '../../../I18n';
@@ -37,70 +43,79 @@ const CompanyHorizontalWidget = ({
         },
       ]}
       onPress={() => handleClick(user)}>
-      <ImageLoaderContainer
-        img={user.thumb ? user.thumb : logo}
-        imageStyle={styles.imageStyling}
-        loadingIndicatorSource={images.logo}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      {showName ? (
-        <View
-          style={{
-            flex: 1,
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            alignSelf: 'center',
-          }}>
-          <Text
-            style={[
-              widgetStyles.elementName,
-              {
-                paddingTop: iconSizes.tiny,
-                color: colors.header_tow_theme_color,
-              },
-            ]}>
-            {user.slug}
-          </Text>
-          {user.views ? (
-            <Text
-              style={[
-                styles.mainTitle,
-                {fontSize: text.small, color: colors.header_tow_theme_color},
-              ]}>
-              {user.views} {I18n.t('views')}
-            </Text>
+      <ImageBackground
+        source={images.loading}
+        style={{height: 240, width: '100%'}}>
+        <Fragment>
+          <ImageLoaderContainer
+            img={user.thumb}
+            imageStyle={styles.image}
+            loadingIndicatorSource={images.logo}
+            style={styles.image}
+            resizeMode="cover"
+          />
+          {showName ? (
+            <View
+              style={{
+                flex: 1,
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                alignSelf: 'center',
+              }}>
+              <Text
+                style={[
+                  widgetStyles.elementName,
+                  {
+                    paddingTop: iconSizes.tiny,
+                    color: colors.header_tow_theme_color,
+                  },
+                ]}>
+                {user.slug}
+              </Text>
+              {user.views ? (
+                <Text
+                  style={[
+                    styles.mainTitle,
+                    {
+                      fontSize: text.small,
+                      color: colors.header_tow_theme_color,
+                    },
+                  ]}>
+                  {user.views} {I18n.t('views')}
+                </Text>
+              ) : null}
+              {showRating ? (
+                <Rating
+                  readonly={true}
+                  showRating={false}
+                  startingValue={user.rating}
+                  count={10}
+                  ratingCount={5}
+                  style={{paddingVertical: 0}}
+                  imageSize={15}
+                />
+              ) : null}
+              {showDescription && (
+                <Text
+                  style={[
+                    widgetStyles.elementName,
+                    {
+                      color: colors.header_tow_theme_color,
+                      paddingTop: 0,
+                      paddingRight: iconSizes.tiny,
+                      paddingLeft: iconSizes.tiny,
+                      lineHeight: 15,
+                      fontSize: text.smaller,
+                    },
+                  ]}>
+                  {user.description}
+                </Text>
+              )}
+            </View>
           ) : null}
-          {showRating ? (
-            <Rating
-              readonly={true}
-              showRating={false}
-              startingValue={user.rating}
-              count={10}
-              ratingCount={5}
-              style={{paddingVertical: 0}}
-              imageSize={15}
-            />
-          ) : null}
-          {showDescription && (
-            <Text
-              style={[
-                widgetStyles.elementName,
-                {
-                  color: colors.header_tow_theme_color,
-                  paddingTop: 0,
-                  paddingRight: iconSizes.tiny,
-                  paddingLeft: iconSizes.tiny,
-                  lineHeight: 15,
-                  fontSize: text.smaller,
-                },
-              ]}>
-              {user.description}
-            </Text>
-          )}
-        </View>
-      ) : null}
+        </Fragment>
+      </ImageBackground>
     </TouchableOpacity>
   );
 };
