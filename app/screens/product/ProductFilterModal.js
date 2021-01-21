@@ -75,8 +75,8 @@ const ProductFilterModal = () => {
     setPriceRange([0, 1000]);
   });
 
-  useMemo(() => {
-    dispatch(setCategory(selectedCategory));
+  useEffect(() => {
+    selectedCategory ? dispatch(setCategory(selectedCategory)) : null;
   }, [selectedCategory]);
 
   useMemo(() => {

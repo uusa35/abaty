@@ -15,7 +15,7 @@ const ProductSearchForm = ({showBtn = false}) => {
     dispatch(getSearchProducts({searchParams: {search}, redirect: true}));
   };
   return (
-    <View style={{width: '100%', minHeight: 120, marginTop: 10}}>
+    <View style={{width: '100%', marginTop: 10, maxHeight: 40}}>
       <Input
         placeholder={I18n.t('search')}
         inputStyle={{

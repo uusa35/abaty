@@ -17,6 +17,7 @@ const MainSliderWidget = ({elements}) => {
         <View
           style={{
             height: !validate.isEmpty(elements) ? 200 : 0,
+            flex: 1,
           }}>
           {!validate.isEmpty(elements) ? (
             <Swiper

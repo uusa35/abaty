@@ -25,8 +25,10 @@ const IntroductionWidget = ({elements}) => {
     setCurrentShowIntroduction(false);
   });
 
-  useMemo(() => {
-    dispatch(toggleIntroduction(currentShowIntroduction));
+  useEffect(() => {
+    currentShowIntroduction
+      ? dispatch(toggleIntroduction(currentShowIntroduction))
+      : null;
   }, [currentShowIntroduction]);
 
   useEffect(() => {
