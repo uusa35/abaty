@@ -25,7 +25,8 @@ const CategoriesList = ({elements, columns, type, showBtn = false}) => {
   const dispatch = useDispatch();
   const {goBack} = useNavigation();
   const [refresh, setRefresh] = useState(false);
-  useMemo(() => {
+
+  useEffect(() => {
     if (refresh) {
       dispatch(refetchHomeElements());
       return setRefresh(false);

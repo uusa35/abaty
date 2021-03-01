@@ -32,7 +32,12 @@ export function* startGetServiceScenario(action) {
           put(
             NavigationActions.navigate({
               routeName: 'Service',
-              params: {name: element.name, id: element.id, model: 'service'},
+              params: {
+                name: element.name,
+                id: element.id,
+                model: 'service',
+                type: 'service',
+              },
             }),
           ),
         ]);

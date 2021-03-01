@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, Linking, RefreshControl} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -30,8 +30,10 @@ const ServiceShowScreen = () => {
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
+  useEffect(() => {
+    headerBg || headerBgColor
+      ? navigation.setParams({headerBg, headerBgColor})
+      : null;
   }, [headerBg]);
 
   return (

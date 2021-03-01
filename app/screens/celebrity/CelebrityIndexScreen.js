@@ -3,15 +3,18 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import CelebritiesList from '../../components/Lists/CelebritiesList';
+import BgContainer from '../../components/containers/BgContainer';
 
 const CelebrityIndexScreen = () => {
   const {celebrities, searchParams} = useSelector((state) => state);
   return (
-    <CelebritiesList
-      elements={celebrities}
-      searchElements={searchParams}
-      showMore={true}
-    />
+    <BgContainer showImage={false}>
+      <CelebritiesList
+        elements={celebrities}
+        searchElements={searchParams}
+        showMore={true}
+      />
+    </BgContainer>
   );
 };
 

@@ -47,6 +47,7 @@ import {escrapBootStrap} from './escrap/appSagas';
 import {homeKeyBootStrap} from './homekey/appSagas';
 import {expoBootStrap} from './expo/appSagas';
 import {dailyBootStrap} from './daily/appSagas';
+import {startGetServiceScenario} from './serviceSagas';
 
 export function* startGetHomeCategoriesScenario(action) {
   try {
@@ -254,6 +255,10 @@ export function* startDeepLinkingScenario(action) {
           });
         case 'product':
           return yield call(startGetProductScenario, {
+            payload: {id, redirect: true},
+          });
+        case 'service':
+          return yield call(startGetServiceScenario, {
             payload: {id, redirect: true},
           });
       }

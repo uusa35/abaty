@@ -17,7 +17,7 @@ const TopSearchInput = ({search, setSearch}) => {
           onPress={() => setSearch('')}
           hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
           type="antdesign"
-          name={search.length > 0 ? 'close' : 'search1'}
+          name={search && search.length > 0 ? 'close' : 'search1'}
           color="#c4c4c4"
           size={iconSizes.smaller}
         />

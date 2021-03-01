@@ -112,11 +112,11 @@ const CelebrityShowScreen = () => {
             views={celebrity.views}
             commentsCount={celebrity.commentsCount}
           />
-          {!validate.isEmpty(celebrity.slides) ? (
+          {!validate.isEmpty(celebrity.slides) && (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget slides={celebrity.slides} />
+              <MainSliderWidget elements={celebrity.slides} />
             </View>
-          ) : null}
+          )}
           {!validate.isEmpty(collectedCategories) ? (
             <ProductCategoryVerticalWidget
               elements={collectedCategories}

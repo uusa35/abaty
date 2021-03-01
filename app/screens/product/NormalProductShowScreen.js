@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, Linking, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -28,8 +28,10 @@ const NormalProductShowScreen = () => {
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
 
-  useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
+  useEffect(() => {
+    headerBg || headerBgColor
+      ? navigation.setParams({headerBg, headerBgColor})
+      : null;
   }, [headerBg, headerBgColor]);
 
   const handleRefresh = () => {

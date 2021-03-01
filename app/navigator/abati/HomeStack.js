@@ -349,7 +349,7 @@ export const HomeStack = createStackNavigator(
         headerTitle: () => (
           <HeaderMiddle title={navigation.state.params.name} />
         ),
-        headerRight: () => <HeaderRight />,
+        headerRight: () => <HeaderRight displayShare={true} />,
         headerBackTitle: () => null,
       }),
       path: `product/:id`,
