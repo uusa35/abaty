@@ -10,6 +10,7 @@ const isLocal = __DEV__;
 const appUrl = () => {
   switch (APP_CASE) {
     case 'abati':
+      // return 'http://mallr.test/';
       return 'http://abatiapp.com/';
     case 'mallr':
       return 'http://mallr.net/';

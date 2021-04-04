@@ -115,6 +115,7 @@ const HomeScreen = ({
     }
     const {path, params} = getPathForDeepLinking(
       openResult.notification.payload.additionalData.url,
+      z,
     );
     dispatch(goDeepLinking(path, params));
   };

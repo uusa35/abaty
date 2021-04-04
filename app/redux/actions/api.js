@@ -601,6 +601,29 @@ export async function addComment(params) {
     .catch((e) => e.response.date.message);
 }
 
+export async function createAddress(params) {
+  return await axiosInstance
+    .post(`address`, params)
+    .then((r) => r.data)
+    .catch((e) => e.response.data.message);
+}
+
+export async function updateAddress(params) {
+  return await axiosInstance
+    .put(`address/${params.id}`, params)
+    .then((r) => r.data)
+    .catch((e) => e.response.data.message);
+  // .catch((e) => e.response.date.message);
+}
+
+export async function deleteAddress(params) {
+  const {id, api_token} = params;
+  return await axiosInstance
+    .delete(`address/${id}`, {data: {id, api_token}})
+    .then((r) => r.data)
+    .catch((e) => e.response.data.message);
+}
+
 export async function getRoles() {
   return await axiosInstance
     .get(`role`)

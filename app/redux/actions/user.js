@@ -173,3 +173,28 @@ export const setRole = (payload) => ({
   type: actions.SET_ROLE,
   payload,
 });
+
+export const setAddress = (payload) => ({
+  type: actions.SET_ADDRESS,
+  payload,
+});
+
+export const changeAddress = (payload) => ({
+  type: actions.CHANGE_ADDRESS,
+  payload,
+});
+
+export const updateAddress = (payload) => ({
+  type: actions.UPDATE_ADDRESS,
+  payload,
+});
+
+export const createAddress = (payload) => ({
+  type: actions.CREATE_ADDRESS,
+  payload,
+});
+
+export const deleteAddress = (payload) => ({
+  type: actions.DELETE_ADDRESS,
+  payload,
+});

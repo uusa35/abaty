@@ -20,7 +20,8 @@ import I18n from '../../../I18n';
 import validate from 'validate.js';
 import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../../app';
 import {isLocal} from '../../../env';
-import {SET_ROLES} from '../types';
+import {SET_ADDRESS, SET_ROLES} from '../types';
+import {first} from 'lodash';
 
 export function* startGetDesignerScenario(action) {
   try {
@@ -376,6 +377,7 @@ export function* startSubmitAuthScenario(action) {
         put({type: actions.SET_AUTH, payload: element}),
         put({type: actions.SET_TOKEN, payload: element.api_token}),
         put({type: actions.SET_ORDERS, payload: element.orders}),
+        put({type: actions.SET_ADDRESS, payload: first(element.addresses)}),
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(setProductFavorites, element.product_favorites),
         call(setClassifiedFavorites, element.classified_favorites),
@@ -427,6 +429,7 @@ export function* startReAuthenticateScenario() {
         put({type: actions.TOGGLE_GUEST, payload: false}),
         call(setProductFavorites, element.product_favorites),
         call(setClassifiedFavorites, element.classified_favorites),
+        put({type: actions.SET_SHIPMENT_COUNTRY, payload: element.country}),
       ]);
     } else {
       throw user;
@@ -682,6 +685,71 @@ export function* startGetRolesScenario() {
       yield put({type: SET_ROLES, payload: elements});
     }
   } catch (e) {
+  } finally {
+  }
+}
+
+export function* startCreateAddressScenario(action) {
+  try {
+    const element = yield call(api.createAddress, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        call(enableSuccessMessage, I18n.t('address_created')),
+        put({type: SET_ADDRESS, payload: element}),
+        call(startReAuthenticateScenario),
+      ]);
+      yield put(NavigationActions.navigate({routeName: 'UserAddressIndex'}));
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    yield call(enableErrorMessage, e);
+  } finally {
+  }
+}
+
+export function* startUpdateAddressScenario(action) {
+  try {
+    const element = yield call(api.updateAddress, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield all([
+        call(enableSuccessMessage, I18n.t('address_updated')),
+        put({type: SET_ADDRESS, payload: element}),
+        call(startReAuthenticateScenario),
+      ]);
+      yield put(NavigationActions.navigate({routeName: 'UserAddressIndex'}));
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    yield call(enableErrorMessage, e);
+  } finally {
+  }
+}
+
+export function* startDeleteAddressScenario(action) {
+  try {
+    const element = yield call(api.deleteAddress, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield call(startReAuthenticateScenario);
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    yield call(enableErrorMessage, e);
+  } finally {
+  }
+}
+
+export function* startChangeAddressScenario(action) {
+  try {
+    yield all([
+      put({type: SET_ADDRESS, payload: action.payload}),
+      call(enableSuccessMessage, I18n.t('address_changed')),
+    ]);
+    yield put(NavigationActions.back());
+  } catch (e) {
+    yield call(enableErrorMessage, e);
   } finally {
   }
 }

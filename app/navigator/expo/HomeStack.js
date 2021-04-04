@@ -48,7 +48,6 @@ import ChildrenCategoryIndexScreen from '../../screens/category/ChildrenCategory
 import MallrHomeScreen from '../../screens/home/MallrHomeScreen';
 import ProductIndexAllScreen from '../../screens/product/ProductIndexAllScreen';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
-import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import ExpoHomeScreen from '../../screens/home/ExpoHomeScreen';
 import PolicyScreen from '../../screens/PolicyScreen';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
@@ -56,11 +55,15 @@ import PageOneScreen from '../../screens/PageOneScreen';
 import PageTwoScreen from '../../screens/PageTwoScreen';
 import {text, width} from '../../constants/sizes';
 import PageThreeScreen from '../../screens/PageThreeScreen';
-import PageFourScreen from '../../screens/PageFourScreen';
 import CalendarIndexScreen from '../../screens/calender/CalendarIndexScreen';
 import TransparentProductShowScreen from '../../screens/product/TransparentProductShowScreen';
 import RoleIndexScreen from '../../screens/role/RoleIndexScreen';
-import {isIOS} from '../../constants';
+import DesigneratCartIndexScreen from '../../screens/cart/DesigneratCartIndexScreen';
+import DesigneratCartConfirmationScreen from '../../screens/cart/DesigneratCartConfirmationScreen';
+import DesigneratCartIndexFormScreen from '../../screens/cart/DesigneratCartIndexFormScreen';
+import UserAddressIndexScreen from '../../screens/auth/UserAddressIndexScreen';
+import UserAddressCreateScreen from '../../screens/auth/UserAddressCreateScreen';
+import UserAddressEditScreen from '../../screens/auth/UserAddressEditScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -123,7 +126,7 @@ export const HomeStack = createStackNavigator(
       }),
     },
     CartIndex: {
-      screen: CartIndexScreen,
+      screen: DesigneratCartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
@@ -133,13 +136,23 @@ export const HomeStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
-    CartConfirmation: {
-      screen: CartConfirmationScreen,
+    CartIndexForm: {
+      screen: DesigneratCartIndexFormScreen,
       navigationOptions: () => ({
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart_confirmation')} />,
+        headerBackTitle: () => null,
+      }),
+    },
+    CartConfirmation: {
+      screen: DesigneratCartConfirmationScreen,
+      navigationOptions: () => ({
+        headerRight: () => (
+          <HeaderRight showCountry={false} displayShare={false} />
+        ),
+        headerTitle: () => <HeaderMiddle title={I18n.t('payment')} />,
         headerBackTitle: () => null,
       }),
     },
@@ -537,6 +550,27 @@ export const HomeStack = createStackNavigator(
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('login')} />,
         headerRight: () => <HeaderRight display={false} />,
+        headerBackTitle: () => null,
+      },
+    },
+    UserAddressIndex: {
+      screen: UserAddressIndexScreen,
+      navigationOptions: {
+        headerTitle: () => <HeaderMiddle title={I18n.t('addresses')} />,
+        headerBackTitle: () => null,
+      },
+    },
+    UserAddressCreate: {
+      screen: UserAddressCreateScreen,
+      navigationOptions: {
+        headerTitle: () => <HeaderMiddle title={I18n.t('add_new_address')} />,
+        headerBackTitle: () => null,
+      },
+    },
+    UserAddressEdit: {
+      screen: UserAddressEditScreen,
+      navigationOptions: {
+        headerTitle: () => <HeaderMiddle title={I18n.t('edit_address')} />,
         headerBackTitle: () => null,
       },
     },

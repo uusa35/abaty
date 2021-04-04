@@ -293,7 +293,7 @@ const ElementsHorizontalList = ({
     }
   }, [isLoading]);
 
-  const handleClick = useCallback((element) => {
+  const handleClick = (element) => {
     dispatch(setElementType(type));
     switch (type) {
       case 'designer':
@@ -353,9 +353,9 @@ const ElementsHorizontalList = ({
       default:
         null;
     }
-  });
+  };
 
-  const renderItem = useCallback((item) => {
+  const renderItem = (item) => {
     switch (type) {
       case 'product':
         return (
@@ -423,7 +423,7 @@ const ElementsHorizontalList = ({
           />
         );
     }
-  });
+  };
 
   useEffect(() => {
     setItems(elements);

@@ -22,8 +22,14 @@ import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import WrapAsGiftWidget from './WrapAsGiftWidget';
 import {EXPO} from './../../../../app';
+import * as validate from 'validate.js';
 
-const ProductColorSizeGroupWithAttributes = ({element}) => {
+const ProductColorSizeGroupWithAttributes = ({
+  element,
+  setAddToCartStatus,
+  setCartItem,
+  handleAddToCart,
+}) => {
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const {settings} = useSelector((state) => state);
@@ -40,10 +46,39 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   const [wrapGift, setWrapGift] = useState(false);
   const [giftMessage, setGiftMessage] = useState('');
 
+  useEffect(() => {
+    setAddToCartStatus(!productAttribute || requestQty <= 0);
+  }, [requestQty]);
+
+  useMemo(() => {
+    if (!validate.isEmpty(productAttribute) && !requestQty <= 0) {
+      setCartItem({
+        element,
+        type: 'product',
+        product_id: productAttribute.product_id,
+        cart_id: productAttribute.cart_id,
+        qty: requestQty,
+        directPurchase: element.directPurchase,
+        product_attribute_id: productAttribute.id,
+        color_id: colorItem ? colorItem.id : null,
+        size_id: sizeItem ? sizeItem.id : null,
+        wrapGift,
+        notes: wrapGift
+          ? notes.concat(
+              `\n :: ${I18n.t('wrap_as_gift', {
+                item: settings.gift_fee,
+              })} :: \n ${giftMessage}`,
+            )
+          : notes,
+      });
+    }
+  }, [requestQty, notes, giftMessage, productAttribute]);
+
   useMemo(() => {
     if (sizeVisible) {
       setElementId(element.id);
       setRequestQty(0);
+      setAddToCartStatus(false);
       setSizeItem(null);
       setColorItem(null);
       setColorVisible(false);
@@ -53,6 +88,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
   useEffect(() => {
     if (element.id !== elementId && !isNull(elementId)) {
       setRequestQty(0);
+      setAddToCartStatus(false);
       setProductAttribute(null);
       setColorItems(null);
       setSizeItem(null);
@@ -89,14 +125,15 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
     }
   }, [colorItem]);
 
-  const handleSize = useCallback(() => {
+  const handleSize = () => {
     setSizeVisible(true);
     setRequestQty(0);
+    setAddToCartStatus(false);
     setSizeItem(null);
     setColorItem(null);
     setColorName(null);
     setWrapGift(false);
-  });
+  };
 
   return (
     <View
@@ -118,7 +155,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             containerStyle={{flex: 0.45}}
             buttonStyle={{
               backgroundColor: 'whitesmoke',
-              borderRadius: 5,
+              borderRadius: text.smallest,
               borderWidth: 0.5,
               borderColor: 'lightgray',
               alignItems: 'center',
@@ -150,7 +187,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
             containerStyle={{flex: 0.45}}
             buttonStyle={{
               backgroundColor: 'whitesmoke',
-              borderRadius: 5,
+              borderRadius: text.smallest,
               borderWidth: 0.5,
               borderColor: 'lightgray',
               alignItems: 'center',
@@ -199,29 +236,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
       </View>
       {element.has_stock && element.is_available && (
         <Button
-          onPress={() =>
-            dispatch(
-              addToCart({
-                wrapGift,
-                directPurchase: element.directPurchase,
-                product_attribute_id: productAttribute.id,
-                cart_id: productAttribute.cart_id,
-                product_id: productAttribute.product_id,
-                qty: requestQty,
-                type: 'product',
-                element,
-                color_id: colorItem ? colorItem.id : null,
-                size_id: sizeItem ? sizeItem.id : null,
-                notes: wrapGift
-                  ? notes.concat(
-                      `\n :: ${I18n.t('wrap_as_gift', {
-                        item: settings.gift_fee,
-                      })} :: \n ${giftMessage}`,
-                    )
-                  : notes,
-              }),
-            )
-          }
+          onPress={() => handleAddToCart()}
           disabled={!productAttribute || requestQty <= 0}
           raised
           containerStyle={{width: '100%', marginTop: 10, marginBottom: 10}}
@@ -239,17 +254,13 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           placeholder={
             element.notes
               ? element.notes
-              : I18n.t(
-                  EXPO
-                    ? 'add_notes_shoulders_height_and_other_notes_expo'
-                    : 'add_notes_shoulders_height_and_other_notes',
-                )
+              : I18n.t('add_notes_shoulders_height_and_other_notes')
           }
           defaultValue={notes ? notes : null}
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',
-            borderRadius: 5,
+            borderRadius: text.smallest,
             paddingLeft: 15,
             paddingRight: 15,
             // marginTop: 5,
@@ -264,7 +275,7 @@ const ProductColorSizeGroupWithAttributes = ({element}) => {
           keyboardType="default"
           multiline={true}
           numberOfLines={3}
-          onChangeText={(notes) => setNotes(notes)}
+          onChangeText={(c) => setNotes(c)}
         />
       </View>
     </View>

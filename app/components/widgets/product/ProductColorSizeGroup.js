@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -11,7 +11,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import WrapAsGiftWidget from './WrapAsGiftWidget';
 import {EXPO} from './../../../../app';
 
-const ProductColorSizeGroup = ({element}) => {
+const ProductColorSizeGroup = ({
+  element,
+  setAddToCartStatus,
+  setCartItem,
+  handleAddToCart,
+}) => {
   const {settings} = useSelector((state) => state);
   const {colors} = settings;
   const dispatch = useDispatch();
@@ -20,6 +25,32 @@ const ProductColorSizeGroup = ({element}) => {
   const [notes, setNotes] = useState('');
   const [wrapGift, setWrapGift] = useState(false);
   const [giftMessage, setGiftMessage] = useState('');
+
+  useEffect(() => {
+    setAddToCartStatus(!qty || requestQty <= 0);
+  }, [requestQty]);
+
+  useMemo(() => {
+    if (!requestQty <= 0) {
+      setCartItem({
+        element,
+        type: 'product',
+        product_attribute_id: null,
+        product_id: element.id,
+        cart_id: element.id,
+        qty: requestQty,
+        directPurchase: element.directPurchase,
+        wrapGift,
+        notes: wrapGift
+          ? notes.concat(
+              `\n :: (${I18n.t('wrap_as_gift', {
+                item: settings.gift_fee,
+              })}) :: \n ${giftMessage}`,
+            )
+          : notes,
+      });
+    }
+  }, [requestQty, notes, giftMessage]);
 
   return (
     <View

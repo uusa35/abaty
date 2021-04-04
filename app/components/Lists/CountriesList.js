@@ -1,4 +1,4 @@
-import React, {useContext, useCallback, useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, FlatList} from 'react-native';
 import Modal from 'react-native-modal';
 import {hideCountryModal, chooseCountry} from '../../redux/actions';
@@ -11,20 +11,19 @@ import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
 import {animations} from '../../constants/animations';
-import {EXPO} from './../../../app';
+import {EXPO} from './../../../app.json';
 import {View as Animated} from 'react-native-animatable';
-import {shuffle, first} from 'lodash';
 
 const CountriesList = ({country, countries}) => {
   const {countryModal} = useSelector((state) => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  const handleClick = useCallback((c) => {
+  const handleClick = (c) => {
     if (c.id !== country.id) {
-      dispatch(chooseCountry({country: c, redirect: EXPO}));
+      return dispatch(chooseCountry({country: c, redirect: EXPO}));
     }
-  });
+  };
 
   const hide = () => dispatch(hideCountryModal());
 

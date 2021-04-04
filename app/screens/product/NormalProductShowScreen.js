@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -18,6 +18,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
 import {EXPO} from './../../../app';
+import {addToCart} from '../../redux/actions/cart';
 
 const NormalProductShowScreen = () => {
   const {product, token, settings, products} = useSelector((state) => state);
@@ -27,14 +28,15 @@ const NormalProductShowScreen = () => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [addToCartStatus, setAddToCartStatus] = useState(false);
+  const [cartItem, setCartItem] = useState({});
+  const [rating, setRating] = useState(product.rating);
 
-  useEffect(() => {
-    headerBg || headerBgColor
-      ? navigation.setParams({headerBg, headerBgColor})
-      : null;
+  useMemo(() => {
+    navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     setRefresh(false);
     dispatch(
       getProduct({
@@ -43,6 +45,20 @@ const NormalProductShowScreen = () => {
         redirect: false,
       }),
     );
+  }, [refresh]);
+
+  useCallback(() => {
+    if (!validate.isEmpty(cartItem)) {
+      setAddToCartStatus(true);
+    } else {
+      setAddToCartStatus(false);
+    }
+  }, [cartItem, cartItem.qty]);
+
+  const handleAddToCart = () => {
+    if (!validate.isEmpty(cartItem)) {
+      return dispatch(addToCart(cartItem));
+    }
   };
 
   return (
@@ -64,7 +80,12 @@ const NormalProductShowScreen = () => {
           directPurchase={product.directPurchase}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget element={product} />
+          <ProductInfoWidget
+            element={product}
+            setAddToCartStatus={setAddToCartStatus}
+            setCartItem={setCartItem}
+            handleAddToCart={handleAddToCart}
+          />
           <View
             style={{
               borderWidth: 0.5,

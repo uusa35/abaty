@@ -29,6 +29,7 @@ import homeCompanies from './homeCompanies';
 import company from './company';
 import countries from './countries';
 import country from './country';
+import shipmentCountry from './shipmentCountry';
 import area from './area';
 import areas from './areas';
 import color from './color';
@@ -98,6 +99,7 @@ import resetApp from './resetApp';
 import elementType from './elementType';
 // import {reducer as network} from 'react-native-offline';
 import isConnected from './isConnected';
+import address from './address';
 
 let reducers = combineReducers({
   nav: navReducer,
@@ -150,6 +152,7 @@ let reducers = combineReducers({
   countries,
   splashes,
   country,
+  shipmentCountry,
   currency,
   area,
   areas,
@@ -184,6 +187,7 @@ let reducers = combineReducers({
   newClassified,
   classifiedProps,
   shipmentFees,
+  address,
   version,
   linking,
   propertiesModal,

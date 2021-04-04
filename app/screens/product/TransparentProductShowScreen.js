@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {StyleSheet, Text, Linking, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
@@ -17,6 +17,7 @@ import {useNavigation} from 'react-navigation-hooks';
 import {EXPO} from '../../../app';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
+import {addToCart} from '../../redux/actions/cart';
 
 const TransparentProductShowScreen = () => {
   const {product, settings, products, token} = useSelector((state) => state);
@@ -26,12 +27,15 @@ const TransparentProductShowScreen = () => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [addToCartStatus, setAddToCartStatus] = useState(false);
+  const [cartItem, setCartItem] = useState({});
+  const [rating, setRating] = useState(product.rating);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     setRefresh(false);
     dispatch(
       getProduct({
@@ -40,6 +44,20 @@ const TransparentProductShowScreen = () => {
         redirect: false,
       }),
     );
+  }, [refresh]);
+
+  useCallback(() => {
+    if (!validate.isEmpty(cartItem)) {
+      setAddToCartStatus(true);
+    } else {
+      setAddToCartStatus(false);
+    }
+  }, [cartItem, cartItem.qty]);
+
+  const handleAddToCart = () => {
+    if (!validate.isEmpty(cartItem)) {
+      return dispatch(addToCart(cartItem));
+    }
   };
 
   return (
@@ -61,7 +79,12 @@ const TransparentProductShowScreen = () => {
           directPurchase={product.directPurchase}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget element={product} />
+          <ProductInfoWidget
+            element={product}
+            setAddToCartStatus={setAddToCartStatus}
+            setCartItem={setCartItem}
+            handleAddToCart={handleAddToCart}
+          />
           <View
             style={{
               borderWidth: 0.5,

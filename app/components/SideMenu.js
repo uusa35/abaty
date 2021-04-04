@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import {
   View,
   StyleSheet,
@@ -17,9 +17,8 @@ import {Icon, Divider} from 'react-native-elements';
 import {changeLang} from '../redux/actions';
 import {logout} from '../redux/actions/user';
 import {SafeAreaView} from 'react-navigation';
-import PropTypes from 'prop-types';
 import validate from 'validate.js';
-import {HOMEKEY, ESCRAP} from './../../app';
+import {HOMEKEY} from './../../app';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from 'react-navigation-hooks';
 
@@ -60,7 +59,7 @@ const SideMeu = ({showLogo = true}) => {
           showsVerticalScrollIndicator={false}>
           <StatusBar
             barStyle={isIOS ? `dark-content` : `light-content`}
-            backgroundColor={colors.menu_theme_bg}
+            backgroundColor={colors.btn_bg_theme_color}
           />
           <View style={{alignItems: 'flex-end', width: '100%'}}>
             <Icon

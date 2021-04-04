@@ -5,7 +5,6 @@ import {REHYDRATE, PURGE} from 'redux-persist/lib/constants';
 export default function* rootSaga() {
   yield all([
     fork(triggers.triggerAppBootstrap),
-    fork(triggers.triggerCheckConnection),
     fork(triggers.triggerRefetchHomeCategories),
     // fork(userSagas.refetchUsers),
     fork(triggers.triggerGetUser),
@@ -69,6 +68,10 @@ export default function* rootSaga() {
     fork(triggers.triggerAddComment),
     fork(triggers.triggerResetStore),
     fork(triggers.triggerGetRoles),
+    fork(triggers.triggerCreateAddress),
+    fork(triggers.triggerUpdateAddress),
+    fork(triggers.triggerDeleteAddress),
+    fork(triggers.triggerChangeAddress),
     // fork(networkSaga, {pingInterval: 20000}),
   ]);
   yield take(REHYDRATE); // Wait for rehydrate to prevent sagas from running with empty store

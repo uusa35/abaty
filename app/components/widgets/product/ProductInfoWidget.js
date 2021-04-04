@@ -8,7 +8,12 @@ import {Button} from 'react-native-elements';
 import I18n from './../../../I18n';
 import {text} from '../../../constants/sizes';
 
-const ProductInfoWidget = ({element}) => {
+const ProductInfoWidget = ({
+  element,
+  setAddToCartStatus,
+  setCartItem,
+  handleAddToCart,
+}) => {
   return (
     <View
       useNativeDriver={true}
@@ -31,7 +36,14 @@ const ProductInfoWidget = ({element}) => {
           containerStyle={{width: '95%', alignSelf: 'center'}}
         />
       )}
-      {element.show_attribute && <ProductInfoWidgetBtns element={element} />}
+      {element.is_available && (
+        <ProductInfoWidgetBtns
+          element={element}
+          setAddToCartStatus={setAddToCartStatus}
+          setCartItem={setCartItem}
+          handleAddToCart={handleAddToCart}
+        />
+      )}
     </View>
   );
 };

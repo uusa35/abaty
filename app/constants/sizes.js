@@ -104,3 +104,23 @@ export const text = {
   xlarge: 25,
   font: getFont(),
 };
+
+export const formWidget = {
+  smaller: {
+    width: 120,
+    height: 50,
+  },
+  small: {
+    width: 220,
+    height: 293,
+  },
+  medium: {
+    width: 250,
+    height: 333,
+  },
+  large: {
+    width: 280,
+    height: 373,
+  },
+  inputRadius: 4,
+};

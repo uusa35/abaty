@@ -16,6 +16,7 @@ import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import {getDesigner} from '../../redux/actions/user';
 import {useNavigation} from 'react-navigation-hooks';
+import {addToCart} from '../../redux/actions/cart';
 
 const ProductShowScreen = () => {
   const {product, settings, token, homeProducts} = useSelector(
@@ -27,6 +28,9 @@ const ProductShowScreen = () => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [addToCartStatus, setAddToCartStatus] = useState(false);
+  const [cartItem, setCartItem] = useState({});
+  const [rating, setRating] = useState(product.rating);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -42,6 +46,20 @@ const ProductShowScreen = () => {
       }),
     );
   }, [refresh]);
+
+  useCallback(() => {
+    if (!validate.isEmpty(cartItem)) {
+      setAddToCartStatus(true);
+    } else {
+      setAddToCartStatus(false);
+    }
+  }, [cartItem, cartItem.qty]);
+
+  const handleAddToCart = () => {
+    if (!validate.isEmpty(cartItem)) {
+      return dispatch(addToCart(cartItem));
+    }
+  };
 
   return (
     <Fragment>
@@ -77,12 +95,14 @@ const ProductShowScreen = () => {
             }}
           />
         }
-        automaticallyAdjustContentInsets={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget element={product} />
+          <ProductInfoWidget
+            element={product}
+            setAddToCartStatus={setAddToCartStatus}
+            setCartItem={setCartItem}
+            handleAddToCart={handleAddToCart}
+          />
           <View>
             {product.description ? (
               <View>

@@ -14,11 +14,14 @@ import CartIndexScreen from '../../screens/cart/CartIndexScreen';
 import CartConfirmationScreen from '../../screens/cart/CartConfirmationScreen';
 import PaymentIndexScreen from '../../screens/PaymentIndexScreen';
 import {isIOS} from '../../constants';
+import DesigneratCartIndexScreen from '../../screens/cart/DesigneratCartIndexScreen';
+import DesigneratCartIndexFormScreen from '../../screens/cart/DesigneratCartIndexFormScreen';
+import DesigneratCartConfirmationScreen from '../../screens/cart/DesigneratCartConfirmationScreen';
 
 export const CartStack = createStackNavigator(
   {
     CartIndex: {
-      screen: CartIndexScreen,
+      screen: DesigneratCartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
@@ -28,8 +31,18 @@ export const CartStack = createStackNavigator(
         headerBackTitle: () => null,
       }),
     },
+    CartIndexForm: {
+      screen: DesigneratCartIndexFormScreen,
+      navigationOptions: () => ({
+        headerRight: () => (
+          <HeaderRight showCountry={false} displayShare={false} />
+        ),
+        headerTitle: () => <HeaderMiddle title={I18n.t('cart_confirmation')} />,
+        headerBackTitle: () => null,
+      }),
+    },
     CartConfirmation: {
-      screen: CartConfirmationScreen,
+      screen: DesigneratCartConfirmationScreen,
       navigationOptions: () => ({
         headerRight: () => (
           <HeaderRight showCountry={false} displayShare={false} />

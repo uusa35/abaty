@@ -15,7 +15,7 @@ import Share from 'react-native-share';
 import I18n from '../I18n';
 import widgetStyles from './widgets/widgetStyles';
 import {useNavigation} from 'react-navigation-hooks';
-import {APP_CASE, HOMEKEY, EXPO, ABATI} from '../../app';
+import {APP_CASE, HOMEKEY, EXPO, ABATI} from '../../app.json';
 import {iconSizes} from '../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';

@@ -1,5 +1,7 @@
 import {I18nManager, StyleSheet} from 'react-native';
-import {text, width} from '../../constants/sizes';
+import {formWidget, iconSizes, text, width} from '../../constants/sizes';
+import {isRTL} from '../../I18n';
+import {APP_CASE} from '../../../app.json';
 
 const widgetStyles = StyleSheet.create({
   container: {
@@ -14,6 +16,14 @@ const widgetStyles = StyleSheet.create({
     flexDirection: 'row',
     margin: 5,
     width: '100%',
+  },
+  panelContent: {
+    marginLeft: text.medium,
+    marginRight: text.medium,
+    marginTop: text.medium,
+    padding: text.smallest,
+    backgroundColor: 'white',
+    borderRadius: text.smallest,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -137,6 +147,104 @@ const widgetStyles = StyleSheet.create({
     fontSize: text.large,
     paddingRight: 20,
     paddingLeft: 20,
+  },
+  headerOne: {
+    fontFamily: text.font,
+    fontSize: text.xlarge,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'left',
+  },
+  headerTow: {
+    fontFamily: text.font,
+    fontSize: text.large,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'left',
+  },
+  headerThree: {
+    fontFamily: text.font,
+    fontSize: text.medium,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'center',
+  },
+  headerFour: {
+    fontFamily: text.font,
+    fontSize: text.small,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'left',
+  },
+  headerFive: {
+    fontFamily: text.font,
+    fontSize: text.smaller,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'left',
+  },
+  headerSix: {
+    fontFamily: text.font,
+    fontSize: text.smallest,
+    color: 'black',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+    elevation: 1,
+    textAlign: 'left',
+  },
+  inputStyle: {
+    fontFamily: text.font,
+    textAlign: isRTL ? 'right' : 'left',
+    height: formWidget.smaller.height,
+  },
+  inputContainerStyle: {
+    borderWidth: 1,
+    borderColor: 'lightgrey',
+    borderRadius: 5,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginBottom: iconSizes.tiny,
+    backgroundColor: 'white',
   },
 });
 

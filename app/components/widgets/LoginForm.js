@@ -123,7 +123,7 @@ const LoginForm = ({showBtns = false}) => {
           }}
           onPress={() => dispatch(submitAuth({email, password}))}
         />
-        {showBtns && (
+        {showBtns ? (
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -138,8 +138,8 @@ const LoginForm = ({showBtns = false}) => {
             }}
             onPress={() => handleRegisterClick()}
           />
-        )}
-        {showBtns && (
+        ) : null}
+        {showBtns ? (
           <Button
             raised
             containerStyle={{marginBottom: 10, width: '100%'}}
@@ -154,7 +154,7 @@ const LoginForm = ({showBtns = false}) => {
             }}
             onPress={() => Linking.openURL(`${appUrlIos}password/reset`)}
           />
-        )}
+        ) : null}
         {/*<SocialIcon*/}
         {/*  title={I18n.t('sign_with_google')}*/}
         {/*  button*/}

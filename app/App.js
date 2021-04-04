@@ -105,9 +105,14 @@ const App = () => {
 
   return (
     <Fragment>
-      <StatusBar barStyle={`${colorScheme}-content`} />
       {isConnected ? (
         <Fragment>
+          {validate.isEmpty(settings) && settings.colors && (
+            <StatusBar
+              barStyle={isIOS ? `dark-content` : `light-content`}
+              backgroundColor={settings.colors.btn_bg_theme_color}
+            />
+          )}
           {bootStrapped ? (
             <GlobalValuesContext.Provider
               value={{

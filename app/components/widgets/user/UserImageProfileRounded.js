@@ -112,7 +112,7 @@ const UserImageProfileRounded = ({
                 raised
                 reverse
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
                 hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
               />
               <Badge
@@ -128,7 +128,7 @@ const UserImageProfileRounded = ({
               raised
               reverse
               size={iconSizes.smallest}
-              color={colors.icon_theme_bg}
+              color={colors.icon_theme_color}
             />
             {latitude && longitude ? (
               <Icon
@@ -143,7 +143,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {whatsapp ? (
@@ -155,7 +155,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {mobile ? (
@@ -167,7 +167,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {email ? (
@@ -179,7 +179,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {facebook ? (
@@ -191,7 +191,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {twitter ? (
@@ -203,7 +203,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
             {instagram ? (
@@ -215,7 +215,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_bg}
+                color={colors.icon_theme_color}
               />
             ) : null}
           </View>

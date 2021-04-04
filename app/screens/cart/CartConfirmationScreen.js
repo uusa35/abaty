@@ -26,7 +26,7 @@ const CartConfirmationScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <BgContainer>
+    <BgContainer showImage={false}>
       <KeyBoardContainer>
         {!validate.isEmpty(cart) ? (
           <CartListConfirmationScreen
