@@ -16,6 +16,7 @@ export const themeColors = {
     bg: '#f7f7f7',
     darkGray: '#dbdbdb',
     lightGray: '#efefef',
+    white: 'white',
   },
   expo: {
     main: '#43cfd7',

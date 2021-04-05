@@ -20,11 +20,13 @@ import AbatiHomeScreen from '../../screens/home/AbatiHomeScreen';
 import NormalClassifiedShowScreen from '../../screens/classified/NormalClassifiedShowScreen';
 import ContactusScreen from '../../screens/ContactusScreen';
 import {isIOS} from '../../constants';
+import DesigneratSettingsIndexScreen from '../../screens/setting/DesigneratSettingsIndexScreen';
+import DesigneratAboutusScreen from '../../screens/setting/DesigneratAboutusScreen';
 
 export const SettingStack = createStackNavigator(
   {
     SettingIndex: {
-      screen: SettingsIndexScreen,
+      screen: DesigneratSettingsIndexScreen,
       navigationOptions: () => ({
         tabBarIcon: ({tintColor}) => (
           <Icon name="ios-person" type="ionicon" color={tintColor} />
@@ -124,30 +126,6 @@ export const SettingStack = createStackNavigator(
       }),
       path: `product/:id`,
     },
-    Classified: {
-      // screen: ClassifiedShowScreen,
-      screen: NormalClassifiedShowScreen,
-      navigationOptions: ({navigation}) => ({
-        headerTitle: () => (
-          <HeaderMiddle title={navigation.state.params.name} />
-        ),
-        headerRight: () => (
-          <HeaderRight
-            navigation={navigation}
-            displayShare={true}
-            display={true}
-          />
-        ),
-        headerBackTitle: () => null,
-        //   headerTransparent: true,
-        // headerStyle: {
-        // backgroundColor: 'white',
-        // borderColor: 'transparent',
-        // zIndex: 100
-        // }
-      }),
-      path: `classified/:id`,
-    },
     FavoriteClassifiedIndex: {
       screen: FavoriteClassifiedIndexScreen,
       navigationOptions: ({navigation}) => ({
@@ -164,6 +142,15 @@ export const SettingStack = createStackNavigator(
       navigationOptions: () => ({
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderMiddle title={I18n.t('contactus')} />,
+        headerBackTitle: () => null,
+      }),
+      path: 'contactus',
+    },
+    Aboutus: {
+      screen: DesigneratAboutusScreen,
+      navigationOptions: () => ({
+        headerRight: () => <HeaderRight />,
+        headerTitle: () => <HeaderMiddle title={I18n.t('aboutus')} />,
         headerBackTitle: () => null,
       }),
       path: 'contactus',

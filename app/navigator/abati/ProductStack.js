@@ -11,6 +11,9 @@ import ImageZoomWidget from '../../components/widgets/ImageZoomWidget';
 import SearchProductIndexScreen from '../../screens/product/SearchProductIndexScreen';
 import CartIndexScreen from '../../screens/cart/CartIndexScreen';
 import {isIOS} from '../../constants';
+import DesigneratCartIndexScreen from '../../screens/cart/DesigneratCartIndexScreen';
+import DesigneratCartIndexFormScreen from '../../screens/cart/DesigneratCartIndexFormScreen';
+import DesigneratCartConfirmationScreen from '../../screens/cart/DesigneratCartConfirmationScreen';
 
 export const ProductStack = createStackNavigator(
   {
@@ -58,11 +61,11 @@ export const ProductStack = createStackNavigator(
       }),
     },
     CartIndex: {
-      screen: CartIndexScreen,
+      screen: DesigneratCartIndexScreen,
       navigationOptions: () => ({
         // headerLeft: () => <HeaderLeft  />,
         headerRight: () => (
-          <HeaderRight showCountry={true} displayShare={false} />
+          <HeaderRight showCountry={false} displayShare={false} />
         ),
         headerTitle: () => <HeaderMiddle title={I18n.t('cart')} />,
         headerBackTitle: () => null,
