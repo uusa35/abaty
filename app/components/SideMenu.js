@@ -21,6 +21,7 @@ import validate from 'validate.js';
 import {HOMEKEY} from './../../app';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigation} from 'react-navigation-hooks';
+import {appUrlIos} from '../env';
 
 const SideMeu = ({showLogo = true}) => {
   const {
@@ -99,6 +100,14 @@ const SideMeu = ({showLogo = true}) => {
               <Fragment>
                 <TouchableOpacity onPress={() => navigation.navigate('Mallr')}>
                   <Text>Mallr</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(`${appUrlIos}panorama/view`)}>
+                  <Text>Panorama</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('PanoramaShow')}>
+                  <Text>Panorama Show</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('ServiceIndex')}>

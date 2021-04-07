@@ -54,6 +54,7 @@ import DesigneratCartConfirmationScreen from '../../screens/cart/DesigneratCartC
 import UserAddressIndexScreen from '../../screens/auth/UserAddressIndexScreen';
 import UserAddressCreateScreen from '../../screens/auth/UserAddressCreateScreen';
 import UserAddressEditScreen from '../../screens/auth/UserAddressEditScreen';
+import PanoramaShowScreen from '../../screens/PanoramaShowScreen';
 
 export const HomeStack = createStackNavigator(
   {
@@ -594,6 +595,14 @@ export const HomeStack = createStackNavigator(
       screen: RoleIndexScreen,
       navigationOptions: {
         headerTitle: () => <HeaderMiddle title={I18n.t('register')} />,
+        headerRight: () => <HeaderRight display={false} />,
+        headerBackTitle: () => null,
+      },
+    },
+    PanoramaShow: {
+      screen: PanoramaShowScreen,
+      navigationOptions: {
+        headerTitle: () => <HeaderMiddle title={I18n.t('panorama')} />,
         headerRight: () => <HeaderRight display={false} />,
         headerBackTitle: () => null,
       },
