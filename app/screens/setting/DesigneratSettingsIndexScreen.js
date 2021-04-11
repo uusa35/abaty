@@ -32,6 +32,7 @@ import FastImage from 'react-native-fast-image';
 import Share from 'react-native-share';
 import {adjustColor} from '../../helpers';
 import {REGISTER_AS_CLIENT} from '../../redux/actions/types';
+import {themeColors} from '../../constants/colors';
 
 const DesigneratSettingsIndexScreen = ({navigation}) => {
   const {guest, settings, version, auth, lang} = useSelector((state) => state);
@@ -145,12 +146,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               {auth.role && !auth.role.isClient && (
                 <>
                   <Pressable
-                    style={{
-                      width: '100%',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      height: 60,
-                    }}
+                    style={[
+                      styles.listItem,
+                      {borderColor: colors.icon_theme_color},
+                    ]}
                     onPress={() => navigation.navigate('ProductCreate')}>
                     <Icon
                       color={colors.menu_theme_color}
@@ -168,13 +167,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                   </Pressable>
                   {auth.statistics.orders >= 1 && (
                     <Pressable
-                      style={{
-                        width: '100%',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        height: 60,
-                      }}
+                      style={[
+                        styles.listItem,
+                        {borderColor: colors.icon_theme_color},
+                      ]}
                       onPress={() => navigation.navigate('StatisticIndex')}>
                       <Icon
                         color={colors.menu_theme_color}
@@ -202,12 +198,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 </>
               )}
               <Pressable
-                style={{
-                  width: '100%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  height: 60,
-                }}
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
                 onPress={() => navigation.navigate('OrderIndex')}>
                 <Icon
                   color={colors.menu_theme_color}
@@ -224,12 +218,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 </Text>
               </Pressable>
               <Pressable
-                style={{
-                  width: '100%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  height: 60,
-                }}
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
                 onPress={() => navigation.navigate('UserAddressIndex')}>
                 <Icon
                   color={colors.menu_theme_color}
@@ -246,12 +238,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 </Text>
               </Pressable>
               <Pressable
-                style={{
-                  width: '100%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  height: 60,
-                }}
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
                 onPress={() => navigation.navigate('UserAddressCreate')}>
                 <Icon
                   color={colors.menu_theme_color}
@@ -268,12 +258,10 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 </Text>
               </Pressable>
               <Pressable
-                style={{
-                  width: '100%',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  height: 60,
-                }}
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
                 onPress={() => navigation.navigate('FavoriteProductIndex')}>
                 <Icon
                   color={colors.menu_theme_color}
@@ -294,12 +282,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
 
           {guest && (
             <Pressable
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: 60,
-              }}
+              style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() => navigation.navigate('Login')}>
               <Icon
                 color={colors.menu_theme_color}
@@ -317,12 +300,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             </Pressable>
           )}
           <Pressable
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              height: 60,
-            }}
+            style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
             onPress={() => navigation.navigate('Aboutus')}>
             <FastImage
               source={{uri: settings.logo}}
@@ -339,12 +317,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
           </Pressable>
 
           <Pressable
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              height: 60,
-            }}
+            style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
             onPress={() => navigation.navigate('Contactus')}>
             <Icon
               color={colors.menu_theme_color}
@@ -363,12 +336,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
 
           {settings.instagram && (
             <Pressable
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: 60,
-              }}
+              style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() => Linking.openURL(settings.instagram)}>
               <Icon
                 hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -386,15 +354,9 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               </Text>
             </Pressable>
           )}
-
           {isIOS && (
             <Pressable
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: 60,
-              }}
+              style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() => Linking.openURL(settings.apple)}>
               <Icon
                 hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -412,15 +374,9 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               </Text>
             </Pressable>
           )}
-
           {!isIOS && (
             <Pressable
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: 60,
-              }}
+              style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() =>
                 Linking.openURL(isIOS ? settings.apple : settings.android)
               }>
@@ -441,12 +397,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             </Pressable>
           )}
           <Pressable
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              height: 60,
-            }}
+            style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
             onPress={() =>
               shareLink(isIOS ? settings.apple : settings.android)
             }>
@@ -466,12 +417,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             </Text>
           </Pressable>
           <Pressable
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              height: 60,
-            }}
+            style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}>
             <Icon
               hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
@@ -526,5 +472,12 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.medium,
     textAlign: 'center',
+  },
+  listItem: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 60,
+    borderBottomWidth: 0.5,
   },
 });

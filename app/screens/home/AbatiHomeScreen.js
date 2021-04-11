@@ -18,7 +18,6 @@ import ProductSearchForm from '../../components/widgets/search/ProductSearchForm
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import {bottomContentInset} from '../../constants/sizes';
-import {isIOS} from '../../constants';
 
 const AbatiHomeScreen = () => {
   const {
