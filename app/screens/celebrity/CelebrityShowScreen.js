@@ -20,6 +20,7 @@ import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalW
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import {useNavigation} from 'react-navigation-hooks';
+import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const CelebrityShowScreen = () => {
   const {
@@ -150,13 +151,16 @@ const CelebrityShowScreen = () => {
             }}
             renderScene={SceneMap({
               products: () => (
-                <ProductList
-                  products={products}
+                <ElementsHorizontalList
+                  elements={products}
+                  searchParams={searchParams}
+                  type="product"
+                  columns={2}
                   showSearch={false}
                   showTitle={true}
+                  showTitleIcons={true}
                   showFooter={false}
                   showMore={false}
-                  searchElements={searchParams}
                 />
               ),
               info: () => (

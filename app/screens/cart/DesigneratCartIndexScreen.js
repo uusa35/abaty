@@ -12,14 +12,12 @@ import {View as Animating} from 'react-native-animatable';
 import EmptyListWidget from '../../components/Lists/EmptyListWidget';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 import {useNavigation} from 'react-navigation-hooks';
-
 import DesigneratCartList from '../../components/widgets/cart/DesigneratCartList';
 import DesigneratBtn from '../../components/widgets/Button/DesigneratBtn';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import {themeColors} from '../../constants/colors';
-import FastImage from 'react-native-fast-image';
 import {images} from '../../constants/images';
-import {EXPO} from '../../../app.json';
+import {EXPO, ABATI} from '../../../app.json';
 
 const DesigneratCartIndexScreen = () => {
   const {
@@ -70,18 +68,22 @@ const DesigneratCartIndexScreen = () => {
           }}
           source={images.cartBg}
           imageStyle={{resizeMode: 'repeat', opacity: 0.2}}>
-          <LottieView
-            source={EXPO ? animations.emptyCart : animations.cart}
-            autoPlay
-            loop
-            style={{
-              alignSelf: 'center',
-              width: width / 2,
-              height: width / 2,
-              marginBottom: 20,
-            }}
-            enableMergePathsAndroidForKitKatAndAbove
-          />
+          {ABATI ? (
+            <EmptyListWidget emptyImage="emptyOrder" />
+          ) : (
+            <LottieView
+              source={EXPO ? animations.emptyCart : animations.cart}
+              autoPlay
+              loop
+              style={{
+                alignSelf: 'center',
+                width: width / 2,
+                height: width / 2,
+                marginBottom: 20,
+              }}
+              enableMergePathsAndroidForKitKatAndAbove
+            />
+          )}
           <Animating
             animation="bounceIn"
             easing="ease-out"

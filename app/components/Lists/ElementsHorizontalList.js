@@ -429,6 +429,7 @@ const ElementsHorizontalList = ({
     setItems(elements);
     dispatch(setElementType(type));
     setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
+    setParams(searchParams);
   }, [elements]);
 
   const renderFooter = () => {
