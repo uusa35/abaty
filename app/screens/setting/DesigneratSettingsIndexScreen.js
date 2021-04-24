@@ -7,6 +7,7 @@ import {
   Linking,
   RefreshControl,
   Pressable,
+  ImageBackground,
 } from 'react-native';
 import {View} from 'react-native-animatable';
 import {useDispatch, useSelector} from 'react-redux';
@@ -20,7 +21,7 @@ import {
 import {Button, Icon, Badge} from 'react-native-elements';
 import I18n from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
-import {APP_CASE} from './../../../app';
+import {APP_CASE, ABATI} from './../../../app';
 import {reAuthenticate, setRole, submitAuth} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
@@ -33,6 +34,7 @@ import Share from 'react-native-share';
 import {adjustColor} from '../../helpers';
 import {REGISTER_AS_CLIENT} from '../../redux/actions/types';
 import {themeColors} from '../../constants/colors';
+import {logout} from '../../redux/actions/user';
 
 const DesigneratSettingsIndexScreen = ({navigation}) => {
   const {guest, settings, version, auth, lang} = useSelector((state) => state);
@@ -88,7 +90,9 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             onRefresh={() => handleRefresh()}
           />
         }>
-        <TouchableOpacity
+        <ImageBackground
+          source={{uri: auth.thumb}}
+          resizeMode="cover"
           style={{
             paddingTop: 20,
             paddingBottom: 20,
@@ -103,7 +107,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
           <FastImage
             source={{uri: auth.thumb ? auth.thumb : settings.logo}}
             resizeMode="cover"
-            style={{width: 70, height: 70, borderRadius: 70 / 2}}
+            style={{width: 90, height: 90, borderRadius: 10}}
           />
           <View
             style={{
@@ -112,22 +116,33 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               justifyContent: 'center',
               alignItems: 'baseline',
             }}>
-            <Text
-              style={[
-                widgetStyles.headerThree,
-                {color: colors.btn_text_theme_color},
-              ]}>{`${I18n.t('welcome')}  ${!guest ? auth.name : ''}`}</Text>
             {!guest && (
-              <Icon
-                color={colors.icon_theme_color}
-                name="edit"
-                type="material-icons"
-                size={iconSizes.smallest}
-                style={{paddingLeft: 10}}
-              />
+              <>
+                <Text
+                  style={[
+                    widgetStyles.headerThree,
+                    {color: colors.btn_text_theme_color},
+                  ]}>{`${!guest ? auth.name : ''}`}</Text>
+                <Icon
+                  color={colors.icon_theme_color}
+                  name="edit"
+                  type="font-awesome"
+                  size={iconSizes.smallest}
+                  style={{paddingLeft: 10}}
+                />
+              </>
             )}
           </View>
-        </TouchableOpacity>
+          {!guest && (
+            <View style={{marginTop: 15}}>
+              <Text
+                style={[
+                  widgetStyles.headerThree,
+                  {color: colors.btn_text_theme_color},
+                ]}>{`${auth.role.slug}`}</Text>
+            </View>
+          )}
+        </ImageBackground>
         <View
           animation="bounceIn"
           easing="ease-out"
@@ -138,11 +153,35 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             alignItems: 'center',
             flex: 1,
             padding: 15,
-            marginTop: '5%',
+            // marginTop: '5%',
             width: '100%',
           }}>
           {!guest && (
             <>
+              <Pressable
+                style={[
+                  styles.listItem,
+                  {
+                    borderColor: colors.icon_theme_color,
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                  },
+                ]}
+                onPress={() => dispatch(logout())}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="logout"
+                  type="antdesign"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('logout')}
+                </Text>
+              </Pressable>
               {auth.role && !auth.role.isClient && (
                 <>
                   <Pressable
@@ -202,30 +241,14 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                   styles.listItem,
                   {borderColor: colors.icon_theme_color},
                 ]}
-                onPress={() => navigation.navigate('OrderIndex')}>
+                onPress={() =>
+                  guest
+                    ? handleRegisterClick()
+                    : navigation.navigate('UserEdit')
+                }>
                 <Icon
                   color={colors.menu_theme_color}
-                  name="book"
-                  type="antdesign"
-                  size={iconSizes.smaller}
-                />
-                <Text
-                  style={[
-                    widgetStyles.headerTow,
-                    {paddingLeft: 30, paddingRight: 30},
-                  ]}>
-                  {I18n.t('my_orders')}
-                </Text>
-              </Pressable>
-              <Pressable
-                style={[
-                  styles.listItem,
-                  {borderColor: colors.icon_theme_color},
-                ]}
-                onPress={() => navigation.navigate('UserAddressIndex')}>
-                <Icon
-                  color={colors.menu_theme_color}
-                  name="address-book-o"
+                  name="user-circle"
                   type="font-awesome"
                   size={iconSizes.smaller}
                 />
@@ -234,7 +257,27 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                     widgetStyles.headerTow,
                     {paddingLeft: 30, paddingRight: 30},
                   ]}>
-                  {I18n.t('my_addresses')}
+                  {I18n.t('edit_information')}
+                </Text>
+              </Pressable>
+              <Pressable
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
+                onPress={() => navigation.navigate('OrderIndex')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="list-alt"
+                  type="font-awesome"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('orders')}
                 </Text>
               </Pressable>
               <Pressable
@@ -245,7 +288,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 onPress={() => navigation.navigate('UserAddressCreate')}>
                 <Icon
                   color={colors.menu_theme_color}
-                  name="add-circle-outline"
+                  name="add-circle"
                   type="ionicons"
                   size={iconSizes.smaller}
                 />
@@ -262,10 +305,30 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                   styles.listItem,
                   {borderColor: colors.icon_theme_color},
                 ]}
+                onPress={() => navigation.navigate('UserAddressIndex')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="address-book"
+                  type="font-awesome"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('my_addresses')}
+                </Text>
+              </Pressable>
+              <Pressable
+                style={[
+                  styles.listItem,
+                  {borderColor: colors.icon_theme_color},
+                ]}
                 onPress={() => navigation.navigate('FavoriteProductIndex')}>
                 <Icon
                   color={colors.menu_theme_color}
-                  name="hearto"
+                  name="heart"
                   type="antdesign"
                   size={iconSizes.smaller}
                 />
@@ -321,7 +384,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
             onPress={() => navigation.navigate('Contactus')}>
             <Icon
               color={colors.menu_theme_color}
-              name="perm-phone-msg"
+              name="phone"
               type="material"
               size={iconSizes.smaller}
             />
@@ -342,7 +405,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                 hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
                 size={iconSizes.smaller}
                 name="instagram"
-                type="font-awesome"
+                type="entypo"
                 color={colors.menu_theme_color}
               />
               <Text
@@ -350,11 +413,11 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
                   widgetStyles.headerTow,
                   {paddingLeft: 30, paddingRight: 30},
                 ]}>
-                {I18n.t('follow_us_on_instagram')}
+                {I18n.t('instagram')}
               </Text>
             </Pressable>
           )}
-          {isIOS && (
+          {isIOS && !ABATI && (
             <Pressable
               style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() => Linking.openURL(settings.apple)}>
@@ -374,7 +437,7 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               </Text>
             </Pressable>
           )}
-          {!isIOS && (
+          {!isIOS && !ABATI && (
             <Pressable
               style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
               onPress={() =>
@@ -396,34 +459,36 @@ const DesigneratSettingsIndexScreen = ({navigation}) => {
               </Text>
             </Pressable>
           )}
-          <Pressable
-            style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
-            onPress={() =>
-              shareLink(isIOS ? settings.apple : settings.android)
-            }>
-            <Icon
-              hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
-              size={iconSizes.smaller}
-              name="share"
-              type="entypo"
-              color={colors.menu_theme_color}
-            />
-            <Text
-              style={[
-                widgetStyles.headerTow,
-                {paddingLeft: 30, paddingRight: 30},
-              ]}>
-              {I18n.t('share_our_app')}
-            </Text>
-          </Pressable>
+          {!ABATI && (
+            <Pressable
+              style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
+              onPress={() =>
+                shareLink(isIOS ? settings.apple : settings.android)
+              }>
+              <Icon
+                hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                size={iconSizes.smaller}
+                name="share"
+                type="entypo"
+                color={colors.menu_theme_color}
+              />
+              <Text
+                style={[
+                  widgetStyles.headerTow,
+                  {paddingLeft: 30, paddingRight: 30},
+                ]}>
+                {I18n.t('share_our_app')}
+              </Text>
+            </Pressable>
+          )}
           <Pressable
             style={[styles.listItem, {borderColor: colors.icon_theme_color}]}
             onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}>
             <Icon
               hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
               size={iconSizes.smaller}
-              name="language"
-              type="fontawesome"
+              name="globe"
+              type="octicon"
               color={colors.menu_theme_color}
             />
             <Text

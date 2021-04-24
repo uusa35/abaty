@@ -9,6 +9,7 @@ import LoadingView from '../Loading/LoadingView';
 import LoadingOfflineView from '../Loading/LoadingOfflineView';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import {useNavigation} from 'react-navigation-hooks';
+import AppHomeConfigComponent from './AppHomeConfigComponent';
 
 const BgContainer = ({
   children,
@@ -56,6 +57,7 @@ const BgContainer = ({
       )}
       <AndroidBackHandlerComponent />
       <AppGlobalConfig />
+      <AppHomeConfigComponent />
     </ImageBackground>
   );
 };

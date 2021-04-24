@@ -139,7 +139,11 @@ const UserEditFormWidget = ({showIcon = true}) => {
           onChangeText={(text) => setName(text)}
           placeholder={name ? name : I18n.t('name')}
           label={I18n.t('name')}
-          labelStyle={{fontFamily: text.font, fontSize: text.small}}
+          labelStyle={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            textAlign: 'left',
+          }}
         />
         <Input
           inputContainerStyle={{
@@ -160,7 +164,11 @@ const UserEditFormWidget = ({showIcon = true}) => {
           onChangeText={(text) => setEmail(text)}
           placeholder={email ? email : I18n.t('email')}
           label={I18n.t('email')}
-          labelStyle={{fontFamily: text.font, fontSize: text.small}}
+          labelStyle={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            textAlign: 'left',
+          }}
         />
         <Input
           inputContainerStyle={{
@@ -181,7 +189,11 @@ const UserEditFormWidget = ({showIcon = true}) => {
           onChangeText={(text) => setMobile(text)}
           placeholder={mobile ? mobile : I18n.t('mobile')}
           label={I18n.t('mobile')}
-          labelStyle={{fontFamily: text.font, fontSize: text.small}}
+          labelStyle={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            textAlign: 'left',
+          }}
         />
         <TouchableOpacity
           onPress={() => handleSelectedCountry()}
@@ -226,7 +238,11 @@ const UserEditFormWidget = ({showIcon = true}) => {
           numberOfLines={3}
           shake={true}
           label={I18n.t('address')}
-          labelStyle={{fontFamily: text.font, fontSize: text.small}}
+          labelStyle={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            textAlign: 'left',
+          }}
           keyboardType="default"
           defaultValue={address}
           onChangeText={(text) => setAddress(text)}
@@ -253,7 +269,11 @@ const UserEditFormWidget = ({showIcon = true}) => {
           defaultValue={description}
           onChangeText={(text) => setDescription(text)}
           label={I18n.t('description')}
-          labelStyle={{fontFamily: text.font, fontSize: text.small}}
+          labelStyle={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            textAlign: 'left',
+          }}
           placeholder={I18n.t('description')}
         />
         <Button

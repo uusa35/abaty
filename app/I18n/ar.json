@@ -108,8 +108,8 @@
   "ok" : "موافق",
   "dob" : "يوم الميلاد",
   "designers" : "المصممين",
-  "celebrities" : "اختيارات المشاهير",
-  "favorites" : "قائمة المفضلة",
+  "celebrities" : "المشاهير",
+  "favorites" : " المفضلة",
   "error" : "خطأ",
   "success" : "تمت بنجاح",
   "id" : "الرقم المسلسل",
@@ -714,7 +714,7 @@
   "building_no" : "رقم البيت/ مبنى",
   "street" : "شارع",
   "change_modify_address" : "تعديل / تغيير العنوان",
-  "add_new_address" : "اضف عنوان جديد",
+  "add_new_address" : " عنوان جديد",
   "new_address" : "عنوان جديد",
   "edit_address" : "تعديل العنوان",
   "go_to_payment_page" : "الذهاب إلى صفحة الدفع",
@@ -737,7 +737,7 @@
   "address_changed" : "تم تغير العنوان المرتبط بالطلب",
   "confirm_delete_address" : "تأكيد حذف العنوان ؟",
   "my_orders" : "طلباتي",
-  "my_addresses" : "عناويني",
+  "my_addresses" : "قائمة العناوين",
   "follow_us_on_instagram" : "تابعنا على الانستجرام",
   "rate_us" : "قيمنا",
   "share_our_app" : "شارك التطبيق",
@@ -763,5 +763,6 @@
   "total_products_participated" : "عدد المنتجات الخاصة بك التي تم طلبها من عملاء التطبيق من بداية الشهر وحتى الآن",
   "statistics" : "إحصائيات",
   "for_more_information_contact_administration" : "لمزيد من المعلومات او الاستفسارات يرجى التواصل مع الإدارة على الارقام المبينة بصفحة اتصل بنا",
-  "DESIGNERAAT" : "ديزينرات"
+  "DESIGNERAAT" : "ديزينرات",
+  "orders" :  "أوامر العمل"
 }

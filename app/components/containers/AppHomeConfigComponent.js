@@ -64,17 +64,19 @@ const AppHomeConfigComponent = () => {
     OneSignal.addEventListener('ids', onIds);
     Linking.addEventListener('url', handleOpenURL);
     return () => {
-      //   OneSignal.removeEventListener('received', onReceived);
-      //   OneSignal.removeEventListener('opened', onOpened);
+      OneSignal.removeEventListener('received', onReceived);
+      OneSignal.removeEventListener('opened', onOpened);
       OneSignal.removeEventListener('ids', onIds);
-      //   Linking.removeEventListener('url', handleOpenURL);
+      Linking.removeEventListener('url', handleOpenURL);
     };
   }, [bootStrapped]);
 
-  const handleOpenURL = useCallback((event) => {
+  const handleOpenURL = (event) => {
     const {type, id} = getPathForDeepLinking(event.url);
-    return dispatch(goDeepLinking({type, id}));
-  });
+    if (type && id) {
+      return dispatch(goDeepLinking({type, id}));
+    }
+  };
 
   const onReceived = (notification) => {
     // __DEV__ ? console.log('Notification received: ', notification) : null;
@@ -109,4 +111,4 @@ const AppHomeConfigComponent = () => {
   return <Fragment></Fragment>;
 };
 
-export default React.memo(AppHomeConfigComponent);
+export default AppHomeConfigComponent;

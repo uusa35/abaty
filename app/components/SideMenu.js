@@ -223,7 +223,7 @@ const SideMeu = ({showLogo = true}) => {
               onPress={() => navigation.navigate('Contactus', {reset: false})}
               style={styles.menuBtn}>
               <Icon
-                name="old-phone"
+                name="phone"
                 type="entypo"
                 size={iconSizes.smaller}
                 color={colors.icon_theme_color}

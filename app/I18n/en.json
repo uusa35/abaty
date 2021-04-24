@@ -730,6 +730,7 @@
   "total_orders_products_participated" : "Total Orders made by clients that include your products starting from 1st of this month till now.",
   "total_products_participated" : "Total Products requested from the 1st of this month till now.",
   "statistics" : "Statistics",
-  "for_more_information_contact_administration" : "For more information. please find our mobile numbers and whatsapp on contact us page."
+  "for_more_information_contact_administration" : "For more information. please find our mobile numbers and whatsapp on contact us page.",
+  "orders" :  "Orders"
 }
 

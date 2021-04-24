@@ -514,7 +514,7 @@ PODS:
     - React-Core
   - RNSnackbar (2.4.0):
     - React-Core
-  - RNSVG (12.1.0):
+  - RNSVG (12.1.1):
     - React
   - RNVectorIcons (7.1.0):
     - React
@@ -899,7 +899,7 @@ SPEC CHECKSUMS:
   RNSentry: 1adaa43b01c6a3ab5091d4d1add66b7c58558898
   RNShare: 7e22ba3bf66294ff7c122a1f2da8a8ec642091a0
   RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
-  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21

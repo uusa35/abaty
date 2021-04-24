@@ -18,7 +18,6 @@ const DesignerIndexScreen = () => {
     <BgContainer showImage={false}>
       <ElementsHorizontalList
         elements={currentElements}
-        searchParams={{}}
         type="designer"
         searchParams={currentSearchParams}
         showMore={true}

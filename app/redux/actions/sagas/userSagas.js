@@ -511,7 +511,7 @@ export function* startGetCelebritiesScenario(action) {
           NavigationActions.navigate({
             routeName: 'CelebrityIndex',
             params: {
-              name: action.payload.name,
+              name: I18n.t(action.payload.name),
             },
           }),
         );
