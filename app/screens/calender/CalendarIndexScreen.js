@@ -112,7 +112,7 @@ LocaleConfig.locales['en'] = {
 const CalendarIndexScreen = () => {
   const {lang, colors} = useContext(GlobalValuesContext);
   LocaleConfig.defaultLocale = lang;
-  const {services, searchParams, country} = useSelector((state) => state);
+  const {services, searchParams, country} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
@@ -122,22 +122,22 @@ const CalendarIndexScreen = () => {
 
   useMemo(() => {
     if (!isEmpty(services)) {
-      const ranges = map(currentServices, (s) => s.range);
+      const ranges = map(currentServices, s => s.range);
       // console.log('currentDate', moment(currentDate.dateString).format('DD/MM/YYYY'))
       if (!isNull(currentDate)) {
         const filteredServices = filter(
           services,
-          (s) => s.range[moment(currentDate.dateString).format('DD/MM/YYYY')],
+          s => s.range[moment(currentDate.dateString).format('DD/MM/YYYY')],
         );
         setCurrentElements(filteredServices);
       } else {
         setCurrentElements(currentServices);
       }
       const mark = {};
-      const dateRanges = map(ranges, (r) => {
+      const dateRanges = map(ranges, r => {
         const currentDates = keys(r);
         if (!isEmpty(currentDates)) {
-          currentDates.forEach((day) => {
+          currentDates.forEach(day => {
             mark[moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD')] = {
               selected:
                 moment(day, 'DD/MM/YYYY').format('YYYY-MM-DD') >
@@ -195,7 +195,7 @@ const CalendarIndexScreen = () => {
           // maxDate={moment().add(1,'year').format('YYYY-MM-DD').toString()}
           maxDate={moment().add(1, 'year').format('YYYY-MM-DD').toString()}
           // Handler which gets executed on day press. Default = undefined
-          onDayPress={(day) => {
+          onDayPress={day => {
             setCurrentDate(day);
             dispatch(
               getSearchServices({
@@ -206,19 +206,19 @@ const CalendarIndexScreen = () => {
             );
           }}
           // Handler which gets executed on day long press. Default = undefined
-          onDayLongPress={(day) => {
+          onDayLongPress={day => {
             // console.log('selected day', day);
           }}
           // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
           // monthFormat={'yyyy MM'}
           // Handler which gets executed when visible month changes in calendar. Default = undefined
-          onMonthChange={(month) => {
+          onMonthChange={month => {
             // console.log('month changed', month);
           }}
           // Hide month navigation arrows. Default = false
           hideArrows={false}
           // Replace default arrows with custom ones (direction can be 'left' or 'right')
-          renderArrow={(direction) => {
+          renderArrow={direction => {
             if (direction === 'left') {
               return (
                 <Icon
@@ -249,9 +249,9 @@ const CalendarIndexScreen = () => {
           // Show week numbers to the left. Default = false
           showWeekNumbers={false}
           // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-          onPressArrowLeft={(substractMonth) => substractMonth()}
+          onPressArrowLeft={substractMonth => substractMonth()}
           // Handler which gets executed when press arrow icon right. It receive a callback can go next month
-          onPressArrowRight={(addMonth) => addMonth()}
+          onPressArrowRight={addMonth => addMonth()}
           // Disable left arrow. Default = false
           disableArrowLeft={false}
           // Disable right arrow. Default = false

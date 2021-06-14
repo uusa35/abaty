@@ -1,21 +1,26 @@
 import React, {useContext, useState, useMemo} from 'react';
-import {RefreshControl, FlatList, StyleSheet, View} from 'react-native';
+import {
+  RefreshControl,
+  FlatList,
+  StyleSheet,
+  View,
+  SafeAreaView,
+} from 'react-native';
 import {bottomContentInset, text, width} from './../../constants/sizes';
 import {Button} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import CommentWidget from '../widgets/comment/CommentWidget';
-import {SafeAreaView} from 'react-navigation';
 import AddCommentFormWidget from '../widgets/comment/AddCommentFormWidget';
 import I18n from '../../I18n';
 import validate from 'validate.js';
-import {useNavigation} from 'react-navigation-hooks';
 import {hideCommentModal} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 const CommentsList = ({elements, model, id}) => {
-  const [refresh, setRefresh] = useState(false);
-  const {guest} = useSelector((state) => state);
   const {navigate} = useNavigation();
+  const [refresh, setRefresh] = useState(false);
+  const {guest} = useSelector(state => state);
   const dispatch = useDispatch();
 
   useMemo(() => {

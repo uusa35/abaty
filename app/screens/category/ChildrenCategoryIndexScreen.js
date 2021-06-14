@@ -4,12 +4,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import validate from 'validate.js';
-import {useNavigation} from 'react-navigation-hooks';
 
-const ChildrenCategoryIndexScreen = () => {
-  const {commercials, settings, subCategory} = useSelector((state) => state);
+const ChildrenCategoryIndexScreen = ({navigation}) => {
+  const {commercials, settings, subCategory} = useSelector(state => state);
   const {show_commercials} = settings;
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   useEffect(() => {

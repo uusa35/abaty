@@ -4,14 +4,14 @@ import validate from 'validate.js';
 import {apiUrl} from './../../../../app.json';
 import {axiosInstance} from '../../../redux/actions/api';
 
-const UsersWidget = (props) => {
+const UsersWidget = props => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     let isSubscribed = true;
     axiosInstance
       .get(`${apiUrl}user`)
-      .then((r) => setUsers(r.data))
-      .catch((e) => e);
+      .then(r => setUsers(r.data))
+      .catch(e => e);
   }, []);
 
   return !validate.isEmpty(users) && validate.isArray(users) ? (

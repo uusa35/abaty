@@ -8,17 +8,16 @@ import {Button} from 'react-native-elements';
 import I18n from '../../I18n';
 import BgContainer from '../../components/containers/BgContainer';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import LottieView from 'lottie-react-native';
 import {animations} from '../../constants/animations';
 import {View as Animating} from 'react-native-animatable';
 import {EXPO, ABATI} from './../../../app';
 import EmptyListWidget from '../../components/Lists/EmptyListWidget';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
-
+import {useNavigation} from '@react-navigation/native';
 const CartIndexScreen = () => {
   const {cart, country, shipmentFees, settings, coupon, area} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {grossTotal, colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();

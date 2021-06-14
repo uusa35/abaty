@@ -6,15 +6,20 @@ import FastImage from 'react-native-fast-image';
 import PropTypes from 'prop-types';
 import {getCelebrity, getSearchCelebrities} from '../../../redux/actions/user';
 import {Icon} from 'react-native-elements';
-import {isRTL} from './../../../I18n';
+import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import {
+  iconSizes,
   rightHorizontalContentInset,
   touchOpacity,
+  userWidget,
 } from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
+import {APP_CASE} from '../../../../app.json';
+import {isIOS} from '../../../constants';
+import ImageLoaderContainer from '../ImageLoaderContainer';
 
 const CelebrityHorizontalWidget = ({
   elements,
@@ -22,16 +27,29 @@ const CelebrityHorizontalWidget = ({
   title,
   name,
   searchParams,
+  rounded = false,
+  showAll = false,
+  width = userWidget[APP_CASE].small.width,
+  height = userWidget[APP_CASE].small.height,
 }) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   return (
     <Fragment>
       {!isEmpty(elements) && (
-        <View style={widgetStyles.container}>
+        <View style={[widgetStyles.container]}>
           <TouchableOpacity
             activeOpacity={touchOpacity}
-            style={widgetStyles.titleContainer}
+            style={[
+              widgetStyles.titleContainer,
+              {
+                height: 40,
+                alignItems: 'baseline',
+                borderBottomColor: colors.header_one_theme_color,
+                borderBottomWidth: 0.5,
+                marginBottom: 10,
+              },
+            ]}
             onPress={() =>
               dispatch(
                 getSearchCelebrities({
@@ -41,27 +59,44 @@ const CelebrityHorizontalWidget = ({
                 }),
               )
             }>
-            <View style={widgetStyles.titleWrapper}>
+            <View style={[widgetStyles.titleWrapper]}>
               <Text
                 style={[
                   widgetStyles.title,
-                  {color: colors.header_one_theme_color},
+                  {color: colors.header_one_theme_color, paddingLeft: 10},
                 ]}>
                 {title}
               </Text>
             </View>
-            <Icon
-              type="entypo"
-              name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-              size={20}
-              color={colors.header_one_theme_color}
-            />
+            {showAll && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'baseline',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}>
+                <Text
+                  style={[
+                    widgetStyles.headerThree,
+                    {color: colors.btn_bg_theme_color},
+                  ]}>
+                  {I18n.t('show_all')}
+                </Text>
+                <Icon
+                  type="entypo"
+                  name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                  size={iconSizes.tiny}
+                  color={colors.header_one_theme_color}
+                />
+              </View>
+            )}
           </TouchableOpacity>
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             contentInset={{right: rightHorizontalContentInset}}
-            style={widgetStyles.wrapper}>
+            contentContainerStyle={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
               <View
                 animation="pulse"
@@ -81,20 +116,25 @@ const CelebrityHorizontalWidget = ({
                       }),
                     )
                   }>
-                  <FastImage
-                    source={{
-                      uri: c.thumb,
-                      priority: FastImage.priority.normal,
+                  <ImageLoaderContainer
+                    img={c.thumb}
+                    style={{
+                      width,
+                      height,
+                      borderRadius:
+                        isIOS && rounded
+                          ? width / 2
+                          : !isIOS && rounded
+                          ? width * 2
+                          : 0,
                     }}
-                    loadingIndicatorSource={images.logo}
-                    style={styles.image}
-                    resizeMode="contain"
+                    resizeMode="cover"
                   />
                   {showName ? (
                     <Text
                       style={[
                         widgetStyles.elementName,
-                        {color: colors.header_tow_theme_color},
+                        {color: colors.header_one_theme_color},
                       ]}>
                       {c.slug}
                     </Text>

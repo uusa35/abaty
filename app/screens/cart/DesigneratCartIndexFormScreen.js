@@ -14,7 +14,7 @@ import {View as Animating} from 'react-native-animatable';
 import {EXPO, ABATI} from './../../../app';
 import EmptyListWidget from '../../components/Lists/EmptyListWidget';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation} from '@react-navigation/native';
 import DesigneratCartList from '../../components/widgets/cart/DesigneratCartList';
 import DesigneratCartForm from '../../components/widgets/cart/DesigneratCartForm';
 import {themeColors} from '../../constants/colors';
@@ -27,8 +27,9 @@ const DesigneratCartFormIndexScreen = () => {
     settings,
     coupon,
     area,
-  } = useSelector((state) => state);
-  const {grossTotal, colors} = useContext(GlobalValuesContext);
+    grossTotal,
+  } = useSelector(state => state);
+  const {colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
 
   return (

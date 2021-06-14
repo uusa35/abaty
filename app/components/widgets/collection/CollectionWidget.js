@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionWidget = ({element, showName = false}) => {
   const dispatch = useDispatch();
-  const {settings, country} = useSelector((state) => state);
+  const {settings, country} = useSelector(state => state);
   const {colors} = settings;
   return (
     <TouchableOpacity

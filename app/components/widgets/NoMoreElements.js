@@ -4,6 +4,7 @@ import I18n from '../../I18n';
 import {text, width} from '../../constants/sizes';
 import {View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import {iconSizes} from '../../constants/sizes';
 
 const NoMoreElements = ({
   title = I18n.t('no_more_elements'),
@@ -17,6 +18,7 @@ const NoMoreElements = ({
         marginRight: 10,
         marginLeft: 10,
         width: '98%',
+        marginTop: iconSizes.huge,
       }}>
       <Button
         loading={isLoading}

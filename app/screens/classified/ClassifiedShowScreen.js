@@ -30,7 +30,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 
 const ClassifiedShowScreen = () => {
-  const {classified, commentModal, token, auth} = useSelector((state) => state);
+  const {classified, commentModal, token, auth} = useSelector(state => state);
   const {exchange_rate} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);

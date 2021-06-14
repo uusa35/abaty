@@ -8,7 +8,7 @@ import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
 import {View} from 'react-native-animatable';
 
 const FavoriteCompanyIndexScreen = () => {
-  const {auth, guest} = useSelector((state) => state);
+  const {auth, guest} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentFannedList, setCurrentFannedList] = useState(auth.myFannedList);
 

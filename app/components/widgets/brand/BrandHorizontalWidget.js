@@ -13,11 +13,11 @@ import I18n, {isRTL} from './../../../I18n';
 import widgetStyles from './../widgetStyles';
 import BrandWidget from './BrandWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import {
   rightHorizontalContentInset,
   touchOpacity,
 } from '../../../constants/sizes';
+import {useNavigation} from '@react-navigation/native';
 
 const BrandHorizontalWidget = ({elements, title}) => {
   const {navigate} = useNavigation();

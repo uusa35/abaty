@@ -105,13 +105,13 @@ const ClassifiedList = ({
       return axiosInstance(`search/classified?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           setIsLoading(false);
           setRefresh(false);
           const classifiedGroup = uniqBy(items.concat(r.data), 'id');
           setItems(classifiedGroup);
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -127,7 +127,7 @@ const ClassifiedList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(items, (i) => (i.name.includes(search) ? i : null));
+      let filtered = filter(items, i => (i.name.includes(search) ? i : null));
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
         : setItems([]);

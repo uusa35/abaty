@@ -4,25 +4,46 @@ import {WebView} from 'react-native-webview';
 import {useSelector} from 'react-redux';
 import {bottomContentInset, height} from './../constants/sizes';
 import validate from 'validate.js';
+import NoMoreElements from '../components/widgets/NoMoreElements';
+import I18n from '../I18n';
 import BgContainer from '../components/containers/BgContainer';
 
 const PolicyScreen = () => {
-  const {policy} = useSelector((state) => state.settings);
+  const {policy} = useSelector(state => state.settings);
   return (
-    <BgContainer>
+    <BgContainer showImage={false} white={false}>
       <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{padding: 10, paddingBottom: '15%'}}
+        contentContainerStyle={{
+          flex: 1,
+          margin: 15,
+          paddingBottom: '15%',
+          alignSelf: 'center',
+          width: '100%',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          backgroundColor: 'transparent',
+          paddingLeft: 10,
+          paddingRight: 10,
+          borderRadius: 5,
+        }}
         contentInset={{bottom: bottomContentInset}}>
-        {!validate.isEmpty(policy) && policy.length > 100 && (
+        {!validate.isEmpty(policy) && policy.length > 80 ? (
           <WebView
+            javaScriptEnabled={true}
             showsVerticalScrollIndicator={false}
             source={{html: policy}}
-            style={{width: '100%', height, marginTop: 10}}
+            containerStyle={{
+              width: '100%',
+              padding: 10,
+              backgroundColor: 'white',
+            }}
           />
+        ) : (
+          <NoMoreElements title={I18n.t('not_available')} />
         )}
       </ScrollView>
     </BgContainer>

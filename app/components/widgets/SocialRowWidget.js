@@ -9,7 +9,7 @@ import {getWhatsappLink} from '../../helpers';
 import I18n from './../../I18n';
 
 const SocialRowWidget = () => {
-  const {settings} = useSelector((state) => state);
+  const {settings} = useSelector(state => state);
   return (
     <View
       animation="bounceIn"

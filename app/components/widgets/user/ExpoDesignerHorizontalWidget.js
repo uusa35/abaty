@@ -26,7 +26,7 @@ const ExpoDesignerHorizontalWidget = ({
   searchElements,
 }) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
 
   return (
     <Fragment>
@@ -46,6 +46,7 @@ const ExpoDesignerHorizontalWidget = ({
               alignSelf: 'center',
               borderTopRightRadius: 25,
               borderTopLeftRadius: 25,
+              width: width / 1.5,
             }}
             onPress={() =>
               dispatch(
@@ -67,7 +68,7 @@ const ExpoDesignerHorizontalWidget = ({
                 backgroundColor: '#f9f9f9',
                 padding: 10,
                 borderRadius: 25,
-                minWidth: width / 2.4,
+                width: width / 1.6,
               }}>
               <Text
                 style={[

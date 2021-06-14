@@ -9,14 +9,15 @@ import {useSelector} from 'react-redux';
 import {EXPO} from './../../../../app';
 
 const ExpoMainSliderWidget = ({elements}) => {
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   return (
     <Fragment>
       {!isEmpty(elements) && (
         <View
           style={{
-            height: !validate.isEmpty(elements) ? 200 : 0,
-            margin: 10,
+            height: !validate.isEmpty(elements) ? 180 : 0,
+            marginRight: 10,
+            marginLeft: 10,
             flex: 1,
             backgroundColor: 'transparent',
           }}>

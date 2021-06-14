@@ -14,24 +14,26 @@ import I18n from './../../../I18n';
 import OrderStatus from './OrderStatus';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
+import widgetStyles from '../widgetStyles';
+import DesigneratBtn from '../Button/DesigneratBtn';
 
 const OrderWidget = ({element}) => {
   const {colors, logo} = useContext(GlobalValuesContext);
 
-  const writeToClipboard = useCallback((text) => {
+  const writeToClipboard = text => {
     Clipboard.setString(text);
     alert(I18n.t('shipment_copied'));
-  });
+  };
 
   return (
     <View
       style={{
         borderWidth: 0.5,
+        backgroundColor: 'white',
         borderColor: 'lightgrey',
-        borderRadius: 10,
+        borderRadius: 5,
         marginBottom: 10,
-        paddingTop: 10,
-        paddingBottom: 10,
+        padding: 10,
       }}>
       <View style={{flexDirection: 'row'}}>
         <ImageLoaderContainer
@@ -47,7 +49,7 @@ const OrderWidget = ({element}) => {
               containerStyle={styles.iconElement}
               size={20}
             />
-            <Text style={styles.title}>{I18n.t('order_no')}</Text>
+            <Text style={widgetStyles.headerFour}>{I18n.t('order_no')}</Text>
             <Text style={styles.normalText}>{element.id}</Text>
           </View>
           <View style={styles.itemWrapper}>
@@ -57,7 +59,9 @@ const OrderWidget = ({element}) => {
               containerStyle={styles.iconElement}
               size={20}
             />
-            <Text style={styles.title}>{I18n.t('order_status')}</Text>
+            <Text style={widgetStyles.headerFour}>
+              {I18n.t('order_status')}
+            </Text>
             <Text style={styles.normalText}>{element.status}</Text>
           </View>
           <View style={styles.itemWrapper}>
@@ -67,7 +71,7 @@ const OrderWidget = ({element}) => {
               containerStyle={styles.iconElement}
               size={20}
             />
-            <Text style={styles.title}>{I18n.t('order_date')}</Text>
+            <Text style={widgetStyles.headerFour}>{I18n.t('order_date')}</Text>
             <Text style={styles.normalText}>{element.date}</Text>
           </View>
           <View style={styles.itemWrapper}>
@@ -77,7 +81,7 @@ const OrderWidget = ({element}) => {
               containerStyle={styles.iconElement}
               size={20}
             />
-            <Text style={styles.title}>{I18n.t('net_price')}</Text>
+            <Text style={widgetStyles.headerFour}>{I18n.t('net_price')}</Text>
             <Text style={styles.normalText}>
               {element.net_price} {I18n.t('kwd')}
             </Text>
@@ -91,7 +95,9 @@ const OrderWidget = ({element}) => {
                   containerStyle={styles.iconElement}
                   size={20}
                 />
-                <Text style={styles.title}>{I18n.t('shipment_reference')}</Text>
+                <Text style={widgetStyles.headerFour}>
+                  {I18n.t('shipment_reference')}
+                </Text>
                 <TouchableOpacity
                   style={styles.normalText}
                   onPress={() => writeToClipboard(element.shipment_reference)}>
@@ -114,22 +120,12 @@ const OrderWidget = ({element}) => {
         </View>
       </View>
       <OrderStatus element={element} />
-      <Button
+      <DesigneratBtn
         key={element.id}
-        onPress={() =>
+        handleClick={() =>
           Linking.openURL(`${appUrlIos}view/invoice/${element.id}`)
         }
         title={I18n.t('see_invoice')}
-        raised
-        containerStyle={{marginBottom: 10, width: '100%'}}
-        buttonStyle={{
-          backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 0,
-        }}
-        titleStyle={{
-          fontFamily: text.font,
-          color: colors.btn_text_theme_color,
-        }}
       />
     </View>
   );

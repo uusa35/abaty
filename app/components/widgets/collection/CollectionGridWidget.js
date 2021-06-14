@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const CollectionGridWidget = ({elements, showTitle = true}) => {
   const dispatch = useDispatch();
-  const {settings, country} = useSelector((state) => state);
+  const {settings, country} = useSelector(state => state);
   const {colors} = settings;
   return (
     <Fragment>

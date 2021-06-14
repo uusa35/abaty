@@ -13,17 +13,15 @@ import {
   toggleClassifiedFavorite,
 } from '../../../redux/actions/classified';
 import I18n from './../../../I18n';
-import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 
 const ClassifiedInfoWidgetMainTitle = ({element, editMode = false}) => {
   const dispatch = useDispatch();
-  const {colors, exchange_rate, currency_symbol, logo} = useContext(
-    GlobalValuesContext,
-  );
-  const {token, guest} = useSelector((state) => state);
+  const {colors, exchange_rate, currency_symbol, logo} =
+    useContext(GlobalValuesContext);
+  const {token, guest} = useSelector(state => state);
   const [favorite, setFavorite] = useState(element.isFavorite);
-  const {navigate} = useNavigation();
+  const {navigate} = navigation;
 
   const handleDelete = () => {
     return Alert.alert(

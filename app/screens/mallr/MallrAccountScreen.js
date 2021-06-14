@@ -22,16 +22,14 @@ import PagesList from '../../components/widgets/page/PagesList';
 import validate from 'validate.js';
 import ShopperImageProfile from '../../components/widgets/user/ShopperImageProfile';
 import CollectionGridWidget from '../../components/widgets/collection/CollectionGridWidget';
-import {useNavigation} from 'react-navigation-hooks';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
 import BgContainer from '../../components/containers/BgContainer';
 import {width} from '../../constants';
 import {reAuthenticate} from '../../redux/actions/user';
 
-const MallrAccountScreen = () => {
-  const {guest, auth, settings} = useSelector((state) => state);
+const MallrAccountScreen = ({navigation}) => {
+  const {guest, auth, settings} = useSelector(state => state);
   const {colors, pages, logo} = settings;
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
 

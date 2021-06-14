@@ -21,22 +21,14 @@ import {map, remove, first} from 'lodash';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import ClassifiedStorePropertiesWidget from '../../components/widgets/property/ClassifiedStorePropertiesWidget';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 import BgContainer from '../../components/containers/BgContainer';
 
-const ClassifiedEditScreen = () => {
-  const {
-    classified,
-    auth,
-    category,
-    country,
-    area,
-    classifiedProps,
-  } = useSelector((state) => state);
+const ClassifiedEditScreen = ({navigation}) => {
+  const {classified, auth, category, country, area, classifiedProps} =
+    useSelector(state => state);
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const [name, setName] = useState(classified.name);
   const [mobile, setMobile] = useState(classified.mobile);
   const [price, setPrice] = useState(String(classified.price));
@@ -61,13 +53,13 @@ const ClassifiedEditScreen = () => {
       maxFiles: 5,
       minFiles: 2,
       compressImageQuality: 0.5,
-    }).then((elements) => {
+    }).then(elements => {
       setImage(first(elements));
       setImages(elements);
     });
   });
 
-  const removeImage = useCallback((i) => {
+  const removeImage = useCallback(i => {
     const newImages = remove(images, (img, index) => i !== index);
     setImages(newImages);
   });
@@ -173,7 +165,7 @@ const ClassifiedEditScreen = () => {
             shake={true}
             keyboardType="default"
             defaultValue={name}
-            onChangeText={(text) => setName(text)}
+            onChangeText={text => setName(text)}
             placeholder={I18n.t('classified_title')}
             label={I18n.t('classified_title')}
             labelStyle={{
@@ -199,7 +191,7 @@ const ClassifiedEditScreen = () => {
             shake={true}
             keyboardType="default"
             defaultValue={address}
-            onChangeText={(text) => setAddress(text)}
+            onChangeText={text => setAddress(text)}
             placeholder={I18n.t('address')}
             label={I18n.t('address')}
             labelStyle={{
@@ -228,7 +220,7 @@ const ClassifiedEditScreen = () => {
             shake={true}
             defaultValue={description}
             keyboardType="default"
-            onChangeText={(text) => setDescription(text)}
+            onChangeText={text => setDescription(text)}
             placeholder={description ? description : I18n.t('description')}
             label={I18n.t('description')}
             labelStyle={{
@@ -253,7 +245,7 @@ const ClassifiedEditScreen = () => {
             }}
             shake={true}
             keyboardType="number-pad"
-            onChangeText={(text) => setMobile(text)}
+            onChangeText={text => setMobile(text)}
             defaultValue={mobile}
             placeholder={mobile ? mobile : I18n.t('mobile')}
             label={I18n.t('mobile')}
@@ -279,7 +271,7 @@ const ClassifiedEditScreen = () => {
             }}
             shake={true}
             keyboardType="number-pad"
-            onChangeText={(text) => setPrice(text)}
+            onChangeText={text => setPrice(text)}
             defaultValue={price}
             placeholder={I18n.t('price')}
             label={I18n.t('price')}

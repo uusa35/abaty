@@ -8,18 +8,18 @@ import PropTypes from 'prop-types';
 
 const FavoriteIcon = ({id, size = iconSizes.small}) => {
   const {productFavorites, guest, token, settings} = useSelector(
-    (state) => state,
+    state => state,
   );
   const [favorite, setFavorite] = useState(guest);
   const dispatch = useDispatch();
 
   useMemo(() => {
-    const result = filter(productFavorites, (p) => p.id === id);
+    const result = filter(productFavorites, p => p.id === id);
     setFavorite(isEmpty(result));
   }, []);
 
   useMemo(() => {
-    const result = filter(productFavorites, (p) => p.id === id);
+    const result = filter(productFavorites, p => p.id === id);
     setFavorite(!isEmpty(result));
   }, [productFavorites]);
 

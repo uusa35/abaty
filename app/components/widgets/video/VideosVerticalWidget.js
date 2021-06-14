@@ -2,17 +2,17 @@ import React, {useContext} from 'react';
 import {I18nManager, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {text, width} from '../../../constants/sizes';
 import {appUrlIos} from '../../../env';
-import {map, isNull} from 'lodash';
+import {map, isNull, first} from 'lodash';
 import PropTypes from 'prop-types';
 import {WebView} from 'react-native-webview';
 import I18n from '../../../I18n';
 import validate from 'validate.js';
 import {Button} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {toggleLoading} from '../../../redux/actions';
 
 const VideosVerticalWidget = ({videos}) => {
   const {colors} = useContext(GlobalValuesContext);
+
   return (
     <View style={styles.container}>
       {!isNull(videos['video_url_one']) ? (
@@ -27,8 +27,14 @@ const VideosVerticalWidget = ({videos}) => {
         alwaysBounceVertical={false}
         showsHorizontalScrollIndicator={false}
         style={{flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row'}}
-        contentContainerStyle={{alignItems: 'center', alignSelf: 'center'}}>
-        {!validate.isEmpty(videos) ? (
+        contentContainerStyle={{
+          alignItems: 'center',
+          alignSelf: 'center',
+          width: '100%',
+        }}>
+        {!validate.isEmpty(videos[0]) &&
+          !validate.isEmpty(videos[1]) &&
+          !validate.isEmpty(videos[2]) &&
           map(videos, (v, i) =>
             !isNull(v) ? (
               <WebView
@@ -45,18 +51,7 @@ const VideosVerticalWidget = ({videos}) => {
                 source={{uri: `${appUrlIos}webview?url=${v}`}}
               />
             ) : null,
-          )
-        ) : (
-          <View style={styles.noVideosContainer}>
-            <Button
-              raised
-              title={I18n.t('no_videos')}
-              type="outline"
-              containerStyle={{marginBottom: 20}}
-              titleStyle={{fontFamily: text.font}}
-            />
-          </View>
-        )}
+          )}
       </ScrollView>
     </View>
   );
@@ -77,7 +72,6 @@ const styles = StyleSheet.create({
   noVideosContainer: {
     marginTop: 300,
     flex: 1,
-    borderWidth: 1,
     alignSelf: 'center',
   },
   title: {

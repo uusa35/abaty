@@ -22,7 +22,7 @@ const ClassifiedCategoryVerticalWidget = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const {country} = useSelector((state) => state);
+  const {country} = useSelector(state => state);
   return (
     <Fragment>
       {!validate.isEmpty(elements) ? (

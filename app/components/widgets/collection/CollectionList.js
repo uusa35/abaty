@@ -38,7 +38,7 @@ const CollectionList = ({
   [page, setPage] = useState(1);
   [endList, setEndList] = useState(true);
   [search, setSearch] = useState('');
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   const dispatch = useDispatch();
 
   useMemo(() => {
@@ -46,12 +46,12 @@ const CollectionList = ({
       return axiosInstance(`search/product?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           setIsLoading(false);
           setRefresh(false);
           setItems(items.concat(r.data));
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -77,7 +77,7 @@ const CollectionList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(elements, (i) =>
+      let filtered = filter(elements, i =>
         i.slug.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0

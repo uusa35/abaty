@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Icon, Input} from 'react-native-elements';
 import I18n, {isRTL} from '../../../I18n';
@@ -10,6 +10,7 @@ import validate from 'validate.js';
 import {useDispatch, useSelector} from 'react-redux';
 import WrapAsGiftWidget from './WrapAsGiftWidget';
 import {EXPO} from './../../../../app';
+import DesingeratBtn from '../Button/DesigneratBtn';
 
 const ProductColorSizeGroup = ({
   element,
@@ -17,7 +18,7 @@ const ProductColorSizeGroup = ({
   setCartItem,
   handleAddToCart,
 }) => {
-  const {settings} = useSelector((state) => state);
+  const {settings} = useSelector(state => state);
   const {colors} = settings;
   const dispatch = useDispatch();
   const {size, color, qty, show_attribute} = element;
@@ -70,17 +71,19 @@ const ProductColorSizeGroup = ({
               containerStyle={{flex: 0.4}}
               buttonStyle={{
                 backgroundColor: 'whitesmoke',
-                borderRadius: 5,
+                // borderRadius: text.smallest,
                 borderWidth: 0.5,
                 borderColor: 'lightgray',
                 alignItems: 'center',
                 justifyContent: 'space-around',
+                minHeight: 42,
               }}
               title={size ? size.name : I18n.t('choose_size')}
               titleStyle={{
                 fontFamily: text.font,
                 color: 'black',
-                fontSize: text.smaller,
+                fontSize: text.small,
+                fontWeight: text.bold,
               }}
             />
           )}
@@ -98,17 +101,19 @@ const ProductColorSizeGroup = ({
               containerStyle={{flex: 0.4}}
               buttonStyle={{
                 backgroundColor: 'whitesmoke',
-                borderRadius: 5,
+                // borderRadius: text.smallest,
                 borderWidth: 0.5,
                 borderColor: 'lightgray',
                 alignItems: 'center',
                 justifyContent: 'space-around',
+                minHeight: 42,
               }}
               title={color ? color.name : I18n.t('height')}
               titleStyle={{
                 fontFamily: text.font,
                 color: 'black',
-                fontSize: text.smaller,
+                fontSize: text.small,
+                fontWeight: text.bold,
               }}
             />
           )}
@@ -121,7 +126,7 @@ const ProductColorSizeGroup = ({
       />
       {element.wrap_as_gift && (
         <WrapAsGiftWidget
-          wrapGift={element.wrap_as_gift}
+          wrapGift={wrapGift}
           setWrapGift={setWrapGift}
           giftMessage={giftMessage}
           setGiftMessage={setGiftMessage}
@@ -129,72 +134,44 @@ const ProductColorSizeGroup = ({
           productAttribute={null}
         />
       )}
-      <View style={{width: '100%', alignSelf: 'center', marginTop: 5}}>
-        <Input
-          spellCheck={true}
-          placeholder={
-            element.notes
-              ? element.notes
-              : I18n.t(
-                  EXPO
-                    ? 'add_notes_shoulders_height_and_other_notes_expo'
-                    : 'add_notes_shoulders_height_and_other_notes',
-                )
-          }
-          containerStyle={{flex: 1}}
-          inputContainerStyle={{
-            borderWidth: 0.5,
-            borderColor: colors.btn_bg_theme_color,
-            borderRadius: iconSizes.tiny,
-            paddingLeft: 10,
-            paddingRight: 10,
-            height: 80,
-          }}
-          inputStyle={{
-            fontFamily: text.font,
-            textAlign: isRTL ? 'right' : 'left',
-          }}
-          defaultValue={notes ? notes : null}
-          disabled={!qty || requestQty <= 0}
-          shake={true}
-          keyboardType="default"
-          multiline={true}
-          numberOfLines={3}
-          onChangeText={(notes) => setNotes(notes)}
-        />
-      </View>
+      <Input
+        spellCheck={true}
+        placeholder={
+          element.notes
+            ? element.notes
+            : I18n.t(
+                EXPO
+                  ? 'add_notes_shoulders_height_and_other_notes_expo'
+                  : 'add_notes_shoulders_height_and_other_notes',
+              )
+        }
+        containerStyle={{maxHeight: 80}}
+        inputContainerStyle={{
+          borderWidth: 0.5,
+          borderColor: 'lightgrey',
+          // borderRadius: text.smallest,
+          paddingLeft: 15,
+          paddingRight: 15,
+        }}
+        inputStyle={{
+          fontFamily: text.font,
+          fontSize: text.medium,
+          lineHeight: text.large,
+          textAlign: isRTL ? 'right' : 'left',
+        }}
+        defaultValue={notes ? notes : null}
+        disabled={!qty || requestQty <= 0}
+        shake={true}
+        keyboardType="default"
+        multiline={true}
+        numberOfLines={3}
+        onChangeText={notes => setNotes(notes)}
+      />
       {element.has_stock && element.is_available && (
-        <Button
-          onPress={() =>
-            dispatch(
-              addToCart({
-                product_attribute_id: null,
-                cart_id: null,
-                product_id: element.id,
-                qty: requestQty,
-                element,
-                type: 'product',
-                wrapGift,
-                directPurchase: element.directPurchase,
-                notes: wrapGift
-                  ? notes.concat(
-                      `\n :: (${I18n.t('wrap_as_gift', {
-                        item: settings.gift_fee,
-                      })}) :: \n ${giftMessage}`,
-                    )
-                  : notes,
-              }),
-            )
-          }
+        <DesingeratBtn
+          handleClick={() => handleAddToCart()}
           disabled={!qty || requestQty <= 0}
-          raised
-          containerStyle={{width: '100%'}}
-          buttonStyle={{backgroundColor: colors.btn_bg_theme_color}}
           title={I18n.t('add_to_cart')}
-          titleStyle={{
-            fontFamily: text.font,
-            color: colors.btn_text_theme_color,
-          }}
         />
       )}
     </View>

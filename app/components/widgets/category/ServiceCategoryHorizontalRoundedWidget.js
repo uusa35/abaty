@@ -23,7 +23,7 @@ const ServiceCategoryHorizontalRoundedWidget = ({
   colors,
   navigation,
 }) => {
-  const handleClick = useCallback((c) => {
+  const handleClick = useCallback(c => {
     return dispatch(
       getSearchServices({
         name: c.name,

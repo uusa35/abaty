@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const FavoriteClassifiedIndexScreen = () => {
-  const {classifiedFavorites, guest} = useSelector((state) => state);
+  const {classifiedFavorites, guest} = useSelector(state => state);
   const [currentElements, setCurrentElements] = useState(classifiedFavorites);
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import CompanySearchForm from './CompanySearchForm';
 import {useSelector} from 'react-redux';
 
 const EscrapSearchTab = () => {
-  const {companySearchTextInputModal} = useSelector((state) => state);
+  const {companySearchTextInputModal} = useSelector(state => state);
   const [search, setSearch] = useState('');
 
   return (

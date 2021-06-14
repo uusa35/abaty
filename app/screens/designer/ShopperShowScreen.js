@@ -130,7 +130,7 @@ const ShopperShowScreen = ({
           ) : null}
           <TabView
             lazy={true}
-            renderTabBar={(props) => (
+            renderTabBar={props => (
               <TabBar
                 {...props}
                 // tabStyle={{ backgroundColor: 'white'}}
@@ -180,7 +180,7 @@ const ShopperShowScreen = ({
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={(i) => setIndex(i)}
+            onIndexChange={i => setIndex(i)}
             initialLayout={{width: width}}
           />
         </TriggeringView>

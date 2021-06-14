@@ -1,12 +1,15 @@
 import React, {useEffect, useState, useMemo} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllProducts} from '../../redux/actions/product';
 import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
+import {filter, unionBy} from 'lodash';
+import finalPropsSelectorFactory from 'react-redux/lib/connect/selectorFactory';
+import {ABATI} from './../../../app.json';
 
 const ProductIndexAllScreen = () => {
-  const {products, country} = useSelector((state) => state);
+  const {products, searchProducts, country} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentElements, setCurrentElements] = useState([]);
 
@@ -15,25 +18,27 @@ const ProductIndexAllScreen = () => {
   }, []);
 
   useMemo(() => {
-    // if (!validate.isEmpty(products)) {
-    setCurrentElements(products);
-    // }
-  }, [products]);
+    const finalProducts = unionBy(products.concat(searchProducts), p => p.id);
+    setCurrentElements(finalProducts);
+  }, [products, searchProducts]);
 
   return (
-    <BgContainer>
+    <BgContainer showImage={false}>
       <ElementsHorizontalList
         elements={currentElements}
-        searchParams={{}}
+        searchParams={{country_id: country.id}}
         type="product"
-        pageLimit={15}
+        productGalleryMode={!ABATI}
+        pageLimit={55}
+        showSKU={true}
         showRefresh={true}
         showFooter={true}
-        showSearch={true}
+        showSearch={ABATI}
         showSortSearch={true}
         showProductsFilter={true}
         showTitleIcons={true}
         showMore={true}
+        columns={ABATI ? 2 : 3}
       />
     </BgContainer>
   );
@@ -42,34 +47,3 @@ const ProductIndexAllScreen = () => {
 export default ProductIndexAllScreen;
 
 const styles = StyleSheet.create({});
-
-{
-  /*<ProductList*/
-}
-{
-  /*    products={products}*/
-}
-{
-  /*    showName={true}*/
-}
-{
-  /*    searchElements={{}}*/
-}
-{
-  /*    showSearch={true}*/
-}
-{
-  /*    showFooter={true}*/
-}
-{
-  /*    showRefresh={true}*/
-}
-{
-  /*    showSortSearch={true}*/
-}
-{
-  /*    showProductsFilter={true}*/
-}
-{
-  /*/>*/
-}

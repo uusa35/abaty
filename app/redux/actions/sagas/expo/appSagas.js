@@ -6,6 +6,8 @@ import {
   getVideos,
   setCommercials,
   setCountries,
+  setCurrencies,
+  setFaqs,
   setHomeSplashes,
   setSettings,
   setSlides,
@@ -31,7 +33,10 @@ import {
   startGetSizesScenario,
 } from '../settingSagas';
 import {
+  getBestSaleProducts,
+  getHotDealsProducts,
   getLatestProducts,
+  getOnSaleProducts,
   getProductIndex,
   setHomeProducts,
 } from '../productSagas';
@@ -45,14 +50,14 @@ export function* expoBootStrap() {
     yield all([
       call(getCountry),
       call(setSettings),
+      call(setCurrencies),
+      call(setFaqs),
       call(setCountries),
       call(setSlides),
       // call(setCommercials),
       // call(setHomeBrands),
       call(startAuthenticatedScenario),
       call(setDeviceId),
-      // call(setHomeProducts),
-      // call(getLatestProducts),
       call(getPages),
       call(getTags),
       // call(getVideos),
@@ -63,11 +68,32 @@ export function* expoBootStrap() {
       call(startGetColorsScenario),
       call(startGetSizesScenario),
       call(startGetRolesScenario),
+      call(getOnSaleProducts, {
+        payload: {on_home: 1, country_id: country.id, on_sale: 1},
+      }),
+      call(getBestSaleProducts, {
+        payload: {
+          on_home: 1,
+          country_id: country.id,
+          best_sale: 1,
+        },
+      }),
+      call(getHotDealsProducts, {
+        payload: {
+          on_home: 1,
+          country_id: country.id,
+          on_sale: 1,
+          hot_deals: 1,
+        },
+      }),
+      call(getLatestProducts, {
+        payload: {on_home: 1, country_id: country.id, latest: 1},
+      }),
       call(getHomeUserCategories, {
         payload: {on_home: 1, type: 'is_user', country_id: country.id},
       }),
       call(setHomeProducts, {
-        payload: {on_home: 1, country_id: country.id, on_sale: 1},
+        payload: {on_home: 1, country_id: country.id},
       }),
       call(startGetParentCategoriesScenario),
       call(startGetHomeCategoriesScenario),

@@ -14,12 +14,13 @@ import {
   text,
   height,
   iconSizes,
+  formWidget,
 } from '../../../constants/sizes';
 import {icons} from '../../../constants/images';
 import {enableErrorMessage, showCountryModal} from '../../../redux/actions';
 import {companyRegister, register} from '../../../redux/actions/user';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {ABATI} from './../../../../app';
+import {ABATI, APP_CASE} from './../../../../app';
 import {useDispatch, useSelector} from 'react-redux';
 import {filter, first, map, remove} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
@@ -31,7 +32,7 @@ import KeyBoardContainer from '../../containers/KeyBoardContainer';
 
 const RegisterFormWidget = () => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {country, playerId, role, roles} = useSelector((state) => state);
+  const {country, playerId, role, roles} = useSelector(state => state);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const RegisterFormWidget = () => {
       storageOptions: {
         skipBackup: true,
       },
-    }).then((image) => {
+    }).then(image => {
       setImage(image);
       // setSampleLogo(image.path);
     });
@@ -77,12 +78,12 @@ const RegisterFormWidget = () => {
       storageOptions: {
         skipBackup: true,
       },
-    }).then((images) => {
+    }).then(images => {
       setImages(images);
     });
   };
 
-  const removeImage = (i) => {
+  const removeImage = i => {
     const newImages = remove(images, (img, index) => i !== index);
     setImages(newImages);
   };
@@ -103,7 +104,7 @@ const RegisterFormWidget = () => {
           images,
           role_id: role.id,
         })
-        .then((r) => {
+        .then(r => {
           // ImagePicker.clean()
           //   .then(() => {
           // console.log('removed all tmp images from tmp directory');
@@ -125,11 +126,11 @@ const RegisterFormWidget = () => {
               images,
               role_id: role
                 ? role.id
-                : first(filter(roles, (r) => r.isCompany)).id,
+                : first(filter(roles, r => r.isCompany)).id,
             }),
           );
         })
-        .catch((e) => {
+        .catch(e => {
           const {message, item} = first(e.errors);
           return dispatch(
             enableErrorMessage(
@@ -148,7 +149,7 @@ const RegisterFormWidget = () => {
           address,
           player_id: playerId,
           description,
-          role_id: role ? role.id : first(filter(roles, (r) => r.isClient)).id,
+          role_id: role ? role.id : first(filter(roles, r => r.isClient)).id,
         }),
       );
     }
@@ -193,7 +194,8 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 5,
+          borderRadius: formWidget[APP_CASE].inputRadius,
+          height: formWidget[APP_CASE].smaller.height,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -209,7 +211,7 @@ const RegisterFormWidget = () => {
         }}
         shake={true}
         keyboardType="default"
-        onChangeText={(text) => setName(text)}
+        onChangeText={text => setName(text)}
       />
       <Input
         placeholder={I18n.t('password')}
@@ -217,7 +219,8 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 5,
+          borderRadius: formWidget[APP_CASE].inputRadius,
+          height: formWidget[APP_CASE].smaller.height,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -233,14 +236,18 @@ const RegisterFormWidget = () => {
         ]}
         shake={true}
         keyboardType="default"
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={text => setPassword(text)}
+        leftIcon={() => (
+          <Icon name="lock" type="evilicon" size={iconSizes.smaller} />
+        )}
       />
       <Input
         placeholder={I18n.t('email') + '*'}
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 5,
+          borderRadius: formWidget[APP_CASE].inputRadius,
+          height: formWidget[APP_CASE].smaller.height,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -248,6 +255,7 @@ const RegisterFormWidget = () => {
         inputStyle={{
           fontFamily: text.font,
           textAlign: isRTL ? 'right' : 'left',
+          height: formWidget[APP_CASE].smaller.height,
         }}
         label={I18n.t('email')}
         labelStyle={[
@@ -256,16 +264,24 @@ const RegisterFormWidget = () => {
         ]}
         shake={true}
         keyboardType="email-address"
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={text => setEmail(text)}
+        leftIcon={() => (
+          <Icon name="envelope" type="evilicon" size={iconSizes.smaller} />
+        )}
       />
       <Input
-        leftIcon={() => <Text>+{country.calling_code}</Text>}
+        leftIcon={() => (
+          <Text style={{color: 'black', textAlign: 'left'}}>
+            +{country.calling_code}
+          </Text>
+        )}
         leftIconContainerStyle={{paddingRight: 15}}
         placeholder={I18n.t('mobile') + '*'}
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 5,
+          borderRadius: formWidget[APP_CASE].inputRadius,
+          height: formWidget[APP_CASE].smaller.height,
           paddingLeft: 15,
           paddingRight: 15,
           // marginBottom: 20,
@@ -281,7 +297,7 @@ const RegisterFormWidget = () => {
         ]}
         shake={true}
         keyboardType="number-pad"
-        onChangeText={(text) => setMobile(text)}
+        onChangeText={text => setMobile(text)}
       />
       <View style={{width: '100%'}}>
         <Text
@@ -302,7 +318,7 @@ const RegisterFormWidget = () => {
           style={{
             borderWidth: 1,
             borderColor: 'lightgrey',
-            borderRadius: 5,
+            borderRadius: formWidget[APP_CASE].inputRadius,
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: 20,
@@ -328,7 +344,7 @@ const RegisterFormWidget = () => {
         inputContainerStyle={{
           borderWidth: 1,
           borderColor: 'lightgrey',
-          borderRadius: 5,
+          borderRadius: formWidget[APP_CASE].inputRadius,
           paddingLeft: 15,
           paddingRight: 15,
           height: 80,
@@ -346,7 +362,7 @@ const RegisterFormWidget = () => {
           {color: colors.main_theme_color, paddingBottom: 10},
         ]}
         keyboardType="default"
-        onChangeText={(text) => setAddress(text)}
+        onChangeText={text => setAddress(text)}
       />
       {!ABATI && (
         <Input
@@ -354,7 +370,7 @@ const RegisterFormWidget = () => {
           inputContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgrey',
-            borderRadius: 5,
+            borderRadius: formWidget[APP_CASE].inputRadius,
             paddingLeft: 15,
             paddingRight: 15,
             height: 80,
@@ -372,7 +388,7 @@ const RegisterFormWidget = () => {
             {color: colors.main_theme_color, paddingBottom: 10},
           ]}
           keyboardType="default"
-          onChangeText={(text) => setDescription(text)}
+          onChangeText={text => setDescription(text)}
         />
       )}
 

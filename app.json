@@ -11,7 +11,7 @@
   "BITS" : false,
   "pusherEnabled" : false,
   "displayName": "abati",
-  "APP_CASE" : "abati",
+  "APP_CASE" : "ABATI",
   "apiUrl" : "http://mallr.test/",
   "ENV" : "production",
   "buildVersion" : "0.1.5",

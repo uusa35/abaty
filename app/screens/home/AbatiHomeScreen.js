@@ -18,6 +18,7 @@ import ProductSearchForm from '../../components/widgets/search/ProductSearchForm
 import BgContainer from '../../components/containers/BgContainer';
 import AppHomeConfigComponent from '../../components/containers/AppHomeConfigComponent';
 import {bottomContentInset} from '../../constants/sizes';
+import {isIOS} from '../../constants';
 
 const AbatiHomeScreen = () => {
   const {
@@ -34,13 +35,14 @@ const AbatiHomeScreen = () => {
     showIntroduction,
     country,
     settings,
-  } = useSelector((state) => state);
+  } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleRefresh = () => dispatch(refetchHomeElements());
 
   return (
     <BgContainer>
+      <AppHomeConfigComponent />
       {settings.splash_on && (
         <IntroductionWidget
           elements={splashes}
@@ -75,14 +77,18 @@ const AbatiHomeScreen = () => {
           <DesignersHorizontalWidget
             elements={homeDesigners}
             showName={true}
+            rounded={true}
+            showAll={true}
             name={I18n.t('designers')}
             title={I18n.t('designers')}
+            type={'designer'}
             searchParams={{is_designer: 1, country_id: country.id}}
           />
         )}
         {homeCategories && (
           <ProductCategoryHorizontalRoundedWidget
             elements={homeCategories}
+            showAll={true}
             showName={true}
             title={I18n.t('categories')}
             type="products"
@@ -92,11 +98,15 @@ const AbatiHomeScreen = () => {
           <CelebrityHorizontalWidget
             elements={homeCelebrities}
             showName={true}
+            rounded={true}
+            showAll={true}
             name="celebrities"
-            title={I18n.t('celebrities_choices')}
+            type={'celebrity'}
+            title={I18n.t('celebrities')}
             searchParams={{
               is_celebrity: 1,
               country_id: country.id,
+              on_home: true,
             }}
           />
         )}

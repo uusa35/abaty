@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import BrandList from '../../components/widgets/brand/BrandList';
 
 const BrandIndexScreen = () => {
-  const {brands} = useSelector((state) => state);
+  const {brands} = useSelector(state => state);
   return <BrandList elements={brands} />;
 };
 

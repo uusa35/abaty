@@ -6,21 +6,21 @@ import {GlobalValuesContext} from '../redux/GlobalValuesContext';
 const TextTabBar = ({focused, title, showLabel = false}) => {
   const {colors} = useContext(GlobalValuesContext);
   return (
-    <Fragment>
+    <>
       {showLabel && (
         <Text
           style={{
             fontFamily: text.font,
-            fontSize: text.smaller,
+            fontSize: text.small,
             textAlign: 'center',
             color: focused
-              ? colors.icon_theme_color
-              : colors.btn_bg_theme_color,
+              ? colors.btn_bg_theme_color
+              : colors.footer_theme_color,
           }}>
           {title}
         </Text>
       )}
-    </Fragment>
+    </>
   );
 };
 

@@ -7,12 +7,12 @@ export function setCategories(payload) {
   };
 }
 
-export const setCategory = (payload) => ({
+export const setCategory = payload => ({
   type: actions.SET_CATEGORY,
   payload,
 });
 
-export const setSubCategory = (payload) => ({
+export const setSubCategory = payload => ({
   type: actions.SET_SUB_CATEGORY,
   payload,
 });

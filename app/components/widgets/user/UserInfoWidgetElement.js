@@ -65,6 +65,7 @@ const UserInfoWidgetElement = ({
                 paddingLeft: 40,
                 lineHeight: text.large,
                 paddingBottom: 5,
+                color: 'black',
               }}>
               {element}
             </Text>
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.medium,
     textAlign: 'left',
+    color: 'black',
   },
   description: {
     fontFamily: text.font,

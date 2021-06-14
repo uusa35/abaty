@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Pressable,
 } from 'react-native';
 import widgetStyles from '../widgetStyles';
 import {getConvertedFinalPrice} from '../../../helpers';
@@ -24,13 +25,12 @@ const ServiceWidget = ({
   height = 240,
   handleClick,
 }) => {
-  const {colors, currency_symbol, exchange_rate} = useContext(
-    GlobalValuesContext,
-  );
+  const {colors, currency_symbol, exchange_rate} =
+    useContext(GlobalValuesContext);
   const dispatch = useDispatch();
 
   return (
-    <TouchableOpacity
+    <Pressable
       activeOpacity={touchOpacity}
       key={element.id}
       style={[widgetStyles.productServiceWidget, {minWidth}]}
@@ -143,7 +143,7 @@ const ServiceWidget = ({
           </View>
         </View>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

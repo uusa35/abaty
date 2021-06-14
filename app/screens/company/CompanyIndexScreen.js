@@ -8,7 +8,7 @@ import {ESCRAP} from './../../../app';
 import ElementsVerticalList from '../../components/Lists/ElementsVerticalList';
 
 const CompanyIndexScreen = () => {
-  const {companies, searchParams} = useSelector((state) => state);
+  const {companies, searchParams} = useSelector(state => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
 
@@ -18,30 +18,15 @@ const CompanyIndexScreen = () => {
   }, []);
 
   return (
-    <BgContainer showImage={false}>
-      {ESCRAP ? (
-        <ElementsVerticalList
-          type="company"
-          elements={currentElements}
-          searchParams={currentSearchParams}
-          showRefresh={true}
-          showFooter={true}
-          showSearch={true}
-          showTitleIcons={true}
-          showMore={true}
-        />
-      ) : (
-        <ElementsHorizontalList
-          type="company"
-          elements={companies}
-          searchParams={searchParams}
-          showRefresh={true}
-          showFooter={true}
-          showSearch={true}
-          showTitleIcons={true}
-          showMore={true}
-        />
-      )}
+    <BgContainer showImage={false} white={true}>
+      <ElementsHorizontalList
+        elements={currentElements}
+        type="company"
+        searchParams={currentSearchParams}
+        showMore={true}
+        showSearch={true}
+        showFooter={true}
+      />
     </BgContainer>
   );
 };

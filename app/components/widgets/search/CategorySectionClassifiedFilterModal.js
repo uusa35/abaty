@@ -19,7 +19,7 @@ const CategorySectionClassifiedFilterModal = ({
   setSelectedSubCategory,
   handleParent,
 }) => {
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   return (
     <View
       style={{

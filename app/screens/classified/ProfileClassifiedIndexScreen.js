@@ -7,7 +7,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProfileClassifiedIndexScreen = () => {
-  const {auth, guest} = useSelector((state) => state);
+  const {auth, guest} = useSelector(state => state);
   const [currentElements, setCurrentElements] = useState(auth.classifieds);
   const dispatch = useDispatch();
 

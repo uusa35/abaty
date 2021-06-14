@@ -8,7 +8,7 @@ import validate from 'validate.js';
 
 const ParentCategoryIndexScreen = () => {
   const {commercials, settings, homeUserCategories} = useSelector(
-    (state) => state,
+    state => state,
   );
   const dispatch = useDispatch();
 

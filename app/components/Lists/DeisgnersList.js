@@ -49,13 +49,13 @@ const DesignersList = ({
       axiosInstance(`search/user?page=${page}`, {
         params: searchParams,
       })
-        .then((r) => {
+        .then(r => {
           if (!validate.isEmpty(r.data)) {
             const userGroup = uniqBy(items.concat(r.data), 'id');
             setItems(userGroup);
           }
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -71,7 +71,7 @@ const DesignersList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(elements, (i) =>
+      let filtered = filter(elements, i =>
         i.slug.includes(search) ? i : null,
       );
       if (filtered.length > 0 || search.length > 0) {

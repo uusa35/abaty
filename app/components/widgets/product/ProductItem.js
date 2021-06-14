@@ -25,12 +25,12 @@ const ProductItem = ({
   useMemo(() => {
     if (item.size_id) {
       setSelectedSize(
-        first(filter(item.element.sizes, (a) => a.id === item.size_id)),
+        first(filter(item.element.sizes, a => a.id === item.size_id)),
       );
     }
     if (item.color_id) {
       setSelectedColor(
-        first(filter(item.element.colors, (a) => a.id === item.color_id)),
+        first(filter(item.element.colors, a => a.id === item.color_id)),
       );
     }
   }, [element]);
@@ -66,7 +66,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('service_date_and_time')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -84,7 +84,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('company')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -102,7 +102,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('sku')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -120,7 +120,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('size')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -138,7 +138,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('color_or_height')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -156,7 +156,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('qty')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -174,7 +174,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('size')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -192,7 +192,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('color_or_height')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -211,7 +211,7 @@ const ProductItem = ({
           <View style={{flexDirection: 'row', paddingTop: 3, maxWidth: 140}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('notes')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{

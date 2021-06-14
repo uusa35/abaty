@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import validate from 'validate.js';
 import {Rating} from 'react-native-ratings';
 import {showCommentModal} from '../../../redux/actions';
-import {becomeFan, rateUser} from '../../../redux/actions/user';
+import {becomeFan, rateElement, rateUser} from '../../../redux/actions/user';
 import I18n from './../../../I18n';
 import {Badge, Icon} from 'react-native-elements';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
@@ -52,16 +52,16 @@ const UserImageProfileRounded = ({
   const {colors} = useContext(GlobalValuesContext);
 
   const handleRating = useCallback(
-    (rating) => {
+    rating => {
       if (rating !== currentRating) {
-        return dispatch(rateUser({value: rating, member_id}));
+        return dispatch(rateElement({value: rating, member_id}));
       }
     },
     [rating],
   );
 
   const handleFan = useCallback(
-    (fanMe) => {
+    fanMe => {
       fanMe ? setFans(fans + 1) : setFans(fans - 1);
       setFanMe(fanMe);
       return dispatch(becomeFan({id: member_id, fanMe}));
@@ -104,32 +104,36 @@ const UserImageProfileRounded = ({
               flexWrap: 'wrap',
               width: '100%',
             }}>
-            <TouchableOpacity>
+            {showComments && (
+              <TouchableOpacity>
+                <Icon
+                  onPress={() => dispatch(showCommentModal())}
+                  name="comment"
+                  type="material"
+                  raised
+                  reverse
+                  size={iconSizes.smallest}
+                  color={colors.icon_theme_bg}
+                  hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                />
+                <Badge
+                  status="warning"
+                  value={commentsCount}
+                  containerStyle={{position: 'absolute', top: 1, right: 1}}
+                />
+              </TouchableOpacity>
+            )}
+            {showFans && (
               <Icon
-                onPress={() => dispatch(showCommentModal())}
-                name="comment"
-                type="material"
+                name={!fanMe ? 'thumbsup' : 'thumb-up'}
+                type={!fanMe ? 'octicon' : 'material'}
+                onPress={() => handleFan(!fanMe)}
                 raised
                 reverse
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
-                hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+                color={colors.icon_theme_bg}
               />
-              <Badge
-                status="warning"
-                value={commentsCount}
-                containerStyle={{position: 'absolute', top: 1, right: 1}}
-              />
-            </TouchableOpacity>
-            <Icon
-              name={!fanMe ? 'thumbsup' : 'thumb-up'}
-              type={!fanMe ? 'octicon' : 'material'}
-              onPress={() => handleFan(!fanMe)}
-              raised
-              reverse
-              size={iconSizes.smallest}
-              color={colors.icon_theme_color}
-            />
+            )}
             {latitude && longitude ? (
               <Icon
                 onPress={() =>
@@ -143,7 +147,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {whatsapp ? (
@@ -155,7 +159,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {mobile ? (
@@ -167,7 +171,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {email ? (
@@ -179,7 +183,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {facebook ? (
@@ -191,7 +195,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {twitter ? (
@@ -203,7 +207,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
             {instagram ? (
@@ -215,7 +219,7 @@ const UserImageProfileRounded = ({
                 reverse
                 iconStyle={{fontSize: iconSizes.smaller}}
                 size={iconSizes.smallest}
-                color={colors.icon_theme_color}
+                color={colors.icon_theme_bg}
               />
             ) : null}
           </View>
@@ -273,7 +277,7 @@ const UserImageProfileRounded = ({
                 count={10}
                 ratingCount={5}
                 style={{paddingVertical: 0}}
-                onFinishRating={(rating) => handleRating(rating)}
+                onFinishRating={rating => handleRating(rating)}
                 imageSize={20}
               />
             ) : null}

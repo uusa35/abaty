@@ -3,13 +3,17 @@ import ActionButton from 'react-native-action-button';
 import {Icon} from 'react-native-elements';
 import {Linking, StyleSheet, View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
 import {iconSizes, text} from './../../constants/sizes';
 import PropTypes from 'prop-types';
 
-const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
-  const {navigate} = useNavigation();
+const QuickCallActionBtnWidget = ({
+  visible = false,
+  mobile,
+  whatsapp = '',
+  navigation,
+}) => {
+  const {navigate} = navigation;
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View
@@ -24,7 +28,9 @@ const QuickCallActionBtnWidget = ({visible = false, mobile, whatsapp = ''}) => {
       <ActionButton
         useNativeFeedback={true}
         style={{opacity: 0.6}}
-        renderIcon={() => <Icon name="ios-call" type="ionicon" color="white" />}
+        renderIcon={() => (
+          <Icon name="phone-call" type="feather" color="white" />
+        )}
         size={iconSizes.large}
         spacing={20}
         position="left"

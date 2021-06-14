@@ -21,7 +21,7 @@ const CollectionShowScreen = ({element, dispatch, token, navigation}) => {
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const {country} = useSelector((state) => state);
+  const {country} = useSelector(state => state);
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
   }, [headerBg, headerBgColor]);

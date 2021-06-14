@@ -4,7 +4,7 @@ import {View} from 'react-native-animatable';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {getSearchProducts} from '../../../redux/actions/product';
-import {isRTL} from './../../../I18n';
+import I18n, {isRTL} from './../../../I18n';
 import {Icon} from 'react-native-elements';
 import widgetStyles from './../widgetStyles';
 import {
@@ -12,22 +12,23 @@ import {
   rightHorizontalContentInset,
   touchOpacity,
 } from '../../../constants/sizes';
-import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useNavigation} from '@react-navigation/native';
 
 const ProductCategoryHorizontalRoundedWidget = ({
   elements,
   showName,
   title,
+  showAll = false,
 }) => {
-  const {navigate} = useNavigation();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {country} = useSelector((state) => state);
+  const {country} = useSelector(state => state);
   const {colors} = useContext(GlobalValuesContext);
-  const handleClick = useCallback((c) => {
+  const handleClick = useCallback(c => {
     return dispatch(
       getSearchProducts({
         name: c.name,
@@ -44,8 +45,17 @@ const ProductCategoryHorizontalRoundedWidget = ({
           style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
           <TouchableOpacity
             activeOpacity={touchOpacity}
-            style={widgetStyles.titleContainer}
-            onPress={() => navigate('CategoryIndex')}>
+            style={[
+              widgetStyles.titleContainer,
+              {
+                borderBottomWidth: 0.5,
+                borderBottomColor: colors.btn_theme_color,
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingBottom: 10,
+              },
+            ]}
+            onPress={() => navigation.navigate('CategoryTab')}>
             <View style={widgetStyles.titleWrapper}>
               <Text
                 style={[
@@ -55,12 +65,22 @@ const ProductCategoryHorizontalRoundedWidget = ({
                 {title}
               </Text>
             </View>
-            <Icon
-              type="entypo"
-              name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
-              size={iconSizes.smallest}
-              color={colors.header_one_theme_color}
-            />
+            {showAll && (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'baseline',
+                  justifyContent: 'center',
+                  alignContent: 'center',
+                }}>
+                <Icon
+                  type="entypo"
+                  name={isRTL ? 'chevron-thin-left' : 'chevron-thin-right'}
+                  size={iconSizes.smallest}
+                  color={colors.header_one_theme_color}
+                />
+              </View>
+            )}
           </TouchableOpacity>
           <ScrollView
             horizontal={true}

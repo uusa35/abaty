@@ -2,10 +2,8 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Pdf from 'react-native-pdf';
 import {width} from './../constants/sizes';
-import {useNavigation} from 'react-navigation-hooks';
 
-const AppPDFViewerScreen = () => {
-  const navigation = useNavigation();
+const AppPDFViewerScreen = ({navigation}) => {
   const {pdfLink} = navigation.state.params;
   const source = {uri: pdfLink};
   return (

@@ -6,6 +6,7 @@ import {
   View,
   Text,
   FlatList,
+  SafeAreaView,
 } from 'react-native';
 import {
   iconSizes,
@@ -14,7 +15,6 @@ import {
   text,
   bottomContentInset,
 } from '../../constants/sizes';
-import {SafeAreaView} from 'react-navigation';
 import {Icon} from 'react-native-elements';
 import {isRTL} from '../../I18n';
 

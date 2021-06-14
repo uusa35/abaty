@@ -6,7 +6,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ClassifiedIndexAllScreen = () => {
-  const {classifieds} = useSelector((state) => state);
+  const {classifieds} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentElements, setCurrentElements] = useState([]);
 

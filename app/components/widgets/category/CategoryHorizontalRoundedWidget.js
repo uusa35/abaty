@@ -24,7 +24,7 @@ const CategoryHorizontalRoundedWidget = ({
   colors,
   navigation,
 }) => {
-  const handleClassifiedClick = useCallback((c) => {
+  const handleClassifiedClick = useCallback(c => {
     return dispatch(
       getClassifieds({
         name: c.name,

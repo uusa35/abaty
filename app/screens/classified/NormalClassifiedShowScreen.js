@@ -29,15 +29,13 @@ import {getProductConvertedFinalPrice, getWhatsappLink} from '../../helpers';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import BgContainer from '../../components/containers/BgContainer';
-import {useNavigation} from 'react-navigation-hooks';
 
-const NormalClassifiedShowScreen = () => {
+const NormalClassifiedShowScreen = ({navigation}) => {
   const {classified, commentModal, token, auth, settings} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {exchange_rate} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
@@ -55,10 +53,8 @@ const NormalClassifiedShowScreen = () => {
   };
 
   useMemo(() => {
-    setMultiItems(filter(classified.items, (i) => i.categoryGroup.is_multi));
-    setNonMultiItems(
-      filter(classified.items, (i) => !i.categoryGroup.is_multi),
-    );
+    setMultiItems(filter(classified.items, i => i.categoryGroup.is_multi));
+    setNonMultiItems(filter(classified.items, i => !i.categoryGroup.is_multi));
   }, [classified]);
 
   // useMemo(() => {
@@ -105,7 +101,7 @@ const NormalClassifiedShowScreen = () => {
             <PropertiesWidget
               elements={filter(
                 classified.items,
-                (i) => !i.categoryGroup.is_multi,
+                i => !i.categoryGroup.is_multi,
               )}
             />
           )}

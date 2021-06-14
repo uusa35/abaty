@@ -1,8 +1,8 @@
-import React, {useState, useMemo, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, Linking, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImagesWidget from '../../components/widgets/ImagesWidget';
-import {width, text, height} from './../../constants/sizes';
+import {width, text, height, productWidget} from './../../constants/sizes';
 import ProductInfoWidget from '../../components/widgets/product/ProductInfoWidget';
 import ProductInfoWidgetElement from './../../components/widgets/product/ProductInfoWidgetElement';
 import I18n from './../../I18n';
@@ -14,29 +14,27 @@ import PropTypes from 'prop-types';
 import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import BgContainer from '../../components/containers/BgContainer';
-import {useNavigation} from 'react-navigation-hooks';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 import ProductHorizontalWidget from '../../components/widgets/product/ProductHorizontalWidget';
-import {EXPO} from './../../../app';
-import {addToCart} from '../../redux/actions/cart';
+import {EXPO, APP_CASE} from './../../../app';
+import {useNavigation} from '@react-navigation/native';
 
 const NormalProductShowScreen = () => {
-  const {product, token, settings, products} = useSelector((state) => state);
+  const {product, token, settings, products} = useSelector(state => state);
   const {phone, mobile, shipment_prices, size_chart} = settings;
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const [addToCartStatus, setAddToCartStatus] = useState(false);
-  const [cartItem, setCartItem] = useState({});
-  const [rating, setRating] = useState(product.rating);
 
-  useMemo(() => {
-    navigation.setParams({headerBg, headerBgColor});
+  useEffect(() => {
+    headerBg || headerBgColor
+      ? navigation.setParams({headerBg, headerBgColor})
+      : null;
   }, [headerBg, headerBgColor]);
 
-  const handleRefresh = useCallback(() => {
+  const handleRefresh = () => {
     setRefresh(false);
     dispatch(
       getProduct({
@@ -45,20 +43,6 @@ const NormalProductShowScreen = () => {
         redirect: false,
       }),
     );
-  }, [refresh]);
-
-  useCallback(() => {
-    if (!validate.isEmpty(cartItem)) {
-      setAddToCartStatus(true);
-    } else {
-      setAddToCartStatus(false);
-    }
-  }, [cartItem, cartItem.qty]);
-
-  const handleAddToCart = () => {
-    if (!validate.isEmpty(cartItem)) {
-      return dispatch(addToCart(cartItem));
-    }
   };
 
   return (
@@ -80,12 +64,53 @@ const NormalProductShowScreen = () => {
           directPurchase={product.directPurchase}
         />
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget
-            element={product}
-            setAddToCartStatus={setAddToCartStatus}
-            setCartItem={setCartItem}
-            handleAddToCart={handleAddToCart}
-          />
+          {product.brand && (
+            <View
+              style={{
+                backgroundColor: 'whitesmoke',
+                borderRadius: 10,
+                justifyContent: 'flex-start',
+                maxWidth: productWidget[APP_CASE].small.width,
+                height: 40,
+                flexDirection: 'row',
+                alignSelf: 'flex-start',
+                borderWidth: 1,
+                borderColor: 'lightgrey',
+                marginLeft: 10,
+                marginTop: 5,
+                marginBottom: 10,
+              }}>
+              <View
+                style={{
+                  flex: 1,
+                  borderTopLeftRadius: 10,
+                  borderBottomLeftRadius: 10,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{fontFamily: text.font}}>{I18n.t('brand')}</Text>
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  borderTopRightRadius: 10,
+                  borderBottomRightRadius: 10,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: settings.colors.btn_bg_theme_color,
+                }}>
+                <Text
+                  style={{
+                    fontFamily: text.font,
+                    color: settings.colors.btn_text_theme_color,
+                    backgroundColor: settings.colors.btn_bg_theme_color,
+                  }}>
+                  {product.brand.slug}
+                </Text>
+              </View>
+            </View>
+          )}
+          <ProductInfoWidget element={product} />
           <View
             style={{
               borderWidth: 0.5,
@@ -222,12 +247,12 @@ const NormalProductShowScreen = () => {
   );
 };
 
-NormalProductShowScreen.navigationOptions = ({navigation}) => ({
-  // headerTransparent: navigation.state.params.headerBg,
-  // headerStyle: {
-  //   backgroundColor: navigation.state.params.headerBgColor
-  // }
-});
+// NormalProductShowScreen.navigationOptions = ({navigation}) => ({
+//   headerTransparent: navigation.state.params.headerBg,
+//   headerStyle: {
+//     backgroundColor: navigation.state.params.headerBgColor
+//   }
+// });
 
 export default NormalProductShowScreen;
 

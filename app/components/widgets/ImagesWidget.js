@@ -15,11 +15,11 @@ import {images} from '../../constants/images';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ImageLoaderContainer from './ImageLoaderContainer';
 import {HOMEKEY} from './../../../app';
 import {adjustColor} from '../../helpers';
 import FastImage from 'react-native-fast-image';
+import {useNavigation} from '@react-navigation/native';
 
 const ImagesWidget = ({
   elements,
@@ -70,7 +70,6 @@ const ImagesWidget = ({
         alwaysBounceVertical={false}
         alwaysBounceHorizontal={false}
         showsHorizontalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
         snapToInterval={+width + 10}
         bounces={true}
         disableIntervalMomentum={true}
@@ -94,7 +93,7 @@ const ImagesWidget = ({
               source={images.loading}
               onLoadEnd={() => setImageLoading(false)}
               style={{width, height}}
-              resizeMode={'center'}>
+              resizeMode={'cover'}>
               <ImageLoaderContainer
                 img={item.large}
                 resizeMode="cover"

@@ -1,5 +1,11 @@
 import React, {useContext, Fragment, useCallback} from 'react';
-import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
+import {
+  ScrollView,
+  TouchableOpacity,
+  Text,
+  View,
+  Pressable,
+} from 'react-native';
 import {map, isEmpty} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
@@ -10,6 +16,7 @@ import ProductWidget from './../product/ProductWidget';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {rightHorizontalContentInset} from '../../../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
+import ProductNormalWidget from './ProductNormalWidget';
 
 const ProductHorizontalWidget = ({
   elements,
@@ -20,10 +27,10 @@ const ProductHorizontalWidget = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const {token} = useSelector((state) => state);
+  const {token} = useSelector(state => state);
 
-  const handleClickProductWidget = useCallback((element) => {
-    dispatch(
+  const handleClickProductWidget = element => {
+    return dispatch(
       getProduct({
         element,
         id: element.id,
@@ -31,7 +38,7 @@ const ProductHorizontalWidget = ({
         redirect: true,
       }),
     );
-  }, []);
+  };
 
   const handleGetProducts = () =>
     dispatch(
@@ -49,9 +56,16 @@ const ProductHorizontalWidget = ({
             widgetStyles.container,
             {backgroundColor: 'transparent', marginTop: 0},
           ]}>
-          <TouchableOpacity
+          <Pressable
             activeOpacity={0.8}
-            style={widgetStyles.titleContainer}
+            style={[
+              widgetStyles.titleContainer,
+              {
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingBottom: 10,
+              },
+            ]}
             onPress={() => (showLink ? handleGetProducts() : null)}>
             <View style={widgetStyles.titleWrapper}>
               <Text
@@ -70,14 +84,14 @@ const ProductHorizontalWidget = ({
                 color={colors.header_one_theme_color}
               />
             )}
-          </TouchableOpacity>
+          </Pressable>
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             contentInset={{right: rightHorizontalContentInset}}
             style={widgetStyles.wrapper}>
             {map(elements, (c, i) => (
-              <ProductWidget
+              <ProductNormalWidget
                 element={c}
                 showName={showName}
                 key={i}

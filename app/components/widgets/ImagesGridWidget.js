@@ -21,8 +21,9 @@ import {images} from '../../constants/images';
 import TagWidget from './TagWidget';
 import I18n from '../../I18n';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ImageLoaderContainer from './ImageLoaderContainer';
+import {useNavigation} from '@react-navigation/native';
+import FastImage from 'react-native-fast-image';
 
 const ImagesGridWidget = ({
   elements,
@@ -39,12 +40,13 @@ const ImagesGridWidget = ({
   sku = null,
   qr = null,
   hasStock = true,
+  navigation,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const {navigate} = useNavigation();
   const [imageLoading, setImageLoading] = useState(true);
 
-  const handleClick = (item) => {
+  const handleClick = item => {
     navigate('ImageZoom', {
       images: elements,
       name,
@@ -89,7 +91,6 @@ const ImagesGridWidget = ({
         alwaysBounceVertical={false}
         alwaysBounceHorizontal={false}
         showsHorizontalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
         snapToInterval={width + 10}
         bounces={true}
         disableIntervalMomentum={true}
@@ -103,7 +104,7 @@ const ImagesGridWidget = ({
         numColumns={3}
         scrollEnabled={false}
         data={elements}
-        renderItem={(item) => (
+        renderItem={item => (
           <TouchableOpacity
             activeOpacity={touchOpacity}
             key={item.index}
@@ -133,8 +134,8 @@ const ImagesGridWidget = ({
                       alignItems: 'flex-end',
                     }}>
                     {qr ? (
-                      <ImageLoaderContainer
-                        img={qr}
+                      <FastImage
+                        source={qr}
                         style={{
                           width: 80,
                           height: 80,

@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {text, width, height} from './../constants/sizes';
 import {isIOS} from './../constants';
@@ -6,11 +6,13 @@ import PropTypes from 'prop-types';
 import Toaster from 'react-native-toaster';
 import validate from 'validate.js';
 import {Icon} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {iconSizes} from './../constants/sizes';
 
-const AlertMessage = ({message}) => {
+const AlertMessage = () => {
   const dispatch = useDispatch();
-  const [messageVisible, setMessageVisible] = useState(message.visible);
+  const [messageVisible, setMessageVisible] = useState(false);
+  const {message} = useSelector(state => state);
   const styles = {
     container: {
       opacity: 0.9,
@@ -34,12 +36,6 @@ const AlertMessage = ({message}) => {
     },
   };
 
-  useMemo(() => {
-    if (!messageVisible) {
-      dispatch({type: 'DISABLE_MESSAGE'});
-    }
-  }, [messageVisible]);
-
   return (
     <Toaster
       message={{
@@ -53,7 +49,7 @@ const AlertMessage = ({message}) => {
             <Icon
               name={message.icon}
               type={message.type}
-              size={25}
+              size={iconSizes.small}
               color="white"
             />
           </View>
@@ -63,7 +59,7 @@ const AlertMessage = ({message}) => {
         useNativeDriver: true,
       }}
       style={styles.content}
-      onHide={() => setMessageVisible(false)}
+      onHide={() => dispatch({type: 'DISABLE_MESSAGE'})}
       useNativeDriver={true}
     />
   );

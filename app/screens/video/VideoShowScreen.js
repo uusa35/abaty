@@ -6,7 +6,7 @@ import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalLis
 import {width} from './../../constants/sizes';
 
 const VideoShowScreen = () => {
-  const {video} = useSelector((state) => state);
+  const {video} = useSelector(state => state);
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}

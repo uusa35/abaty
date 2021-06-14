@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import FastImage from 'react-native-fast-image';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
 import {text} from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import {getProductConvertedFinalPrice} from '../../../helpers';
@@ -12,17 +12,20 @@ import {toggleProductFavorite} from '../../../redux/actions/product';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../../constants';
+import {productWidget} from '../../../constants/sizes';
+import {APP_CASE} from '../../../../app.json';
+import {useNavigation} from '@react-navigation/native';
+import {getDesigner} from '../../../redux/actions/user';
 
 const ProductInfoWidgetMainTitle = ({element}) => {
   const dispatch = useDispatch();
-  const {colors, exchange_rate, currency_symbol} = useContext(
-    GlobalValuesContext,
-  );
-  const {token, guest} = useSelector((state) => state);
+  const {colors, exchange_rate, currency_symbol} =
+    useContext(GlobalValuesContext);
+  const {token, guest} = useSelector(state => state);
   const [favorite, setFavorite] = useState(element.isFavorite);
 
   return (
-    <View
+    <Pressable
       style={{
         padding: 0,
         marginTop: 20,
@@ -31,13 +34,22 @@ const ProductInfoWidgetMainTitle = ({element}) => {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-      }}>
+      }}
+      onPress={() =>
+        dispatch(
+          getDesigner({
+            id: element.user_id,
+            searchParams: {user_id: element.user_id},
+            redirect: true,
+          }),
+        )
+      }>
       <ImageLoaderContainer
         img={element.user.thumb}
         style={{
-          width: 60,
-          height: 60,
-          borderRadius: 60 / 2,
+          width: productWidget[APP_CASE].smaller.width / 2,
+          height: productWidget[APP_CASE].smaller.width / 2,
+          borderRadius: productWidget[APP_CASE].smaller.width / 2 / 2,
         }}
         resizeMode={isIOS ? 'contain' : 'cover'}
       />
@@ -46,6 +58,7 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           style={{
             paddingRight: 5,
             paddingLeft: 5,
+            paddingBottom: 5,
             fontSize: 18,
             color: colors.header_one_theme_color,
             textAlign: 'left',
@@ -141,11 +154,11 @@ const ProductInfoWidgetMainTitle = ({element}) => {
           />
         )}
       </View>
-    </View>
+    </Pressable>
   );
 };
 
-export default ProductInfoWidgetMainTitle;
+export default React.memo(ProductInfoWidgetMainTitle);
 
 ProductInfoWidgetMainTitle.propTypes = {
   element: PropTypes.object.isRequired,

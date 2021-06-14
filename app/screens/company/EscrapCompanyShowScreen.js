@@ -21,15 +21,13 @@ import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
 import {filter, uniqBy} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import BgContainer from '../../components/containers/BgContainer';
 
-const EscrapCompanyShowScreen = () => {
+const EscrapCompanyShowScreen = ({navigation}) => {
   const {company, comments, commentModal, searchParams} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors, guest, logo} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
@@ -45,7 +43,7 @@ const EscrapCompanyShowScreen = () => {
   useMemo(() => {
     if (!validate.isEmpty(company.classifieds)) {
       const categories = uniqBy(
-        filter(company.classifieds, (c) => c.category),
+        filter(company.classifieds, c => c.category),
         'id',
       );
       setCollectedCategories(categories);
@@ -118,7 +116,7 @@ const EscrapCompanyShowScreen = () => {
             )}
             <TabView
               lazy={true}
-              renderTabBar={(props) => (
+              renderTabBar={props => (
                 <TabBar
                   {...props}
                   // tabStyle={{ backgroundColor: 'white'}}
@@ -179,7 +177,7 @@ const EscrapCompanyShowScreen = () => {
                 ),
               })}
               style={{marginTop: 10, backgroundColor: 'white'}}
-              onIndexChange={(i) => setIndex(i)}
+              onIndexChange={i => setIndex(i)}
               initialLayout={{width: width}}
             />
           </TriggeringView>

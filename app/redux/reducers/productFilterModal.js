@@ -6,7 +6,7 @@ import {
 export default function (productFilterModal = false, action) {
   switch (action.type) {
     case SHOW_PRODUCT_FILTER_MODAL:
-      return true;
+      return action.payload;
     case HIDE_PRODUCT_FILTER_MODAL:
       return false;
     default:

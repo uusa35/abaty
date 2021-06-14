@@ -15,22 +15,14 @@ import ActionBtnWidget from '../../components/widgets/ActionBtnWidget';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import VideosHorizontalWidget from '../../components/widgets/video/VideosHorizontalWidget';
 import {getDesigner} from '../../redux/actions/user';
-import {useNavigation} from 'react-navigation-hooks';
-import {addToCart} from '../../redux/actions/cart';
 
-const ProductShowScreen = () => {
-  const {product, settings, token, homeProducts} = useSelector(
-    (state) => state,
-  );
+const ProductShowScreen = ({navigation}) => {
+  const {product, settings, token, homeProducts} = useSelector(state => state);
   const {phone, mobile, shipment_prices, size_chart, weight} = settings;
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const [refresh, setRefresh] = useState(false);
   const [headerBg, setHeaderBg] = useState(true);
   const [headerBgColor, setHeaderBgColor] = useState('transparent');
-  const [addToCartStatus, setAddToCartStatus] = useState(false);
-  const [cartItem, setCartItem] = useState({});
-  const [rating, setRating] = useState(product.rating);
 
   useMemo(() => {
     navigation.setParams({headerBg, headerBgColor});
@@ -46,20 +38,6 @@ const ProductShowScreen = () => {
       }),
     );
   }, [refresh]);
-
-  useCallback(() => {
-    if (!validate.isEmpty(cartItem)) {
-      setAddToCartStatus(true);
-    } else {
-      setAddToCartStatus(false);
-    }
-  }, [cartItem, cartItem.qty]);
-
-  const handleAddToCart = () => {
-    if (!validate.isEmpty(cartItem)) {
-      return dispatch(addToCart(cartItem));
-    }
-  };
 
   return (
     <Fragment>
@@ -95,14 +73,12 @@ const ProductShowScreen = () => {
             }}
           />
         }
+        automaticallyAdjustContentInsets={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         contentInset={{bottom: 50}}>
         <View style={{alignSelf: 'center', width: '95%'}}>
-          <ProductInfoWidget
-            element={product}
-            setAddToCartStatus={setAddToCartStatus}
-            setCartItem={setCartItem}
-            handleAddToCart={handleAddToCart}
-          />
+          <ProductInfoWidget element={product} />
           <View>
             {product.description ? (
               <View>
@@ -201,7 +177,7 @@ const ProductShowScreen = () => {
         ) : null}
         {!validate.isEmpty(homeProducts) ? (
           <ProductHorizontalWidget
-            elements={take(shuffle(products), 5)}
+            elements={take(shuffle(homeProducts), 5)}
             showName={true}
             title={I18n.t('related_products')}
           />

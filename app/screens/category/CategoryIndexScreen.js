@@ -1,18 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
 import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import PropTypes from 'prop-types';
 import {View} from 'react-native-animatable';
-import {ABATI, MALLR, EXPO, DAILY} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 
 const CategoryIndexScreen = () => {
   const {homeCategories, commercials, show_commercials} = useSelector(
-    (state) => state,
+    state => state,
   );
-
-  useEffect(() => {}, [homeCategories]);
 
   return (
     <BgContainer showImage={false}>
@@ -21,12 +18,17 @@ const CategoryIndexScreen = () => {
           useNativeDriver={true}
           animation="bounceIn"
           easing="ease-out"
-          style={{flex: show_commercials ? 0.8 : 1, backgroundColor: 'white'}}>
+          style={{
+            flex: show_commercials ? 0.8 : 1,
+            backgroundColor: 'white',
+            marginTop: '5%',
+          }}>
           <CategoriesList
             elements={homeCategories}
-            columns={2}
-            showBtn={true}
-            type={ABATI || MALLR || EXPO || DAILY ? 'product' : 'classified'}
+            columns={1}
+            showBtn={false}
+            showName={true}
+            type={'product'}
           />
         </View>
         {show_commercials ? (

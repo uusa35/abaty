@@ -12,7 +12,6 @@ import {becomeFan, rateUser} from '../../../redux/actions/user';
 import I18n from './../../../I18n';
 import {Badge, Icon, Button} from 'react-native-elements';
 import {MALLR} from './../../../../app';
-import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 const ShopperImageProfile = ({
@@ -30,17 +29,18 @@ const ShopperImageProfile = ({
   commentsCount,
   showComments = true,
   showLike = true,
+  navigation,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
-  const {guest} = useSelector((state) => state);
+  const {guest} = useSelector(state => state);
   const dispatch = useDispatch();
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
-  const {navigate} = useNavigation();
+  const {navigate} = navigation;
 
   const handleRating = useCallback(
-    (rating) => {
+    rating => {
       if (rating !== currentRating) {
         return dispatch(rateUser({value: rating, member_id}));
       }
@@ -49,7 +49,7 @@ const ShopperImageProfile = ({
   );
 
   const handleFan = useCallback(
-    (fanMe) => {
+    fanMe => {
       fanMe ? setFans(fans + 1) : setFans(fans - 1);
       setFanMe(fanMe);
       return dispatch(becomeFan({id: member_id, fanMe}));
@@ -164,7 +164,7 @@ const ShopperImageProfile = ({
               count={10}
               ratingCount={5}
               style={{paddingVertical: 0}}
-              onFinishRating={(rating) => handleRating(rating)}
+              onFinishRating={rating => handleRating(rating)}
               imageSize={20}
             />
           ) : null}

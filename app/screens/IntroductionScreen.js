@@ -4,11 +4,10 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import SplashWidget from '../components/widgets/splash/SplashWidget';
-import {useNavigation} from 'react-navigation-hooks';
 
-const IntroductionScreen = () => {
-  const {splashes} = useSelector((state) => state);
-  const {navigate} = useNavigation();
+const IntroductionScreen = ({navigation}) => {
+  const {splashes} = useSelector(state => state);
+  const {navigate} = navigation;
 
   return (
     <View style={{backgroundColor: 'white'}}>

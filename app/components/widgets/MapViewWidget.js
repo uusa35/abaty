@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Linking} from 'react-native';
 import PropTypes from 'prop-types';
 import FastImage from 'react-native-fast-image';
 import MapView, {
@@ -15,6 +15,7 @@ import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import CallOutView from './map/CallOutView';
 import {getProductConvertedFinalPrice} from '../../helpers';
 import {round, map} from 'lodash';
+import {links} from '../../constants/links';
 
 const MapViewWidget = ({
   height = 350,
@@ -96,7 +97,9 @@ const MapViewWidget = ({
           {!isMulti ? (
             <Marker
               title={title}
-              // onPress={() => }
+              onPress={() =>
+                Linking.openURL(`${links.googleMapUrl}${latitude},${longitude}`)
+              }
               scrollEnabled={false}
               image={images.pin}
               opacity={1}

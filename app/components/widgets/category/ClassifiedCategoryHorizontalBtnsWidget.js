@@ -23,7 +23,7 @@ const ClassifiedCategoryHorizontalBtnsWidget = ({
   showName = true,
   showImage = true,
 }) => {
-  const handleClick = useCallback((c) => {
+  const handleClick = useCallback(c => {
     return dispatch(
       getSearchClassifieds({
         name: c.name,

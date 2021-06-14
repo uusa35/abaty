@@ -50,7 +50,7 @@ const ClassifiedFilterModalScreen = () => {
     country,
     area,
     classifiedFilterModal,
-  } = useSelector((state) => state);
+  } = useSelector(state => state);
   const {colors} = settings;
   const dispatch = useDispatch();
   const [searchModalVisible, setSearchModalVisible] = useState(searchModal);
@@ -71,17 +71,17 @@ const ClassifiedFilterModalScreen = () => {
   useEffect(() => {
     if (validate.isEmpty(parentCategories)) {
       const parents = take(
-        map(categories, (c) => (c.isParent ? c : null)),
+        map(categories, c => (c.isParent ? c : null)),
         3,
       );
       setParentCategories(parents);
     }
   }, [categories]);
 
-  const showPropsModal = (g) => {
+  const showPropsModal = g => {
     setPropsModalVisible(!propsModalVisible);
     setSelectedGroup(g);
-    const currentItems = filter(items, (i) => i.category_group_id !== g.id);
+    const currentItems = filter(items, i => i.category_group_id !== g.id);
     setItems(currentItems);
   };
 
@@ -100,7 +100,7 @@ const ClassifiedFilterModalScreen = () => {
           dispatch(setSubCategory(first(selectedCategory.children)));
         }
       } else {
-        if (map(parentCategories, (c) => c.id === category.id)) {
+        if (map(parentCategories, c => c.id === category.id)) {
           setSelectedCategory(category);
           if (!validate.isEmpty(category.children)) {
             setSubCategory(first(category.children));
@@ -113,7 +113,7 @@ const ClassifiedFilterModalScreen = () => {
     setProps([]);
   }, [category, selectedCategory]);
 
-  const handleSetProperty = (p) => {
+  const handleSetProperty = p => {
     setPropsModalVisible(false);
     const currentItems = items.concat({
       category_group: selectedGroup,
@@ -178,7 +178,7 @@ const ClassifiedFilterModalScreen = () => {
     setCurrentArea(area);
   }, [area]);
 
-  const handleParent = (p) => {
+  const handleParent = p => {
     setSelectedCategory(p);
     // if(p.max - p.min > 500) {
     //   setMin(p.min);
@@ -260,7 +260,7 @@ const ClassifiedFilterModalScreen = () => {
               values={priceRange}
               sliderLength={width - 90}
               // onValuesChangeStart={() => console.log('started')}
-              onValuesChange={(e) => setPriceRange(e)}
+              onValuesChange={e => setPriceRange(e)}
               // onValuesChangeFinish={() => console.log('end')}
               style={{alignSelf: 'center'}}
               selectedStyle={{
@@ -623,7 +623,7 @@ const ClassifiedFilterModalScreen = () => {
                         first(
                           filter(
                             props,
-                            (p) =>
+                            p =>
                               p.property_id === property.id &&
                               p.category_group_id === selectedGroup.id,
                           ),

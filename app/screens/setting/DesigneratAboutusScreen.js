@@ -5,10 +5,9 @@ import {bottomContentInset} from '../../constants/sizes';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import {useSelector} from 'react-redux';
 import I18n from './../../I18n';
-import {themeColors} from '../../constants/colors';
 
 const DesigneratAboutusScreen = () => {
-  const {settings} = useSelector((state) => state);
+  const {settings} = useSelector(state => state);
   return (
     <BgContainer showImage={false} white={false}>
       <ScrollView

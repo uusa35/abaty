@@ -40,7 +40,7 @@ const CartFormWidget = ({
           }}
           shake={true}
           keyboardType="default"
-          onChangeText={(name) => this.setState({name})}
+          onChangeText={name => this.setState({name})}
         />
         <Input
           placeholder={email ? email : I18n.t('email')}
@@ -59,7 +59,7 @@ const CartFormWidget = ({
           }}
           shake={true}
           keyboardType="email-address"
-          onChangeText={(email) => this.setState({email})}
+          onChangeText={email => this.setState({email})}
         />
         <Input
           placeholder={mobile ? mobile : I18n.t('mobile')}
@@ -78,7 +78,7 @@ const CartFormWidget = ({
           }}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={(mobile) => this.setState({mobile})}
+          onChangeText={mobile => this.setState({mobile})}
         />
         <TouchableOpacity
           onPress={() => {
@@ -127,7 +127,7 @@ const CartFormWidget = ({
           numberOfLines={3}
           shake={true}
           keyboardType="default"
-          onChangeText={(address) => this.setState({address})}
+          onChangeText={address => this.setState({address})}
         />
         <Text
           style={{
@@ -193,7 +193,7 @@ const CartFormWidget = ({
             }}
             shake={true}
             keyboardType="default"
-            onChangeText={(code) => this.setState({code})}
+            onChangeText={code => this.setState({code})}
           />
           <Button
             raised

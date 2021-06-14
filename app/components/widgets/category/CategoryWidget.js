@@ -1,19 +1,22 @@
 import React, {useContext} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {View} from 'react-native-animatable';
 import {Button} from 'react-native-elements';
-import {text, touchOpacity, width} from '../../../constants/sizes';
+import {text, touchOpacity, width, height} from '../../../constants/sizes';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import ImageLoaderContainer from '../ImageLoaderContainer';
-import {ABATI} from './../../../../app';
+import {ABATI, APP_CASE} from './../../../../app';
 import {animations} from '../../../constants/animations';
+import widgetStyles from '../widgetStyles';
+import {categoryWidget} from '../../../constants/sizes';
 
 const CategoryWidget = ({
   element,
   columns,
   showBtn = false,
   type,
+  showName = false,
   handleClick,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -25,7 +28,11 @@ const CategoryWidget = ({
       useNativeDriver={true}
       style={[
         styles.categoriesContainer,
-        {width: columns ? '50%' : '100%', paddingBottom: 10},
+        {
+          width: columns > 1 ? '50%' : '100%',
+          height: 300,
+          // marginBottom: 10,
+        },
       ]}>
       <TouchableOpacity
         activeOpacity={touchOpacity}
@@ -35,14 +42,27 @@ const CategoryWidget = ({
         }}>
         <ImageLoaderContainer
           style={{
-            width: columns ? width / 2 : width,
-            height: columns ? width / 2 : width / 1.5,
-            marginBottom: '1%',
+            width,
+            height: 300,
           }}
-          resizeMode="stretch"
+          resizeMode="cover"
           img={element.thumb}
         />
-        {(showBtn && element.is_featured) || ABATI ? (
+        {showName && element.is_featured && (
+          <Text
+            style={[
+              widgetStyles.headerOne,
+              {
+                color: colors.header_tow_theme_color,
+                position: 'absolute',
+                bottom: 50,
+                alignSelf: 'center',
+              },
+            ]}>
+            {element.name}
+          </Text>
+        )}
+        {showBtn && element.is_featured ? (
           <Button
             onPress={() => handleClick(element)}
             raised

@@ -36,7 +36,7 @@ const AddCommentFormWidget = ({model, id}) => {
         shake={true}
         keyboardType="default"
         value={title}
-        onChangeText={(title) => setTitle(title)}
+        onChangeText={title => setTitle(title)}
       />
       <Input
         placeholder={I18n.t('content') + '*'}
@@ -57,7 +57,7 @@ const AddCommentFormWidget = ({model, id}) => {
         value={content}
         shake={true}
         keyboardType="default"
-        onChangeText={(content) => setContent(content)}
+        onChangeText={content => setContent(content)}
       />
       <Button
         onPress={() => {

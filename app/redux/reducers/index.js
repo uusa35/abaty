@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import navReducer from './navReducer';
 import isLoading from './isLoading';
 import isLoadingContent from './isLoadingContent';
 import isLoadingProfile from './isLoadingProfile';
@@ -28,10 +27,14 @@ import companies from './companies';
 import homeCompanies from './homeCompanies';
 import company from './company';
 import countries from './countries';
+import currencies from './currencies';
 import country from './country';
 import shipmentCountry from './shipmentCountry';
+import currencyModal from './currencyModal';
 import area from './area';
 import areas from './areas';
+import governate from './governate';
+import governates from './governates';
 import color from './color';
 import productColors from './productColors';
 import size from './size';
@@ -71,6 +74,7 @@ import showIntroduction from './showIntroduction';
 import linking from './linking';
 import playerId from './playerId';
 import auth from './auth';
+import address from './address';
 import coupon from './coupon';
 import searchParams from './searchParams';
 import commentModal from './commentModal';
@@ -97,12 +101,12 @@ import roles from './roles';
 import role from './role';
 import resetApp from './resetApp';
 import elementType from './elementType';
-// import {reducer as network} from 'react-native-offline';
-import isConnected from './isConnected';
-import address from './address';
+import pickup from './pickup';
+import branch from './branch';
+import branches from './branches';
+import faqs from './faqs';
 
 let reducers = combineReducers({
-  nav: navReducer,
   isLoading,
   isLoadingContent,
   isLoadingProfile,
@@ -156,6 +160,8 @@ let reducers = combineReducers({
   currency,
   area,
   areas,
+  governate,
+  governates,
   color,
   productColors,
   size,
@@ -165,12 +171,11 @@ let reducers = combineReducers({
   playerId,
   guest,
   auth,
+  address,
   token,
   countryModal,
   areaModal,
   coupon,
-  // network,
-  isConnected,
   searchParams,
   loginModal,
   showIntroduction,
@@ -187,7 +192,6 @@ let reducers = combineReducers({
   newClassified,
   classifiedProps,
   shipmentFees,
-  address,
   version,
   linking,
   propertiesModal,
@@ -203,6 +207,12 @@ let reducers = combineReducers({
   resetApp,
   searchModal,
   elementType,
+  pickup,
+  branch,
+  branches,
+  faqs,
+  currencies,
+  currencyModal,
 });
 
 export default reducers;

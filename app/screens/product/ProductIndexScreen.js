@@ -6,7 +6,7 @@ import BgContainer from '../../components/containers/BgContainer';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ProductIndexScreen = () => {
-  const {searchProducts, searchParams} = useSelector((state) => state);
+  const {searchProducts, searchParams} = useSelector(state => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
 

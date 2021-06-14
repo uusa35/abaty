@@ -4,14 +4,14 @@ import widgetStyles from '../widgetStyles';
 import {Icon} from 'react-native-elements';
 import {iconSizes, text} from '../../../constants/sizes';
 import I18n from '../../../I18n';
-import {colors as col} from '../../../constants/colors';
-import {useNavigation} from 'react-navigation-hooks';
+import {themeColors} from '../../../constants/colors';
 import {useSelector} from 'react-redux';
 import {View as Animating} from 'react-native-animatable';
 import {EXPO} from './../../../../app';
+import {useNavigation} from '@react-navigation/native';
 
 const ExpoHomeScreenBtns = () => {
-  const {guest} = useSelector((state) => state);
+  const {guest} = useSelector(state => state);
   const {navigate} = useNavigation();
   return (
     <Animating animation="bounceIn" easing="ease-out" useNativeDriver={true}>
@@ -51,6 +51,7 @@ const ExpoHomeScreenBtns = () => {
             paddingRight: 10,
             fontFamily: text.font,
             fontSize: text.small,
+            color: 'black',
           }}>
           {EXPO ? I18n.t('expo_calender') : I18n.t('calendar')}
         </Text>
@@ -89,7 +90,7 @@ const ExpoHomeScreenBtns = () => {
               type="antdesign"
               iconStyle={{fontSize: iconSizes.smaller}}
               size={iconSizes.smaller}
-              color={col.expo.main}
+              color={themeColors.expo.main}
             />
             <Text
               style={{
@@ -97,6 +98,7 @@ const ExpoHomeScreenBtns = () => {
                 paddingRight: 10,
                 fontFamily: text.font,
                 fontSize: text.small,
+                color: 'black',
               }}>
               {I18n.t('login')}
             </Text>
@@ -128,7 +130,7 @@ const ExpoHomeScreenBtns = () => {
               type="antdesign"
               iconStyle={{fontSize: iconSizes.smaller}}
               size={iconSizes.smaller}
-              color={col.expo.main}
+              color={themeColors.expo.main}
             />
             <Text
               style={{
@@ -136,6 +138,7 @@ const ExpoHomeScreenBtns = () => {
                 paddingRight: 10,
                 fontFamily: text.font,
                 fontSize: text.small,
+                color: 'black',
               }}>
               {I18n.t('joinus')}
             </Text>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, View, Modal} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {hideLoginModal} from '../../redux/actions';
-import LoginForm from '../../components/widgets/LoginForm';
+import LoginForm from '../../components/widgets/user/LoginForm';
 import {useDispatch} from 'react-redux';
 
 const LoginScreenModal = ({loginModal}) => {

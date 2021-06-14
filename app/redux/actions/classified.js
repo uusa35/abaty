@@ -70,12 +70,12 @@ export function getMyClassifieds(payload) {
   };
 }
 
-export const getAllClassifieds = (payload) => ({
+export const getAllClassifieds = payload => ({
   type: actions.GET_ALL_CLASSIFIEDS,
   payload,
 });
 
-export const deleteClassified = (payload) => ({
+export const deleteClassified = payload => ({
   type: actions.DELETE_CLASSIFIED,
   payload,
 });

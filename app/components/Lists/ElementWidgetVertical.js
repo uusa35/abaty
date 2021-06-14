@@ -3,6 +3,10 @@ import {ListItem} from 'react-native-elements';
 import {iconSizes, text} from './../../constants/sizes';
 import {isRTL} from '../../I18n';
 import PropTypes from 'prop-types';
+import {TouchableOpacity, Text, View, Pressable} from 'react-native';
+import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
+import {themeColors} from '../../constants/colors';
+import {truncate} from 'lodash';
 
 const ElementWidgetVertical = ({
   title,
@@ -15,25 +19,41 @@ const ElementWidgetVertical = ({
   handleClick,
 }) => {
   return (
-    <ListItem
+    <Pressable
       onPress={() => handleClick(element)}
-      leftAvatar={{size: iconSizes.large, rounded: false, source: {uri: thumb}}}
-      // rightAvatar={{source: {uri: user.thumb}}}
-      title={title}
-      chevronColor="white"
-      chevron={{
-        type: 'material',
-        name: isRTL ? 'chevron-thin-left' : 'chevron-thin-right',
-        size: iconSize,
-      }}
-      // style={{backgroundColor: '#ededed'}}
-      // containerStyle={{margin: 3, borderRadius: 5}}
-      contentContainerStyle={{alignItems: 'baseline', justifyContent: 'center'}}
-      titleStyle={{fontFamily: text.font, fontSize: textSize}}
-      bottomDivider
-      // badge={{ value: 3, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
-      subtitleStyle={{fontFamily: text.font}}
-    />
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderWidth: 0.5,
+        borderColor: themeColors.desinerat.lightGray,
+      }}>
+      <ImageLoaderContainer
+        img={element.thumb}
+        style={{width: 100, height: 100, marginRight: 20}}
+      />
+      <View style={{flex: 1}}>
+        <Text
+          style={{
+            fontFamily: text.font,
+            fontSize: textSize,
+            marginBottom: 0,
+            textAlign: 'left',
+          }}>
+          {element.slug}
+        </Text>
+        <Text
+          style={{
+            fontFamily: text.font,
+            fontSize: text.small,
+            lineHeight: 25,
+            textAlign: 'left',
+          }}>
+          {element.description}
+        </Text>
+      </View>
+    </Pressable>
   );
 };
 

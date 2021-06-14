@@ -184,10 +184,10 @@ export const validateSubmitRegister = Yup.object().shape({
       item: 6,
     })
     .required({message: 'validations.password_is_required'}),
-  address: Yup.string().min(5, {message: 'validations.address_is_required'}),
-  description: Yup.string()
-    // .required({message: 'validations.description_is_required'})
-    .min(10, {message: 'validations.description_is_very_small'}),
+  // address: Yup.string().min(5, {message: 'validations.address_is_required'}),
+  description: Yup.string().nullable(),
+  // .min(10, {message: 'validations.description_is_very_small'}),
+  // .required({message: 'validations.description_is_required'})
   role_id: Yup.number().required(),
   image: Yup.object()
     .typeError({message: 'validations.logo_is_required'})
@@ -197,11 +197,11 @@ export const validateSubmitRegister = Yup.object().shape({
   mobile: Yup.string()
     .required({message: 'validations.mobile_is_required'})
     .min(6, {message: 'validations.mobile_is_required'}),
-  images: Yup.array()
-    .typeError({message: 'validations.product_images_is_required'})
-    .required({
-      message: 'validations.product_images_is_required',
-    }),
+  // images: Yup.array()
+  //   .typeError({message: 'validations.product_images_is_required'})
+  //   .required({
+  //     message: 'validations.product_images_is_required',
+  //   }),
   // password2: Yup.string()
   //     .min(6, {
   //       message: 'validations.password_must_not_be_larger_than',
@@ -249,7 +249,7 @@ export const chooseCountryValidation = Yup.object().shape({
   image: Yup.mixed().nullable(),
 });
 
-export const chooseTitleValidation = Yup.lazy((e) => {
+export const chooseTitleValidation = Yup.lazy(e => {
   return Yup.object({
     profession_title_id: Yup.number()
       .typeError({message: 'validations.profession_title_is_required'})
@@ -270,7 +270,7 @@ export const chooseTitleValidation = Yup.lazy((e) => {
   });
 });
 
-export const chooseSkillsValidation = Yup.lazy((e) =>
+export const chooseSkillsValidation = Yup.lazy(e =>
   Yup.object({
     skills_ids: Yup.array()
       .min(1, {message: 'validations.skills_are_required', item: 1})
@@ -297,7 +297,7 @@ export const chooseHourlyRateValidation = Yup.object().shape({
   image: Yup.string(),
 });
 
-export const createPortfolioValidation = Yup.lazy((e) =>
+export const createPortfolioValidation = Yup.lazy(e =>
   Yup.object({
     title: Yup.string()
       .min(e.validations.min_title_char, {
@@ -322,7 +322,7 @@ export const createPortfolioValidation = Yup.lazy((e) =>
   }),
 );
 
-export const editPortfolioValidation = Yup.lazy((e) =>
+export const editPortfolioValidation = Yup.lazy(e =>
   Yup.object({
     title: Yup.string()
       .min(e.validations.min_title_char, {
@@ -370,7 +370,7 @@ export const submitAuthValidation = Yup.object().shape({
     .required({message: 'validations.password_is_required'}),
 });
 
-export const createPublicJobValidation = Yup.lazy((e) =>
+export const createPublicJobValidation = Yup.lazy(e =>
   Yup.object({
     title: Yup.string()
       // .min(e.validations.min_title_char, {
@@ -425,7 +425,7 @@ export const createPublicJobValidation = Yup.lazy((e) =>
   }),
 );
 
-export const createProposalValidation = Yup.lazy((e) => {
+export const createProposalValidation = Yup.lazy(e => {
   return Yup.object({
     job: Yup.number()
       .typeError({message: 'validations.job_must_be_number'})
@@ -479,7 +479,7 @@ export const createProposalValidation = Yup.lazy((e) => {
   });
 });
 
-export const updateProposalValidation = Yup.lazy((e) => {
+export const updateProposalValidation = Yup.lazy(e => {
   return Yup.object({
     job: Yup.number()
       .typeError({message: 'validations.job_must_be_number'})
@@ -533,7 +533,7 @@ export const updateProposalValidation = Yup.lazy((e) => {
   });
 });
 
-export const addBankAccount = Yup.lazy((e) => {
+export const addBankAccount = Yup.lazy(e => {
   return Yup.object({
     account_type: Yup.number().required({
       message: 'validations.account_bank_is_required',
@@ -626,7 +626,7 @@ export const addBankAccount = Yup.lazy((e) => {
   });
 });
 
-export const addPayPalAccount = Yup.lazy((e) => {
+export const addPayPalAccount = Yup.lazy(e => {
   return Yup.object({
     withdrawal_methode: Yup.number().required({
       message: 'validations.withdrawal_method_is_required',
@@ -683,4 +683,46 @@ export const validateFinalRating = Yup.object().shape({
   response_time: Yup.number()
     .typeError({message: 'validations.field_is_required'})
     .required({message: 'validations.field_is_required'}),
+});
+
+export const validateCreateProduct = Yup.object().shape({
+  name: Yup.string()
+    .min(5, {message: 'validations.name_is_required', item: 5})
+    .required('validations.name_is_required'),
+  // .matches(/^[A-Za-z][A-Za-z0-9]*$/, {
+  //   message: 'validations.strings_must_matches_the_expression'
+  // }),
+  sku: Yup.string()
+    .min(2, {message: 'validations.sku_is_required', item: 2})
+    .required('validations.sku_is_required'),
+  description: Yup.string()
+    .min(10, {message: 'validations.description_is_very_small'})
+    .required({message: 'validations.description_is_required'}),
+  price: Yup.number()
+    .typeError({message: 'validations.price_must_be_english_number'})
+    .required({message: 'validations.price_is_required'}),
+  qty: Yup.number()
+    .typeError({message: 'validations.qty_must_be_english_number'})
+    .required({message: 'validations.qty_is_required'}),
+  categories: Yup.array()
+    .typeError({message: 'validations.categories_is_required'})
+    .required({
+      message: 'validations.categories_is_required',
+    }),
+  image: Yup.object()
+    .typeError({message: 'validations.main_image_is_required'})
+    .required({
+      message: 'validations.main_image_is_required',
+    }),
+  images: Yup.array()
+    .typeError({message: 'validations.product_images_is_required'})
+    .required({
+      message: 'validations.product_images_is_required',
+    }),
+  // password2: Yup.string()
+  //     .min(6, {
+  //       message: 'validations.password_must_not_be_larger_than',
+  //       item: 6
+  //     })
+  //     .oneOf([Yup.ref('password1'), null], 'validations.password_must_match')
 });

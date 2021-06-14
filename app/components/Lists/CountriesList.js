@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useCallback, useEffect} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, FlatList} from 'react-native';
 import Modal from 'react-native-modal';
 import {hideCountryModal, chooseCountry} from '../../redux/actions';
@@ -11,23 +11,24 @@ import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {isIOS} from '../../constants';
 import {animations} from '../../constants/animations';
-import {EXPO} from './../../../app.json';
+import {EXPO} from './../../../app';
 import {View as Animated} from 'react-native-animatable';
+import {shuffle, first} from 'lodash';
+import {themeColors} from '../../constants/colors';
 
-const CountriesList = ({country, countries}) => {
-  const {countryModal} = useSelector((state) => state);
+const CountriesList = () => {
+  const {countryModal, country, countries} = useSelector(state => state);
   const dispatch = useDispatch();
-  const {colors} = useContext(GlobalValuesContext);
 
-  const handleClick = (c) => {
-    if (c.id !== country.id) {
-      return dispatch(chooseCountry({country: c, redirect: EXPO}));
-    }
+  const handleClick = c => {
+    // if (c.id !== country.id) {
+    dispatch(chooseCountry({country: c, redirect: false}));
+    // }
   };
 
   const hide = () => dispatch(hideCountryModal());
 
-  useEffect(() => {}, [countryModal]);
+  // useEffect(() => {}, [countryModal]);
 
   const renderItem = ({item, index}) => {
     return (
@@ -40,13 +41,7 @@ const CountriesList = ({country, countries}) => {
           key={index}
           hitSlop={{left: 15, right: 15}}
           onPress={() => handleClick(item)}
-          style={[
-            styles.wrapper,
-            {
-              borderColor:
-                item.id === country.id ? colors.btn_bg_theme_color : '#cdcdcd',
-            },
-          ]}>
+          style={[styles.wrapper]}>
           <ImageLoaderContainer
             img={item.thumb}
             style={styles.countryFlag}
@@ -127,11 +122,7 @@ const CountriesList = ({country, countries}) => {
 
 export default CountriesList;
 
-CountriesList.propTypes = {
-  country: PropTypes.object.isRequired,
-  countries: PropTypes.array.isRequired,
-  countryModal: PropTypes.bool.isRequired,
-};
+CountriesList.propTypes = {};
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
@@ -146,6 +137,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     borderWidth: 0.5,
+    borderColor: themeColors.desinerat.darkGray,
     borderRadius: 10,
     width: '30%',
     minWidth: 100,

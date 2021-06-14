@@ -6,35 +6,44 @@ import {
   Text,
   Linking,
   RefreshControl,
-  View,
+  ImageBackground,
+  Pressable,
 } from 'react-native';
+import {View} from 'react-native-animatable';
 import {useDispatch, useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   bottomContentInset,
   iconSizes,
   text,
   touchOpacity,
 } from '../../constants/sizes';
-import {Button, Icon} from 'react-native-elements';
+import {Button, Icon, Badge} from 'react-native-elements';
 import I18n from './../../I18n';
 import {changeLang, refetchHomeElements} from '../../redux/actions';
-import {HOMEKEY, MALLR, ABATI, ESCRAP, EXPO} from './../../../app';
-import {appUrlIos} from '../../env';
-import PagesList from '../../components/widgets/page/PagesList';
-import {getMyClassifieds} from '../../redux/actions/classified';
-import {reAuthenticate, setRole} from '../../redux/actions/user';
+import {APP_CASE, DESIGNERAT} from './../../../app';
+import {
+  logout,
+  reAuthenticate,
+  setRole,
+  submitAuth,
+} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
-import {useNavigation} from 'react-navigation-hooks';
 import {isEmpty, first, filter} from 'lodash';
-import {View as Animating} from 'react-native-animatable';
+import {isIOS, width} from './../../constants';
+import widgetStyles from '../../components/widgets/widgetStyles';
+import {icons} from '../../constants/images';
+import FastImage from 'react-native-fast-image';
+import Share from 'react-native-share';
+import {adjustColor} from '../../helpers';
+import {REGISTER_AS_CLIENT} from '../../redux/actions/types';
 
-const ExpoSettingsIndexScreen = ({}) => {
-  const {guest, lang, settings, version, roles} = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const {colors, pages} = settings;
+const DesigneratSettingsIndexScreen = ({navigation}) => {
+  const {guest, settings, version, auth, lang} = useSelector(state => state);
+  const {colors} = settings;
   const [refresh, setRefresh] = useState(false);
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleRefresh = () => {
     if (!guest) {
@@ -44,19 +53,26 @@ const ExpoSettingsIndexScreen = ({}) => {
   };
 
   const handleRegisterClick = () => {
-    if (!isEmpty(roles)) {
-      dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
-    }
-    return navigation.navigate('Register');
+    dispatch({type: REGISTER_AS_CLIENT, payload: {isClient: false}});
+  };
+
+  const shareLink = link => {
+    return Share.open({
+      title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
+      url: link,
+      type: 'url',
+      message: `${settings.company}  - ${settings.description}`,
+      // subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
+    })
+      .then(res => {})
+      .catch(err => {});
   };
 
   return (
-    <BgContainer>
+    <BgContainer enableMargin={false} showImage={true}>
       <ScrollView
-        // style={{flex: 1, paddingTop: 20}}
         contentContainerStyle={{
           width: '100%',
-          padding: 20,
           alignSelf: 'center',
           alignItems: 'center',
           justifyContent: 'center',
@@ -77,132 +93,497 @@ const ExpoSettingsIndexScreen = ({}) => {
             onRefresh={() => handleRefresh()}
           />
         }>
-        <Animating
+        <Pressable
+          style={{
+            paddingBottom: 20,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onPress={() =>
+            guest && auth.active
+              ? handleRegisterClick()
+              : navigation.navigate('UserEdit')
+          }>
+          <ImageBackground
+            source={{uri: auth.thumb}}
+            resizeMode="cover"
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: adjustColor(colors.btn_bg_theme_color, 50),
+            }}>
+            <FastImage
+              source={{uri: auth.thumb ? auth.thumb : settings.logo}}
+              resizeMode="cover"
+              style={{width: 90, height: 90, borderRadius: 10}}
+            />
+            <View
+              style={{
+                paddingTop: 10,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'baseline',
+              }}>
+              {!guest && (
+                <>
+                  <Text
+                    style={[
+                      widgetStyles.headerThree,
+                      {color: colors.btn_text_theme_color},
+                    ]}>{`${!guest ? auth.name : ''}`}</Text>
+                  <Icon
+                    color={colors.icon_theme_color}
+                    name="edit"
+                    type="font-awesome"
+                    size={iconSizes.smallest}
+                    style={{paddingLeft: 10}}
+                  />
+                </>
+              )}
+            </View>
+            {!guest && (
+              <View style={{marginTop: 15}}>
+                <Text
+                  style={[
+                    widgetStyles.headerThree,
+                    {color: colors.btn_text_theme_color},
+                  ]}>{`${auth.role.slug}`}</Text>
+              </View>
+            )}
+          </ImageBackground>
+        </Pressable>
+        <View
           animation="bounceIn"
           easing="ease-out"
           useNativeDriver={true}
-          style={styles.container}>
-          {!guest ? (
-            <TouchableOpacity
-              activeOpacity={touchOpacity}
-              onPress={() => navigation.navigate('FavoriteProductIndex')}
-              style={[styles.btnWrapper]}>
+          style={{
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            flex: 1,
+            padding: 15,
+            marginTop: '2%',
+            width: '100%',
+          }}>
+          {!guest && auth.active && (
+            <>
+              <Pressable
+                style={[
+                  {
+                    width: '100%',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    height: 60,
+                    borderBottomWidth: 0.5,
+                    borderColor: colors.icon_theme_color,
+                    alignSelf: 'center',
+                    justifyContent: 'center',
+                  },
+                ]}
+                onPress={() => dispatch(logout())}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="logout"
+                  type="antdesign"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('logout')}
+                </Text>
+              </Pressable>
+              {auth.role && !auth.role.isClient && auth.access_dashboard && (
+                <>
+                  <Pressable
+                    style={{
+                      width: '100%',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      height: 60,
+                    }}
+                    onPress={() => navigation.navigate('ProductCreate')}>
+                    <Icon
+                      color={colors.menu_theme_color}
+                      name="add-circle-outline"
+                      type="material"
+                      size={iconSizes.smaller}
+                    />
+                    <Text
+                      style={[
+                        widgetStyles.headerTow,
+                        {paddingLeft: 30, paddingRight: 30},
+                      ]}>
+                      {I18n.t('add_new_product')}
+                    </Text>
+                  </Pressable>
+                  {auth.statistics.orders >= 1 && (
+                    <Pressable
+                      style={{
+                        width: '100%',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: 60,
+                      }}
+                      onPress={() => navigation.navigate('StatisticIndex')}>
+                      <Icon
+                        color={colors.menu_theme_color}
+                        name="piechart"
+                        type="antdesign"
+                        size={iconSizes.smaller}
+                      />
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          flex: 1,
+                        }}>
+                        <Text
+                          style={[
+                            widgetStyles.headerTow,
+                            {paddingLeft: 30, paddingRight: 30},
+                          ]}>
+                          {I18n.t('statistics')}
+                        </Text>
+                      </View>
+                    </Pressable>
+                  )}
+                </>
+              )}
+              <Pressable
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  height: 60,
+                }}
+                onPress={() => navigation.navigate('OrderIndex')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="book"
+                  type="antdesign"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('my_orders')}
+                </Text>
+                {auth.orders.length > 0 && (
+                  <Badge
+                    value={auth.orders.length}
+                    containerStyle={{position: 'relative', top: 0, left: -30}}
+                    badgeStyle={{backgroundColor: colors.btn_bg_theme_color}}
+                  />
+                )}
+              </Pressable>
+              <Pressable
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  height: 60,
+                }}
+                onPress={() => navigation.navigate('UserAddressIndex')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="address-book-o"
+                  type="font-awesome"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('my_addresses')}
+                </Text>
+              </Pressable>
+              <Pressable
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  height: 60,
+                }}
+                onPress={() => navigation.navigate('UserAddressCreate')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="add-circle-outline"
+                  type="ionicons"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('add_new_address')}
+                </Text>
+              </Pressable>
+              <Pressable
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  height: 60,
+                }}
+                onPress={() => navigation.navigate('FavoriteProductIndex')}>
+                <Icon
+                  color={colors.menu_theme_color}
+                  name="hearto"
+                  type="antdesign"
+                  size={iconSizes.smaller}
+                />
+                <Text
+                  style={[
+                    widgetStyles.headerTow,
+                    {paddingLeft: 30, paddingRight: 30},
+                  ]}>
+                  {I18n.t('wishlist')}
+                </Text>
+              </Pressable>
+            </>
+          )}
+
+          {guest && (
+            <Pressable
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 60,
+              }}
+              onPress={() => navigation.navigate('Login')}>
               <Icon
+                color={colors.menu_theme_color}
+                name="user"
+                type="font-awesome"
+                size={iconSizes.smaller}
+              />
+              <Text
+                style={[
+                  widgetStyles.headerTow,
+                  {paddingLeft: 30, paddingRight: 30},
+                ]}>
+                {I18n.t('login')}
+              </Text>
+            </Pressable>
+          )}
+          <Pressable
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: 60,
+            }}
+            onPress={() => navigation.navigate('Aboutus')}>
+            <FastImage
+              source={{uri: settings.logo}}
+              resizeMode="cover"
+              style={{width: 25, height: 25}}
+            />
+            <Text
+              style={[
+                widgetStyles.headerTow,
+                {paddingLeft: 30, paddingRight: 30},
+              ]}>
+              {I18n.t('aboutus')}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: 60,
+            }}
+            onPress={() => navigation.navigate('Contactus')}>
+            <Icon
+              color={colors.menu_theme_color}
+              name="perm-phone-msg"
+              type="material"
+              size={iconSizes.smaller}
+            />
+            <Text
+              style={[
+                widgetStyles.headerTow,
+                {paddingLeft: 30, paddingRight: 30},
+              ]}>
+              {I18n.t('contactus')}
+            </Text>
+          </Pressable>
+
+          {settings.instagram && (
+            <Pressable
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 60,
+              }}
+              onPress={() => Linking.openURL(settings.instagram)}>
+              <Icon
+                hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                size={iconSizes.smaller}
+                name="instagram"
+                type="font-awesome"
+                color={colors.menu_theme_color}
+              />
+              <Text
+                style={[
+                  widgetStyles.headerTow,
+                  {paddingLeft: 30, paddingRight: 30},
+                ]}>
+                {I18n.t('follow_us_on_instagram')}
+              </Text>
+            </Pressable>
+          )}
+
+          {isIOS && (
+            <Pressable
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 60,
+              }}
+              onPress={() => Linking.openURL(settings.apple)}>
+              <Icon
+                hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                size={iconSizes.smaller}
                 name="staro"
                 type="antdesign"
-                size={iconSizes.medium}
-                color={colors.icon_theme_color}
+                color={colors.menu_theme_color}
               />
-              <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
-            </TouchableOpacity>
-          ) : null}
-          {!guest && (HOMEKEY || ESCRAP) ? (
-            <Fragment>
-              <TouchableOpacity
-                activeOpacity={touchOpacity}
-                onPress={() => navigation.navigate('FavoriteClassifiedIndex')}
-                style={styles.btnWrapper}>
-                <Icon name="staro" type="antdesign" size={iconSizes.medium} />
-                <Text style={styles.btnTitle}>
-                  {I18n.t('classified_favorites')}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={touchOpacity}
-                onPress={() => dispatch(getMyClassifieds({redirect: true}))}
-                style={styles.btnWrapper}>
-                <Icon name="profile" type="antdesign" size={iconSizes.medium} />
-                <Text style={styles.btnTitle}>{I18n.t('my_classifieds')}</Text>
-              </TouchableOpacity>
-            </Fragment>
-          ) : null}
-          {!guest ? (
-            <TouchableOpacity
-              activeOpacity={touchOpacity}
+              <Text
+                style={[
+                  widgetStyles.headerTow,
+                  {paddingLeft: 30, paddingRight: 30},
+                ]}>
+                {I18n.t('rate_us')}
+              </Text>
+            </Pressable>
+          )}
+
+          {!isIOS && (
+            <Pressable
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 60,
+              }}
               onPress={() =>
-                navigation.navigate('ProfileIndex', {name: I18n.t('profile')})
-              }
-              style={styles.btnWrapper}>
-              <Icon name="face" type="material" size={iconSizes.medium} />
-              <Text style={styles.btnTitle}>{I18n.t('profile')}</Text>
-            </TouchableOpacity>
-          ) : null}
-          {!guest && !(HOMEKEY || ESCRAP) ? (
-            <TouchableOpacity
-              activeOpacity={touchOpacity}
-              onPress={() => navigation.navigate('OrderIndex')}
-              style={styles.btnWrapper}>
-              <Icon name="history" type="material" size={iconSizes.medium} />
-              <Text style={styles.btnTitle}>{I18n.t('order_history')}</Text>
-            </TouchableOpacity>
-          ) : null}
-          <TouchableOpacity
-            activeOpacity={touchOpacity}
-            onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}
-            style={styles.btnWrapper}>
-            <Icon name="globe" type="font-awesome" size={iconSizes.medium} />
-            <Text style={styles.btnTitle}>{I18n.t('lang')}</Text>
-          </TouchableOpacity>
-        </Animating>
-        {guest ? (
-          <Animating
-            animation="bounceIn"
-            easing="ease-out"
-            useNativeDriver={true}
-            style={{width: '100%'}}>
-            <Button
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0,
-              }}
-              title={I18n.t('login')}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color,
-              }}
-              onPress={() => navigation.navigate('Login')}
+                Linking.openURL(isIOS ? settings.apple : settings.android)
+              }>
+              <Icon
+                hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+                size={iconSizes.smaller}
+                name="staro"
+                type="antdesign"
+                color={colors.menu_theme_color}
+              />
+              <Text
+                style={[
+                  widgetStyles.headerTow,
+                  {paddingLeft: 30, paddingRight: 30},
+                ]}>
+                {I18n.t('rate_us')}
+              </Text>
+            </Pressable>
+          )}
+          <Pressable
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: 60,
+            }}
+            onPress={() =>
+              shareLink(isIOS ? settings.apple : settings.android)
+            }>
+            <Icon
+              hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+              size={iconSizes.smaller}
+              name="share"
+              type="entypo"
+              color={colors.menu_theme_color}
             />
-            <Button
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0,
-              }}
-              title={I18n.t('new_user')}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color,
-              }}
-              onPress={() => handleRegisterClick()}
+            <Text
+              style={[
+                widgetStyles.headerTow,
+                {paddingLeft: 30, paddingRight: 30},
+              ]}>
+              {I18n.t('share_our_app')}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: 60,
+            }}
+            onPress={() => navigation.navigate('Faq')}>
+            <FastImage
+              source={{uri: settings.logo}}
+              resizeMode="cover"
+              style={{width: 25, height: 25}}
             />
-            <Button
-              raised
-              containerStyle={{marginBottom: 10, width: '100%'}}
-              buttonStyle={{
-                backgroundColor: colors.btn_bg_theme_color,
-                borderRadius: 0,
-              }}
-              title={I18n.t('forget_password')}
-              titleStyle={{
-                fontFamily: text.font,
-                color: colors.btn_text_theme_color,
-              }}
-              onPress={() => Linking.openURL(`${appUrlIos}/password/reset`)}
+            <Text
+              style={[
+                widgetStyles.headerTow,
+                {paddingLeft: 30, paddingRight: 30},
+              ]}>
+              {I18n.t('faqs')}
+            </Text>
+          </Pressable>
+          <Pressable
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: 60,
+            }}
+            onPress={() => dispatch(changeLang(lang === 'ar' ? 'en' : 'ar'))}>
+            <Icon
+              hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}
+              size={iconSizes.smaller}
+              name="language"
+              type="fontawesome"
+              color={colors.menu_theme_color}
             />
-          </Animating>
-        ) : null}
-        <PagesList elements={pages} title={I18n.t('important_links')} />
+            <Text
+              style={[
+                widgetStyles.headerTow,
+                {paddingLeft: 30, paddingRight: 30},
+              ]}>
+              {I18n.t('lang')}
+            </Text>
+          </Pressable>
+        </View>
       </ScrollView>
       <CopyRightInfo version={version} />
     </BgContainer>
   );
 };
 
-export default ExpoSettingsIndexScreen;
+export default DesigneratSettingsIndexScreen;
 
+// DesigneratSettingsIndexScreen.propTypes = {
+//   guest: PropTypes.bool.isRequired,
+// };
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -210,18 +591,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
+    marginTop: '5%',
   },
   btnWrapper: {
     borderWidth: 1,
     borderColor: 'lightgrey',
     borderRadius: 20,
-    width: '40%',
+    width: '45%',
     height: 120,
-    padding: 20,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 20,
+    marginRight: 5,
+    marginLeft: 5,
   },
   btnTitle: {
     fontFamily: text.font,

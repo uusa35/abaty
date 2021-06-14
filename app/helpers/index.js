@@ -6,16 +6,14 @@ import {Alert, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import _ from 'lodash';
 import I18n from './../I18n';
-import {width} from './../constants/sizes';
-import {isIOS} from './../constants';
+import {width} from '../constants/sizes';
+import {isIOS} from '../constants';
 import geolib, {getDistance} from 'geolib';
 import validate from 'validate.js';
+import {useSelector} from 'react-redux';
 
-export const convertNumberToEnglish = (n) => {
-  return n.replace(
-    /[\u0660-\u0669\u06f0-\u06f9]/g,
-    (c) => c.charCodeAt(0) & 0xf,
-  );
+export const convertNumberToEnglish = n => {
+  return n.replace(/[\u0660-\u0669\u06f0-\u06f9]/g, c => c.charCodeAt(0) & 0xf);
 };
 
 export function setLang(lang) {
@@ -105,7 +103,7 @@ export function adjustColor(color, amount) {
     '#' +
     color
       .replace(/^#/, '')
-      .replace(/../g, (color) =>
+      .replace(/../g, color =>
         (
           '0' +
           Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)

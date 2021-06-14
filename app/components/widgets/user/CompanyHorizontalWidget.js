@@ -21,9 +21,10 @@ const CompanyHorizontalWidget = ({
   showName,
   showRating = false,
   showDescription = false,
+  rounded = true,
   handleClick,
 }) => {
-  const {colors, logo} = useContext(GlobalValuesContext);
+  const {colors} = useContext(GlobalValuesContext);
 
   return (
     <TouchableOpacity
@@ -40,6 +41,7 @@ const CompanyHorizontalWidget = ({
           marginTop: 5,
           marginBottom: 8,
           height: 260,
+          borderRadius: rounded ? 5 : 0,
         },
       ]}
       onPress={() => handleClick(user)}>
@@ -49,9 +51,14 @@ const CompanyHorizontalWidget = ({
         <Fragment>
           <ImageLoaderContainer
             img={user.thumb}
-            imageStyle={styles.image}
+            style={[
+              styles.image,
+              {
+                borderTopLeftRadius: rounded ? 5 : 0,
+                borderTopRightRadius: rounded ? 5 : 0,
+              },
+            ]}
             loadingIndicatorSource={images.logo}
-            style={styles.image}
             resizeMode="cover"
           />
           {showName ? (
@@ -68,7 +75,7 @@ const CompanyHorizontalWidget = ({
                   widgetStyles.elementName,
                   {
                     paddingTop: iconSizes.tiny,
-                    color: colors.header_tow_theme_color,
+                    color: colors.header_one_theme_color,
                   },
                 ]}>
                 {user.slug}
@@ -79,7 +86,7 @@ const CompanyHorizontalWidget = ({
                     styles.mainTitle,
                     {
                       fontSize: text.small,
-                      color: colors.header_tow_theme_color,
+                      color: colors.header_one_theme_color,
                     },
                   ]}>
                   {user.views} {I18n.t('views')}
@@ -101,7 +108,7 @@ const CompanyHorizontalWidget = ({
                   style={[
                     widgetStyles.elementName,
                     {
-                      color: colors.header_tow_theme_color,
+                      color: colors.header_one_theme_color,
                       paddingTop: 0,
                       paddingRight: iconSizes.tiny,
                       paddingLeft: iconSizes.tiny,

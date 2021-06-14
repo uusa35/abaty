@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 
 const UserIndexScreen = () => {
-  const {users, searchParams} = useSelector((state) => state);
+  const {users, searchParams} = useSelector(state => state);
   return (
     <UsersList users={users} searchElements={searchParams} showMore={true} />
   );

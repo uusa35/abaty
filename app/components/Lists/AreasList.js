@@ -15,10 +15,10 @@ import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
 
 const AreasList = () => {
-  const {areas, areaModal} = useSelector((state) => state);
+  const {areas, areaModal} = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const handleClick = useCallback((area) => {
+  const handleClick = useCallback(area => {
     dispatch(setArea(area));
     dispatch(hideAreaModal());
   });

@@ -7,8 +7,8 @@ import ImageLoaderContainer from './ImageLoaderContainer';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import BgContainer from '../containers/BgContainer';
 
-const ImageZoomWidget = (props) => {
-  const {images, index} = props.navigation.state.params;
+const ImageZoomWidget = ({route}) => {
+  const {images, index} = route.params;
   const {colors} = useContext(GlobalValuesContext);
 
   return (

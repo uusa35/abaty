@@ -1,114 +1,38 @@
-import React, {
-  Fragment,
-  useEffect,
-  useState,
-  useMemo,
-  useCallback,
-} from 'react';
-import {Linking} from 'react-native';
-import {
-  ABATI,
-  ABATI_ONE_SIGNAL_APP_ID,
-  MALLR,
-  MALLR_ONE_SIGNAL_APP_ID,
-  HOMEKEY,
-  HOMKEY_ONE_SIGNAL_APP_ID,
-  ESCRAP,
-  ESCRAP_ONE_SIGNAL_APP_ID,
-  EXPO,
-  EXPO_ONE_SIGNAL_APP_ID,
-  DAILY,
-  DAILY_ONE_SIGNAL_APP_ID,
-} from '../../../app';
-import OneSignal from 'react-native-onesignal';
-import {getPathForDeepLinking} from './../../helpers';
-import {
-  goDeepLinking,
-  setDeepLinking,
-  setPlayerId,
-} from './../../redux/actions';
-import validate from 'validate.js';
-import analytics from '@react-native-firebase/analytics';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {Fragment, useEffect, useState} from 'react';
+import {BackHandler} from 'react-native';
+import I18n from '../../I18n';
+import ConfirmationModal from '../ConfirmationModal';
+import {useAndroidBackHandler} from 'react-navigation-backhandler';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {goBackBtn} from '../../redux/actions';
+import {useDispatch} from 'react-redux';
 
 const AppHomeConfigComponent = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+  const route = useRoute();
   const dispatch = useDispatch();
-  const {bootStrapped, resetApp, playerId, linking} = useSelector(
-    (state) => state,
+
+  useAndroidBackHandler(() => {
+    if (route.name !== 'Home') {
+      return navigation.goBack();
+    } else {
+      setModalVisible(true);
+      return dispatch(goBackBtn('No'));
+    }
+  });
+
+  return (
+    <ConfirmationModal
+      handleConfirmClick={() => BackHandler.exitApp()}
+      confirmTitle={I18n.t('confirm')}
+      message={I18n.t('do_you_want_to_exit_the_app')}
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
+      iconName="exclamationcircleo"
+      iconType="antdesign"
+    />
   );
-  const [deviceId, setDeviceId] = useState('');
-  const [device, setDevice] = useState('');
-  const [signalId, setSignalId] = useState();
-
-  useMemo(() => {
-    analytics().setAnalyticsCollectionEnabled(true);
-    if (ABATI) {
-      setSignalId(ABATI_ONE_SIGNAL_APP_ID);
-    } else if (MALLR) {
-      setSignalId(MALLR_ONE_SIGNAL_APP_ID);
-    } else if (HOMEKEY) {
-      setSignalId(HOMKEY_ONE_SIGNAL_APP_ID);
-    } else if (ESCRAP) {
-      setSignalId(ESCRAP_ONE_SIGNAL_APP_ID);
-    } else if (EXPO) {
-      setSignalId(EXPO_ONE_SIGNAL_APP_ID);
-    } else if (DAILY) {
-      setSignalId(DAILY_ONE_SIGNAL_APP_ID);
-    }
-  }, [bootStrapped]);
-
-  useEffect(() => {
-    OneSignal.init(signalId);
-    OneSignal.addEventListener('received', onReceived);
-    OneSignal.addEventListener('opened', onOpened);
-    OneSignal.addEventListener('ids', onIds);
-    Linking.addEventListener('url', handleOpenURL);
-    return () => {
-      OneSignal.removeEventListener('received', onReceived);
-      OneSignal.removeEventListener('opened', onOpened);
-      OneSignal.removeEventListener('ids', onIds);
-      Linking.removeEventListener('url', handleOpenURL);
-    };
-  }, [bootStrapped]);
-
-  const handleOpenURL = (event) => {
-    const {type, id} = getPathForDeepLinking(event.url);
-    if (type && id) {
-      return dispatch(goDeepLinking({type, id}));
-    }
-  };
-
-  const onReceived = (notification) => {
-    // __DEV__ ? console.log('Notification received: ', notification) : null;
-  };
-
-  const onOpened = useCallback((openResult) => {
-    if (__DEV__) {
-      // console.log('the whole thing', openResult.notification.payload);
-      // console.log('Message: ', openResult.notification.payload.body);
-      // console.log('Data: ', openResult.notification.payload.additionalData);
-      // console.log('isActive: ', openResult.notification.isAppInFocus);
-      // console.log('openResult: ', openResult.notification.payload.launchURL);
-    }
-    const notification = getPathForDeepLinking(
-      openResult.notification.payload.launchURL,
-    );
-    dispatch(setDeepLinking(notification));
-    setTimeout(() => {
-      dispatch(goDeepLinking(notification));
-    }, 1000);
-  });
-
-  const onIds = useCallback((device) => {
-    if (!validate.isEmpty(device.userId) && playerId !== device.userId) {
-      setDeviceId(device.userId);
-      if (device.userId !== deviceId) {
-        dispatch(setPlayerId(device.userId));
-      }
-    }
-  });
-
-  return <Fragment></Fragment>;
 };
 
-export default AppHomeConfigComponent;
+export default React.memo(AppHomeConfigComponent);

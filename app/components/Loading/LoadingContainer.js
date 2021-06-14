@@ -4,18 +4,16 @@ import Spinner from 'react-native-spinkit';
 import {whitesmoke} from 'color-name';
 import {useSelector} from 'react-redux';
 import {height, iconSizes} from './../../constants/sizes';
+import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
 
 const LoadingContainer = () => {
-  const {settings, isLoading, bootStrapped} = useSelector((state) => state);
+  const {settings, isLoading, bootStrapped} = useSelector(state => state);
 
   useEffect(() => {}, [isLoading]);
 
   return (
     <View
       style={{
-        // opacity: 0.3,
-        // borderWidth : 10 ,
-        // flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'whitesmoke',
@@ -23,6 +21,11 @@ const LoadingContainer = () => {
       }}>
       <Modal visible={isLoading && bootStrapped} transparent={true}>
         <View style={{backgroundColor: 'rgba(255,255,255,0.5', flex: 1}}>
+          <ImageLoaderContainer
+            img={settings.logo}
+            style={{width: 100, height: 100, margin: 20}}
+            resizeMode="contain"
+          />
           <Spinner
             type="FadingCircle"
             size={40}

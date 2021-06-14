@@ -17,8 +17,6 @@ import * as classifiedSaga from './classifiedSagas';
 import {startChangeLang} from './langSagas';
 import {startStorePlayerIdScenario} from './userSagas';
 import {startGetRolesScenario} from './userSagas';
-import {checkConnectionStatus} from '../api';
-import {checkConnection} from './settingSagas';
 
 export function* triggerGoBackBtn() {
   yield takeLatest(actions.GO_BACK, goBackBtnScenario);
@@ -96,6 +94,13 @@ export function* triggerCreateTapPaymentUrl() {
   );
 }
 
+export function* triggerCreateIbookeyPaymentUrl() {
+  yield takeLatest(
+    actions.CREATE_IBOOKEY_PAYMENT_URL,
+    requestSaga.startCreateIbookeyPaymentUrlScenario,
+  );
+}
+
 export function* triggerCreateCashOnDeliveryPayment() {
   yield takeLatest(
     actions.CASH_ON_DELIVERY,
@@ -144,6 +149,13 @@ export function* triggerCreateMyFatoorahPaymentUrl() {
 }
 
 // product
+export function* triggerSubmitCreateNewProduct() {
+  yield takeLatest(
+    actions.SUBMIT_CREATE_NEW_PRODUCT,
+    productSaga.startSubmitCreateNewProduct,
+  );
+}
+
 export function* triggerGetProduct() {
   yield takeLatest(actions.GET_PRODUCT, productSaga.startGetProductScenario);
 }
@@ -190,10 +202,6 @@ export function* triggerBecomeFan() {
 
 export function* triggerAppBootstrap() {
   yield takeLatest(actions.START_BOOTSTRAP, startAppBootStrap);
-}
-
-export function* triggerCheckConnection() {
-  yield takeLatest(actions.CHECK_CONNECTION, checkConnection);
 }
 
 export function* triggerGetUser() {
@@ -247,6 +255,13 @@ export function* triggerRegister() {
   yield takeLatest(actions.REGISTER, userSaga.startRegisterScenario);
 }
 
+export function* triggerRegisterClient() {
+  yield takeLatest(
+    actions.REGISTER_AS_CLIENT,
+    userSaga.startRegisterAsClientScenario,
+  );
+}
+
 export function* triggerCompanyRegister() {
   yield takeLatest(
     actions.COMPANY_REGISTER,
@@ -254,8 +269,22 @@ export function* triggerCompanyRegister() {
   );
 }
 
-export function* triggerRateUser() {
-  yield takeLatest(actions.RATE_USER, userSaga.startRateUserScenario);
+export function* triggerSubmitMobileConfirmationCode() {
+  yield takeLatest(
+    actions.SUBMIT_MOBILE_CONFIRMATION_CODE,
+    userSaga.startSubmitMobileConfirmationCode,
+  );
+}
+
+export function* triggerResendMobileConfirmationCode() {
+  yield takeLatest(
+    actions.RESEND_MOBILE_CONFIRMATION_CODE,
+    userSaga.startResendMobileConfirmationCode,
+  );
+}
+
+export function* triggerRateElement() {
+  yield takeLatest(actions.RATE_ELEMENT, userSaga.startRateElementScenario);
 }
 
 export function* triggerGetSearchCompanies() {
@@ -292,6 +321,22 @@ export function* triggerGetHomeCelebrities() {
 
 export function* triggerGetHomeDesigners() {
   yield takeLatest(actions.GET_HOME_DESIGNERS, userSaga.startGetHomeDesigners);
+}
+
+export function* triggerUpdateAddress() {
+  yield takeLatest(actions.UPDATE_ADDRESS, userSaga.startUpdateAddressScenario);
+}
+
+export function* triggerCreateAddress() {
+  yield takeLatest(actions.CREATE_ADDRESS, userSaga.startCreateAddressScenario);
+}
+
+export function* triggerDeleteAddress() {
+  yield takeLatest(actions.DELETE_ADDRESS, userSaga.startDeleteAddressScenario);
+}
+
+export function* triggerChangeAddress() {
+  yield takeLatest(actions.CHANGE_ADDRESS, userSaga.startChangeAddressScenario);
 }
 
 // classified
@@ -377,20 +422,4 @@ export function* triggerGetSearchServices() {
 // language
 export function* triggerChangeLang() {
   yield takeLatest(actions.CHANGE_LANG, startChangeLang);
-}
-
-export function* triggerUpdateAddress() {
-  yield takeLatest(actions.UPDATE_ADDRESS, userSaga.startUpdateAddressScenario);
-}
-
-export function* triggerCreateAddress() {
-  yield takeLatest(actions.CREATE_ADDRESS, userSaga.startCreateAddressScenario);
-}
-
-export function* triggerDeleteAddress() {
-  yield takeLatest(actions.DELETE_ADDRESS, userSaga.startDeleteAddressScenario);
-}
-
-export function* triggerChangeAddress() {
-  yield takeLatest(actions.CHANGE_ADDRESS, userSaga.startChangeAddressScenario);
 }

@@ -5,13 +5,9 @@ import CategoriesList from '../../components/Lists/CategoriesList';
 import CommercialSliderWidget from '../../components/widgets/CommercialSliderWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import validate from 'validate.js';
-import {useNavigation} from 'react-navigation-hooks';
-const SubCategoryIndexScreen = () => {
-  const {category, commercials, show_commercials} = useSelector(
-    (state) => state,
-  );
+const SubCategoryIndexScreen = ({navigation}) => {
+  const {category, commercials, show_commercials} = useSelector(state => state);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   useEffect(() => {
     if (validate.isEmpty(category)) {

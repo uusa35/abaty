@@ -1,56 +1,43 @@
 import {call, put, all, takeLatest, select, delay} from 'redux-saga/effects';
-import {BackHandler, Alert, DevSettings} from 'react-native';
+import {BackHandler, Alert} from 'react-native';
 import * as actions from '../types';
-import {
-  ABATI,
-  MALLR,
-  ESCRAP,
-  EXPO,
-  HOMEKEY,
-  DAILY,
-  BITS,
-  NASHKW,
-} from './../../../../app';
 import {PersistStore} from './../../store';
 import {defaultLang} from './langSagas';
-import {NavigationActions} from 'react-navigation';
+import * as RootNavigation from './../../../RootNavigation.js';
 import I18n from './../../../I18n';
 import {
   disableLoading,
   enableErrorMessage,
-  checkConnection,
   setVersion,
   enableResetApp,
 } from './settingSagas';
-import {abatiBootStrap} from './abati/appSagas';
-import {mallrBootStrap} from './mallr/appSagas';
-import {escrapBootStrap} from './escrap/appSagas';
-import {homeKeyBootStrap} from './homekey/appSagas';
+import {designeratBootStrap} from './designerat/appSagas';
 import {expoBootStrap} from './expo/appSagas';
-import {dailyBootStrap} from './daily/appSagas';
+import {
+  DESIGNERAT,
+  EXPO,
+  ISTORES,
+  IHOUSES,
+  ABATI,
+} from './../../../../app.json';
+import {istoresBootStrap} from './istores/appSagas';
+import {abatiBootStrap} from './abati/appSagas';
 
 export function* startAppBootStrap() {
   try {
     const {bootStrapped} = yield select();
     yield call(defaultLang);
-    yield call(setVersion);
     if (!bootStrapped) {
-      if (ABATI) {
-        yield call(abatiBootStrap);
-      } else if (MALLR) {
-        yield call(mallrBootStrap);
-      } else if (ESCRAP) {
-        yield call(escrapBootStrap);
-      } else if (HOMEKEY) {
-        yield call(homeKeyBootStrap);
-      } else if (EXPO) {
+      if (EXPO) {
         yield call(expoBootStrap);
-      } else if (DAILY) {
-        yield call(dailyBootStrap);
-      } else if (BITS) {
+      } else if (DESIGNERAT) {
+        yield call(designeratBootStrap);
+      } else if (ABATI) {
         yield call(abatiBootStrap);
-      } else if (NASHKW) {
-        yield call(abatiBootStrap);
+      } else if (ISTORES) {
+        yield call(istoresBootStrap);
+      } else if (IHOUSES) {
+        yield call(istoresBootStrap);
       }
     }
   } catch (e) {
@@ -63,31 +50,29 @@ export function* startAppBootStrap() {
 }
 
 export function* goBackBtnScenario(action) {
-  if (action.payload) {
-    yield put(NavigationActions.back());
+  if (action.payload !== 'Home') {
+    RootNavigation.back();
   } else {
-    Alert.alert(I18n.t('do_you_want_to_exit_the_app'), '', [
-      {
-        text: I18n.t('confirm'),
-        onPress: () => BackHandler.exitApp(),
-      },
-      {
-        text: I18n.t('cancel'),
-        onPress: () => false,
-      },
-    ]);
+    Alert.alert(
+      I18n.t('do_you_want_to_exit_the_app'),
+      I18n.t('do_you_want_to_exit_the_app'),
+      [
+        {
+          text: I18n.t('confirm'),
+          onPress: () => BackHandler.exitApp(),
+        },
+        {
+          text: I18n.t('cancel'),
+          onPress: () => false,
+        },
+      ],
+    );
   }
 }
 
 export function* startResetStoreScenario() {
-  yield all([
-    put(
-      NavigationActions.navigate({
-        routeName: 'Home',
-      }),
-    ),
-    put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false}),
-  ]);
+  RootNavigation.navigate('Home');
+  yield all([put({type: actions.TOGGLE_BOOTSTRAPPED, payload: false})]);
   PersistStore.purge();
   yield delay(1000);
   yield call(startAppBootStrap);

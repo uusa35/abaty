@@ -3,15 +3,14 @@ import widgetStyles from '../widgetStyles';
 import {Text, TouchableOpacity, View} from 'react-native';
 import I18n from '../../../I18n';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import {touchOpacity} from '../../../constants/sizes';
 import ImageLoaderContainer from '../ImageLoaderContainer';
 import {useSelector} from 'react-redux';
 
-const NewClassifiedHomeBtn = () => {
+const NewClassifiedHomeBtn = ({navigation}) => {
   const {colors, logo} = useContext(GlobalValuesContext);
-  const {guest} = useSelector((state) => state);
-  const {navigate} = useNavigation();
+  const {guest} = useSelector(state => state);
+  const {navigate} = navigation;
 
   return (
     <TouchableOpacity

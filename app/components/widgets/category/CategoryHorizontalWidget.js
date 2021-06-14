@@ -25,8 +25,8 @@ const CategoryHorizontalWidget = ({
   showName = true,
   showImage = true,
 }) => {
-  const {country} = useSelector((state) => state);
-  const handleProductClick = useCallback((c) => {
+  const {country} = useSelector(state => state);
+  const handleProductClick = useCallback(c => {
     return dispatch(
       getSearchProducts({
         name: c.name,

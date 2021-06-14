@@ -395,6 +395,7 @@ const styles = StyleSheet.create({
     fontFamily: text.font,
     fontSize: text.medium,
     textAlign: 'left',
+    color: 'black',
   },
   description: {
     fontFamily: text.font,

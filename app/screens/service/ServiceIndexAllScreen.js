@@ -9,7 +9,7 @@ import I18n from './../../I18n';
 import {isEmpty} from 'lodash';
 
 const ServiceIndexAllScreen = () => {
-  const {services, searchParams, country} = useSelector((state) => state);
+  const {services, searchParams, country} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentSearchParams, setCurrentSearchParams] = useState({
     country_id: country.id,

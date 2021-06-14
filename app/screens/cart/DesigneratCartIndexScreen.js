@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {StyleSheet, View, Text, ImageBackground} from 'react-native';
+import {StyleSheet, View, Text, ImageBackground, Pressable} from 'react-native';
 import {useSelector} from 'react-redux';
 import validate from 'validate.js';
 import {text, width, height} from '../../constants/sizes';
@@ -11,13 +11,14 @@ import {animations} from '../../constants/animations';
 import {View as Animating} from 'react-native-animatable';
 import EmptyListWidget from '../../components/Lists/EmptyListWidget';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation} from '@react-navigation/native';
 import DesigneratCartList from '../../components/widgets/cart/DesigneratCartList';
 import DesigneratBtn from '../../components/widgets/Button/DesigneratBtn';
 import widgetStyles from '../../components/widgets/widgetStyles';
 import {themeColors} from '../../constants/colors';
+import FastImage from 'react-native-fast-image';
 import {images} from '../../constants/images';
-import {EXPO, ABATI} from '../../../app.json';
+import {EXPO, DESIGNERAT} from '../../../app.json';
 
 const DesigneratCartIndexScreen = () => {
   const {
@@ -27,8 +28,9 @@ const DesigneratCartIndexScreen = () => {
     settings,
     coupon,
     area,
-  } = useSelector((state) => state);
-  const {grossTotal, colors} = useContext(GlobalValuesContext);
+    grossTotal,
+  } = useSelector(state => state);
+  const {colors} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
 
   useEffect(() => {}, [cart]);
@@ -66,24 +68,26 @@ const DesigneratCartIndexScreen = () => {
             flex: 1,
             padding: 20,
           }}
-          source={images.cartBg}
+          source={
+            DESIGNERAT
+              ? images.cartBg
+              : EXPO
+              ? {uri: settings.main_bg}
+              : images.whiteBg
+          }
           imageStyle={{resizeMode: 'repeat', opacity: 0.2}}>
-          {ABATI ? (
-            <EmptyListWidget emptyImage="emptyOrder" />
-          ) : (
-            <LottieView
-              source={EXPO ? animations.emptyCart : animations.cart}
-              autoPlay
-              loop
-              style={{
-                alignSelf: 'center',
-                width: width / 2,
-                height: width / 2,
-                marginBottom: 20,
-              }}
-              enableMergePathsAndroidForKitKatAndAbove
-            />
-          )}
+          <LottieView
+            source={EXPO ? animations.emptyCart : animations.cart}
+            autoPlay
+            loop
+            style={{
+              alignSelf: 'center',
+              width: width / 2,
+              height: width / 2,
+              marginBottom: 20,
+            }}
+            enableMergePathsAndroidForKitKatAndAbove
+          />
           <Animating
             animation="bounceIn"
             easing="ease-out"

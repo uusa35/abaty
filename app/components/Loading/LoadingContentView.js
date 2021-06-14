@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux';
 import Modal from 'react-native-modal';
 
 const LoadingContentView = () => {
-  const {isLoadingContent} = useSelector((state) => state);
+  const {isLoadingContent} = useSelector(state => state);
   return (
     <Modal
       visible={isLoadingContent}
@@ -21,7 +21,7 @@ const LoadingContentView = () => {
         justifyContent: 'center',
         marginTop: 0,
       }}>
-      <View style={{backgroundColor: 'white'}}>
+      <View style={{backgroundColor: 'white', width}}>
         <SvgAnimatedLinearGradient
           useNativeDriver={true}
           height={width}
@@ -42,9 +42,9 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
-              <Circle cx="320" cy="30" r="30" />
+              <Circle cx="330" cy="30" r="30" />
               <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
               <Rect x="20" y="40" rx="3" ry="3" width="250" height="10" />
               <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
@@ -55,9 +55,9 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
-              <Circle cx="320" cy="30" r="30" />
+              <Circle cx="330" cy="30" r="30" />
               <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
               <Rect x="20" y="40" rx="3" ry="3" width="250" height="10" />
               <Rect x="0" y="80" rx="3" ry="3" width="800" height="10" />
@@ -68,7 +68,7 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
               <Rect x="20" y="17" rx="4" ry="4" width="250" height="13" />
               <Rect x="20" y="40" rx="3" ry="3" width="250" height="10" />
@@ -83,7 +83,7 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
               <Circle cx="30" cy="30" r="30" />
               <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />
@@ -96,7 +96,7 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
               <Circle cx="30" cy="30" r="30" />
               <Rect x="80" y="17" rx="4" ry="4" width="800" height="13" />
@@ -109,7 +109,7 @@ const LoadingContentView = () => {
             <SvgAnimatedLinearGradient
               useNativeDriver={true}
               height={150}
-              width={width - 50}
+              width={width}
               style={{marginBottom: 5, alignSelf: 'center'}}>
               <Rect x="0" y="0" rx="4" ry="4" width="800" height="10" />
               <Rect x="0" y="20" rx="4" ry="4" width="800" height="10" />

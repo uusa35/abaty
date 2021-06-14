@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,63 +6,69 @@ import {isIOS} from '../../constants';
 import {map} from 'lodash';
 import ImageLoaderContainer from '../../components/widgets/ImageLoaderContainer';
 import {setRole} from '../../redux/actions/user';
-import {text} from '../../constants/sizes';
+import {bottomContentInset, text} from '../../constants/sizes';
 import BgContainer from '../../components/containers/BgContainer';
-import {useNavigation} from 'react-navigation-hooks';
+import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
+import widgetStyles from '../../components/widgets/widgetStyles';
+import {themeColors} from '../../constants/colors';
 
-const RoleIndexScreen = () => {
-  const {roles} = useSelector((state) => state);
+const RoleIndexScreen = ({navigation}) => {
+  const {roles} = useSelector(state => state);
+  const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
 
-  const handleClick = (r) => {
+  const handleClick = r => {
     dispatch(setRole(r));
     navigation.navigate('Register');
   };
 
   return (
-    <BgContainer>
+    <BgContainer showImage={false}>
       <ScrollView
-        contentContainerStyle={{minHeight: !isIOS ? '130%' : null}}
         horizontal={false}
         automaticallyAdjustContentInsets={false}
+        contentInset={{bottom: bottomContentInset}}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        style={{marginTop: '5%'}}
-        contentInset={{bottom: 150}}>
+        style={{paddingTop: '5%'}}>
         {map(roles, (r, i) => (
           <TouchableOpacity
             key={i}
-            style={[styles.btnStyle, {backgroundColor: r.color}]}
+            style={[
+              styles.btnStyle,
+              {backgroundColor: themeColors.desinerat.lightGray},
+            ]}
             onPress={() => handleClick(r)}>
             <ImageLoaderContainer
               img={r.thumb}
               style={{
-                width: 70,
-                height: 70,
+                width: 80,
+                height: 80,
                 margin: 10,
-                marginBottom: 10,
-                borderRadius: 70 / 2,
+                marginBottom: 20,
+                borderRadius: 80 / 2,
               }}
             />
             <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.large,
-                paddingTop: 3,
-                paddingBottom: 5,
-                color: 'white',
-              }}>
+              style={[
+                widgetStyles.headerTow,
+                {
+                  color: r.color,
+                  textAlign: 'center',
+                  paddingBottom: 10,
+                },
+              ]}>
               {r.slug}
             </Text>
             <Text
-              style={{
-                fontFamily: text.font,
-                fontSize: text.medium,
-                paddingTop: 3,
-                paddingBottom: 5,
-                color: 'white',
-              }}>
+              style={[
+                widgetStyles.headerTow,
+                {
+                  color: colors.header_one_theme_color,
+                  textAlign: 'center',
+                  paddingBottom: 10,
+                },
+              ]}>
               {r.caption}
             </Text>
           </TouchableOpacity>
@@ -76,8 +82,8 @@ export default RoleIndexScreen;
 
 const styles = StyleSheet.create({
   btnStyle: {
-    margin: 10,
-    height: 180,
+    margin: 15,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,

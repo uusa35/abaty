@@ -7,14 +7,12 @@ import {Icon} from 'react-native-elements';
 import Share from 'react-native-share';
 import {linkingPrefix} from './../constants/links';
 import I18n from './../I18n';
-import {useNavigation} from 'react-navigation-hooks';
 import {APP_CASE, ABATI} from '../../app';
 import {useSelector} from 'react-redux';
 
-const HeaderCustom = () => {
-  const navigation = useNavigation();
-  const {params} = navigation.state;
-  const {settings} = useSelector((state) => state);
+const HeaderCustom = ({navigation}) => {
+  const params = navigation.route.params;
+  const {settings} = useSelector(state => state);
   const [downloadTitleMessage, setDownloadTitleMessage] = useState('');
   const [androidMessage, setAndroidMessage] = useState('');
   const [iphoneMessage, setIphoneMessage] = useState('');
@@ -45,7 +43,7 @@ const HeaderCustom = () => {
     );
   }, []);
 
-  const shareLink = (link) => {
+  const shareLink = link => {
     return Share.open({
       title: I18n.t('share_file', {name: I18n.t(APP_CASE)}),
       url: link,
@@ -53,8 +51,8 @@ const HeaderCustom = () => {
       message: `${downloadTitleMessage} ${androidMessage} ${iphoneMessage} ${shareMessage}`,
       // subject: I18n.t('share_title', {name: I18n.t(APP_CASE)}),
     })
-      .then((res) => {})
-      .catch((err) => {});
+      .then(res => {})
+      .catch(err => {});
   };
   return (
     <View style={styles.container}>

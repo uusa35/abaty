@@ -62,7 +62,7 @@ const UsersHorizontalWidget = ({
     }
   };
 
-  const handleElementClick = (element) => {
+  const handleElementClick = element => {
     dispatch(setElementType(type));
     switch (type) {
       case 'designer':

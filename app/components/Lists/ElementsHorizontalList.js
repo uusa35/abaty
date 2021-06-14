@@ -13,10 +13,15 @@ import {
   Text,
   ActivityIndicator,
   StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  SafeAreaView,
+  Pressable,
 } from 'react-native';
 import {
   getCompany,
   getDesigner,
+  getSearchCelebrities,
   getSearchCompanies,
   getSearchDesigners,
 } from '../../redux/actions/user';
@@ -65,6 +70,9 @@ import {
   SET_PRODUCTS,
   SET_SERVICES,
 } from '../../redux/actions/types';
+import ImageLoaderContainer from '../widgets/ImageLoaderContainer';
+import Pluralize from 'pluralize';
+import ProductNormalWidget from '../widgets/product/ProductNormalWidget';
 
 const ElementsHorizontalList = ({
   elements,
@@ -87,6 +95,8 @@ const ElementsHorizontalList = ({
   columns = 2,
   customHeight = 240,
   pageLimit = 10,
+  productGalleryMode = false,
+  showSKU = false,
 }) => {
   const [items, setItems] = useState(elements);
   const [originalItems, setOriginalItems] = useState(elements);
@@ -99,7 +109,7 @@ const ElementsHorizontalList = ({
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
   const [mapModal, setMapModal] = useState(false);
-  const {token} = useSelector((state) => state);
+  const {token} = useSelector(state => state);
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
@@ -128,7 +138,7 @@ const ElementsHorizontalList = ({
           return axiosInstance(`search/product?page=${page}`, {
             params,
           })
-            .then((r) => {
+            .then(r => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 dispatch({type: SET_PRODUCTS, payload: elementsGroup});
@@ -137,13 +147,13 @@ const ElementsHorizontalList = ({
                 setIsLoading(false);
               }
             })
-            .catch((e) => e);
+            .catch(e => e);
           break;
         case 'designer':
           return axiosInstance(`search/user?page=${page}`, {
             params,
           })
-            .then((r) => {
+            .then(r => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 dispatch({type: SET_DESIGNERS, payload: elementsGroup});
@@ -152,13 +162,28 @@ const ElementsHorizontalList = ({
                 setIsLoading(false);
               }
             })
-            .catch((e) => e);
+            .catch(e => e);
+          break;
+        case 'celebrity':
+          return axiosInstance(`search/user?page=${page}`, {
+            params,
+          })
+            .then(r => {
+              if (!validate.isEmpty(r.data)) {
+                const elementsGroup = uniqBy(items.concat(r.data), 'id');
+                dispatch({type: SET_DESIGNERS, payload: elementsGroup});
+                setItems(elementsGroup);
+              } else {
+                setIsLoading(false);
+              }
+            })
+            .catch(e => e);
           break;
         case 'company':
           return axiosInstance(`search/user?page=${page}`, {
             params,
           })
-            .then((r) => {
+            .then(r => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
@@ -167,13 +192,13 @@ const ElementsHorizontalList = ({
                 setIsLoading(false);
               }
             })
-            .catch((e) => e);
+            .catch(e => e);
           break;
         case 'classified':
           return axiosInstance(`search/classified?page=${page}`, {
             params,
           })
-            .then((r) => {
+            .then(r => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 setItems(elementsGroup);
@@ -181,13 +206,13 @@ const ElementsHorizontalList = ({
                 setIsLoading(false);
               }
             })
-            .catch((e) => e);
+            .catch(e => e);
           break;
         case 'service':
           return axiosInstance(`search/service?page=${page}`, {
             params,
           })
-            .then((r) => {
+            .then(r => {
               if (!validate.isEmpty(r.data)) {
                 const elementsGroup = uniqBy(items.concat(r.data), 'id');
                 dispatch({type: SET_SERVICES, payload: elementsGroup});
@@ -196,7 +221,7 @@ const ElementsHorizontalList = ({
                 setIsLoading(false);
               }
             })
-            .catch((e) => e);
+            .catch(e => e);
           break;
         default:
           null;
@@ -244,6 +269,9 @@ const ElementsHorizontalList = ({
         case 'designer':
           dispatch(getSearchDesigners({searchParams: params}));
           break;
+        case 'celebrity':
+          dispatch(getSearchCelebrities({searchParams: params}));
+          break;
         case 'product':
           dispatch(getSearchProducts({searchParams: params, redirect: false}));
           break;
@@ -271,7 +299,7 @@ const ElementsHorizontalList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(items, (i) =>
+      let filtered = filter(items, i =>
         i.name
           ? lowerCase(i.name).includes(lowerCase(search)) ||
             i.sku.includes(convertNumberToEnglish(search))
@@ -293,10 +321,19 @@ const ElementsHorizontalList = ({
     }
   }, [isLoading]);
 
-  const handleClick = (element) => {
+  const handleClick = element => {
     dispatch(setElementType(type));
     switch (type) {
       case 'designer':
+        return dispatch(
+          getDesigner({
+            id: element.id,
+            searchParams,
+            redirect: true,
+          }),
+        );
+        break;
+      case 'celebrity':
         return dispatch(
           getDesigner({
             id: element.id,
@@ -355,17 +392,44 @@ const ElementsHorizontalList = ({
     }
   };
 
-  const renderItem = (item) => {
+  const renderItem = item => {
     switch (type) {
       case 'product':
-        return (
-          <ProductWidget
-            element={item}
-            showName={showName}
-            key={item.id}
-            handleClickProductWidget={handleClick}
-          />
-        );
+        if (productGalleryMode) {
+          return (
+            <Pressable
+              onPress={() => handleClick(item)}
+              style={{width: '33.2%', height: 175}}>
+              <ImageLoaderContainer
+                img={item.thumb}
+                style={{width: '100%', height: '100%'}}
+                resizeMode="cover"
+              />
+            </Pressable>
+          );
+        } else {
+          if (EXPO) {
+            return (
+              <ProductNormalWidget
+                element={item}
+                showName={showName}
+                key={item.id}
+                showSku={false}
+                handleClickProductWidget={handleClick}
+              />
+            );
+          } else {
+            return (
+              <ProductWidget
+                element={item}
+                showName={showName}
+                key={item.id}
+                showSku={showSKU}
+                handleClickProductWidget={handleClick}
+              />
+            );
+          }
+        }
         break;
       case 'service':
         return (
@@ -401,7 +465,18 @@ const ElementsHorizontalList = ({
             user={item}
             showName={true}
             showDescription={true}
-            showRating={ABATI}
+            showRating={false}
+            rounded={true}
+          />
+        );
+        break;
+      case 'celebrity':
+        return (
+          <UserWidgetHorizontal
+            user={item}
+            showName={true}
+            showDescription={true}
+            showRating={false}
           />
         );
         break;
@@ -429,14 +504,13 @@ const ElementsHorizontalList = ({
     setItems(elements);
     dispatch(setElementType(type));
     setElementsWithMap(filter(elements, (e, i) => (e.has_map ? e : null)));
-    setParams(searchParams);
   }, [elements]);
 
   const renderFooter = () => {
     if (showFooter) {
       return !validate.isEmpty(items) ? (
         <NoMoreElements
-          title={I18n.t('no_more_', {item: I18n.t(type)})}
+          title={I18n.t('no_more_', {item: I18n.t(Pluralize(type))})}
           isLoading={isLoading}
         />
       ) : (
@@ -448,7 +522,7 @@ const ElementsHorizontalList = ({
 
   const renderHeader = () => {
     return (
-      <Fragment>
+      <SafeAreaView style={{flex: 1}}>
         {!validate.isEmpty(items) && (
           <View
             style={{
@@ -510,7 +584,7 @@ const ElementsHorizontalList = ({
             )}
           </View>
         )}
-      </Fragment>
+      </SafeAreaView>
     );
   };
 
@@ -533,7 +607,7 @@ const ElementsHorizontalList = ({
   };
 
   return (
-    <Fragment>
+    <View>
       {showSearch && <TopSearchInput search={search} setSearch={setSearch} />}
       <FlatList
         ListEmptyComponent={() => renderEmptyComponent()}
@@ -570,9 +644,10 @@ const ElementsHorizontalList = ({
           justifyContent: 'flex-start',
           alignItems: 'flex-start',
           alignSelf: 'center',
-        }}
-        ListHeaderComponentStyle={{
-          backgroundColor: 'white',
+          marginLeft: productGalleryMode ? 0 : 15,
+          marginRight: productGalleryMode ? 0 : 15,
+          // marginBottom : 15,
+          marginTop: productGalleryMode ? 0 : 15,
         }}
         renderItem={({item}) => renderItem(item)}
         ListFooterComponent={() => renderFooter()}
@@ -583,6 +658,9 @@ const ElementsHorizontalList = ({
         }}
         ListHeaderComponentStyle={{
           backgroundColor: 'white',
+          width,
+          alignSelf: 'center',
+          marginBottom: 10,
         }}
         ListHeaderComponent={() => renderHeader()}
       />
@@ -592,7 +670,7 @@ const ElementsHorizontalList = ({
         setSort={setSort}
         type={type}
       />
-    </Fragment>
+    </View>
   );
 };
 

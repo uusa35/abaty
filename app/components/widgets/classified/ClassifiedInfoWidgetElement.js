@@ -41,7 +41,7 @@ const ClassifiedInfoWidgetElement = ({
         </Text>
         {properties && (
           <View style={{flexDirection: 'row', paddingTop: 10}}>
-            {map(properties, (p) => (
+            {map(properties, p => (
               <Text
                 style={{
                   backgroundColor: 'whitesmoke',

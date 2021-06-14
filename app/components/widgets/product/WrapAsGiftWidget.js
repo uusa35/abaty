@@ -6,6 +6,7 @@ import ImageLoaderContainer from '../ImageLoaderContainer';
 import React from 'react';
 import {Input, CheckBox} from 'react-native-elements';
 import {useDispatch, useSelector} from 'react-redux';
+import {isNull} from 'lodash';
 
 const WrapAsGiftWidget = ({
   wrapGift,
@@ -15,9 +16,10 @@ const WrapAsGiftWidget = ({
   giftMessage,
   setGiftMessage,
 }) => {
-  const {settings} = useSelector((state) => state);
+  const {settings} = useSelector(state => state);
   const {colors} = settings;
   const dispatch = useDispatch();
+
   return (
     <View>
       <CheckBox
@@ -36,14 +38,22 @@ const WrapAsGiftWidget = ({
         checkedColor={colors.btn_bg_theme_color}
         checked={wrapGift}
         onPress={() =>
-          !productAttribute || requestQty <= 0
+          requestQty <= 0
             ? dispatch(enableWarningMessage(I18n.t('choose_size_or_qty')))
             : setWrapGift(!wrapGift)
         }
         // disabled={!productAttribute || requestQty <= 0}
       />
       {wrapGift && (
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginBottom: '3%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '95%',
+            alignSelf: 'center',
+          }}>
           <ImageLoaderContainer
             img={settings.gift_image}
             style={{width: 100, height: 100}}
@@ -58,27 +68,26 @@ const WrapAsGiftWidget = ({
                   })
             }
             defaultValue={giftMessage ? giftMessage : null}
+            containerStyle={{height: 100, flex: 1}}
             inputContainerStyle={{
-              borderWidth: 1,
               borderColor: 'lightgrey',
-              borderRadius: 5,
-              paddingLeft: 15,
-              marginTop: 5,
-              height: 80,
-              width: '72%',
+              borderRadius: 0,
+              paddingLeft: 10,
+              height: 100,
+              width: '100%',
             }}
             inputStyle={{
               fontFamily: text.font,
               fontSize: text.medium,
               textAlign: isRTL ? 'right' : 'left',
             }}
-            disabled={!productAttribute || requestQty <= 0}
+            disabled={requestQty <= 0}
             // editable={!productAttribute || requestQty <= 0}
             shake={true}
             keyboardType="default"
             multiline={true}
             numberOfLines={3}
-            onChangeText={(e) => setGiftMessage(e)}
+            onChangeText={e => setGiftMessage(e)}
           />
         </View>
       )}

@@ -11,7 +11,7 @@ import ProductSearchForm from '../../components/widgets/search/ProductSearchForm
 import BgContainer from '../../components/containers/BgContainer';
 
 const SearchScreen = ({}) => {
-  const {homeCategories, tags} = useSelector((state) => state);
+  const {homeCategories, tags} = useSelector(state => state);
   return (
     <BgContainer>
       <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>

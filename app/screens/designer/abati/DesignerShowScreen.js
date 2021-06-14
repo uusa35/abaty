@@ -20,16 +20,14 @@ import VideosVerticalWidget from '../../../components/widgets/video/VideosVertic
 import ProductCategoryVerticalWidget from '../../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, MALLR, HOMEKEY, ESCRAP} from './../../../../app';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../../components/Lists/ElementsHorizontalList';
 import BgContainer from '../../../components/containers/BgContainer';
 
-const DesignerShowScreen = () => {
+const DesignerShowScreen = ({navigation}) => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors, logo} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
@@ -118,7 +116,7 @@ const DesignerShowScreen = () => {
               isFanned={designer.isFanned}
               totalFans={designer.totalFans}
               currentRating={designer.rating}
-              medium={designer.medium}
+              medium={designer.banner}
               logo={logo}
               slug={designer.slug}
               type={designer.role.slug}
@@ -140,7 +138,7 @@ const DesignerShowScreen = () => {
             )}
             <TabView
               lazy={true}
-              renderTabBar={(props) => (
+              renderTabBar={props => (
                 <TabBar
                   {...props}
                   // tabStyle={{ backgroundColor: 'white'}}
@@ -203,7 +201,7 @@ const DesignerShowScreen = () => {
                 ),
               })}
               style={{marginTop: 10, backgroundColor: 'white'}}
-              onIndexChange={(i) => setIndex(i)}
+              onIndexChange={i => setIndex(i)}
               initialLayout={{width: width}}
             />
           </TriggeringView>

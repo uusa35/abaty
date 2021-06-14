@@ -1,43 +1,61 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import I18n from '../../../I18n';
 import {text} from './../../../constants/sizes';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const OrderStatus = ({element}) => {
+  const {colors} = useContext(GlobalValuesContext);
   return (
     <View style={styles.statusContainer}>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.success ? '#bced8b' : '#d6d6d6'},
+          {
+            backgroundColor: element.success
+              ? colors.btn_bg_theme_color
+              : '#d6d6d6',
+          },
         ]}>
         <Text style={styles.smText}>{I18n.t('success')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.under_process ? '#bced8b' : '#d6d6d6'},
+          {
+            backgroundColor: element.under_process
+              ? colors.btn_bg_theme_color
+              : '#d6d6d6',
+          },
         ]}>
         <Text style={styles.smText}>{I18n.t('under_process')}</Text>
       </View>
       {/*<View*/}
       {/*  style={[*/}
       {/*    styles.statusWrapper,*/}
-      {/*    {backgroundColor: element.received ? '#bced8b' : '#d6d6d6'},*/}
+      {/*    {backgroundColor: element.received ? colors.btn_bg_theme_color : '#d6d6d6'},*/}
       {/*  ]}>*/}
       {/*  <Text style={styles.smText}>{I18n.t('received')}</Text>*/}
       {/*</View>*/}
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.shipped ? '#bced8b' : '#d6d6d6'},
+          {
+            backgroundColor: element.shipped
+              ? colors.btn_bg_theme_color
+              : '#d6d6d6',
+          },
         ]}>
         <Text style={styles.smText}>{I18n.t('shipped')}</Text>
       </View>
       <View
         style={[
           styles.statusWrapper,
-          {backgroundColor: element.delivered ? '#bced8b' : '#d6d6d6'},
+          {
+            backgroundColor: element.delivered
+              ? colors.btn_bg_theme_color
+              : '#d6d6d6',
+          },
         ]}>
         <Text style={styles.smText}>{I18n.t('delivered')}</Text>
       </View>

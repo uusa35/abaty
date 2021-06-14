@@ -19,7 +19,6 @@ import {
 } from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch} from 'react-redux';
 
 const NavCategoryHorizontalRoundedWidget = ({
@@ -28,11 +27,12 @@ const NavCategoryHorizontalRoundedWidget = ({
   title,
   showTitle = true,
   showLink = true,
+  navigation,
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const {navigate} = useNavigation();
-  const handleClick = (c) => dispatch(setCategoryAndGoToNavChildren(c));
+  const {navigate} = navigation;
+  const handleClick = c => dispatch(setCategoryAndGoToNavChildren(c));
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transaprent'}]}>

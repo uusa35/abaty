@@ -8,7 +8,7 @@ import {images} from '../../constants/images';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ServiceIndexScreen = () => {
-  const {services, searchParams} = useSelector((state) => state);
+  const {services, searchParams} = useSelector(state => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
 

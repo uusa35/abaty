@@ -56,17 +56,17 @@ export function setBrand(payload) {
   };
 }
 
-export const getCollection = (payload) => ({
+export const getCollection = payload => ({
   type: actions.GET_COLLECTION,
   payload,
 });
 
-export const getCollections = (payload) => ({
+export const getCollections = payload => ({
   type: actions.GET_COLLECTIONS,
   payload,
 });
 
-export const setCollection = (payload) => ({
+export const setCollection = payload => ({
   type: actions.SET_COLLECTION,
   payload,
 });

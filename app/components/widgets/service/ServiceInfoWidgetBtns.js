@@ -74,7 +74,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
           }}
           itemStyle={{fontFamily: text.font, fontSize: text.medium}}
           onValueChange={(itemValue, itemIndex) => {
-            const time = _.filter(selectedDay, (d) => d.id === itemValue);
+            const time = _.filter(selectedDay, d => d.id === itemValue);
             setSelectedTiming(itemValue);
             setTimeData(time[0]);
           }}>
@@ -106,7 +106,7 @@ const ServiceInfoWidgetBtns = ({element}) => {
         keyboardType="default"
         multiline={true}
         numberOfLines={3}
-        onChangeText={(notes) => setNotes(notes)}
+        onChangeText={notes => setNotes(notes)}
       />
       {element.is_available ? (
         <Button

@@ -43,12 +43,12 @@ const UsersList = ({elements, searchElements, showMore}) => {
       return axiosInstance(`user?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           const userGroup = uniqBy(items.concat(r.data), 'id');
           setItems(userGroup);
           setElements(userGroup);
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -65,7 +65,7 @@ const UsersList = ({elements, searchElements, showMore}) => {
       setIsLoading(false);
       setRefresh(false);
       setShowMore(false);
-      let filtered = filter(elements, (i) =>
+      let filtered = filter(elements, i =>
         i.slug.includes(search) ? i : null,
       );
       if (filtered.length > 0 || search.length > 0) {

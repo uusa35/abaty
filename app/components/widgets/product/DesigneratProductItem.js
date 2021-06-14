@@ -24,7 +24,7 @@ const DesigneratProductItem = ({
   timeData = null,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
-  const {token, guest} = useSelector((state) => state);
+  const {token, guest} = useSelector(state => state);
   const dispatch = useDispatch();
   const [element, setElement] = useState(item.element);
   const [selectedSize, setSelectedSize] = useState({});
@@ -33,12 +33,12 @@ const DesigneratProductItem = ({
   useMemo(() => {
     if (item.size_id) {
       setSelectedSize(
-        first(filter(item.element.sizes, (a) => a.id === item.size_id)),
+        first(filter(item.element.sizes, a => a.id === item.size_id)),
       );
     }
     if (item.color_id) {
       setSelectedColor(
-        first(filter(item.element.colors, (a) => a.id === item.color_id)),
+        first(filter(item.element.colors, a => a.id === item.color_id)),
       );
     }
   }, [element]);

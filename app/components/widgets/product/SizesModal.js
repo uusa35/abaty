@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
   phoneNo: {
     fontFamily: text.font,
     fontSize: text.large,
+    color: 'black',
     paddingLeft: 20,
     margin: 0,
     padding: 0,

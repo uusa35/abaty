@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux';
 import Modal from 'react-native-modal';
 
 const LoadingProfileView = () => {
-  const {isLoadingProfile} = useSelector((state) => state);
+  const {isLoadingProfile} = useSelector(state => state);
   return (
     <Modal
       visible={isLoadingProfile}

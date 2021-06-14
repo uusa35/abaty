@@ -20,7 +20,7 @@ import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 import {MALLR, ABATI, HOMEKEY, PAYMENT} from './../../../../app';
 import validate from 'validate.js';
 import {useDispatch} from 'react-redux';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const CartListConfirmationScreen = ({
   cart,
@@ -37,14 +37,8 @@ const CartListConfirmationScreen = ({
   const dispatch = useDispatch();
   const {colors, total} = useContext(GlobalValuesContext);
   const navigation = useNavigation();
-  const {
-    cName,
-    cEmail,
-    cMobile,
-    cAddress,
-    cNotes,
-    cArea,
-  } = navigation.state.params;
+  const route = useRoute();
+  const {cName, cEmail, cMobile, cAddress, cNotes, cArea} = route.params;
   const [name, setName] = useState(cName);
   const [email, setEmail] = useState(cEmail);
   const [mobile, setMobile] = useState(cMobile);
@@ -53,7 +47,7 @@ const CartListConfirmationScreen = ({
   const [area, setArea] = useState(cArea);
   const [editMode, setEditMode] = useState(editModeDefault);
 
-  const handleCashOnDelivery = useCallback(() => {
+  const handleCashOnDelivery = () => {
     return Alert.alert(
       I18n.t('order_confirmation'),
       I18n.t('order_cash_on_delivery_confirmation'),
@@ -76,9 +70,9 @@ const CartListConfirmationScreen = ({
                 country_id: shipmentCountry.id,
                 coupon_id: !isNull(coupon) ? coupon.id : null,
                 cart,
-                price: total,
-                net_price: grossTotal,
-                shipment_fees: shipmentFees,
+                price: parseFloat(total),
+                net_price: parseFloat(grossTotal),
+                shipment_fees: parseFloat(shipmentFees),
                 cash_on_delivery: COD,
                 discount,
                 payment_method: isIOS
@@ -90,7 +84,7 @@ const CartListConfirmationScreen = ({
       ],
       {cancelable: true},
     );
-  });
+  };
 
   return (
     <View style={{width: '100%', padding: '5%', alignSelf: 'center'}}>
@@ -328,7 +322,7 @@ const CartListConfirmationScreen = ({
               }}
               shake={true}
               keyboardType="default"
-              onChangeText={(name) => setName(name)}
+              onChangeText={name => setName(name)}
             />
             <Input
               editable={editMode}
@@ -348,7 +342,7 @@ const CartListConfirmationScreen = ({
               }}
               shake={true}
               keyboardType="email-address"
-              onChangeText={(email) => setEmail(email)}
+              onChangeText={email => setEmail(email)}
             />
             <Input
               editable={editMode}
@@ -369,7 +363,7 @@ const CartListConfirmationScreen = ({
               }}
               shake={true}
               keyboardType="number-pad"
-              onChangeText={(mobile) => setMobile(mobile)}
+              onChangeText={mobile => setMobile(mobile)}
             />
             <TouchableOpacity
               onPress={() => {
@@ -417,7 +411,7 @@ const CartListConfirmationScreen = ({
                 }}
                 shake={true}
                 keyboardType="default"
-                onChangeText={(area) => setArea(area)}
+                onChangeText={area => setArea(area)}
               />
             ) : null}
             <Input
@@ -441,7 +435,7 @@ const CartListConfirmationScreen = ({
               numberOfLines={3}
               shake={true}
               keyboardType="default"
-              onChangeText={(address) => setAddress(address)}
+              onChangeText={address => setAddress(address)}
             />
             <Input
               spellCheck={true}
@@ -465,7 +459,7 @@ const CartListConfirmationScreen = ({
               keyboardType="default"
               multiline={true}
               numberOfLines={3}
-              onChangeText={(notes) => setNotes(notes)}
+              onChangeText={notes => setNotes(notes)}
             />
             {!discount > 0 && editMode ? (
               <View
@@ -486,39 +480,6 @@ const CartListConfirmationScreen = ({
                   }}>
                   {I18n.t('have_coupon')}
                 </Text>
-                <Input
-                  placeholder={I18n.t('coupon')}
-                  value={code ? code : null}
-                  inputContainerStyle={{
-                    borderWidth: 1,
-                    borderColor: 'lightgrey',
-                    borderRadius: 10,
-                    paddingLeft: 15,
-                    paddingRight: 15,
-                    marginBottom: 20,
-                  }}
-                  inputStyle={{
-                    fontFamily: text.font,
-                    textAlign: isRTL ? 'right' : 'left',
-                  }}
-                  shake={true}
-                  keyboardType="default"
-                  onChangeText={(code) => setCode(code)}
-                />
-                <Button
-                  raised
-                  containerStyle={{marginBottom: 10, width: '90%%'}}
-                  buttonStyle={{
-                    backgroundColor: colors.btn_bg_theme_color,
-                    borderRadius: 0,
-                  }}
-                  title={I18n.t('add_coupon')}
-                  titleStyle={{
-                    fontFamily: text.font,
-                    color: colors.btn_text_theme_color,
-                  }}
-                  onPress={() => dispatch(getCoupon(code))}
-                />
               </View>
             ) : null}
           </View>
@@ -588,9 +549,9 @@ const CartListConfirmationScreen = ({
                         country_id: shipmentCountry.id,
                         coupon_id: !isNull(coupon) ? coupon.id : null,
                         cart,
-                        price: total,
-                        net_price: grossTotal,
-                        shipment_fees: shipmentFees,
+                        price: parseFloat(total),
+                        net_price: parseFloat(grossTotal),
+                        shipment_fees: parseFloat(shipmentFees),
                         cash_on_delivery: false,
                         discount,
                         payment_method: isIOS
@@ -625,9 +586,9 @@ const CartListConfirmationScreen = ({
                         country_id: shipmentCountry.id,
                         coupon_id: !isNull(coupon) ? coupon.id : null,
                         cart,
-                        price: total,
-                        net_price: grossTotal,
-                        shipment_fees: shipmentFees,
+                        price: parseFloat(total),
+                        net_price: parseFloat(grossTotal),
+                        shipment_fees: parseFloat(shipmentFees),
                         cash_on_delivery: false,
                         discount,
                         payment_method: isIOS

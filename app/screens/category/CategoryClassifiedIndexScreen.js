@@ -8,7 +8,7 @@ import {HOMEKEY, ABATI, MALLR, ESCRAP} from './../../../app';
 
 const CategoryClassifiedIndexScreen = () => {
   const {homeClassifiedCategories, commercials, settings} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {show_commercials} = settings;
   return (

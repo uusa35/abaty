@@ -10,12 +10,15 @@ import {
   enableLoading,
   enableLoadingBoxedList,
   enableLoadingContent,
+  enableSuccessMessage,
   enableWarningMessage,
   startGoogleAnalyticsScenario,
 } from './settingSagas';
 import I18n from '../../../I18n';
-import {NavigationActions} from 'react-navigation';
+import * as RootNavigation from './../../../RootNavigation.js';
 import {SET_ELEMENT_TYPE} from '../types';
+import Animated from 'react-native-reanimated';
+import {startNavigateScenario} from './userSagas';
 
 export function* setHomeProducts(action) {
   try {
@@ -53,7 +56,7 @@ export function* getBestSaleProducts(action) {
       yield put({type: actions.SET_BEST_SALE_PRODUCTS, payload: []});
     }
   } catch (e) {
-    yield call(enableErrorMessage, I18n.t('no_best_sale_products'));
+    // yield call(enableErrorMessage, I18n.t('no_best_sale_products'));
   }
 }
 
@@ -104,7 +107,7 @@ export function* startGetCollectionsScenario() {
         put({type: actions.SET_COLLECTIONS, payload: collections}),
         put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
         yield put(
-          NavigationActions.navigate({
+          RootNavigation.navigate({
             routeName: 'CollectionIndex',
             params: {
               name: I18n.t('collections'),
@@ -132,7 +135,7 @@ export function* startGetCollectionScenario(action) {
       yield put({type: actions.SET_COLLECTION, payload: element});
       if (validate.isEmpty(redirect) && redirect) {
         yield put(
-          NavigationActions.navigate({
+          RootNavigation.navigate({
             routeName: 'CollectionShow',
             params: {
               name: element.user.slug,
@@ -177,33 +180,23 @@ export function* startGetProductScenario(action) {
       validate.isObject(element) &&
       element.id
     ) {
-      if (__DEV__) {
-        // console.log('the product', element);
-      }
       yield all([put({type: actions.SET_PRODUCT, payload: element})]);
       if (!validate.isEmpty(redirect) && redirect) {
-        yield all([
-          call(startGoogleAnalyticsScenario, {
-            payload: {type: 'Product', element},
-          }),
-          put(
-            NavigationActions.navigate({
-              routeName: 'Product',
-              params: {
-                name: element.name,
-                id: element.id,
-                model: 'product',
-                type: 'product',
-              },
-            }),
-          ),
-        ]);
+        yield call(startGoogleAnalyticsScenario, {
+          payload: {type: 'Product', element},
+        });
+        RootNavigation.navigate('ProductShow', {
+          name: element.name,
+          id: element.id,
+          model: 'product',
+          type: 'product',
+        });
       }
     }
   } catch (e) {
-    // if (__DEV__) {
-    //   console.log('e', e);
-    // }
+    if (__DEV__) {
+      // console.log('e', e);
+    }
     yield call(enableWarningMessage, I18n.t('error_while_loading_product'));
   } finally {
     if (action.payload.redirect) {
@@ -230,23 +223,21 @@ export function* startGetSearchProductsScenario(action) {
         put({type: actions.SET_SEARCH_PARAMS, payload: searchParams}),
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
-        yield all([
-          put(
-            NavigationActions.navigate({
-              routeName: 'SearchProductIndex',
-              params: {name: name ? name : I18n.t('products')},
-            }),
-          ),
-        ]);
+        RootNavigation.navigate('SearchProductIndex', {
+          name: name ? name : I18n.t('products'),
+        });
       }
     } else {
       yield all([
         put({type: actions.SET_SEARCH_PRODUCTS, payload: []}),
         put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
       ]);
-      throw products;
+      throw elements;
     }
   } catch (e) {
+    if (__DEV__) {
+      console.log('the ee', e);
+    }
     if (action.payload.redirect) {
       yield call(enableWarningMessage, I18n.t('no_products'));
     }
@@ -257,12 +248,12 @@ export function* startGetSearchProductsScenario(action) {
 
 export function* startGetAllProductsScenario(action) {
   try {
-    const products = yield call(api.getSearchProducts, action.payload);
+    const elements = yield call(api.getSearchProducts, action.payload);
     yield call(enableLoading);
     yield put({type: SET_ELEMENT_TYPE, payload: 'product'});
-    if (!validate.isEmpty(products) && validate.isArray(products)) {
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
-        put({type: actions.SET_PRODUCTS, payload: products}),
+        put({type: actions.SET_PRODUCTS, payload: elements}),
         // put({type : actions.SET_SEARCH_PRODUCTS, payload : []})
         // put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
       ]);
@@ -270,11 +261,14 @@ export function* startGetAllProductsScenario(action) {
       yield all([
         put({type: actions.SET_PRODUCTS, payload: []}),
         // put({type : actions.SET_SEARCH_PRODUCTS, payload : []}),
-        put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
+        // put({type: actions.SET_SEARCH_PARAMS, payload: {}}),
       ]);
       throw 'no_products';
     }
   } catch (e) {
+    if (__DEV__) {
+      console.log('eee', e);
+    }
     // yield call(enableWarningMessage, I18n.t('no_products'));
   } finally {
     yield call(disableLoading);
@@ -297,18 +291,44 @@ export function* setProductFavorites(productFavorites) {
 
 export function* startToggleProductFavoriteScenario(action) {
   try {
-    const products = yield call(api.toggleFavorite, action.payload);
-    if (!validate.isEmpty(products) && validate.isArray(products)) {
+    const elements = yield call(api.toggleFavorite, action.payload);
+    if (!validate.isEmpty(elements) && validate.isArray(elements)) {
       yield all([
-        put({type: actions.SET_PRODUCT_FAVORITES, payload: products}),
+        put({type: actions.SET_PRODUCT_FAVORITES, payload: elements}),
         call(enableWarningMessage, I18n.t('favorite_success')),
       ]);
     } else {
-      yield put({type: actions.SET_PRODUCT_FAVORITES, payload: []});
-      throw products;
+      yield all([
+        put({type: actions.SET_PRODUCT_FAVORITES, payload: []}),
+        call(
+          enableWarningMessage,
+          I18n.t('must_login_message_or_favorite_list_is_empty'),
+        ),
+      ]);
     }
   } catch (e) {
-    yield call(enableWarningMessage, I18n.t('no_products'));
+    if (__DEV__) {
+      console.log('e', e);
+    }
+    yield call(enableWarningMessage, I18n.t('favorite_failure'));
+  } finally {
+  }
+}
+
+export function* startSubmitCreateNewProduct(action) {
+  try {
+    const element = yield call(api.submitCreateNewProduct, action.payload);
+    if (!validate.isEmpty(element) && validate.isObject(element)) {
+      yield call(enableSuccessMessage, I18n.t('product_saved_successfully')),
+        yield call(startNavigateScenario);
+    } else {
+      throw element;
+    }
+  } catch (e) {
+    if (__DEV__) {
+      console.log('e', e);
+    }
+    yield call(enableWarningMessage, I18n.t('product_failure'));
   } finally {
   }
 }

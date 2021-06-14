@@ -8,7 +8,7 @@ import I18n from './../../I18n';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const ClassifiedIndexScreen = () => {
-  const {searchClassifieds, searchParams} = useSelector((state) => state);
+  const {searchClassifieds, searchParams} = useSelector(state => state);
   const [currentSearchParams, setCurrentSearchParams] = useState({});
   const [currentElements, setCurrentElements] = useState([]);
 

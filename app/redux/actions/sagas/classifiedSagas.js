@@ -1,7 +1,7 @@
 import {call, put, all, takeLatest, select} from 'redux-saga/effects';
 import * as api from '../api';
 import * as actions from '../types';
-import {NavigationActions} from 'react-navigation';
+import * as RootNavigation from './../../../RootNavigation.js';
 import I18n from '../../../I18n';
 import {
   disableLoading,
@@ -43,7 +43,7 @@ export function* startGetClassifiedsScenario(action) {
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
-          NavigationActions.navigate({
+          RootNavigation.navigate({
             routeName: 'ClassifiedIndex',
             params: {
               name: name ? name : I18n.t('classifieds'),
@@ -73,7 +73,7 @@ export function* startGetHomeClassifiedsScenario(action) {
       yield all([put({type: actions.SET_HOME_CLASSIFIEDS, payload: elements})]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
-          NavigationActions.navigate({
+          RootNavigation.navigate({
             routeName: 'ClassifiedIndex',
             params: {
               name: name ? name : I18n.t('classifieds'),
@@ -111,7 +111,7 @@ export function* startGetClassifiedScenario(action) {
       yield put({type: actions.SET_CLASSIFIED, payload: element});
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
-          NavigationActions.navigate({
+          RootNavigation.navigate({
             routeName: 'Classified',
             params: {
               name: element.name,
@@ -148,7 +148,7 @@ export function* startDeleteClassifiedScenario(action) {
         yield call(enableWarningMessage, element.message),
         yield call(startReAuthenticateScenario),
       ]);
-      yield put(NavigationActions.back());
+      yield put(RootNavigation.back());
     } else {
       throw element.message;
     }
@@ -187,7 +187,7 @@ export function* startStoreClassifiedScenario(action) {
       yield all([
         call(disableLoading),
         call(enableSuccessMessage, I18n.t('update_information_success')),
-        put(NavigationActions.navigate({routeName: 'Home'})),
+        put(RootNavigation.navigate({routeName: 'Home'})),
       ]);
     } else {
       throw element;
@@ -219,7 +219,7 @@ export function* startEditClassifiedScenario(action) {
         yield all([
           call(enableSuccessMessage, I18n.t('update_information_success')),
           put({type: SET_CLASSIFIED, payload: element}),
-          put(NavigationActions.back()),
+          put(RootNavigation.back()),
         ]);
       } else {
         throw element;
@@ -242,13 +242,13 @@ export function* startNewClassifiedScenario(action) {
   if (category.is_real_estate) {
     if (category.has_categoryGroups) {
       yield put(
-        NavigationActions.navigate({
+        RootNavigation.navigate({
           routeName: 'ChooseCategoryGroups',
         }),
       );
     } else {
       yield put(
-        NavigationActions.navigate({
+        RootNavigation.navigate({
           routeName: 'ChooseCategoryGroups',
         }),
       );
@@ -256,7 +256,7 @@ export function* startNewClassifiedScenario(action) {
   } else {
     yield put({type: actions.HIDE_PROPERTIES_MODAL});
     yield put(
-      NavigationActions.navigate({
+      RootNavigation.navigate({
         routeName: 'ClassifiedStore',
         params: {reset: false},
       }),
@@ -269,7 +269,7 @@ export function* startClassifiedSearchingScenario(action) {
   yield all([
     put({type: SET_CATEGORY, payload: element}),
     put({type: SHOW_SEARCH_MODAL}),
-    put(NavigationActions.navigate({routeName: 'ClassifiedFilter'})),
+    put(RootNavigation.navigate({routeName: 'ClassifiedFilter'})),
   ]);
 }
 
@@ -280,7 +280,7 @@ export function* startGetMyClassifiedsScenario(action) {
     if (!validate.isEmpty(redirect) && redirect) {
       const {auth} = yield select();
       yield put(
-        NavigationActions.navigate({
+        RootNavigation.navigate({
           routeName: 'ProfileClassifiedIndex',
           params: {
             name: auth.slug ? auth.slug : I18n.t('classifieds'),

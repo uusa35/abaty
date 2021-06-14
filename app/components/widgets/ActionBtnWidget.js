@@ -3,10 +3,10 @@ import ActionButton from 'react-native-action-button';
 import {Icon} from 'react-native-elements';
 import {StyleSheet, View} from 'react-native';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import I18n from './../../I18n';
 import {iconSizes, text} from './../../constants/sizes';
 import PropTypes from 'prop-types';
+import {useNavigation} from '@react-navigation/native';
 
 const ActionBtnWidget = ({visible = false}) => {
   const {colors} = useContext(GlobalValuesContext);
@@ -16,13 +16,13 @@ const ActionBtnWidget = ({visible = false}) => {
       style={{
         position: 'absolute',
         left: '1%',
-        bottom: '1%',
+        bottom: '15%',
         backgroundColor: 'transparent',
         height: 100,
         zIndex: 99,
       }}>
       <ActionButton
-        style={{opacity: 0.6}}
+        style={{opacity: 0.4}}
         renderIcon={() => (
           <Icon
             name="menu"
@@ -50,7 +50,7 @@ const ActionBtnWidget = ({visible = false}) => {
         <ActionButton.Item
           buttonColor={colors.btn_bg_theme_color}
           title={I18n.t('cart')}
-          onPress={() => navigate('CartIndex')}
+          onPress={() => navigate('CartTab')}
           textStyle={styles.title}>
           <Icon
             name="cart"

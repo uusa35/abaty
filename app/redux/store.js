@@ -3,23 +3,24 @@ import {createLogger} from 'redux-logger';
 import rootSaga from './actions/sagas';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
-import {navMiddleware} from './../AppNavigator';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-// import {createNetworkMiddleware} from 'react-native-offline';
-import {networkTransform} from './../redux/actions/api';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  // transforms: [networkTransform],
   blacklist: [
     'message',
     'cart',
+    'branch',
+    'branches',
+    'pickup',
     'coupon',
+    'player_id',
     'shipment_fees',
     'countryModal',
+    'currencyModal',
     'loginModal',
     'isLoadingProfile',
     'isLoadingContent',
@@ -33,7 +34,6 @@ const persistConfig = {
     'companySearchTextInputModal',
     'isLoadingBoxedList',
     'showIntroduction',
-    'isConnected',
     'bootStrapped',
     'commentModal',
   ], // navigation will not be persisted
@@ -44,22 +44,16 @@ const persistConfig = {
 let Store;
 let PersistStore;
 if (__DEV__) {
-  // create our new saga monitor
-  // and in your call to createSagaMiddlware, pass it along inside
-  // the 1st parameter's object.
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
-  // const networkMiddleware = createNetworkMiddleware({
-  //   queueReleaseThrottle: 200,
-  // });
   const appLogger = createLogger({
     collapsed: true,
     duration: true,
   });
   const composeEnhancers = composeWithDevTools({realtime: true, port: 8081});
   const createDebugger = require('redux-flipper').default;
-  const createFlipperMiddleware = require('rn-redux-middleware-flipper')
-    .default;
+  const createFlipperMiddleware =
+    require('rn-redux-middleware-flipper').default;
   Store = createStore(
     persistedReducer,
     composeEnhancers(
@@ -69,7 +63,6 @@ if (__DEV__) {
         createFlipperMiddleware(),
         appLogger,
         sagaMiddleware,
-        navMiddleware,
       ),
     ),
   );
@@ -78,13 +71,7 @@ if (__DEV__) {
 } else {
   const persistedReducer = persistReducer(persistConfig, reducers);
   const sagaMiddleware = createSagaMiddleware();
-  // const networkMiddleware = createNetworkMiddleware({
-  //   queueReleaseThrottle: 200,
-  // });
-  Store = createStore(
-    persistedReducer,
-    applyMiddleware(sagaMiddleware, navMiddleware),
-  );
+  Store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
   PersistStore = persistStore(Store);
   sagaMiddleware.run(rootSaga);
 }

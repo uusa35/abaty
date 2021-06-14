@@ -18,18 +18,13 @@ import I18n from './../../../I18n';
 
 const IntroductionWidget = ({elements}) => {
   const dispatch = useDispatch();
-  const {settings, showIntroduction} = useSelector((state) => state);
+  const {settings, showIntroduction} = useSelector(state => state);
   const [currentShowIntroduction, setCurrentShowIntroduction] = useState(false);
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     setCurrentShowIntroduction(false);
-  });
-
-  useEffect(() => {
-    currentShowIntroduction
-      ? dispatch(toggleIntroduction(currentShowIntroduction))
-      : null;
-  }, [currentShowIntroduction]);
+    dispatch(toggleIntroduction(false));
+  };
 
   useEffect(() => {
     if (showIntroduction) {

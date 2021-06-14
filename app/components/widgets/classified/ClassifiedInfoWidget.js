@@ -76,7 +76,7 @@ const ClassifiedInfoWidget = ({element, exchange_rate, currency_symbol}) => {
           <PropertiesWidget
             elements={filter(
               element.items,
-              (item) => !item.categoryGroup.is_multi,
+              item => !item.categoryGroup.is_multi,
             )}
           />
         ) : null}

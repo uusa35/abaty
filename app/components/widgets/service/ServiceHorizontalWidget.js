@@ -1,5 +1,11 @@
-import React, {useCallback} from 'react';
-import {ScrollView, TouchableOpacity, Text, View} from 'react-native';
+import React, {useCallback, useContext} from 'react';
+import {
+  ScrollView,
+  Pressable,
+  TouchableOpacity,
+  Text,
+  View,
+} from 'react-native';
 import {map} from 'lodash';
 import PropTypes from 'prop-types';
 import {Icon} from 'react-native-elements';
@@ -12,12 +18,15 @@ import {
   touchOpacity,
 } from '../../../constants/sizes';
 import {useDispatch, useSelector} from 'react-redux';
+import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import {useNavigation} from '@react-navigation/native';
 
 const ServiceHorizontalWidget = ({showName, title}) => {
+  const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
-  const {settings, homeServices, token} = useSelector((state) => state);
-
-  const handleClick = useCallback((element) => {
+  const {settings, homeServices, token} = useSelector(state => state);
+  const navigaiton = useNavigation();
+  const handleClick = element => {
     return dispatch(
       getService({
         id: element.id,
@@ -25,21 +34,23 @@ const ServiceHorizontalWidget = ({showName, title}) => {
         redirect: true,
       }),
     );
-  });
+  };
 
   return (
     <View style={[widgetStyles.container, {backgroundColor: 'transparent'}]}>
-      <TouchableOpacity
+      <Pressable
         activeOpacity={touchOpacity}
-        style={widgetStyles.titleContainer}
-        onPress={() =>
-          dispatch(
-            getSearchServices({
-              searchElements: {on_home: 1},
-              redirect: true,
-            }),
-          )
-        }>
+        style={[
+          widgetStyles.titleContainer,
+          {
+            borderBottomWidth: 0.5,
+            borderBottomColor: colors.btn_theme_color,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingBottom: 10,
+          },
+        ]}
+        onPress={() => navigaiton.navigate('ServiceTab')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
@@ -55,7 +66,7 @@ const ServiceHorizontalWidget = ({showName, title}) => {
           size={20}
           color={settings.colors.header_one_theme_color}
         />
-      </TouchableOpacity>
+      </Pressable>
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}

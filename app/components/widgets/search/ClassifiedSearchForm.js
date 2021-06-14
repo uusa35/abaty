@@ -44,7 +44,7 @@ const ClassifiedSearchForm = ({search, setSearch}) => {
         fontSize: text.small,
         textAlign: isRTL ? 'right' : 'left',
       }}
-      onChangeText={(text) => setSearch(text)}
+      onChangeText={text => setSearch(text)}
     />
   );
 };

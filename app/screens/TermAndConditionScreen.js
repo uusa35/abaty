@@ -9,9 +9,9 @@ import I18n from '../I18n';
 import BgContainer from '../components/containers/BgContainer';
 
 const TermAndConditionScreen = () => {
-  const {terms} = useSelector((state) => state.settings);
+  const {terms} = useSelector(state => state.settings);
   return (
-    <BgContainer>
+    <BgContainer showImage={false} white={false}>
       <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
@@ -19,16 +19,28 @@ const TermAndConditionScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           flex: 1,
-          padding: 10,
+          margin: 15,
           paddingBottom: '15%',
-          justifyContent: 'center',
+          alignSelf: 'center',
+          width: '100%',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          backgroundColor: 'transparent',
+          paddingLeft: 10,
+          paddingRight: 10,
+          borderRadius: 5,
         }}
         contentInset={{bottom: bottomContentInset}}>
-        {!validate.isEmpty(terms) && terms.length > 100 ? (
+        {!validate.isEmpty(terms) && terms.length > 80 ? (
           <WebView
+            javaScriptEnabled={true}
             showsVerticalScrollIndicator={false}
             source={{html: terms}}
-            style={{width: '100%', height, marginTop: 10}}
+            containerStyle={{
+              width: '100%',
+              padding: 10,
+              backgroundColor: 'white',
+            }}
           />
         ) : (
           <NoMoreElements title={I18n.t('not_available')} />

@@ -7,11 +7,11 @@ import ChooseCategoryItem from '../../components/widgets/category/ChooseCategory
 import {filter} from 'lodash';
 
 const ChooseCategoryScreen = () => {
-  const {categories} = useSelector((state) => state);
+  const {categories} = useSelector(state => state);
   const [classifiedCategories, setClassifiedCategories] = useState([]);
 
   useMemo(() => {
-    setClassifiedCategories(filter(categories, (c) => c.is_classified));
+    setClassifiedCategories(filter(categories, c => c.is_classified));
   }, [categories]);
 
   return (

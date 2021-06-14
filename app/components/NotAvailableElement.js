@@ -32,7 +32,12 @@ export default class NotAvailableElement extends Component {
           }}
           titleStyle={{fontFamily: 'cairo'}}
           icon={
-            <Icon name="ios-alert" type="ionicon" size={25} color="white" />
+            <Icon
+              name="alert-triangle"
+              type="feather"
+              size={25}
+              color="white"
+            />
           }
           title={I18n.t('not_available')}
         />

@@ -9,7 +9,7 @@ export const AtSpotViewPagerAdapter = () => {
         /* render */
       }}
       renderTabBar={() => null}
-      renderPager={(props) => (
+      renderPager={props => (
         <ViewPagerAdapter {...props} transition="curl" showPageIndicator />
       )}
     />

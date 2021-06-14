@@ -22,7 +22,7 @@ const TagsList = ({
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
 
-  const handleClick = useCallback((c) => {
+  const handleClick = useCallback(c => {
     switch (type) {
       case 'products':
         return dispatch(

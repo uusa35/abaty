@@ -11,10 +11,10 @@ import EmptyListWidget from '../../Lists/EmptyListWidget';
 
 const ProductFilterHeightsWidget = ({elements, type, color}) => {
   const [currentElement, setCurrentElement] = useState({});
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   const dispatch = useDispatch();
 
-  const handleSetElement = useCallback((item) => {
+  const handleSetElement = useCallback(item => {
     setCurrentElement(item);
     dispatch(setColor(item));
   });

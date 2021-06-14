@@ -22,6 +22,7 @@ const UserWidgetHorizontal = ({
   showName,
   showRating = false,
   showDescription = false,
+  rounded = true,
 }) => {
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const UserWidgetHorizontal = ({
           marginTop: 5,
           marginBottom: 8,
           height: 260,
+          borderRadius: rounded ? 5 : 0,
         },
       ]}
       onPress={() =>
@@ -56,7 +58,13 @@ const UserWidgetHorizontal = ({
         <Fragment>
           <ImageLoaderContainer
             img={user.thumb}
-            style={styles.image}
+            style={[
+              styles.image,
+              {
+                borderTopLeftRadius: rounded ? 5 : 0,
+                borderTopRightRadius: rounded ? 5 : 0,
+              },
+            ]}
             resizeMode="cover"
           />
           {showName ? (
@@ -67,6 +75,7 @@ const UserWidgetHorizontal = ({
                 alignItems: 'center',
                 justifyContent: 'center',
                 alignSelf: 'center',
+                marginTop: 15,
               }}>
               <Text
                 style={[
@@ -74,7 +83,7 @@ const UserWidgetHorizontal = ({
                   {
                     paddingTop: iconSizes.tiny,
                     paddingBottom: iconSizes.tiny,
-                    color: colors.header_tow_theme_color,
+                    color: colors.header_one_theme_color,
                   },
                 ]}>
                 {user.slug}
@@ -85,7 +94,7 @@ const UserWidgetHorizontal = ({
                     styles.mainTitle,
                     {
                       fontSize: text.small,
-                      color: colors.header_tow_theme_color,
+                      color: colors.header_one_theme_color,
                     },
                   ]}>
                   {user.views} {I18n.t('views')}
@@ -107,7 +116,7 @@ const UserWidgetHorizontal = ({
                   style={[
                     widgetStyles.elementName,
                     {
-                      color: colors.header_tow_theme_color,
+                      color: colors.header_one_theme_color,
                       paddingTop: 0,
                       paddingRight: iconSizes.tiny,
                       paddingLeft: iconSizes.tiny,

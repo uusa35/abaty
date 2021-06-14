@@ -14,12 +14,12 @@ import {
   setAddress,
   changeAddress,
 } from '../../redux/actions/user';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation} from '@react-navigation/native';
 import {themeColors} from '../../constants/colors';
 import ConfirmationModal from '../../components/ConfirmationModal';
 
 const UserAddressIndexScreen = () => {
-  const {auth, address} = useSelector((state) => state);
+  const {auth, address} = useSelector(state => state);
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const navigation = useNavigation();

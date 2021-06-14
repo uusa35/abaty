@@ -20,15 +20,13 @@ import ProductCategoryVerticalWidget from '../../components/widgets/category/Pro
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
 import BgContainer from '../../components/containers/BgContainer';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 
-const CompanyShowScreen = () => {
+const CompanyShowScreen = ({navigation}) => {
   const {company, commentModal, searchParams, guest, comments} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors, logo} = useContext(GlobalValuesContext);
   const [refresh, setRefresh] = useState(false);
-  const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const [routes, setRoutes] = useState([
     {key: 'products', title: I18n.t('products')},
@@ -130,7 +128,7 @@ const CompanyShowScreen = () => {
             )}
             <TabView
               lazy={true}
-              renderTabBar={(props) => (
+              renderTabBar={props => (
                 <TabBar
                   {...props}
                   // tabStyle={{ backgroundColor: 'white'}}
@@ -190,7 +188,7 @@ const CompanyShowScreen = () => {
                 ),
               })}
               style={{marginTop: 10, backgroundColor: 'white'}}
-              onIndexChange={(i) => setIndex(i)}
+              onIndexChange={i => setIndex(i)}
               initialLayout={{width: width}}
             />
           </TriggeringView>

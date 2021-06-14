@@ -9,7 +9,7 @@ import {useSelector} from 'react-redux';
 import Modal from 'react-native-modal';
 
 const LoadingBoxedListView = () => {
-  const {isLoadingBoxedList} = useSelector((state) => state);
+  const {isLoadingBoxedList} = useSelector(state => state);
   return (
     <Modal
       visible={isLoadingBoxedList}

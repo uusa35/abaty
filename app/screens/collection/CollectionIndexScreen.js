@@ -6,7 +6,7 @@ import CollectionList from '../../components/widgets/collection/CollectionList';
 import BgContainer from '../../components/containers/BgContainer';
 
 const CollectionIndexScreen = () => {
-  const {country, collections} = useSelector((state) => state);
+  const {country, collections} = useSelector(state => state);
   return (
     <BgContainer>
       <CollectionList

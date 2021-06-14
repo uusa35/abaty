@@ -23,7 +23,7 @@ const ClassifiedWidgetHorizontal = ({
   heightVal = '100%',
 }) => {
   const {currency_symbol, exchange_rate} = useContext(GlobalValuesContext);
-  const {token} = useSelector((state) => state);
+  const {token} = useSelector(state => state);
   const dispatch = useDispatch();
   return (
     <TouchableOpacity

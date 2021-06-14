@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import BgContainer from '../../components/containers/BgContainer';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 import I18n from '../../I18n';
@@ -16,8 +16,9 @@ import shipmentCountry from '../../redux/reducers/shipmentCountry';
 const UserAddressEditScreen = ({showLabel = true}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const route = useRoute();
   const {colors} = useContext(GlobalValuesContext);
-  const {shipmentCountry} = useSelector((state) => state);
+  const {shipmentCountry} = useSelector(state => state);
   const {
     name,
     content,
@@ -29,7 +30,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
     area_id,
     street,
     id,
-  } = navigation.state.params.currentAddress;
+  } = route.params.currentAddress;
   const [addName, setAddName] = useState(name);
   const [addContent, setAddContent] = useState(content);
   const [addArea, setAddArea] = useState(area);
@@ -67,7 +68,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
               ]}
               shake={true}
               keyboardType="default"
-              onChangeText={(text) => setAddName(text)}
+              onChangeText={text => setAddName(text)}
             />
           )}
           <Input
@@ -83,7 +84,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
             ]}
             shake={true}
             keyboardType="default"
-            onChangeText={(text) => setAddContent(text)}
+            onChangeText={text => setAddContent(text)}
           />
 
           <Input
@@ -99,7 +100,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
             ]}
             shake={true}
             keyboardType="default"
-            onChangeText={(text) => setAddArea(text)}
+            onChangeText={text => setAddArea(text)}
           />
 
           <Input
@@ -115,7 +116,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
             ]}
             shake={true}
             keyboardType="numeric"
-            onChangeText={(text) => setAddBlock(text)}
+            onChangeText={text => setAddBlock(text)}
           />
 
           <Input
@@ -131,7 +132,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
             ]}
             shake={true}
             keyboardType="default"
-            onChangeText={(text) => setAddStreet(text)}
+            onChangeText={text => setAddStreet(text)}
           />
 
           <Input
@@ -147,7 +148,7 @@ const UserAddressEditScreen = ({showLabel = true}) => {
             label={showLabel ? I18n.t('building_or_house') : null}
             shake={true}
             keyboardType="default"
-            onChangeText={(text) => setAddBuilding(text)}
+            onChangeText={text => setAddBuilding(text)}
           />
           <DesigneratBtn
             handleClick={() =>

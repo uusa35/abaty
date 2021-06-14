@@ -68,11 +68,11 @@ const ServiceList = ({
       return axiosInstance(`search/service?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           const serviceGroup = uniqBy(items.concat(r.data), 'id');
           setItems(serviceGroup);
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -88,7 +88,7 @@ const ServiceList = ({
     setIsLoading(false);
     setRefresh(false);
     if (search.length > 0) {
-      let filtered = filter(items, (i) => (i.name.includes(search) ? i : null));
+      let filtered = filter(items, i => (i.name.includes(search) ? i : null));
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
         : setItems([]);

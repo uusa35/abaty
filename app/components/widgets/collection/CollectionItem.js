@@ -42,7 +42,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('service_date_and_time')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -60,7 +60,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('company')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -78,7 +78,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('sku')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -96,7 +96,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('size')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -114,7 +114,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('color_or_height')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{
@@ -132,7 +132,7 @@ const CollectionItem = ({element, logo, editMode, qty, timeData = null}) => {
           <View style={{flexDirection: 'row', paddingTop: 3}}>
             <Text style={styles.productItemTitle}>
               {I18n.t('qty')}
-              <Text>:</Text>
+              <Text style={{color: 'black'}}>:</Text>
             </Text>
             <Text
               style={{

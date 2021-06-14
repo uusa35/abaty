@@ -13,10 +13,10 @@ import BgContainer from '../../components/containers/BgContainer';
 import {HOMEKEY} from './../../../app';
 
 const ProfileIndexScreen = () => {
-  const {auth} = useSelector((state) => state);
+  const {auth} = useSelector(state => state);
 
   return (
-    <BgContainer showImage={!HOMEKEY}>
+    <BgContainer showImage={false}>
       <ScrollView
         contentContainerStyle={{minHeight: !isIOS ? '120%' : null}}
         horizontal={false}

@@ -21,15 +21,13 @@ import ClassifiedCategoryVerticalWidget from '../../components/widgets/category/
 import ClassifiedDoubleList from '../../components/widgets/classified/ClassifiedDoubleList';
 import {uniqBy, map} from 'lodash';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
 const CompanyClassifiedShowScreen = () => {
   const {company, comments, commentModal, searchParams} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors, guest, logo} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
@@ -54,7 +52,7 @@ const CompanyClassifiedShowScreen = () => {
   useMemo(() => {
     if (!validate.isEmpty(company.classifieds)) {
       const categories = uniqBy(
-        map(company.classifieds, (c) => c.category),
+        map(company.classifieds, c => c.category),
         'id',
       );
       setCollectedCategories(categories);
@@ -126,7 +124,7 @@ const CompanyClassifiedShowScreen = () => {
           )}
           <TabView
             lazy={true}
-            renderTabBar={(props) => (
+            renderTabBar={props => (
               <TabBar
                 {...props}
                 // tabStyle={{ backgroundColor: 'white'}}
@@ -188,7 +186,7 @@ const CompanyClassifiedShowScreen = () => {
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={(i) => setIndex(i)}
+            onIndexChange={i => setIndex(i)}
             initialLayout={{width: width}}
           />
         </TriggeringView>

@@ -1,33 +1,29 @@
 import {
   APP_CASE,
   ENV,
-  AT_SPOT_PUSHER_KEY,
   pusherEnabled,
-  EXPO_PUSHER_KEY,
+  DESIGNERAT_PUSHER_ID,
+  DESIGNERAT_PUSHER_KEY,
+  EXPO_ONE_SIGNAL_APP_ID,
+  DESIGNERAT_ONE_SIGNAL_APP_ID,
+  ISTORES_ONE_SIGNAL_APP_ID,
+  IHOUSES_ONE_SIGNAL_APP_ID,
+  ABATI_ONE_SIGNAL_APP_ID,
 } from '../app';
 import Pusher from 'pusher-js/react-native';
 const isLocal = __DEV__;
 const appUrl = () => {
   switch (APP_CASE) {
-    case 'abati':
-      // return 'http://mallr.test/';
-      return 'http://abatiapp.com/';
-    case 'mallr':
-      return 'http://mallr.net/';
-    case 'homekey':
-      return 'http://homekey.site/';
-    case 'escrap':
-      return 'http://escrapco.com/';
-    case 'atspot':
-      return 'http://atspot.ideasowners.net/';
-    case 'expo':
+    case 'DESIGNERAT':
+      return 'https://designeraat.com/';
+    case 'MYEXPO':
       return 'http://myexpo.live/';
-    case 'daily':
-      return 'http://dailydresskw.com/';
-    case 'nashkw':
-      return 'http://nashkw.com/';
-    case 'bits':
-      return 'http://bits.ideasowners.net/';
+    case 'ISTORES':
+      return 'http://i-stores.store/';
+    case 'IHOUSES':
+      return 'http://i-houses.net/';
+    case 'ABATI':
+      return 'http://abatiapp.com/';
     default:
       return 'http://mallr.test/';
   }
@@ -37,12 +33,10 @@ const appUrlAndroid =
   isLocal && ENV === 'local' ? 'http://mallr.test/' : appUrl();
 const pusherInstance = () => {
   switch (APP_CASE) {
-    case 'atspot':
-      return AT_SPOT_PUSHER_KEY;
-    case 'expo':
-      return EXPO_PUSHER_KEY;
+    case 'DESIGNERAT':
+      return DESIGNERAT_PUSHER_ID;
     default:
-      return pusherEnabled ? AT_SPOT_PUSHER_KEY : '';
+      return pusherEnabled ? DESIGNERAT_PUSHER_KEY : '';
   }
 };
 const pusher = new Pusher(pusherInstance(), {
@@ -50,10 +44,24 @@ const pusher = new Pusher(pusherInstance(), {
   forceTLS: true,
 });
 if (__DEV__) {
-  // console.log('isLocal', isLocal);
-  // console.log('the Link Now', appUrlIos);
-  // console.log('the isLocal now', isLocal);
   Pusher.logToConsole = pusherEnabled;
 }
 const channel = pusher.subscribe('my-channel');
-export {appUrlIos, appUrlAndroid, isLocal, channel};
+const oneSignalAppId = () => {
+  switch (APP_CASE) {
+    case 'DESIGNERAT':
+      return DESIGNERAT_PUSHER_ID;
+    case 'MYEXPO':
+      return EXPO_ONE_SIGNAL_APP_ID;
+    case 'ISTORES':
+      return ISTORES_ONE_SIGNAL_APP_ID;
+    case 'IHOUSES':
+      return IHOUSES_ONE_SIGNAL_APP_ID;
+    case 'ABATI':
+      return ABATI_ONE_SIGNAL_APP_ID;
+    default:
+      null;
+  }
+};
+const oneSignalId = oneSignalAppId();
+export {appUrlIos, appUrlAndroid, isLocal, channel, oneSignalId};

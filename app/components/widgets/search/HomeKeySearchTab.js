@@ -9,9 +9,13 @@ import {startClassifiedSearching} from '../../../redux/actions/classified';
 import ClassifiedSearchForm from './ClassifiedSearchForm';
 import {showClassifiedFilter} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
-import {useNavigation} from 'react-navigation-hooks';
 
-const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
+const HomeKeySearchTab = ({
+  elements,
+  main_bg,
+  onlyTextForm = false,
+  navigation,
+}) => {
   const dispatch = useDispatch();
   const {colors, lang} = useContext(GlobalValuesContext);
   const [index, setIndex] = useState(0);
@@ -26,7 +30,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
     }
   });
   const [routes, setRoutes] = useState(parentCategories);
-  const {navigate} = useNavigation();
+  const {navigate} = navigation;
 
   useMemo(() => {
     const parentCategories = map(take(elements, 3), (e, i) => {
@@ -94,7 +98,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
       ) : (
         <TabView
           lazy={true}
-          renderTabBar={(props) => (
+          renderTabBar={props => (
             <TabBar
               {...props}
               tabStyle={{backgroundColor: 'transparent'}}
@@ -125,7 +129,7 @@ const HomeKeySearchTab = ({elements, main_bg, onlyTextForm = false}) => {
           }}
           renderScene={renderScene}
           style={{backgroundColor: 'transparent'}}
-          onIndexChange={(i) => setIndex(i)}
+          onIndexChange={i => setIndex(i)}
           initialLayout={{width: width}}
         />
       )}

@@ -6,6 +6,7 @@ import {View} from 'react-native-animatable';
 import {Icon} from 'react-native-elements';
 import PropTypes from 'prop-types';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
+import widgetStyles from '../widgetStyles';
 
 const ProductInfoWidgetElement = ({
   link,
@@ -27,29 +28,10 @@ const ProductInfoWidgetElement = ({
       }}
       onPress={link}>
       {elementName && (
-        <Text
-          style={{
-            textAlign: 'left',
-            fontSize: text.medium,
-            fontFamily: text.font,
-            color: colors.header_one_theme_color,
-          }}>
-          {I18n.t(elementName)}
-        </Text>
+        <Text style={widgetStyles.headerFour}>{I18n.t(elementName)}</Text>
       )}
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        {name && (
-          <Text
-            style={{
-              textAlign: 'left',
-              fontSize: text.medium,
-              fontFamily: text.font,
-              paddingLeft: 10,
-              paddingRight: 10,
-            }}>
-            {name}
-          </Text>
-        )}
+        {name && <Text style={widgetStyles.headerFour}>{name}</Text>}
         {showIcon ? (
           <Icon
             name={

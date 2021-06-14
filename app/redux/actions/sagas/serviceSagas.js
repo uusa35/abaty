@@ -10,48 +10,44 @@ import {
 import * as api from '../api';
 import validate from 'validate.js';
 import * as actions from '../types';
-import {NavigationActions} from 'react-navigation';
+import * as RootNavigation from './../../../RootNavigation.js';
 import I18n from '../../../I18n';
 import {SET_SERVICES} from '../types';
 
 export function* startGetServiceScenario(action) {
   try {
     const {redirect} = action.payload;
-    yield call(enableLoadingContent);
+    if (!validate.isEmpty(redirect) && redirect) {
+      yield call(enableLoadingContent);
+    }
     const element = yield call(api.getService, action.payload);
-    if (!validate.isEmpty(element) && element.id) {
-      yield all([
-        put({type: actions.SET_SERVICE, payload: element}),
-        call(disableLoadingContent),
-      ]);
+    if (
+      !validate.isEmpty(element) &&
+      validate.isObject(element) &&
+      element.id
+    ) {
+      yield put({type: actions.SET_SERVICE, payload: element});
       if (!validate.isEmpty(redirect) && redirect) {
-        yield all([
-          call(startGoogleAnalyticsScenario, {
-            payload: {type: 'Service', element},
-          }),
-          put(
-            NavigationActions.navigate({
-              routeName: 'Service',
-              params: {
-                name: element.name,
-                id: element.id,
-                model: 'service',
-                type: 'service',
-              },
-            }),
-          ),
-        ]);
+        yield call(startGoogleAnalyticsScenario, {
+          payload: {type: 'Service', element},
+        });
+        RootNavigation.navigate('ServiceShow', {
+          name: element.name,
+          id: element.id,
+          model: 'service',
+          type: 'service',
+        });
       }
-    } else {
-      throw element;
     }
   } catch (e) {
     if (__DEV__) {
-      // console.log('e', e);
+      console.log('e', e);
     }
     yield call(enableWarningMessage, I18n.t('error_while_loading_service'));
   } finally {
-    yield call(disableLoadingContent);
+    if (action.payload.redirect) {
+      yield call(disableLoadingContent);
+    }
   }
 }
 
@@ -66,10 +62,7 @@ export function* startGetSearchServicesScenario(action) {
       ]);
       if (!validate.isEmpty(redirect) && redirect) {
         yield put(
-          NavigationActions.navigate({
-            routeName: 'ServiceIndex',
-            params: I18n.t('services'),
-          }),
+          RootNavigation.navigate('ServiceIndex', {name: I18n.t('services')}),
         );
       }
     } else {

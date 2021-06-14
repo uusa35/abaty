@@ -5,7 +5,8 @@ import I18n from './../../../I18n';
 import validate from 'validate.js/validate';
 import {enableLoading} from './settingSagas';
 import * as helpers from './../../../helpers';
-import {DrawerActions} from 'react-navigation-drawer';
+import * as RootNavigation from './../../../RootNavigation.js';
+import {DrawerActions} from '@react-navigation/native';
 import RNRestart from 'react-native-restart';
 import {axiosInstance} from '../api';
 
@@ -29,7 +30,7 @@ export function* setDirection(lang) {
 export function* startChangeLang(action) {
   try {
     yield call(enableLoading);
-    yield put(DrawerActions.closeDrawer());
+    yield call(RootNavigation.closeDrawer);
     const lang = action.payload;
     helpers.setLang(lang);
     yield call(setDirection, lang);

@@ -5,8 +5,11 @@ import I18n from '../../../I18n';
 import {iconSizes, text} from '../../../constants/sizes';
 import {showClassifiedFilter, showProductFilter} from '../../../redux/actions';
 import {useDispatch} from 'react-redux';
-import {useNavigation} from 'react-navigation-hooks';
-
+import {useNavigation} from '@react-navigation/native';
+import {themeColors} from '../../../constants/colors';
+import FastImage from 'react-native-fast-image';
+import {icons} from '../../../constants/images';
+import widgetStyles from '../widgetStyles';
 const SearchSort = ({
   showProductsFilter = false,
   showClassifiedsFilter = false,
@@ -19,26 +22,83 @@ const SearchSort = ({
     <View
       style={{
         flexDirection: 'row',
+        justifyContent: 'center',
         alignSelf: 'center',
         flex: 1,
+        borderWidth: 1,
+        borderColor: themeColors.desinerat.darkGray,
+        height: 60,
       }}>
       <TouchableOpacity
-        style={styles.btnStyle}
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          borderLeftWidth: 1,
+          borderLeftColor: themeColors.desinerat.darkGray,
+        }}
         onPress={() => setSortModal(true)}>
         <Icon type="entypo" name="select-arrows" size={iconSizes.smaller} />
-        <Text style={styles.btnTitle}>{I18n.t('sort')}</Text>
+        <Text style={widgetStyles.headerFour}>{I18n.t('sort')}</Text>
       </TouchableOpacity>
       {showProductsFilter && (
         <TouchableOpacity
-          style={styles.btnStyle}
-          onPress={() => dispatch(showProductFilter())}>
-          <Icon type="antdesign" name="filter" size={iconSizes.smaller} />
-          <Text style={styles.btnTitle}>{I18n.t('filter')}</Text>
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            borderLeftWidth: 1,
+            borderLeftColor: themeColors.desinerat.darkGray,
+          }}
+          onPress={() =>
+            dispatch(
+              showProductFilter({
+                showModal: true,
+                showColor: false,
+                showSize: true,
+              }),
+            )
+          }>
+          <FastImage
+            source={icons.categoryFilter}
+            style={{width: iconSizes.smaller, height: iconSizes.smaller}}
+          />
+          <Text style={widgetStyles.headerFour}>
+            {I18n.t('category_filter')}
+          </Text>
+        </TouchableOpacity>
+      )}
+      {showProductsFilter && (
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            borderLeftWidth: 1,
+            borderLeftColor: themeColors.desinerat.darkGray,
+          }}
+          onPress={() =>
+            dispatch(
+              showProductFilter({
+                showModal: true,
+                showColor: true,
+                showSize: false,
+              }),
+            )
+          }>
+          <FastImage
+            source={icons.colorFilter}
+            style={{width: iconSizes.smaller, height: iconSizes.smaller}}
+          />
+          <Text style={widgetStyles.headerFour}>{I18n.t('color_filter')}</Text>
         </TouchableOpacity>
       )}
       {showClassifiedsFilter && (
         <TouchableOpacity
-          style={styles.btnStyle}
+          style={{flexDirection: 'row'}}
           onPress={() => navigate('ClassifiedFilterModal')}>
           <Icon type="antdesign" name="filter" size={iconSizes.smaller} />
           <Text style={styles.btnTitle}>{I18n.t('filter')}</Text>

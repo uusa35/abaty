@@ -7,6 +7,7 @@ const KeyBoardContainer = ({
   children,
   handleRefresh = null,
   behavior = 'padding',
+  showRefresh = false,
 }) => {
   const [refresh, setRefresh] = useState(false);
   return (
@@ -21,10 +22,12 @@ const KeyBoardContainer = ({
       }}>
       <ScrollView
         refreshControl={
-          <RefreshControl
-            refreshing={refresh}
-            onRefresh={() => (handleRefresh ? handleRefresh() : null)}
-          />
+          showRefresh ? (
+            <RefreshControl
+              refreshing={refresh}
+              onRefresh={() => (handleRefresh ? handleRefresh() : null)}
+            />
+          ) : null
         }
         contentInset={{bottom: bottomContentInset}}
         horizontal={false}

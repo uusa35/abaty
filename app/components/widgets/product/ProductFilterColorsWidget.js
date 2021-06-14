@@ -16,7 +16,7 @@ const ProductFilterColorsWidget = ({elements, type, colors, color}) => {
   const [currentElement, setCurrentElement] = useState(color);
   const dispatch = useDispatch();
 
-  const handleSetElement = useCallback((item) => {
+  const handleSetElement = useCallback(item => {
     setCurrentElement(item);
     dispatch(setColor(item));
   });

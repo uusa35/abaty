@@ -28,20 +28,20 @@ const UserImageProfile = ({
   showComments = false,
   commentsCount,
 }) => {
-  const {guest} = useSelector((state) => state);
+  const {guest} = useSelector(state => state);
   const [rating, setRating] = useState(currentRating);
   const [fanMe, setFanMe] = useState(isFanned);
   const [fans, setFans] = useState(totalFans);
   const dispatch = useDispatch();
   const {colors, logo} = useContext(GlobalValuesContext);
 
-  const handleRating = (rating) => {
+  const handleRating = rating => {
     if (rating !== currentRating) {
       return dispatch(rateUser({value: rating, member_id}));
     }
   };
 
-  const handleFan = (fanMe) => {
+  const handleFan = fanMe => {
     if (!guest) {
       fanMe ? setFans(fans + 1) : setFans(fans - 1);
       setFanMe(fanMe);
@@ -55,7 +55,7 @@ const UserImageProfile = ({
       animation="bounceInLeft"
       easing="ease-out"
       style={styles.elementRow}>
-      <ImageLoaderContainer img={medium} style={styles.logo} />
+      {medium && <ImageLoaderContainer img={medium} style={styles.logo} />}
       <View
         style={{
           justifyContent: 'flex-start',
@@ -121,7 +121,7 @@ const UserImageProfile = ({
               count={10}
               ratingCount={5}
               style={{paddingVertical: 0}}
-              onFinishRating={(rating) => handleRating(rating)}
+              onFinishRating={rating => handleRating(rating)}
               imageSize={20}
             />
           ) : null}

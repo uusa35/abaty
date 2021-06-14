@@ -25,13 +25,11 @@ import ClassifiedStorePropertiesWidget from '../../components/widgets/property/C
 import {addToProperties} from '../../redux/actions/classified';
 import {HIDE_PROPERTIES_MODAL} from '../../redux/actions/types';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 
-const CategoryGroupsScreen = () => {
+const CategoryGroupsScreen = ({navigation}) => {
   const {category, classifiedProps, propertiesModal} = useSelector(
-    (state) => state,
+    state => state,
   );
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
   const [currentCategoryGroup, setCurrentCategoryGroup] = useState(
@@ -49,17 +47,17 @@ const CategoryGroupsScreen = () => {
     }
   }, [currentCategoryGroup, remainingGroups]);
 
-  const handleClick = useCallback((property) => {
+  const handleClick = useCallback(property => {
     const filterSwitchProps = filter(
       selectedProperties,
-      (p) =>
+      p =>
         p.category_group_property ===
         `${currentCategoryGroup.id}${property.id}`,
     );
     if (!validate.isEmpty(filterSwitchProps)) {
       const removeProp = filter(
         selectedProperties,
-        (p) => p.property.id !== property.id,
+        p => p.property.id !== property.id,
       );
       setSelectedProperties(removeProp);
     } else {
@@ -237,7 +235,7 @@ const CategoryGroupsScreen = () => {
                               !validate.isEmpty(
                                 filter(
                                   selectedProperties,
-                                  (p) => p.property.id === property.id,
+                                  p => p.property.id === property.id,
                                 ),
                               ) ? (
                                 <Icon

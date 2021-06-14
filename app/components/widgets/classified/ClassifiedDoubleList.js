@@ -56,7 +56,7 @@ const ClassifiedDoubleList = ({
   [sortModal, setSortModal] = useState(false);
   [mapModal, setMapModal] = useState(false);
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
 
   const loadMore = useCallback(() => {
     setShowMore(true);
@@ -94,14 +94,14 @@ const ClassifiedDoubleList = ({
       return axiosInstance(`search/classified?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           setIsLoading(false);
           setRefresh(false);
           const classifiedGroup = uniqBy(items.concat(r.data), 'id');
           setItems(classifiedGroup);
           setElements(classifiedGroup);
         })
-        .catch((e) => {
+        .catch(e => {
           setIsLoading(false);
           setRefresh(false);
         });
@@ -120,7 +120,7 @@ const ClassifiedDoubleList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(elements, (i) =>
+      let filtered = filter(elements, i =>
         i.name.includes(search) ? i : null,
       );
       filtered.length > 0 || search.length > 0

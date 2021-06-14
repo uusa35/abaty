@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {links} from './../../constants/links';
-import {createTransform} from 'redux-persist';
+import {links} from '../../constants/links';
 import {
   checkImage,
   getImageExtension,
@@ -9,11 +8,12 @@ import {
   getImageUri,
 } from '../../helpers';
 import {map, filter} from 'lodash';
-import NetInfo from '@react-native-community/netinfo';
-import {isIOS} from '../../constants';
 
 export const axiosInstance = axios.create({
   baseURL: links.apiUrl,
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
 });
 
 if (__DEV__) {
@@ -23,268 +23,236 @@ if (__DEV__) {
 export async function getSettings() {
   return await axiosInstance
     .get('setting')
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getFaqs() {
+  return await axiosInstance
+    .get('faq')
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getHomeCategories(params) {
   return await axiosInstance
     .get(`category`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getHomeBrands() {
   return await axiosInstance
     .get(`brand`, {params: {on_home: 1}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getSplashes() {
   return await axiosInstance
     .get(`slide`, {params: {is_intro: 1}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getUsers(params) {
   return await axiosInstance
     .get(`search/user`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCommercials() {
   return await axiosInstance
     .get(`commercial`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getSlides(elements) {
   return await axiosInstance
     .get(`slide`, {params: elements})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getProducts(params) {
   return await axiosInstance
     .get(`product`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getServices(params) {
   return await axiosInstance
     .get(`service`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getPages() {
   return await axiosInstance
     .get(`page`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getTags() {
   return await axiosInstance
     .get(`tag`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getClassified(params) {
   const {id} = params;
   return await axiosInstance
     .get(`classified/${id}`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function deleteClassified(params) {
   const {id, api_token} = params;
   return await axiosInstance
     .delete(`classified/${id}`, {data: {id, api_token}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getSearchClassifieds(params) {
   return await axiosInstance
     .get(`search/classified`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getIndexVideo() {
   return await axiosInstance
     .get(`video`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getProductCart(params) {
   return await axiosInstance
     .get(`cart/items`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getProduct(params) {
   const {id} = params;
   return await axiosInstance
     .get(`product/${id}`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getService(params) {
   const {id} = params;
   return await axiosInstance
     .get(`service/${id}`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getSearchProducts(params) {
   return await axiosInstance
     .get(`search/product`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getSearchServices(params) {
   return await axiosInstance
     .get(`search/service`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getHomeProducts(params) {
   return await axiosInstance
     .get(`product`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getHomeCollections(params) {
   return await axiosInstance
     .get(`collection`, {params})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCollections() {
   return await axiosInstance
     .get(`collection`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCollection(id) {
   return await axiosInstance
     .get(`collection/${id}`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCountries() {
   return await axiosInstance
     .get(`country`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getCurrencies() {
+  return await axiosInstance
+    .get(`currency`)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getUser(id) {
   return await axiosInstance
     .get(`user/${id}`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getVideo(id) {
   return await axiosInstance
     .get(`video/${id}`)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCountry(country_id?) {
   return await axiosInstance
     .get(`country/ip`, {params: {country_id}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function storePlayerId(player_id) {
   return await axiosInstance
     .post(`device`, {player_id})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
-}
-
-// Transform how the persistor reads the network state
-export const networkTransform = createTransform(
-  (inboundState, key) => {
-    const actionQueue = [];
-
-    inboundState.actionQueue.forEach((action) => {
-      if (typeof action === 'function') {
-        actionQueue.push({
-          function: action.meta.name,
-          args: action.meta.args,
-        });
-      } else if (typeof action === 'object') {
-        actionQueue.push(action);
-      }
-    });
-
-    return {
-      ...inboundState,
-      actionQueue,
-    };
-  },
-  (outboundState, key) => {
-    const actionQueue = [];
-
-    outboundState.actionQueue.forEach((action) => {
-      if (action.function) {
-        const actionFunction = actions[action.function];
-        actionQueue.push(actionFunction(...action.args));
-      } else {
-        actionQueue.push(action);
-      }
-    });
-
-    return {...outboundState, actionQueue};
-  },
-  // The 'network' key may change depending on what you
-  // named your network reducer.
-  {whitelist: ['isConnected']},
-);
-
-export async function checkConnectionStatus() {
-  return await NetInfo.fetch()
-    .then((state) => state.isConnected)
-    .catch((e) => e);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function authenticated(api_token) {
   return await axiosInstance
     .post(`authenticate`, {params: {api_token}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function reAuthenticate(api_token) {
   return await axiosInstance
     .post(`reauthenticate`, {params: {api_token}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function authenticate(elements) {
@@ -295,53 +263,61 @@ export async function authenticate(elements) {
       password,
       player_id,
     })
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function googleAuthenticate(action) {
   const {name, email} = action;
   return await axiosInstance
     .get(`google/authenticate`, {params: {name, email}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getCoupon(elements) {
   const {code} = elements;
   return await axiosInstance
     .get(`coupon/${code}`, {params: elements})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function makeMyFatoorahPayment(params) {
   return await axiosInstance
     .post(`myfatoorah/payment`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function makeTapPayment(params) {
   // console.log('params', params);
   return await axiosInstance
     .post(`tap/payment`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function makeIbookeyPayment(params) {
+  // console.log('params', params);
+  return await axiosInstance
+    .post(`ibooky/payment`, params)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function makeCashOnDeliveryPayment(params) {
   return await axiosInstance
     .post(`order`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function register(params) {
   return await axiosInstance
     .post(`register`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function updateUser(params) {
@@ -377,8 +353,8 @@ export async function updateUser(params) {
   formData.append('_method', 'put');
   return await axiosInstance
     .post(`user/${params.id}`, formData)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function companyRegister(params) {
@@ -386,6 +362,7 @@ export async function companyRegister(params) {
     name,
     email,
     image,
+    banner,
     images,
     password,
     role_id,
@@ -401,6 +378,13 @@ export async function companyRegister(params) {
       uri: getImagePath(image),
       name: getImageName(image),
       type: getImageExtension(image),
+    });
+  }
+  if (checkImage(banner)) {
+    formData.append('banner', {
+      uri: getImagePath(banner),
+      name: getImageName(banner),
+      type: getImageExtension(banner),
     });
   }
   const filteredImages = filter(images, (img, i) => img.path !== image.path);
@@ -426,8 +410,8 @@ export async function companyRegister(params) {
   formData.append('description', description);
   return await axiosInstance
     .post(`register`, formData)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function storeClassified(elements) {
@@ -495,8 +479,8 @@ export async function storeClassified(elements) {
   // }
   return await axiosInstance
     .post(`classified`, formData)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function updateClassified({elements, id}) {
@@ -562,57 +546,57 @@ export async function updateClassified({elements, id}) {
   formData.append('_method', 'put');
   return await axiosInstance
     .post(`classified/${id}`, formData)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getFavorites(params) {
   return await axiosInstance
     .get(`favorite`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function toggleFavorite(params) {
   return await axiosInstance
     .post(`favorite`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
-export async function rateUser(params) {
+export async function rateElement(params) {
   return await axiosInstance
     .post(`rating`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function becomeFan(id) {
   return await axiosInstance
     .post(`fan`, {id})
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function addComment(params) {
   return await axiosInstance
     .post(`comment`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function createAddress(params) {
   return await axiosInstance
     .post(`address`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function updateAddress(params) {
   return await axiosInstance
     .put(`address/${params.id}`, params)
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
   // .catch((e) => e.response.date.message);
 }
 
@@ -620,27 +604,109 @@ export async function deleteAddress(params) {
   const {id, api_token} = params;
   return await axiosInstance
     .delete(`address/${id}`, {data: {id, api_token}})
-    .then((r) => r.data)
-    .catch((e) => e.response.data.message);
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }
 
 export async function getRoles() {
   return await axiosInstance
     .get(`role`)
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.date.message);
 }
 
 export async function getColors() {
   return await axiosInstance
     .get(`color`)
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.date.message);
 }
 
 export async function getSizes() {
   return await axiosInstance
     .get(`size`)
-    .then((r) => r.data)
-    .catch((e) => e.response.date.message);
+    .then(r => r.data)
+    .catch(e => e.response.date.message);
+}
+
+export async function submitMobileConfirmationCode(code) {
+  return await axiosInstance
+    .get(`mobile/code`, {params: {code}})
+    .then(r => r.data)
+    .catch(e => e.response.date.message);
+}
+
+export async function resendMobileConfirmationCode(token) {
+  return await axiosInstance
+    .post(`mobile/resend/code`, {api_token: token})
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function submitCreateNewProduct(params) {
+  const {
+    name,
+    sku,
+    price,
+    qty,
+    categories,
+    api_token,
+    description,
+    image,
+    images,
+  } = params;
+  const formData = new FormData();
+  if (checkImage(image)) {
+    formData.append('image', {
+      uri: getImagePath(image),
+      name: getImageName(image),
+      type: getImageExtension(image),
+    });
+  }
+  const filteredImages = filter(images, (img, i) => img.path !== image.path);
+  map(filteredImages, (img, i) => {
+    if (checkImage(img)) {
+      formData.append(`images[${i}]`, {
+        uri: getImagePath(img),
+        name: getImageName(img),
+        type: getImageExtension(img),
+      });
+    }
+  });
+  formData.append('name', name);
+  formData.append('price', price);
+  formData.append('qty', qty);
+  formData.append('sku', sku);
+  formData.append('api_token', api_token);
+  formData.append('description', description);
+  map(categories, (c, i) => {
+    formData.append(`categories[${i}]`, c);
+  });
+  return await axiosInstance
+    .post(`product`, formData)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getGovernates(lang) {
+  return await axiosInstance(
+    `https://api.mirsalapp.com/rest/areas?lang=${lang}`,
+  )
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
+}
+
+export async function getDeliveryFees(values) {
+  const formData = new FormData();
+  formData.append('receive_on_branch', values.receive_on_branch);
+  formData.append('country_id', values.country_id);
+  formData.append('merchant_id', values.merchant_id);
+  formData.append('cart_items_no', values.cart_items_no);
+  map(values.pickups, (c, i) => {
+    formData.append(`pickups[${i}]`, c);
+  });
+  return await axiosInstance
+    .post(`delivery/calculation`, formData)
+    .then(r => r.data)
+    .catch(e => e.response.data.message);
 }

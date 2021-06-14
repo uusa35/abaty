@@ -40,9 +40,9 @@ const VideoWidget = ({
           play={false} // control playback of video with true/false
           fullscreen={false} // control whether the video should play in fullscreen or inline
           loop // control whether the video should loop when ended
-          onReady={(e) => setIsReady(true)}
-          onChangeState={(e) => setStatus(e.status)}
-          onChangeQuality={(e) => setQuality(e.quality)}
+          onReady={e => setIsReady(true)}
+          onChangeState={e => setStatus(e.status)}
+          onChangeQuality={e => setQuality(e.quality)}
           // onError={(e) => console.log(e.error)}
           style={{
             alignSelf: 'center',

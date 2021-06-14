@@ -9,9 +9,8 @@ import {round} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
 
 const ServiceInfoWidgetMainTitle = ({element}) => {
-  const {colors, currency_symbol, exchange_rate} = useContext(
-    GlobalValuesContext,
-  );
+  const {colors, currency_symbol, exchange_rate} =
+    useContext(GlobalValuesContext);
   const [favorite, setFavorite] = useState(element.isFavorite);
 
   return (

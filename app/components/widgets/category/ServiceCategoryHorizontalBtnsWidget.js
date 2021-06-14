@@ -24,7 +24,7 @@ const ServiceCategoryHorizontalBtnsWidget = ({
   showName = true,
   showImage = true,
 }) => {
-  const handleClick = useCallback((c) => {
+  const handleClick = useCallback(c => {
     return dispatch(
       getSearchServices({
         name: c.name,

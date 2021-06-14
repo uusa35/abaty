@@ -19,7 +19,7 @@ const DesingeratBtn = ({
   bgColor = null,
   disabled = false,
 }) => {
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
   return (
     <TouchableOpacity
       disabled={disabled}

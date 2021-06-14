@@ -3,7 +3,7 @@ import {iconSizes, text} from '../../constants/sizes';
 import {Icon, Input} from 'react-native-elements';
 import React from 'react';
 
-const TopSearchInput = ({search, setSearch}) => {
+const TopSearchInput = ({search = '', setSearch}) => {
   return (
     <Input
       placeholder={I18n.t('search')}
@@ -17,7 +17,7 @@ const TopSearchInput = ({search, setSearch}) => {
           onPress={() => setSearch('')}
           hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
           type="antdesign"
-          name={search && search.length > 0 ? 'close' : 'search1'}
+          name={search.length > 0 ? 'close' : 'search1'}
           color="#c4c4c4"
           size={iconSizes.smaller}
         />
@@ -32,7 +32,7 @@ const TopSearchInput = ({search, setSearch}) => {
         marginTop: 10,
         marginBottom: 2,
       }}
-      onChangeText={(e) => setSearch(e)}
+      onChangeText={e => setSearch(e)}
       value={search}
     />
   );

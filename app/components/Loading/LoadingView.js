@@ -30,7 +30,7 @@ const LoadingView = ({
     isLoadingContent,
     isLoadingProfile,
     isLoadingBoxedList,
-  } = useSelector((state) => state);
+  } = useSelector(state => state);
   const {colors} = settings;
   const [moveRand, setMoveRand] = useState([
     'CircleFlip',

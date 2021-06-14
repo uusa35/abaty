@@ -26,15 +26,13 @@ import {getMyClassifieds} from '../../redux/actions/classified';
 import {reAuthenticate, setRole} from '../../redux/actions/user';
 import BgContainer from '../../components/containers/BgContainer';
 import CopyRightInfo from '../../components/widgets/setting/CopyRightInfo';
-import {useNavigation} from 'react-navigation-hooks';
 import {isEmpty, first, filter} from 'lodash';
 import {width} from './../../constants';
 
-const SettingsIndexScreen = () => {
-  const {guest, lang, settings, version, roles} = useSelector((state) => state);
+const SettingsIndexScreen = ({navigation}) => {
+  const {guest, lang, settings, version, roles} = useSelector(state => state);
   const {colors} = settings;
   const [refresh, setRefresh] = useState(false);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const handleRefresh = () => {
@@ -46,16 +44,13 @@ const SettingsIndexScreen = () => {
 
   const handleRegisterClick = () => {
     if (!isEmpty(roles)) {
-      dispatch(setRole(first(filter(roles, (r) => r.name === 'Client'))));
+      dispatch(setRole(first(filter(roles, r => r.name === 'Client'))));
     }
     return navigation.navigate('Register');
   };
 
   return (
-    <BgContainer
-      enableMargin={true}
-      marginVal={width / 20}
-      showImage={!HOMEKEY}>
+    <BgContainer enableMargin={true} marginVal={width / 20} showImage={false}>
       <ScrollView
         contentContainerStyle={{
           width: '100%',
@@ -85,15 +80,13 @@ const SettingsIndexScreen = () => {
           easing="ease-out"
           useNativeDriver={true}
           style={styles.container}>
-          {!guest && (MALLR || ABATI) ? (
-            <TouchableOpacity
-              activeOpacity={touchOpacity}
-              onPress={() => navigation.navigate('FavoriteProductIndex')}
-              style={styles.btnWrapper}>
-              <Icon name="staro" type="antdesign" size={iconSizes.medium} />
-              <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
-            </TouchableOpacity>
-          ) : null}
+          <TouchableOpacity
+            activeOpacity={touchOpacity}
+            onPress={() => navigation.navigate('FavoriteProductIndex')}
+            style={styles.btnWrapper}>
+            <Icon name="staro" type="antdesign" size={iconSizes.medium} />
+            <Text style={styles.btnTitle}>{I18n.t('product_favorites')}</Text>
+          </TouchableOpacity>
           {!guest && (HOMEKEY || ESCRAP) ? (
             <Fragment>
               <TouchableOpacity

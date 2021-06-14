@@ -25,7 +25,7 @@ const UserTabViewWidget = ({user}) => {
   return (
     <TabView
       lazy={true}
-      renderTabBar={(props) => (
+      renderTabBar={props => (
         <TabBar
           {...props}
           // tabStyle={{ backgroundColor: 'white'}}
@@ -85,7 +85,7 @@ const UserTabViewWidget = ({user}) => {
         videos: () => <VideosWidget videos={user.videoGroup} />,
       })}
       style={{marginTop: 10, backgroundColor: 'white'}}
-      onIndexChange={(index) => setIndex(index)}
+      onIndexChange={index => setIndex(index)}
       initialLayout={{width: width}}
     />
   );

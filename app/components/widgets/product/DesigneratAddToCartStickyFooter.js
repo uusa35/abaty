@@ -13,7 +13,7 @@ const DesigneratAddToCartStickyFooter = ({
   disabled = true,
   handleAddToCart,
 }) => {
-  const {product} = useSelector((state) => state);
+  const {product} = useSelector(state => state);
   const {colors} = useContext(GlobalValuesContext);
   return (
     <View
@@ -78,4 +78,4 @@ const DesigneratAddToCartStickyFooter = ({
   );
 };
 
-export default DesigneratAddToCartStickyFooter;
+export default React.memo(DesigneratAddToCartStickyFooter);

@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useMemo, useContext} from 'react';
-import {StyleSheet, RefreshControl} from 'react-native';
+import {StyleSheet, RefreshControl, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import HeaderImageScrollView, {
   TriggeringView,
@@ -21,17 +21,16 @@ import UserImageProfileRounded from '../../../components/widgets/user/UserImageP
 import ElementsVerticalList from '../../../components/Lists/ElementsVerticalList';
 import {uniqBy, take} from 'lodash';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import ElementsHorizontalList from '../../../components/Lists/ElementsHorizontalList';
 import BgContainer from '../../../components/containers/BgContainer';
 import ProductCategoryVerticalWidget from '../../../components/widgets/category/ProductCategoryVerticalWidget';
+import ImageLoaderContainer from '../../../components/widgets/ImageLoaderContainer';
 
-const DesignerShowScreen = () => {
+const DesignerShowScreen = ({navigation}) => {
   const {designer, comments, commentModal, searchParams, guest} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors, logo} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
@@ -87,24 +86,40 @@ const DesignerShowScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      <HeaderImageScrollView
+      <ScrollView
         horizontal={false}
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        maxHeight={150}
-        minHeight={90}
-        containerStyle={{flex: 1}}
+        style={{flex: 1}}
         overlayColor="white"
-        headerImage={{
-          uri: designer.banner ? designer.banner : logo,
-        }}
         refreshControl={
           <RefreshControl
             refreshing={refresh}
             onRefresh={() => handleRefresh()}
           />
         }>
+        {!validate.isEmpty(designer.slides) ? (
+          <View style={{width: width}}>
+            <MainSliderWidget elements={designer.slides} />
+          </View>
+        ) : (
+          <>
+            {designer.banner && !validate.isEmpty(designer.banner) ? (
+              <ImageLoaderContainer
+                img={designer.banner}
+                style={{width: '100%', height: 200}}
+                resizeMode={'cover'}
+              />
+            ) : (
+              <ImageLoaderContainer
+                img={logo}
+                style={{width: '100%', height: 200}}
+                resizeMode={'cover'}
+              />
+            )}
+          </>
+        )}
         <View style={styles.wrapper}>
           <TriggeringView
           // onHide={() => console.log('text hidden')}
@@ -138,7 +153,7 @@ const DesignerShowScreen = () => {
             />
             {!validate.isEmpty(designer.slides) && (
               <View style={{width: width}}>
-                <MainSliderWidget elements={designer.slides} />
+                <MainSliderWidget slides={designer.slides} />
               </View>
             )}
             {!validate.isEmpty(collectedCategories) && (
@@ -151,7 +166,7 @@ const DesignerShowScreen = () => {
             )}
             <TabView
               lazy={true}
-              renderTabBar={(props) => (
+              renderTabBar={props => (
                 <TabBar
                   {...props}
                   // tabStyle={{ backgroundColor: 'white'}}
@@ -214,7 +229,7 @@ const DesignerShowScreen = () => {
                 ),
               })}
               style={{backgroundColor: 'white', minHeight: height / 2}}
-              onIndexChange={(i) => setIndex(i)}
+              onIndexChange={i => setIndex(i)}
               initialLayout={{width: width}}
             />
           </TriggeringView>
@@ -225,7 +240,7 @@ const DesignerShowScreen = () => {
             id={designer.id}
           />
         </View>
-      </HeaderImageScrollView>
+      </ScrollView>
     </BgContainer>
   );
 };

@@ -19,7 +19,6 @@ import {
 } from '../../../constants/sizes';
 import {images} from '../../../constants/images';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
 import {useDispatch} from 'react-redux';
 
 const ClassifiedCategoryHorizontalRoundedWidget = ({
@@ -28,12 +27,13 @@ const ClassifiedCategoryHorizontalRoundedWidget = ({
   title,
   showLink = false,
   showTitle = true,
+  navigation,
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const {navigate} = useNavigation();
+  const {navigate} = navigation;
 
-  const handleClick = (c) =>
+  const handleClick = c =>
     dispatch(
       getSearchClassifieds({
         name: c.name,

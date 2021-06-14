@@ -16,7 +16,7 @@ const ProductFilterSizesWidget = ({elements, type, colors, size}) => {
   const [currentElement, setCurrentElement] = useState({});
   const dispatch = useDispatch();
 
-  const handleSetElement = useCallback((item) => {
+  const handleSetElement = useCallback(item => {
     setCurrentElement(item);
     dispatch(setSize(item));
   });
@@ -79,10 +79,10 @@ const ProductFilterSizesWidget = ({elements, type, colors, size}) => {
             onPress={() => handleSetElement(item)}>
             <Text
               style={{
-                fontSize: text.medium,
+                fontSize: text.small,
                 fontFamily: text.font,
                 color: 'black',
-                marginBottom: 6,
+                textAlign: 'center',
               }}>
               {item.name}
             </Text>
@@ -102,12 +102,12 @@ ProductFilterSizesWidget.propTypes = {
 
 export const styles = StyleSheet.create({
   btnStyle: {
-    height: 40,
+    height: 50,
     borderWidth: 0.5,
-    borderRadius: 10,
-    minWidth: 65,
+    borderRadius: 3,
+    width: 100,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     marginRight: 3,
     marginLeft: 3,
     shadowColor: 'black',

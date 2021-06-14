@@ -8,7 +8,7 @@ import {Button, Icon} from 'react-native-elements';
 import I18n from './../../I18n';
 
 const MallrCollectionCreateScreen = ({products}) => {
-  const {productWidth, productHeight} = productWidget.smallest;
+  const {width, height} = productWidget.smallest;
 
   return (
     <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
@@ -23,57 +23,57 @@ const MallrCollectionCreateScreen = ({products}) => {
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidget.x4Small.productWidth, margin: 5}}
+          style={{maxWidth: productWidget.x4Small.width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidget.x4Small.productWidth}
-              height={productWidget.x4Small.productHeight}
+              width={productWidget.x4Small.width}
+              height={productWidget.x4Small.height}
             />
           )}
         />
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidth, margin: 5}}
+          style={{maxWidth: width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidth}
-              height={productHeight}
+              width={width}
+              height={height}
             />
           )}
         />
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidget.x4Small.productWidth, margin: 5}}
+          style={{maxWidth: productWidget.x4Small.width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidget.x4Small.productWidth}
-              height={productWidget.x4Small.productHeight}
+              width={productWidget.x4Small.width}
+              height={productWidget.x4Small.height}
             />
           )}
         />
@@ -89,57 +89,57 @@ const MallrCollectionCreateScreen = ({products}) => {
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidget.x4Small.productWidth, margin: 5}}
+          style={{maxWidth: productWidget.x4Small.width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidget.x4Small.productWidth}
-              height={productWidget.x4Small.productHeight}
+              width={productWidget.x4Small.width}
+              height={productWidget.x4Small.height}
             />
           )}
         />
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidth, margin: 5}}
+          style={{maxWidth: width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidth}
-              height={productHeight}
+              width={width}
+              height={height}
             />
           )}
         />
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidget.x4Small.productWidth, margin: 5}}
+          style={{maxWidth: productWidget.x4Small.width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidget.x4Small.productWidth}
-              height={productWidget.x4Small.productHeight}
+              width={productWidget.x4Small.width}
+              height={productWidget.x4Small.height}
             />
           )}
         />
@@ -155,19 +155,19 @@ const MallrCollectionCreateScreen = ({products}) => {
         <FlatList
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          snapToInterval={productWidth}
+          snapToInterval={width}
           bounces={true}
           disableIntervalMomentum={true}
           data={products}
           numColumns={1}
           scrollEnabled={true}
-          style={{maxWidth: productWidth, margin: 5}}
+          style={{maxWidth: width, margin: 5}}
           renderItem={({item}) => (
             <ProductCreateCollectionWidget
               element={item}
               key={item.id}
-              width={productWidth}
-              height={productHeight}
+              width={width}
+              height={height}
             />
           )}
         />

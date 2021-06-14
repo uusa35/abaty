@@ -8,18 +8,19 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
   const dispatch = useDispatch();
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
+
   return (
     <View
       style={{
         flexDirection: 'row',
         alignSelf: 'center',
-        width: '100%',
+        width: '95%',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 0.5,
         borderColor: colors.btn_bg_theme_color,
-        borderRadius: 5,
+        borderRadius: 1,
         marginTop: 5,
         marginBottom: 5,
         padding: 10,
@@ -36,7 +37,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{
           backgroundColor: 'white',
-          borderRadius: 5,
+          borderRadius: 1,
           borderWidth: 0.5,
           borderColor: colors.btn_bg_theme_color,
           justifyContent: 'space-around',
@@ -49,7 +50,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
           borderWidth: 0.5,
           borderColor: colors.btn_bg_theme_color,
           backgroundColor: colors.btn_bg_theme_color,
-          borderRadius: 5,
+          borderRadius: 1,
           height: 40,
           justifyContent: 'center',
           alignItems: 'center',
@@ -62,7 +63,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
         containerStyle={{width: '15%', margin: 5}}
         buttonStyle={{
           backgroundColor: 'white',
-          borderRadius: 5,
+          borderRadius: 1,
           borderWidth: 0.5,
           borderColor: colors.btn_bg_theme_color,
           justifyContent: 'space-around',
@@ -73,7 +74,7 @@ const ProductWidgetQtyBtns = ({qty, requestQty = 0, setRequestQty}) => {
   );
 };
 
-export default ProductWidgetQtyBtns;
+export default React.memo(ProductWidgetQtyBtns);
 
 ProductWidgetQtyBtns.propTypes = {
   qty: PropTypes.number.isRequired,

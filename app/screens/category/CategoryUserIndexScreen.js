@@ -7,7 +7,7 @@ import {View} from 'react-native-animatable';
 
 const CategoryUserIndexScreen = () => {
   const {homeUserCategories, commercials, settings} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {show_commercials} = settings;
   return (

@@ -8,7 +8,7 @@ import {Button} from 'react-native-elements';
 import {useSelector} from 'react-redux';
 
 const OldVersionComponent = () => {
-  const {settings} = useSelector((state) => state);
+  const {settings} = useSelector(state => state);
   const {colors, apple, android} = settings;
   return (
     <View

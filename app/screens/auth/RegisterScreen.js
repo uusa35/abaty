@@ -4,14 +4,13 @@ import {StyleSheet} from 'react-native';
 import RegisterFormWidget from '../../components/widgets/user/RegisterFormWidget';
 import BgContainer from '../../components/containers/BgContainer';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from 'react-navigation-hooks';
 import validate from 'validate.js';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
   const [userCountryId, setUserCountryId] = useState('');
-  const {token} = useSelector((state) => state);
+  const {token} = useSelector(state => state);
   const dispatch = useDispatch();
-  const {navigate} = useNavigation();
+  const {navigate} = navigation;
   // const [visible, setVisible] = useState(false);
   // const {goBack, navigate, dangerouslyGetParent} = useNavigation();
   // const parent = dangerouslyGetParent();
@@ -24,23 +23,6 @@ const RegisterScreen = () => {
 
   return (
     <BgContainer showImage={false}>
-      {/*<Icon*/}
-      {/*  name="close"*/}
-      {/*  size={25}*/}
-      {/*  containerStyle={{*/}
-      {/*    zIndex: 99,*/}
-      {/*    position: 'absolute',*/}
-      {/*    top: 50,*/}
-      {/*    left: 50*/}
-      {/*  }}*/}
-      {/*  hitSlop={{top: 100, bottom: 100, left: 100, right: 100}}*/}
-      {/*  onPress={() => {*/}
-      {/*    setVisible(false);*/}
-      {/*    return parent.state.index && parent.state.index > 0*/}
-      {/*      ? goBack()*/}
-      {/*      : navigate('Home');*/}
-      {/*  }}*/}
-      {/*/>*/}
       <RegisterFormWidget userCountryId={userCountryId} />
     </BgContainer>
   );

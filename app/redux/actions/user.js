@@ -111,9 +111,9 @@ export function updateUser(payload) {
   };
 }
 
-export function rateUser(payload) {
+export function rateElement(payload) {
   return {
-    type: actions.RATE_USER,
+    type: actions.RATE_ELEMENT,
     payload,
   };
 }
@@ -151,6 +151,19 @@ export function companyRegister(payload) {
   };
 }
 
+export function submitMobileConfirmationCode(payload) {
+  return {
+    type: actions.SUBMIT_MOBILE_CONFIRMATION_CODE,
+    payload,
+  };
+}
+
+export function resendtMobileConfirmationCode() {
+  return {
+    type: actions.RESEND_MOBILE_CONFIRMATION_CODE,
+  };
+}
+
 export function reAuthenticate() {
   return {
     type: actions.REAUTHENTICATE,
@@ -169,32 +182,32 @@ export function googleRegister() {
   };
 }
 
-export const setRole = (payload) => ({
+export const setRole = payload => ({
   type: actions.SET_ROLE,
   payload,
 });
 
-export const setAddress = (payload) => ({
+export const setAddress = payload => ({
   type: actions.SET_ADDRESS,
   payload,
 });
 
-export const changeAddress = (payload) => ({
+export const changeAddress = payload => ({
   type: actions.CHANGE_ADDRESS,
   payload,
 });
 
-export const updateAddress = (payload) => ({
+export const updateAddress = payload => ({
   type: actions.UPDATE_ADDRESS,
   payload,
 });
 
-export const createAddress = (payload) => ({
+export const createAddress = payload => ({
   type: actions.CREATE_ADDRESS,
   payload,
 });
 
-export const deleteAddress = (payload) => ({
+export const deleteAddress = payload => ({
   type: actions.DELETE_ADDRESS,
   payload,
 });

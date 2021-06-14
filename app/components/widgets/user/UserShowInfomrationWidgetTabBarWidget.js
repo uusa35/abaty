@@ -30,7 +30,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
             Animated.round(
               Animated.interpolate(props.position, {
                 inputRange,
-                outputRange: inputRange.map((inputIndex) =>
+                outputRange: inputRange.map(inputIndex =>
                   inputIndex === i ? 255 : 0,
                 ),
               }),
@@ -51,7 +51,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
     );
   }
 
-  (_renderScene) =>
+  _renderScene =>
     SceneMap({
       first: <UserInfoWidget user={element} />,
       second: <VideosWidget videos={element.videos} />,
@@ -62,7 +62,7 @@ const UserShowInformationTabBarWidget = ({element}) => {
       navigationState={{index, routes}}
       renderScene={this._renderScene}
       renderTabBar={this._renderTabBar}
-      onIndexChange={(i) => setIndex(i)}
+      onIndexChange={i => setIndex(i)}
     />
   );
 };

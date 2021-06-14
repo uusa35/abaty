@@ -16,7 +16,7 @@ import validate from 'validate.js';
 import {useSelector} from 'react-redux';
 
 const PagesList = ({showTitle = true, showArrow = true, title}) => {
-  const {pages, colors} = useSelector((state) => state.settings);
+  const {pages, colors} = useSelector(state => state.settings);
   return (
     <ScrollView
       horizontal={false}

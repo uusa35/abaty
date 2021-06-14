@@ -9,14 +9,14 @@ import {isEmpty} from 'lodash';
 import PropTypes from 'prop-types';
 
 const MainSliderWidget = ({elements}) => {
-  const {colors} = useSelector((state) => state.settings);
+  const {colors} = useSelector(state => state.settings);
 
   return (
     <Fragment>
       {!isEmpty(elements) && (
         <View
           style={{
-            height: !validate.isEmpty(elements) ? 215 : 0,
+            height: !validate.isEmpty(elements) ? 180 : 0,
             flex: 1,
           }}>
           {!validate.isEmpty(elements) ? (

@@ -196,6 +196,13 @@ export function chooseCountry(payload) {
   };
 }
 
+export function chooseCurrency(payload) {
+  return {
+    type: actions.SET_CURRENCY,
+    payload,
+  };
+}
+
 export function setArea(payload) {
   return {
     type: actions.SET_AREA,
@@ -225,6 +232,18 @@ export function showCountryModal() {
 export function hideCountryModal() {
   return {
     type: actions.HIDE_COUNTRY_MODAL,
+  };
+}
+
+export function showCurrencyModal() {
+  return {
+    type: actions.SHOW_CURRENCY_MODAL,
+  };
+}
+
+export function hideCurrencyModal() {
+  return {
+    type: actions.HIDE_CURRENCY_MODAL,
   };
 }
 
@@ -313,9 +332,14 @@ export function toggleIntroduction(payload) {
   };
 }
 
-export const showProductFilter = () => ({
+export const submitCreateNewProduct = payload => ({
+  type: actions.SUBMIT_CREATE_NEW_PRODUCT,
+  payload,
+});
+
+export const showProductFilter = payload => ({
   type: actions.SHOW_PRODUCT_FILTER_MODAL,
-  payload: true,
+  payload: payload,
 });
 
 export const hideProductFilter = () => ({
@@ -323,12 +347,12 @@ export const hideProductFilter = () => ({
   payload: false,
 });
 
-export const setColor = (payload) => ({
+export const setColor = payload => ({
   type: actions.SET_COLOR,
   payload,
 });
 
-export const setSize = (payload) => ({
+export const setSize = payload => ({
   type: actions.SET_SIZE,
   payload,
 });
@@ -343,16 +367,12 @@ export const hideClassifiedFilter = () => ({
   payload: false,
 });
 
-export const toggleCompanySearchTextInputModal = (payload) => ({
+export const toggleCompanySearchTextInputModal = payload => ({
   type: actions.TOGGLE_COMPANY_SEARCH_TEXT_INPUT_MODAL,
   payload,
 });
 
-export const setElementType = (payload) => ({
+export const setElementType = payload => ({
   type: actions.SET_ELEMENT_TYPE,
   payload,
-});
-
-export const checkConnection = () => ({
-  type: actions.CHECK_CONNECTION,
 });

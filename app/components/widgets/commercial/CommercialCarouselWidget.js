@@ -12,11 +12,11 @@ const CommercialCarouselWidget = ({elements}) => {
       // layout={'default'}
       // layout={'stack'}
       layoutCardOffset={18}
-      ref={(c) => {
+      ref={c => {
         this._carousel = c;
       }}
       data={elements}
-      renderItem={(c) => <CommercialWidget element={c.item} />}
+      renderItem={c => <CommercialWidget element={c.item} />}
       sliderWidth={width}
       itemWidth={width}
       hasParallaxImages={true}

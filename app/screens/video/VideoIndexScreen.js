@@ -6,7 +6,7 @@ import VideoList from '../../components/Lists/VideoList';
 import BgContainer from '../../components/containers/BgContainer';
 
 const VideoIndexScreen = () => {
-  const {videos} = useSelector((state) => state);
+  const {videos} = useSelector(state => state);
 
   return (
     <BgContainer>

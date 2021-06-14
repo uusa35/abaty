@@ -9,7 +9,7 @@ import validate from 'validate.js';
 import ElementsHorizontalList from '../components/Lists/ElementsHorizontalList';
 
 const PageTwoScreen = () => {
-  const {products, country} = useSelector((state) => state);
+  const {products, country} = useSelector(state => state);
   const dispatch = useDispatch();
   const [currentElements, setCurrentElements] = useState([]);
 

@@ -26,16 +26,14 @@ import ClassifiedStorePropertiesWidget from '../../components/widgets/property/C
 import {convertNumberToEnglish} from '../../helpers';
 import {HOMEKEY} from './../../../app';
 import BgContainer from '../../components/containers/BgContainer';
-import {useNavigation} from 'react-navigation-hooks';
 import {GlobalValuesContext} from '../../redux/GlobalValuesContext';
 import KeyBoardContainer from '../../components/containers/KeyBoardContainer';
 
-const ClassifiedStoreScreen = () => {
+const ClassifiedStoreScreen = ({navigation}) => {
   const {auth, category, country, area, classifiedProps} = useSelector(
-    (state) => state,
+    state => state,
   );
   const {colors} = useContext(GlobalValuesContext);
-  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {params} = navigation.state;
   const [name, setName] = useState();
@@ -73,13 +71,13 @@ const ClassifiedStoreScreen = () => {
       maxFiles: 5,
       minFiles: 2,
       compressImageQuality: 0.5,
-    }).then((images) => {
+    }).then(images => {
       setImage(first(images));
       setImages(images);
     });
   };
 
-  const removeImage = (i) => {
+  const removeImage = i => {
     const newImages = remove(images, (img, index) => i !== index);
     setImages(newImages);
   };
@@ -184,7 +182,7 @@ const ClassifiedStoreScreen = () => {
           shake={true}
           keyboardType="default"
           defaultValue={name}
-          onChangeText={(text) => setName(text)}
+          onChangeText={text => setName(text)}
           placeholder={I18n.t('classified_title')}
           label={`${I18n.t('classified_title')}*`}
           labelStyle={{
@@ -210,7 +208,7 @@ const ClassifiedStoreScreen = () => {
           shake={true}
           keyboardType="default"
           defaultValue={address}
-          onChangeText={(text) => setAddress(text)}
+          onChangeText={text => setAddress(text)}
           placeholder={I18n.t('address')}
           label={I18n.t('address')}
           labelStyle={{
@@ -239,7 +237,7 @@ const ClassifiedStoreScreen = () => {
           shake={true}
           defaultValue={description}
           keyboardType="default"
-          onChangeText={(text) => setDescription(text)}
+          onChangeText={text => setDescription(text)}
           placeholder={description ? description : I18n.t('description')}
           label={`${I18n.t('description')}*`}
           labelStyle={{
@@ -265,7 +263,7 @@ const ClassifiedStoreScreen = () => {
           }}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={(text) => setMobile(text)}
+          onChangeText={text => setMobile(text)}
           defaultValue={mobile}
           placeholder={mobile ? mobile : I18n.t('mobile')}
           label={`${I18n.t('mobile')}*`}
@@ -291,7 +289,7 @@ const ClassifiedStoreScreen = () => {
           }}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={(text) => setPrice(convertNumberToEnglish(text))}
+          onChangeText={text => setPrice(convertNumberToEnglish(text))}
           defaultValue={price}
           placeholder={I18n.t('price')}
           label={`${I18n.t('price')}*`}

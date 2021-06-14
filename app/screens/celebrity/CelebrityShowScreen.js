@@ -19,20 +19,11 @@ import I18n from '../../I18n';
 import VideosVerticalWidget from '../../components/widgets/video/VideosVerticalWidget';
 import ProductCategoryVerticalWidget from '../../components/widgets/category/ProductCategoryVerticalWidget';
 import {ABATI, ESCRAP, HOMEKEY, MALLR} from '../../../app';
-import {useNavigation} from 'react-navigation-hooks';
-import ElementsHorizontalList from '../../components/Lists/ElementsHorizontalList';
 
-const CelebrityShowScreen = () => {
-  const {
-    celebrity,
-    commentModal,
-    comments,
-    guest,
-    searchParams,
-    settings,
-  } = useSelector((state) => state);
+const CelebrityShowScreen = ({navigation}) => {
+  const {celebrity, commentModal, comments, guest, searchParams, settings} =
+    useSelector(state => state);
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const {logo, colors} = settings;
   const [refresh, setRefresh] = useState(false);
   const [index, setIndex] = useState(0);
@@ -106,18 +97,18 @@ const CelebrityShowScreen = () => {
             isFanned={celebrity.isFanned}
             totalFans={celebrity.totalFans}
             currentRating={celebrity.rating}
-            medium={celebrity.medium}
+            medium={celebrity.banner}
             logo={logo}
             slug={celebrity.slug}
             type={celebrity.role.slug}
             views={celebrity.views}
             commentsCount={celebrity.commentsCount}
           />
-          {!validate.isEmpty(celebrity.slides) && (
+          {!validate.isEmpty(celebrity.slides) ? (
             <View style={{paddingTop: 10, paddingBottom: 10, width: width}}>
-              <MainSliderWidget elements={celebrity.slides} />
+              <MainSliderWidget slides={celebrity.slides} />
             </View>
-          )}
+          ) : null}
           {!validate.isEmpty(collectedCategories) ? (
             <ProductCategoryVerticalWidget
               elements={collectedCategories}
@@ -127,7 +118,7 @@ const CelebrityShowScreen = () => {
           ) : null}
           <TabView
             lazy={true}
-            renderTabBar={(props) => (
+            renderTabBar={props => (
               <TabBar
                 {...props}
                 // tabStyle={{ backgroundColor: 'white'}}
@@ -151,16 +142,13 @@ const CelebrityShowScreen = () => {
             }}
             renderScene={SceneMap({
               products: () => (
-                <ElementsHorizontalList
-                  elements={products}
-                  searchParams={searchParams}
-                  type="product"
-                  columns={2}
+                <ProductList
+                  products={products}
                   showSearch={false}
                   showTitle={true}
-                  showTitleIcons={true}
                   showFooter={false}
                   showMore={false}
+                  searchElements={searchParams}
                 />
               ),
               info: () => (
@@ -190,7 +178,7 @@ const CelebrityShowScreen = () => {
               ),
             })}
             style={{marginTop: 10, backgroundColor: 'white'}}
-            onIndexChange={(i) => setIndex(i)}
+            onIndexChange={i => setIndex(i)}
             initialLayout={{width: width}}
           />
         </TriggeringView>

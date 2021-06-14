@@ -57,11 +57,11 @@ const ProductList = ({
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('');
   const [sortModal, setSortModal] = useState(false);
-  const {colors} = useSelector((state) => state.settings);
-  const token = useSelector((state) => state.token);
+  const {colors} = useSelector(state => state.settings);
+  const token = useSelector(state => state.token);
   const dispatch = useDispatch();
 
-  const loadMore = (e) => {
+  const loadMore = e => {
     if (currentShowMore) {
       setPage(parseInt(page + 1));
     }
@@ -98,13 +98,13 @@ const ProductList = ({
       axiosInstance(`search/product?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           if (!validate.isEmpty(r.data)) {
             const productsGroup = uniqBy(items.concat(r.data), 'id');
             setItems(productsGroup);
           }
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -119,7 +119,7 @@ const ProductList = ({
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(items, (i) => (i.name.includes(search) ? i : null));
+      let filtered = filter(items, i => (i.name.includes(search) ? i : null));
       filtered.length > 0 || search.length > 0
         ? setItems(filtered)
         : setItems([]);
@@ -132,7 +132,7 @@ const ProductList = ({
     setItems(products);
   }, [products]);
 
-  const handleClickProductWidget = useCallback((id) => {
+  const handleClickProductWidget = useCallback(id => {
     dispatch(
       getProduct({
         id,

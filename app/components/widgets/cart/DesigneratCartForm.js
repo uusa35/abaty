@@ -14,12 +14,14 @@ import React, {useContext, useEffect, useMemo, useState} from 'react';
 import {width} from '../../../constants';
 import {useDispatch, useSelector} from 'react-redux';
 import {GlobalValuesContext} from '../../../redux/GlobalValuesContext';
-import {useNavigation} from 'react-navigation-hooks';
+import {useNavigation} from '@react-navigation/native';
 import validate from 'validate.js';
 import widgetStyles from '../widgetStyles';
 import DesigneratBtn from '../Button/DesigneratBtn';
 import {getWhatsappLink} from '../../../helpers';
 import {APP_CASE} from '../../../../app.json';
+import {themeColors} from '../../../constants/colors';
+import CartPickupFromBranchInformation from './CartPickupFromBranchInformation';
 
 const DesigneratCartForm = ({
   shipment_notes = null,
@@ -29,9 +31,8 @@ const DesigneratCartForm = ({
 }) => {
   const dispatch = useDispatch();
   const {colors} = useContext(GlobalValuesContext);
-  const {auth, address, shipmentCountry, settings} = useSelector(
-    (state) => state,
-  );
+  const {auth, address, shipmentCountry, settings, pickup, cart, branch} =
+    useSelector(state => state);
   const navigation = useNavigation();
   const [name, setName] = useState(!validate.isEmpty(auth) ? auth.name : null);
   const [email, setEmail] = useState(
@@ -101,50 +102,9 @@ const DesigneratCartForm = ({
           </Text>
         </TouchableOpacity>
       )}
-      {settings.whatsapp && (
-        <View
-          style={[
-            widgetStyles.panelContent,
-            {
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: 15,
-            },
-          ]}>
-          <TouchableOpacity
-            onPress={() =>
-              Linking.openURL(
-                getWhatsappLink(settings.whatsapp, I18n.t(APP_CASE)),
-              )
-            }
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-            }}>
-            <Icon
-              name="whatsapp"
-              type="font-awesome"
-              size={iconSizes.smaller}
-              color={colors.icon_theme_color}
-            />
-            <Text
-              style={[
-                widgetStyles.headerThree,
-                {paddingLeft: 20, paddingRight: 20},
-              ]}>
-              {I18n.t('whatsapp')}
-            </Text>
-          </TouchableOpacity>
-          <Icon
-            name={`chevron-${isRTL ? 'left' : 'right'}`}
-            type="evilicon"
-            size={iconSizes.medium}
-            color={colors.icon_theme_color}
-          />
-        </View>
-      )}
+
+      <CartPickupFromBranchInformation />
+
       <Text
         style={[
           widgetStyles.headerThree,
@@ -185,11 +145,11 @@ const DesigneratCartForm = ({
           label={showLabel ? I18n.t('email') : null}
           labelStyle={[
             styles.titleLabelStyle,
-            {color: colors.main_theme_color, paddingBottom: 10},
+            {color: settings.colors.main_theme_color, paddingBottom: 10},
           ]}
           shake={true}
           keyboardType="default"
-          onChangeText={(name) => setName(name)}
+          onChangeText={name => setName(name)}
         />
         <Input
           editable={editMode}
@@ -215,11 +175,11 @@ const DesigneratCartForm = ({
           inputStyle={widgetStyles.inputStyle}
           labelStyle={[
             styles.titleLabelStyle,
-            {color: colors.main_theme_color, paddingBottom: 10},
+            {color: settings.colors.main_theme_color, paddingBottom: 10},
           ]}
           shake={true}
           keyboardType="email-address"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={email => setEmail(email)}
         />
         <Input
           editable={editMode}
@@ -243,11 +203,11 @@ const DesigneratCartForm = ({
           label={showLabel ? I18n.t('mobile') : null}
           labelStyle={[
             styles.titleLabelStyle,
-            {color: colors.main_theme_color, paddingBottom: 10},
+            {color: settings.colors.main_theme_color, paddingBottom: 10},
           ]}
           shake={true}
           keyboardType="number-pad"
-          onChangeText={(text) => setMobile(text)}
+          onChangeText={text => setMobile(text)}
         />
         <TouchableOpacity
           // onPress={() => {
@@ -259,7 +219,7 @@ const DesigneratCartForm = ({
             borderBottomWidth: 0,
             borderColor: 'lightgrey',
             height: 50,
-            width: '94.5%',
+            width: width - 60,
             alignSelf: 'center',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -295,7 +255,7 @@ const DesigneratCartForm = ({
               label={showLabel ? I18n.t('area') : null}
               labelStyle={[
                 styles.titleLabelStyle,
-                {color: colors.main_theme_color, paddingBottom: 10},
+                {color: settings.colors.main_theme_color, paddingBottom: 10},
               ]}
               shake={true}
               keyboardType="default"
@@ -324,7 +284,7 @@ const DesigneratCartForm = ({
               label={showLabel ? I18n.t('block') : null}
               labelStyle={[
                 styles.titleLabelStyle,
-                {color: colors.main_theme_color, paddingBottom: 10},
+                {color: settings.colors.main_theme_color, paddingBottom: 10},
               ]}
               shake={true}
               keyboardType="default"
@@ -353,7 +313,7 @@ const DesigneratCartForm = ({
               label={showLabel ? I18n.t('street') : null}
               labelStyle={[
                 styles.titleLabelStyle,
-                {color: colors.main_theme_color, paddingBottom: 10},
+                {color: settings.colors.main_theme_color, paddingBottom: 10},
               ]}
               shake={true}
               keyboardType="default"
@@ -384,7 +344,7 @@ const DesigneratCartForm = ({
               label={showLabel ? I18n.t('building') : null}
               labelStyle={[
                 styles.titleLabelStyle,
-                {color: colors.main_theme_color, paddingBottom: 10},
+                {color: settings.colors.main_theme_color, paddingBottom: 10},
               ]}
               shake={true}
               keyboardType="default"
@@ -417,13 +377,13 @@ const DesigneratCartForm = ({
           label={showLabel ? I18n.t('additional_information') : null}
           labelStyle={[
             styles.titleLabelStyle,
-            {color: colors.main_theme_color, paddingBottom: 10},
+            {color: settings.colors.main_theme_color, paddingBottom: 10},
           ]}
           shake={true}
           keyboardType="default"
           // multiline={true}
           numberOfLines={3}
-          onChangeText={(notes) => setNotes(notes)}
+          onChangeText={notes => setNotes(notes)}
         />
       </View>
 
@@ -436,7 +396,7 @@ const DesigneratCartForm = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             backgroundColor: 'white',
-            borderTopColor: colors.btn_bg_theme_color,
+            borderTopColor: settings.colors.btn_bg_theme_color,
             borderWidth: 1,
             borderRightWidth: 0,
             borderLeftWidth: 0,
@@ -449,7 +409,7 @@ const DesigneratCartForm = ({
               {
                 paddingLeft: 20,
                 paddingRight: 20,
-                color: colors.header_one_theme_color,
+                color: settings.colors.header_one_theme_color,
               },
             ]}>
             {I18n.t('change_modify_address')}
@@ -458,7 +418,7 @@ const DesigneratCartForm = ({
             name={`chevron-${isRTL ? 'left' : 'right'}`}
             type="evilicon"
             size={iconSizes.medium}
-            color={colors.icon_theme_color}
+            color={settings.colors.icon_theme_color}
           />
         </Pressable>
         <TouchableOpacity
@@ -471,8 +431,8 @@ const DesigneratCartForm = ({
             backgroundColor: 'white',
             borderTopWidth: 1,
             borderBottomWidth: 1,
-            borderTopColor: colors.btn_bg_theme_color,
-            borderBottomColor: colors.btn_bg_theme_color,
+            borderTopColor: settings.colors.btn_bg_theme_color,
+            borderBottomColor: settings.colors.btn_bg_theme_color,
             borderBottomRightRadius: 5,
             borderBottomLeftRadius: 5,
             height: 50,
@@ -483,7 +443,7 @@ const DesigneratCartForm = ({
               {
                 paddingLeft: 20,
                 paddingRight: 20,
-                color: colors.header_one_theme_color,
+                color: settings.colors.header_one_theme_color,
               },
             ]}>
             {I18n.t('add_new_address')}
@@ -492,7 +452,7 @@ const DesigneratCartForm = ({
             name={`chevron-${isRTL ? 'left' : 'right'}`}
             type="evilicon"
             size={iconSizes.medium}
-            color={colors.icon_theme_color}
+            color={settings.colors.icon_theme_color}
           />
         </TouchableOpacity>
       </View>

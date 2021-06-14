@@ -4,14 +4,18 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {text} from './../constants/sizes';
-import FastImage from 'react-native-fast-image';
 import {useSelector} from 'react-redux';
 import ImageLoaderContainer from './widgets/ImageLoaderContainer';
+import {useRoute} from '@react-navigation/native';
+import {upperFirst} from 'lodash';
+import {isIOS} from '../constants';
 
 export const HeaderMiddle = ({title, showLogo = false}) => {
-  const {app_logo, colors} = useSelector((state) => state.settings);
+  const route = useRoute();
+  const {app_logo, colors} = useSelector(state => state.settings);
+  const {settings} = useSelector(state => state);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {flex: 1, maxWidth: isIOS ? 250 : 350}]}>
       {showLogo ? (
         <ImageLoaderContainer
           resizeMode="contain"
@@ -27,10 +31,14 @@ export const HeaderMiddle = ({title, showLogo = false}) => {
           style={{
             fontFamily: text.font,
             fontSize: text.medium,
-            textAlign: 'center',
-            color: colors.header_one_theme_color,
+            textAlign: 'left',
+            alignSelf: 'flex-start',
+            paddingLeft: !isIOS ? '10%' : 0,
+            color: colors.footer_theme_color,
           }}>
-          {title ? title.substring(0, 20) : null}
+          {upperFirst(
+            route.params?.name ? route.params.name : title.substring(0, 20),
+          )}
         </Text>
       )}
     </View>
@@ -39,9 +47,7 @@ export const HeaderMiddle = ({title, showLogo = false}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    alignItems: isIOS ? 'flex-start' : 'center',
   },
 });

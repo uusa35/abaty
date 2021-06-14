@@ -20,13 +20,17 @@ import {bottomContentInset, text, TheHold} from './../../constants/sizes';
 import {filter, uniqBy, shuffle} from 'lodash';
 import {axiosInstance} from '../../redux/actions/api';
 import CompanyHorizontalWidget from '../widgets/user/CompanyHorizontalWidget';
-import {useNavigation} from 'react-navigation-hooks';
 import TopSearchInput from '../widgets/TopSearchInput';
 import {useDispatch} from 'react-redux';
 import {ESCRAP} from './../../../app.json';
 import EmptyListWidget from './EmptyListWidget';
 
-const CompaniesList = ({elements, searchParams, showMore = true}) => {
+const CompaniesList = ({
+  elements,
+  searchParams,
+  showMore = true,
+  navigation,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [currentShowMore, setCurrentShowMore] = useState(showMore);
@@ -37,7 +41,7 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
   const dispatch = useDispatch();
   const {goBack} = useNavigation();
 
-  const loadMore = (d) => {
+  const loadMore = d => {
     setPage(page + 1);
   };
 
@@ -46,13 +50,13 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
       axiosInstance(`search/user?page=${page}`, {
         params,
       })
-        .then((r) => {
+        .then(r => {
           if (!validate.isEmpty(r.data)) {
             const userGroup = uniqBy(items.concat(r.data), 'id');
             setItems(userGroup);
           }
         })
-        .catch((e) => e);
+        .catch(e => e);
     }
   }, [page]);
 
@@ -72,7 +76,7 @@ const CompaniesList = ({elements, searchParams, showMore = true}) => {
     if (search.length > 0) {
       setIsLoading(false);
       setRefresh(false);
-      let filtered = filter(elements, (i) =>
+      let filtered = filter(elements, i =>
         i.slug.includes(search) ? i : null,
       );
       if (filtered.length > 0 || search.length > 0) {
