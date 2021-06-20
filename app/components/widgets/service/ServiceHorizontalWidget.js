@@ -25,7 +25,8 @@ const ServiceHorizontalWidget = ({showName, title}) => {
   const {colors} = useContext(GlobalValuesContext);
   const dispatch = useDispatch();
   const {settings, homeServices, token} = useSelector(state => state);
-  const navigaiton = useNavigation();
+  const navigation = useNavigation();
+
   const handleClick = element => {
     return dispatch(
       getService({
@@ -50,7 +51,7 @@ const ServiceHorizontalWidget = ({showName, title}) => {
             paddingBottom: 10,
           },
         ]}
-        onPress={() => navigaiton.navigate('ServiceTab')}>
+        onPress={() => navigation.navigate('ServiceTab')}>
         <View style={widgetStyles.titleWrapper}>
           <Text
             style={[
