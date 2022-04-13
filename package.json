@@ -33,7 +33,7 @@
     "@react-navigation/stack": "^5.14.2",
     "@sentry/react-native": "^2.2.1",
     "accordion-collapse-react-native": "^1.0.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "geolib": "^3.3.1",
     "hermesvm": "^0.1.1",
